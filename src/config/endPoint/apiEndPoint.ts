@@ -13,4 +13,6 @@ export const endPoints = {
   booking: 'bookings',
   notification: 'notifications',
   logIn: 'login',
+  consultantProfileSetup: 'consultant-profile-setup',
+  consultantVerified: 'consultant-verified',
 };

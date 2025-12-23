@@ -34,11 +34,16 @@ export const RootNavigation = () => {
   const isLoggedIn = useSelector((state: RootState) => state.user.token);
   const role = useSelector((state: RootState) => state.user.userData.role);
   const isFirstTime = useSelector((state: RootState) => state.user.isFirstTime);
+  const profileSetup = useSelector(
+    (state: RootState) => state.user.userData.profile_setup,
+  );
 
   const setInitialRoute = () => {
     if (isFirstTime) {
       return routeName.Onboarding;
     } else if (isLoggedIn) {
+      if (profileSetup) {
+      }
       if (role === 'consultant') {
         return routeName.ConsultantBottomTab;
       }

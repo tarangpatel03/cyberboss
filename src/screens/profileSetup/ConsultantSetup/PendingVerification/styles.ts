@@ -1,16 +1,13 @@
 import { StyleSheet } from 'react-native';
 import { Theme } from '../../../../config/themes/themes';
 import normalize from '../../../../utils/normalize/normalize';
-import { height } from '../../../../config/constants/variables';
 
 export const staticStyle = StyleSheet.create({
   container: {
-    height: normalize(height - 30),
-    justifyContent: 'space-between',
+    flex: 1,
   },
   bottomButton: {
     paddingHorizontal: normalize(16),
-    bottom: normalize(50, 'height'),
   },
   topBar: {
     alignItems: 'center',

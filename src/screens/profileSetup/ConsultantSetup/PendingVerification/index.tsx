@@ -13,6 +13,9 @@ import { SemiBoldTextComponent } from '../../../../components/Text/SemiBoldTextC
 import { RegularTextComponent } from '../../../../components/Text/RegularTextComponent';
 import FastImage from 'react-native-fast-image';
 import { useTranslation } from 'react-i18next';
+import { getAPIData } from '../../../../services/api/getApi/getAPI';
+import { endPoints } from '../../../../config/endPoint/apiEndPoint';
+import { useEffect } from 'react';
 
 export const PendingVerificationScreen = ({
   navigation,
@@ -29,15 +32,28 @@ export const PendingVerificationScreen = ({
     navigation.replace(routeName.ConsultantBottomTab);
   };
 
+  const verify = async () => {
+    try {
+      const res = await getAPIData(endPoints.consultantVerified);
+      console.log('res: ', res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    verify();
+  }, []);
+
   return (
     <>
       <StatusBar
         barStyle={isDarkMode(theme) ? 'light-content' : 'dark-content'}
       />
-      <SafeAreaView style={styles.container}>
-        <View
-          style={StyleSheet.flatten([staticStyle.container, styles.container])}
-        >
+      <SafeAreaView
+        style={StyleSheet.flatten([staticStyle.container, styles.container])}
+      >
+        <View style={StyleSheet.flatten([styles.container])}>
           <View>
             <View style={staticStyle.topBar}>
               <CircularIconButtonComponent

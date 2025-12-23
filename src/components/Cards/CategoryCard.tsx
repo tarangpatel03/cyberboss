@@ -18,12 +18,12 @@ export const CategoryCard = memo(({ obj }: { obj: categoryCardProp }) => {
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   const [isSelected, setIsSelected] = useState<boolean>(
-    obj.data.includes(obj.expertise.name),
+    obj.data.includes(obj.expertise.id),
   );
 
   const toggleSelected = () => {
     setIsSelected(prev => !prev);
-    isSelected ? obj.remove(obj.expertise.name) : obj.add(obj.expertise.name);
+    isSelected ? obj.remove(obj.expertise.id) : obj.add(obj.expertise.id);
   };
 
   return (

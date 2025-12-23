@@ -22,8 +22,6 @@ export function useClientHome() {
   const [loader, setLoader] = useState<boolean>(true);
   const [refreshing, setRefreshing] = useState<boolean>(false);
 
-  console.log('UseClient Called');
-
   const [homeData, setHomeData] = useState<IClientHomeModal>({
     bookings: [],
     workshops: [],
@@ -69,7 +67,6 @@ export function useClientHome() {
         endPoints.consultantProfile,
       );
       const transformedData2 = transformProfileModal(res);
-      console.log('Transformed User: ', transformedData2);
       setProfileData(transformedData2);
       dispatch(
         setUserData({
@@ -80,8 +77,8 @@ export function useClientHome() {
           profilePicture: transformedData2.profilePicture,
         }),
       );
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
-      console.log(error);
       await handleHomeScreenWithoutLogIn();
     } finally {
       setLoader(false);

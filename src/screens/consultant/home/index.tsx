@@ -30,16 +30,19 @@ export const ConsultantHomeScreen = ({
   const styles = createStyles(theme);
   const [profileData, setProfileData] = useState<IProfileModal>({
     id: '',
-    name: '',
+    name: 'User',
     email: '',
-    bio: null,
-    rate: null,
-    services: [],
-    expertises: [],
     phoneNumber: null,
-    role: 'consultant',
-    experienceYear: null,
     profilePicture: undefined,
+    role: 'consultant',
+    bio: null,
+    experienceYear: null,
+    rate: null,
+    expertises: [],
+    services: [],
+    isVerified: false,
+    loginType: 'social',
+    profileSetup: false,
   });
 
   const navigateToNotification = () => {

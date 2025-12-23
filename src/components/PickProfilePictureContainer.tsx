@@ -3,6 +3,8 @@ import FastImage from 'react-native-fast-image';
 import { MediumTextComponent } from './Text/MediumTextComponent';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import { staticStyle } from '../screens/common/EditProfile/styles';
+import { useState } from 'react';
+import { appImages } from '../config/images/imagePath';
 
 type pickPrifilePictureContainerProps = {
   pickImage: () => void;
@@ -14,9 +16,20 @@ export const PickPrifilePictureContainer = (
   props: pickPrifilePictureContainerProps,
 ) => {
   const { t } = useTranslation();
+  const [profilePictureError, setProfilePictureError] =
+    useState<boolean>(false);
+
   return (
     <View style={staticStyle.profilePictureContainer}>
-      <FastImage source={props.getPicture()} style={staticStyle.profileImage} />
+      <FastImage
+        source={
+          profilePictureError
+            ? appImages.img_defaultProfile
+            : props.getPicture()
+        }
+        onError={() => setProfilePictureError(true)}
+        style={staticStyle.profileImage}
+      />
       <TouchableOpacity onPress={props.pickImage} activeOpacity={0.7}>
         <MediumTextComponent
           text={t('changePhoto')}

@@ -24,10 +24,13 @@ import {
 } from 'react-native-image-picker';
 import { SemiBoldTextComponent } from '../../../../components/Text/SemiBoldTextComponent';
 import { RegularTextComponent } from '../../../../components/Text/RegularTextComponent';
-import { BorderInputComponent } from '../../../../components/Input/BorderInput';
 import { BioInputComponent } from '../../../../components/Input/MultiLineInput';
 import FastImage from 'react-native-fast-image';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../../redux/store';
+import { updateConsultantProfileSetup } from '../../../../services/api/postApi/updateProfile';
+import { EmailAndPasswordInput } from '../../../../components/Input/EmailAndPasswordInput';
 
 export const PersonalDetailsScreen = ({
   navigation,
@@ -35,21 +38,32 @@ export const PersonalDetailsScreen = ({
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
-  const [name, setName] = useState<string | null>('');
-  const [experience, setExperience] = useState<string | null>('');
-  const [bio, setBio] = useState<string | null>('');
+  const [name, setName] = useState<string>('');
+  const [experience, setExperience] = useState<string>('');
+  const [bio, setBio] = useState<string>('');
+  const { expertises, services } = useSelector(
+    (state: RootState) => state.user.userData,
+  );
 
   const goBack = () => {
     navigation.goBack();
   };
 
-  const navigateToNext = () => {
-    navigation.navigate(routeName.PendingVerification);
-  };
-
   const [profileImage, setProfileImage] = useState<
     number | { uri: string } | undefined
   >(appImages.img_defaultProfile);
+
+  const navigateToNext = () => {
+    updateConsultantProfileSetup(
+      name,
+      experience,
+      bio,
+      profileImage,
+      expertises ?? [],
+      services ?? [],
+    );
+    navigation.navigate(routeName.PendingVerification);
+  };
 
   const mediaOptoins: ImageLibraryOptions = {
     mediaType: 'photo',
@@ -133,12 +147,12 @@ export const PersonalDetailsScreen = ({
                 </TouchableOpacity>
               </View>
               <View style={staticStyle.inputs}>
-                <BorderInputComponent
+                <EmailAndPasswordInput
                   placeholder={t('name')}
                   setValue={setName}
                   value={name}
                 />
-                <BorderInputComponent
+                <EmailAndPasswordInput
                   placeholder={t('yearsofExperience')}
                   setValue={setExperience}
                   value={experience}

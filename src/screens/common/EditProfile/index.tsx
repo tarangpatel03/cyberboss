@@ -19,7 +19,6 @@ import {
   transformProfileModal,
 } from '../../../models/formattedAPI/formatedModals';
 import { ApiProfileModal } from '../../../models/api/models';
-import { appImages } from '../../../config/images/imagePath';
 import { endPoints } from '../../../config/endPoint/apiEndPoint';
 import { useTranslation } from 'react-i18next';
 import { updateClientProfile } from '../../../services/api/postApi/updateProfile';
@@ -38,16 +37,19 @@ export const EditProfileScreen = ({
   );
   const [profileData, setProfileData] = useState<IProfileModal>({
     id: '',
-    name: '',
+    name: 'User',
     email: '',
     phoneNumber: null,
-    profilePicture: appImages.img_defaultProfile,
+    profilePicture: undefined,
     role: 'client',
     bio: null,
     experienceYear: null,
     rate: null,
     expertises: [],
     services: [],
+    isVerified: false,
+    loginType: 'social',
+    profileSetup: false,
   });
 
   const [email, setEmail] = useState<string>(profileData.email);
@@ -85,7 +87,8 @@ export const EditProfileScreen = ({
     }
   };
 
-  const updateClientProfile = async () => {
+  const updateProfile = async () => {
+    // profileData.role === 'client' ?
     await updateClientProfile(name ?? '', profilePictureRef.current);
     goBack();
   };
@@ -140,7 +143,7 @@ export const EditProfileScreen = ({
         <View style={staticStyle.button}>
           <PrimaryButtonComponent
             obj={{
-              onPress: updateClientProfile,
+              onPress: updateProfile,
               text: t('updateProfile'),
             }}
           />

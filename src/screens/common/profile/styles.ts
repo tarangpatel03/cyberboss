@@ -34,6 +34,7 @@ export const staticStyle = StyleSheet.create({
   },
   userNameCard: {
     width: '75%',
+    paddingLeft: normalize(8),
     justifyContent: 'space-between',
     flexDirection: 'row',
     alignItems: 'center',

@@ -21,6 +21,8 @@ import {
   IExpertiesModal,
   transformExpertiesModal,
 } from '../../../../models/formattedAPI/formatedModals';
+import { useDispatch } from 'react-redux';
+import { setUserData } from '../../../../redux/features/userSlice';
 
 export const AreaOfExpertiesScreen = ({
   navigation,
@@ -28,6 +30,7 @@ export const AreaOfExpertiesScreen = ({
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
+  const dispatch = useDispatch();
   const [expertise, setExpertise] = useState<IExpertiesModal[]>([]);
   const [category, setCategory] = useState<string[]>([]);
 
@@ -45,14 +48,20 @@ export const AreaOfExpertiesScreen = ({
     }
   };
 
-  const addCategory = (text: string) => {
-    setCategory(prev => [...prev, text]);
+  const addCategory = (id: string) => {
+    setCategory(prev => [...prev, id]);
   };
-  const removeCategory = (text: string) => {
-    setCategory(category.filter(x => x !== text));
+  const removeCategory = (id: string) => {
+    setCategory(category.filter(x => x !== id));
   };
 
   const navigateToNext = () => {
+    console.log('Category: ', category);
+    dispatch(
+      setUserData({
+        expertises: category,
+      }),
+    );
     navigation.navigate(routeName.ServicesYouOffer);
   };
 

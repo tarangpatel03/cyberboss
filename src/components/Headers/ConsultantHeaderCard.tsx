@@ -15,6 +15,8 @@ import { MediumTextComponent } from '../Text/MediumTextComponent';
 import { RegularTextComponent } from '../Text/RegularTextComponent';
 import { SemiBoldTextComponent } from '../Text/SemiBoldTextComponent';
 import { IProfileModal } from '../../models/formattedAPI/formatedModals';
+import { useState } from 'react';
+import { appImages } from '../../config/images/imagePath';
 
 type consultantHeaderCardProps = {
   profileData: IProfileModal;
@@ -25,6 +27,8 @@ export const ConsultantHeaderCard = (props: consultantHeaderCardProps) => {
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
+  const [profilePictureError, setProfilePictureError] =
+    useState<boolean>(false);
 
   return (
     <LinearGradient
@@ -41,8 +45,13 @@ export const ConsultantHeaderCard = (props: consultantHeaderCardProps) => {
           <View style={staticStyle.row}>
             <View style={staticStyle.image}>
               <FastImage
-                source={props.profileData.profilePicture}
+                source={
+                  profilePictureError
+                    ? appImages.img_defaultProfile
+                    : props.profileData.profilePicture
+                }
                 style={staticStyle.image}
+                onError={() => setProfilePictureError(true)}
               />
             </View>
             <SemiBoldTextComponent
@@ -70,7 +79,7 @@ export const ConsultantHeaderCard = (props: consultantHeaderCardProps) => {
           <View style={staticStyle.centerRow}>
             <View style={staticStyle.counter}>
               <BoldTextComponent
-                text="$200.0k"
+                text="$0"
                 textStyle={StyleSheet.flatten([
                   staticStyle.countText,
                   styles.whiteText,
@@ -87,15 +96,15 @@ export const ConsultantHeaderCard = (props: consultantHeaderCardProps) => {
             <LinearGradient
               style={staticStyle.verticalVaperator}
               colors={[
-                appColors.app_FFFFFF00,
                 appColors.app_FFFFFF40,
                 appColors.app_FFFFFF00,
+                appColors.app_FFFFFF40,
               ]}
             />
             <View style={staticStyle.counter}>
               <View style={staticStyle.directionRow}>
                 <BoldTextComponent
-                  text="4.8"
+                  text="0"
                   textStyle={StyleSheet.flatten([
                     staticStyle.countText,
                     styles.whiteText,
@@ -126,9 +135,9 @@ export const ConsultantHeaderCard = (props: consultantHeaderCardProps) => {
               y: 0.5,
             }}
             colors={[
-              appColors.app_FFFFFF00,
               appColors.app_FFFFFF40,
               appColors.app_FFFFFF00,
+              appColors.app_FFFFFF40,
             ]}
           />
           <View
@@ -152,7 +161,7 @@ export const ConsultantHeaderCard = (props: consultantHeaderCardProps) => {
               />
             </View>
             <MediumTextComponent
-              text="$2.5k"
+              text="$0"
               textStyle={StyleSheet.flatten([
                 staticStyle.viewAllText,
                 styles.whiteText,

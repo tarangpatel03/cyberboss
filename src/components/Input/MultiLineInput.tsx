@@ -19,7 +19,7 @@ import FastImage from 'react-native-fast-image';
 type multiLineInputComponentProps = {
   placeholder: string;
   value: string | null;
-  setValue: Dispatch<SetStateAction<string | null>>;
+  setValue: Dispatch<SetStateAction<string>>;
   secureText?: boolean;
   borderStyle?: StyleProp<ViewStyle> | null;
   onSubmit?: (serviceText: string) => void;

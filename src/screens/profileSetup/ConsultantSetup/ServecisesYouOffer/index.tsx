@@ -15,6 +15,8 @@ import { BorderInputComponent } from '../../../../components/Input/BorderInput';
 import { ServiceListCard } from '../../../../components/Cards/ServiceListCard';
 import { PrimaryButtonComponent } from '../../../../components/Buttons/PrimaryButton';
 import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
+import { setUserData } from '../../../../redux/features/userSlice';
 
 export const ServicesYouOfferScreen = ({
   navigation,
@@ -22,6 +24,7 @@ export const ServicesYouOfferScreen = ({
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
+  const dispatch = useDispatch();
   const [text, setText] = useState<string | null>('');
   const [serviceList, setServiceList] = useState<string[]>([]);
 
@@ -38,6 +41,11 @@ export const ServicesYouOfferScreen = ({
   };
 
   const navigateToNext = () => {
+    dispatch(
+      setUserData({
+        services: serviceList,
+      }),
+    );
     navigation.navigate(routeName.PersonalDetails);
   };
   return (

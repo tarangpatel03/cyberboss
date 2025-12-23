@@ -1,9 +1,24 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 import { appImages } from '../../config/images/imagePath';
-import { IExpertiesModal } from '../../models/formattedAPI/formatedModals';
 
 export type userDetailProps = {
+  id: string;
+  name: string;
+  email: string;
+  role: 'client' | 'consultant';
+  profilePicture: number | { uri: string } | undefined;
+  bio: string | null;
+  experience_year: string | null;
+  rate: string | null;
+  expertises: string[] | null;
+  services: string[] | null;
+  is_verified: boolean | null;
+  login_type: string;
+  profile_setup: boolean;
+};
+
+export type updateUserDetailProps = {
   id?: string;
   name?: string;
   email?: string;
@@ -12,8 +27,8 @@ export type userDetailProps = {
   bio?: string | null;
   experience_year?: string | null;
   rate?: string | null;
-  expertises?: IExpertiesModal[] | null;
-  services?: null;
+  expertises?: string[] | null;
+  services?: string[] | null;
   is_verified?: boolean | null;
   login_type?: string;
   profile_setup?: boolean;
@@ -32,7 +47,21 @@ const initialState: UserState = {
   showTour: true,
   isFirstTime: true,
   isPro: false,
-  userData: {},
+  userData: {
+    id: '',
+    email: '',
+    bio: null,
+    rate: null,
+    name: 'User',
+    login_type: '',
+    services: null,
+    role: 'client',
+    expertises: null,
+    is_verified: null,
+    profile_setup: false,
+    experience_year: null,
+    profilePicture: appImages.img_defaultProfile,
+  },
 };
 
 export const userSlice = createSlice({
@@ -51,8 +80,33 @@ export const userSlice = createSlice({
     setShowTour: (state, action: PayloadAction<boolean>) => {
       state.showTour = action.payload;
     },
-    setUserData: (state, action: PayloadAction<userDetailProps>) => {
-      state.userData = action.payload;
+    setUserData: (state, action: PayloadAction<updateUserDetailProps>) => {
+      if (action.payload.bio !== undefined)
+        state.userData.bio = action.payload.bio;
+      if (action.payload.email !== undefined)
+        state.userData.email = action.payload.email;
+      if (action.payload.experience_year !== undefined)
+        state.userData.experience_year = action.payload.experience_year;
+      if (action.payload.expertises !== undefined)
+        state.userData.expertises = action.payload.expertises;
+      if (action.payload.id !== undefined)
+        state.userData.id = action.payload.id;
+      if (action.payload.is_verified !== undefined)
+        state.userData.is_verified = action.payload.is_verified;
+      if (action.payload.login_type !== undefined)
+        state.userData.login_type = action.payload.login_type;
+      if (action.payload.name !== undefined)
+        state.userData.name = action.payload.name;
+      if (action.payload.profilePicture !== undefined)
+        state.userData.profilePicture = action.payload.profilePicture;
+      if (action.payload.profile_setup !== undefined)
+        state.userData.profile_setup = action.payload.profile_setup;
+      if (action.payload.rate !== undefined)
+        state.userData.rate = action.payload.rate;
+      if (action.payload.role !== undefined)
+        state.userData.role = action.payload.role;
+      if (action.payload.services !== undefined)
+        state.userData.services = action.payload.services;
     },
     clearUser: state => {
       state.token = undefined;

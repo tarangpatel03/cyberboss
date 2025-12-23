@@ -38,6 +38,7 @@ export const staticStyle = StyleSheet.create({
   },
   directionRow: {
     flexDirection: 'row',
+    gap: normalize(8),
     alignItems: 'center',
   },
   container: {

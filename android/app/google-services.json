@@ -1,0 +1,62 @@
+{
+  "project_info": {
+    "project_number": "1023603373770",
+    "project_id": "cyber-boss-1623b",
+    "storage_bucket": "cyber-boss-1623b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1023603373770:android:2684a088b57b2410a42633",
+        "android_client_info": {
+          "package_name": "com.cyberboss"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1023603373770-5lklesicqq2l10p4utdp10kl7dm7n2am.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cyberboss",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "1023603373770-ce7rjr396atjkrqkn1flmgmsrbt31tke.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cyberboss",
+            "certificate_hash": "7d6645e97baaf608426ae5a94aadb876564df05a"
+          }
+        },
+        {
+          "client_id": "1023603373770-oo1fq6deu27ojbiuf6fj3tdc9mfv581e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCk521RmKfFR_vq_XYueCIHyHcwRwRDrs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1023603373770-oo1fq6deu27ojbiuf6fj3tdc9mfv581e.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1023603373770-6aov7otbi59o6sglmbt4cue2o7mtc3l3.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.cyberboss"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

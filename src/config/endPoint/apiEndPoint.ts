@@ -1,0 +1,16 @@
+export const endPoints = {
+  feedBackRefine: 'feedback-refine',
+  askChatbot: 'ask-chatbot',
+  expertises: 'expertises',
+  consultantList: 'consultants-list',
+  clientProfile: 'client-profile',
+  billCount: 'bookings/bill-count',
+  consultant: 'consultants/',
+  chatHistory: 'chat-history',
+  clientHome: 'client-home',
+  consultantProfile: 'consultant-profile',
+  workshopList: 'workshops-list',
+  booking: 'bookings',
+  notification: 'notifications',
+  logIn: 'login',
+};

@@ -1,0 +1,121 @@
+import {
+  createStyles,
+  staticStyle,
+} from '../../screens/common/auth/SignUp/styles';
+import { useTheme } from '@shopify/restyle';
+import { useTranslation } from 'react-i18next';
+import FastImage from 'react-native-fast-image';
+import { Dispatch, SetStateAction } from 'react';
+import { Theme } from '../../config/themes/themes';
+import { appIcons } from '../../config/icons/iconPath';
+import { EmailAndPasswordInput } from './EmailAndPasswordInput';
+import { View, TouchableOpacity, StyleSheet } from 'react-native';
+import { PrimaryButtonComponent } from '../Buttons/PrimaryButton';
+import { RegularTextComponent } from '../Text/RegularTextComponent';
+import { CircularIconButtonComponent } from '../Buttons/CircularIconButton';
+
+type signUpInputContainerProps = {
+  email: string;
+  password: string;
+  checkBox: boolean;
+  passVisible: boolean;
+  navigateToProfileSetUp: () => void;
+  setEmail: Dispatch<SetStateAction<string>>;
+  setPassword: Dispatch<SetStateAction<string>>;
+  setCheckBox: Dispatch<SetStateAction<boolean>>;
+  setPassVisible: Dispatch<SetStateAction<boolean>>;
+};
+
+export const SignUpInputContainer = (props: signUpInputContainerProps) => {
+  const { t } = useTranslation();
+  const theme = useTheme<Theme>();
+  const styles = createStyles(theme);
+  return (
+    <View style={staticStyle.inputs}>
+      <EmailAndPasswordInput
+        keyboardType="email-address"
+        placeholder={t('email')}
+        value={props.email}
+        setValue={props.setEmail}
+      />
+      <View style={staticStyle.passwordInput}>
+        <EmailAndPasswordInput
+          placeholder={t('password')}
+          value={props.password}
+          setValue={props.setPassword}
+          secureText={!props.passVisible}
+        />
+        <CircularIconButtonComponent
+          obj={{
+            iconPath: props.passVisible
+              ? appIcons.ic_showPassword
+              : appIcons.ic_hiddenPassword,
+            buttonStyle: staticStyle.passwordButton,
+            iconStyle: props.passVisible
+              ? staticStyle.showPasswordIcon
+              : staticStyle.hiddenPasswordIcon,
+            tintColor: theme.colors.textPrimary,
+            onPress: () => props.setPassVisible(prev => !prev),
+          }}
+        />
+      </View>
+      <View style={staticStyle.signUpLine}>
+        <View>
+          <TouchableOpacity
+            onPress={() => props.setCheckBox(prev => !prev)}
+            style={StyleSheet.flatten([staticStyle.checkBox, styles.checkBox])}
+          >
+            {props.checkBox && (
+              <View
+                style={StyleSheet.flatten([
+                  staticStyle.checkedBox,
+                  styles.checkedBox,
+                ])}
+              >
+                <FastImage source={appIcons.ic_checkMark} />
+              </View>
+            )}
+          </TouchableOpacity>
+        </View>
+        <RegularTextComponent
+          text={t('agreeTo')}
+          textStyle={StyleSheet.flatten([
+            staticStyle.termsLine,
+            styles.subTitle,
+          ])}
+        />
+        <TouchableOpacity activeOpacity={0.7}>
+          <RegularTextComponent
+            text={t('privacyPolicy')}
+            textStyle={StyleSheet.flatten([
+              staticStyle.termsLine,
+              styles.logIn,
+            ])}
+          />
+        </TouchableOpacity>
+        <RegularTextComponent
+          text={t('and')}
+          textStyle={StyleSheet.flatten([
+            staticStyle.termsLine,
+            styles.subTitle,
+          ])}
+        />
+        <TouchableOpacity activeOpacity={0.7}>
+          <RegularTextComponent
+            text={t('terms')}
+            textStyle={StyleSheet.flatten([
+              staticStyle.termsLine,
+              styles.logIn,
+            ])}
+          />
+        </TouchableOpacity>
+      </View>
+      <PrimaryButtonComponent
+        obj={{
+          text: t('signUp'),
+          onPress: props.navigateToProfileSetUp,
+        }}
+      />
+    </View>
+  );
+};

@@ -1,0 +1,166 @@
+import {
+  createStyles,
+  staticStyle,
+} from '../../screens/consultant/home/styles';
+import { useTheme } from '@shopify/restyle';
+import { useTranslation } from 'react-i18next';
+import FastImage from 'react-native-fast-image';
+import { Theme } from '../../config/themes/themes';
+import { appColors } from '../../config/colors/colors';
+import { appIcons } from '../../config/icons/iconPath';
+import LinearGradient from 'react-native-linear-gradient';
+import { BoldTextComponent } from '../Text/BoldTextComponent';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import { MediumTextComponent } from '../Text/MediumTextComponent';
+import { RegularTextComponent } from '../Text/RegularTextComponent';
+import { SemiBoldTextComponent } from '../Text/SemiBoldTextComponent';
+import { IProfileModal } from '../../models/formattedAPI/formatedModals';
+
+type consultantHeaderCardProps = {
+  profileData: IProfileModal;
+  navigateToNotification: () => void;
+};
+
+export const ConsultantHeaderCard = (props: consultantHeaderCardProps) => {
+  const { t } = useTranslation();
+  const theme = useTheme<Theme>();
+  const styles = createStyles(theme);
+
+  return (
+    <LinearGradient
+      style={staticStyle.gradientCard}
+      colors={[
+        appColors.app_0A0F28,
+        appColors.app_192350,
+        appColors.app_4678FF73,
+      ]}
+      locations={[0, 0.4, 1]}
+    >
+      <View style={staticStyle.container}>
+        <View style={staticStyle.row}>
+          <View style={staticStyle.row}>
+            <View style={staticStyle.image}>
+              <FastImage
+                source={props.profileData.profilePicture}
+                style={staticStyle.image}
+              />
+            </View>
+            <SemiBoldTextComponent
+              text={props.profileData.name}
+              textStyle={StyleSheet.flatten([styles.textPrimary])}
+            />
+          </View>
+          <TouchableOpacity
+            activeOpacity={0.7}
+            onPress={props.navigateToNotification}
+          >
+            <FastImage
+              source={appIcons.ic_notificationBell}
+              style={staticStyle.bellButton}
+              tintColor={theme.colors.textPrimary}
+            />
+          </TouchableOpacity>
+        </View>
+        <View
+          style={StyleSheet.flatten([
+            staticStyle.statusContainer,
+            styles.statusContainer,
+          ])}
+        >
+          <View style={staticStyle.centerRow}>
+            <View style={staticStyle.counter}>
+              <BoldTextComponent
+                text="$200.0k"
+                textStyle={StyleSheet.flatten([
+                  staticStyle.countText,
+                  styles.whiteText,
+                ])}
+              />
+              <RegularTextComponent
+                text="Total Earnings"
+                textStyle={StyleSheet.flatten([
+                  staticStyle.subtitleText,
+                  styles.textSecondary,
+                ])}
+              />
+            </View>
+            <LinearGradient
+              style={staticStyle.verticalVaperator}
+              colors={[
+                appColors.app_FFFFFF00,
+                appColors.app_FFFFFF40,
+                appColors.app_FFFFFF00,
+              ]}
+            />
+            <View style={staticStyle.counter}>
+              <View style={staticStyle.directionRow}>
+                <BoldTextComponent
+                  text="4.8"
+                  textStyle={StyleSheet.flatten([
+                    staticStyle.countText,
+                    styles.whiteText,
+                  ])}
+                />
+                <FastImage
+                  source={appIcons.ic_ratingStarFill}
+                  style={staticStyle.star}
+                />
+              </View>
+              <RegularTextComponent
+                text="Avg. Rating"
+                textStyle={StyleSheet.flatten([
+                  staticStyle.subtitleText,
+                  styles.textSecondary,
+                ])}
+              />
+            </View>
+          </View>
+          <LinearGradient
+            style={staticStyle.saperator}
+            start={{
+              x: 0,
+              y: 0.5,
+            }}
+            end={{
+              x: 1,
+              y: 0.5,
+            }}
+            colors={[
+              appColors.app_FFFFFF00,
+              appColors.app_FFFFFF40,
+              appColors.app_FFFFFF00,
+            ]}
+          />
+          <View
+            style={StyleSheet.flatten([
+              staticStyle.row,
+              staticStyle.transparantBG,
+              styles.transparantBG,
+            ])}
+          >
+            <View style={staticStyle.directionRow}>
+              <FastImage
+                source={appIcons.ic_wallet}
+                style={staticStyle.walletIcon}
+              />
+              <RegularTextComponent
+                text={t('walletBalance')}
+                textStyle={StyleSheet.flatten([
+                  staticStyle.viewAllText,
+                  styles.whiteText,
+                ])}
+              />
+            </View>
+            <MediumTextComponent
+              text="$2.5k"
+              textStyle={StyleSheet.flatten([
+                staticStyle.viewAllText,
+                styles.whiteText,
+              ])}
+            />
+          </View>
+        </View>
+      </View>
+    </LinearGradient>
+  );
+};

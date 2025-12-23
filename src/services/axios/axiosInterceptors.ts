@@ -2,10 +2,10 @@ import { createNavigationContainerRef } from '@react-navigation/native';
 import { axiosClient } from './axiosClient';
 import { rootNavigationParams } from '../../models/navigationModal';
 import { store } from '../../redux/store';
-import { setUser } from '../../redux/features/userSlice';
 import { routeName } from '../../config/constants/routes';
 import { showErrorToast } from '../../utils/toast/toast';
 import { appText } from '../../config/text/constantsText';
+import { clearUser } from '../../redux/features/userSlice';
 
 export const navigationRef =
   createNavigationContainerRef<rootNavigationParams>();
@@ -28,11 +28,11 @@ axiosClient.interceptors.response.use(
       const { status } = error.response;
       switch (status) {
         case 401:
+          store.dispatch(clearUser());
           // @ts-ignore
-          if (currentRoute === 'ClientHome') {
+          if (currentRoute === routeName.ClientHome) {
             return Promise.reject(error);
           }
-          store.dispatch(setUser(''));
           navigationRef.current?.navigate(routeName.LogIn);
           break;
         case 404:

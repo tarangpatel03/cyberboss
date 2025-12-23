@@ -5,10 +5,10 @@ import { MediumTextComponent } from '../Text/MediumTextComponent';
 import normalize from '../../utils/normalize/normalize';
 import { memo, useState } from 'react';
 import FastImage from 'react-native-fast-image';
+import { IExpertiesModal } from '../../models/formattedAPI/formatedModals';
 
 type categoryCardProp = {
-  image: number | { uri: string } | undefined;
-  text: string;
+  expertise: IExpertiesModal;
   add: (text: string) => void;
   remove: (text: string) => void;
   data: string[];
@@ -18,12 +18,12 @@ export const CategoryCard = memo(({ obj }: { obj: categoryCardProp }) => {
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   const [isSelected, setIsSelected] = useState<boolean>(
-    obj.data.includes(obj.text),
+    obj.data.includes(obj.expertise.name),
   );
 
   const toggleSelected = () => {
     setIsSelected(prev => !prev);
-    isSelected ? obj.remove(obj.text) : obj.add(obj.text);
+    isSelected ? obj.remove(obj.expertise.name) : obj.add(obj.expertise.name);
   };
 
   return (
@@ -35,9 +35,12 @@ export const CategoryCard = memo(({ obj }: { obj: categoryCardProp }) => {
         isSelected ? styles.selectedContainer : styles.container,
       ])}
     >
-      <FastImage source={obj.image} style={staticStyle.image} />
+      <FastImage
+        source={{ uri: obj.expertise.image }}
+        style={staticStyle.image}
+      />
       <MediumTextComponent
-        text={obj.text}
+        text={obj.expertise.name}
         textStyle={StyleSheet.flatten([staticStyle.text, styles.text])}
       />
     </TouchableOpacity>

@@ -1,19 +1,28 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 import { appImages } from '../../config/images/imagePath';
+import { IExpertiesModal } from '../../models/formattedAPI/formatedModals';
 
 export type userDetailProps = {
-  name: string;
-  email: string;
-  role: 'client' | 'consultant';
-  profilePicture: number | { uri: string } | undefined;
+  id?: string;
+  name?: string;
+  email?: string;
+  role?: 'client' | 'consultant';
+  profilePicture?: number | { uri: string } | undefined;
+  bio?: string | null;
+  experience_year?: string | null;
+  rate?: string | null;
+  expertises?: IExpertiesModal[] | null;
+  services?: null;
+  is_verified?: boolean | null;
+  login_type?: string;
+  profile_setup?: boolean;
 };
 
 export interface UserState {
   token?: string;
   isFirstTime: boolean;
   showTour: boolean;
-  tourCompleted: boolean;
   isPro: boolean | undefined;
   userData: userDetailProps;
 }
@@ -22,14 +31,8 @@ const initialState: UserState = {
   token: undefined,
   showTour: true,
   isFirstTime: true,
-  tourCompleted: false,
   isPro: false,
-  userData: {
-    email: '',
-    name: 'User',
-    role: 'client',
-    profilePicture: appImages.img_defaultProfile,
-  },
+  userData: {},
 };
 
 export const userSlice = createSlice({
@@ -51,9 +54,23 @@ export const userSlice = createSlice({
     setUserData: (state, action: PayloadAction<userDetailProps>) => {
       state.userData = action.payload;
     },
-    setTourCompleted: state => {
-      state.tourCompleted = true;
-      state.showTour = false;
+    clearUser: state => {
+      state.token = undefined;
+      state.userData = {
+        id: '',
+        email: '',
+        bio: null,
+        rate: null,
+        name: 'User',
+        login_type: '',
+        services: null,
+        role: 'client',
+        expertises: null,
+        is_verified: null,
+        profile_setup: false,
+        experience_year: null,
+        profilePicture: appImages.img_defaultProfile,
+      };
     },
   },
 });
@@ -64,6 +81,6 @@ export const {
   setIsFirstTime,
   setShowTour,
   setUserData,
-  setTourCompleted,
+  clearUser,
 } = userSlice.actions;
 export default userSlice.reducer;

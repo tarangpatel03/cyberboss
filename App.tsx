@@ -10,7 +10,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { useEffect, useMemo } from 'react';
 import Toast from 'react-native-toast-message';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
-import { WEBCLIENTID } from './src/config/constants/axiosValues';
+import { iosClientID, WEBCLIENTID } from './src/config/constants/axiosValues';
 import { TourGuideProvider } from 'rn-tourguide';
 import normalize from './src/utils/normalize/normalize';
 import { ThemeMode } from './src/redux/features/themeSlice';
@@ -20,8 +20,7 @@ function App() {
   useEffect(() => {
     GoogleSignin.configure({
       webClientId: WEBCLIENTID,
-      iosClientId:
-        '1023603373770-6aov7otbi59o6sglmbt4cue2o7mtc3l3.apps.googleusercontent.com',
+      iosClientId: iosClientID,
     });
   }, []);
 

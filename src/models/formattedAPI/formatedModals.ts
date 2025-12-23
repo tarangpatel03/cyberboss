@@ -110,6 +110,9 @@ export type IProfileModal = {
   rate: number | null;
   expertises: Iexpertises[];
   services: Services[];
+  isVerified: boolean | null;
+  loginType: string;
+  profileSetup: boolean;
 };
 
 export type IBookingBillCount = {
@@ -180,10 +183,12 @@ export const transformClientHomeModal: (
   return {
     bookings: data.bookings.map(r => r) ?? [],
     expertises: data.expertises
-      ? data.expertises?.map(r => transformExpertiesModal(r))
+      ? data.expertises.map(r => transformExpertiesModal(r))
       : [],
     isSubscriber: data.is_subscriber,
-    workshops: data.workshops.map(r => transformWorkshopModal(r)) ?? [],
+    workshops: data.workshops
+      ? data.workshops.map(r => transformWorkshopModal(r))
+      : [],
   };
 };
 
@@ -254,7 +259,7 @@ export const transformProfileModal: (data: ApiProfileModal) => IProfileModal = (
     email: data.email,
     experienceYear: data.experience_year,
     expertises: data.expertises
-      ? data.expertises?.map(r => transformExpertises(r))
+      ? data.expertises.map(r => transformExpertises(r))
       : [],
     id: data.id,
     name: data.name,
@@ -263,6 +268,9 @@ export const transformProfileModal: (data: ApiProfileModal) => IProfileModal = (
     rate: data.rate,
     role: data.role,
     services: data.services,
+    isVerified: data.is_verified,
+    loginType: data.login_type,
+    profileSetup: data.profile_setup,
   };
 };
 

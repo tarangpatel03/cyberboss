@@ -141,7 +141,7 @@ export const ProfileScreen = ({
               getPicture={getPicture}
             />
             <ProfileOptionsRow
-              role={userData.role}
+              role={userData.role ?? 'client'}
               setThemeModalVisible={setThemeModalVisible}
               navigateToChangePassword={navigateToChangePassword}
             />
@@ -150,7 +150,7 @@ export const ProfileScreen = ({
               navigateToContactSupport={navigateToContactSupport}
             />
             <AuthOptions
-              role={userData.role}
+              role={userData.role ?? 'client'}
               setLogOutVisible={setLogOutVisible}
               setDeleteVisible={setDeleteVisible}
             />

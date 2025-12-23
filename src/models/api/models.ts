@@ -99,6 +99,9 @@ export type ApiProfileModal = {
   rate: number | null;
   expertises: Expertises[];
   services: Services[];
+  is_verified: boolean | null;
+  login_type: string;
+  profile_setup: boolean;
 };
 
 export type ApiBookingBillCount = {

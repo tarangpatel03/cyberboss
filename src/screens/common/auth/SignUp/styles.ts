@@ -25,6 +25,10 @@ export const staticStyle = StyleSheet.create({
   background: {
     flex: 1,
   },
+  checkMark: {
+    width: '70%',
+    height: '70%',
+  },
   mainContainer: {
     flex: 1,
     gap: normalize(20, 'height'),

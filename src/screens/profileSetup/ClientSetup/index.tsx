@@ -15,12 +15,16 @@ import { routeName } from '../../../config/constants/routes';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { rootNavigationProps } from '../../../models/navigationModal';
 import { StatusBar, StyleSheet, TouchableOpacity, View } from 'react-native';
-import { BorderInputComponent } from '../../../components/Input/BorderInput';
 import { PrimaryButtonComponent } from '../../../components/Buttons/PrimaryButton';
 import { MediumTextComponent } from '../../../components/Text/MediumTextComponent';
 import { RegularTextComponent } from '../../../components/Text/RegularTextComponent';
 import { SemiBoldTextComponent } from '../../../components/Text/SemiBoldTextComponent';
 import { CircularIconButtonComponent } from '../../../components/Buttons/CircularIconButton';
+import { updateClientProfile } from '../../../services/api/postApi/updateProfile';
+import { EmailAndPasswordInput } from '../../../components/Input/EmailAndPasswordInput';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUserData } from '../../../redux/features/userSlice';
+import { RootState } from '../../../redux/store';
 
 export const ClientProfileSetUpScreen = ({
   navigation,
@@ -28,8 +32,10 @@ export const ClientProfileSetUpScreen = ({
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
-  const [isWarning, setIsWarning] = useState<boolean>(false);
-  const [userName, setUserName] = useState<string | null>('');
+  const dispach = useDispatch();
+  const userToken = useSelector((state: RootState) => state.user.token);
+  console.log('userToken: ', userToken);
+  const [userName, setUserName] = useState<string>('');
   const [profileImage, setProfileImage] = useState<
     number | { uri: string } | undefined
   >(appImages.img_defaultProfile);
@@ -42,7 +48,6 @@ export const ClientProfileSetUpScreen = ({
   const pickImage = async () => {
     try {
       const res = await launchImageLibrary(mediaOptoins);
-
       if (res.assets && res.assets.length > 0) {
         const uri = res.assets[0].uri;
         if (uri) {
@@ -54,13 +59,16 @@ export const ClientProfileSetUpScreen = ({
     }
   };
 
-  const navigateToHomeScreen = () => {
+  const setUpProfile = async () => {
     try {
-      if (userName && userName.length < 1) {
-        setIsWarning(true);
-      } else {
-        navigation.replace(routeName.ClientBottomTab);
-      }
+      await updateClientProfile(userName, profileImage);
+      dispach(
+        setUserData({
+          name: userName,
+          profilePicture: profileImage,
+        }),
+      );
+      navigation.replace(routeName.ClientBottomTab);
     } catch (error) {
       console.log(error);
     }
@@ -130,20 +138,10 @@ export const ClientProfileSetUpScreen = ({
                 </TouchableOpacity>
               </View>
               <View style={staticStyle.input}>
-                {isWarning && (
-                  <RegularTextComponent
-                    text={t('userNameWarnig')}
-                    textStyle={StyleSheet.flatten([
-                      staticStyle.warningText,
-                      styles.warningText,
-                    ])}
-                  />
-                )}
-                <BorderInputComponent
+                <EmailAndPasswordInput
                   placeholder={t('name')}
                   setValue={setUserName}
                   value={userName}
-                  borderStyle={isWarning ? styles.warningBorder : null}
                 />
               </View>
             </View>
@@ -151,7 +149,7 @@ export const ClientProfileSetUpScreen = ({
           <View style={staticStyle.bottomButton}>
             <PrimaryButtonComponent
               obj={{
-                onPress: navigateToHomeScreen,
+                onPress: setUpProfile,
                 text: t('continue'),
               }}
             />

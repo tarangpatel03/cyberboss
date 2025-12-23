@@ -78,7 +78,7 @@ export const BookingDetailsScreen = ({
     try {
       setLoader(true);
       const res1: ApiConsultantDetailsModal = await getAPIData(
-        `${endPoints.consultant}${consultantId}`,
+        `${endPoints.consultant}/${consultantId}`,
       );
       const transformedData1 = transformConsultantDetailsModal(res1);
       setConsultantData(transformedData1);

@@ -50,19 +50,10 @@ export const LogInScreen = ({
   const handleSignIn = async () => {
     try {
       setButtonText('loading');
-      if (
-        email === 'bisal.rout.silversky+25@gmail.com' &&
-        password === '123456'
-      ) {
-        const res: string = await signIn(email, password);
+      if (validateEmail(email) && validatePassword(password)) {
+        const res = await signIn(email, password);
         if (res) {
-          dispatch(setUser(res));
-          navigateToHomeScreen();
-        }
-      } else if (validateEmail(email) && validatePassword(password)) {
-        const res: string = await signIn(email, password);
-        if (res) {
-          dispatch(setUser(res));
+          dispatch(setUser(res.access_token));
           navigateToHomeScreen();
         }
       } else {

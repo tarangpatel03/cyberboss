@@ -5,7 +5,7 @@ export const endPoints = {
   consultantList: 'consultants-list',
   clientProfile: 'client-profile',
   billCount: 'bookings/bill-count',
-  consultant: 'consultants/',
+  consultant: 'consultants',
   chatHistory: 'chat-history',
   clientHome: 'client-home',
   consultantProfile: 'consultant-profile',

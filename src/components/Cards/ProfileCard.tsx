@@ -9,6 +9,8 @@ import { MediumTextComponent } from '../Text/MediumTextComponent';
 import { RegularTextComponent } from '../Text/RegularTextComponent';
 import { SettingOptionsButton } from '../Buttons/SettingsOptionsComponent';
 import { staticStyle, createStyles } from '../../screens/common/profile/styles';
+import { useState } from 'react';
+import { appImages } from '../../config/images/imagePath';
 
 type profileCardProps = {
   userData: userDetailProps;
@@ -20,6 +22,7 @@ export const ProfileCard = (props: profileCardProps) => {
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
+  const [profileImageError, setProfileImageError] = useState<boolean>(false);
   return (
     <View style={staticStyle.profileCard}>
       <View
@@ -31,20 +34,25 @@ export const ProfileCard = (props: profileCardProps) => {
         ])}
       >
         <FastImage
-          source={props.getPicture()}
+          source={
+            profileImageError
+              ? appImages.img_defaultProfile
+              : props.getPicture()
+          }
           style={staticStyle.profileImage}
+          onError={() => setProfileImageError(true)}
         />
         <View style={staticStyle.userNameCard}>
           <View>
             <MediumTextComponent
-              text={props.userData.name}
+              text={props.userData.name ?? 'user'}
               textStyle={StyleSheet.flatten([
                 staticStyle.userName,
                 styles.userName,
               ])}
             />
             <RegularTextComponent
-              text={props.userData.email}
+              text={props.userData.email ?? ''}
               textStyle={StyleSheet.flatten([
                 staticStyle.userEmail,
                 styles.userEmail,

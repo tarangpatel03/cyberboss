@@ -22,6 +22,8 @@ export function useClientHome() {
   const [loader, setLoader] = useState<boolean>(true);
   const [refreshing, setRefreshing] = useState<boolean>(false);
 
+  console.log('UseClient Called');
+
   const [homeData, setHomeData] = useState<IClientHomeModal>({
     bookings: [],
     workshops: [],
@@ -35,10 +37,13 @@ export function useClientHome() {
     bio: null,
     rate: null,
     name: 'User',
+    loginType: '',
     services: [],
     role: 'client',
     expertises: [],
+    isVerified: null,
     phoneNumber: null,
+    profileSetup: false,
     experienceYear: null,
     profilePicture: appImages.img_defaultProfile,
   });
@@ -46,6 +51,7 @@ export function useClientHome() {
   const handleHomeScreenWithoutLogIn = async () => {
     const res: ApiExpertiesModal[] = await getAPIData(endPoints.expertises);
     const transformedData = res.map(r => transformExpertiesModal(r));
+
     setHomeData({
       bookings: [],
       workshops: [],
@@ -59,23 +65,23 @@ export function useClientHome() {
       const data: ApiClientHomeModal = await getAPIData(endPoints.clientHome);
       const transformedData1 = transformClientHomeModal(data);
       setHomeData(transformedData1);
-
       const res: ApiProfileModal = await getAPIData(
         endPoints.consultantProfile,
       );
       const transformedData2 = transformProfileModal(res);
+      console.log('Transformed User: ', transformedData2);
       setProfileData(transformedData2);
-
       dispatch(
         setUserData({
+          id: transformedData2.id,
           name: transformedData2.name,
           role: transformedData2.role,
           email: transformedData2.email,
           profilePicture: transformedData2.profilePicture,
         }),
       );
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
+      console.log(error);
       await handleHomeScreenWithoutLogIn();
     } finally {
       setLoader(false);

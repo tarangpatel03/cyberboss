@@ -11,7 +11,7 @@ import { MediumTextComponent } from '../Text/MediumTextComponent';
 import { IBillDetailsModal } from '../../models/formattedAPI/formatedModals';
 
 type bookingPaymentDetailsCardProps = {
-  role: string;
+  role: string | undefined;
   billData: IBillDetailsModal;
 };
 

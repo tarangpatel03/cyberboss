@@ -18,6 +18,9 @@ import { SocialLogIn } from '../../../../components/SocialLogin';
 import { appColors } from '../../../../config/colors/colors';
 import { AuthFooterAction } from '../../../../components/Buttons/HorizontalTextButton';
 import { SignUpInputContainer } from '../../../../components/Input/SignUpInputContainer';
+import { setUser, setUserData } from '../../../../redux/features/userSlice';
+import { useDispatch } from 'react-redux';
+import { signUp } from '../../../../services/auth/firebase/signIn';
 
 export const SignUpScreen = ({
   navigation,
@@ -25,18 +28,16 @@ export const SignUpScreen = ({
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
+  const dispatch = useDispatch();
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [checkBox, setCheckBox] = useState<boolean>(false);
+  const [buttonText, setButtonText] = useState<string>('logIn');
   const [passVisible, setPassVisible] = useState<boolean>(false);
 
   const navigateToProfileSetUp = () => {
-    if (checkBox && validateEmail(email) && validatePassword(password)) {
+    if (checkBox) {
       navigation.replace(routeName.ProfileSetUp);
-    } else if (!validateEmail(email)) {
-      showErrorToast({ title: t('invalidEmail') });
-    } else if (!validatePassword(password)) {
-      showErrorToast({ title: t('invalidPassword') });
     } else {
       showErrorToast({
         title: t('somethingWentWrong'),
@@ -50,8 +51,32 @@ export const SignUpScreen = ({
     else return appColors.app_212121;
   };
 
-  const navigateToLogIn = () => {
-    navigation.navigate(routeName.LogIn);
+  const handleSignUp = async () => {
+    try {
+      setButtonText(t('loading'));
+      if (validateEmail(email) && validatePassword(password)) {
+        const res = await signUp(email, password);
+        if (res) {
+          dispatch(setUser(res.access_token));
+          dispatch(
+            setUserData({
+              email: email,
+            }),
+          );
+          navigateToProfileSetUp();
+        }
+      } else {
+        showErrorToast({
+          title: t('invalidEmailOrPassword'),
+        });
+        setButtonText(t('signUp'));
+      }
+    } catch (error) {
+      console.log(error);
+      setButtonText(t('signUp'));
+    } finally {
+      setButtonText(t('signUp'));
+    }
   };
 
   return (
@@ -75,12 +100,13 @@ export const SignUpScreen = ({
               email={email}
               setEmail={setEmail}
               password={password}
+              buttonText={buttonText}
               setPassword={setPassword}
               checkBox={checkBox}
               setCheckBox={setCheckBox}
               passVisible={passVisible}
               setPassVisible={setPassVisible}
-              navigateToProfileSetUp={navigateToProfileSetUp}
+              handleSignUp={handleSignUp}
             />
             <SocialLogIn
               getTintColor={getTintColor}
@@ -89,7 +115,7 @@ export const SignUpScreen = ({
           </View>
         </View>
         <AuthFooterAction
-          navigateTo={navigateToLogIn}
+          navigateTo={handleSignUp}
           subTitle={'logIn'}
           title={'alreadyHaveAccount'}
         />

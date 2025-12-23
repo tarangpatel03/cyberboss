@@ -8,6 +8,7 @@ import { appImages } from '../../config/images/imagePath';
 import LinearGradient from 'react-native-linear-gradient';
 import { SemiBoldTextComponent } from '../Text/SemiBoldTextComponent';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import { useState } from 'react';
 
 type topBarComponentProps = {
   name: string;
@@ -28,6 +29,7 @@ export const TopBarComponent = ({
 }: topBarComponentProps) => {
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
+  const [profileImageError, setProfileImageError] = useState<boolean>(false);
   return (
     <LinearGradient
       style={staticStyle.topBar}
@@ -36,7 +38,13 @@ export const TopBarComponent = ({
       <View style={staticStyle.profileInfo}>
         <TouchableOpacity activeOpacity={0.7} onPress={onPressProfile}>
           <View style={staticStyle.profilePictureName}>
-            <FastImage source={picture} style={staticStyle.image} />
+            <FastImage
+              source={
+                profileImageError ? appImages.img_defaultProfile : picture
+              }
+              style={staticStyle.image}
+              onError={() => setProfileImageError(true)}
+            />
             <SemiBoldTextComponent
               text={name}
               textStyle={StyleSheet.flatten([

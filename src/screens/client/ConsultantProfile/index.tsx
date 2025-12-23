@@ -63,7 +63,7 @@ export const ConsultantProfileScreen = ({
   const loadData = async () => {
     try {
       const res: ApiConsultantDetailsModal = await getAPIData(
-        `${endPoints.consultant}${consultantId}`,
+        `${endPoints.consultant}/${consultantId}`,
       );
       const transformedData = transformConsultantDetailsModal(res);
       setData(transformedData);

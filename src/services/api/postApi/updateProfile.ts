@@ -2,7 +2,7 @@ import { axiosClient } from '../../axios/axiosClient';
 import { endPoints } from '../../../config/endPoint/apiEndPoint';
 import { extractImageUri } from '../../../utils/extractURI/extractImageURI';
 
-export const updateProfile = async (
+export const updateClientProfile = async (
   name: string,
   profilePicture: number | { uri: string } | undefined,
 ) => {
@@ -12,6 +12,7 @@ export const updateProfile = async (
       name,
       profile_picture,
     });
+    console.log('profile uploade payload, ', response.data.payload);
     return response.data.payload;
   } catch (error) {
     console.log(error);

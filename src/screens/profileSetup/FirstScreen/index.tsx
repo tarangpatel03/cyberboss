@@ -11,8 +11,6 @@ import { RoleSelectionCard } from '../../../components/Cards/RoleSelectionCard';
 import { useState } from 'react';
 import { PrimaryButtonComponent } from '../../../components/Buttons/PrimaryButton';
 import { isDarkMode } from '../../../utils/theme/darkMode';
-import { useDispatch } from 'react-redux';
-import { setUserData } from '../../../redux/features/userSlice';
 import { useTranslation } from 'react-i18next';
 
 export const ProfileSetUpScreen = ({
@@ -23,7 +21,6 @@ export const ProfileSetUpScreen = ({
   const styles = createStyles(theme);
   const [isClient, setIsClient1] = useState<boolean>(true);
   const [isConsultant, setIsConsultant] = useState<boolean>(false);
-  const dispach = useDispatch();
 
   const selectClient = () => {
     setIsConsultant(false);
@@ -35,25 +32,9 @@ export const ProfileSetUpScreen = ({
   };
 
   const setUpClient = () => {
-    dispach(
-      setUserData({
-        email: '',
-        name: '',
-        profilePicture: { uri: '' },
-        role: 'client',
-      }),
-    );
     navigation.navigate(routeName.ClientProfileSetUp);
   };
   const setUpConsultant = () => {
-    dispach(
-      setUserData({
-        email: '',
-        name: '',
-        profilePicture: { uri: '' },
-        role: 'client',
-      }),
-    );
     navigation.navigate(routeName.AreaOfExperties);
   };
 

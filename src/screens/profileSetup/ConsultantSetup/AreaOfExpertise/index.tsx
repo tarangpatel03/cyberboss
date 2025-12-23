@@ -11,10 +11,16 @@ import { routeName } from '../../../../config/constants/routes';
 import { SemiBoldTextComponent } from '../../../../components/Text/SemiBoldTextComponent';
 import { RegularTextComponent } from '../../../../components/Text/RegularTextComponent';
 import { CategoryCard } from '../../../../components/Cards/CategoryCard';
-import { categories } from '../../../../demoData/consultantData';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { createStyles, staticStyle } from './styles';
 import { useTranslation } from 'react-i18next';
+import { getAPIData } from '../../../../services/api/getApi/getAPI';
+import { endPoints } from '../../../../config/endPoint/apiEndPoint';
+import { ApiExpertiesModal } from '../../../../models/api/models';
+import {
+  IExpertiesModal,
+  transformExpertiesModal,
+} from '../../../../models/formattedAPI/formatedModals';
 
 export const AreaOfExpertiesScreen = ({
   navigation,
@@ -22,10 +28,21 @@ export const AreaOfExpertiesScreen = ({
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
+  const [expertise, setExpertise] = useState<IExpertiesModal[]>([]);
   const [category, setCategory] = useState<string[]>([]);
 
   const goBack = () => {
     navigation.goBack();
+  };
+
+  const getExpertise = async () => {
+    try {
+      const res: ApiExpertiesModal[] = await getAPIData(endPoints.expertises);
+      const transformedRes = res.map(r => transformExpertiesModal(r));
+      setExpertise(transformedRes);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const addCategory = (text: string) => {
@@ -43,15 +60,18 @@ export const AreaOfExpertiesScreen = ({
     return (
       <CategoryCard
         obj={{
-          image: item.image,
+          expertise: item,
           data: category,
-          text: item.text,
           add: addCategory,
           remove: removeCategory,
         }}
       />
     );
   };
+
+  useEffect(() => {
+    getExpertise();
+  }, []);
 
   return (
     <>
@@ -97,9 +117,9 @@ export const AreaOfExpertiesScreen = ({
           </View>
           <View style={staticStyle.list}>
             <FlatList
-              data={categories}
+              data={expertise}
               initialNumToRender={12}
-              keyExtractor={item => item.text}
+              keyExtractor={item => item.id}
               renderItem={renderItem}
               contentContainerStyle={staticStyle.listBar}
               ListEmptyComponent={null}

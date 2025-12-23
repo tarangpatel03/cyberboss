@@ -22,7 +22,7 @@ import { ApiProfileModal } from '../../../models/api/models';
 import { appImages } from '../../../config/images/imagePath';
 import { endPoints } from '../../../config/endPoint/apiEndPoint';
 import { useTranslation } from 'react-i18next';
-import { updateProfile } from '../../../services/api/postApi/updateProfile';
+import { updateClientProfile } from '../../../services/api/postApi/updateProfile';
 import { EditProfileInputs } from '../../../components/Input/EditProfileInput';
 import { PickPrifilePictureContainer } from '../../../components/PickProfilePictureContainer';
 
@@ -86,7 +86,7 @@ export const EditProfileScreen = ({
   };
 
   const updateClientProfile = async () => {
-    await updateProfile(name ?? '', profilePictureRef.current);
+    await updateClientProfile(name ?? '', profilePictureRef.current);
     goBack();
   };
 

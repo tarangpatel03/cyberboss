@@ -18,8 +18,9 @@ type signUpInputContainerProps = {
   email: string;
   password: string;
   checkBox: boolean;
+  buttonText: string;
   passVisible: boolean;
-  navigateToProfileSetUp: () => void;
+  handleSignUp: () => void;
   setEmail: Dispatch<SetStateAction<string>>;
   setPassword: Dispatch<SetStateAction<string>>;
   setCheckBox: Dispatch<SetStateAction<boolean>>;
@@ -72,7 +73,12 @@ export const SignUpInputContainer = (props: signUpInputContainerProps) => {
                   styles.checkedBox,
                 ])}
               >
-                <FastImage source={appIcons.ic_checkMark} />
+                <FastImage
+                  resizeMode={FastImage.resizeMode.contain}
+                  source={appIcons.ic_checkMark}
+                  style={staticStyle.checkMark}
+                  tintColor={theme.colors.pureWhite}
+                />
               </View>
             )}
           </TouchableOpacity>
@@ -112,8 +118,8 @@ export const SignUpInputContainer = (props: signUpInputContainerProps) => {
       </View>
       <PrimaryButtonComponent
         obj={{
-          text: t('signUp'),
-          onPress: props.navigateToProfileSetUp,
+          text: props.buttonText,
+          onPress: props.handleSignUp,
         }}
       />
     </View>

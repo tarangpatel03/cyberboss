@@ -18,17 +18,17 @@ import { MessageCard } from '../../../components/Cards/MessageCard';
 import { rootNavigationProps } from '../../../models/navigationModal';
 import { BorderInputComponent } from '../../../components/Input/BorderInput';
 import { MediumTextComponent } from '../../../components/Text/MediumTextComponent';
-import { ApiChatBotChatModel } from '../../../models/api/models';
 import { getAPIData } from '../../../services/api/getApi/getAPI';
-import {
-  IChatBotChatModal,
-  transformChatBotChatModal,
-} from '../../../models/formattedAPI/formatedModals';
 import { showErrorToast } from '../../../utils/toast/toast';
 import FastImage from 'react-native-fast-image';
 import { endPoints } from '../../../config/endPoint/apiEndPoint';
 import { useTranslation } from 'react-i18next';
 import { sendChat } from '../../../services/api/postApi/sendBotChat';
+import { ApiChatBotChatModel } from '../../../models/api/chatbot';
+import {
+  IChatBotChatModel,
+  transformChatBotChatModel,
+} from '../../../models/formattedAPI/tChatbot';
 
 export const ContactSupportScreen = ({
   navigation,
@@ -38,7 +38,7 @@ export const ContactSupportScreen = ({
   const styles = createStyles(theme);
   const flatListRef = useRef<FlatList>(null);
   const [text, setText] = useState<string | null>('');
-  const [chat, setChat] = useState<IChatBotChatModal[]>([]);
+  const [chat, setChat] = useState<IChatBotChatModel[]>([]);
 
   const goBack = () => {
     navigation.goBack();
@@ -50,7 +50,7 @@ export const ContactSupportScreen = ({
         endPoints.chatHistory,
       ).then(r => r.data);
       const transformedData = data
-        ? data?.map(r => transformChatBotChatModal(r))
+        ? data?.map(r => transformChatBotChatModel(r))
         : [];
       setChat(transformedData);
       flatListRef.current?.scrollToOffset({ animated: true, offset: 0 });

@@ -10,8 +10,8 @@ import LinearGradient from 'react-native-linear-gradient';
 import { View, StyleSheet } from 'react-native';
 import { MediumTextComponent } from '../Text/MediumTextComponent';
 import { RegularTextComponent } from '../Text/RegularTextComponent';
-import { IBookingDetailsModel } from '../../models/formattedAPI/formatedModals';
 import { getGradientColor } from '../../utils/gradientColor/gradiantColor';
+import { IBookingDetailsModel } from '../../models/api/bookings';
 
 type bookingSummaryDetailsCardProps = {
   // rating: number;

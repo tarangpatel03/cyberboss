@@ -16,8 +16,8 @@ import { Theme } from '../../config/themes/themes';
 import { appIcons } from '../../config/icons/iconPath';
 import { MediumTextComponent } from '../Text/MediumTextComponent';
 import { RegularTextComponent } from '../Text/RegularTextComponent';
-import { IConsultantHomeNotificationModel } from '../../models/formattedAPI/formatedModals';
 import { ListEmptyCard } from '../Cards/ListEmptyCard';
+import { IConsultantHomeNotificationModel } from '../../models/formattedAPI/tHome';
 
 type recentActivityProps = {
   data: IConsultantHomeNotificationModel[];

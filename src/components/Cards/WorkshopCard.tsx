@@ -12,13 +12,13 @@ import {
   convertToEventDate,
 } from '../../utils/calendar/addEvent';
 import { showSucessToast } from '../../utils/toast/toast';
-import { IWorkshopModal } from '../../models/formattedAPI/formatedModals';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import FastImage from 'react-native-fast-image';
+import { IWorkshopModel } from '../../models/formattedAPI/tConsultant';
 
 type workshopCardProps = {
-  data: IWorkshopModal;
+  data: IWorkshopModel;
   cardStyle: StyleProp<ViewStyle>;
 };
 

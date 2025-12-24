@@ -16,7 +16,7 @@ import { Theme } from '../../config/themes/themes';
 import { appIcons } from '../../config/icons/iconPath';
 import { MediumTextComponent } from '../Text/MediumTextComponent';
 import { RegularTextComponent } from '../Text/RegularTextComponent';
-import { IConsultantHomeBookingModel } from '../../models/formattedAPI/formatedModals';
+import { IConsultantHomeBookingModel } from '../../models/formattedAPI/tHome';
 
 type consultantBookingHistoryListPrps = {
   data: IConsultantHomeBookingModel[];

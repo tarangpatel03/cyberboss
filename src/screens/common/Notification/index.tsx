@@ -16,16 +16,16 @@ import { rootNavigationProps } from '../../../models/navigationModal';
 import { NotificationCard } from '../../../components/Cards/NotificationCard';
 import { useEffect, useRef, useState } from 'react';
 import { getAPIData } from '../../../services/api/getApi/getAPI';
-import { ApiNotificationModel } from '../../../models/api/models';
 import { ListEmptyCard } from '../../../components/Cards/ListEmptyCard';
-import {
-  INotificationModal,
-  transformNotificationModal,
-} from '../../../models/formattedAPI/formatedModals';
 import { appImages } from '../../../config/images/imagePath';
 import { ListShimmer } from '../../../components/Skeleton/ListShimmer';
 import { endPoints } from '../../../config/endPoint/apiEndPoint';
 import { useTranslation } from 'react-i18next';
+import { ApiNotificationModel } from '../../../models/api/notificationModel';
+import {
+  INotificationModel,
+  transformNotificationModel,
+} from '../../../models/formattedAPI/tNotificationModel';
 
 export const NotificationScreen = ({
   navigation,
@@ -33,7 +33,7 @@ export const NotificationScreen = ({
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
-  const [notifications, setNotifications] = useState<INotificationModal[]>([]);
+  const [notifications, setNotifications] = useState<INotificationModel[]>([]);
   const [loader, setLoader] = useState<boolean>(true);
   const pageRef = useRef<number>(1);
   const hasMoreRef = useRef<boolean>(false);
@@ -48,8 +48,8 @@ export const NotificationScreen = ({
       }
       const payload = await getAPIData(endPoints.notification, pageToLoad);
       const data: ApiNotificationModel[] = payload.data;
-      const transformedData: INotificationModal[] = data
-        ? data?.map(r => transformNotificationModal(r))
+      const transformedData: INotificationModel[] = data
+        ? data?.map(r => transformNotificationModel(r))
         : [];
       hasMoreRef.current = payload.meta.current_page < payload.meta.last_page;
       pageRef.current = payload.meta.current_page;

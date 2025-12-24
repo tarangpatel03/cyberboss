@@ -5,11 +5,11 @@ import normalize from '../../utils/normalize/normalize';
 import { appIcons } from '../../config/icons/iconPath';
 import { RegularTextComponent } from '../Text/RegularTextComponent';
 import { getTime } from '../../utils/format/formatDate';
-import { IChatBotChatModal } from '../../models/formattedAPI/formatedModals';
 import { memo } from 'react';
 import FastImage from 'react-native-fast-image';
+import { IChatBotChatModel } from '../../models/formattedAPI/tChatbot';
 
-export const MessageCard = memo(({ data }: { data: IChatBotChatModal }) => {
+export const MessageCard = memo(({ data }: { data: IChatBotChatModel }) => {
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   return (

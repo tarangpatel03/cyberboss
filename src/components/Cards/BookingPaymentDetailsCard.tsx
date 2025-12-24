@@ -8,11 +8,11 @@ import { View, StyleSheet } from 'react-native';
 import { Theme } from '../../config/themes/themes';
 import { BillDetailsComponent } from '../BillDetailComponent';
 import { MediumTextComponent } from '../Text/MediumTextComponent';
-import { IBillDetailsModal } from '../../models/formattedAPI/formatedModals';
+import { IBillDetailsModel } from '../../models/formattedAPI/tBilling';
 
 type bookingPaymentDetailsCardProps = {
   role: string | undefined;
-  billData: IBillDetailsModal;
+  billData: IBillDetailsModel;
 };
 
 export const BookingPaymentDetailsCard = (

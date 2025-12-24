@@ -6,13 +6,13 @@ import { MediumTextComponent } from '../Text/MediumTextComponent';
 import { RegularTextComponent } from '../Text/RegularTextComponent';
 import { appIcons } from '../../config/icons/iconPath';
 import { formatBooking } from '../../utils/format/formatDate';
-import { IConsultantModal } from '../../models/formattedAPI/formatedModals';
 import { appImages } from '../../config/images/imagePath';
 import FastImage from 'react-native-fast-image';
 import { memo } from 'react';
+import { IConsultantModel } from '../../models/formattedAPI/tConsultant';
 
 type consultantListCardProps = {
-  data: IConsultantModal;
+  data: IConsultantModel;
   onPress: (consultantId: string) => void;
 };
 

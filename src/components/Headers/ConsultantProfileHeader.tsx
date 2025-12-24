@@ -8,14 +8,14 @@ import { ConsultantInfoBadge } from '../ConsultantInfoBadge';
 import { formatBooking } from '../../utils/format/formatDate';
 import { MediumTextComponent } from '../Text/MediumTextComponent';
 import { RegularTextComponent } from '../Text/RegularTextComponent';
-import { IConsultantDetailsModal } from '../../models/formattedAPI/formatedModals';
 import {
   createStyles,
   staticStyle,
 } from '../../screens/client/ConsultantProfile/styles';
+import { IConsultantDetailsModel } from '../../models/formattedAPI/tConsultant';
 
 type consultantProfileHeaderProps = {
-  data: IConsultantDetailsModal;
+  data: IConsultantDetailsModel;
 };
 
 export const ConsultantProfileHeader = (

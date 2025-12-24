@@ -9,16 +9,16 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { SearchBorderInputComponent } from '../../../components/Input/SearchInput';
 import { appIcons } from '../../../config/icons/iconPath';
 import { useDebouncedValue } from '../../../utils/debounce/debounce';
-import { ApiExpertiesModel } from '../../../models/api/models';
-import {
-  IExpertiesModal,
-  transformExpertiesModal,
-} from '../../../models/formattedAPI/formatedModals';
 import { ServiceCard } from '../../../components/Cards/ServiceCard';
 import { ListEmptyCard } from '../../../components/Cards/ListEmptyCard';
 import { ListShimmer } from '../../../components/Skeleton/ListShimmer';
 import { useTranslation } from 'react-i18next';
 import { getServiceList } from '../../../services/api/getApi/getServicesList';
+import { ApiExpertiesModel } from '../../../models/api/consultant';
+import {
+  IExpertiesModel,
+  transformExpertiesModel,
+} from '../../../models/formattedAPI/tConsultant';
 
 export const SearchServiceScreen = ({
   navigation,
@@ -29,7 +29,7 @@ export const SearchServiceScreen = ({
   const [searchText, setText] = useState<string>('');
   const [loader, setLoader] = useState<boolean>(true);
   const debouncedSearchText = useDebouncedValue(searchText);
-  const [services, setServices] = useState<IExpertiesModal[]>([]);
+  const [services, setServices] = useState<IExpertiesModel[]>([]);
 
   const loadData = async () => {
     try {
@@ -37,7 +37,7 @@ export const SearchServiceScreen = ({
       const data: ApiExpertiesModel[] = await getServiceList(
         debouncedSearchText,
       );
-      const transformedData = data.map(r => transformExpertiesModal(r));
+      const transformedData = data.map(r => transformExpertiesModel(r));
       setServices(transformedData);
     } catch (error) {
       console.log(error);

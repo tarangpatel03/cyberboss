@@ -29,7 +29,7 @@ export const PendingVerificationScreen = ({
   };
 
   const navigateToConsultantBottomTab = () => {
-    navigation.replace(routeName.ConsultantBottomTab);
+    navigation.replace(routeName.BottomTab);
   };
 
   const verify = async () => {

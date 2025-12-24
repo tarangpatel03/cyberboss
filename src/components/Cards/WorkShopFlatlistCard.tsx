@@ -4,14 +4,14 @@ import { MediumTextComponent } from '../Text/MediumTextComponent';
 import { RegularTextComponent } from '../Text/RegularTextComponent';
 import { appIcons } from '../../config/icons/iconPath';
 import { getFullDate } from '../../utils/format/formatDate';
-import { IWorkshopModal } from '../../models/formattedAPI/formatedModals';
 import { appColors } from '../../config/colors/colors';
 import { width } from '../../config/constants/variables';
 import FastImage from 'react-native-fast-image';
 import { memo } from 'react';
+import { IWorkshopModel } from '../../models/formattedAPI/tConsultant';
 
 type workshopCardProps = {
-  data: IWorkshopModal;
+  data: IWorkshopModel;
 };
 
 export const WorkshopFlatListCard = memo(({ data }: workshopCardProps) => {

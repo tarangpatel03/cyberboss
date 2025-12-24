@@ -16,13 +16,13 @@ import { createStyles, staticStyle } from './styles';
 import { useTranslation } from 'react-i18next';
 import { getAPIData } from '../../../../services/api/getApi/getAPI';
 import { endPoints } from '../../../../config/endPoint/apiEndPoint';
-import { ApiExpertiesModel } from '../../../../models/api/models';
-import {
-  IExpertiesModal,
-  transformExpertiesModal,
-} from '../../../../models/formattedAPI/formatedModals';
 import { useDispatch } from 'react-redux';
 import { setUserData } from '../../../../redux/features/userSlice';
+import { ApiExpertiesModel } from '../../../../models/api/consultant';
+import {
+  IExpertiesModel,
+  transformExpertiesModel,
+} from '../../../../models/formattedAPI/tConsultant';
 
 export const AreaOfExpertiesScreen = ({
   navigation,
@@ -31,7 +31,7 @@ export const AreaOfExpertiesScreen = ({
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   const dispatch = useDispatch();
-  const [expertise, setExpertise] = useState<IExpertiesModal[]>([]);
+  const [expertise, setExpertise] = useState<IExpertiesModel[]>([]);
   const [category, setCategory] = useState<string[]>([]);
 
   const goBack = () => {
@@ -41,7 +41,7 @@ export const AreaOfExpertiesScreen = ({
   const getExpertise = async () => {
     try {
       const res: ApiExpertiesModel[] = await getAPIData(endPoints.expertises);
-      const transformedRes = res.map(r => transformExpertiesModal(r));
+      const transformedRes = res.map(r => transformExpertiesModel(r));
       setExpertise(transformedRes);
     } catch (error) {
       console.log(error);

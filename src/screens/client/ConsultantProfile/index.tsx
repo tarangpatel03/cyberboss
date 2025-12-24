@@ -1,9 +1,5 @@
 import { View, StatusBar, StyleSheet, ScrollView } from 'react-native';
 import { useTheme } from '@shopify/restyle';
-import {
-  IConsultantDetailsModal,
-  transformConsultantDetailsModal,
-} from '../../../models/formattedAPI/formatedModals';
 import { createStyles, staticStyle } from './styles';
 import { Theme } from '../../../config/themes/themes';
 import { getAPIData } from '../../../services/api/getApi/getAPI';
@@ -12,7 +8,6 @@ import { isDarkMode } from '../../../utils/theme/darkMode';
 import { routeName } from '../../../config/constants/routes';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { rootNavigationProps } from '../../../models/navigationModal';
-import { ApiConsultantDetailsModel } from '../../../models/api/models';
 import { ReviewCard } from '../../../components/Cards/RatingReviewCard';
 import { MediumTextComponent } from '../../../components/Text/MediumTextComponent';
 import { RegularTextComponent } from '../../../components/Text/RegularTextComponent';
@@ -24,6 +19,11 @@ import { ConsultantProfileScreenShimmer } from '../../../components/Skeleton/con
 import { ConsultantProfileHeader } from '../../../components/Headers/ConsultantProfileHeader';
 import { ConsultantExpertiesCard } from '../../../components/Cards/ConsultantExpertiesCard';
 import { ConsultantRatingsList } from '../../../components/ListItems/ConsultantRatingList';
+import {
+  IConsultantDetailsModel,
+  transformConsultantDetailsModel,
+} from '../../../models/formattedAPI/tConsultant';
+import { ApiConsultantDetailsModel } from '../../../models/api/consultant';
 
 export const ConsultantProfileScreen = ({
   navigation,
@@ -34,7 +34,7 @@ export const ConsultantProfileScreen = ({
   const styles = createStyles(theme);
   const { consultantId, type } = route.params;
   const [loader, setLoader] = useState<boolean>(true);
-  const [data, setData] = useState<IConsultantDetailsModal>({
+  const [data, setData] = useState<IConsultantDetailsModel>({
     id: '',
     bio: '',
     name: '',
@@ -65,7 +65,7 @@ export const ConsultantProfileScreen = ({
       const res: ApiConsultantDetailsModel = await getAPIData(
         `${endPoints.consultant}/${consultantId}`,
       );
-      const transformedData = transformConsultantDetailsModal(res);
+      const transformedData = transformConsultantDetailsModel(res);
       setData(transformedData);
     } catch (error) {
       console.log(error);

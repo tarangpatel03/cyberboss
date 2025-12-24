@@ -26,11 +26,11 @@ import { ListShimmer } from '../../../components/Skeleton/ListShimmer';
 import { endPoints } from '../../../config/endPoint/apiEndPoint';
 import { useTranslation } from 'react-i18next';
 import FastImage from 'react-native-fast-image';
-import { ApiBookingHistoryModel } from '../../../models/api/models';
 import {
   IBookingHistoryModel,
   transformBookingHistoyModel,
-} from '../../../models/formattedAPI/formatedModals';
+} from '../../../models/api/bookings';
+import { ApiBookingHistoryModel } from '../../../models/formattedAPI/tBookings';
 
 export const HistoryScreen = ({
   navigation,

@@ -5,12 +5,12 @@ import normalize from '../../utils/normalize/normalize';
 import { RegularTextComponent } from '../Text/RegularTextComponent';
 import { appIcons } from '../../config/icons/iconPath';
 import { getDate } from '../../utils/format/formatDate';
-import { INotificationModal } from '../../models/formattedAPI/formatedModals';
 import FastImage from 'react-native-fast-image';
 import { memo } from 'react';
+import { INotificationModel } from '../../models/formattedAPI/tNotificationModel';
 
 export const NotificationCard = memo(
-  ({ data }: { data: INotificationModal }) => {
+  ({ data }: { data: INotificationModel }) => {
     const theme = useTheme<Theme>();
     const styles = createStyles(theme);
     return (

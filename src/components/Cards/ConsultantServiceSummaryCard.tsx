@@ -15,14 +15,14 @@ import { CircularIconButtonComponent } from '../Buttons/CircularIconButton';
 import { SemiBoldTextComponent } from '../Text/SemiBoldTextComponent';
 import { MediumTextComponent } from '../Text/MediumTextComponent';
 import { appImages } from '../../config/images/imagePath';
-import { IConsultantDetailsModal } from '../../models/formattedAPI/formatedModals';
 import { Dispatch, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '@shopify/restyle';
 import { Theme } from '../../config/themes/themes';
+import { IConsultantDetailsModel } from '../../models/formattedAPI/tConsultant';
 
 type consultantServiceSummaryCardProps = {
-  consultantData: IConsultantDetailsModal;
+  consultantData: IConsultantDetailsModel;
   type: string;
   hrBook: number;
   setHrBook: Dispatch<SetStateAction<number>>;

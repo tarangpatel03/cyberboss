@@ -14,17 +14,15 @@ import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { MediumTextComponent } from '../Text/MediumTextComponent';
 import { RegularTextComponent } from '../Text/RegularTextComponent';
 import { SemiBoldTextComponent } from '../Text/SemiBoldTextComponent';
-import {
-  IConsultantHomeModel,
-  IProfileModal,
-} from '../../models/formattedAPI/formatedModals';
 import { useState } from 'react';
 import { appImages } from '../../config/images/imagePath';
 import RadialGradient from 'react-native-radial-gradient';
 import { width } from '../../config/constants/variables';
+import { IConsultantHomeModel } from '../../models/formattedAPI/tHome';
+import { IProfileModel } from '../../models/formattedAPI/tProfile';
 
 type consultantHeaderCardProps = {
-  profileData: IProfileModal;
+  profileData: IProfileModel;
   userData: IConsultantHomeModel;
   navigateToNotification: () => void;
 };

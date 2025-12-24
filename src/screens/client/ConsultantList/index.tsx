@@ -10,15 +10,15 @@ import { useEffect, useRef, useState } from 'react';
 import { isDarkMode } from '../../../utils/theme/darkMode';
 import { ScreenHeaderComponent } from '../../../components/Headers/ScreenHeaderComponent';
 import { useDebouncedValue } from '../../../utils/debounce/debounce';
-import { ApiConsultantModel } from '../../../models/api/models';
 import { ListEmptyCard } from '../../../components/Cards/ListEmptyCard';
-import {
-  IConsultantModal,
-  transformConsultantModal,
-} from '../../../models/formattedAPI/formatedModals';
 import { ListShimmer } from '../../../components/Skeleton/ListShimmer';
 import { useTranslation } from 'react-i18next';
 import { getConsultantList } from '../../../services/api/getApi/getConsultantList';
+import { ApiConsultantModel } from '../../../models/api/consultant';
+import {
+  IConsultantModel,
+  transformConsultantModel,
+} from '../../../models/formattedAPI/tConsultant';
 
 export const ConsultantListScreen = ({
   navigation,
@@ -33,7 +33,7 @@ export const ConsultantListScreen = ({
   const hasMoreRef = useRef<boolean>(false);
   const [searchText, setSearchText] = useState<string>('');
   const debouncedSearchText = useDebouncedValue(searchText);
-  const [consultantsList, setConsultantsList] = useState<IConsultantModal[]>(
+  const [consultantsList, setConsultantsList] = useState<IConsultantModel[]>(
     [],
   );
 
@@ -64,7 +64,7 @@ export const ConsultantListScreen = ({
       const payload = await getConsultantList(id, pageToLoad, searchText);
       const data: ApiConsultantModel[] = payload.data;
       const formattedData = data
-        ? data?.map(res => transformConsultantModal(res))
+        ? data?.map(res => transformConsultantModel(res))
         : [];
       hasMoreRef.current = payload.meta.current_page < payload.meta.last_page;
       pageRef.current = payload.meta.current_page;

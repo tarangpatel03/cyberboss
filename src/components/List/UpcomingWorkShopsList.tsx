@@ -3,12 +3,12 @@ import FastImage from 'react-native-fast-image';
 import { appIcons } from '../../config/icons/iconPath';
 import { MediumTextComponent } from '../Text/MediumTextComponent';
 import { staticStyle } from '../../screens/client/Subscription/styles';
-import { IWorkshopModal } from '../../models/formattedAPI/formatedModals';
 import { ListRenderItem, View, StyleSheet, FlatList } from 'react-native';
+import { IWorkshopModel } from '../../models/formattedAPI/tConsultant';
 
 type upcomingWorkshopsListProps = {
-  workShopData: IWorkshopModal[];
-  renderItem: ListRenderItem<IWorkshopModal>;
+  workShopData: IWorkshopModel[];
+  renderItem: ListRenderItem<IWorkshopModel>;
 };
 
 export const UpcomingWorkShopsList = (props: upcomingWorkshopsListProps) => {

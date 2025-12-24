@@ -14,16 +14,16 @@ import { rootNavigationProps } from '../../../models/navigationModal';
 import { ScreenHeaderComponent } from '../../../components/Headers/ScreenHeaderComponent';
 import { PrimaryButtonComponent } from '../../../components/Buttons/PrimaryButton';
 import { getAPIData } from '../../../services/api/getApi/getAPI';
-import {
-  IProfileModal,
-  transformProfileModal,
-} from '../../../models/formattedAPI/formatedModals';
-import { ApiProfileModel } from '../../../models/api/models';
 import { endPoints } from '../../../config/endPoint/apiEndPoint';
 import { useTranslation } from 'react-i18next';
 import { updateClientProfile } from '../../../services/api/postApi/updateProfile';
 import { EditProfileInputs } from '../../../components/Input/EditProfileInput';
 import { PickPrifilePictureContainer } from '../../../components/PickProfilePictureContainer';
+import { ApiProfileModel } from '../../../models/api/profile';
+import {
+  IProfileModel,
+  transformProfileModel,
+} from '../../../models/formattedAPI/tProfile';
 
 export const EditProfileScreen = ({
   navigation,
@@ -35,7 +35,7 @@ export const EditProfileScreen = ({
   const profilePictureRef = useRef<number | { uri: string } | undefined>(
     undefined,
   );
-  const [profileData, setProfileData] = useState<IProfileModal>({
+  const [profileData, setProfileData] = useState<IProfileModel>({
     id: '',
     name: 'User',
     email: '',
@@ -98,7 +98,7 @@ export const EditProfileScreen = ({
       const res: ApiProfileModel = await getAPIData(
         endPoints.consultantProfile,
       );
-      const transformedData = transformProfileModal(res);
+      const transformedData = transformProfileModel(res);
       setProfileData(transformedData);
       setBio(transformedData.bio);
       setEmail(transformedData.email);

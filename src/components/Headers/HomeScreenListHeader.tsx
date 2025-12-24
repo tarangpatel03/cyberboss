@@ -1,14 +1,14 @@
 import { StyleSheet, View } from 'react-native';
 import { createStyles, staticStyle } from '../../screens/client/Home/styles';
 import { HomeScreenworkshopList } from '../List/HomeScreenworkshopList';
-import { IClientHomeModal } from '../../models/formattedAPI/formatedModals';
 import { MediumTextComponent } from '../Text/MediumTextComponent';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '@shopify/restyle';
 import { Theme } from '../../config/themes/themes';
+import { IClientHomeModel } from '../../models/formattedAPI/tHome';
 
 type homeScreenListHeaderProps = {
-  homeData: IClientHomeModal;
+  homeData: IClientHomeModel;
   navigateToWorkshop: () => void;
   renderWorkshopItem: ({ item }: any) => React.JSX.Element;
   renderBookingItem: ({ item }: any) => React.JSX.Element;

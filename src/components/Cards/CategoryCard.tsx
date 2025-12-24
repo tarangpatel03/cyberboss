@@ -5,10 +5,10 @@ import { MediumTextComponent } from '../Text/MediumTextComponent';
 import normalize from '../../utils/normalize/normalize';
 import { memo, useState } from 'react';
 import FastImage from 'react-native-fast-image';
-import { IExpertiesModal } from '../../models/formattedAPI/formatedModals';
+import { IExpertiesModel } from '../../models/formattedAPI/tConsultant';
 
 type categoryCardProp = {
-  expertise: IExpertiesModal;
+  expertise: IExpertiesModel;
   add: (text: string) => void;
   remove: (text: string) => void;
   data: string[];

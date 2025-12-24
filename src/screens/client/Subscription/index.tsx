@@ -4,11 +4,6 @@ import { routeName } from '../../../config/constants/routes';
 import { rootNavigationProps } from '../../../models/navigationModal';
 import { staticStyle } from './styles';
 import { useEffect, useState } from 'react';
-import {
-  IWorkshopModal,
-  transformClientHomeModal,
-} from '../../../models/formattedAPI/formatedModals';
-import { ApiClientHomeModel } from '../../../models/api/models';
 import { getAPIData } from '../../../services/api/getApi/getAPI';
 import { WorkshopFlatListCard } from '../../../components/Cards/WorkShopFlatlistCard';
 import { endPoints } from '../../../config/endPoint/apiEndPoint';
@@ -17,6 +12,9 @@ import { SubscriptionTrustedUser } from '../../../components/SubscriptionTrusted
 import { SubscriptionBenefitsCard } from '../../../components/Cards/SubscriptionBenefitsCard';
 import { UpcomingWorkShopsList } from '../../../components/List/UpcomingWorkShopsList';
 import { SupscriptionBottomBar } from '../../../components/SupscriptionBottomBar';
+import { ApiClientHomeModel } from '../../../models/api/home';
+import { IWorkshopModel } from '../../../models/formattedAPI/tConsultant';
+import { transformClientHomeModal } from '../../../models/formattedAPI/tHome';
 
 export type linearGradientDirection = {
   start: { x: number; y: number };
@@ -26,7 +24,7 @@ export type linearGradientDirection = {
 export const SubscriptionScreen = ({
   navigation,
 }: rootNavigationProps<routeName.Subscription>) => {
-  const [workShopData, setWorkShopData] = useState<IWorkshopModal[]>([]);
+  const [workShopData, setWorkShopData] = useState<IWorkshopModel[]>([]);
   const start = { x: 0, y: 0.5 };
   const end = { x: 1, y: 0.5 };
   const loadData = async () => {

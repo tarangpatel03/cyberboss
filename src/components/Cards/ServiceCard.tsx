@@ -6,12 +6,12 @@ import { MediumTextComponent } from '../Text/MediumTextComponent';
 import { RegularTextComponent } from '../Text/RegularTextComponent';
 import { appIcons } from '../../config/icons/iconPath';
 import { formatBooking } from '../../utils/format/formatDate';
-import { IExpertiesModal } from '../../models/formattedAPI/formatedModals';
 import FastImage from 'react-native-fast-image';
 import { memo } from 'react';
+import { IExpertiesModel } from '../../models/formattedAPI/tConsultant';
 
 type serviceCardProps = {
-  data: IExpertiesModal;
+  data: IExpertiesModel;
   onPress: (id: string, name: string) => void;
 };
 
@@ -43,7 +43,7 @@ export const ServiceCard = memo(({ data, onPress }: serviceCardProps) => {
             ])}
           />
         </View>
-        {data.bookingCount > 0 && (
+        {data.bookingCount && data.bookingCount > 0 && (
           <View style={staticStyle.heading}>
             <FastImage source={appIcons.ic_check} style={staticStyle.icon} />
             <RegularTextComponent

@@ -1,35 +1,35 @@
-import {
-  ApiClientHomeModel,
-  ApiExpertiesModel,
-  ApiProfileModel,
-} from '../../../models/api/models';
-import {
-  IClientHomeModal,
-  IProfileModal,
-  transformClientHomeModal,
-  transformExpertiesModal,
-  transformProfileModal,
-} from '../../../models/formattedAPI/formatedModals';
 import { getAPIData } from '../../../services/api/getApi/getAPI';
 import { useEffect, useState } from 'react';
 import { appImages } from '../../../config/images/imagePath';
 import { setUserData } from '../../../redux/features/userSlice';
 import { useDispatch } from 'react-redux';
 import { endPoints } from '../../../config/endPoint/apiEndPoint';
+import { ApiExpertiesModel } from '../../../models/api/consultant';
+import { ApiClientHomeModel } from '../../../models/api/home';
+import { ApiProfileModel } from '../../../models/api/profile';
+import { transformExpertiesModel } from '../../../models/formattedAPI/tConsultant';
+import {
+  IClientHomeModel,
+  transformClientHomeModal,
+} from '../../../models/formattedAPI/tHome';
+import {
+  IProfileModel,
+  transformProfileModel,
+} from '../../../models/formattedAPI/tProfile';
 
 export function useClientHome() {
   const dispatch = useDispatch();
   const [loader, setLoader] = useState<boolean>(true);
   const [refreshing, setRefreshing] = useState<boolean>(false);
 
-  const [homeData, setHomeData] = useState<IClientHomeModal>({
+  const [homeData, setHomeData] = useState<IClientHomeModel>({
     bookings: [],
     workshops: [],
     expertises: [],
     isSubscriber: false,
   });
 
-  const [profileData, setProfileData] = useState<IProfileModal>({
+  const [profileData, setProfileData] = useState<IProfileModel>({
     id: '',
     email: '',
     bio: null,
@@ -48,7 +48,7 @@ export function useClientHome() {
 
   const handleHomeScreenWithoutLogIn = async () => {
     const res: ApiExpertiesModel[] = await getAPIData(endPoints.expertises);
-    const transformedData = res.map(r => transformExpertiesModal(r));
+    const transformedData = res.map(r => transformExpertiesModel(r));
 
     setHomeData({
       bookings: [],
@@ -66,7 +66,7 @@ export function useClientHome() {
       const res: ApiProfileModel = await getAPIData(
         endPoints.consultantProfile,
       );
-      const transformedData2 = transformProfileModal(res);
+      const transformedData2 = transformProfileModel(res);
       setProfileData(transformedData2);
       dispatch(
         setUserData({

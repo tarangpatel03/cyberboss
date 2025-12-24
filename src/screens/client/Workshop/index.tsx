@@ -14,17 +14,17 @@ import { WorkshopCard } from '../../../components/Cards/WorkshopCard';
 import { isDarkMode } from '../../../utils/theme/darkMode';
 import { ScreenHeaderComponent } from '../../../components/Headers/ScreenHeaderComponent';
 import { useEffect, useRef, useState } from 'react';
-import { ApiWorkshopModel } from '../../../models/api/models';
 import { getAPIData } from '../../../services/api/getApi/getAPI';
 import { ListEmptyCard } from '../../../components/Cards/ListEmptyCard';
-import {
-  IWorkshopModal,
-  transformWorkshopModal,
-} from '../../../models/formattedAPI/formatedModals';
 import { appImages } from '../../../config/images/imagePath';
 import { ListShimmer } from '../../../components/Skeleton/ListShimmer';
 import { endPoints } from '../../../config/endPoint/apiEndPoint';
 import { useTranslation } from 'react-i18next';
+import { ApiWorkshopModel } from '../../../models/api/consultant';
+import {
+  IWorkshopModel,
+  transformWorkshopModel,
+} from '../../../models/formattedAPI/tConsultant';
 
 export const WorkshopScreen = ({
   navigation,
@@ -33,7 +33,7 @@ export const WorkshopScreen = ({
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   const [loader, setLoader] = useState<boolean>(true);
-  const [workshop, setWorkshop] = useState<IWorkshopModal[]>([]);
+  const [workshop, setWorkshop] = useState<IWorkshopModel[]>([]);
   const pageRef = useRef<number>(1);
   const hasMoreRef = useRef<boolean>(false);
   const paginationLoadingRef = useRef<boolean>(false);
@@ -51,8 +51,8 @@ export const WorkshopScreen = ({
       }
       const payload = await getAPIData(endPoints.workshopList, pageToLoad);
       const res: ApiWorkshopModel[] = payload.data;
-      const transformedData: IWorkshopModal[] = res
-        ? res?.map(r => transformWorkshopModal(r))
+      const transformedData: IWorkshopModel[] = res
+        ? res?.map(r => transformWorkshopModel(r))
         : [];
       hasMoreRef.current = payload.meta.current_page < payload.meta.last_page;
       pageRef.current = payload.meta.current_page;

@@ -24,13 +24,13 @@ import { useTranslation } from 'react-i18next';
 import { BookingStatusCard } from '../../../components/Cards/BookingStatusCard';
 import { BookingSummaryDetailsCard } from '../../../components/Cards/BookingSummaryDetailsCard';
 import { BookingPaymentDetailsCard } from '../../../components/Cards/BookingPaymentDetailsCard';
+import { getAPIData } from '../../../services/api/getApi/getAPI';
+import { endPoints } from '../../../config/endPoint/apiEndPoint';
 import {
   IBookingDetailsModel,
   transformBookingDetailsModel,
-} from '../../../models/formattedAPI/formatedModals';
-import { getAPIData } from '../../../services/api/getApi/getAPI';
-import { endPoints } from '../../../config/endPoint/apiEndPoint';
-import { ApiBookingDetailsModel } from '../../../models/api/models';
+} from '../../../models/api/bookings';
+import { ApiBookingDetailsModel } from '../../../models/formattedAPI/tBookings';
 
 export const BookingSummaryScreen = ({
   navigation,

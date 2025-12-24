@@ -5,20 +5,10 @@ import {
 } from '../../../demoData/homeScreenData';
 import { useEffect, useState } from 'react';
 import { useTheme } from '@shopify/restyle';
-import {
-  IConsultantHomeModel,
-  IProfileModal,
-  transformConsultantHomeModel,
-  transformProfileModal,
-} from '../../../models/formattedAPI/formatedModals';
 import { createStyles, staticStyle } from './styles';
 import { Theme } from '../../../config/themes/themes';
 import { getAPIData } from '../../../services/api/getApi/getAPI';
 import { appImages } from '../../../config/images/imagePath';
-import {
-  ApiConsultantHomeModel,
-  ApiProfileModel,
-} from '../../../models/api/models';
 import { routeName } from '../../../config/constants/routes';
 import { endPoints } from '../../../config/endPoint/apiEndPoint';
 import { rootNavigationProps } from '../../../models/navigationModal';
@@ -29,6 +19,16 @@ import { ConsultantBookingHistoryList } from '../../../components/List/Consultan
 import { RecentActivityList } from '../../../components/List/RecentActivityList';
 import { useDispatch } from 'react-redux';
 import { setUserData } from '../../../redux/features/userSlice';
+import { ApiConsultantHomeModel } from '../../../models/api/home';
+import { ApiProfileModel } from '../../../models/api/profile';
+import {
+  IConsultantHomeModel,
+  transformConsultantHomeModel,
+} from '../../../models/formattedAPI/tHome';
+import {
+  IProfileModel,
+  transformProfileModel,
+} from '../../../models/formattedAPI/tProfile';
 
 export const ConsultantHomeScreen = ({
   navigation,
@@ -36,7 +36,7 @@ export const ConsultantHomeScreen = ({
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   const dispatch = useDispatch();
-  const [profileData, setProfileData] = useState<IProfileModal>({
+  const [profileData, setProfileData] = useState<IProfileModel>({
     id: '',
     name: 'User',
     email: '',
@@ -75,7 +75,7 @@ export const ConsultantHomeScreen = ({
       const res2: ApiProfileModel = await getAPIData(
         endPoints.consultantProfile,
       );
-      const transformedData2 = transformProfileModal(res2);
+      const transformedData2 = transformProfileModel(res2);
       setProfileData(transformedData2);
       dispatch(
         setUserData({

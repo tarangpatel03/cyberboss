@@ -24,7 +24,7 @@ import { useTranslation } from 'react-i18next';
 import { BookingStatusCard } from '../../../components/Cards/BookingStatusCard';
 import { BookingSummaryDetailsCard } from '../../../components/Cards/BookingSummaryDetailsCard';
 import { BookingPaymentDetailsCard } from '../../../components/Cards/BookingPaymentDetailsCard';
-import { getAPIData } from '../../../services/api/getApi/getAPI';
+import { getAPIData } from '../../../services/api/common/getCommonApi';
 import { endPoints } from '../../../config/endPoint/apiEndPoint';
 import {
   IBookingDetailsModel,

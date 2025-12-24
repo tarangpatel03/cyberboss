@@ -1,4 +1,4 @@
-import { getAPIData } from '../../../services/api/getApi/getAPI';
+import { getAPIData } from '../../../services/api/common/getCommonApi';
 import { useEffect, useState } from 'react';
 import { appImages } from '../../../config/images/imagePath';
 import { setUserData } from '../../../redux/features/userSlice';

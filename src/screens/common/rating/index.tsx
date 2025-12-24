@@ -13,7 +13,7 @@ import { PrimaryButtonComponent } from '../../../components/Buttons/PrimaryButto
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import normalize from '../../../utils/normalize/normalize';
 import { useTranslation } from 'react-i18next';
-import { refineFeedBack } from '../../../services/api/postApi/refineFeedBack';
+import { refineFeedBack } from '../../../services/api/feedback/refineFeedBack';
 import { StarReviewCard } from '../../../components/Cards/StarReviewCard';
 import { ReviewInput } from '../../../components/Input/ReviewInput';
 

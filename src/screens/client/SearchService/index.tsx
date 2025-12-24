@@ -13,7 +13,7 @@ import { ServiceCard } from '../../../components/Cards/ServiceCard';
 import { ListEmptyCard } from '../../../components/Cards/ListEmptyCard';
 import { ListShimmer } from '../../../components/Skeleton/ListShimmer';
 import { useTranslation } from 'react-i18next';
-import { getServiceList } from '../../../services/api/getApi/getServicesList';
+import { getServiceList } from '../../../services/api/expertise/getServicesList';
 import { ApiExpertiesModel } from '../../../models/api/consultant';
 import {
   IExpertiesModel,

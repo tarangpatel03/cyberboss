@@ -13,7 +13,7 @@ import { useDebouncedValue } from '../../../utils/debounce/debounce';
 import { ListEmptyCard } from '../../../components/Cards/ListEmptyCard';
 import { ListShimmer } from '../../../components/Skeleton/ListShimmer';
 import { useTranslation } from 'react-i18next';
-import { getConsultantList } from '../../../services/api/getApi/getConsultantList';
+import { getConsultantList } from '../../../services/api/consultant/getConsultantList';
 import { ApiConsultantModel } from '../../../models/api/consultant';
 import {
   IConsultantModel,

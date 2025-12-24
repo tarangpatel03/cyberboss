@@ -20,7 +20,7 @@ import { MediumTextComponent } from '../../../components/Text/MediumTextComponen
 import { RegularTextComponent } from '../../../components/Text/RegularTextComponent';
 import { SemiBoldTextComponent } from '../../../components/Text/SemiBoldTextComponent';
 import { CircularIconButtonComponent } from '../../../components/Buttons/CircularIconButton';
-import { updateClientProfile } from '../../../services/api/postApi/updateProfile';
+import { updateClientProfile } from '../../../services/api/profile/updateProfile';
 import { EmailAndPasswordInput } from '../../../components/Input/EmailAndPasswordInput';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUserData } from '../../../redux/features/userSlice';

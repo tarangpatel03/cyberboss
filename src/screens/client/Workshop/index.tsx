@@ -14,7 +14,7 @@ import { WorkshopCard } from '../../../components/Cards/WorkshopCard';
 import { isDarkMode } from '../../../utils/theme/darkMode';
 import { ScreenHeaderComponent } from '../../../components/Headers/ScreenHeaderComponent';
 import { useEffect, useRef, useState } from 'react';
-import { getAPIData } from '../../../services/api/getApi/getAPI';
+import { getAPIData } from '../../../services/api/common/getCommonApi';
 import { ListEmptyCard } from '../../../components/Cards/ListEmptyCard';
 import { appImages } from '../../../config/images/imagePath';
 import { ListShimmer } from '../../../components/Skeleton/ListShimmer';

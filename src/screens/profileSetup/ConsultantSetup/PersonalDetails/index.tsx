@@ -29,7 +29,7 @@ import FastImage from 'react-native-fast-image';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../../redux/store';
-import { updateConsultantProfileSetup } from '../../../../services/api/postApi/updateProfile';
+import { updateConsultantProfileSetup } from '../../../../services/api/profile/updateProfile';
 import { EmailAndPasswordInput } from '../../../../components/Input/EmailAndPasswordInput';
 
 export const PersonalDetailsScreen = ({

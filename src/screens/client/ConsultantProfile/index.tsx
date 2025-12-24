@@ -2,7 +2,7 @@ import { View, StatusBar, StyleSheet, ScrollView } from 'react-native';
 import { useTheme } from '@shopify/restyle';
 import { createStyles, staticStyle } from './styles';
 import { Theme } from '../../../config/themes/themes';
-import { getAPIData } from '../../../services/api/getApi/getAPI';
+import { getAPIData } from '../../../services/api/common/getCommonApi';
 import { useEffect, useState } from 'react';
 import { isDarkMode } from '../../../utils/theme/darkMode';
 import { routeName } from '../../../config/constants/routes';

@@ -10,7 +10,7 @@ import { getFullDate } from '../../utils/format/formatDate';
 import {
   addToCalendar,
   convertToEventDate,
-} from '../../utils/calendar/addEvent';
+} from '../../utils/calendar/addCalendarEvent';
 import { showSucessToast } from '../../utils/toast/toast';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';

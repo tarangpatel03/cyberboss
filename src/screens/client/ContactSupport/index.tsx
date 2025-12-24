@@ -18,12 +18,12 @@ import { MessageCard } from '../../../components/Cards/MessageCard';
 import { rootNavigationProps } from '../../../models/navigationModal';
 import { BorderInputComponent } from '../../../components/Input/BorderInput';
 import { MediumTextComponent } from '../../../components/Text/MediumTextComponent';
-import { getAPIData } from '../../../services/api/getApi/getAPI';
+import { getAPIData } from '../../../services/api/common/getCommonApi';
 import { showErrorToast } from '../../../utils/toast/toast';
 import FastImage from 'react-native-fast-image';
 import { endPoints } from '../../../config/endPoint/apiEndPoint';
 import { useTranslation } from 'react-i18next';
-import { sendChat } from '../../../services/api/postApi/sendBotChat';
+import { sendChat } from '../../../services/api/chat/sendBotChat';
 import { ApiChatBotChatModel } from '../../../models/api/chatbot';
 import {
   IChatBotChatModel,

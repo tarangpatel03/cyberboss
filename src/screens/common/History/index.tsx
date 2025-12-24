@@ -14,7 +14,7 @@ import { BottomTabHeader } from '../../../components/Headers/BottomTabHeader';
 import { BookingCard } from '../../../components/Cards/BookingCard';
 import { rootNavigationProps } from '../../../models/navigationModal';
 import { routeName } from '../../../config/constants/routes';
-import { getAPIData } from '../../../services/api/getApi/getAPI';
+import { getAPIData } from '../../../services/api/common/getCommonApi';
 import { useEffect, useState } from 'react';
 import { ListEmptyCard } from '../../../components/Cards/ListEmptyCard';
 import { appImages } from '../../../config/images/imagePath';

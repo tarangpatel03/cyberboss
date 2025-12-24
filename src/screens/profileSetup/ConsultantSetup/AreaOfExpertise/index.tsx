@@ -14,7 +14,7 @@ import { CategoryCard } from '../../../../components/Cards/CategoryCard';
 import { useEffect, useState } from 'react';
 import { createStyles, staticStyle } from './styles';
 import { useTranslation } from 'react-i18next';
-import { getAPIData } from '../../../../services/api/getApi/getAPI';
+import { getAPIData } from '../../../../services/api/common/getCommonApi';
 import { endPoints } from '../../../../config/endPoint/apiEndPoint';
 import { useDispatch } from 'react-redux';
 import { setUserData } from '../../../../redux/features/userSlice';

@@ -13,7 +13,7 @@ import { SemiBoldTextComponent } from '../../../../components/Text/SemiBoldTextC
 import { RegularTextComponent } from '../../../../components/Text/RegularTextComponent';
 import FastImage from 'react-native-fast-image';
 import { useTranslation } from 'react-i18next';
-import { getAPIData } from '../../../../services/api/getApi/getAPI';
+import { getAPIData } from '../../../../services/api/common/getCommonApi';
 import { endPoints } from '../../../../config/endPoint/apiEndPoint';
 import { useEffect } from 'react';
 

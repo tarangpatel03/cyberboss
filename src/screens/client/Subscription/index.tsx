@@ -4,7 +4,7 @@ import { routeName } from '../../../config/constants/routes';
 import { rootNavigationProps } from '../../../models/navigationModal';
 import { staticStyle } from './styles';
 import { useEffect, useState } from 'react';
-import { getAPIData } from '../../../services/api/getApi/getAPI';
+import { getAPIData } from '../../../services/api/common/getCommonApi';
 import { WorkshopFlatListCard } from '../../../components/Cards/WorkShopFlatlistCard';
 import { endPoints } from '../../../config/endPoint/apiEndPoint';
 import { SubscriptionHeader } from '../../../components/Headers/SubscriptionHeader';

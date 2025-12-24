@@ -23,8 +23,10 @@
   "pro": "Pro",
   "loading": "Loading...",
   "help": "HELP",
+  "noRecentActivityFound": "No Recent Activity Found",
+  "recentActivity": "Recent Activity",
   "subscribeNow": "Subscribe Now",
-  "benefits": "BENEFITS",  
+  "benefits": "BENEFITS",
   "upcomingWorkshops": "UPCOMING WORKSHOPS",
   "invalidCredentials": "Invalid Credentials",
   "pleaseLogIn": "Please Log In again",
@@ -41,11 +43,9 @@
   "delete": "Delete",
   "cancel": "Cancel",
   "unlockExpertLedWorkshops": "Unlock Expert-Led Workshops",
-  "threatDetectionCareerGrowthToolsMore":
-    "Threat Detection, Career Growth, Tools & more",
+  "threatDetectionCareerGrowthToolsMore": "Threat Detection, Career Growth, Tools & more",
   "realTimeQAwithExperts": "Real-time Q&A with experts",
-  "workshopsEveryMondayThroughSaturday":
-    "Workshops every Monday through Saturday",
+  "workshopsEveryMondayThroughSaturday": "Workshops every Monday through Saturday",
   "trustedby50kUsers": "Trusted by 50k+ Users",
   "pleaseTryAgain": "Please Try Again",
   "pleaseTryAgainLater": "Please Try Again Later",
@@ -68,10 +68,8 @@
   "noServiceFound": "No Service named {{searchText}} found",
   "areYouSure": "Are You Sure?",
   "invalidEmailOrPassword": "Invalid email or password",
-  "logoutConfirm":
-    "Are you sure you want to Logout? You will need to enter your credantial to log in again.",
-  "deleteConfirm":
-    "Are you sure you want delete your account? This action can't be undone and you will lose all your data.",
+  "logoutConfirm": "Are you sure you want to Logout? You will need to enter your credantial to log in again.",
+  "deleteConfirm": "Are you sure you want delete your account? This action can't be undone and you will lose all your data.",
   "noHistory": "No Bookings yet",
   "noChatHistory": "No Chats!",
   "notifications": "Notifications",
@@ -79,10 +77,8 @@
   "bookingConfirmed": "Booking Confirmed!",
   "kyoraBot": "KyoraBot",
   "walletBalance": "Wallet Balance",
-  "consultantWillReachOutToYouViaInAppChat":
-    "Consultant will reach out to you via in-app chat",
-  "forgotPasswordLine":
-    "No worries! Just enter your email, and we’ll help you reset your password.",
+  "consultantWillReachOutToYouViaInAppChat": "Consultant will reach out to you via in-app chat",
+  "forgotPasswordLine": "No worries! Just enter your email, and we’ll help you reset your password.",
   "sendNow": "Send Now",
   "chooseYourRole": "Choose Your Role",
   "chooseYourRoleSubTitle": "Tell us how you'd like to use the app.",
@@ -127,8 +123,7 @@
   "pendingVerification": "Pending Verification",
   "yourRating": "Your Rating",
   "shareYourExperience": "Share Your Experience",
-  "pendingVerificationLine":
-    "Your profile is currently under review by our team. You’ll receive an email with the next steps shortly.",
+  "pendingVerificationLine": "Your profile is currently under review by our team. You’ll receive an email with the next steps shortly.",
   "searchConsultants": "Search Consultants",
   "searchClients": "Search Clients",
   "bookingId": "Booking ID",

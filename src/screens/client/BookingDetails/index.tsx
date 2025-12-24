@@ -10,8 +10,8 @@ import { rootNavigationProps } from '../../../models/navigationModal';
 import { ScreenHeaderComponent } from '../../../components/Headers/ScreenHeaderComponent';
 import { PrimaryButtonComponent } from '../../../components/Buttons/PrimaryButton';
 import {
-  ApiBillDetailsModal,
-  ApiConsultantDetailsModal,
+  ApiBillDetailsModel,
+  ApiConsultantDetailsModel,
 } from '../../../models/api/models';
 import { getAPIData } from '../../../services/api/getApi/getAPI';
 import {
@@ -77,12 +77,12 @@ export const BookingDetailsScreen = ({
   const loadData = async () => {
     try {
       setLoader(true);
-      const res1: ApiConsultantDetailsModal = await getAPIData(
+      const res1: ApiConsultantDetailsModel = await getAPIData(
         `${endPoints.consultant}/${consultantId}`,
       );
       const transformedData1 = transformConsultantDetailsModal(res1);
       setConsultantData(transformedData1);
-      const res2: ApiBillDetailsModal = await getBillData(hrBook, consultantId);
+      const res2: ApiBillDetailsModel = await getBillData(hrBook, consultantId);
       const transformedData2 = transformBillDetailsModal(res2);
       setBillData(transformedData2);
     } catch (error) {

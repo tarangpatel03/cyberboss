@@ -5,7 +5,7 @@ import { LogInScreen } from '../screens/common/auth/LogIn';
 import { SignUpScreen } from '../screens/common/auth/SignUp';
 import { ForgotPasswordScreen } from '../screens/common/auth/ForgotPassword';
 import { ProfileSetUpScreen } from '../screens/profileSetup/FirstScreen';
-import { ClientBottomNavigation } from './ClientBottomNavigation';
+import { BottomNavigation } from './ClientBottomNavigation';
 import { WorkshopScreen } from '../screens/client/Workshop';
 import { AreaOfExpertiesScreen } from '../screens/profileSetup/ConsultantSetup/AreaOfExpertise';
 import { ConsultantListScreen } from '../screens/client/ConsultantList';
@@ -22,7 +22,6 @@ import { BookingDetailsScreen } from '../screens/client/BookingDetails';
 import { BookingConfirmScreen } from '../screens/client/BookingConfirm';
 import { NotificationScreen } from '../screens/common/Notification';
 import { ContactSupportScreen } from '../screens/client/ContactSupport';
-import { ConsultantBottomNavigation } from './ConsultantBottomNavigation';
 import { SubscriptionScreen } from '../screens/client/Subscription';
 import { rootNavigationParams } from '../models/navigationModal';
 import { SearchServiceScreen } from '../screens/client/SearchService';
@@ -32,7 +31,6 @@ import { ClientProfileSetUpScreen } from '../screens/profileSetup/ClientSetup';
 const Root = createNativeStackNavigator<rootNavigationParams>();
 export const RootNavigation = () => {
   const isLoggedIn = useSelector((state: RootState) => state.user.token);
-  const role = useSelector((state: RootState) => state.user.userData.role);
   const isFirstTime = useSelector((state: RootState) => state.user.isFirstTime);
   const profileSetup = useSelector(
     (state: RootState) => state.user.userData.profile_setup,
@@ -43,16 +41,10 @@ export const RootNavigation = () => {
       return routeName.Onboarding;
     } else if (isLoggedIn) {
       if (profileSetup) {
+        return routeName.ProfileSetUp;
       }
-      if (role === 'consultant') {
-        return routeName.ConsultantBottomTab;
-      }
-      if (role === 'client') {
-        return routeName.ClientBottomTab;
-      }
-    } else {
-      return routeName.ClientBottomTab;
     }
+    return routeName.BottomTab;
   };
 
   return (
@@ -97,14 +89,7 @@ export const RootNavigation = () => {
         name={routeName.PendingVerification}
         component={PendingVerificationScreen}
       />
-      <Root.Screen
-        name={routeName.ClientBottomTab}
-        component={ClientBottomNavigation}
-      />
-      <Root.Screen
-        name={routeName.ConsultantBottomTab}
-        component={ConsultantBottomNavigation}
-      />
+      <Root.Screen name={routeName.BottomTab} component={BottomNavigation} />
       <Root.Screen name={routeName.Workshop} component={WorkshopScreen} />
       <Root.Screen
         name={routeName.ConsultantList}

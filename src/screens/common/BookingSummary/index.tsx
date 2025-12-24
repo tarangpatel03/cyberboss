@@ -15,7 +15,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { ScreenHeaderComponent } from '../../../components/Headers/ScreenHeaderComponent';
 import { appIcons } from '../../../config/icons/iconPath';
 import { MediumTextComponent } from '../../../components/Text/MediumTextComponent';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { PrimaryButtonComponent } from '../../../components/Buttons/PrimaryButton';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../redux/store';
@@ -24,6 +24,13 @@ import { useTranslation } from 'react-i18next';
 import { BookingStatusCard } from '../../../components/Cards/BookingStatusCard';
 import { BookingSummaryDetailsCard } from '../../../components/Cards/BookingSummaryDetailsCard';
 import { BookingPaymentDetailsCard } from '../../../components/Cards/BookingPaymentDetailsCard';
+import {
+  IBookingDetailsModel,
+  transformBookingDetailsModel,
+} from '../../../models/formattedAPI/formatedModals';
+import { getAPIData } from '../../../services/api/getApi/getAPI';
+import { endPoints } from '../../../config/endPoint/apiEndPoint';
+import { ApiBookingDetailsModel } from '../../../models/api/models';
 
 export const BookingSummaryScreen = ({
   navigation,
@@ -32,31 +39,68 @@ export const BookingSummaryScreen = ({
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
-  const data = route.params;
-  const type = data.category.text;
+  const id = route.params;
   const userRole = useSelector((state: RootState) => state.user.userData.role);
-  const [ratingText, setRatingText] = useState<string>(data.yourRating);
-  const [rating, setRating] = useState<number>(data.rating);
+  const [bookingDetails, setBookingDetails] = useState<IBookingDetailsModel>({
+    id: '',
+    tax: 0,
+    hours: 0,
+    total: 0,
+    status: '',
+    expertise: {
+      id: '',
+      name: '',
+      image: '',
+      description: '',
+    },
+    bookingId: '',
+    grandTotal: '',
+    hourlyRate: '',
+    platformFee: 0,
+    bookingDate: '',
+    categoryName: '',
+    consultantName: '',
+    consultantProfilePicture: 0,
+  });
+  // const [ratingText, setRatingText] = useState<string>(data.yourRating);
+  // const [rating, setRating] = useState<number>(data.rating);
 
-  const navigateToRating = () => {
-    navigation.navigate(routeName.YourRating, {
-      rating: rating,
-      setRating: setRating,
-      setYourRating: setRatingText,
-      yourRating: ratingText,
-    });
-  };
+  // const navigateToRating = () => {
+  //   navigation.navigate(routeName.YourRating, {
+  //     rating: rating,
+  //     setRating: setRating,
+  //     setYourRating: setRatingText,
+  //     yourRating: ratingText,
+  //   });
+  // };
 
-  const navigateToConsultantProfile = (id: string) => {
-    navigation.navigate(routeName.ConsultantProfile, {
-      consultantId: id,
-      type: type,
-    });
+  // const navigateToConsultantProfile = (id: string) => {
+  //   navigation.navigate(routeName.ConsultantProfile, {
+  //     consultantId: id,
+  //     type: type,
+  //   });
+  // };
+
+  const getBookingDetails = async () => {
+    try {
+      const data: ApiBookingDetailsModel = await getAPIData(
+        `${endPoints.booking}/${id}`,
+      );
+      const transformedData = transformBookingDetailsModel(data);
+      setBookingDetails(transformedData);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const goBack = () => {
     navigation.goBack();
   };
+
+  useEffect(() => {
+    getBookingDetails();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
@@ -82,17 +126,21 @@ export const BookingSummaryScreen = ({
             styles.innerContainer,
           ])}
         >
-          <BookingStatusCard data={data} />
+          <BookingStatusCard props={bookingDetails} />
           <BookingSummaryDetailsCard
-            data={data}
-            rating={rating}
             userRole={userRole}
-            ratingText={ratingText}
-            navigateToRating={navigateToRating}
-            navigateToConsultantProfile={navigateToConsultantProfile}
+            data={bookingDetails}
           />
           <BookingPaymentDetailsCard
-            billData={data.billDetails}
+            billData={{
+              grandTotal: Number(bookingDetails.grandTotal),
+              hourlyRate: Number(bookingDetails.hourlyRate),
+              hours: bookingDetails.hours,
+              platformFee: Number(bookingDetails.platformFee),
+              platformPercentage: userRole === 'client' ? 3 : 20,
+              tax: Number(bookingDetails.tax),
+              total: Number(bookingDetails.total),
+            }}
             role={userRole}
           />
         </ScrollView>

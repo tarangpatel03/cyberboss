@@ -9,7 +9,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { SearchBorderInputComponent } from '../../../components/Input/SearchInput';
 import { appIcons } from '../../../config/icons/iconPath';
 import { useDebouncedValue } from '../../../utils/debounce/debounce';
-import { ApiExpertiesModal } from '../../../models/api/models';
+import { ApiExpertiesModel } from '../../../models/api/models';
 import {
   IExpertiesModal,
   transformExpertiesModal,
@@ -34,7 +34,7 @@ export const SearchServiceScreen = ({
   const loadData = async () => {
     try {
       setLoader(true);
-      const data: ApiExpertiesModal[] = await getServiceList(
+      const data: ApiExpertiesModel[] = await getServiceList(
         debouncedSearchText,
       );
       const transformedData = data.map(r => transformExpertiesModal(r));

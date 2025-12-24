@@ -3,23 +3,24 @@ import {
   staticStyle,
 } from '../../screens/common/BookingSummary/styles';
 import { useTheme } from '@shopify/restyle';
-import { Rating } from 'react-native-ratings';
 import { useTranslation } from 'react-i18next';
 import FastImage from 'react-native-fast-image';
 import { Theme } from '../../config/themes/themes';
 import LinearGradient from 'react-native-linear-gradient';
-import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { MediumTextComponent } from '../Text/MediumTextComponent';
 import { RegularTextComponent } from '../Text/RegularTextComponent';
-import { BookingHistoryDataProp } from '../../demoData/bookingHistory';
+import { IBookingDetailsModel } from '../../models/formattedAPI/formatedModals';
+import { getGradientColor } from '../../utils/gradientColor/gradiantColor';
 
 type bookingSummaryDetailsCardProps = {
-  rating: number;
-  ratingText: string;
-  navigateToRating: () => void;
+  // rating: number;
+  // ratingText: string;
+  // navigateToRating: () => void;
   userRole: 'consultant' | 'client';
-  data: Readonly<BookingHistoryDataProp>;
-  navigateToConsultantProfile: (id: string) => void;
+  data: IBookingDetailsModel;
+  // data: Readonly<BookingHistoryDataProp>;
+  // navigateToConsultantProfile: (id: string) => void;
 };
 
 export const BookingSummaryDetailsCard = (
@@ -46,26 +47,26 @@ export const BookingSummaryDetailsCard = (
         ])}
       />
       <View style={staticStyle.rowLine}>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           disabled={props.userRole === 'consultant'}
           activeOpacity={0.9}
-          onPress={() => props.navigateToConsultantProfile(props.data.id)}
-        >
-          <FastImage
-            source={props.data.profileImage}
-            style={staticStyle.profileImage}
-          />
-        </TouchableOpacity>
+          onPress={() => props.navigateToConsultantProfile(props.data.)}
+        > */}
+        <FastImage
+          source={props.data.consultantProfilePicture}
+          style={staticStyle.profileImage}
+        />
+        {/* </TouchableOpacity> */}
         <View style={staticStyle.fullLengthView}>
           <MediumTextComponent
-            text={props.data.name}
+            text={props.data.consultantName}
             textStyle={StyleSheet.flatten([
               staticStyle.titleText,
               styles.primaryText,
             ])}
           />
           <RegularTextComponent
-            text={`${props.data.time}hr`}
+            text={`${props.data.hours}hr`}
             textStyle={StyleSheet.flatten([
               staticStyle.subtitleText,
               styles.secondaryText,
@@ -73,7 +74,7 @@ export const BookingSummaryDetailsCard = (
           />
         </View>
         <MediumTextComponent
-          text={`$${props.data.cost}`}
+          text={`$${props.data.total}`}
           textStyle={StyleSheet.flatten([
             staticStyle.titleText,
             staticStyle.text,
@@ -90,16 +91,16 @@ export const BookingSummaryDetailsCard = (
           x: 0,
           y: 0.5,
         }}
-        colors={props.data.gradientColors}
+        colors={getGradientColor(props.data.expertise.name)}
         style={staticStyle.gradient}
       >
         <View style={staticStyle.rowLine}>
           <FastImage
-            source={props.data.category.image}
+            // source={props.data.category.image}
             style={staticStyle.categoryIcon}
           />
           <RegularTextComponent
-            text={props.data.category.text}
+            text={props.data.expertise.name}
             textStyle={StyleSheet.flatten([
               styles.primaryText,
               staticStyle.subtitleText,
@@ -110,7 +111,7 @@ export const BookingSummaryDetailsCard = (
       <View
         style={StyleSheet.flatten([styles.saperator, staticStyle.saperator])}
       />
-      <TouchableOpacity
+      {/* <TouchableOpacity
         style={StyleSheet.flatten([staticStyle.input, styles.innerContainer])}
         activeOpacity={1}
         onPress={props.navigateToRating}
@@ -147,7 +148,7 @@ export const BookingSummaryDetailsCard = (
             />
           </View>
         )}
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </View>
   );
 };

@@ -12,6 +12,9 @@ export const staticStyle = StyleSheet.create({
   background: {
     flex: 1,
   },
+  name: {
+    paddingLeft: normalize(8),
+  },
   image: {
     borderRadius: normalize(20),
     width: normalize(36),
@@ -91,7 +94,7 @@ export const staticStyle = StyleSheet.create({
   gradientCard: {
     width: '100%',
     overflow: 'hidden',
-    paddingTop: normalize(20),
+    paddingTop: normalize(25),
     borderBottomLeftRadius: 15,
     borderBottomRightRadius: 15,
   },

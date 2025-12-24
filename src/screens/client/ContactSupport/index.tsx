@@ -18,7 +18,7 @@ import { MessageCard } from '../../../components/Cards/MessageCard';
 import { rootNavigationProps } from '../../../models/navigationModal';
 import { BorderInputComponent } from '../../../components/Input/BorderInput';
 import { MediumTextComponent } from '../../../components/Text/MediumTextComponent';
-import { ApiChatBotChatModal } from '../../../models/api/models';
+import { ApiChatBotChatModel } from '../../../models/api/models';
 import { getAPIData } from '../../../services/api/getApi/getAPI';
 import {
   IChatBotChatModal,
@@ -46,7 +46,7 @@ export const ContactSupportScreen = ({
 
   const loadChat = async () => {
     try {
-      const data: ApiChatBotChatModal[] = await getAPIData(
+      const data: ApiChatBotChatModel[] = await getAPIData(
         endPoints.chatHistory,
       ).then(r => r.data);
       const transformedData = data

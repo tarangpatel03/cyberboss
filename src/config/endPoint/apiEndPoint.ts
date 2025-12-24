@@ -15,4 +15,5 @@ export const endPoints = {
   logIn: 'login',
   consultantProfileSetup: 'consultant-profile-setup',
   consultantVerified: 'consultant-verified',
+  consultantHome: 'consultant-home',
 };

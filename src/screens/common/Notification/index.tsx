@@ -16,7 +16,7 @@ import { rootNavigationProps } from '../../../models/navigationModal';
 import { NotificationCard } from '../../../components/Cards/NotificationCard';
 import { useEffect, useRef, useState } from 'react';
 import { getAPIData } from '../../../services/api/getApi/getAPI';
-import { ApiNotificationModal } from '../../../models/api/models';
+import { ApiNotificationModel } from '../../../models/api/models';
 import { ListEmptyCard } from '../../../components/Cards/ListEmptyCard';
 import {
   INotificationModal,
@@ -47,7 +47,7 @@ export const NotificationScreen = ({
         setLoader(true);
       }
       const payload = await getAPIData(endPoints.notification, pageToLoad);
-      const data: ApiNotificationModal[] = payload.data;
+      const data: ApiNotificationModel[] = payload.data;
       const transformedData: INotificationModal[] = data
         ? data?.map(r => transformNotificationModal(r))
         : [];

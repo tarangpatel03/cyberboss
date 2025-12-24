@@ -10,13 +10,13 @@ import { Theme } from '../../config/themes/themes';
 import { appIcons } from '../../config/icons/iconPath';
 import { MediumTextComponent } from '../Text/MediumTextComponent';
 import { RegularTextComponent } from '../Text/RegularTextComponent';
-import { BookingHistoryDataProp } from '../../demoData/bookingHistory';
+import { IBookingDetailsModel } from '../../models/formattedAPI/formatedModals';
 
 type bookingStatusCardProps = {
-  data: Readonly<BookingHistoryDataProp>;
+  props: IBookingDetailsModel;
 };
 
-export const BookingStatusCard = (props: bookingStatusCardProps) => {
+export const BookingStatusCard = ({ props }: bookingStatusCardProps) => {
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
@@ -35,37 +35,35 @@ export const BookingStatusCard = (props: bookingStatusCardProps) => {
             staticStyle.titleText,
             styles.secondaryText,
           ])}
-          text={`${t('bookingId')}: ${props.data.id}`}
+          text={`${t('bookingId')}: ${props.bookingId}`}
         />
         <RegularTextComponent
           textStyle={StyleSheet.flatten([
             staticStyle.subtitleText,
             styles.primaryText,
           ])}
-          text={props.data.date}
+          text={props.bookingDate}
         />
       </View>
       <View
         style={StyleSheet.flatten([
           staticStyle.statusContainer,
-          props.data.status === 'Completed' ? styles.greenBG : styles.redBG,
+          props.status === 'Completed' ? styles.greenBG : styles.redBG,
         ])}
       >
         <FastImage
           source={
-            props.data.status === 'Completed'
+            props.status === 'Completed'
               ? appIcons.ic_completed
               : appIcons.ic_inProgress
           }
           style={staticStyle.icon}
         />
         <MediumTextComponent
-          text={props.data.status}
+          text={props.status}
           textStyle={StyleSheet.flatten([
             staticStyle.tinyText,
-            props.data.status === 'Completed'
-              ? styles.greenText
-              : styles.redText,
+            props.status === 'Completed' ? styles.greenText : styles.redText,
           ])}
         />
       </View>

@@ -30,7 +30,7 @@ axiosClient.interceptors.response.use(
         case 401:
           store.dispatch(clearUser());
           // @ts-ignore
-          if (currentRoute === routeName.ClientHome) {
+          if (currentRoute === routeName.Home) {
             return Promise.reject(error);
           }
           navigationRef.current?.navigate(routeName.LogIn);

@@ -17,6 +17,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
 import { navigationRef } from '../services/axios/axiosInterceptors';
 import { EventArg } from '@react-navigation/native';
+import { ConsultantHomeScreen } from '../screens/consultant/home';
 
 const Tab = createBottomTabNavigator<clientBottomNavigationParams>();
 type SetBarIconType = {
@@ -27,12 +28,13 @@ type SetBarIconType = {
   title: string;
 };
 
-export const ClientBottomNavigation = () => {
+export const BottomNavigation = () => {
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   const { bottom } = useSafeAreaInsets();
   const token = useSelector((state: RootState) => state.user.token);
+  const role = useSelector((state: RootState) => state.user.userData.role);
 
   const checkAuth = (e: EventArg<'tabPress', true, undefined>) => {
     if (!token) {
@@ -82,8 +84,8 @@ export const ClientBottomNavigation = () => {
       }}
     >
       <Tab.Screen
-        name={routeName.ClientHome}
-        component={ClientHomeScreen}
+        name={routeName.Home}
+        component={role === 'client' ? ClientHomeScreen : ConsultantHomeScreen}
         options={{
           tabBarIcon: ({ focused }) =>
             setBarIcon({

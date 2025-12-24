@@ -14,12 +14,18 @@ import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { MediumTextComponent } from '../Text/MediumTextComponent';
 import { RegularTextComponent } from '../Text/RegularTextComponent';
 import { SemiBoldTextComponent } from '../Text/SemiBoldTextComponent';
-import { IProfileModal } from '../../models/formattedAPI/formatedModals';
+import {
+  IConsultantHomeModel,
+  IProfileModal,
+} from '../../models/formattedAPI/formatedModals';
 import { useState } from 'react';
 import { appImages } from '../../config/images/imagePath';
+import RadialGradient from 'react-native-radial-gradient';
+import { width } from '../../config/constants/variables';
 
 type consultantHeaderCardProps = {
   profileData: IProfileModal;
+  userData: IConsultantHomeModel;
   navigateToNotification: () => void;
 };
 
@@ -31,14 +37,11 @@ export const ConsultantHeaderCard = (props: consultantHeaderCardProps) => {
     useState<boolean>(false);
 
   return (
-    <LinearGradient
+    <RadialGradient
+      radius={200}
       style={staticStyle.gradientCard}
-      colors={[
-        appColors.app_0A0F28,
-        appColors.app_192350,
-        appColors.app_4678FF73,
-      ]}
-      locations={[0, 0.4, 1]}
+      colors={[appColors.app_1E3D92, appColors.app_1D2742]}
+      center={[width / 2, 300]}
     >
       <View style={staticStyle.container}>
         <View style={staticStyle.row}>
@@ -48,7 +51,8 @@ export const ConsultantHeaderCard = (props: consultantHeaderCardProps) => {
                 source={
                   profilePictureError
                     ? appImages.img_defaultProfile
-                    : props.profileData.profilePicture
+                    : appImages.img_defaultProfile
+                  // : props.profileData.profilePicture
                 }
                 style={staticStyle.image}
                 onError={() => setProfilePictureError(true)}
@@ -56,7 +60,10 @@ export const ConsultantHeaderCard = (props: consultantHeaderCardProps) => {
             </View>
             <SemiBoldTextComponent
               text={props.profileData.name}
-              textStyle={StyleSheet.flatten([styles.textPrimary])}
+              textStyle={StyleSheet.flatten([
+                staticStyle.name,
+                styles.whiteText,
+              ])}
             />
           </View>
           <TouchableOpacity
@@ -66,7 +73,7 @@ export const ConsultantHeaderCard = (props: consultantHeaderCardProps) => {
             <FastImage
               source={appIcons.ic_notificationBell}
               style={staticStyle.bellButton}
-              tintColor={theme.colors.textPrimary}
+              tintColor={theme.colors.pureWhite}
             />
           </TouchableOpacity>
         </View>
@@ -79,7 +86,7 @@ export const ConsultantHeaderCard = (props: consultantHeaderCardProps) => {
           <View style={staticStyle.centerRow}>
             <View style={staticStyle.counter}>
               <BoldTextComponent
-                text="$0"
+                text={`$${props.userData.totalEarnings}`}
                 textStyle={StyleSheet.flatten([
                   staticStyle.countText,
                   styles.whiteText,
@@ -104,7 +111,7 @@ export const ConsultantHeaderCard = (props: consultantHeaderCardProps) => {
             <View style={staticStyle.counter}>
               <View style={staticStyle.directionRow}>
                 <BoldTextComponent
-                  text="0"
+                  text={`${props.userData.averageRating}`}
                   textStyle={StyleSheet.flatten([
                     staticStyle.countText,
                     styles.whiteText,
@@ -161,7 +168,7 @@ export const ConsultantHeaderCard = (props: consultantHeaderCardProps) => {
               />
             </View>
             <MediumTextComponent
-              text="$0"
+              text={`$${props.userData.walletBalance}`}
               textStyle={StyleSheet.flatten([
                 staticStyle.viewAllText,
                 styles.whiteText,
@@ -170,6 +177,6 @@ export const ConsultantHeaderCard = (props: consultantHeaderCardProps) => {
           </View>
         </View>
       </View>
-    </LinearGradient>
+    </RadialGradient>
   );
 };

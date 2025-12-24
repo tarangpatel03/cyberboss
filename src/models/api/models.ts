@@ -1,4 +1,4 @@
-export type ApiNotificationModal = {
+export type ApiNotificationModel = {
   id: string;
   title: string;
   body: string;
@@ -7,16 +7,16 @@ export type ApiNotificationModal = {
   image: string;
 };
 
-export type ApiExpertiesModal = {
+export type ApiExpertiesModel = {
   id: string;
   name: string;
   image: string;
-  description: null;
+  description: string | null;
   rate: string;
-  booking_count: number;
+  booking_count: number | null;
 };
 
-export type ApiWorkshopModal = {
+export type ApiWorkshopModel = {
   id: string;
   name: string;
   date: string;
@@ -25,7 +25,7 @@ export type ApiWorkshopModal = {
   link: string;
 };
 
-export type ApiConsultantModal = {
+export type ApiConsultantModel = {
   id: string;
   name: string;
   experience_year: string;
@@ -34,14 +34,14 @@ export type ApiConsultantModal = {
   bookings: number;
 };
 
-export type ApiClientHomeModal = {
+export type ApiClientHomeModel = {
   is_subscriber: boolean;
   bookings: any[];
-  expertises: ApiExpertiesModal[];
-  workshops: ApiWorkshopModal[];
+  expertises: ApiExpertiesModel[];
+  workshops: ApiWorkshopModel[];
 };
 
-export type ApiConsultantDetailsModal = {
+export type ApiConsultantDetailsModel = {
   id: string;
   name: string;
   profile_picture: string | undefined;
@@ -65,12 +65,12 @@ export type Expertises = {
   id: string;
   name: string;
   image: string;
-  description: null;
+  description: string | null;
   rate: number;
-  booking_count: null;
+  booking_count: number | null;
 };
 
-export type ApiBillDetailsModal = {
+export type ApiBillDetailsModel = {
   hourly_rate: number;
   hours: number;
   total: number;
@@ -80,14 +80,14 @@ export type ApiBillDetailsModal = {
   grand_total: number;
 };
 
-export type ApiChatBotChatModal = {
+export type ApiChatBotChatModel = {
   session_id: string;
   request: string;
   response: string;
   created_at: string;
 };
 
-export type ApiProfileModal = {
+export type ApiProfileModel = {
   id: string;
   name: string;
   email: string;
@@ -112,4 +112,64 @@ export type ApiBookingBillCount = {
 export type ApiUpdateProfile = {
   name: string;
   profile_picture: number | { uri: string } | undefined;
+};
+
+export type ApiBookingHistoryModel = {
+  id: string;
+  user_id: string;
+  consultant_id: string;
+  user_name: string;
+  user_profile_picture: number | { uri: string } | undefined;
+  booking_date: string;
+  status: string;
+  category_name: string;
+  grand_total: string;
+  booking_id: string;
+  hours: number;
+};
+
+export type ApiBookingDetailsModel = {
+  id: string;
+  consultant_name: string;
+  consultant_profile_picture: number | { uri: string } | undefined;
+  booking_date: string;
+  category_name: string;
+  grand_total: string;
+  booking_id: string;
+  status: string;
+  hours: number;
+  hourly_rate: string;
+  total: number;
+  platform_fee: number;
+  tax: number;
+  expertise: {
+    id: string;
+    name: string;
+    image: string | null;
+    description: string | null;
+  };
+};
+
+export type ConsultantHomeBookingModel = {
+  id: string;
+  consultant_name: string;
+  consultant_profile_picture: string | null;
+  booking_date: string;
+  category_name: string;
+  grand_total: string;
+};
+
+export type ConsultantHomeNotificationModel = {
+  id: string;
+  title: string;
+  body: string | null;
+  created_at: string;
+};
+
+export type ApiConsultantHomeModel = {
+  total_earnings: string;
+  wallet_balance: number;
+  average_rating: number;
+  bookings: ConsultantHomeBookingModel[];
+  notification: ConsultantHomeNotificationModel[];
 };

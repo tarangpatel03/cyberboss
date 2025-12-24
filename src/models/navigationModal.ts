@@ -1,11 +1,8 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import {
-  BookingHistoryDataProp,
-  ratingProps,
-} from '../demoData/bookingHistory';
+import { ratingProps } from '../demoData/bookingHistory';
 
 export type clientBottomNavigationParams = {
-  ClientHome: undefined;
+  Home: undefined;
   History: undefined;
   Profile: undefined;
   Chat: undefined;
@@ -30,14 +27,13 @@ export type rootNavigationParams = {
   ServicesYouOffer: undefined;
   PersonalDetails: undefined;
   PendingVerification: undefined;
-  ClientBottomTab: undefined;
-  ConsultantBottomTab: undefined;
+  BottomTab: undefined;
   Workshop: undefined;
   ConsultantList: { id: string; name: string };
   OneOnOneChat: undefined;
   EditProfile: undefined;
   ChangePassword: undefined;
-  BookingSummary: BookingHistoryDataProp;
+  BookingSummary: { id: string };
   YourRating: ratingProps;
   ConsultantProfile: { consultantId: string; type: string };
   BookingDetails: { consultantId: string; type: string };

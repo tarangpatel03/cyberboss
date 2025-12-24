@@ -12,7 +12,7 @@ import { isDarkMode } from '../../../utils/theme/darkMode';
 import { routeName } from '../../../config/constants/routes';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { rootNavigationProps } from '../../../models/navigationModal';
-import { ApiConsultantDetailsModal } from '../../../models/api/models';
+import { ApiConsultantDetailsModel } from '../../../models/api/models';
 import { ReviewCard } from '../../../components/Cards/RatingReviewCard';
 import { MediumTextComponent } from '../../../components/Text/MediumTextComponent';
 import { RegularTextComponent } from '../../../components/Text/RegularTextComponent';
@@ -62,7 +62,7 @@ export const ConsultantProfileScreen = ({
 
   const loadData = async () => {
     try {
-      const res: ApiConsultantDetailsModal = await getAPIData(
+      const res: ApiConsultantDetailsModel = await getAPIData(
         `${endPoints.consultant}/${consultantId}`,
       );
       const transformedData = transformConsultantDetailsModal(res);

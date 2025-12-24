@@ -68,7 +68,7 @@ export const ClientProfileSetUpScreen = ({
           profilePicture: profileImage,
         }),
       );
-      navigation.replace(routeName.ClientBottomTab);
+      navigation.replace(routeName.BottomTab);
     } catch (error) {
       console.log(error);
     }

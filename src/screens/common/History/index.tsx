@@ -2,7 +2,6 @@ import { useTheme } from '@shopify/restyle';
 import { Theme } from '../../../config/themes/themes';
 import { createStyles, staticStyle } from './styles';
 import {
-  ActivityIndicator,
   FlatList,
   StatusBar,
   StyleSheet,
@@ -13,11 +12,10 @@ import { isDarkMode } from '../../../utils/theme/darkMode';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { BottomTabHeader } from '../../../components/Headers/BottomTabHeader';
 import { BookingCard } from '../../../components/Cards/BookingCard';
-import { BookingHistoryDataProp } from '../../../demoData/bookingHistory';
 import { rootNavigationProps } from '../../../models/navigationModal';
 import { routeName } from '../../../config/constants/routes';
 import { getAPIData } from '../../../services/api/getApi/getAPI';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ListEmptyCard } from '../../../components/Cards/ListEmptyCard';
 import { appImages } from '../../../config/images/imagePath';
 import { height } from '../../../config/constants/variables';
@@ -28,6 +26,11 @@ import { ListShimmer } from '../../../components/Skeleton/ListShimmer';
 import { endPoints } from '../../../config/endPoint/apiEndPoint';
 import { useTranslation } from 'react-i18next';
 import FastImage from 'react-native-fast-image';
+import { ApiBookingHistoryModel } from '../../../models/api/models';
+import {
+  IBookingHistoryModel,
+  transformBookingHistoyModel,
+} from '../../../models/formattedAPI/formatedModals';
 
 export const HistoryScreen = ({
   navigation,
@@ -35,17 +38,14 @@ export const HistoryScreen = ({
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
-  const [history, setHistory] = useState();
+  const [history, setHistory] = useState<IBookingHistoryModel[]>([]);
   const [loader, setLoader] = useState<boolean>(true);
   const [isModalVisible, setModalVisible] = useState(false);
   const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 });
   const [selectedMoreId, setSelectedMoreId] = useState<number | null>(null);
-  const pageRef = useRef<number>(1);
-  const hasMoreRef = useRef<boolean>(false);
-  const paginationLoadingRef = useRef<boolean>(false);
 
-  const navigateToDetails = (item: BookingHistoryDataProp) => {
-    navigation.navigate(routeName.BookingSummary, item);
+  const navigateToDetails = (id: string) => {
+    navigation.navigate(routeName.BookingSummary, { id });
   };
   const navigateToNotification = () => {
     navigation.navigate(routeName.Notification);
@@ -59,19 +59,11 @@ export const HistoryScreen = ({
         setLoader(true);
       }
       const payload = await getAPIData(endPoints.booking, pageToLoad);
-      const data = payload.data;
-      hasMoreRef.current = payload.meta.current_page < payload.meta.last_page;
-      pageRef.current = payload.meta.current_page;
-      setHistory(data);
+      const data: ApiBookingHistoryModel[] = payload.data;
+      const transformedData = data.map(r => transformBookingHistoyModel(r));
+      setHistory(transformedData);
     } catch (error) {
       console.log(error);
-    }
-  };
-
-  const handleLoadMore = () => {
-    if (hasMoreRef.current && !loader) {
-      paginationLoadingRef.current = true;
-      loadData(pageRef.current + 1);
     }
   };
 
@@ -194,11 +186,7 @@ export const HistoryScreen = ({
               contentContainerStyle={staticStyle.listItems}
               ListEmptyComponent={emptyCard}
               initialNumToRender={5}
-              onEndReached={handleLoadMore}
               onEndReachedThreshold={0.5}
-              ListFooterComponent={
-                paginationLoadingRef.current ? <ActivityIndicator /> : null
-              }
             />
           </View>
         )}

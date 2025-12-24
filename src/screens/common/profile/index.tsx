@@ -57,7 +57,7 @@ export const ProfileScreen = ({
       await logOut();
       dispatch(setUser(''));
       console.log('logged out');
-      navigation.replace(routeName.ClientBottomTab);
+      navigation.replace(routeName.BottomTab);
     } catch (error) {
       console.log(error);
     }

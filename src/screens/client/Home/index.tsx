@@ -29,7 +29,7 @@ import { HomeScreenListHeaderComponent } from '../../../components/Headers/HomeS
 
 export const ClientHomeScreen = ({
   navigation,
-}: rootNavigationProps<routeName.ClientHome>) => {
+}: rootNavigationProps<routeName.Home>) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const theme = useTheme<Theme>();

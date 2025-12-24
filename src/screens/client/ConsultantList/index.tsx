@@ -10,7 +10,7 @@ import { useEffect, useRef, useState } from 'react';
 import { isDarkMode } from '../../../utils/theme/darkMode';
 import { ScreenHeaderComponent } from '../../../components/Headers/ScreenHeaderComponent';
 import { useDebouncedValue } from '../../../utils/debounce/debounce';
-import { ApiConsultantModal } from '../../../models/api/models';
+import { ApiConsultantModel } from '../../../models/api/models';
 import { ListEmptyCard } from '../../../components/Cards/ListEmptyCard';
 import {
   IConsultantModal,
@@ -62,7 +62,7 @@ export const ConsultantListScreen = ({
         setLoader(true);
       }
       const payload = await getConsultantList(id, pageToLoad, searchText);
-      const data: ApiConsultantModal[] = payload.data;
+      const data: ApiConsultantModel[] = payload.data;
       const formattedData = data
         ? data?.map(res => transformConsultantModal(res))
         : [];

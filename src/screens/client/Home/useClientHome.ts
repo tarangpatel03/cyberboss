@@ -1,7 +1,7 @@
 import {
-  ApiClientHomeModal,
-  ApiExpertiesModal,
-  ApiProfileModal,
+  ApiClientHomeModel,
+  ApiExpertiesModel,
+  ApiProfileModel,
 } from '../../../models/api/models';
 import {
   IClientHomeModal,
@@ -47,7 +47,7 @@ export function useClientHome() {
   });
 
   const handleHomeScreenWithoutLogIn = async () => {
-    const res: ApiExpertiesModal[] = await getAPIData(endPoints.expertises);
+    const res: ApiExpertiesModel[] = await getAPIData(endPoints.expertises);
     const transformedData = res.map(r => transformExpertiesModal(r));
 
     setHomeData({
@@ -60,10 +60,10 @@ export function useClientHome() {
 
   const getData = async () => {
     try {
-      const data: ApiClientHomeModal = await getAPIData(endPoints.clientHome);
+      const data: ApiClientHomeModel = await getAPIData(endPoints.clientHome);
       const transformedData1 = transformClientHomeModal(data);
       setHomeData(transformedData1);
-      const res: ApiProfileModal = await getAPIData(
+      const res: ApiProfileModel = await getAPIData(
         endPoints.consultantProfile,
       );
       const transformedData2 = transformProfileModal(res);
@@ -72,8 +72,8 @@ export function useClientHome() {
         setUserData({
           id: transformedData2.id,
           name: transformedData2.name,
-          role: transformedData2.role,
           email: transformedData2.email,
+          profile_setup: transformedData2.profileSetup,
           profilePicture: transformedData2.profilePicture,
         }),
       );

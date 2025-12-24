@@ -14,7 +14,7 @@ import { WorkshopCard } from '../../../components/Cards/WorkshopCard';
 import { isDarkMode } from '../../../utils/theme/darkMode';
 import { ScreenHeaderComponent } from '../../../components/Headers/ScreenHeaderComponent';
 import { useEffect, useRef, useState } from 'react';
-import { ApiWorkshopModal } from '../../../models/api/models';
+import { ApiWorkshopModel } from '../../../models/api/models';
 import { getAPIData } from '../../../services/api/getApi/getAPI';
 import { ListEmptyCard } from '../../../components/Cards/ListEmptyCard';
 import {
@@ -50,7 +50,7 @@ export const WorkshopScreen = ({
         setLoader(true);
       }
       const payload = await getAPIData(endPoints.workshopList, pageToLoad);
-      const res: ApiWorkshopModal[] = payload.data;
+      const res: ApiWorkshopModel[] = payload.data;
       const transformedData: IWorkshopModal[] = res
         ? res?.map(r => transformWorkshopModal(r))
         : [];

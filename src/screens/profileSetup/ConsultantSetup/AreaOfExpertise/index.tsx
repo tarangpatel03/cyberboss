@@ -16,7 +16,7 @@ import { createStyles, staticStyle } from './styles';
 import { useTranslation } from 'react-i18next';
 import { getAPIData } from '../../../../services/api/getApi/getAPI';
 import { endPoints } from '../../../../config/endPoint/apiEndPoint';
-import { ApiExpertiesModal } from '../../../../models/api/models';
+import { ApiExpertiesModel } from '../../../../models/api/models';
 import {
   IExpertiesModal,
   transformExpertiesModal,
@@ -40,7 +40,7 @@ export const AreaOfExpertiesScreen = ({
 
   const getExpertise = async () => {
     try {
-      const res: ApiExpertiesModal[] = await getAPIData(endPoints.expertises);
+      const res: ApiExpertiesModel[] = await getAPIData(endPoints.expertises);
       const transformedRes = res.map(r => transformExpertiesModal(r));
       setExpertise(transformedRes);
     } catch (error) {

@@ -10,7 +10,7 @@ import { appIcons } from '../../../../config/icons/iconPath';
 import { appColors } from '../../../../config/colors/colors';
 import { appImages } from '../../../../config/images/imagePath';
 import { isDarkMode } from '../../../../utils/theme/darkMode';
-import { setUser } from '../../../../redux/features/userSlice';
+import { setUser, setUserData } from '../../../../redux/features/userSlice';
 import { showErrorToast } from '../../../../utils/toast/toast';
 import { routeName } from '../../../../config/constants/routes';
 import { rootNavigationProps } from '../../../../models/navigationModal';
@@ -44,7 +44,7 @@ export const LogInScreen = ({
   };
 
   const navigateToHomeScreen = () => {
-    navigation.replace(routeName.ClientBottomTab);
+    navigation.replace(routeName.BottomTab);
   };
 
   const handleSignIn = async () => {
@@ -54,6 +54,11 @@ export const LogInScreen = ({
         const res = await signIn(email, password);
         if (res) {
           dispatch(setUser(res.access_token));
+          dispatch(
+            setUserData({
+              role: res.role,
+            }),
+          );
           navigateToHomeScreen();
         }
       } else {

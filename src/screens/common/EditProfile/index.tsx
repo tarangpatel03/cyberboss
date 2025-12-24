@@ -18,7 +18,7 @@ import {
   IProfileModal,
   transformProfileModal,
 } from '../../../models/formattedAPI/formatedModals';
-import { ApiProfileModal } from '../../../models/api/models';
+import { ApiProfileModel } from '../../../models/api/models';
 import { endPoints } from '../../../config/endPoint/apiEndPoint';
 import { useTranslation } from 'react-i18next';
 import { updateClientProfile } from '../../../services/api/postApi/updateProfile';
@@ -95,7 +95,7 @@ export const EditProfileScreen = ({
 
   const getData = async () => {
     try {
-      const res: ApiProfileModal = await getAPIData(
+      const res: ApiProfileModel = await getAPIData(
         endPoints.consultantProfile,
       );
       const transformedData = transformProfileModal(res);

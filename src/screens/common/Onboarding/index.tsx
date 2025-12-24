@@ -12,11 +12,10 @@ import { createStyles } from './styles';
 import { PrimaryButtonWithIconComponent } from '../../../components/Buttons/PrimaryButtonWithIcon';
 import { routeName } from '../../../config/constants/routes';
 import { rootNavigationProps } from '../../../models/navigationModal';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setIsFirstTime } from '../../../redux/features/userSlice';
 import { isDarkMode } from '../../../utils/theme/darkMode';
 import { useTranslation } from 'react-i18next';
-import { RootState } from '../../../redux/store';
 
 export const OnboardingScreen = ({
   navigation,
@@ -27,7 +26,6 @@ export const OnboardingScreen = ({
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   const dispatch = useDispatch();
-  const isFirstTime = useSelector((state: RootState) => state.user.isFirstTime);
 
   const handleNext = () => {
     if (currentIndex < onboardingData.length - 1) {
@@ -39,10 +37,8 @@ export const OnboardingScreen = ({
   };
 
   const navigateToLogIn = () => {
-    console.log('isFirstTime: ', isFirstTime);
     dispatch(setIsFirstTime(false));
-    console.log('isFirstTime: ', isFirstTime);
-    navigation.replace(routeName.ClientBottomTab);
+    navigation.replace(routeName.BottomTab);
   };
 
   const handleScroll = (event: any) => {

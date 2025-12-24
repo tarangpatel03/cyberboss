@@ -8,7 +8,7 @@ import {
   IWorkshopModal,
   transformClientHomeModal,
 } from '../../../models/formattedAPI/formatedModals';
-import { ApiClientHomeModal } from '../../../models/api/models';
+import { ApiClientHomeModel } from '../../../models/api/models';
 import { getAPIData } from '../../../services/api/getApi/getAPI';
 import { WorkshopFlatListCard } from '../../../components/Cards/WorkShopFlatlistCard';
 import { endPoints } from '../../../config/endPoint/apiEndPoint';
@@ -31,7 +31,7 @@ export const SubscriptionScreen = ({
   const end = { x: 1, y: 0.5 };
   const loadData = async () => {
     try {
-      const data: ApiClientHomeModal = await getAPIData(endPoints.clientHome);
+      const data: ApiClientHomeModel = await getAPIData(endPoints.clientHome);
       const transformedData = transformClientHomeModal(data);
       setWorkShopData(transformedData.workshops);
     } catch (error) {

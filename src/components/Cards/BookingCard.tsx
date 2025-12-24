@@ -8,16 +8,16 @@ import { appIcons } from '../../config/icons/iconPath';
 import { PrimaryButtonComponent } from '../Buttons/PrimaryButton';
 import { CircularIconButtonComponent } from '../Buttons/CircularIconButton';
 import LinearGradient from 'react-native-linear-gradient';
-import { BookingHistoryDataProp } from '../../demoData/bookingHistory';
 import { appColors } from '../../config/colors/colors';
 import FastImage from 'react-native-fast-image';
 import { memo, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
+import { IBookingHistoryModel } from '../../models/formattedAPI/formatedModals';
 
 type bookingCardProps = {
-  obj: BookingHistoryDataProp;
+  obj: IBookingHistoryModel;
   onMorePress: (x: number, y: number) => void;
-  navigateToDetails: (item: BookingHistoryDataProp) => void;
+  navigateToDetails: (id: string) => void;
 };
 
 export const BookingCard = memo(
@@ -38,12 +38,12 @@ export const BookingCard = memo(
     return (
       <TouchableOpacity
         activeOpacity={0.7}
-        onPress={() => navigateToDetails(obj)}
+        onPress={() => navigateToDetails(obj.id)}
         style={StyleSheet.flatten([staticStyle.container, styles.container])}
       >
         <View style={staticStyle.row}>
           <MediumTextComponent
-            text={`${t('bookingId')}: ${obj.id}`}
+            text={`${t('bookingId')}: ${obj.bookingId}`}
             textStyle={StyleSheet.flatten([
               staticStyle.titleText,
               styles.secondaryText,
@@ -52,12 +52,12 @@ export const BookingCard = memo(
           <View
             style={StyleSheet.flatten([
               staticStyle.statusContainer,
-              obj.status === t('completed') ? styles.greenBG : styles.redBG,
+              obj.status === 'Completed' ? styles.greenBG : styles.redBG,
             ])}
           >
             <FastImage
               source={
-                obj.status === t('completed')
+                obj.status === 'Completed'
                   ? appIcons.ic_completed
                   : appIcons.ic_inProgress
               }
@@ -67,9 +67,7 @@ export const BookingCard = memo(
               text={obj.status}
               textStyle={StyleSheet.flatten([
                 staticStyle.tinyText,
-                obj.status === t('completed')
-                  ? styles.greenText
-                  : styles.redText,
+                obj.status === 'Completed' ? styles.greenText : styles.redText,
               ])}
             />
           </View>
@@ -79,19 +77,19 @@ export const BookingCard = memo(
         />
         <View style={staticStyle.rowLine}>
           <FastImage
-            source={obj.profileImage}
+            source={obj.userProfilePicture}
             style={staticStyle.profileImage}
           />
           <View style={staticStyle.fullLengthView}>
             <MediumTextComponent
-              text={obj.name}
+              text={obj.userName}
               textStyle={StyleSheet.flatten([
                 staticStyle.titleText,
                 styles.primaryText,
               ])}
             />
             <RegularTextComponent
-              text={`${obj.time}hr`}
+              text={`${obj.hours}hr`}
               textStyle={StyleSheet.flatten([
                 staticStyle.subtitleText,
                 styles.secondaryText,
@@ -99,7 +97,7 @@ export const BookingCard = memo(
             />
           </View>
           <MediumTextComponent
-            text={`$${obj.cost}`}
+            text={`$${obj.grandTotal}`}
             textStyle={StyleSheet.flatten([
               staticStyle.titleText,
               staticStyle.text,
@@ -116,10 +114,10 @@ export const BookingCard = memo(
           <View style={staticStyle.rowLine}>
             <FastImage
               style={staticStyle.categoryIcon}
-              source={obj.category.image}
+              // source={obj.}
             />
             <RegularTextComponent
-              text={obj.category.text}
+              text={obj.categoryName}
               textStyle={StyleSheet.flatten([
                 staticStyle.subtitleText,
                 styles.primaryText,

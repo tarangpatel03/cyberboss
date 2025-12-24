@@ -59,4 +59,6 @@ export const appColors = {
   app_5B5B5B: '#5B5B5B',
   app_EBEBEB: '#EBEBEB',
   app_C5C5C5: '#C5C5C5',
+  app_1E3D92: '#1E3D92',
+  app_1D2742: '#1D2742',
 };

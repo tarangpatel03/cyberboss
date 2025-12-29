@@ -13,7 +13,7 @@ import { RegularTextComponent } from '../../../components/Text/RegularTextCompon
 import { ThemeModal } from '../../../components/Modal/ThemeModal';
 import { useEffect, useState } from 'react';
 import { LogOutModal } from '../../../components/Modal/LogOutModal';
-import { setUser } from '../../../redux/features/userSlice';
+import { clearUser } from '../../../redux/features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { rootState } from '../../../redux/store';
 import { useTranslation } from 'react-i18next';
@@ -54,8 +54,7 @@ export const ProfileScreen = ({
   const handleSignout = async () => {
     try {
       await logOut();
-      dispatch(setUser(''));
-      console.log('logged out');
+      dispatch(clearUser());
       navigation.replace(routeName.BottomTab);
     } catch (error) {
       console.log(error);
@@ -63,9 +62,13 @@ export const ProfileScreen = ({
   };
 
   const navigateToSignUp = async () => {
-    await logOut();
-    dispatch(setUser(''));
-    navigation.replace(routeName.SignUp);
+    try {
+      await logOut();
+      dispatch(clearUser());
+      navigation.replace(routeName.SignUp);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const getPicture = () => {

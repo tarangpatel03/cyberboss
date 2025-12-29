@@ -33,8 +33,7 @@ export const PendingVerificationScreen = ({
 
   const verify = async () => {
     try {
-      const res = await getAPIData(endPoints.consultantVerified);
-      console.log('res: ', res);
+      await getAPIData(endPoints.consultantVerified);
     } catch (error) {
       console.log(error);
     }

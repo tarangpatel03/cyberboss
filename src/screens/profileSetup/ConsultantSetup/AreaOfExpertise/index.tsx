@@ -55,7 +55,6 @@ export const AreaOfExpertiesScreen = ({
   };
 
   const navigateToNext = () => {
-    console.log('Category: ', category);
     dispatch(
       setUserData({
         expertises: category,

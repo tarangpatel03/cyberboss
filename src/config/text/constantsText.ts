@@ -50,6 +50,7 @@ export const appText = {
   pleaseTryAgainLater: 'Please Try Again Later',
   somethingWentWrong: 'Something Went Wrong',
   pageNotFound: 'Page Not Found',
+  enterValidValue: 'Please Enter valid value',
   internalServerError: 'Internal Server Error',
   invalidEmail: 'Invalid Email',
   toMayRequest: 'To Many Request',

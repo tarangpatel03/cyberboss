@@ -42,10 +42,14 @@ axiosClient.interceptors.response.use(
           });
           break;
         case 422:
-          console.log('Invalid Parameters passed');
+          showErrorToast({
+            subtitle: appText.enterValidValue,
+          });
           break;
         case 429:
-          console.log('To Many Request');
+          showErrorToast({
+            title: appText.pleaseTryAgainLater,
+          });
           break;
         case 500:
           showErrorToast({

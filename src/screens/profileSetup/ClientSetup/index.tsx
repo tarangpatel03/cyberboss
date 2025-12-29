@@ -21,9 +21,8 @@ import { SemiBoldTextComponent } from '../../../components/Text/SemiBoldTextComp
 import { CircularIconButtonComponent } from '../../../components/Buttons/CircularIconButton';
 import { updateClientProfile } from '../../../services/api/profile/updateProfile';
 import { CustomInputComponent } from '../../../components/Input/EmailAndPasswordInput';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setUserData } from '../../../redux/features/userSlice';
-import { rootState } from '../../../redux/store';
 
 export const ClientProfileSetUpScreen = ({
   navigation,
@@ -32,8 +31,6 @@ export const ClientProfileSetUpScreen = ({
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   const dispach = useDispatch();
-  const userToken = useSelector((state: rootState) => state.user.token);
-  console.log('userToken: ', userToken);
   const [userName, setUserName] = useState<string>('');
   const [profileImage, setProfileImage] = useState<
     number | { uri: string } | undefined

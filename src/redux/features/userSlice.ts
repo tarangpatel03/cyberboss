@@ -11,6 +11,7 @@ export type userDetailProps = {
   bio: string | null;
   experience_year: string | null;
   rate: string | null;
+  firebaseUid: string;
   expertises: string[] | null;
   services: string[] | null;
   is_verified: boolean | null;
@@ -27,6 +28,7 @@ export type updateUserDetailProps = {
   bio?: string | null;
   experience_year?: string | null;
   rate?: string | null;
+  firebaseUid?: string;
   expertises?: string[] | null;
   services?: string[] | null;
   is_verified?: boolean | null;
@@ -56,6 +58,7 @@ const initialState: UserState = {
     login_type: '',
     services: null,
     role: 'client',
+    firebaseUid: '',
     expertises: null,
     is_verified: null,
     profile_setup: false,
@@ -91,6 +94,8 @@ export const userSlice = createSlice({
         state.userData.expertises = action.payload.expertises;
       if (action.payload.id !== undefined)
         state.userData.id = action.payload.id;
+      if (action.payload.firebaseUid !== undefined)
+        state.userData.firebaseUid = action.payload.firebaseUid;
       if (action.payload.is_verified !== undefined)
         state.userData.is_verified = action.payload.is_verified;
       if (action.payload.login_type !== undefined)
@@ -119,6 +124,7 @@ export const userSlice = createSlice({
         login_type: '',
         services: null,
         role: 'client',
+        firebaseUid: '',
         expertises: null,
         is_verified: null,
         profile_setup: false,

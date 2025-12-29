@@ -45,7 +45,7 @@ export const staticStyle = StyleSheet.create({
     alignItems: 'center',
   },
   container: {
-    gap: normalize(20),
+    gap: normalize(10),
     paddingVertical: normalize(12),
     paddingHorizontal: normalize(12),
   },
@@ -70,6 +70,9 @@ export const staticStyle = StyleSheet.create({
   viewAllIcon: {
     width: normalize(5),
     height: normalize(9),
+  },
+  paddingTop: {
+    paddingTop: normalize(12),
   },
   row: {
     flexDirection: 'row',

@@ -42,7 +42,9 @@ export const ConsultantHeaderCard = (props: consultantHeaderCardProps) => {
       center={[width / 2, 300]}
     >
       <View style={staticStyle.container}>
-        <View style={staticStyle.row}>
+        <View
+          style={StyleSheet.flatten([staticStyle.row, staticStyle.paddingTop])}
+        >
           <View style={staticStyle.row}>
             <View style={staticStyle.image}>
               <FastImage

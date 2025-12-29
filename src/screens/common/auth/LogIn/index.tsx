@@ -54,10 +54,11 @@ export const LogInScreen = ({
       if (validateEmail(email) && validatePassword(password)) {
         const res = await signIn(email, password);
         if (res) {
-          dispatch(setUser(res.access_token));
+          dispatch(setUser(res.userToken.access_token));
           dispatch(
             setUserData({
-              role: res.role,
+              firebaseUid: res.uid,
+              role: res.userToken.role,
             }),
           );
           navigateToHomeScreen();

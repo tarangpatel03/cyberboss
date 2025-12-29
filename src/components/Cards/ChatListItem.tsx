@@ -6,13 +6,16 @@ import { RegularTextComponent } from '../Text/RegularTextComponent';
 import normalize from '../../utils/normalize/normalize';
 import FastImage from 'react-native-fast-image';
 import { memo } from 'react';
+import { appImages } from '../../config/images/imagePath';
 
 type chatListItemProps = {
   name: string;
-  profileImage: number | { uri: string } | undefined;
-  lastMsg: string;
-  time: string;
-  unread: number;
+  uid: string;
+  lastMessage: string;
+  // time: string;
+  unread: {
+    [symbol: string]: number;
+  };
   onPress: () => void;
 };
 
@@ -26,7 +29,10 @@ export const ChatListItem = memo((props: chatListItemProps) => {
       onPress={props.onPress}
       style={StyleSheet.flatten([staticStyle.container, styles.container])}
     >
-      <FastImage source={props.profileImage} style={staticStyle.image} />
+      <FastImage
+        source={appImages.img_defaultProfile}
+        style={staticStyle.image}
+      />
       <View style={staticStyle.info}>
         <View style={staticStyle.line}>
           <MediumTextComponent
@@ -36,24 +42,24 @@ export const ChatListItem = memo((props: chatListItemProps) => {
               styles.titleText,
             ])}
           />
-          <MediumTextComponent
+          {/* <MediumTextComponent
             text={props.time}
             textStyle={StyleSheet.flatten([
               staticStyle.timeText,
               props.unread > 0 ? styles.timeUnderadText : styles.timeText,
             ])}
-          />
+          /> */}
         </View>
         <View style={staticStyle.line}>
           <RegularTextComponent
-            text={props.lastMsg}
+            text={props.lastMessage}
             noOfLines={1}
             textStyle={StyleSheet.flatten([
               staticStyle.msgText,
               styles.msgText,
             ])}
           />
-          {props.unread > 0 && (
+          {props.unread.uid > 0 && (
             <View
               style={StyleSheet.flatten([
                 staticStyle.unReadContainer,
@@ -61,7 +67,7 @@ export const ChatListItem = memo((props: chatListItemProps) => {
               ])}
             >
               <RegularTextComponent
-                text={`${props.unread}`}
+                text={`${props.unread.uid}`}
                 textStyle={StyleSheet.flatten([
                   staticStyle.unReadText,
                   styles.unReadText,

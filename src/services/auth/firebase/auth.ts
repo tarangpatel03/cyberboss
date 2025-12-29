@@ -72,6 +72,7 @@ export const googleLogIn = async () => {
 export const signIn = async (email: string, password: string) => {
   try {
     const res = await signInWithEmailAndPassword(getAuth(), email, password);
+    const uid = res.user.uid;
     const idToken = await res.user.getIdToken();
     const userToken = await getUserToken({
       email: null,
@@ -80,7 +81,7 @@ export const signIn = async (email: string, password: string) => {
       push_token: PUSH_TOKEN,
       firebase_token: idToken,
     });
-    return userToken;
+    return { userToken, uid };
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {
     showErrorToast({

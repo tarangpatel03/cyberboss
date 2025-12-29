@@ -1,7 +1,7 @@
 import { ImageSourcePropType } from 'react-native';
 import { appImages } from '../config/images/imagePath';
 
-type OneOnOneChat = {
+export type OneOnOneChat = {
   sender: 'send' | 'recieve';
   image?: ImageSourcePropType | undefined;
   message: string;

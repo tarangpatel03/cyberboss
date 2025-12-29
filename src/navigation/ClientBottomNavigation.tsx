@@ -50,16 +50,9 @@ export const BottomNavigation = () => {
     title,
     zone,
   }: SetBarIconType) => {
-    return focused ? (
+    return (
       <BarTabIconComponent
-        icon={fillIcon}
-        isFocus={focused}
-        title={title}
-        zone={zone}
-      />
-    ) : (
-      <BarTabIconComponent
-        icon={icon}
+        icon={focused ? fillIcon : icon}
         isFocus={focused}
         title={title}
         zone={zone}

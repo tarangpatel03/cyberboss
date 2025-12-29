@@ -1,10 +1,10 @@
-import { FlatList, StyleSheet, View } from 'react-native';
+import { FlatList, ListRenderItem, StyleSheet, View } from 'react-native';
 import { routeName } from '../../../config/constants/routes';
 import { rootNavigationProps } from '../../../models/navigationModal';
 import { Theme } from '../../../config/themes/themes';
 import { useTheme } from '@shopify/restyle';
 import { createStyles, staticStyle } from './styles';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { SearchBorderInputComponent } from '../../../components/Input/SearchInput';
 import { appIcons } from '../../../config/icons/iconPath';
@@ -51,9 +51,13 @@ export const SearchServiceScreen = ({
     navigation.navigate(routeName.ConsultantList, { id, name });
   };
 
-  const renderItem = ({ item }: any) => {
-    return <ServiceCard onPress={navigateToConsultantList} data={item} />;
-  };
+  const renderItem: ListRenderItem<IExpertiesModel> = useCallback(
+    ({ item }) => {
+      return <ServiceCard onPress={navigateToConsultantList} data={item} />;
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
+  );
 
   const emptyCard = () => {
     return <ListEmptyCard text={`${t('noServiceFound', { searchText })}`} />;

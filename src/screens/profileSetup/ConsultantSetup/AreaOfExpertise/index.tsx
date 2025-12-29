@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, View } from 'react-native';
+import { FlatList, ListRenderItem, StyleSheet, View } from 'react-native';
 import { useTheme } from '@shopify/restyle';
 import { Theme } from '../../../../config/themes/themes';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -10,7 +10,7 @@ import { routeName } from '../../../../config/constants/routes';
 import { SemiBoldTextComponent } from '../../../../components/Text/SemiBoldTextComponent';
 import { RegularTextComponent } from '../../../../components/Text/RegularTextComponent';
 import { CategoryCard } from '../../../../components/Cards/CategoryCard';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { createStyles, staticStyle } from './styles';
 import { useTranslation } from 'react-i18next';
 import { getAPIData } from '../../../../services/api/common/getCommonApi';
@@ -64,16 +64,20 @@ export const AreaOfExpertiesScreen = ({
     navigation.navigate(routeName.ServicesYouOffer);
   };
 
-  const renderItem = ({ item }: any) => {
-    return (
-      <CategoryCard
-        expertise={item}
-        data={category}
-        add={addCategory}
-        remove={removeCategory}
-      />
-    );
-  };
+  const renderItem: ListRenderItem<IExpertiesModel> = useCallback(
+    ({ item }) => {
+      return (
+        <CategoryCard
+          expertise={item}
+          data={category}
+          add={addCategory}
+          remove={removeCategory}
+        />
+      );
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
+  );
 
   useEffect(() => {
     getExpertise();

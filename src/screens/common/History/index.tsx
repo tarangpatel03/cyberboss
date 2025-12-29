@@ -8,7 +8,7 @@ import { BookingCard } from '../../../components/Cards/BookingCard';
 import { rootNavigationProps } from '../../../models/navigationModal';
 import { routeName } from '../../../config/constants/routes';
 import { getAPIData } from '../../../services/api/common/getCommonApi';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { ListEmptyCard } from '../../../components/Cards/ListEmptyCard';
 import { appImages } from '../../../config/images/imagePath';
 import { height } from '../../../config/constants/variables';
@@ -60,7 +60,7 @@ export const HistoryScreen = ({
     }
   };
 
-  const renderItem = ({ item, index }: any) => {
+  const renderItem = useCallback(({ item, index }: any) => {
     return (
       <BookingCard
         props={item}
@@ -68,7 +68,8 @@ export const HistoryScreen = ({
         navigateToDetails={navigateToDetails}
       />
     );
-  };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const onMorePress = (id: number, x: number, y: number) => {
     const screenHeight = height;

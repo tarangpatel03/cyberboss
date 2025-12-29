@@ -8,6 +8,6 @@ export const sendChat = async (message: string) => {
     });
     return response.data.payload;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };

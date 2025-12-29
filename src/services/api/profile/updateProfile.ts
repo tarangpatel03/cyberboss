@@ -12,10 +12,9 @@ export const updateClientProfile = async (
       name,
       profile_picture,
     });
-    console.log('profile uploade payload, ', response.data.payload);
     return response.data.payload;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -40,9 +39,8 @@ export const updateConsultantProfileSetup = async (
       expertises,
       services,
     });
-    console.log('Consultant setup: ', res.data.payload);
     return res.data.payload;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };

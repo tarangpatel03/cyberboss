@@ -1,4 +1,10 @@
-import { ActivityIndicator, FlatList, StyleSheet, View } from 'react-native';
+import {
+  ActivityIndicator,
+  FlatList,
+  ListRenderItem,
+  StyleSheet,
+  View,
+} from 'react-native';
 import { Theme } from '../../../config/themes/themes';
 import { useTheme } from '@shopify/restyle';
 import { createStyles, staticStyle } from './styles';
@@ -7,7 +13,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { routeName } from '../../../config/constants/routes';
 import { rootNavigationProps } from '../../../models/navigationModal';
 import { NotificationCard } from '../../../components/Cards/NotificationCard';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { getAPIData } from '../../../services/api/common/getCommonApi';
 import { ListEmptyCard } from '../../../components/Cards/ListEmptyCard';
 import { appImages } from '../../../config/images/imagePath';
@@ -65,9 +71,12 @@ export const NotificationScreen = ({
     navigation.goBack();
   };
 
-  const renderItem = ({ item }: any) => {
-    return <NotificationCard data={item} />;
-  };
+  const renderItem: ListRenderItem<INotificationModel> = useCallback(
+    ({ item }) => {
+      return <NotificationCard data={item} />;
+    },
+    [],
+  );
 
   const handleLoadMore = () => {
     if (hasMoreRef.current && !loader) {

@@ -9,6 +9,6 @@ export const getBillData = async (hours: number, consultant_id: string) => {
     });
     return response.data.payload;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };

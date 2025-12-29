@@ -8,6 +8,6 @@ export const refineFeedBack = async (feedback: string) => {
     });
     return response.data.payload;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };

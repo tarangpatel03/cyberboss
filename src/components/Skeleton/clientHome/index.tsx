@@ -12,19 +12,16 @@ import { RegularTextComponent } from '../../Text/RegularTextComponent';
 import FastImage from 'react-native-fast-image';
 import { ListShimmer } from '../ListShimmer';
 import { useTranslation } from 'react-i18next';
+import { useCallback } from 'react';
 
 export const ClientHomeScreenShimmer = () => {
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
 
-  const renderItem = () => {
-    return (
-      <ShimmerHolder
-        style={StyleSheet.flatten([staticStyle.workShopCard, styles.container])}
-      />
-    );
-  };
+  const renderItem = useCallback(() => {
+    return <ShimmerHolder style={staticStyle.workShopCard} />;
+  }, []);
 
   return (
     <>

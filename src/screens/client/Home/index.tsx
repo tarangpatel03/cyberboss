@@ -1,8 +1,14 @@
-import { FlatList, RefreshControl, StyleSheet, View } from 'react-native';
+import {
+  FlatList,
+  ListRenderItem,
+  RefreshControl,
+  StyleSheet,
+  View,
+} from 'react-native';
 import { useTheme } from '@shopify/restyle';
 import { Theme } from '../../../config/themes/themes';
 import { createStyles, staticStyle } from './styles';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { rootNavigationProps } from '../../../models/navigationModal';
 import { routeName } from '../../../config/constants/routes';
 import { BookingHistoryCard } from '../../../components/Cards/BookingHistoryCard';
@@ -19,6 +25,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../redux/store';
 import { useTranslation } from 'react-i18next';
 import { HomeScreenListHeaderComponent } from '../../../components/Headers/HomeScreenListHeader';
+import { IExpertiesModel } from '../../../models/formattedAPI/tConsultant';
 
 export const ClientHomeScreen = ({
   navigation,
@@ -77,8 +84,12 @@ export const ClientHomeScreen = ({
     />
   );
 
-  const renderBrowseServiceItem = ({ item }: any) => (
-    <ServiceCard onPress={navigateToConsultantList} data={item} />
+  const renderBrowseServiceItem: ListRenderItem<IExpertiesModel> = useCallback(
+    ({ item }) => (
+      <ServiceCard onPress={navigateToConsultantList} data={item} />
+    ),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
   );
 
   const headerComponent = () => {

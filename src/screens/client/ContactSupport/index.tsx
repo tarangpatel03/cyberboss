@@ -1,5 +1,11 @@
-import { FlatList, StyleSheet, TouchableOpacity, View } from 'react-native';
-import { useEffect, useRef, useState } from 'react';
+import {
+  FlatList,
+  ListRenderItem,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTheme } from '@shopify/restyle';
 import { createStyles, staticStyle } from './styles';
 import { Theme } from '../../../config/themes/themes';
@@ -71,9 +77,12 @@ export const ContactSupportScreen = ({
     }
   };
 
-  const renderItem = ({ item }: any) => {
-    return <MessageCard data={item} />;
-  };
+  const renderItem: ListRenderItem<IChatBotChatModel> = useCallback(
+    ({ item }) => {
+      return <MessageCard data={item} />;
+    },
+    [],
+  );
 
   useEffect(() => {
     loadChat();

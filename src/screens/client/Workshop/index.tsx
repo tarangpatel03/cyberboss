@@ -1,4 +1,10 @@
-import { ActivityIndicator, FlatList, StyleSheet, View } from 'react-native';
+import {
+  ActivityIndicator,
+  FlatList,
+  ListRenderItem,
+  StyleSheet,
+  View,
+} from 'react-native';
 import { rootNavigationProps } from '../../../models/navigationModal';
 import { routeName } from '../../../config/constants/routes';
 import { useTheme } from '@shopify/restyle';
@@ -6,7 +12,7 @@ import { Theme } from '../../../config/themes/themes';
 import { createStyles, staticStyle } from './styles';
 import { WorkshopCard } from '../../../components/Cards/WorkshopCard';
 import { ScreenHeaderComponent } from '../../../components/Headers/ScreenHeaderComponent';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { getAPIData } from '../../../services/api/common/getCommonApi';
 import { ListEmptyCard } from '../../../components/Cards/ListEmptyCard';
 import { appImages } from '../../../config/images/imagePath';
@@ -71,9 +77,9 @@ export const WorkshopScreen = ({
     );
   };
 
-  const renderItem = ({ item }: any) => {
+  const renderItem: ListRenderItem<IWorkshopModel> = useCallback(({ item }) => {
     return <WorkshopCard data={item} cardStyle={staticStyle.cardStyle} />;
-  };
+  }, []);
 
   useEffect(() => {
     getData().then(() => setLoader(false));

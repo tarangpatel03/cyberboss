@@ -1,12 +1,12 @@
 import { useTheme } from '@shopify/restyle';
-import { FlatList, StyleSheet, View } from 'react-native';
+import { FlatList, ListRenderItem, StyleSheet, View } from 'react-native';
 import { Theme } from '../../../config/themes/themes';
 import { createStyles, staticStyle } from './styles';
 import { rootNavigationProps } from '../../../models/navigationModal';
 import { routeName } from '../../../config/constants/routes';
 import { ConsultantListCard } from '../../../components/Cards/ConsultantListCard';
 import { SearchBorderInputComponent } from '../../../components/Input/SearchInput';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { ScreenHeaderComponent } from '../../../components/Headers/ScreenHeaderComponent';
 import { useDebouncedValue } from '../../../utils/debounce/debounce';
 import { ListEmptyCard } from '../../../components/Cards/ListEmptyCard';
@@ -75,9 +75,13 @@ export const ConsultantListScreen = ({
     }
   };
 
-  const renderItem = ({ item }: any) => {
-    return <ConsultantListCard data={item} onPress={navigateToConsultant} />;
-  };
+  const renderItem: ListRenderItem<IConsultantModel> = useCallback(
+    ({ item }) => {
+      return <ConsultantListCard data={item} onPress={navigateToConsultant} />;
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
+  );
   const emptyCard = () => {
     return (
       <ListEmptyCard text={`${t('noConsultantFound', { searchText })} `} />

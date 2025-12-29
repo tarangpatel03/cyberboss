@@ -7,7 +7,6 @@ import { routeName } from '../../../../config/constants/routes';
 import { rootNavigationProps } from '../../../../models/navigationModal';
 import { useState } from 'react';
 import { isDarkMode } from '../../../../utils/theme/darkMode';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { validateEmail } from '../../../../utils/validation/emailValidation';
 import { validatePassword } from '../../../../utils/validation/passwordValidation';
 import { showErrorToast } from '../../../../utils/toast/toast';
@@ -46,6 +45,10 @@ export const SignUpScreen = ({
     }
   };
 
+  const navigateToLogIn = () => {
+    navigation.replace(routeName.LogIn);
+  };
+
   const getTintColor = () => {
     if (isDarkMode(theme)) return appColors.app_FFFFFF;
     else return appColors.app_212121;
@@ -81,7 +84,7 @@ export const SignUpScreen = ({
 
   return (
     <>
-      <SafeAreaView
+      <View
         style={StyleSheet.flatten([staticStyle.background, styles.background])}
       >
         <FastImage
@@ -112,11 +115,11 @@ export const SignUpScreen = ({
           </View>
         </View>
         <AuthFooterAction
-          navigateTo={handleSignUp}
+          navigateTo={navigateToLogIn}
           subTitle={'logIn'}
           title={'alreadyHaveAccount'}
         />
-      </SafeAreaView>
+      </View>
     </>
   );
 };

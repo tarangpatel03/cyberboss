@@ -24,6 +24,7 @@ export const staticStyle = StyleSheet.create({
   },
   background: {
     flex: 1,
+    paddingBottom: normalize(20),
   },
   checkMark: {
     width: '70%',

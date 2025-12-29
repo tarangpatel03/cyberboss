@@ -9,7 +9,7 @@ import { BottomNavigation } from './ClientBottomNavigation';
 import { WorkshopScreen } from '../screens/client/Workshop';
 import { AreaOfExpertiesScreen } from '../screens/profileSetup/ConsultantSetup/AreaOfExpertise';
 import { ConsultantListScreen } from '../screens/client/ConsultantList';
-import { OneOnOneChatScreen } from '../screens/common/oneOnoneChat';
+import { OneOnOneChatScreen } from '../screens/common/OneOnoneChat';
 import { PersonalDetailsScreen } from '../screens/profileSetup/ConsultantSetup/PersonalDetails';
 import { ServicesYouOfferScreen } from '../screens/profileSetup/ConsultantSetup/ServecisesYouOffer';
 import { PendingVerificationScreen } from '../screens/profileSetup/ConsultantSetup/PendingVerification';

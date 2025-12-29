@@ -9,9 +9,6 @@ export const staticStyle = StyleSheet.create({
     height: normalize(height),
     paddingBottom: normalize(12),
   },
-  topbar: {
-    paddingTop: normalize(20),
-  },
   cardStyle: {
     marginTop: normalize(12),
     width: '95%',

@@ -3,7 +3,6 @@ import {
   FlatList,
   ListRenderItem,
   StyleSheet,
-  View,
 } from 'react-native';
 import { rootNavigationProps } from '../../../models/navigationModal';
 import { routeName } from '../../../config/constants/routes';
@@ -24,6 +23,7 @@ import {
   tWorkshopModel,
   transformWorkshopModel,
 } from '../../../models/formattedAPI/tConsultant';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export const WorkshopScreen = ({
   navigation,
@@ -35,7 +35,7 @@ export const WorkshopScreen = ({
   const [workshop, setWorkshop] = useState<tWorkshopModel[]>([]);
   const pageRef = useRef<number>(1);
   const hasMoreRef = useRef<boolean>(false);
-  const paginationLoadingRef = useRef<boolean>(false);
+  const [paginationLoading, setPaginationLoading] = useState<boolean>(false);
 
   const goBack = () => {
     navigation.goBack();
@@ -63,7 +63,7 @@ export const WorkshopScreen = ({
 
   const handleLoadMore = () => {
     if (hasMoreRef.current && !loader) {
-      paginationLoadingRef.current = true;
+      setPaginationLoading(true);
       getData(pageRef.current + 1);
     }
   };
@@ -87,12 +87,10 @@ export const WorkshopScreen = ({
 
   return (
     <>
-      <View
+      <SafeAreaView
         style={StyleSheet.flatten([staticStyle.container, styles.container])}
       >
-        <View style={staticStyle.topbar}>
-          <ScreenHeaderComponent onPress={goBack} headerText={t('workshop')} />
-        </View>
+        <ScreenHeaderComponent onPress={goBack} headerText={t('workshop')} />
         {loader && (
           <ListShimmer containerStyle={staticStyle.shimmerContainer} />
         )}
@@ -107,11 +105,11 @@ export const WorkshopScreen = ({
             onEndReached={handleLoadMore}
             onEndReachedThreshold={0.5}
             ListFooterComponent={
-              paginationLoadingRef.current ? <ActivityIndicator /> : null
+              paginationLoading ? <ActivityIndicator /> : null
             }
           />
         )}
-      </View>
+      </SafeAreaView>
     </>
   );
 };

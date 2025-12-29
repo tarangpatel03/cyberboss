@@ -36,7 +36,7 @@ export const NotificationScreen = ({
   const [loader, setLoader] = useState<boolean>(true);
   const pageRef = useRef<number>(1);
   const hasMoreRef = useRef<boolean>(false);
-  const paginationLoadingRef = useRef<boolean>(false);
+  const [paginationLoading, setPaginationLoading] = useState<boolean>(false);
 
   const loadNotifications = async (pageToLoad = 1, isRefresh = false) => {
     try {
@@ -80,7 +80,7 @@ export const NotificationScreen = ({
 
   const handleLoadMore = () => {
     if (hasMoreRef.current && !loader) {
-      paginationLoadingRef.current = true;
+      setPaginationLoading(true);
       loadNotifications(pageRef.current + 1);
     }
   };
@@ -114,7 +114,7 @@ export const NotificationScreen = ({
               onEndReachedThreshold={0.5}
               contentContainerStyle={staticStyle.listItems}
               ListFooterComponent={
-                paginationLoadingRef.current ? <ActivityIndicator /> : null
+                paginationLoading ? <ActivityIndicator /> : null
               }
             />
           </View>

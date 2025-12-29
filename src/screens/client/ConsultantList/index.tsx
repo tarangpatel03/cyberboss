@@ -1,5 +1,11 @@
 import { useTheme } from '@shopify/restyle';
-import { FlatList, ListRenderItem, StyleSheet, View } from 'react-native';
+import {
+  ActivityIndicator,
+  FlatList,
+  ListRenderItem,
+  StyleSheet,
+  View,
+} from 'react-native';
 import { Theme } from '../../../config/themes/themes';
 import { createStyles, staticStyle } from './styles';
 import { rootNavigationProps } from '../../../models/navigationModal';
@@ -18,6 +24,7 @@ import {
   tConsultantModel,
   transformConsultantModel,
 } from '../../../models/formattedAPI/tConsultant';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export const ConsultantListScreen = ({
   navigation,
@@ -29,8 +36,9 @@ export const ConsultantListScreen = ({
   const styles = createStyles(theme);
   const pageRef = useRef<number>(1);
   const [loader, setLoader] = useState<boolean>(true);
-  const hasMoreRef = useRef<boolean>(false);
+  const [hasMore, setHasMore] = useState<boolean>(false);
   const [searchText, setSearchText] = useState<string>('');
+  const [paginationLoading, setPaginationLoading] = useState<boolean>(false);
   const debouncedSearchText = useDebouncedValue(searchText);
   const [consultantsList, setConsultantsList] = useState<tConsultantModel[]>(
     [],
@@ -48,7 +56,8 @@ export const ConsultantListScreen = ({
   };
 
   const handleLoadMore = () => {
-    if (hasMoreRef && !loader) {
+    if (hasMore && !loader) {
+      setPaginationLoading(true);
       pageRef.current += 1;
     }
   };
@@ -65,12 +74,13 @@ export const ConsultantListScreen = ({
       const formattedData = data
         ? data?.map(res => transformConsultantModel(res))
         : [];
-      hasMoreRef.current = payload.meta.current_page < payload.meta.last_page;
+      setHasMore(payload.meta.current_page < payload.meta.last_page);
       pageRef.current = payload.meta.current_page;
       setConsultantsList(formattedData);
     } catch (error) {
       console.log(error);
     } finally {
+      setPaginationLoading(false);
       setLoader(false);
     }
   };
@@ -97,7 +107,7 @@ export const ConsultantListScreen = ({
 
   return (
     <>
-      <View
+      <SafeAreaView
         style={StyleSheet.flatten([staticStyle.container, styles.container])}
       >
         <View style={staticStyle.topbar}>
@@ -124,10 +134,13 @@ export const ConsultantListScreen = ({
               onEndReachedThreshold={0.5}
               contentContainerStyle={staticStyle.listItems}
               ListEmptyComponent={emptyCard}
+              ListFooterComponent={
+                paginationLoading ? <ActivityIndicator size={'large'} /> : null
+              }
             />
           </View>
         )}
-      </View>
+      </SafeAreaView>
     </>
   );
 };

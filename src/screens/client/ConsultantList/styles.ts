@@ -1,16 +1,13 @@
 import { StyleSheet } from 'react-native';
 import { Theme } from '../../../config/themes/themes';
 import normalize from '../../../utils/normalize/normalize';
-import { height } from '../../../config/constants/variables';
 
 export const staticStyle = StyleSheet.create({
   container: {
     flex: 1,
-    height: normalize(height),
     paddingBottom: normalize(12),
   },
   topbar: {
-    paddingTop: normalize(20),
     paddingBottom: normalize(12),
   },
   searchBar: {

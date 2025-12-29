@@ -1,7 +1,7 @@
 import { appImages } from '../config/images/imagePath';
 import { Dispatch, SetStateAction } from 'react';
 
-export type BookingHistoryDataProp = {
+export type bookingHistoryDataProp = {
   id: string;
   status: string;
   profileImage: number | { uri: string } | undefined;
@@ -34,7 +34,7 @@ export type ratingProps = {
   setYourRating: Dispatch<SetStateAction<string>>;
 };
 
-export const bookingHistoryData: BookingHistoryDataProp[] = [
+export const bookingHistoryData: bookingHistoryDataProp[] = [
   {
     id: '#DTX8765',
     status: 'Completed',

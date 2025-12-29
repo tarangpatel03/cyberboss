@@ -1,24 +1,25 @@
 import {
-  ApiClientHomeModel,
-  ConsultantHomeBookingModel,
-  ConsultantHomeNotificationModel,
-  ApiConsultantHomeModel,
+  apiClientHomeModel,
+  consultantHomeBookingModel,
+  consultantHomeNotificationModel,
+  apiConsultantHomeModel,
 } from '../api/home';
+import { tHomeBookingModel, transformHomeBookingModel } from './tBookings';
 import {
-  IExpertiesModel,
-  IWorkshopModel,
+  tExpertiesModel,
+  tWorkshopModel,
   transformExpertiesModel,
   transformWorkshopModel,
 } from './tConsultant';
 
-export type IClientHomeModel = {
+export type tClientHomeModel = {
   isSubscriber: boolean;
-  bookings: any[];
-  expertises: IExpertiesModel[];
-  workshops: IWorkshopModel[];
+  bookings: tHomeBookingModel[];
+  expertises: tExpertiesModel[];
+  workshops: tWorkshopModel[];
 };
 
-export type IConsultantHomeBookingModel = {
+export type tConsultantHomeBookingModel = {
   id: string;
   consultantName: string;
   consultantProfilePicture: string | null;
@@ -27,26 +28,26 @@ export type IConsultantHomeBookingModel = {
   grandTotal: string;
 };
 
-export type IConsultantHomeNotificationModel = {
+export type tConsultantHomeNotificationModel = {
   id: string;
   title: string;
   body: string | null;
   createdAt: string;
 };
 
-export type IConsultantHomeModel = {
+export type tConsultantHomeModel = {
   totalEarnings: string;
   walletBalance: number;
   averageRating: number;
-  bookings: IConsultantHomeBookingModel[];
-  notification: IConsultantHomeNotificationModel[];
+  bookings: tConsultantHomeBookingModel[];
+  notification: tConsultantHomeNotificationModel[];
 };
 
 export const transformClientHomeModal: (
-  data: ApiClientHomeModel,
-) => IClientHomeModel = (data: ApiClientHomeModel) => {
+  data: apiClientHomeModel,
+) => tClientHomeModel = (data: apiClientHomeModel) => {
   return {
-    bookings: data.bookings.map(r => r) ?? [],
+    bookings: data.bookings.map(r => transformHomeBookingModel(r)) ?? [],
     expertises: data.expertises
       ? data.expertises.map(r => transformExpertiesModel(r))
       : [],
@@ -58,8 +59,8 @@ export const transformClientHomeModal: (
 };
 
 export const transformConsultantHomeBookings: (
-  data: ConsultantHomeBookingModel,
-) => IConsultantHomeBookingModel = (data: ConsultantHomeBookingModel) => {
+  data: consultantHomeBookingModel,
+) => tConsultantHomeBookingModel = (data: consultantHomeBookingModel) => {
   return {
     id: data.id,
     grandTotal: data.grand_total,
@@ -71,9 +72,9 @@ export const transformConsultantHomeBookings: (
 };
 
 export const transformConsultantHomeNotification: (
-  data: ConsultantHomeNotificationModel,
-) => IConsultantHomeNotificationModel = (
-  data: ConsultantHomeNotificationModel,
+  data: consultantHomeNotificationModel,
+) => tConsultantHomeNotificationModel = (
+  data: consultantHomeNotificationModel,
 ) => {
   return {
     id: data.id,
@@ -84,8 +85,8 @@ export const transformConsultantHomeNotification: (
 };
 
 export const transformConsultantHomeModel: (
-  data: ApiConsultantHomeModel,
-) => IConsultantHomeModel = (data: ApiConsultantHomeModel) => {
+  data: apiConsultantHomeModel,
+) => tConsultantHomeModel = (data: apiConsultantHomeModel) => {
   return {
     walletBalance: data.wallet_balance,
     totalEarnings: data.total_earnings,

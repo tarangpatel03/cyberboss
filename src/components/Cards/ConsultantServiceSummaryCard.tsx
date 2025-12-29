@@ -19,10 +19,10 @@ import { Dispatch, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '@shopify/restyle';
 import { Theme } from '../../config/themes/themes';
-import { IConsultantDetailsModel } from '../../models/formattedAPI/tConsultant';
+import { tConsultantDetailsModel } from '../../models/formattedAPI/tConsultant';
 
 type consultantServiceSummaryCardProps = {
-  consultantData: IConsultantDetailsModel;
+  consultantData: tConsultantDetailsModel;
   type: string;
   hrBook: number;
   setHrBook: Dispatch<SetStateAction<number>>;

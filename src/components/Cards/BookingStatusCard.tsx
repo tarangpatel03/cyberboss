@@ -10,10 +10,10 @@ import { Theme } from '../../config/themes/themes';
 import { appIcons } from '../../config/icons/iconPath';
 import { MediumTextComponent } from '../Text/MediumTextComponent';
 import { RegularTextComponent } from '../Text/RegularTextComponent';
-import { IBookingDetailsModel } from '../../models/api/bookings';
+import { tBookingDetailsModel } from '../../models/formattedAPI/tBookings';
 
 type bookingStatusCardProps = {
-  props: IBookingDetailsModel;
+  props: tBookingDetailsModel;
 };
 
 export const BookingStatusCard = ({ props }: bookingStatusCardProps) => {

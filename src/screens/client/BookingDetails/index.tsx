@@ -9,21 +9,21 @@ import { rootNavigationProps } from '../../../models/navigationModal';
 import { ScreenHeaderComponent } from '../../../components/Headers/ScreenHeaderComponent';
 import { PrimaryButtonComponent } from '../../../components/Buttons/PrimaryButton';
 import { getAPIData } from '../../../services/api/common/getCommonApi';
-import { RootState } from '../../../redux/store';
+import { rootState } from '../../../redux/store';
 import { useSelector } from 'react-redux';
 import { endPoints } from '../../../config/endPoint/apiEndPoint';
 import { useTranslation } from 'react-i18next';
 import { getBillData } from '../../../services/api/consultant/getBillData';
 import { ConsultantServiceSummaryCard } from '../../../components/Cards/ConsultantServiceSummaryCard';
 import { BookingPaymentDetailsCard } from '../../../components/Cards/BookingPaymentDetailsCard';
-import { ApiBillDetailsModel } from '../../../models/api/billing';
-import { ApiConsultantDetailsModel } from '../../../models/api/consultant';
+import { apiBillDetailsModel } from '../../../models/api/billing';
+import { apiConsultantDetailsModel } from '../../../models/api/consultant';
 import {
-  IBillDetailsModel,
+  tBillDetailsModel,
   transformBillDetailsModel,
 } from '../../../models/formattedAPI/tBilling';
 import {
-  IConsultantDetailsModel,
+  tConsultantDetailsModel,
   transformConsultantDetailsModel,
 } from '../../../models/formattedAPI/tConsultant';
 
@@ -37,8 +37,8 @@ export const BookingDetailsScreen = ({
   const { consultantId, type } = route.params;
   const [hrBook, setHrBook] = useState<number>(3);
   const [loader, setLoader] = useState<boolean>(true);
-  const role = useSelector((state: RootState) => state.user.userData.role);
-  const [billData, setBillData] = useState<IBillDetailsModel>({
+  const role = useSelector((state: rootState) => state.user.userData.role);
+  const [billData, setBillData] = useState<tBillDetailsModel>({
     grandTotal: 0,
     hourlyRate: 0,
     hours: 0,
@@ -47,7 +47,7 @@ export const BookingDetailsScreen = ({
     tax: 0,
     total: 0,
   });
-  const [consultantData, setConsultantData] = useState<IConsultantDetailsModel>(
+  const [consultantData, setConsultantData] = useState<tConsultantDetailsModel>(
     {
       averageRatings: 0,
       bio: '',
@@ -76,12 +76,12 @@ export const BookingDetailsScreen = ({
   const loadData = async () => {
     try {
       setLoader(true);
-      const res1: ApiConsultantDetailsModel = await getAPIData(
+      const res1: apiConsultantDetailsModel = await getAPIData(
         `${endPoints.consultant}/${consultantId}`,
       );
       const transformedData1 = transformConsultantDetailsModel(res1);
       setConsultantData(transformedData1);
-      const res2: ApiBillDetailsModel = await getBillData(hrBook, consultantId);
+      const res2: apiBillDetailsModel = await getBillData(hrBook, consultantId);
       const transformedData2 = transformBillDetailsModel(res2);
       setBillData(transformedData2);
     } catch (error) {

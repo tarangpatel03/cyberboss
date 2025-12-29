@@ -1,6 +1,6 @@
-import { ApiChatBotChatModel } from '../api/chatbot';
+import { apiChatBotChatModel } from '../api/chatbot';
 
-export type IChatBotChatModel = {
+export type tChatBotChatModel = {
   sessionId: string;
   request: string;
   response: string;
@@ -8,8 +8,8 @@ export type IChatBotChatModel = {
 };
 
 export const transformChatBotChatModel: (
-  data: ApiChatBotChatModel,
-) => IChatBotChatModel = (data: ApiChatBotChatModel) => {
+  data: apiChatBotChatModel,
+) => tChatBotChatModel = (data: apiChatBotChatModel) => {
   return {
     createdAt: data.created_at,
     request: data.request,

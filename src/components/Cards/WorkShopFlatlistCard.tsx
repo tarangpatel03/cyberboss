@@ -8,10 +8,10 @@ import { appColors } from '../../config/colors/colors';
 import { width } from '../../config/constants/variables';
 import FastImage from 'react-native-fast-image';
 import { memo } from 'react';
-import { IWorkshopModel } from '../../models/formattedAPI/tConsultant';
+import { tWorkshopModel } from '../../models/formattedAPI/tConsultant';
 
 type workshopCardProps = {
-  data: IWorkshopModel;
+  data: tWorkshopModel;
 };
 
 export const WorkshopFlatListCard = memo(({ data }: workshopCardProps) => {

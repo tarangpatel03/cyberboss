@@ -19,14 +19,7 @@ type topBarComponentProps = {
   onPressNotification: () => void;
 };
 
-export const TopBarComponent = ({
-  name,
-  picture,
-  isSubscriber,
-  onPressProfile,
-  onPressSubscription,
-  onPressNotification,
-}: topBarComponentProps) => {
+export const TopBarComponent = (props: topBarComponentProps) => {
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   const [profileImageError, setProfileImageError] = useState<boolean>(false);
@@ -36,17 +29,17 @@ export const TopBarComponent = ({
       colors={[appColors.app_3554FF26, appColors.app_3554FF00]}
     >
       <View style={staticStyle.profileInfo}>
-        <TouchableOpacity activeOpacity={0.7} onPress={onPressProfile}>
+        <TouchableOpacity activeOpacity={0.7} onPress={props.onPressProfile}>
           <View style={staticStyle.profilePictureName}>
             <FastImage
               source={
-                profileImageError ? appImages.img_defaultProfile : picture
+                profileImageError ? appImages.img_defaultProfile : props.picture
               }
               style={staticStyle.image}
               onError={() => setProfileImageError(true)}
             />
             <SemiBoldTextComponent
-              text={name}
+              text={props.name}
               textStyle={StyleSheet.flatten([
                 staticStyle.profileText,
                 styles.profileText,
@@ -55,14 +48,17 @@ export const TopBarComponent = ({
           </View>
         </TouchableOpacity>
         <View style={staticStyle.profilePictureName}>
-          {isSubscriber ? (
+          {props.isSubscriber ? (
             <FastImage
               source={appImages.img_proUser}
               style={staticStyle.proUser}
               resizeMode={FastImage.resizeMode.contain}
             />
           ) : (
-            <TouchableOpacity activeOpacity={0.7} onPress={onPressSubscription}>
+            <TouchableOpacity
+              activeOpacity={0.7}
+              onPress={props.onPressSubscription}
+            >
               <FastImage
                 source={appImages.img_freeUser}
                 style={staticStyle.proUser}
@@ -70,7 +66,10 @@ export const TopBarComponent = ({
               />
             </TouchableOpacity>
           )}
-          <TouchableOpacity activeOpacity={0.7} onPress={onPressNotification}>
+          <TouchableOpacity
+            activeOpacity={0.7}
+            onPress={props.onPressNotification}
+          >
             <FastImage
               tintColor={theme.colors.textPrimary}
               source={appIcons.ic_notificationBell}

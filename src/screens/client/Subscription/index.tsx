@@ -12,8 +12,8 @@ import { SubscriptionTrustedUser } from '../../../components/SubscriptionTrusted
 import { SubscriptionBenefitsCard } from '../../../components/Cards/SubscriptionBenefitsCard';
 import { UpcomingWorkShopsList } from '../../../components/List/UpcomingWorkShopsList';
 import { SupscriptionBottomBar } from '../../../components/SupscriptionBottomBar';
-import { ApiClientHomeModel } from '../../../models/api/home';
-import { IWorkshopModel } from '../../../models/formattedAPI/tConsultant';
+import { apiClientHomeModel } from '../../../models/api/home';
+import { tWorkshopModel } from '../../../models/formattedAPI/tConsultant';
 import { transformClientHomeModal } from '../../../models/formattedAPI/tHome';
 
 export type linearGradientDirection = {
@@ -24,12 +24,12 @@ export type linearGradientDirection = {
 export const SubscriptionScreen = ({
   navigation,
 }: rootNavigationProps<routeName.Subscription>) => {
-  const [workShopData, setWorkShopData] = useState<IWorkshopModel[]>([]);
+  const [workShopData, setWorkShopData] = useState<tWorkshopModel[]>([]);
   const start = { x: 0, y: 0.5 };
   const end = { x: 1, y: 0.5 };
   const loadData = async () => {
     try {
-      const data: ApiClientHomeModel = await getAPIData(endPoints.clientHome);
+      const data: apiClientHomeModel = await getAPIData(endPoints.clientHome);
       const transformedData = transformClientHomeModal(data);
       setWorkShopData(transformedData.workshops);
     } catch (error) {

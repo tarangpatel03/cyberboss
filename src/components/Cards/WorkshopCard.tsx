@@ -15,10 +15,10 @@ import { showSucessToast } from '../../utils/toast/toast';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import FastImage from 'react-native-fast-image';
-import { IWorkshopModel } from '../../models/formattedAPI/tConsultant';
+import { tWorkshopModel } from '../../models/formattedAPI/tConsultant';
 
 type workshopCardProps = {
-  data: IWorkshopModel;
+  data: tWorkshopModel;
   cardStyle: StyleProp<ViewStyle>;
 };
 

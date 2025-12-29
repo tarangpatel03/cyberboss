@@ -1,7 +1,7 @@
 import { StyleProp, StyleSheet, Text, TextStyle } from 'react-native';
 import { getFontFamily } from '../../utils/fonts/getFontFamily';
 
-type BoldTextComponent = {
+type boldTextComponentProps = {
   text: string;
   textStyle: StyleProp<TextStyle>;
   noOfLines?: number;
@@ -11,7 +11,7 @@ export const BoldTextComponent = ({
   text,
   textStyle,
   noOfLines,
-}: BoldTextComponent) => {
+}: boldTextComponentProps) => {
   return (
     <Text
       numberOfLines={noOfLines ?? 1}

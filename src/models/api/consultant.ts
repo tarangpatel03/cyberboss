@@ -1,9 +1,9 @@
-export type Services = {
+export type services = {
   id: string;
   name: string;
 };
 
-export type ApiExpertiesModel = {
+export type apiExpertiesModel = {
   id: string;
   name: string;
   image: string;
@@ -12,7 +12,7 @@ export type ApiExpertiesModel = {
   booking_count: number | null;
 };
 
-export type ApiWorkshopModel = {
+export type apiWorkshopModel = {
   id: string;
   name: string;
   date: string;
@@ -21,7 +21,7 @@ export type ApiWorkshopModel = {
   link: string;
 };
 
-export type ApiConsultantModel = {
+export type apiConsultantModel = {
   id: string;
   name: string;
   experience_year: string;
@@ -30,7 +30,7 @@ export type ApiConsultantModel = {
   bookings: number;
 };
 
-export type ApiConsultantDetailsModel = {
+export type apiConsultantDetailsModel = {
   id: string;
   name: string;
   profile_picture: string | undefined;
@@ -38,8 +38,8 @@ export type ApiConsultantDetailsModel = {
   experience_year: string;
   rate: string;
   bookings_count: number;
-  expertises: ApiExpertiesModel[];
-  services: Services[];
+  expertises: apiExpertiesModel[];
+  services: services[];
   total_ratings: number;
   average_ratings: number;
   rating_reviews: any[];

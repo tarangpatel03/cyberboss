@@ -1,12 +1,12 @@
 import {
-  ApiConsultantDetailsModel,
-  ApiConsultantModel,
-  ApiExpertiesModel,
-  ApiWorkshopModel,
-  Services,
+  apiConsultantDetailsModel,
+  apiConsultantModel,
+  apiExpertiesModel,
+  apiWorkshopModel,
+  services,
 } from '../api/consultant';
 
-export type IExpertiesModel = {
+export type tExpertiesModel = {
   id: string;
   name: string;
   image: string;
@@ -15,7 +15,7 @@ export type IExpertiesModel = {
   bookingCount: number | null;
 };
 
-export type IWorkshopModel = {
+export type tWorkshopModel = {
   id: string;
   name: string;
   date: string;
@@ -24,7 +24,7 @@ export type IWorkshopModel = {
   link: string;
 };
 
-export type IConsultantModel = {
+export type tConsultantModel = {
   id: string;
   name: string;
   experienceYear: string;
@@ -33,7 +33,7 @@ export type IConsultantModel = {
   bookings: number;
 };
 
-export type IConsultantDetailsModel = {
+export type tConsultantDetailsModel = {
   id: string;
   name: string;
   profilePicture: string | undefined;
@@ -41,16 +41,16 @@ export type IConsultantDetailsModel = {
   experienceYear: string;
   rate: string;
   bookingsCount: number;
-  expertises: IExpertiesModel[];
-  services: Services[];
+  expertises: tExpertiesModel[];
+  services: services[];
   totalRatings: number;
   averageRatings: number;
   ratingReviews: any[];
 };
 
 export const transformExpertiesModel: (
-  data: ApiExpertiesModel,
-) => IExpertiesModel = (data: ApiExpertiesModel) => {
+  data: apiExpertiesModel,
+) => tExpertiesModel = (data: apiExpertiesModel) => {
   return {
     bookingCount: data.booking_count,
     description: data.description,
@@ -62,8 +62,8 @@ export const transformExpertiesModel: (
 };
 
 export const transformWorkshopModel: (
-  data: ApiWorkshopModel,
-) => IWorkshopModel = (data: ApiWorkshopModel) => {
+  data: apiWorkshopModel,
+) => tWorkshopModel = (data: apiWorkshopModel) => {
   return {
     date: data.date,
     endTime: data.end_time,
@@ -75,8 +75,8 @@ export const transformWorkshopModel: (
 };
 
 export const transformConsultantModel: (
-  data: ApiConsultantModel,
-) => IConsultantModel = (data: ApiConsultantModel) => {
+  data: apiConsultantModel,
+) => tConsultantModel = (data: apiConsultantModel) => {
   return {
     bookings: data.bookings,
     experienceYear: data.experience_year,
@@ -88,8 +88,8 @@ export const transformConsultantModel: (
 };
 
 export const transformConsultantDetailsModel: (
-  data: ApiConsultantDetailsModel,
-) => IConsultantDetailsModel = (data: ApiConsultantDetailsModel) => {
+  data: apiConsultantDetailsModel,
+) => tConsultantDetailsModel = (data: apiConsultantDetailsModel) => {
   return {
     averageRatings: data.average_ratings,
     bio: data.bio,

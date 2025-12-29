@@ -1,4 +1,4 @@
-export type ApiBillDetailsModel = {
+export type apiBillDetailsModel = {
   hourly_rate: number;
   hours: number;
   total: number;

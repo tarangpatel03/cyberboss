@@ -7,9 +7,9 @@ import { RegularTextComponent } from '../Text/RegularTextComponent';
 import { getTime } from '../../utils/format/formatDate';
 import { memo } from 'react';
 import FastImage from 'react-native-fast-image';
-import { IChatBotChatModel } from '../../models/formattedAPI/tChatbot';
+import { tChatBotChatModel } from '../../models/formattedAPI/tChatbot';
 
-export const MessageCard = memo(({ data }: { data: IChatBotChatModel }) => {
+export const MessageCard = memo(({ data }: { data: tChatBotChatModel }) => {
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   return (

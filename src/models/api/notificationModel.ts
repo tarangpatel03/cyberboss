@@ -1,4 +1,4 @@
-export type ApiNotificationModel = {
+export type apiNotificationModel = {
   id: string;
   title: string;
   body: string;

@@ -12,10 +12,10 @@ import { appColors } from '../../config/colors/colors';
 import FastImage from 'react-native-fast-image';
 import { memo, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { IBookingHistoryModel } from '../../models/api/bookings';
+import { tBookingHistoryModel } from '../../models/formattedAPI/tBookings';
 
 type bookingCardProps = {
-  props: IBookingHistoryModel;
+  props: tBookingHistoryModel;
   onMorePress: (x: number, y: number) => void;
   navigateToDetails: (id: string) => void;
 };

@@ -3,10 +3,10 @@ import { FlatList, ListRenderItem } from 'react-native';
 import { OnboardingListComponent } from '../ListItems/OnboardingListComponent';
 import {
   onboardingData,
-  OnboardingDataProps,
+  onboardingDataProps,
 } from '../../screens/common/Onboarding/onboardingData';
 
-type OnboardingListProp = {
+type onboardingListProp = {
   flatListRef: RefObject<FlatList | null>;
   handleScroll: (event: any) => void;
 };
@@ -14,8 +14,8 @@ type OnboardingListProp = {
 export const OnboardingList = ({
   flatListRef,
   handleScroll,
-}: OnboardingListProp) => {
-  const renderItem: ListRenderItem<OnboardingDataProps> = ({ item }) => {
+}: onboardingListProp) => {
+  const renderItem: ListRenderItem<onboardingDataProps> = ({ item }) => {
     return <OnboardingListComponent data={item} />;
   };
 

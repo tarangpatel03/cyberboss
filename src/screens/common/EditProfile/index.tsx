@@ -18,9 +18,9 @@ import { useTranslation } from 'react-i18next';
 import { updateClientProfile } from '../../../services/api/profile/updateProfile';
 import { EditProfileInputs } from '../../../components/Input/EditProfileInput';
 import { PickPrifilePictureContainer } from '../../../components/PickProfilePictureContainer';
-import { ApiProfileModel } from '../../../models/api/profile';
+import { apiProfileModel } from '../../../models/api/profile';
 import {
-  IProfileModel,
+  tProfileModel,
   transformProfileModel,
 } from '../../../models/formattedAPI/tProfile';
 import { useDispatch } from 'react-redux';
@@ -37,7 +37,7 @@ export const EditProfileScreen = ({
   const profilePictureRef = useRef<number | { uri: string } | undefined>(
     undefined,
   );
-  const [profileData, setProfileData] = useState<IProfileModel>({
+  const [profileData, setProfileData] = useState<tProfileModel>({
     id: '',
     name: 'User',
     email: '',
@@ -102,7 +102,7 @@ export const EditProfileScreen = ({
 
   const getData = async () => {
     try {
-      const res: ApiProfileModel = await getAPIData(
+      const res: apiProfileModel = await getAPIData(
         endPoints.consultantProfile,
       );
       const transformedData = transformProfileModel(res);

@@ -19,9 +19,9 @@ import { appImages } from '../../../config/images/imagePath';
 import { ListShimmer } from '../../../components/Skeleton/ListShimmer';
 import { endPoints } from '../../../config/endPoint/apiEndPoint';
 import { useTranslation } from 'react-i18next';
-import { ApiWorkshopModel } from '../../../models/api/consultant';
+import { apiWorkshopModel } from '../../../models/api/consultant';
 import {
-  IWorkshopModel,
+  tWorkshopModel,
   transformWorkshopModel,
 } from '../../../models/formattedAPI/tConsultant';
 
@@ -32,7 +32,7 @@ export const WorkshopScreen = ({
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   const [loader, setLoader] = useState<boolean>(true);
-  const [workshop, setWorkshop] = useState<IWorkshopModel[]>([]);
+  const [workshop, setWorkshop] = useState<tWorkshopModel[]>([]);
   const pageRef = useRef<number>(1);
   const hasMoreRef = useRef<boolean>(false);
   const paginationLoadingRef = useRef<boolean>(false);
@@ -49,8 +49,8 @@ export const WorkshopScreen = ({
         setLoader(true);
       }
       const payload = await getAPIData(endPoints.workshopList, pageToLoad);
-      const res: ApiWorkshopModel[] = payload.data;
-      const transformedData: IWorkshopModel[] = res
+      const res: apiWorkshopModel[] = payload.data;
+      const transformedData: tWorkshopModel[] = res
         ? res?.map(r => transformWorkshopModel(r))
         : [];
       hasMoreRef.current = payload.meta.current_page < payload.meta.last_page;
@@ -77,7 +77,7 @@ export const WorkshopScreen = ({
     );
   };
 
-  const renderItem: ListRenderItem<IWorkshopModel> = useCallback(({ item }) => {
+  const renderItem: ListRenderItem<tWorkshopModel> = useCallback(({ item }) => {
     return <WorkshopCard data={item} cardStyle={staticStyle.cardStyle} />;
   }, []);
 

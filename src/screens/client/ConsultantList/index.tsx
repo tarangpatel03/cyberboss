@@ -13,9 +13,9 @@ import { ListEmptyCard } from '../../../components/Cards/ListEmptyCard';
 import { ListShimmer } from '../../../components/Skeleton/ListShimmer';
 import { useTranslation } from 'react-i18next';
 import { getConsultantList } from '../../../services/api/consultant/getConsultantList';
-import { ApiConsultantModel } from '../../../models/api/consultant';
+import { apiConsultantModel } from '../../../models/api/consultant';
 import {
-  IConsultantModel,
+  tConsultantModel,
   transformConsultantModel,
 } from '../../../models/formattedAPI/tConsultant';
 
@@ -32,7 +32,7 @@ export const ConsultantListScreen = ({
   const hasMoreRef = useRef<boolean>(false);
   const [searchText, setSearchText] = useState<string>('');
   const debouncedSearchText = useDebouncedValue(searchText);
-  const [consultantsList, setConsultantsList] = useState<IConsultantModel[]>(
+  const [consultantsList, setConsultantsList] = useState<tConsultantModel[]>(
     [],
   );
 
@@ -61,7 +61,7 @@ export const ConsultantListScreen = ({
         setLoader(true);
       }
       const payload = await getConsultantList(id, pageToLoad, searchText);
-      const data: ApiConsultantModel[] = payload.data;
+      const data: apiConsultantModel[] = payload.data;
       const formattedData = data
         ? data?.map(res => transformConsultantModel(res))
         : [];
@@ -75,7 +75,7 @@ export const ConsultantListScreen = ({
     }
   };
 
-  const renderItem: ListRenderItem<IConsultantModel> = useCallback(
+  const renderItem: ListRenderItem<tConsultantModel> = useCallback(
     ({ item }) => {
       return <ConsultantListCard data={item} onPress={navigateToConsultant} />;
     },

@@ -1,8 +1,8 @@
-import { Services } from '../api/consultant';
-import { ApiProfileModel, ApiUpdateProfile } from '../api/profile';
-import { IExpertiesModel, transformExpertiesModel } from './tConsultant';
+import { services } from '../api/consultant';
+import { apiProfileModel, aApiUpdateProfile } from '../api/profile';
+import { tExpertiesModel, transformExpertiesModel } from './tConsultant';
 
-export type IProfileModel = {
+export type tProfileModel = {
   id: string;
   name: string;
   email: string;
@@ -12,20 +12,20 @@ export type IProfileModel = {
   bio: string | null;
   experienceYear: string | number | null;
   rate: number | null;
-  expertises: IExpertiesModel[];
-  services: Services[];
+  expertises: tExpertiesModel[];
+  services: services[];
   isVerified: boolean | null;
   loginType: string;
   profileSetup: boolean;
 };
 
-export type IUpdateProfile = {
+export type tUpdateProfile = {
   name: string;
   profileIicture: number | { uri: string } | undefined;
 };
 
-export const transformProfileModel: (data: ApiProfileModel) => IProfileModel = (
-  data: ApiProfileModel,
+export const transformProfileModel: (data: apiProfileModel) => tProfileModel = (
+  data: apiProfileModel,
 ) => {
   return {
     bio: data.bio,
@@ -48,8 +48,8 @@ export const transformProfileModel: (data: ApiProfileModel) => IProfileModel = (
 };
 
 export const transformUpdateProfile: (
-  data: ApiUpdateProfile,
-) => IUpdateProfile = (data: ApiUpdateProfile) => {
+  data: aApiUpdateProfile,
+) => tUpdateProfile = (data: aApiUpdateProfile) => {
   return {
     name: data.name,
     profileIicture: data.profile_picture,

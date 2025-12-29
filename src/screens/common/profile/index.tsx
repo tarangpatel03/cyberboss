@@ -15,7 +15,7 @@ import { useEffect, useState } from 'react';
 import { LogOutModal } from '../../../components/Modal/LogOutModal';
 import { setUser } from '../../../redux/features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../../redux/store';
+import { rootState } from '../../../redux/store';
 import { useTranslation } from 'react-i18next';
 import { ProfileCard } from '../../../components/Cards/ProfileCard';
 import { ProfileOptionsRow } from '../../../components/Cards/ProfileOptionsRow';
@@ -32,7 +32,7 @@ export const ProfileScreen = ({
   const { bottom } = useSafeAreaInsets();
   const dispatch = useDispatch();
   const { userData, token: isLoggedIn } = useSelector(
-    (state: RootState) => state.user,
+    (state: rootState) => state.user,
   );
   const [isThemeModalVisible, setThemeModalVisible] = useState<boolean>(false);
   const [logOutVisible, setLogOutVisible] = useState<boolean>(false);

@@ -7,13 +7,13 @@ import { appIcons } from '../../config/icons/iconPath';
 import { memo } from 'react';
 import FastImage from 'react-native-fast-image';
 
-type ServiceListCardProp = {
+type serviceListCardProp = {
   text: string;
   onRemove: (serviceText: string) => void;
 };
 
 export const ServiceListCard = memo(
-  ({ text, onRemove }: ServiceListCardProp) => {
+  ({ text, onRemove }: serviceListCardProp) => {
     const theme = useTheme<Theme>();
     const styles = createStyles(theme);
 

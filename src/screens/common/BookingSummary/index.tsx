@@ -11,7 +11,7 @@ import { MediumTextComponent } from '../../../components/Text/MediumTextComponen
 import { useEffect, useState } from 'react';
 import { PrimaryButtonComponent } from '../../../components/Buttons/PrimaryButton';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../../redux/store';
+import { rootState } from '../../../redux/store';
 import FastImage from 'react-native-fast-image';
 import { useTranslation } from 'react-i18next';
 import { BookingStatusCard } from '../../../components/Cards/BookingStatusCard';
@@ -20,10 +20,10 @@ import { BookingPaymentDetailsCard } from '../../../components/Cards/BookingPaym
 import { getAPIData } from '../../../services/api/common/getCommonApi';
 import { endPoints } from '../../../config/endPoint/apiEndPoint';
 import {
-  IBookingDetailsModel,
+  tBookingDetailsModel,
   transformBookingDetailsModel,
-} from '../../../models/api/bookings';
-import { ApiBookingDetailsModel } from '../../../models/formattedAPI/tBookings';
+} from '../../../models/formattedAPI/tBookings';
+import { apiBookingDetailsModel } from '../../../models/api/bookings';
 
 export const BookingSummaryScreen = ({
   navigation,
@@ -33,8 +33,8 @@ export const BookingSummaryScreen = ({
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   const id = route.params;
-  const userRole = useSelector((state: RootState) => state.user.userData.role);
-  const [bookingDetails, setBookingDetails] = useState<IBookingDetailsModel>({
+  const userRole = useSelector((state: rootState) => state.user.userData.role);
+  const [bookingDetails, setBookingDetails] = useState<tBookingDetailsModel>({
     id: '',
     tax: 0,
     hours: 0,
@@ -76,7 +76,7 @@ export const BookingSummaryScreen = ({
 
   const getBookingDetails = async () => {
     try {
-      const data: ApiBookingDetailsModel = await getAPIData(
+      const data: apiBookingDetailsModel = await getAPIData(
         `${endPoints.booking}/${id}`,
       );
       const transformedData = transformBookingDetailsModel(data);

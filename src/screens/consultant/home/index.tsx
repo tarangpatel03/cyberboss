@@ -19,14 +19,14 @@ import { ConsultantBookingHistoryList } from '../../../components/List/Consultan
 import { RecentActivityList } from '../../../components/List/RecentActivityList';
 import { useDispatch } from 'react-redux';
 import { setUserData } from '../../../redux/features/userSlice';
-import { ApiConsultantHomeModel } from '../../../models/api/home';
-import { ApiProfileModel } from '../../../models/api/profile';
+import { apiConsultantHomeModel } from '../../../models/api/home';
+import { apiProfileModel } from '../../../models/api/profile';
 import {
-  IConsultantHomeModel,
+  tConsultantHomeModel,
   transformConsultantHomeModel,
 } from '../../../models/formattedAPI/tHome';
 import {
-  IProfileModel,
+  tProfileModel,
   transformProfileModel,
 } from '../../../models/formattedAPI/tProfile';
 
@@ -36,7 +36,7 @@ export const ConsultantHomeScreen = ({
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   const dispatch = useDispatch();
-  const [profileData, setProfileData] = useState<IProfileModel>({
+  const [profileData, setProfileData] = useState<tProfileModel>({
     id: '',
     name: 'User',
     email: '',
@@ -53,7 +53,7 @@ export const ConsultantHomeScreen = ({
     profileSetup: false,
   });
 
-  const [homeData, setHomeData] = useState<IConsultantHomeModel>({
+  const [homeData, setHomeData] = useState<tConsultantHomeModel>({
     averageRating: 0,
     bookings: [],
     notification: [],
@@ -67,12 +67,12 @@ export const ConsultantHomeScreen = ({
 
   const getData = async () => {
     try {
-      const res1: ApiConsultantHomeModel = await getAPIData(
+      const res1: apiConsultantHomeModel = await getAPIData(
         endPoints.consultantHome,
       );
       const transformedData1 = transformConsultantHomeModel(res1);
       setHomeData(transformedData1);
-      const res2: ApiProfileModel = await getAPIData(
+      const res2: apiProfileModel = await getAPIData(
         endPoints.consultantProfile,
       );
       const transformedData2 = transformProfileModel(res2);

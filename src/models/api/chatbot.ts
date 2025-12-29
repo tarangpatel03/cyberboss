@@ -1,4 +1,4 @@
-export type ApiChatBotChatModel = {
+export type apiChatBotChatModel = {
   session_id: string;
   request: string;
   response: string;

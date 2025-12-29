@@ -1,7 +1,7 @@
 import { StyleProp, StyleSheet, Text, TextStyle } from 'react-native';
 import { getFontFamily } from '../../utils/fonts/getFontFamily';
 
-type MediumTextComponent = {
+type mediumTextComponentProps = {
   text: string;
   textStyle: StyleProp<TextStyle>;
   noOfLines?: number;
@@ -11,7 +11,7 @@ export const MediumTextComponent = ({
   text,
   textStyle,
   noOfLines,
-}: MediumTextComponent) => {
+}: mediumTextComponentProps) => {
   return (
     <Text
       numberOfLines={noOfLines ?? 1}

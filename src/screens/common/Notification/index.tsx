@@ -20,9 +20,9 @@ import { appImages } from '../../../config/images/imagePath';
 import { ListShimmer } from '../../../components/Skeleton/ListShimmer';
 import { endPoints } from '../../../config/endPoint/apiEndPoint';
 import { useTranslation } from 'react-i18next';
-import { ApiNotificationModel } from '../../../models/api/notificationModel';
+import { apiNotificationModel } from '../../../models/api/notificationModel';
 import {
-  INotificationModel,
+  tNotificationModel,
   transformNotificationModel,
 } from '../../../models/formattedAPI/tNotificationModel';
 
@@ -32,7 +32,7 @@ export const NotificationScreen = ({
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
-  const [notifications, setNotifications] = useState<INotificationModel[]>([]);
+  const [notifications, setNotifications] = useState<tNotificationModel[]>([]);
   const [loader, setLoader] = useState<boolean>(true);
   const pageRef = useRef<number>(1);
   const hasMoreRef = useRef<boolean>(false);
@@ -46,8 +46,8 @@ export const NotificationScreen = ({
         setLoader(true);
       }
       const payload = await getAPIData(endPoints.notification, pageToLoad);
-      const data: ApiNotificationModel[] = payload.data;
-      const transformedData: INotificationModel[] = data
+      const data: apiNotificationModel[] = payload.data;
+      const transformedData: tNotificationModel[] = data
         ? data?.map(r => transformNotificationModel(r))
         : [];
       hasMoreRef.current = payload.meta.current_page < payload.meta.last_page;
@@ -71,7 +71,7 @@ export const NotificationScreen = ({
     navigation.goBack();
   };
 
-  const renderItem: ListRenderItem<INotificationModel> = useCallback(
+  const renderItem: ListRenderItem<tNotificationModel> = useCallback(
     ({ item }) => {
       return <NotificationCard data={item} />;
     },

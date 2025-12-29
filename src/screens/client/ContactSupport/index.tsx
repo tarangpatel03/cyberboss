@@ -22,9 +22,9 @@ import FastImage from 'react-native-fast-image';
 import { endPoints } from '../../../config/endPoint/apiEndPoint';
 import { useTranslation } from 'react-i18next';
 import { sendChat } from '../../../services/api/chat/sendBotChat';
-import { ApiChatBotChatModel } from '../../../models/api/chatbot';
+import { apiChatBotChatModel } from '../../../models/api/chatbot';
 import {
-  IChatBotChatModel,
+  tChatBotChatModel,
   transformChatBotChatModel,
 } from '../../../models/formattedAPI/tChatbot';
 import { CustomInputComponent } from '../../../components/Input/EmailAndPasswordInput';
@@ -37,7 +37,7 @@ export const ContactSupportScreen = ({
   const styles = createStyles(theme);
   const flatListRef = useRef<FlatList>(null);
   const [text, setText] = useState<string>('');
-  const [chat, setChat] = useState<IChatBotChatModel[]>([]);
+  const [chat, setChat] = useState<tChatBotChatModel[]>([]);
 
   const goBack = () => {
     navigation.goBack();
@@ -45,7 +45,7 @@ export const ContactSupportScreen = ({
 
   const loadChat = async () => {
     try {
-      const data: ApiChatBotChatModel[] = await getAPIData(
+      const data: apiChatBotChatModel[] = await getAPIData(
         endPoints.chatHistory,
       ).then(r => r.data);
       const transformedData = data
@@ -64,7 +64,7 @@ export const ContactSupportScreen = ({
 
   const sendChatToBot = async () => {
     try {
-      const chatData: ApiChatBotChatModel = await sendChat(text ?? '');
+      const chatData: apiChatBotChatModel = await sendChat(text ?? '');
       const transformedChat = transformChatBotChatModel(chatData);
       setChat(prev => [...prev, transformedChat]);
       setText('');
@@ -77,7 +77,7 @@ export const ContactSupportScreen = ({
     }
   };
 
-  const renderItem: ListRenderItem<IChatBotChatModel> = useCallback(
+  const renderItem: ListRenderItem<tChatBotChatModel> = useCallback(
     ({ item }) => {
       return <MessageCard data={item} />;
     },

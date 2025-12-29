@@ -25,15 +25,15 @@ import { ContactSupportScreen } from '../screens/client/ContactSupport';
 import { SubscriptionScreen } from '../screens/client/Subscription';
 import { rootNavigationParams } from '../models/navigationModal';
 import { SearchServiceScreen } from '../screens/client/SearchService';
-import { RootState } from '../redux/store';
+import { rootState } from '../redux/store';
 import { useSelector } from 'react-redux';
 import { ClientProfileSetUpScreen } from '../screens/profileSetup/ClientSetup';
 const Root = createNativeStackNavigator<rootNavigationParams>();
 export const RootNavigation = () => {
-  const isLoggedIn = useSelector((state: RootState) => state.user.token);
-  const isFirstTime = useSelector((state: RootState) => state.user.isFirstTime);
+  const isLoggedIn = useSelector((state: rootState) => state.user.token);
+  const isFirstTime = useSelector((state: rootState) => state.user.isFirstTime);
   const profileSetup = useSelector(
-    (state: RootState) => state.user.userData.profile_setup,
+    (state: rootState) => state.user.userData.profile_setup,
   );
 
   const setInitialRoute = () => {

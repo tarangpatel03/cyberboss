@@ -17,11 +17,11 @@ import { appIcons } from '../../config/icons/iconPath';
 import { MediumTextComponent } from '../Text/MediumTextComponent';
 import { RegularTextComponent } from '../Text/RegularTextComponent';
 import { ListEmptyCard } from '../Cards/ListEmptyCard';
-import { IConsultantHomeNotificationModel } from '../../models/formattedAPI/tHome';
+import { tConsultantHomeNotificationModel } from '../../models/formattedAPI/tHome';
 
 type recentActivityProps = {
-  data: IConsultantHomeNotificationModel[];
-  renderRecentActivityItem: ListRenderItem<IConsultantHomeNotificationModel>;
+  data: tConsultantHomeNotificationModel[];
+  renderRecentActivityItem: ListRenderItem<tConsultantHomeNotificationModel>;
 };
 
 export const RecentActivityList = (props: recentActivityProps) => {

@@ -12,10 +12,10 @@ import {
   createStyles,
   staticStyle,
 } from '../../screens/client/ConsultantProfile/styles';
-import { IConsultantDetailsModel } from '../../models/formattedAPI/tConsultant';
+import { tConsultantDetailsModel } from '../../models/formattedAPI/tConsultant';
 
 type consultantProfileHeaderProps = {
-  data: IConsultantDetailsModel;
+  data: tConsultantDetailsModel;
 };
 
 export const ConsultantProfileHeader = (

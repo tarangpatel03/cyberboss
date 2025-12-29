@@ -5,10 +5,10 @@ import { MediumTextComponent } from '../Text/MediumTextComponent';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '@shopify/restyle';
 import { Theme } from '../../config/themes/themes';
-import { IClientHomeModel } from '../../models/formattedAPI/tHome';
+import { tClientHomeModel } from '../../models/formattedAPI/tHome';
 
 type homeScreenListHeaderProps = {
-  homeData: IClientHomeModel;
+  homeData: tClientHomeModel;
   navigateToWorkshop: () => void;
   renderWorkshopItem: ({ item }: any) => React.JSX.Element;
   renderBookingItem: ({ item }: any) => React.JSX.Element;

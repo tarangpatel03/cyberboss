@@ -11,7 +11,7 @@ import { SearchBorderInputComponent } from '../../../components/Input/SearchInpu
 import { ListEmptyCard } from '../../../components/Cards/ListEmptyCard';
 import { appImages } from '../../../config/images/imagePath';
 import { ListShimmer } from '../../../components/Skeleton/ListShimmer';
-import { RootState } from '../../../redux/store';
+import { rootState } from '../../../redux/store';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
@@ -23,7 +23,7 @@ export const ChatScreen = ({
   const styles = createStyles(theme);
   const [searchText, setSearchText] = useState<string>('');
   const [loader, setLoader] = useState<boolean>(true);
-  const isLoggedIn = useSelector((state: RootState) => state.user.token);
+  const isLoggedIn = useSelector((state: rootState) => state.user.token);
 
   const navigateToNotification = () => {
     navigation.navigate(routeName.Notification);

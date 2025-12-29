@@ -18,12 +18,12 @@ import { useState } from 'react';
 import { appImages } from '../../config/images/imagePath';
 import RadialGradient from 'react-native-radial-gradient';
 import { width } from '../../config/constants/variables';
-import { IConsultantHomeModel } from '../../models/formattedAPI/tHome';
-import { IProfileModel } from '../../models/formattedAPI/tProfile';
+import { tConsultantHomeModel } from '../../models/formattedAPI/tHome';
+import { tProfileModel } from '../../models/formattedAPI/tProfile';
 
 type consultantHeaderCardProps = {
-  profileData: IProfileModel;
-  userData: IConsultantHomeModel;
+  profileData: tProfileModel;
+  userData: tConsultantHomeModel;
   navigateToNotification: () => void;
 };
 

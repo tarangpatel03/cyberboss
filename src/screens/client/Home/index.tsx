@@ -22,10 +22,10 @@ import { useClientHome } from './useClientHome';
 import { HomeScreenSearchButtons } from '../../../components/Buttons/HomeScreenSearchBar';
 import { TopBarComponent } from '../../../components/Headers/TopBarComponent';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../../redux/store';
+import { rootState } from '../../../redux/store';
 import { useTranslation } from 'react-i18next';
 import { HomeScreenListHeaderComponent } from '../../../components/Headers/HomeScreenListHeader';
-import { IExpertiesModel } from '../../../models/formattedAPI/tConsultant';
+import { tExpertiesModel } from '../../../models/formattedAPI/tConsultant';
 
 export const ClientHomeScreen = ({
   navigation,
@@ -38,7 +38,7 @@ export const ClientHomeScreen = ({
   const [layoutReady, setLayoutReady] = useState(false);
   const handleOnStop = () => dispatch(setShowTour(false));
   const { canStart, start, eventEmitter } = useTourGuideController();
-  const showTour = useSelector((state: RootState) => state.user.showTour);
+  const showTour = useSelector((state: rootState) => state.user.showTour);
   const { loader, refreshing, homeData, profileData, onRefresh, getPicture } =
     useClientHome();
 
@@ -84,7 +84,7 @@ export const ClientHomeScreen = ({
     />
   );
 
-  const renderBrowseServiceItem: ListRenderItem<IExpertiesModel> = useCallback(
+  const renderBrowseServiceItem: ListRenderItem<tExpertiesModel> = useCallback(
     ({ item }) => (
       <ServiceCard onPress={navigateToConsultantList} data={item} />
     ),

@@ -7,10 +7,10 @@ import { appIcons } from '../../config/icons/iconPath';
 import { getDate } from '../../utils/format/formatDate';
 import FastImage from 'react-native-fast-image';
 import { memo } from 'react';
-import { INotificationModel } from '../../models/formattedAPI/tNotificationModel';
+import { tNotificationModel } from '../../models/formattedAPI/tNotificationModel';
 
 export const NotificationCard = memo(
-  ({ data }: { data: INotificationModel }) => {
+  ({ data }: { data: tNotificationModel }) => {
     const theme = useTheme<Theme>();
     const styles = createStyles(theme);
     return (

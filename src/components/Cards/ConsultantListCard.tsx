@@ -9,10 +9,10 @@ import { formatBooking } from '../../utils/format/formatDate';
 import { appImages } from '../../config/images/imagePath';
 import FastImage from 'react-native-fast-image';
 import { memo } from 'react';
-import { IConsultantModel } from '../../models/formattedAPI/tConsultant';
+import { tConsultantModel } from '../../models/formattedAPI/tConsultant';
 
 type consultantListCardProps = {
-  data: IConsultantModel;
+  data: tConsultantModel;
   onPress: (consultantId: string) => void;
 };
 

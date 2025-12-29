@@ -7,12 +7,12 @@ import { appIcons } from '../../config/icons/iconPath';
 import { appColors } from '../../config/colors/colors';
 import FastImage from 'react-native-fast-image';
 
-type BottomTabHeaderProp = {
+type bottomTabHeaderProp = {
   name: string;
   onPress: () => void;
 };
 
-export const BottomTabHeader = ({ name, onPress }: BottomTabHeaderProp) => {
+export const BottomTabHeader = ({ name, onPress }: bottomTabHeaderProp) => {
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   return (

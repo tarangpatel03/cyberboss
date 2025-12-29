@@ -11,14 +11,14 @@ import { View, StyleSheet } from 'react-native';
 import { MediumTextComponent } from '../Text/MediumTextComponent';
 import { RegularTextComponent } from '../Text/RegularTextComponent';
 import { getGradientColor } from '../../utils/gradientColor/gradiantColor';
-import { IBookingDetailsModel } from '../../models/api/bookings';
+import { tBookingDetailsModel } from '../../models/formattedAPI/tBookings';
 
 type bookingSummaryDetailsCardProps = {
   // rating: number;
   // ratingText: string;
   // navigateToRating: () => void;
   userRole: 'consultant' | 'client';
-  data: IBookingDetailsModel;
+  data: tBookingDetailsModel;
   // navigateToConsultantProfile: (id: string) => void;
 };
 

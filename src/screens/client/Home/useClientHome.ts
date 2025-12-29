@@ -4,16 +4,16 @@ import { appImages } from '../../../config/images/imagePath';
 import { setUserData } from '../../../redux/features/userSlice';
 import { useDispatch } from 'react-redux';
 import { endPoints } from '../../../config/endPoint/apiEndPoint';
-import { ApiExpertiesModel } from '../../../models/api/consultant';
-import { ApiClientHomeModel } from '../../../models/api/home';
-import { ApiProfileModel } from '../../../models/api/profile';
+import { apiExpertiesModel } from '../../../models/api/consultant';
+import { apiClientHomeModel } from '../../../models/api/home';
+import { apiProfileModel } from '../../../models/api/profile';
 import { transformExpertiesModel } from '../../../models/formattedAPI/tConsultant';
 import {
-  IClientHomeModel,
+  tClientHomeModel,
   transformClientHomeModal,
 } from '../../../models/formattedAPI/tHome';
 import {
-  IProfileModel,
+  tProfileModel,
   transformProfileModel,
 } from '../../../models/formattedAPI/tProfile';
 
@@ -22,14 +22,14 @@ export function useClientHome() {
   const [loader, setLoader] = useState<boolean>(true);
   const [refreshing, setRefreshing] = useState<boolean>(false);
 
-  const [homeData, setHomeData] = useState<IClientHomeModel>({
+  const [homeData, setHomeData] = useState<tClientHomeModel>({
     bookings: [],
     workshops: [],
     expertises: [],
     isSubscriber: false,
   });
 
-  const [profileData, setProfileData] = useState<IProfileModel>({
+  const [profileData, setProfileData] = useState<tProfileModel>({
     id: '',
     email: '',
     bio: null,
@@ -47,7 +47,7 @@ export function useClientHome() {
   });
 
   const handleHomeScreenWithoutLogIn = async () => {
-    const res: ApiExpertiesModel[] = await getAPIData(endPoints.expertises);
+    const res: apiExpertiesModel[] = await getAPIData(endPoints.expertises);
     const transformedData = res.map(r => transformExpertiesModel(r));
 
     setHomeData({
@@ -60,10 +60,10 @@ export function useClientHome() {
 
   const getData = async () => {
     try {
-      const data: ApiClientHomeModel = await getAPIData(endPoints.clientHome);
+      const data: apiClientHomeModel = await getAPIData(endPoints.clientHome);
       const transformedData1 = transformClientHomeModal(data);
       setHomeData(transformedData1);
-      const res: ApiProfileModel = await getAPIData(
+      const res: apiProfileModel = await getAPIData(
         endPoints.consultantProfile,
       );
       const transformedData2 = transformProfileModel(res);

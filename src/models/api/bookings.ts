@@ -1,41 +1,35 @@
-import {
-  ApiBookingBillCount,
-  ApiBookingHistoryModel,
-  ApiBookingDetailsModel,
-} from '../formattedAPI/tBookings';
-
-export type IBookingBillCount = {
+export type apiBookingBillCount = {
   hours: number;
-  consultantId: string;
+  consultant_id: string;
 };
 
-export type IBookingHistoryModel = {
+export type apiBookingHistoryModel = {
   id: string;
-  userId: string;
-  consultantId: string;
-  userName: string;
-  userProfilePicture: number | { uri: string } | undefined;
-  bookingDate: string;
+  user_id: string;
+  consultant_id: string;
+  user_name: string;
+  user_profile_picture: number | { uri: string } | undefined;
+  booking_date: string;
   status: string;
-  categoryName: string;
-  grandTotal: string;
-  bookingId: string;
+  category_name: string;
+  grand_total: string;
+  booking_id: string;
   hours: number;
 };
 
-export type IBookingDetailsModel = {
+export type apiBookingDetailsModel = {
   id: string;
-  consultantName: string;
-  consultantProfilePicture: number | { uri: string } | undefined;
-  bookingDate: string;
-  categoryName: string;
-  grandTotal: string;
-  bookingId: string;
+  consultant_name: string;
+  consultant_profile_picture: number | { uri: string } | undefined;
+  booking_date: string;
+  category_name: string;
+  grand_total: string;
+  booking_id: string;
   status: string;
   hours: number;
-  hourlyRate: string;
+  hourly_rate: string;
   total: number;
-  platformFee: number;
+  platform_fee: number;
   tax: number;
   expertise: {
     id: string;
@@ -45,50 +39,11 @@ export type IBookingDetailsModel = {
   };
 };
 
-export const transformBookingBillCount: (
-  data: ApiBookingBillCount,
-) => IBookingBillCount = (data: ApiBookingBillCount) => {
-  return {
-    consultantId: data.consultant_id,
-    hours: data.hours,
-  };
-};
-
-export const transformBookingHistoyModel: (
-  data: ApiBookingHistoryModel,
-) => IBookingHistoryModel = (data: ApiBookingHistoryModel) => {
-  return {
-    bookingDate: data.booking_date,
-    bookingId: data.booking_id,
-    categoryName: data.category_name,
-    consultantId: data.consultant_id,
-    grandTotal: data.grand_total,
-    hours: data.hours,
-    id: data.id,
-    status: data.status,
-    userId: data.user_id,
-    userName: data.user_name,
-    userProfilePicture: data.user_profile_picture,
-  };
-};
-
-export const transformBookingDetailsModel: (
-  data: ApiBookingDetailsModel,
-) => IBookingDetailsModel = (data: ApiBookingDetailsModel) => {
-  return {
-    bookingDate: data.booking_date,
-    bookingId: data.booking_id,
-    categoryName: data.category_name,
-    grandTotal: data.grand_total,
-    hours: data.hours,
-    id: data.id,
-    status: data.status,
-    consultantName: data.consultant_name,
-    consultantProfilePicture: data.consultant_profile_picture,
-    expertise: data.expertise,
-    hourlyRate: data.hourly_rate,
-    platformFee: data.platform_fee,
-    tax: data.tax,
-    total: data.total,
-  };
+export type apiHomeBookingModel = {
+  id: string;
+  consultant_name: string;
+  consultant_profile_picture: string;
+  booking_date: string;
+  category_name: string;
+  grand_total: string;
 };

@@ -1,6 +1,6 @@
 import { appImages } from '../../../config/images/imagePath';
 
-export type OnboardingDataProps = {
+export type onboardingDataProps = {
   id: string;
   imagePathLight: number | { uri: string } | undefined;
   imagePathDark: number | { uri: string } | undefined;
@@ -8,7 +8,7 @@ export type OnboardingDataProps = {
   subTitle: string;
 };
 
-export const onboardingData: OnboardingDataProps[] = [
+export const onboardingData: onboardingDataProps[] = [
   {
     id: '1',
     imagePathLight: appImages.img_lightOnboarding1,

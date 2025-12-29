@@ -8,10 +8,10 @@ import { staticStyle } from '../Skeleton/consultantProfile/styles';
 import { RegularTextComponent } from '../Text/RegularTextComponent';
 import { SemiBoldTextComponent } from '../Text/SemiBoldTextComponent';
 import { createStyles } from '../../screens/client/ConsultantProfile/styles';
-import { IConsultantDetailsModel } from '../../models/formattedAPI/tConsultant';
+import { tConsultantDetailsModel } from '../../models/formattedAPI/tConsultant';
 
 type consultantRatingsListProps = {
-  data: IConsultantDetailsModel;
+  data: tConsultantDetailsModel;
   renderItem: ({ item }: any) => Element;
 };
 

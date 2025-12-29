@@ -4,11 +4,11 @@ import { appIcons } from '../../config/icons/iconPath';
 import { MediumTextComponent } from '../Text/MediumTextComponent';
 import { staticStyle } from '../../screens/client/Subscription/styles';
 import { ListRenderItem, View, StyleSheet, FlatList } from 'react-native';
-import { IWorkshopModel } from '../../models/formattedAPI/tConsultant';
+import { tWorkshopModel } from '../../models/formattedAPI/tConsultant';
 
 type upcomingWorkshopsListProps = {
-  workShopData: IWorkshopModel[];
-  renderItem: ListRenderItem<IWorkshopModel>;
+  workShopData: tWorkshopModel[];
+  renderItem: ListRenderItem<tWorkshopModel>;
 };
 
 export const UpcomingWorkShopsList = (props: upcomingWorkshopsListProps) => {

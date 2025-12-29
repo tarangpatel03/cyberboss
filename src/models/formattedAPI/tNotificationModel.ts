@@ -1,6 +1,6 @@
-import { ApiNotificationModel } from '../api/notificationModel';
+import { apiNotificationModel } from '../api/notificationModel';
 
-export type INotificationModel = {
+export type tNotificationModel = {
   id: string;
   title: string;
   body: string;
@@ -10,8 +10,8 @@ export type INotificationModel = {
 };
 
 export const transformNotificationModel: (
-  data: ApiNotificationModel,
-) => INotificationModel = (data: ApiNotificationModel) => {
+  data: apiNotificationModel,
+) => tNotificationModel = (data: apiNotificationModel) => {
   return {
     body: data.body,
     createdAt: data.created_at,

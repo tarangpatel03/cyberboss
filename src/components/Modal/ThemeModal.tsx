@@ -10,7 +10,7 @@ import { setThemeMode, ThemeMode } from '../../redux/features/themeSlice';
 import { CircularIconButtonComponent } from '../Buttons/CircularIconButton';
 import { appIcons } from '../../config/icons/iconPath';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
+import { rootState } from '../../redux/store';
 import { useTranslation } from 'react-i18next';
 
 type themeModalProps = {
@@ -22,7 +22,7 @@ export const ThemeModal = ({ isVisible, onclose }: themeModalProps) => {
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
-  const currentTheme = useSelector((state: RootState) => state.theme.themeMode);
+  const currentTheme = useSelector((state: rootState) => state.theme.themeMode);
   const dispatch = useDispatch();
   const [selectedTheme, setSelectedTheme] = useState<ThemeMode>(currentTheme);
 

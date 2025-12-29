@@ -21,7 +21,7 @@ import { BioInputComponent } from '../../../../components/Input/MultiLineInput';
 import FastImage from 'react-native-fast-image';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../../../redux/store';
+import { rootState } from '../../../../redux/store';
 import { updateConsultantProfileSetup } from '../../../../services/api/profile/updateProfile';
 import { CustomInputComponent } from '../../../../components/Input/EmailAndPasswordInput';
 
@@ -35,7 +35,7 @@ export const PersonalDetailsScreen = ({
   const [experience, setExperience] = useState<string>('');
   const [bio, setBio] = useState<string | null>(null);
   const { expertises, services } = useSelector(
-    (state: RootState) => state.user.userData,
+    (state: rootState) => state.user.userData,
   );
 
   const goBack = () => {

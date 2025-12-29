@@ -14,7 +14,7 @@ import { clientBottomNavigationParams } from '../models/navigationModal';
 import { BarTabIconComponent } from '../components/BottomTabIcon/BarTabIcon';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { RootState } from '../redux/store';
+import { rootState } from '../redux/store';
 import { navigationRef } from '../services/axios/axiosInterceptors';
 import { EventArg } from '@react-navigation/native';
 import { ConsultantHomeScreen } from '../screens/consultant/home';
@@ -33,8 +33,8 @@ export const BottomNavigation = () => {
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   const { bottom } = useSafeAreaInsets();
-  const token = useSelector((state: RootState) => state.user.token);
-  const role = useSelector((state: RootState) => state.user.userData.role);
+  const token = useSelector((state: rootState) => state.user.token);
+  const role = useSelector((state: rootState) => state.user.userData.role);
 
   const checkAuth = (e: EventArg<'tabPress', true, undefined>) => {
     if (!token) {

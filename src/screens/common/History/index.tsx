@@ -20,10 +20,10 @@ import { endPoints } from '../../../config/endPoint/apiEndPoint';
 import { useTranslation } from 'react-i18next';
 import FastImage from 'react-native-fast-image';
 import {
-  IBookingHistoryModel,
+  tBookingHistoryModel,
   transformBookingHistoyModel,
-} from '../../../models/api/bookings';
-import { ApiBookingHistoryModel } from '../../../models/formattedAPI/tBookings';
+} from '../../../models/formattedAPI/tBookings';
+import { apiBookingHistoryModel } from '../../../models/api/bookings';
 
 export const HistoryScreen = ({
   navigation,
@@ -31,7 +31,7 @@ export const HistoryScreen = ({
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
-  const [history, setHistory] = useState<IBookingHistoryModel[]>([]);
+  const [history, setHistory] = useState<tBookingHistoryModel[]>([]);
   const [loader, setLoader] = useState<boolean>(true);
   const [isModalVisible, setModalVisible] = useState(false);
   const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 });
@@ -52,7 +52,7 @@ export const HistoryScreen = ({
         setLoader(true);
       }
       const payload = await getAPIData(endPoints.booking, pageToLoad);
-      const data: ApiBookingHistoryModel[] = payload.data;
+      const data: apiBookingHistoryModel[] = payload.data;
       const transformedData = data.map(r => transformBookingHistoyModel(r));
       setHistory(transformedData);
     } catch (error) {

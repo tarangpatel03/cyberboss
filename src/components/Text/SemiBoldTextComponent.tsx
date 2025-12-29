@@ -1,7 +1,7 @@
 import { StyleProp, StyleSheet, Text, TextStyle } from 'react-native';
 import { getFontFamily } from '../../utils/fonts/getFontFamily';
 
-type SemiBoldTextComponent = {
+type semiBoldTextComponentProps = {
   text: string;
   textStyle: StyleProp<TextStyle>;
   noOfLines?: number;
@@ -11,7 +11,7 @@ export const SemiBoldTextComponent = ({
   text,
   textStyle,
   noOfLines,
-}: SemiBoldTextComponent) => {
+}: semiBoldTextComponentProps) => {
   return (
     <Text
       numberOfLines={noOfLines ?? 1}

@@ -8,10 +8,10 @@ import { View, StyleSheet } from 'react-native';
 import { Theme } from '../../config/themes/themes';
 import { ConsultantInfoBadge } from '../ConsultantInfoBadge';
 import { MediumTextComponent } from '../Text/MediumTextComponent';
-import { IConsultantDetailsModel } from '../../models/formattedAPI/tConsultant';
+import { tConsultantDetailsModel } from '../../models/formattedAPI/tConsultant';
 
 type consultantExpertiesCardProps = {
-  data: IConsultantDetailsModel;
+  data: tConsultantDetailsModel;
 };
 
 export const ConsultantExpertiesCard = (

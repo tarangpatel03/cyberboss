@@ -14,9 +14,9 @@ import { ListEmptyCard } from '../../../components/Cards/ListEmptyCard';
 import { ListShimmer } from '../../../components/Skeleton/ListShimmer';
 import { useTranslation } from 'react-i18next';
 import { getServiceList } from '../../../services/api/expertise/getServicesList';
-import { ApiExpertiesModel } from '../../../models/api/consultant';
+import { apiExpertiesModel } from '../../../models/api/consultant';
 import {
-  IExpertiesModel,
+  tExpertiesModel,
   transformExpertiesModel,
 } from '../../../models/formattedAPI/tConsultant';
 
@@ -29,12 +29,12 @@ export const SearchServiceScreen = ({
   const [searchText, setText] = useState<string>('');
   const [loader, setLoader] = useState<boolean>(true);
   const debouncedSearchText = useDebouncedValue(searchText);
-  const [services, setServices] = useState<IExpertiesModel[]>([]);
+  const [services, setServices] = useState<tExpertiesModel[]>([]);
 
   const loadData = async () => {
     try {
       setLoader(true);
-      const data: ApiExpertiesModel[] = await getServiceList(
+      const data: apiExpertiesModel[] = await getServiceList(
         debouncedSearchText,
       );
       const transformedData = data.map(r => transformExpertiesModel(r));
@@ -51,7 +51,7 @@ export const SearchServiceScreen = ({
     navigation.navigate(routeName.ConsultantList, { id, name });
   };
 
-  const renderItem: ListRenderItem<IExpertiesModel> = useCallback(
+  const renderItem: ListRenderItem<tExpertiesModel> = useCallback(
     ({ item }) => {
       return <ServiceCard onPress={navigateToConsultantList} data={item} />;
     },

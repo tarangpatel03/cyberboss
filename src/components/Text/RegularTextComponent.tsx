@@ -1,7 +1,7 @@
 import { StyleProp, StyleSheet, Text, TextStyle } from 'react-native';
 import { getFontFamily } from '../../utils/fonts/getFontFamily';
 
-type RegularTextComponent = {
+type regularTextComponentProps = {
   text: string;
   textStyle: StyleProp<TextStyle>;
   noOfLines?: number;
@@ -11,7 +11,7 @@ export const RegularTextComponent = ({
   text,
   textStyle,
   noOfLines,
-}: RegularTextComponent) => {
+}: regularTextComponentProps) => {
   return (
     <Text
       numberOfLines={noOfLines ?? 1}

@@ -19,10 +19,10 @@ import { ConsultantProfileHeader } from '../../../components/Headers/ConsultantP
 import { ConsultantExpertiesCard } from '../../../components/Cards/ConsultantExpertiesCard';
 import { ConsultantRatingsList } from '../../../components/ListItems/ConsultantRatingList';
 import {
-  IConsultantDetailsModel,
+  tConsultantDetailsModel,
   transformConsultantDetailsModel,
 } from '../../../models/formattedAPI/tConsultant';
-import { ApiConsultantDetailsModel } from '../../../models/api/consultant';
+import { apiConsultantDetailsModel } from '../../../models/api/consultant';
 
 export const ConsultantProfileScreen = ({
   navigation,
@@ -33,7 +33,7 @@ export const ConsultantProfileScreen = ({
   const styles = createStyles(theme);
   const { consultantId, type } = route.params;
   const [loader, setLoader] = useState<boolean>(true);
-  const [data, setData] = useState<IConsultantDetailsModel>({
+  const [data, setData] = useState<tConsultantDetailsModel>({
     id: '',
     bio: '',
     name: '',
@@ -61,7 +61,7 @@ export const ConsultantProfileScreen = ({
 
   const loadData = async () => {
     try {
-      const res: ApiConsultantDetailsModel = await getAPIData(
+      const res: apiConsultantDetailsModel = await getAPIData(
         `${endPoints.consultant}/${consultantId}`,
       );
       const transformedData = transformConsultantDetailsModel(res);

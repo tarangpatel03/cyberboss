@@ -20,7 +20,7 @@ import { AuthFooterAction } from '../../../../components/Buttons/HorizontalTextB
 import { SignUpInputContainer } from '../../../../components/Input/SignUpInputContainer';
 import { setUser, setUserData } from '../../../../redux/features/userSlice';
 import { useDispatch } from 'react-redux';
-import { signUp } from '../../../../services/auth/firebase/signIn';
+import { signUp } from '../../../../services/auth/firebase/auth';
 
 export const SignUpScreen = ({
   navigation,

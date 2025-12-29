@@ -16,12 +16,11 @@ import { routeName } from '../../../../config/constants/routes';
 import { rootNavigationProps } from '../../../../models/navigationModal';
 import { validateEmail } from '../../../../utils/validation/emailValidation';
 import { validatePassword } from '../../../../utils/validation/passwordValidation';
-import { signIn } from '../../../../services/auth/firebase/signIn';
-import { googleLogIn } from '../../../../services/auth/firebase/googleSignin';
 import { LogInInputsContainer } from '../../../../components/Input/LogInInputContainer';
 import { AuthTitle } from '../../../../components/AuthTitle';
 import { AuthFooterAction } from '../../../../components/Buttons/HorizontalTextButton';
 import { SocialLogIn } from '../../../../components/SocialLogin';
+import { signIn, googleLogIn } from '../../../../services/auth/firebase/auth';
 
 export const LogInScreen = ({
   navigation,

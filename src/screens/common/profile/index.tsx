@@ -15,7 +15,6 @@ import { ThemeModal } from '../../../components/Modal/ThemeModal';
 import { useEffect, useState } from 'react';
 import { LogOutModal } from '../../../components/Modal/LogOutModal';
 import { setUser } from '../../../redux/features/userSlice';
-import { logOut } from '../../../services/auth/firebase/signOut';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../redux/store';
 import { useTranslation } from 'react-i18next';
@@ -23,6 +22,7 @@ import { ProfileCard } from '../../../components/Cards/ProfileCard';
 import { ProfileOptionsRow } from '../../../components/Cards/ProfileOptionsRow';
 import { GeneralSettings } from '../../../components/GeneralSettings';
 import { AuthOptions } from '../../../components/AuthOptions';
+import { logOut } from '../../../services/auth/firebase/auth';
 
 export const ProfileScreen = ({
   navigation,

@@ -1,8 +1,8 @@
-import { StatusBar, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { SemiBoldTextComponent } from '../../../../components/Text/SemiBoldTextComponent';
 import { useTheme } from '@shopify/restyle';
-import { DarkTheme, Theme } from '../../../../config/themes/themes';
+import { Theme } from '../../../../config/themes/themes';
 import { createStyles, staticStyles } from './styles';
 import { rootNavigationProps } from '../../../../models/navigationModal';
 import { routeName } from '../../../../config/constants/routes';
@@ -18,14 +18,12 @@ export const ForgotPasswordScreen = ({
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
-  const isDarkTheme = theme === DarkTheme;
   const [email, setEmail] = useState<string>('');
   const goBack = () => {
     navigation.goBack();
   };
   return (
     <>
-      <StatusBar barStyle={isDarkTheme ? 'light-content' : 'dark-content'} />
       <SafeAreaView
         style={StyleSheet.flatten([staticStyles.container, styles.container])}
       >

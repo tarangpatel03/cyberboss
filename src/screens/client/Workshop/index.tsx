@@ -1,17 +1,10 @@
-import {
-  ActivityIndicator,
-  FlatList,
-  StatusBar,
-  StyleSheet,
-  View,
-} from 'react-native';
+import { ActivityIndicator, FlatList, StyleSheet, View } from 'react-native';
 import { rootNavigationProps } from '../../../models/navigationModal';
 import { routeName } from '../../../config/constants/routes';
 import { useTheme } from '@shopify/restyle';
 import { Theme } from '../../../config/themes/themes';
 import { createStyles, staticStyle } from './styles';
 import { WorkshopCard } from '../../../components/Cards/WorkshopCard';
-import { isDarkMode } from '../../../utils/theme/darkMode';
 import { ScreenHeaderComponent } from '../../../components/Headers/ScreenHeaderComponent';
 import { useEffect, useRef, useState } from 'react';
 import { getAPIData } from '../../../services/api/common/getCommonApi';
@@ -88,9 +81,6 @@ export const WorkshopScreen = ({
 
   return (
     <>
-      <StatusBar
-        barStyle={isDarkMode(theme) ? 'light-content' : 'dark-content'}
-      />
       <View
         style={StyleSheet.flatten([staticStyle.container, styles.container])}
       >

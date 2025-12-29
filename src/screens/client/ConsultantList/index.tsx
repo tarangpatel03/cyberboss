@@ -1,5 +1,5 @@
 import { useTheme } from '@shopify/restyle';
-import { FlatList, StatusBar, StyleSheet, View } from 'react-native';
+import { FlatList, StyleSheet, View } from 'react-native';
 import { Theme } from '../../../config/themes/themes';
 import { createStyles, staticStyle } from './styles';
 import { rootNavigationProps } from '../../../models/navigationModal';
@@ -7,7 +7,6 @@ import { routeName } from '../../../config/constants/routes';
 import { ConsultantListCard } from '../../../components/Cards/ConsultantListCard';
 import { SearchBorderInputComponent } from '../../../components/Input/SearchInput';
 import { useEffect, useRef, useState } from 'react';
-import { isDarkMode } from '../../../utils/theme/darkMode';
 import { ScreenHeaderComponent } from '../../../components/Headers/ScreenHeaderComponent';
 import { useDebouncedValue } from '../../../utils/debounce/debounce';
 import { ListEmptyCard } from '../../../components/Cards/ListEmptyCard';
@@ -94,9 +93,6 @@ export const ConsultantListScreen = ({
 
   return (
     <>
-      <StatusBar
-        barStyle={isDarkMode(theme) ? 'light-content' : 'dark-content'}
-      />
       <View
         style={StyleSheet.flatten([staticStyle.container, styles.container])}
       >

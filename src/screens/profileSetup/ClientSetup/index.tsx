@@ -9,12 +9,11 @@ import FastImage from 'react-native-fast-image';
 import { createStyles, staticStyle } from './styles';
 import { Theme } from '../../../config/themes/themes';
 import { appIcons } from '../../../config/icons/iconPath';
-import { isDarkMode } from '../../../utils/theme/darkMode';
 import { appImages } from '../../../config/images/imagePath';
 import { routeName } from '../../../config/constants/routes';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { rootNavigationProps } from '../../../models/navigationModal';
-import { StatusBar, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { PrimaryButtonComponent } from '../../../components/Buttons/PrimaryButton';
 import { MediumTextComponent } from '../../../components/Text/MediumTextComponent';
 import { RegularTextComponent } from '../../../components/Text/RegularTextComponent';
@@ -80,9 +79,6 @@ export const ClientProfileSetUpScreen = ({
 
   return (
     <>
-      <StatusBar
-        barStyle={isDarkMode(theme) ? 'light-content' : 'dark-content'}
-      />
       <SafeAreaView
         style={StyleSheet.flatten([staticStyle.container, styles.container])}
       >

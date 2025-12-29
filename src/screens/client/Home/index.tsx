@@ -1,11 +1,4 @@
-import {
-  FlatList,
-  RefreshControl,
-  StatusBar,
-  StyleSheet,
-  View,
-} from 'react-native';
-import { isDarkMode } from '../../../utils/theme/darkMode';
+import { FlatList, RefreshControl, StyleSheet, View } from 'react-native';
 import { useTheme } from '@shopify/restyle';
 import { Theme } from '../../../config/themes/themes';
 import { createStyles, staticStyle } from './styles';
@@ -131,9 +124,6 @@ export const ClientHomeScreen = ({
 
   return (
     <>
-      <StatusBar
-        barStyle={isDarkMode(theme) ? 'light-content' : 'dark-content'}
-      />
       {loader && <ClientHomeScreenShimmer />}
       {!loader && (
         <View

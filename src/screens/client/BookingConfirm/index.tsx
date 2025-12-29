@@ -1,7 +1,7 @@
 import { useTheme } from '@shopify/restyle';
 import { createStyles, staticStyle } from './styles';
 import { Theme } from '../../../config/themes/themes';
-import { StatusBar, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { routeName } from '../../../config/constants/routes';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { rootNavigationProps } from '../../../models/navigationModal';
@@ -35,7 +35,6 @@ export const BookingConfirmScreen = ({
 
   return (
     <>
-      <StatusBar />
       <SafeAreaView
         style={StyleSheet.flatten([staticStyle.container, styles.bgPrimary])}
       >

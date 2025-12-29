@@ -1,17 +1,10 @@
-import {
-  FlatList,
-  StatusBar,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { FlatList, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { useEffect, useRef, useState } from 'react';
 import { useTheme } from '@shopify/restyle';
 import { createStyles, staticStyle } from './styles';
 import { Theme } from '../../../config/themes/themes';
 import { appIcons } from '../../../config/icons/iconPath';
 import { appImages } from '../../../config/images/imagePath';
-import { isDarkMode } from '../../../utils/theme/darkMode';
 import { routeName } from '../../../config/constants/routes';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { MessageCard } from '../../../components/Cards/MessageCard';
@@ -89,9 +82,6 @@ export const ContactSupportScreen = ({
 
   return (
     <>
-      <StatusBar
-        barStyle={isDarkMode(theme) ? 'light-content' : 'dark-content'}
-      />
       <SafeAreaView
         style={StyleSheet.flatten([staticStyle.container, styles.container])}
       >

@@ -1,11 +1,10 @@
-import { StatusBar, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { routeName } from '../../../../config/constants/routes';
 import { rootNavigationProps } from '../../../../models/navigationModal';
 import { useTheme } from '@shopify/restyle';
 import { Theme } from '../../../../config/themes/themes';
 import { createStyles, staticStyle } from './styles';
 import { useState } from 'react';
-import { isDarkMode } from '../../../../utils/theme/darkMode';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { CircularIconButtonComponent } from '../../../../components/Buttons/CircularIconButton';
 import { appIcons } from '../../../../config/icons/iconPath';
@@ -50,9 +49,6 @@ export const ServicesYouOfferScreen = ({
   };
   return (
     <>
-      <StatusBar
-        barStyle={isDarkMode(theme) ? 'light-content' : 'dark-content'}
-      />
       <SafeAreaView
         style={StyleSheet.flatten([staticStyle.container, styles.container])}
       >

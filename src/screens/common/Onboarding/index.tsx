@@ -1,4 +1,4 @@
-import { FlatList, StatusBar, StyleSheet, View } from 'react-native';
+import { FlatList, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { PrimaryButtonComponent } from '../../../components/Buttons/PrimaryButton';
 import { OnboardingList } from '../../../components/List/OnboardingList';
@@ -14,7 +14,6 @@ import { routeName } from '../../../config/constants/routes';
 import { rootNavigationProps } from '../../../models/navigationModal';
 import { useDispatch } from 'react-redux';
 import { setIsFirstTime } from '../../../redux/features/userSlice';
-import { isDarkMode } from '../../../utils/theme/darkMode';
 import { useTranslation } from 'react-i18next';
 
 export const OnboardingScreen = ({
@@ -58,9 +57,6 @@ export const OnboardingScreen = ({
 
   return (
     <>
-      <StatusBar
-        barStyle={isDarkMode(theme) ? 'light-content' : 'dark-content'}
-      />
       <SafeAreaView style={styles.container}>
         <View style={styles.containerView}>
           <OnboardingList

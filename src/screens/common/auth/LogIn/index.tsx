@@ -1,5 +1,5 @@
 import { useTheme } from '@shopify/restyle';
-import { StatusBar, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
@@ -101,9 +101,6 @@ export const LogInScreen = ({
 
   return (
     <>
-      <StatusBar
-        barStyle={isDarkMode(theme) ? 'light-content' : 'dark-content'}
-      />
       <View
         style={StyleSheet.flatten([staticStyle.background, styles.background])}
       >

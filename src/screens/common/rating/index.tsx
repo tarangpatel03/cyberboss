@@ -1,4 +1,4 @@
-import { StatusBar, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { rootNavigationProps } from '../../../models/navigationModal';
 import { routeName } from '../../../config/constants/routes';
 import { useTheme } from '@shopify/restyle';
@@ -80,9 +80,6 @@ export const YourRatingScreen = ({
 
   return (
     <>
-      <StatusBar
-        barStyle={isDarkMode(theme) ? 'light-content' : 'dark-content'}
-      />
       <View style={StyleSheet.flatten([staticStyle.header, styles.primaryBg])}>
         <ScreenHeaderComponent
           onPress={goBack}

@@ -1,4 +1,4 @@
-import { StatusBar, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { createStyles, staticStyle } from './styles';
 import { Theme } from '../../../config/themes/themes';
 import { useTheme } from '@shopify/restyle';
@@ -10,7 +10,6 @@ import { RegularTextComponent } from '../../../components/Text/RegularTextCompon
 import { RoleSelectionCard } from '../../../components/Cards/RoleSelectionCard';
 import { useState } from 'react';
 import { PrimaryButtonComponent } from '../../../components/Buttons/PrimaryButton';
-import { isDarkMode } from '../../../utils/theme/darkMode';
 import { useTranslation } from 'react-i18next';
 
 export const ProfileSetUpScreen = ({
@@ -44,9 +43,6 @@ export const ProfileSetUpScreen = ({
 
   return (
     <>
-      <StatusBar
-        barStyle={isDarkMode(theme) ? 'light-content' : 'dark-content'}
-      />
       <SafeAreaView
         style={StyleSheet.flatten([staticStyle.container, styles.container])}
       >

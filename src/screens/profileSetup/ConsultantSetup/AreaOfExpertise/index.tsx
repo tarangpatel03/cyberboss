@@ -1,5 +1,4 @@
-import { FlatList, StatusBar, StyleSheet, View } from 'react-native';
-import { isDarkMode } from '../../../../utils/theme/darkMode';
+import { FlatList, StyleSheet, View } from 'react-native';
 import { useTheme } from '@shopify/restyle';
 import { Theme } from '../../../../config/themes/themes';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -82,9 +81,6 @@ export const AreaOfExpertiesScreen = ({
 
   return (
     <>
-      <StatusBar
-        barStyle={isDarkMode(theme) ? 'light-content' : 'dark-content'}
-      />
       <SafeAreaView
         style={StyleSheet.flatten([staticStyle.container, styles.container])}
       >

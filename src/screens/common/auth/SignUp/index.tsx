@@ -1,5 +1,5 @@
 import { useTheme } from '@shopify/restyle';
-import { StatusBar, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Theme } from '../../../../config/themes/themes';
 import { createStyles, staticStyle } from './styles';
 import { appImages } from '../../../../config/images/imagePath';
@@ -81,9 +81,6 @@ export const SignUpScreen = ({
 
   return (
     <>
-      <StatusBar
-        barStyle={isDarkMode(theme) ? 'light-content' : 'dark-content'}
-      />
       <SafeAreaView
         style={StyleSheet.flatten([staticStyle.background, styles.background])}
       >

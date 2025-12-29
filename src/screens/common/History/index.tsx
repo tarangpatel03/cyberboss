@@ -1,14 +1,7 @@
 import { useTheme } from '@shopify/restyle';
 import { Theme } from '../../../config/themes/themes';
 import { createStyles, staticStyle } from './styles';
-import {
-  FlatList,
-  StatusBar,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import { isDarkMode } from '../../../utils/theme/darkMode';
+import { FlatList, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { BottomTabHeader } from '../../../components/Headers/BottomTabHeader';
 import { BookingCard } from '../../../components/Cards/BookingCard';
@@ -111,9 +104,6 @@ export const HistoryScreen = ({
 
   return (
     <>
-      <StatusBar
-        barStyle={isDarkMode(theme) ? 'light-content' : 'dark-content'}
-      />
       <SafeAreaView
         style={StyleSheet.flatten([staticStyle.container, styles.container])}
       >

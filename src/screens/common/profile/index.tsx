@@ -1,8 +1,7 @@
-import { ScrollView, StatusBar, StyleSheet, View } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 import { useTheme } from '@shopify/restyle';
 import { createStyles, staticStyle } from './styles';
 import { Theme } from '../../../config/themes/themes';
-import { isDarkMode } from '../../../utils/theme/darkMode';
 import { routeName } from '../../../config/constants/routes';
 import {
   SafeAreaView,
@@ -84,9 +83,6 @@ export const ProfileScreen = ({
 
   return (
     <>
-      <StatusBar
-        barStyle={isDarkMode(theme) ? 'light-content' : 'dark-content'}
-      />
       <LogOutModal
         title={t('askDeleteAccount')}
         isModal={deleteVisible}

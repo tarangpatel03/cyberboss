@@ -1,10 +1,9 @@
-import { View, StatusBar, StyleSheet, ScrollView } from 'react-native';
+import { View, StyleSheet, ScrollView } from 'react-native';
 import { useTheme } from '@shopify/restyle';
 import { createStyles, staticStyle } from './styles';
 import { Theme } from '../../../config/themes/themes';
 import { getAPIData } from '../../../services/api/common/getCommonApi';
 import { useEffect, useState } from 'react';
-import { isDarkMode } from '../../../utils/theme/darkMode';
 import { routeName } from '../../../config/constants/routes';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { rootNavigationProps } from '../../../models/navigationModal';
@@ -83,9 +82,6 @@ export const ConsultantProfileScreen = ({
 
   return (
     <>
-      <StatusBar
-        barStyle={isDarkMode(theme) ? 'light-content' : 'dark-content'}
-      />
       <SafeAreaView
         style={StyleSheet.flatten([staticStyle.container, styles.primaryBg])}
       >

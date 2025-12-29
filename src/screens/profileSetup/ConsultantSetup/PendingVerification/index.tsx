@@ -1,5 +1,4 @@
-import { StatusBar, StyleSheet, View } from 'react-native';
-import { isDarkMode } from '../../../../utils/theme/darkMode';
+import { StyleSheet, View } from 'react-native';
 import { useTheme } from '@shopify/restyle';
 import { Theme } from '../../../../config/themes/themes';
 import { createStyles, staticStyle } from './styles';
@@ -47,9 +46,6 @@ export const PendingVerificationScreen = ({
 
   return (
     <>
-      <StatusBar
-        barStyle={isDarkMode(theme) ? 'light-content' : 'dark-content'}
-      />
       <SafeAreaView
         style={StyleSheet.flatten([staticStyle.container, styles.container])}
       >

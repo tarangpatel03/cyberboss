@@ -1,7 +1,6 @@
 import { useTheme } from '@shopify/restyle';
-import { StatusBar, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Theme } from '../../../config/themes/themes';
-import { isDarkMode } from '../../../utils/theme/darkMode';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ScreenHeaderComponent } from '../../../components/Headers/ScreenHeaderComponent';
 import { rootNavigationProps } from '../../../models/navigationModal';
@@ -33,9 +32,6 @@ export const ChangePasswordScreen = ({
 
   return (
     <>
-      <StatusBar
-        barStyle={isDarkMode(theme) ? 'light-content' : 'dark-content'}
-      />
       <SafeAreaView
         style={StyleSheet.flatten([staticStyle.container, styles.container])}
       >

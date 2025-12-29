@@ -4,7 +4,7 @@ import { Provider, useSelector } from 'react-redux';
 import { persistor, RootState, store } from './src/redux/store';
 import { PersistGate } from 'redux-persist/integration/react';
 import { DarkTheme, LightTheme } from './src/config/themes/themes';
-import { StyleSheet, useColorScheme } from 'react-native';
+import { StatusBar, StyleSheet, useColorScheme } from 'react-native';
 import { ThemeProvider } from '@shopify/restyle';
 import { NavigationContainer } from '@react-navigation/native';
 import { useMemo } from 'react';
@@ -13,6 +13,7 @@ import { TourGuideProvider } from 'rn-tourguide';
 import normalize from './src/utils/normalize/normalize';
 import { ThemeMode } from './src/redux/features/themeSlice';
 import { navigationRef } from './src/services/axios/axiosInterceptors';
+import { isDarkMode } from './src/utils/theme/darkMode';
 
 function App() {
   return (
@@ -47,6 +48,11 @@ const ThemedApp = () => {
     <>
       <ThemeProvider theme={currentTheme}>
         <NavigationContainer ref={navigationRef}>
+          <StatusBar
+            barStyle={
+              isDarkMode(currentTheme) ? 'light-content' : 'dark-content'
+            }
+          />
           <RootNavigation />
         </NavigationContainer>
         <Toast />

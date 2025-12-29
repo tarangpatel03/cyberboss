@@ -3,8 +3,7 @@ import { Theme } from '../../../config/themes/themes';
 import { createStyles, staticStyle } from './styles';
 import { rootNavigationProps } from '../../../models/navigationModal';
 import { routeName } from '../../../config/constants/routes';
-import { StatusBar, StyleSheet, View } from 'react-native';
-import { isDarkMode } from '../../../utils/theme/darkMode';
+import { StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { BottomTabHeader } from '../../../components/Headers/BottomTabHeader';
 import { useEffect, useState } from 'react';
@@ -46,9 +45,6 @@ export const ChatScreen = ({
 
   return (
     <>
-      <StatusBar
-        barStyle={isDarkMode(theme) ? 'light-content' : 'dark-content'}
-      />
       <SafeAreaView
         style={StyleSheet.flatten([staticStyle.container, styles.container])}
       >

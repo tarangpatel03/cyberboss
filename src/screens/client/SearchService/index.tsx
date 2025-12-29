@@ -1,4 +1,4 @@
-import { FlatList, StatusBar, StyleSheet, View } from 'react-native';
+import { FlatList, StyleSheet, View } from 'react-native';
 import { routeName } from '../../../config/constants/routes';
 import { rootNavigationProps } from '../../../models/navigationModal';
 import { Theme } from '../../../config/themes/themes';
@@ -66,7 +66,6 @@ export const SearchServiceScreen = ({
 
   return (
     <>
-      <StatusBar />
       <SafeAreaView
         style={StyleSheet.flatten([staticStyle.container, styles.container])}
       >

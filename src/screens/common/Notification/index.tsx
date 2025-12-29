@@ -1,14 +1,7 @@
-import {
-  ActivityIndicator,
-  FlatList,
-  StatusBar,
-  StyleSheet,
-  View,
-} from 'react-native';
+import { ActivityIndicator, FlatList, StyleSheet, View } from 'react-native';
 import { Theme } from '../../../config/themes/themes';
 import { useTheme } from '@shopify/restyle';
 import { createStyles, staticStyle } from './styles';
-import { isDarkMode } from '../../../utils/theme/darkMode';
 import { ScreenHeaderComponent } from '../../../components/Headers/ScreenHeaderComponent';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { routeName } from '../../../config/constants/routes';
@@ -89,9 +82,6 @@ export const NotificationScreen = ({
 
   return (
     <>
-      <StatusBar
-        barStyle={isDarkMode(theme) ? 'light-content' : 'dark-content'}
-      />
       <SafeAreaView
         style={StyleSheet.flatten([staticStyle.container, styles.bgPrimary])}
       >

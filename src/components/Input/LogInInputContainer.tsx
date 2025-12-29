@@ -39,13 +39,11 @@ export const LogInInputsContainer = (props: logInInputsContainerProps) => {
           secureText={!props.passVisible}
         />
         <CircularIconButtonComponent
-          props={{
-            iconPath: props.getIcon(),
-            buttonStyle: staticStyle.passwordButton,
-            iconStyle: props.getIconStyle(),
-            tintColor: props.getTintColor(),
-            onPress: () => props.setPassVisible(prev => !prev),
-          }}
+          iconPath={props.getIcon()}
+          buttonStyle={staticStyle.passwordButton}
+          iconStyle={props.getIconStyle()}
+          tintColor={props.getTintColor()}
+          onPress={() => props.setPassVisible(prev => !prev)}
         />
       </View>
       <PrimaryButtonComponent

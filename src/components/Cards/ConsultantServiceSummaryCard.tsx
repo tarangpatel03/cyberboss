@@ -80,12 +80,10 @@ export const ConsultantServiceSummaryCard = (
           style={StyleSheet.flatten([staticStyle.counter, styles.saperator])}
         >
           <CircularIconButtonComponent
-            props={{
-              buttonStyle: staticStyle.countorButton,
-              iconPath: appIcons.ic_minus,
-              iconStyle: staticStyle.minusIcon,
-              onPress: props.reduceHr,
-            }}
+            buttonStyle={staticStyle.countorButton}
+            iconPath={appIcons.ic_minus}
+            iconStyle={staticStyle.minusIcon}
+            onPress={props.reduceHr}
           />
           <SemiBoldTextComponent
             text={`${props.hrBook}h`}
@@ -95,12 +93,10 @@ export const ConsultantServiceSummaryCard = (
             ])}
           />
           <CircularIconButtonComponent
-            props={{
-              buttonStyle: staticStyle.countorButton,
-              iconPath: appIcons.ic_plus,
-              iconStyle: staticStyle.plusIcon,
-              onPress: () => props.setHrBook(prev => prev + 1),
-            }}
+            buttonStyle={staticStyle.countorButton}
+            iconPath={appIcons.ic_plus}
+            iconStyle={staticStyle.plusIcon}
+            onPress={() => props.setHrBook(prev => prev + 1)}
           />
         </View>
       </View>

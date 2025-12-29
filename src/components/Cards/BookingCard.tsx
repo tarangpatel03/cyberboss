@@ -141,16 +141,14 @@ export const BookingCard = memo(
             ])}
           />
           <CircularIconButtonComponent
-            props={{
-              onPress: handleMorePress,
-              buttonStyle: StyleSheet.flatten([
-                staticStyle.iconButton,
-                styles.button,
-              ]),
-              iconPath: appIcons.ic_more,
-              tintColor: theme.colors.textPrimary,
-              iconStyle: staticStyle.moreIcon,
-            }}
+            onPress={handleMorePress}
+            buttonStyle={StyleSheet.flatten([
+              staticStyle.iconButton,
+              styles.button,
+            ])}
+            iconPath={appIcons.ic_more}
+            tintColor={theme.colors.textPrimary}
+            iconStyle={staticStyle.moreIcon}
             ref={moreButtonRef}
           />
         </View>

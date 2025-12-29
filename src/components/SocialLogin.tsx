@@ -39,40 +39,34 @@ export const SocialLogIn = (props: socialLogInProps) => {
       {Platform.OS === 'ios' ? (
         <View style={staticStyle.bottomButtons}>
           <CircularIconButtonComponent
-            props={{
-              buttonStyle: StyleSheet.flatten([
-                StyleSheet.flatten([staticStyle.button, styles.button]),
-              ]),
-              iconPath: appIcons.ic_apple,
-              iconStyle: staticStyle.buttonIcon,
-              tintColor: props.getTintColor(),
-              onPress: () => {},
-            }}
+            buttonStyle={StyleSheet.flatten([
+              StyleSheet.flatten([staticStyle.button, styles.button]),
+            ])}
+            iconPath={appIcons.ic_apple}
+            iconStyle={staticStyle.buttonIcon}
+            tintColor={props.getTintColor()}
+            onPress={() => {}}
           />
           <CircularIconButtonComponent
-            props={{
-              buttonStyle: StyleSheet.flatten([
-                staticStyle.button,
-                styles.button,
-              ]),
-              iconPath: appIcons.ic_google,
-              iconStyle: staticStyle.googleButtonIcon,
-              onPress: props.handleGoogleLogIn,
-            }}
+            buttonStyle={StyleSheet.flatten([
+              staticStyle.button,
+              styles.button,
+            ])}
+            iconPath={appIcons.ic_google}
+            iconStyle={staticStyle.googleButtonIcon}
+            onPress={props.handleGoogleLogIn}
           />
         </View>
       ) : (
         <View style={staticStyle.bottomButtons}>
           <CircularIconButtonComponent
-            props={{
-              buttonStyle: StyleSheet.flatten([
-                staticStyle.button,
-                styles.button,
-              ]),
-              iconPath: appIcons.ic_google,
-              iconStyle: staticStyle.googleButtonIcon,
-              onPress: props.handleGoogleLogIn,
-            }}
+            buttonStyle={StyleSheet.flatten([
+              staticStyle.button,
+              styles.button,
+            ])}
+            iconPath={appIcons.ic_google}
+            iconStyle={staticStyle.googleButtonIcon}
+            onPress={props.handleGoogleLogIn}
           />
         </View>
       )}

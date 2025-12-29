@@ -32,17 +32,17 @@ export const PasswordInputComponent = ({
         secureText={!visible}
       />
       <CircularIconButtonComponent
-        props={{
-          iconPath: visible
-            ? appIcons.ic_showPassword
-            : appIcons.ic_hiddenPassword,
-          buttonStyle: staticStyle.passwordButton,
-          iconStyle: visible
+        iconPath={
+          visible ? appIcons.ic_showPassword : appIcons.ic_hiddenPassword
+        }
+        buttonStyle={staticStyle.passwordButton}
+        iconStyle={
+          visible
             ? staticStyle.showPasswordIcon
-            : staticStyle.hiddenPasswordIcon,
-          tintColor: theme.colors.textPrimary,
-          onPress: () => setVisible(prev => !prev),
-        }}
+            : staticStyle.hiddenPasswordIcon
+        }
+        tintColor={theme.colors.textPrimary}
+        onPress={() => setVisible(prev => !prev)}
       />
     </View>
   );

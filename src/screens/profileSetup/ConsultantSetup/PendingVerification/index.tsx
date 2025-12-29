@@ -53,13 +53,11 @@ export const PendingVerificationScreen = ({
           <View>
             <View style={staticStyle.topBar}>
               <CircularIconButtonComponent
-                props={{
-                  iconPath: appIcons.ic_backIcon,
-                  buttonStyle: staticStyle.backButton,
-                  iconStyle: staticStyle.backIcon,
-                  tintColor: theme.colors.textPrimary,
-                  onPress: goBack,
-                }}
+                iconPath={appIcons.ic_backIcon}
+                buttonStyle={staticStyle.backButton}
+                iconStyle={staticStyle.backIcon}
+                tintColor={theme.colors.textPrimary}
+                onPress={goBack}
               />
             </View>
             <View style={staticStyle.content}>

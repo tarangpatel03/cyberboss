@@ -8,18 +8,13 @@ type circularIconButtonProps = {
   tintColor?: string;
   buttonStyle: StyleProp<ViewStyle>;
   onPress: () => void;
+  ref?: RefObject<View | null>;
 };
 
-export const CircularIconButtonComponent = ({
-  props,
-  ref,
-}: {
-  props: circularIconButtonProps;
-  ref?: RefObject<View | null>;
-}) => {
+export const CircularIconButtonComponent = (props: circularIconButtonProps) => {
   return (
     <TouchableOpacity
-      ref={ref}
+      ref={props.ref}
       activeOpacity={0.7}
       style={props.buttonStyle}
       onPress={props.onPress}

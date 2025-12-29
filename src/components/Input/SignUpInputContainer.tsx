@@ -47,17 +47,19 @@ export const SignUpInputContainer = (props: signUpInputContainerProps) => {
           secureText={!props.passVisible}
         />
         <CircularIconButtonComponent
-          props={{
-            iconPath: props.passVisible
+          iconPath={
+            props.passVisible
               ? appIcons.ic_showPassword
-              : appIcons.ic_hiddenPassword,
-            buttonStyle: staticStyle.passwordButton,
-            iconStyle: props.passVisible
+              : appIcons.ic_hiddenPassword
+          }
+          buttonStyle={staticStyle.passwordButton}
+          iconStyle={
+            props.passVisible
               ? staticStyle.showPasswordIcon
-              : staticStyle.hiddenPasswordIcon,
-            tintColor: theme.colors.textPrimary,
-            onPress: () => props.setPassVisible(prev => !prev),
-          }}
+              : staticStyle.hiddenPasswordIcon
+          }
+          tintColor={theme.colors.textPrimary}
+          onPress={() => props.setPassVisible(prev => !prev)}
         />
       </View>
       <View style={staticStyle.signUpLine}>

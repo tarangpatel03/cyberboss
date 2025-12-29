@@ -87,13 +87,11 @@ export const AreaOfExpertiesScreen = ({
         <View style={staticStyle.container}>
           <View style={staticStyle.topBar}>
             <CircularIconButtonComponent
-              props={{
-                iconPath: appIcons.ic_backIcon,
-                buttonStyle: staticStyle.backButton,
-                iconStyle: staticStyle.backIcon,
-                tintColor: theme.colors.textPrimary,
-                onPress: goBack,
-              }}
+              iconPath={appIcons.ic_backIcon}
+              buttonStyle={staticStyle.backButton}
+              iconStyle={staticStyle.backIcon}
+              tintColor={theme.colors.textPrimary}
+              onPress={goBack}
             />
             <View style={StyleSheet.flatten([staticStyle.line, styles.line])}>
               <View

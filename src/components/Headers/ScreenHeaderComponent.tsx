@@ -24,13 +24,11 @@ export const ScreenHeaderComponent = ({
     <>
       <View style={staticStyles.container}>
         <CircularIconButtonComponent
-          props={{
-            iconPath: appIcons.ic_backIcon,
-            iconStyle: staticStyles.backIcon,
-            tintColor: theme.colors.textPrimary,
-            buttonStyle: staticStyles.backButton,
-            onPress: onPress,
-          }}
+          iconPath={appIcons.ic_backIcon}
+          iconStyle={staticStyles.backIcon}
+          tintColor={theme.colors.textPrimary}
+          buttonStyle={staticStyles.backButton}
+          onPress={onPress}
         />
         {headerText && (
           <MediumTextComponent
@@ -40,13 +38,11 @@ export const ScreenHeaderComponent = ({
         )}
         {iconPath ? (
           <CircularIconButtonComponent
-            props={{
-              buttonStyle: staticStyles.backButton,
-              iconPath: iconPath,
-              tintColor: theme.colors.textPrimary,
-              iconStyle: staticStyles.backIcon,
-              onPress: () => {},
-            }}
+            buttonStyle={staticStyles.backButton}
+            iconPath={iconPath}
+            tintColor={theme.colors.textPrimary}
+            iconStyle={staticStyles.backIcon}
+            onPress={() => {}}
           />
         ) : (
           <View style={staticStyles.backButton} />

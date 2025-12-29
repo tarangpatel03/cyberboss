@@ -23,6 +23,8 @@ import {
   IProfileModel,
   transformProfileModel,
 } from '../../../models/formattedAPI/tProfile';
+import { useDispatch } from 'react-redux';
+import { setUserData } from '../../../redux/features/userSlice';
 
 export const EditProfileScreen = ({
   navigation,
@@ -30,6 +32,7 @@ export const EditProfileScreen = ({
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
+  const dispatch = useDispatch();
   const [experience, setExperience] = useState<string | null>('');
   const profilePictureRef = useRef<number | { uri: string } | undefined>(
     undefined,
@@ -89,6 +92,11 @@ export const EditProfileScreen = ({
   const updateProfile = async () => {
     // profileData.role === 'client' ?
     await updateClientProfile(name ?? '', profilePictureRef.current);
+    dispatch(
+      setUserData({
+        name: name ?? '',
+      }),
+    );
     goBack();
   };
 

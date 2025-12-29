@@ -6310,11 +6310,6 @@ react-native-calendar-events@^2.2.0:
   resolved "https://registry.yarnpkg.com/react-native-calendar-events/-/react-native-calendar-events-2.2.0.tgz#6cb78bf712457ca9928dae95b428c91e7b895ae0"
   integrity sha512-tNUbhT6Ief0JM4OQzQAaz1ri0+MCcAoHptBcEXCz2g7q3A05pg62PR2Dio4F9t2fCAD7Y2+QggdY1ycAsF3Tsg==
 
-react-native-email-validator@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/react-native-email-validator/-/react-native-email-validator-0.1.1.tgz#4a60a68c7f0e8f0dbb49f5159e998425e6251f3e"
-  integrity sha512-XAyrSmLsb0H1KuGJJCJ0Hjzy7Dotj88QiWcZ2CNQzVTYuxiWm7rl0Agv/RUbtMd3Jth92bf6QMU+gqSHNeHyug==
-
 react-native-fast-image@^8.6.3:
   version "8.6.3"
   resolved "https://registry.yarnpkg.com/react-native-fast-image/-/react-native-fast-image-8.6.3.tgz#6edc3f9190092a909d636d93eecbcc54a8822255"

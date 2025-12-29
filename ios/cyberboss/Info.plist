@@ -32,6 +32,18 @@
 		<false/>
 		<key>NSAllowsLocalNetworking</key>
 		<true/>
+		<key>NSExceptionDomains</key>
+        <dict>
+            <key>cyberboss-sandbox.silverskytechnology.com</key>
+            <dict>
+                <key>NSIncludesSubdomains</key>
+                <true/>
+                <key>NSExceptionAllowsInsecureHTTPLoads</key>
+                <true/>
+                <key>NSExceptionRequiresForwardSecrecy</key>
+                <true/>
+            </dict>
+        </dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string/>

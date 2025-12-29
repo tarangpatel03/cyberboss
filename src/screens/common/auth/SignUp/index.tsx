@@ -7,8 +7,10 @@ import { routeName } from '../../../../config/constants/routes';
 import { rootNavigationProps } from '../../../../models/navigationModal';
 import { useState } from 'react';
 import { isDarkMode } from '../../../../utils/theme/darkMode';
-import { validateEmail } from '../../../../utils/validation/emailValidation';
-import { validatePassword } from '../../../../utils/validation/passwordValidation';
+import {
+  validateEmail,
+  validatePassword,
+} from '../../../../utils/validation/validation';
 import { showErrorToast } from '../../../../utils/toast/toast';
 import FastImage from 'react-native-fast-image';
 import { useTranslation } from 'react-i18next';

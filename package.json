@@ -27,7 +27,6 @@
     "react-native": "0.83.1",
     "react-native-asset": "^2.2.4",
     "react-native-calendar-events": "^2.2.0",
-    "react-native-email-validator": "^0.1.1",
     "react-native-fast-image": "^8.6.3",
     "react-native-gradients": "^2.1.1",
     "react-native-image-picker": "^8.2.1",

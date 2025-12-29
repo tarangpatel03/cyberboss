@@ -1,0 +1,25 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/assets/fonts/InterTightRegular.ttf",
+      "sha1": "236dec5e7d0c08f3221a64281d8acd324149cb8b"
+    },
+    {
+      "path": "src/assets/fonts/InterTightMedium.ttf",
+      "sha1": "c0f1ee383ef09b42b631eacbf97e80cec56d55ee"
+    },
+    {
+      "path": "src/assets/fonts/InterTightLight.ttf",
+      "sha1": "d9a7a114754adeccd1852c2eae7f3f8e0ece1719"
+    },
+    {
+      "path": "src/assets/fonts/InterTightBold.ttf",
+      "sha1": "523d5132be90d07d77d5effcff8fcd2a5e862179"
+    },
+    {
+      "path": "src/assets/fonts/InterTightSemiBold.ttf",
+      "sha1": "13f263b60ce4b5cbe0dcb0c4991d542d24b8a910"
+    }
+  ]
+}

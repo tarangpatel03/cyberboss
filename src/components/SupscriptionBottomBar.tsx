@@ -30,13 +30,11 @@ export const SupscriptionBottomBar = () => {
         </View>
       </View>
       <PrimaryButtonWithIconComponent
-        obj={{
-          onPress: () => {},
-          icon: appIcons.ic_next,
-          text: t('subscribeNow'),
-          buttonStyle: staticStyle.button,
-          textStyle: staticStyle.text16500,
-        }}
+        onPress={() => {}}
+        icon={appIcons.ic_next}
+        text={t('subscribeNow')}
+        buttonStyle={staticStyle.button}
+        textStyle={staticStyle.text16500}
       />
       <View style={staticStyle.lastLine}>
         <RegularTextComponent

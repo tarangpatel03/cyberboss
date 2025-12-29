@@ -49,8 +49,8 @@ export const ConsultantHeaderCard = (props: consultantHeaderCardProps) => {
                 source={
                   profilePictureError
                     ? appImages.img_defaultProfile
-                    : appImages.img_defaultProfile
-                  // : props.profileData.profilePicture
+                    : // : appImages.img_defaultProfile
+                      props.profileData.profilePicture
                 }
                 style={staticStyle.image}
                 onError={() => setProfilePictureError(true)}

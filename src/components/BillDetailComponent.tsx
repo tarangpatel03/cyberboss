@@ -11,26 +11,22 @@ type billDetailsComponentProps = {
   isGrandTotal?: boolean;
 };
 
-export const BillDetailsComponent = ({
-  obj,
-}: {
-  obj: billDetailsComponentProps;
-}) => {
+export const BillDetailsComponent = (props: billDetailsComponentProps) => {
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   return (
     <View style={staticStyle.container}>
       <RegularTextComponent
-        text={obj.title}
+        text={props.title}
         textStyle={StyleSheet.flatten([
-          obj.isGrandTotal ? staticStyle.totalText : staticStyle.text,
+          props.isGrandTotal ? staticStyle.totalText : staticStyle.text,
           styles.text,
         ])}
       />
       <RegularTextComponent
-        text={obj.isHour ? `${obj.amount}h` : `$${obj.amount}`}
+        text={props.isHour ? `${props.amount}h` : `$${props.amount}`}
         textStyle={StyleSheet.flatten([
-          obj.isGrandTotal ? staticStyle.totalText : staticStyle.text,
+          props.isGrandTotal ? staticStyle.totalText : staticStyle.text,
           styles.text,
         ])}
       />

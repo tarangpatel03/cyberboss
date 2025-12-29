@@ -9,10 +9,19 @@ import {
 } from '@react-native-google-signin/google-signin';
 import { Platform } from 'react-native';
 import { getUserToken } from './getUserToken';
-import { PUSH_TOKEN } from '../../../config/constants/axiosValues';
+import {
+  iosClientID,
+  PUSH_TOKEN,
+  WEBCLIENTID,
+} from '../../../config/constants/axiosValues';
 
 export const googleLogIn = async () => {
   try {
+    GoogleSignin.configure({
+      webClientId: WEBCLIENTID,
+      iosClientId: iosClientID,
+    });
+
     await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
     const res = await GoogleSignin.signIn();
     if (isSuccessResponse(res)) {

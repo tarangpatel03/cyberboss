@@ -61,7 +61,7 @@ export const ServicesYouOfferScreen = ({
         >
           <View style={staticStyle.topBar}>
             <CircularIconButtonComponent
-              obj={{
+              props={{
                 iconPath: appIcons.ic_backIcon,
                 buttonStyle: staticStyle.backButton,
                 iconStyle: staticStyle.backIcon,
@@ -113,29 +113,25 @@ export const ServicesYouOfferScreen = ({
           ])}
         >
           <PrimaryButtonComponent
-            obj={{
-              text: t('skip'),
-              buttonStyle: StyleSheet.flatten([
-                staticStyle.button,
-                styles.skipButton,
-              ]),
-              textStyle: StyleSheet.flatten([
-                staticStyle.skipText,
-                styles.skipText,
-              ]),
-              onPress: navigateToNext,
-            }}
+            text={t('skip')}
+            buttonStyle={StyleSheet.flatten([
+              staticStyle.button,
+              styles.skipButton,
+            ])}
+            textStyle={StyleSheet.flatten([
+              staticStyle.skipText,
+              styles.skipText,
+            ])}
+            onPress={navigateToNext}
           />
           <PrimaryButtonComponent
-            obj={{
-              text: t('continue'),
-              buttonStyle: staticStyle.button,
-              textStyle: StyleSheet.flatten([
-                staticStyle.nextText,
-                styles.nextText,
-              ]),
-              onPress: navigateToNext,
-            }}
+            text={t('continue')}
+            buttonStyle={staticStyle.button}
+            textStyle={StyleSheet.flatten([
+              staticStyle.nextText,
+              styles.nextText,
+            ])}
+            onPress={navigateToNext}
           />
         </View>
       </SafeAreaView>

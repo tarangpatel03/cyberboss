@@ -71,30 +71,24 @@ export const ProfileSetUpScreen = ({
             </View>
             <View style={staticStyle.selectionCardContainer}>
               <RoleSelectionCard
-                obj={{
-                  isSelected: isClient,
-                  onPress: selectClient,
-                  subtitle: t('clientLine'),
-                  title: t('client'),
-                }}
+                isSelected={isClient}
+                onPress={selectClient}
+                subtitle={t('clientLine')}
+                title={t('client')}
               />
               <RoleSelectionCard
-                obj={{
-                  isSelected: isConsultant,
-                  onPress: selectConsultant,
-                  subtitle: t('consultantLine'),
-                  title: t('consultant'),
-                }}
+                isSelected={isConsultant}
+                onPress={selectConsultant}
+                subtitle={t('consultantLine')}
+                title={t('consultant')}
               />
             </View>
           </View>
         </View>
         <View style={staticStyle.bottomButton}>
           <PrimaryButtonComponent
-            obj={{
-              onPress: navigateToProfileSetUp,
-              text: t('continue'),
-            }}
+            onPress={navigateToProfileSetUp}
+            text={t('continue')}
           />
         </View>
       </SafeAreaView>

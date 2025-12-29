@@ -15,13 +15,13 @@ import { useTranslation } from 'react-i18next';
 import { IBookingHistoryModel } from '../../models/api/bookings';
 
 type bookingCardProps = {
-  obj: IBookingHistoryModel;
+  props: IBookingHistoryModel;
   onMorePress: (x: number, y: number) => void;
   navigateToDetails: (id: string) => void;
 };
 
 export const BookingCard = memo(
-  ({ obj, onMorePress, navigateToDetails }: bookingCardProps) => {
+  ({ props, onMorePress, navigateToDetails }: bookingCardProps) => {
     const { t } = useTranslation();
     const theme = useTheme<Theme>();
     const styles = createStyles(theme);
@@ -38,12 +38,12 @@ export const BookingCard = memo(
     return (
       <TouchableOpacity
         activeOpacity={0.7}
-        onPress={() => navigateToDetails(obj.id)}
+        onPress={() => navigateToDetails(props.id)}
         style={StyleSheet.flatten([staticStyle.container, styles.container])}
       >
         <View style={staticStyle.row}>
           <MediumTextComponent
-            text={`${t('bookingId')}: ${obj.bookingId}`}
+            text={`${t('bookingId')}: ${props.bookingId}`}
             textStyle={StyleSheet.flatten([
               staticStyle.titleText,
               styles.secondaryText,
@@ -52,22 +52,24 @@ export const BookingCard = memo(
           <View
             style={StyleSheet.flatten([
               staticStyle.statusContainer,
-              obj.status === 'Completed' ? styles.greenBG : styles.redBG,
+              props.status === 'Completed' ? styles.greenBG : styles.redBG,
             ])}
           >
             <FastImage
               source={
-                obj.status === 'Completed'
+                props.status === 'Completed'
                   ? appIcons.ic_completed
                   : appIcons.ic_inProgress
               }
               style={staticStyle.icon}
             />
             <MediumTextComponent
-              text={obj.status}
+              text={props.status}
               textStyle={StyleSheet.flatten([
                 staticStyle.tinyText,
-                obj.status === 'Completed' ? styles.greenText : styles.redText,
+                props.status === 'Completed'
+                  ? styles.greenText
+                  : styles.redText,
               ])}
             />
           </View>
@@ -77,19 +79,19 @@ export const BookingCard = memo(
         />
         <View style={staticStyle.rowLine}>
           <FastImage
-            source={obj.userProfilePicture}
+            source={props.userProfilePicture}
             style={staticStyle.profileImage}
           />
           <View style={staticStyle.fullLengthView}>
             <MediumTextComponent
-              text={obj.userName}
+              text={props.userName}
               textStyle={StyleSheet.flatten([
                 staticStyle.titleText,
                 styles.primaryText,
               ])}
             />
             <RegularTextComponent
-              text={`${obj.hours}hr`}
+              text={`${props.hours}hr`}
               textStyle={StyleSheet.flatten([
                 staticStyle.subtitleText,
                 styles.secondaryText,
@@ -97,7 +99,7 @@ export const BookingCard = memo(
             />
           </View>
           <MediumTextComponent
-            text={`$${obj.grandTotal}`}
+            text={`$${props.grandTotal}`}
             textStyle={StyleSheet.flatten([
               staticStyle.titleText,
               staticStyle.text,
@@ -117,7 +119,7 @@ export const BookingCard = memo(
               // source={obj.}
             />
             <RegularTextComponent
-              text={obj.categoryName}
+              text={props.categoryName}
               textStyle={StyleSheet.flatten([
                 staticStyle.subtitleText,
                 styles.primaryText,
@@ -127,21 +129,19 @@ export const BookingCard = memo(
         </LinearGradient>
         <View style={staticStyle.rowLine}>
           <PrimaryButtonComponent
-            obj={{
-              onPress: () => {},
-              text: t('message'),
-              buttonStyle: StyleSheet.flatten([
-                staticStyle.button,
-                styles.button,
-              ]),
-              textStyle: StyleSheet.flatten([
-                staticStyle.subtitleText,
-                styles.primaryText,
-              ]),
-            }}
+            onPress={() => {}}
+            text={t('message')}
+            buttonStyle={StyleSheet.flatten([
+              staticStyle.button,
+              styles.button,
+            ])}
+            textStyle={StyleSheet.flatten([
+              staticStyle.subtitleText,
+              styles.primaryText,
+            ])}
           />
           <CircularIconButtonComponent
-            obj={{
+            props={{
               onPress: handleMorePress,
               buttonStyle: StyleSheet.flatten([
                 staticStyle.iconButton,

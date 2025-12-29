@@ -80,7 +80,7 @@ export const ConsultantServiceSummaryCard = (
           style={StyleSheet.flatten([staticStyle.counter, styles.saperator])}
         >
           <CircularIconButtonComponent
-            obj={{
+            props={{
               buttonStyle: staticStyle.countorButton,
               iconPath: appIcons.ic_minus,
               iconStyle: staticStyle.minusIcon,
@@ -95,7 +95,7 @@ export const ConsultantServiceSummaryCard = (
             ])}
           />
           <CircularIconButtonComponent
-            obj={{
+            props={{
               buttonStyle: staticStyle.countorButton,
               iconPath: appIcons.ic_plus,
               iconStyle: staticStyle.plusIcon,

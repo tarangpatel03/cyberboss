@@ -70,7 +70,7 @@ export const HistoryScreen = ({
   const renderItem = ({ item, index }: any) => {
     return (
       <BookingCard
-        obj={item}
+        props={item}
         onMorePress={(x, y) => onMorePress(index, x, y)}
         navigateToDetails={navigateToDetails}
       />

@@ -34,36 +34,20 @@ export const BookingPaymentDetailsCard = (
         style={StyleSheet.flatten([staticStyle.saperator, styles.saperator])}
       />
       <BillDetailsComponent
-        obj={{
-          amount: props.billData.hourlyRate,
-          title: t('hourlyRate'),
-        }}
+        amount={props.billData.hourlyRate}
+        title={t('hourlyRate')}
       />
       <BillDetailsComponent
-        obj={{
-          isHour: true,
-          amount: props.billData.hours,
-          title: t('hoursBooked'),
-        }}
+        isHour={true}
+        amount={props.billData.hours}
+        title={t('hoursBooked')}
       />
+      <BillDetailsComponent amount={props.billData.total} title={t('total')} />
       <BillDetailsComponent
-        obj={{
-          amount: props.billData.total,
-          title: t('total'),
-        }}
+        amount={props.billData.platformFee}
+        title={`${t('platformFee')} (${props.role === 'client' ? 10 : 25}%)`}
       />
-      <BillDetailsComponent
-        obj={{
-          amount: props.billData.platformFee,
-          title: `${t('platformFee')} (${props.role === 'client' ? 10 : 25}%)`,
-        }}
-      />
-      <BillDetailsComponent
-        obj={{
-          amount: props.billData.tax,
-          title: t('tax'),
-        }}
-      />
+      <BillDetailsComponent amount={props.billData.tax} title={t('tax')} />
       <View
         style={StyleSheet.flatten([
           staticStyle.totalContainer,
@@ -71,11 +55,9 @@ export const BookingPaymentDetailsCard = (
         ])}
       >
         <BillDetailsComponent
-          obj={{
-            isGrandTotal: true,
-            amount: props.billData.grandTotal,
-            title: t('grandTotal'),
-          }}
+          isGrandTotal={true}
+          amount={props.billData.grandTotal}
+          title={t('grandTotal')}
         />
       </View>
     </View>

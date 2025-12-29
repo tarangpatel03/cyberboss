@@ -114,13 +114,11 @@ export const YourRatingScreen = ({
         ])}
       >
         <PrimaryButtonComponent
-          obj={{
-            onPress: onSubmit,
-            isButtonActive: isButtonDisabled,
-            text: t('submit'),
-            buttonStyle: isButtonDisabled ? styles.secondaryBg : undefined,
-            textStyle: isButtonDisabled ? styles.secondaryText : undefined,
-          }}
+          onPress={onSubmit}
+          isButtonActive={isButtonDisabled}
+          text={t('submit')}
+          buttonStyle={isButtonDisabled ? styles.secondaryBg : undefined}
+          textStyle={isButtonDisabled ? styles.secondaryText : undefined}
         />
       </View>
     </>

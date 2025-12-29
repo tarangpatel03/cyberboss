@@ -18,30 +18,26 @@ type primaryButtonComponenProps = {
   isButtonActive?: boolean;
 };
 
-export const PrimaryButtonComponent = ({
-  obj,
-}: {
-  obj: primaryButtonComponenProps;
-}) => {
+export const PrimaryButtonComponent = (props: primaryButtonComponenProps) => {
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   return (
     <TouchableOpacity
-      disabled={obj.isButtonActive || false}
+      disabled={props.isButtonActive || false}
       activeOpacity={0.7}
       style={StyleSheet.flatten([
         staticStyles.button,
         styles.button,
-        obj.buttonStyle,
+        props.buttonStyle,
       ])}
-      onPress={obj.onPress}
+      onPress={props.onPress}
     >
       <MediumTextComponent
-        text={obj.text}
+        text={props.text}
         textStyle={StyleSheet.flatten([
           staticStyles.text,
           styles.text,
-          obj.textStyle,
+          props.textStyle,
         ])}
       />
     </TouchableOpacity>

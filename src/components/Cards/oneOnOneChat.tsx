@@ -14,18 +14,18 @@ type messageCardProps = {
   time: string;
 };
 
-export const OneOnOneCard = memo(({ obj }: { obj: messageCardProps }) => {
+export const OneOnOneCard = memo((props: messageCardProps) => {
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   return (
     <View
       style={
-        obj.type === 'send'
+        props.type === 'send'
           ? staticStyle.sendContainer
           : staticStyle.recieveContainer
       }
     >
-      {obj.type === 'recieve' && (
+      {props.type === 'recieve' && (
         <FastImage
           tintColor={theme.colors.bgPrimary}
           source={appIcons.ic_reply}
@@ -35,32 +35,34 @@ export const OneOnOneCard = memo(({ obj }: { obj: messageCardProps }) => {
       <View
         style={StyleSheet.flatten([
           staticStyle.centerContainer,
-          obj.type === 'send'
+          props.type === 'send'
             ? staticStyle.sendRadius
             : staticStyle.recieveRadius,
-          obj.type === 'send' ? styles.sendContainer : styles.recieveContainer,
+          props.type === 'send'
+            ? styles.sendContainer
+            : styles.recieveContainer,
         ])}
       >
-        {obj.image && (
-          <FastImage source={obj.image} style={staticStyle.image} />
+        {props.image && (
+          <FastImage source={props.image} style={staticStyle.image} />
         )}
         <RegularTextComponent
-          text={obj.message}
+          text={props.message}
           noOfLines={Infinity}
           textStyle={StyleSheet.flatten([
             staticStyle.messageText,
-            obj.type === 'send' ? styles.sendMessageText : styles.messageText,
+            props.type === 'send' ? styles.sendMessageText : styles.messageText,
           ])}
         />
         <RegularTextComponent
-          text={obj.time}
+          text={props.time}
           textStyle={StyleSheet.flatten([
             staticStyle.timeText,
-            obj.type === 'send' ? styles.timeText : styles.recieveTime,
+            props.type === 'send' ? styles.timeText : styles.recieveTime,
           ])}
         />
       </View>
-      {obj.type === 'send' && (
+      {props.type === 'send' && (
         <FastImage
           source={appIcons.ic_yourSend}
           tintColor={theme.colors.primary}

@@ -76,13 +76,11 @@ export const ClientHomeScreen = ({
 
   const renderBookingItem = ({ item }: any) => (
     <BookingHistoryCard
-      obj={{
-        charge: item.charge,
-        date: item.date,
-        name: item.name,
-        service: item.service,
-        image: item.profilePicture,
-      }}
+      charge={item.charge}
+      date={item.date}
+      name={item.name}
+      service={item.service}
+      image={item.profilePicture}
     />
   );
 

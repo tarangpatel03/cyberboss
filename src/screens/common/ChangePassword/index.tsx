@@ -68,10 +68,8 @@ export const ChangePasswordScreen = ({
         </View>
         <View style={staticStyle.buttonContainer}>
           <PrimaryButtonComponent
-            obj={{
-              onPress: () => {},
-              text: t('updatePassword'),
-            }}
+            onPress={() => {}}
+            text={t('updatePassword')}
           />
         </View>
       </SafeAreaView>

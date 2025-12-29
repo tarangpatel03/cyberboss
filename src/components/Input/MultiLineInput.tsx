@@ -19,18 +19,14 @@ import FastImage from 'react-native-fast-image';
 type multiLineInputComponentProps = {
   placeholder: string;
   value: string | null;
-  setValue: Dispatch<SetStateAction<string>>;
+  setValue: Dispatch<SetStateAction<string | null>>;
   secureText?: boolean;
   borderStyle?: StyleProp<ViewStyle> | null;
   onSubmit?: (serviceText: string) => void;
   isNotBio?: boolean;
 };
 
-export const BioInputComponent = ({
-  obj,
-}: {
-  obj: multiLineInputComponentProps;
-}) => {
+export const BioInputComponent = (props: multiLineInputComponentProps) => {
   const [isFocus, setIsFocus] = useState(false);
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
@@ -39,7 +35,7 @@ export const BioInputComponent = ({
       style={StyleSheet.flatten([
         staticStyles.container,
         styles.container,
-        obj.borderStyle,
+        props.borderStyle,
       ])}
     >
       {isFocus && (
@@ -47,31 +43,31 @@ export const BioInputComponent = ({
           textStyle={StyleSheet.flatten([
             staticStyles.placeHolder,
             styles.placeHolder,
-            obj.borderStyle,
+            props.borderStyle,
           ])}
-          text={obj.placeholder}
+          text={props.placeholder}
         />
       )}
       <TextInput
-        placeholder={!isFocus ? obj.placeholder : ''}
+        placeholder={!isFocus ? props.placeholder : ''}
         multiline={true}
         style={StyleSheet.flatten([
           staticStyles.input,
-          obj.isNotBio && staticStyles.boiInput,
+          props.isNotBio && staticStyles.boiInput,
           styles.input,
-          obj.borderStyle,
+          props.borderStyle,
         ])}
         autoCapitalize="none"
         onSubmitEditing={() =>
-          obj.onSubmit ? obj.onSubmit(obj.value ?? '') : null
+          props.onSubmit ? props.onSubmit(props.value ?? '') : null
         }
         onFocus={() => {
           setIsFocus(true);
         }}
         onBlur={() => setIsFocus(false)}
-        value={obj.value ?? ''}
-        onChangeText={obj.setValue}
-        secureTextEntry={obj.secureText ? obj.secureText : false}
+        value={props.value ?? ''}
+        onChangeText={props.setValue}
+        secureTextEntry={props.secureText ? props.secureText : false}
         placeholderTextColor={
           isDarkMode(theme) ? appColors.app_FFFFFF : appColors.app_212121
         }

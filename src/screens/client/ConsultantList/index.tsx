@@ -105,12 +105,10 @@ export const ConsultantListScreen = ({
         </View>
         <View style={staticStyle.searchBar}>
           <SearchBorderInputComponent
-            obj={{
-              autoFocus: true,
-              setValue: setSearchText,
-              value: searchText,
-              placeholder: t('searchConsultants'),
-            }}
+            autoFocus={true}
+            setValue={setSearchText}
+            value={searchText}
+            placeholder={t('searchConsultants')}
           />
         </View>
         {loader && <ListShimmer containerStyle={staticStyle.shimmer} />}

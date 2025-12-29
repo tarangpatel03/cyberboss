@@ -142,12 +142,7 @@ export const BookingConfirmScreen = ({
         <View
           style={StyleSheet.flatten([staticStyle.button, styles.bgPrimary])}
         >
-          <PrimaryButtonComponent
-            obj={{
-              onPress: goBack,
-              text: t('gotIt'),
-            }}
-          />
+          <PrimaryButtonComponent onPress={goBack} text={t('gotIt')} />
         </View>
       </SafeAreaView>
     </>

@@ -19,7 +19,6 @@ type bookingSummaryDetailsCardProps = {
   // navigateToRating: () => void;
   userRole: 'consultant' | 'client';
   data: IBookingDetailsModel;
-  // data: Readonly<BookingHistoryDataProp>;
   // navigateToConsultantProfile: (id: string) => void;
 };
 

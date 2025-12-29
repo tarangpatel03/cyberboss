@@ -44,12 +44,10 @@ export const OneOnOneChatScreen = ({
   const renderItem = ({ item }: any) => {
     return (
       <OneOnOneCard
-        obj={{
-          message: item.message,
-          time: item.time,
-          type: item.sender,
-          image: item.image,
-        }}
+        message={item.message}
+        time={item.time}
+        type={item.sender}
+        image={item.image}
       />
     );
   };

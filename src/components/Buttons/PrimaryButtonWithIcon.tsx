@@ -18,19 +18,17 @@ type primaryButtonWithIconComponentProps = {
   onPress: () => void;
 };
 
-export const PrimaryButtonWithIconComponent = ({
-  obj,
-}: {
-  obj: primaryButtonWithIconComponentProps;
-}) => {
+export const PrimaryButtonWithIconComponent = (
+  props: primaryButtonWithIconComponentProps,
+) => {
   return (
     <TouchableOpacity
       activeOpacity={0.7}
-      style={obj.buttonStyle}
-      onPress={obj.onPress}
+      style={props.buttonStyle}
+      onPress={props.onPress}
     >
-      <MediumTextComponent text={obj.text} textStyle={obj.textStyle} />
-      <FastImage source={obj.icon} style={styles.iconStyle} />
+      <MediumTextComponent text={props.text} textStyle={props.textStyle} />
+      <FastImage source={props.icon} style={styles.iconStyle} />
     </TouchableOpacity>
   );
 };

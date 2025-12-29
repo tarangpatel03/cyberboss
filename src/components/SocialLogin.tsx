@@ -39,7 +39,7 @@ export const SocialLogIn = (props: socialLogInProps) => {
       {Platform.OS === 'ios' ? (
         <View style={staticStyle.bottomButtons}>
           <CircularIconButtonComponent
-            obj={{
+            props={{
               buttonStyle: StyleSheet.flatten([
                 StyleSheet.flatten([staticStyle.button, styles.button]),
               ]),
@@ -50,7 +50,7 @@ export const SocialLogIn = (props: socialLogInProps) => {
             }}
           />
           <CircularIconButtonComponent
-            obj={{
+            props={{
               buttonStyle: StyleSheet.flatten([
                 staticStyle.button,
                 styles.button,
@@ -64,7 +64,7 @@ export const SocialLogIn = (props: socialLogInProps) => {
       ) : (
         <View style={staticStyle.bottomButtons}>
           <CircularIconButtonComponent
-            obj={{
+            props={{
               buttonStyle: StyleSheet.flatten([
                 staticStyle.button,
                 styles.button,

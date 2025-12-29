@@ -21,7 +21,7 @@ import { RegularTextComponent } from '../../../components/Text/RegularTextCompon
 import { SemiBoldTextComponent } from '../../../components/Text/SemiBoldTextComponent';
 import { CircularIconButtonComponent } from '../../../components/Buttons/CircularIconButton';
 import { updateClientProfile } from '../../../services/api/profile/updateProfile';
-import { EmailAndPasswordInput } from '../../../components/Input/EmailAndPasswordInput';
+import { CustomInputComponent } from '../../../components/Input/EmailAndPasswordInput';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUserData } from '../../../redux/features/userSlice';
 import { RootState } from '../../../redux/store';
@@ -90,7 +90,7 @@ export const ClientProfileSetUpScreen = ({
           <View style={staticStyle.container}>
             <View style={staticStyle.topBar}>
               <CircularIconButtonComponent
-                obj={{
+                props={{
                   iconPath: appIcons.ic_backIcon,
                   buttonStyle: staticStyle.backButton,
                   iconStyle: staticStyle.backIcon,
@@ -138,7 +138,7 @@ export const ClientProfileSetUpScreen = ({
                 </TouchableOpacity>
               </View>
               <View style={staticStyle.input}>
-                <EmailAndPasswordInput
+                <CustomInputComponent
                   placeholder={t('name')}
                   setValue={setUserName}
                   value={userName}
@@ -148,10 +148,8 @@ export const ClientProfileSetUpScreen = ({
           </View>
           <View style={staticStyle.bottomButton}>
             <PrimaryButtonComponent
-              obj={{
-                onPress: setUpProfile,
-                text: t('continue'),
-              }}
+              onPress={setUpProfile}
+              text={t('continue')}
             />
           </View>
         </View>

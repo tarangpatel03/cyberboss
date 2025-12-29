@@ -17,70 +17,63 @@ type bookingHistoryCardProp = {
   charge: number;
 };
 
-export const BookingHistoryCard = memo(
-  ({ obj }: { obj: bookingHistoryCardProp }) => {
-    const theme = useTheme<Theme>();
-    const styles = createStyles(theme);
+export const BookingHistoryCard = memo((props: bookingHistoryCardProp) => {
+  const theme = useTheme<Theme>();
+  const styles = createStyles(theme);
 
-    return (
-      <View
-        style={StyleSheet.flatten([staticStyle.container, styles.container])}
-      >
-        <View style={StyleSheet.flatten([staticStyle.header, styles.header])}>
-          <FastImage style={staticStyle.image} source={obj.image} />
-          <View>
-            <MediumTextComponent
-              text={obj.name}
-              textStyle={StyleSheet.flatten([staticStyle.title, styles.title])}
-            />
-            <RegularTextComponent
-              text={obj.date}
-              textStyle={StyleSheet.flatten([
-                staticStyle.subTitle,
-                styles.subTitle,
-              ])}
-            />
-          </View>
-        </View>
-        <View style={staticStyle.detail}>
-          <View style={staticStyle.header}>
-            <FastImage
-              style={staticStyle.icons}
-              source={appIcons.ic_suitcase}
-            />
-            <RegularTextComponent
-              text={obj.service}
-              textStyle={StyleSheet.flatten([
-                staticStyle.subTitle,
-                styles.subTitle,
-              ])}
-            />
-          </View>
-          <View style={staticStyle.header}>
-            <FastImage style={staticStyle.icons} source={appIcons.ic_cash} />
-            <RegularTextComponent
-              text={`$${obj.charge}`}
-              textStyle={StyleSheet.flatten([
-                staticStyle.subTitle,
-                styles.subTitle,
-              ])}
-            />
-          </View>
-        </View>
-        <TouchableOpacity
-          activeOpacity={0.7}
-          style={StyleSheet.flatten([staticStyle.button, styles.button])}
-        >
-          <FastImage
-            tintColor={theme.colors.primary}
-            source={appIcons.ic_fillChat}
-            style={staticStyle.chat}
+  return (
+    <View style={StyleSheet.flatten([staticStyle.container, styles.container])}>
+      <View style={StyleSheet.flatten([staticStyle.header, styles.header])}>
+        <FastImage style={staticStyle.image} source={props.image} />
+        <View>
+          <MediumTextComponent
+            text={props.name}
+            textStyle={StyleSheet.flatten([staticStyle.title, styles.title])}
           />
-        </TouchableOpacity>
+          <RegularTextComponent
+            text={props.date}
+            textStyle={StyleSheet.flatten([
+              staticStyle.subTitle,
+              styles.subTitle,
+            ])}
+          />
+        </View>
       </View>
-    );
-  },
-);
+      <View style={staticStyle.detail}>
+        <View style={staticStyle.header}>
+          <FastImage style={staticStyle.icons} source={appIcons.ic_suitcase} />
+          <RegularTextComponent
+            text={props.service}
+            textStyle={StyleSheet.flatten([
+              staticStyle.subTitle,
+              styles.subTitle,
+            ])}
+          />
+        </View>
+        <View style={staticStyle.header}>
+          <FastImage style={staticStyle.icons} source={appIcons.ic_cash} />
+          <RegularTextComponent
+            text={`$${props.charge}`}
+            textStyle={StyleSheet.flatten([
+              staticStyle.subTitle,
+              styles.subTitle,
+            ])}
+          />
+        </View>
+      </View>
+      <TouchableOpacity
+        activeOpacity={0.7}
+        style={StyleSheet.flatten([staticStyle.button, styles.button])}
+      >
+        <FastImage
+          tintColor={theme.colors.primary}
+          source={appIcons.ic_fillChat}
+          style={staticStyle.chat}
+        />
+      </TouchableOpacity>
+    </View>
+  );
+});
 
 const staticStyle = StyleSheet.create({
   container: {

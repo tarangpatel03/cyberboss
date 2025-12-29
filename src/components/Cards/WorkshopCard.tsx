@@ -83,10 +83,8 @@ export const WorkshopCard = memo(({ data, cardStyle }: workshopCardProps) => {
         </View>
       </View>
       <PrimaryButtonComponent
-        obj={{
-          onPress: addEventToCalendar,
-          text: t('addToCalander'),
-        }}
+        onPress={addEventToCalendar}
+        text={t('addToCalander')}
       />
     </View>
   );

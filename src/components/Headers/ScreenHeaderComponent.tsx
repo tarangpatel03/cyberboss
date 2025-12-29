@@ -24,7 +24,7 @@ export const ScreenHeaderComponent = ({
     <>
       <View style={staticStyles.container}>
         <CircularIconButtonComponent
-          obj={{
+          props={{
             iconPath: appIcons.ic_backIcon,
             iconStyle: staticStyles.backIcon,
             tintColor: theme.colors.textPrimary,
@@ -40,7 +40,7 @@ export const ScreenHeaderComponent = ({
         )}
         {iconPath ? (
           <CircularIconButtonComponent
-            obj={{
+            props={{
               buttonStyle: staticStyles.backButton,
               iconPath: iconPath,
               tintColor: theme.colors.textPrimary,

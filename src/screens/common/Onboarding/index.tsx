@@ -72,39 +72,33 @@ export const OnboardingScreen = ({
         {currentIndex < 3 ? (
           <View style={styles.bottomButtons}>
             <PrimaryButtonComponent
-              obj={{
-                text: t('skip'),
-                buttonStyle: StyleSheet.flatten([
-                  styles.button,
-                  styles.skipButton,
-                ]),
-                textStyle: styles.skipText,
-                onPress: handleSkip,
-              }}
+              text={t('skip')}
+              buttonStyle={StyleSheet.flatten([
+                styles.button,
+                styles.skipButton,
+              ])}
+              textStyle={styles.skipText}
+              onPress={handleSkip}
             />
             <PrimaryButtonComponent
-              obj={{
-                text: t('next'),
-                buttonStyle: styles.button,
-                textStyle: styles.nextText,
-                onPress: handleNext,
-              }}
+              text={t('next')}
+              buttonStyle={styles.button}
+              textStyle={styles.nextText}
+              onPress={handleNext}
             />
           </View>
         ) : (
           <View style={styles.bottomButtons}>
             <PrimaryButtonWithIconComponent
-              obj={{
-                buttonStyle: StyleSheet.flatten([
-                  styles.button,
-                  styles.nextButton,
-                  styles.fullLength,
-                ]),
-                icon: appIcons.ic_next,
-                text: t('getStarted'),
-                textStyle: styles.nextText,
-                onPress: navigateToLogIn,
-              }}
+              buttonStyle={StyleSheet.flatten([
+                styles.button,
+                styles.nextButton,
+                styles.fullLength,
+              ])}
+              icon={appIcons.ic_next}
+              text={t('getStarted')}
+              textStyle={styles.nextText}
+              onPress={navigateToLogIn}
             />
           </View>
         )}

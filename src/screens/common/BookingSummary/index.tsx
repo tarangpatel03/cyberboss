@@ -145,12 +145,7 @@ export const BookingSummaryScreen = ({
           />
         </ScrollView>
         <View style={staticStyle.button}>
-          <PrimaryButtonComponent
-            obj={{
-              onPress: () => {},
-              text: t('message'),
-            }}
-          />
+          <PrimaryButtonComponent onPress={() => {}} text={t('message')} />
           <TouchableOpacity
             activeOpacity={0.7}
             style={StyleSheet.flatten([

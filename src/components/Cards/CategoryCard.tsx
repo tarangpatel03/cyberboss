@@ -14,16 +14,18 @@ type categoryCardProp = {
   data: string[];
 };
 
-export const CategoryCard = memo(({ obj }: { obj: categoryCardProp }) => {
+export const CategoryCard = memo((props: categoryCardProp) => {
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   const [isSelected, setIsSelected] = useState<boolean>(
-    obj.data.includes(obj.expertise.id),
+    props.data.includes(props.expertise.id),
   );
 
   const toggleSelected = () => {
     setIsSelected(prev => !prev);
-    isSelected ? obj.remove(obj.expertise.id) : obj.add(obj.expertise.id);
+    isSelected
+      ? props.remove(props.expertise.id)
+      : props.add(props.expertise.id);
   };
 
   return (
@@ -36,11 +38,11 @@ export const CategoryCard = memo(({ obj }: { obj: categoryCardProp }) => {
       ])}
     >
       <FastImage
-        source={{ uri: obj.expertise.image }}
+        source={{ uri: props.expertise.image }}
         style={staticStyle.image}
       />
       <MediumTextComponent
-        text={obj.expertise.name}
+        text={props.expertise.name}
         textStyle={StyleSheet.flatten([staticStyle.text, styles.text])}
       />
     </TouchableOpacity>

@@ -142,10 +142,8 @@ export const EditProfileScreen = ({
         </View>
         <View style={staticStyle.button}>
           <PrimaryButtonComponent
-            obj={{
-              onPress: updateProfile,
-              text: t('updateProfile'),
-            }}
+            onPress={updateProfile}
+            text={t('updateProfile')}
           />
         </View>
       </SafeAreaView>

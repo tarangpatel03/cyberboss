@@ -147,11 +147,9 @@ export const ConsultantProfileScreen = ({
                 ])}
               />
               <PrimaryButtonComponent
-                obj={{
-                  onPress: navigateToBookingDetails,
-                  text: t('bookNow'),
-                  buttonStyle: staticStyle.booknowButton,
-                }}
+                onPress={navigateToBookingDetails}
+                text={t('bookNow')}
+                buttonStyle={staticStyle.booknowButton}
               />
             </View>
           </>

@@ -24,7 +24,7 @@ type borderInputComponentProps = {
   keyboardType?: KeyboardTypeOptions | undefined;
 };
 
-export const EmailAndPasswordInput = ({
+export const CustomInputComponent = ({
   borderStyle,
   placeholder,
   keyboardType,

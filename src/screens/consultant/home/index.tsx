@@ -94,13 +94,11 @@ export const ConsultantHomeScreen = ({
   const renderBookingHistoryItem = ({ item }: any) => {
     return (
       <BookingHistoryCard
-        obj={{
-          charge: item.charge,
-          date: item.date,
-          name: item.name,
-          service: item.service,
-          image: appImages.img_test1,
-        }}
+        charge={item.charge}
+        date={item.date}
+        name={item.name}
+        service={item.service}
+        image={appImages.img_test1}
       />
     );
   };
@@ -108,11 +106,9 @@ export const ConsultantHomeScreen = ({
   const renderRecentActivityItem = ({ item }: any) => {
     return (
       <RecentActivity
-        obj={{
-          image: item.image,
-          message: item.message,
-          time: item.time,
-        }}
+        image={item.image}
+        message={item.message}
+        time={item.time}
       />
     );
   };

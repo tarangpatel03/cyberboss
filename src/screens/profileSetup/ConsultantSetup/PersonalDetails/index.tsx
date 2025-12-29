@@ -30,7 +30,7 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../../redux/store';
 import { updateConsultantProfileSetup } from '../../../../services/api/profile/updateProfile';
-import { EmailAndPasswordInput } from '../../../../components/Input/EmailAndPasswordInput';
+import { CustomInputComponent } from '../../../../components/Input/EmailAndPasswordInput';
 
 export const PersonalDetailsScreen = ({
   navigation,
@@ -40,7 +40,7 @@ export const PersonalDetailsScreen = ({
   const styles = createStyles(theme);
   const [name, setName] = useState<string>('');
   const [experience, setExperience] = useState<string>('');
-  const [bio, setBio] = useState<string>('');
+  const [bio, setBio] = useState<string | null>(null);
   const { expertises, services } = useSelector(
     (state: RootState) => state.user.userData,
   );
@@ -57,7 +57,7 @@ export const PersonalDetailsScreen = ({
     updateConsultantProfileSetup(
       name,
       experience,
-      bio,
+      bio ?? '',
       profileImage,
       expertises ?? [],
       services ?? [],
@@ -98,7 +98,7 @@ export const PersonalDetailsScreen = ({
         >
           <View style={staticStyle.topBar}>
             <CircularIconButtonComponent
-              obj={{
+              props={{
                 iconPath: appIcons.ic_backIcon,
                 buttonStyle: staticStyle.backButton,
                 iconStyle: staticStyle.backIcon,
@@ -147,23 +147,21 @@ export const PersonalDetailsScreen = ({
                 </TouchableOpacity>
               </View>
               <View style={staticStyle.inputs}>
-                <EmailAndPasswordInput
+                <CustomInputComponent
                   placeholder={t('name')}
                   setValue={setName}
                   value={name}
                 />
-                <EmailAndPasswordInput
+                <CustomInputComponent
                   placeholder={t('yearsofExperience')}
                   setValue={setExperience}
                   value={experience}
                 />
                 <BioInputComponent
-                  obj={{
-                    isNotBio: false,
-                    placeholder: t('bio'),
-                    setValue: setBio,
-                    value: bio,
-                  }}
+                  isNotBio={false}
+                  placeholder={t('bio')}
+                  setValue={setBio}
+                  value={bio}
                 />
               </View>
             </View>
@@ -171,10 +169,8 @@ export const PersonalDetailsScreen = ({
         </View>
         <View style={staticStyle.bottomButton}>
           <PrimaryButtonComponent
-            obj={{
-              text: t('continue'),
-              onPress: navigateToNext,
-            }}
+            text={t('continue')}
+            onPress={navigateToNext}
           />
         </View>
       </SafeAreaView>

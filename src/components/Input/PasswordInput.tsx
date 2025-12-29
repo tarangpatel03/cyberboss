@@ -32,7 +32,7 @@ export const PasswordInputComponent = ({
         secureText={!visible}
       />
       <CircularIconButtonComponent
-        obj={{
+        props={{
           iconPath: visible
             ? appIcons.ic_showPassword
             : appIcons.ic_hiddenPassword,

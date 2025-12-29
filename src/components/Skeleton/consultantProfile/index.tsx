@@ -139,11 +139,9 @@ export const ConsultantProfileScreenShimmer = () => {
           ])}
         />
         <PrimaryButtonComponent
-          obj={{
-            onPress: () => {},
-            text: t('bookNow'),
-            buttonStyle: staticStyle.booknowButton,
-          }}
+          onPress={() => {}}
+          text={t('bookNow')}
+          buttonStyle={staticStyle.booknowButton}
         />
       </View>
     </>

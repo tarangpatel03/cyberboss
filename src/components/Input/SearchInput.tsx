@@ -25,11 +25,9 @@ type borderInputComponentProps = {
   style?: StyleProp<ViewStyle>;
 };
 
-export const SearchBorderInputComponent = ({
-  obj,
-}: {
-  obj: borderInputComponentProps;
-}) => {
+export const SearchBorderInputComponent = (
+  props: borderInputComponentProps,
+) => {
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   return (
@@ -37,24 +35,24 @@ export const SearchBorderInputComponent = ({
       style={StyleSheet.flatten([
         staticStyles.container,
         styles.container,
-        obj.style,
+        props.style,
       ])}
     >
-      <TouchableOpacity activeOpacity={0.7} onPress={obj.onIconPress}>
+      <TouchableOpacity activeOpacity={0.7} onPress={props.onIconPress}>
         <FastImage
           resizeMode={FastImage.resizeMode.contain}
-          source={obj.icon ?? appIcons.ic_search}
+          source={props.icon ?? appIcons.ic_search}
           tintColor={theme.colors.textPrimary}
           style={staticStyles.icon}
         />
       </TouchableOpacity>
       <TextInput
-        autoFocus={obj.autoFocus ?? false}
-        placeholder={obj.placeholder}
+        autoFocus={props.autoFocus ?? false}
+        placeholder={props.placeholder}
         autoCapitalize="none"
         style={StyleSheet.flatten([staticStyles.input, styles.input])}
-        value={obj.value}
-        onChangeText={obj.setValue}
+        value={props.value}
+        onChangeText={props.setValue}
         placeholderTextColor={appColors.app_8C8694}
       />
     </View>

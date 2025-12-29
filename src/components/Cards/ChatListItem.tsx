@@ -16,44 +16,44 @@ type chatListItemProps = {
   onPress: () => void;
 };
 
-export const ChatListItem = memo(({ obj }: { obj: chatListItemProps }) => {
+export const ChatListItem = memo((props: chatListItemProps) => {
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
 
   return (
     <TouchableOpacity
       activeOpacity={0.7}
-      onPress={obj.onPress}
+      onPress={props.onPress}
       style={StyleSheet.flatten([staticStyle.container, styles.container])}
     >
-      <FastImage source={obj.profileImage} style={staticStyle.image} />
+      <FastImage source={props.profileImage} style={staticStyle.image} />
       <View style={staticStyle.info}>
         <View style={staticStyle.line}>
           <MediumTextComponent
-            text={obj.name}
+            text={props.name}
             textStyle={StyleSheet.flatten([
               staticStyle.titleText,
               styles.titleText,
             ])}
           />
           <MediumTextComponent
-            text={obj.time}
+            text={props.time}
             textStyle={StyleSheet.flatten([
               staticStyle.timeText,
-              obj.unread > 0 ? styles.timeUnderadText : styles.timeText,
+              props.unread > 0 ? styles.timeUnderadText : styles.timeText,
             ])}
           />
         </View>
         <View style={staticStyle.line}>
           <RegularTextComponent
-            text={obj.lastMsg}
+            text={props.lastMsg}
             noOfLines={1}
             textStyle={StyleSheet.flatten([
               staticStyle.msgText,
               styles.msgText,
             ])}
           />
-          {obj.unread > 0 && (
+          {props.unread > 0 && (
             <View
               style={StyleSheet.flatten([
                 staticStyle.unReadContainer,
@@ -61,7 +61,7 @@ export const ChatListItem = memo(({ obj }: { obj: chatListItemProps }) => {
               ])}
             >
               <RegularTextComponent
-                text={`${obj.unread}`}
+                text={`${props.unread}`}
                 textStyle={StyleSheet.flatten([
                   staticStyle.unReadText,
                   styles.unReadText,

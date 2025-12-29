@@ -56,11 +56,9 @@ export const EditProfileInputs = (props: editProfileInputsProps) => {
             value={props.experience ?? ''}
           />
           <BioInputComponent
-            obj={{
-              placeholder: t('bio'),
-              setValue: props.setBio,
-              value: props.bio,
-            }}
+            placeholder={t('bio')}
+            setValue={props.setBio}
+            value={props.bio}
           />
         </>
       )}

@@ -55,11 +55,9 @@ export const ChatScreen = ({
         <View style={staticStyle.header}>
           <BottomTabHeader name={t('chat')} onPress={navigateToNotification} />
           <SearchBorderInputComponent
-            obj={{
-              placeholder: t('searchClients'),
-              setValue: setSearchText,
-              value: searchText,
-            }}
+            placeholder={t('searchClients')}
+            setValue={setSearchText}
+            value={searchText}
           />
         </View>
         {loader && (

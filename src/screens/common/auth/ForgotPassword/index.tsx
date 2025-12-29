@@ -9,7 +9,7 @@ import { routeName } from '../../../../config/constants/routes';
 import { useState } from 'react';
 import { PrimaryButtonComponent } from '../../../../components/Buttons/PrimaryButton';
 import { ScreenHeaderComponent } from '../../../../components/Headers/ScreenHeaderComponent';
-import { EmailAndPasswordInput } from '../../../../components/Input/EmailAndPasswordInput';
+import { CustomInputComponent } from '../../../../components/Input/EmailAndPasswordInput';
 import { useTranslation } from 'react-i18next';
 
 export const ForgotPasswordScreen = ({
@@ -54,18 +54,13 @@ export const ForgotPasswordScreen = ({
               />
             </View>
             <View style={staticStyles.bottomContainer}>
-              <EmailAndPasswordInput
+              <CustomInputComponent
                 keyboardType="email-address"
                 placeholder={t('email')}
                 value={email}
                 setValue={setEmail}
               />
-              <PrimaryButtonComponent
-                obj={{
-                  text: t('sendNow'),
-                  onPress: () => {},
-                }}
-              />
+              <PrimaryButtonComponent text={t('sendNow')} onPress={() => {}} />
             </View>
           </View>
         </View>

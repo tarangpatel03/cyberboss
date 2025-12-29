@@ -45,7 +45,7 @@ export const ThemeModal = ({ isVisible, onclose }: themeModalProps) => {
         style={StyleSheet.flatten([staticStyle.container, styles.container])}
       >
         <CircularIconButtonComponent
-          obj={{
+          props={{
             iconPath: appIcons.ic_cancle,
             buttonStyle: StyleSheet.flatten([
               staticStyle.exitBtn,
@@ -94,10 +94,8 @@ export const ThemeModal = ({ isVisible, onclose }: themeModalProps) => {
           </View>
           <View style={staticStyle.button}>
             <PrimaryButtonComponent
-              obj={{
-                onPress: changeTheme,
-                text: t('savePreference'),
-              }}
+              onPress={changeTheme}
+              text={t('savePreference')}
             />
           </View>
         </View>

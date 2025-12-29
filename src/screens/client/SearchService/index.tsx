@@ -72,13 +72,11 @@ export const SearchServiceScreen = ({
       >
         <View style={staticStyle.searchHeader}>
           <SearchBorderInputComponent
-            obj={{
-              placeholder: t('searchHere'),
-              setValue: setText,
-              value: searchText,
-              icon: appIcons.ic_backIcon,
-              onIconPress: goBack,
-            }}
+            placeholder={t('searchHere')}
+            setValue={setText}
+            value={searchText}
+            icon={appIcons.ic_backIcon}
+            onIconPress={goBack}
           />
         </View>
         {loader && <ListShimmer containerStyle={staticStyle.browseService} />}

@@ -11,24 +11,24 @@ type circularIconButtonProps = {
 };
 
 export const CircularIconButtonComponent = ({
-  obj,
+  props,
   ref,
 }: {
-  obj: circularIconButtonProps;
+  props: circularIconButtonProps;
   ref?: RefObject<View | null>;
 }) => {
   return (
     <TouchableOpacity
       ref={ref}
       activeOpacity={0.7}
-      style={obj.buttonStyle}
-      onPress={obj.onPress}
+      style={props.buttonStyle}
+      onPress={props.onPress}
     >
       <FastImage
         resizeMode={FastImage.resizeMode.contain}
-        tintColor={obj.tintColor}
-        source={obj.iconPath}
-        style={obj.iconStyle}
+        tintColor={props.tintColor}
+        source={props.iconPath}
+        style={props.iconStyle}
       />
     </TouchableOpacity>
   );

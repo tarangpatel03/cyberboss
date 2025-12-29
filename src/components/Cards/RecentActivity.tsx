@@ -12,15 +12,15 @@ type recentActivityProps = {
   time: string;
 };
 
-export const RecentActivity = memo(({ obj }: { obj: recentActivityProps }) => {
+export const RecentActivity = memo((props: recentActivityProps) => {
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   return (
     <View style={StyleSheet.flatten([staticStyle.container, styles.container])}>
-      <FastImage source={obj.image} style={staticStyle.image} />
+      <FastImage source={props.image} style={staticStyle.image} />
       <View style={staticStyle.row}>
         <RegularTextComponent
-          text={obj.message}
+          text={props.message}
           noOfLines={2}
           textStyle={StyleSheet.flatten([
             staticStyle.title,
@@ -28,7 +28,7 @@ export const RecentActivity = memo(({ obj }: { obj: recentActivityProps }) => {
           ])}
         />
         <RegularTextComponent
-          text={obj.time}
+          text={props.time}
           textStyle={StyleSheet.flatten([
             staticStyle.subtitle,
             styles.secondaryText,

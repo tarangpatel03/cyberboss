@@ -8,7 +8,7 @@ import FastImage from 'react-native-fast-image';
 import { Dispatch, SetStateAction } from 'react';
 import { Theme } from '../../config/themes/themes';
 import { appIcons } from '../../config/icons/iconPath';
-import { EmailAndPasswordInput } from './EmailAndPasswordInput';
+import { CustomInputComponent } from './EmailAndPasswordInput';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import { PrimaryButtonComponent } from '../Buttons/PrimaryButton';
 import { RegularTextComponent } from '../Text/RegularTextComponent';
@@ -33,21 +33,21 @@ export const SignUpInputContainer = (props: signUpInputContainerProps) => {
   const styles = createStyles(theme);
   return (
     <View style={staticStyle.inputs}>
-      <EmailAndPasswordInput
+      <CustomInputComponent
         keyboardType="email-address"
         placeholder={t('email')}
         value={props.email}
         setValue={props.setEmail}
       />
       <View style={staticStyle.passwordInput}>
-        <EmailAndPasswordInput
+        <CustomInputComponent
           placeholder={t('password')}
           value={props.password}
           setValue={props.setPassword}
           secureText={!props.passVisible}
         />
         <CircularIconButtonComponent
-          obj={{
+          props={{
             iconPath: props.passVisible
               ? appIcons.ic_showPassword
               : appIcons.ic_hiddenPassword,
@@ -117,10 +117,8 @@ export const SignUpInputContainer = (props: signUpInputContainerProps) => {
         </TouchableOpacity>
       </View>
       <PrimaryButtonComponent
-        obj={{
-          text: props.buttonText,
-          onPress: props.handleSignUp,
-        }}
+        text={props.buttonText}
+        onPress={props.handleSignUp}
       />
     </View>
   );

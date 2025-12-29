@@ -68,12 +68,10 @@ export const AreaOfExpertiesScreen = ({
   const renderItem = ({ item }: any) => {
     return (
       <CategoryCard
-        obj={{
-          expertise: item,
-          data: category,
-          add: addCategory,
-          remove: removeCategory,
-        }}
+        expertise={item}
+        data={category}
+        add={addCategory}
+        remove={removeCategory}
       />
     );
   };
@@ -93,7 +91,7 @@ export const AreaOfExpertiesScreen = ({
         <View style={staticStyle.container}>
           <View style={staticStyle.topBar}>
             <CircularIconButtonComponent
-              obj={{
+              props={{
                 iconPath: appIcons.ic_backIcon,
                 buttonStyle: staticStyle.backButton,
                 iconStyle: staticStyle.backIcon,
@@ -137,10 +135,8 @@ export const AreaOfExpertiesScreen = ({
         </View>
         <View style={staticStyle.bottomButton}>
           <PrimaryButtonComponent
-            obj={{
-              text: t('continue'),
-              onPress: navigateToNext,
-            }}
+            text={t('continue')}
+            onPress={navigateToNext}
           />
         </View>
       </SafeAreaView>

@@ -57,7 +57,7 @@ export const PendingVerificationScreen = ({
           <View>
             <View style={staticStyle.topBar}>
               <CircularIconButtonComponent
-                obj={{
+                props={{
                   iconPath: appIcons.ic_backIcon,
                   buttonStyle: staticStyle.backButton,
                   iconStyle: staticStyle.backIcon,
@@ -92,10 +92,8 @@ export const PendingVerificationScreen = ({
           </View>
           <View style={staticStyle.bottomButton}>
             <PrimaryButtonComponent
-              obj={{
-                text: t('continue'),
-                onPress: navigateToConsultantBottomTab,
-              }}
+              text={t('continue')}
+              onPress={navigateToConsultantBottomTab}
             />
           </View>
         </View>

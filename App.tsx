@@ -7,23 +7,14 @@ import { DarkTheme, LightTheme } from './src/config/themes/themes';
 import { StyleSheet, useColorScheme } from 'react-native';
 import { ThemeProvider } from '@shopify/restyle';
 import { NavigationContainer } from '@react-navigation/native';
-import { useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 import Toast from 'react-native-toast-message';
-import { GoogleSignin } from '@react-native-google-signin/google-signin';
-import { iosClientID, WEBCLIENTID } from './src/config/constants/axiosValues';
 import { TourGuideProvider } from 'rn-tourguide';
 import normalize from './src/utils/normalize/normalize';
 import { ThemeMode } from './src/redux/features/themeSlice';
 import { navigationRef } from './src/services/axios/axiosInterceptors';
 
 function App() {
-  useEffect(() => {
-    GoogleSignin.configure({
-      webClientId: WEBCLIENTID,
-      iosClientId: iosClientID,
-    });
-  }, []);
-
   return (
     <TourGuideProvider
       tooltipStyle={staticStyle.tour}
@@ -45,7 +36,6 @@ const ThemedApp = () => {
     (state: RootState) => state.theme.themeMode,
   );
 
-  // Memoize theme calculation to avoid unnecessary re-renders
   const currentTheme = useMemo(() => {
     if (currentThemeMode === ThemeMode.Device) {
       return deviceTheme === ThemeMode.Dark ? DarkTheme : LightTheme;

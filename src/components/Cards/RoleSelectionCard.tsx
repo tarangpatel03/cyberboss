@@ -14,51 +14,49 @@ type roleSelectionCardProps = {
   onPress: () => void;
 };
 
-export const RoleSelectionCard = memo(
-  ({ obj }: { obj: roleSelectionCardProps }) => {
-    const theme = useTheme<Theme>();
-    const styles = createStyles(theme);
-    return (
-      <TouchableOpacity
-        activeOpacity={0.7}
-        onPress={obj.onPress}
-        style={StyleSheet.flatten([staticStyle.card, styles.card])}
-      >
-        <View style={staticStyle.header}>
-          <MediumTextComponent
-            text={obj.title}
-            textStyle={StyleSheet.flatten([
-              staticStyle.titleText,
-              styles.titleText,
-            ])}
-          />
-          <View
-            style={StyleSheet.flatten([
-              staticStyle.selector,
-              obj.isSelected ? styles.selected : styles.unselected,
-            ])}
-          >
-            {obj.isSelected && (
-              <View
-                style={StyleSheet.flatten([
-                  staticStyle.selectedInner,
-                  styles.selectedInner,
-                ])}
-              />
-            )}
-          </View>
-        </View>
-        <RegularTextComponent
-          text={obj.subtitle}
+export const RoleSelectionCard = memo((props: roleSelectionCardProps) => {
+  const theme = useTheme<Theme>();
+  const styles = createStyles(theme);
+  return (
+    <TouchableOpacity
+      activeOpacity={0.7}
+      onPress={props.onPress}
+      style={StyleSheet.flatten([staticStyle.card, styles.card])}
+    >
+      <View style={staticStyle.header}>
+        <MediumTextComponent
+          text={props.title}
           textStyle={StyleSheet.flatten([
-            staticStyle.subTitleText,
-            styles.subTitleText,
+            staticStyle.titleText,
+            styles.titleText,
           ])}
         />
-      </TouchableOpacity>
-    );
-  },
-);
+        <View
+          style={StyleSheet.flatten([
+            staticStyle.selector,
+            props.isSelected ? styles.selected : styles.unselected,
+          ])}
+        >
+          {props.isSelected && (
+            <View
+              style={StyleSheet.flatten([
+                staticStyle.selectedInner,
+                styles.selectedInner,
+              ])}
+            />
+          )}
+        </View>
+      </View>
+      <RegularTextComponent
+        text={props.subtitle}
+        textStyle={StyleSheet.flatten([
+          staticStyle.subTitleText,
+          styles.subTitleText,
+        ])}
+      />
+    </TouchableOpacity>
+  );
+});
 
 const staticStyle = StyleSheet.create({
   card: {

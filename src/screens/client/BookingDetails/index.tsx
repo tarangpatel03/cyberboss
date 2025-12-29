@@ -154,10 +154,8 @@ export const BookingDetailsScreen = ({
               style={StyleSheet.flatten([staticStyle.button, styles.bgPrimary])}
             >
               <PrimaryButtonComponent
-                obj={{
-                  onPress: navigateToConfirm,
-                  text: t('payNow'),
-                }}
+                onPress={navigateToConfirm}
+                text={t('payNow')}
               />
             </View>
           </>

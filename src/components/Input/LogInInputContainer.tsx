@@ -1,7 +1,7 @@
 import { View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { Dispatch, SetStateAction } from 'react';
-import { EmailAndPasswordInput } from './EmailAndPasswordInput';
+import { CustomInputComponent } from './EmailAndPasswordInput';
 import { PrimaryButtonComponent } from '../Buttons/PrimaryButton';
 import { staticStyle } from '../../screens/common/auth/LogIn/styles';
 import { CircularIconButtonComponent } from '../Buttons/CircularIconButton';
@@ -25,21 +25,21 @@ export const LogInInputsContainer = (props: logInInputsContainerProps) => {
 
   return (
     <View style={staticStyle.emailPassInput}>
-      <EmailAndPasswordInput
+      <CustomInputComponent
         keyboardType="email-address"
         placeholder={t('email')}
         value={props.email}
         setValue={props.setEmail}
       />
       <View style={staticStyle.passwordInput}>
-        <EmailAndPasswordInput
+        <CustomInputComponent
           placeholder={t('password')}
           value={props.password}
           setValue={props.setPassword}
           secureText={!props.passVisible}
         />
         <CircularIconButtonComponent
-          obj={{
+          props={{
             iconPath: props.getIcon(),
             buttonStyle: staticStyle.passwordButton,
             iconStyle: props.getIconStyle(),
@@ -49,10 +49,8 @@ export const LogInInputsContainer = (props: logInInputsContainerProps) => {
         />
       </View>
       <PrimaryButtonComponent
-        obj={{
-          text: t(props.buttonText),
-          onPress: props.handleSignIn,
-        }}
+        text={t(props.buttonText)}
+        onPress={props.handleSignIn}
       />
     </View>
   );

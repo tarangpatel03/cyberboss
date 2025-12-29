@@ -16,7 +16,6 @@ import { routeName } from '../../../config/constants/routes';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { MessageCard } from '../../../components/Cards/MessageCard';
 import { rootNavigationProps } from '../../../models/navigationModal';
-import { BorderInputComponent } from '../../../components/Input/BorderInput';
 import { MediumTextComponent } from '../../../components/Text/MediumTextComponent';
 import { getAPIData } from '../../../services/api/common/getCommonApi';
 import { showErrorToast } from '../../../utils/toast/toast';
@@ -29,6 +28,7 @@ import {
   IChatBotChatModel,
   transformChatBotChatModel,
 } from '../../../models/formattedAPI/tChatbot';
+import { CustomInputComponent } from '../../../components/Input/EmailAndPasswordInput';
 
 export const ContactSupportScreen = ({
   navigation,
@@ -37,7 +37,7 @@ export const ContactSupportScreen = ({
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   const flatListRef = useRef<FlatList>(null);
-  const [text, setText] = useState<string | null>('');
+  const [text, setText] = useState<string>('');
   const [chat, setChat] = useState<IChatBotChatModel[]>([]);
 
   const goBack = () => {
@@ -63,11 +63,11 @@ export const ContactSupportScreen = ({
     }
   };
 
-  const sendChatToBot = () => {
+  const sendChatToBot = async () => {
     try {
-      sendChat(text ?? '').then(() => {
-        loadChat();
-      });
+      const chatData: ApiChatBotChatModel = await sendChat(text ?? '');
+      const transformedChat = transformChatBotChatModel(chatData);
+      setChat(prev => [...prev, transformedChat]);
       setText('');
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
@@ -152,7 +152,7 @@ export const ContactSupportScreen = ({
           <View
             style={StyleSheet.flatten([staticStyle.inputBar, styles.inputBar])}
           >
-            <BorderInputComponent
+            <CustomInputComponent
               placeholder={t('sendMessage')}
               showPlaceholderOnFocus={false}
               setValue={setText}

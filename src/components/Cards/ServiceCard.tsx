@@ -7,8 +7,9 @@ import { RegularTextComponent } from '../Text/RegularTextComponent';
 import { appIcons } from '../../config/icons/iconPath';
 import { formatBooking } from '../../utils/format/formatDate';
 import FastImage from 'react-native-fast-image';
-import { memo } from 'react';
+import { memo, useState } from 'react';
 import { tExpertiseModel } from '../../models/formattedAPI/tConsultant';
+import { getProfilePicture } from '../../utils/extractURI/extractImageURI';
 
 type serviceCardProps = {
   data: tExpertiseModel;
@@ -18,6 +19,7 @@ type serviceCardProps = {
 export const ServiceCard = memo(({ data, onPress }: serviceCardProps) => {
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
+  const [imageError, setImageError] = useState<boolean>(false);
 
   return (
     <TouchableOpacity
@@ -26,7 +28,15 @@ export const ServiceCard = memo(({ data, onPress }: serviceCardProps) => {
       style={StyleSheet.flatten([staticStyle.container, styles.container])}
     >
       <View style={staticStyle.heading}>
-        <FastImage source={{ uri: data.image }} style={staticStyle.image} />
+        <FastImage
+          source={
+            imageError ? appIcons.ic_noImage : getProfilePicture(data.image)
+          }
+          onError={() => setImageError(true)}
+          resizeMode={FastImage.resizeMode.contain}
+          tintColor={imageError ? theme.colors.textPrimary : ''}
+          style={staticStyle.image}
+        />
         <MediumTextComponent
           text={data.name}
           textStyle={StyleSheet.flatten([staticStyle.title, styles.title])}

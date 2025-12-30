@@ -63,6 +63,7 @@ const staticStyle = StyleSheet.create({
   },
   mainContainer: {
     flexDirection: 'row',
+    alignItems: 'center',
     gap: normalize(12),
   },
   text: {

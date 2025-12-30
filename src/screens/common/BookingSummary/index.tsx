@@ -22,8 +22,13 @@ import { endPoints } from '../../../config/endPoint/apiEndPoint';
 import {
   tBookingDetailsModel,
   transformBookingDetailsModel,
+  transformReviewModel,
+  tReviewModel,
 } from '../../../models/formattedAPI/tBookings';
-import { apiBookingDetailsModel } from '../../../models/api/bookings';
+import {
+  apiBookingDetailsModel,
+  apiReviewModel,
+} from '../../../models/api/bookings';
 
 export const BookingSummaryScreen = ({
   navigation,
@@ -32,47 +37,17 @@ export const BookingSummaryScreen = ({
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
-  const id = route.params;
+  const { id } = route.params;
   const userRole = useSelector((state: rootState) => state.user.userData.role);
-  const [bookingDetails, setBookingDetails] = useState<tBookingDetailsModel>({
-    id: '',
-    tax: 0,
-    hours: 0,
-    total: 0,
-    status: '',
-    expertise: {
-      id: '',
-      name: '',
-      image: '',
-      description: '',
-    },
-    bookingId: '',
-    grandTotal: '',
-    hourlyRate: '',
-    platformFee: 0,
-    bookingDate: '',
-    categoryName: '',
-    consultantName: '',
-    consultantProfilePicture: 0,
-  });
-  // const [ratingText, setRatingText] = useState<string>(data.yourRating);
-  // const [rating, setRating] = useState<number>(data.rating);
+  const [bookingDetails, setBookingDetails] = useState<tBookingDetailsModel>();
+  const [review, setReview] = useState<tReviewModel[]>([]);
 
-  // const navigateToRating = () => {
-  //   navigation.navigate(routeName.YourRating, {
-  //     rating: rating,
-  //     setRating: setRating,
-  //     setYourRating: setRatingText,
-  //     yourRating: ratingText,
-  //   });
-  // };
-
-  // const navigateToConsultantProfile = (id: string) => {
-  //   navigation.navigate(routeName.ConsultantProfile, {
-  //     consultantId: id,
-  //     type: type,
-  //   });
-  // };
+  const navigateToConsultantProfile = () => {
+    navigation.navigate(routeName.ConsultantProfile, {
+      consultantId: bookingDetails?.consultantId ?? '',
+      type: bookingDetails?.expertise?.name ?? '',
+    });
+  };
 
   const getBookingDetails = async () => {
     try {
@@ -81,6 +56,7 @@ export const BookingSummaryScreen = ({
       );
       const transformedData = transformBookingDetailsModel(data);
       setBookingDetails(transformedData);
+      loadReview(transformedData.id);
     } catch (error) {
       console.log(error);
     }
@@ -88,6 +64,14 @@ export const BookingSummaryScreen = ({
 
   const goBack = () => {
     navigation.goBack();
+  };
+
+  const loadReview = async (bookingId: string) => {
+    const res: apiReviewModel[] = await getAPIData(
+      `${endPoints.ratingReviews}/${bookingId}`,
+    );
+    const transformedRes = res.map(r => transformReviewModel(r));
+    setReview(transformedRes);
   };
 
   useEffect(() => {
@@ -118,18 +102,23 @@ export const BookingSummaryScreen = ({
         >
           <BookingStatusCard props={bookingDetails} />
           <BookingSummaryDetailsCard
+            review={review}
+            navigateToConsultantProfile={navigateToConsultantProfile}
             userRole={userRole}
             data={bookingDetails}
           />
           <BookingPaymentDetailsCard
             billData={{
-              grandTotal: Number(bookingDetails.grandTotal),
-              hourlyRate: Number(bookingDetails.hourlyRate),
-              hours: bookingDetails.hours,
-              platformFee: Number(bookingDetails.platformFee),
-              platformPercentage: userRole === 'client' ? 3 : 20,
-              tax: Number(bookingDetails.tax),
-              total: Number(bookingDetails.total),
+              grandTotal: Number(bookingDetails?.grandTotal),
+              hourlyRate: Number(bookingDetails?.hourlyRate),
+              hours: bookingDetails?.hours ?? 0,
+              platformFee: Number(bookingDetails?.platformFee),
+              platformPercentage:
+                userRole === 'client'
+                  ? bookingDetails?.platformPercentage ?? 0
+                  : bookingDetails?.platformPercentageConsultant ?? 0,
+              tax: Number(bookingDetails?.tax),
+              total: Number(bookingDetails?.total),
             }}
             role={userRole}
           />
@@ -152,6 +141,7 @@ export const BookingSummaryScreen = ({
                 ])}
               />
               <FastImage
+                tintColor={theme.colors.textPrimary}
                 source={appIcons.ic_download}
                 style={staticStyle.downloadIcon}
               />

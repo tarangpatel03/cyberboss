@@ -45,7 +45,7 @@ export const BookingPaymentDetailsCard = (
       <BillDetailsComponent amount={props.billData.total} title={t('total')} />
       <BillDetailsComponent
         amount={props.billData.platformFee}
-        title={`${t('platformFee')} (${props.role === 'client' ? 10 : 25}%)`}
+        title={`${t('platformFee')} (${props.billData.platformPercentage}%)`}
       />
       <BillDetailsComponent amount={props.billData.tax} title={t('tax')} />
       <View

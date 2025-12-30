@@ -7,19 +7,24 @@ import { useTranslation } from 'react-i18next';
 import FastImage from 'react-native-fast-image';
 import { Theme } from '../../config/themes/themes';
 import LinearGradient from 'react-native-linear-gradient';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { MediumTextComponent } from '../Text/MediumTextComponent';
 import { RegularTextComponent } from '../Text/RegularTextComponent';
-import { getGradientColor } from '../../utils/gradientColor/gradientColor';
+import {
+  getGradientColor,
+  getServiceImage,
+} from '../../utils/gradientColor/gradientColor';
 import { tBookingDetailsModel } from '../../models/formattedAPI/tBookings';
+import { getProfilePicture } from '../../utils/extractURI/extractImageURI';
+import { appImages } from '../../config/images/imagePath';
+import { useState } from 'react';
+import { Rating } from 'react-native-ratings';
 
 type bookingSummaryDetailsCardProps = {
-  // rating: number;
-  // ratingText: string;
-  // navigateToRating: () => void;
   userRole: 'consultant' | 'client';
-  data: tBookingDetailsModel;
-  // navigateToConsultantProfile: (id: string) => void;
+  data: tBookingDetailsModel | undefined;
+  review: any;
+  navigateToConsultantProfile: () => void;
 };
 
 export const BookingSummaryDetailsCard = (
@@ -28,6 +33,7 @@ export const BookingSummaryDetailsCard = (
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
+  const [imageError, setImageError] = useState<boolean>(false);
 
   return (
     <View style={StyleSheet.flatten([staticStyle.card, styles.container])}>
@@ -46,26 +52,31 @@ export const BookingSummaryDetailsCard = (
         ])}
       />
       <View style={staticStyle.rowLine}>
-        {/* <TouchableOpacity
+        <TouchableOpacity
           disabled={props.userRole === 'consultant'}
           activeOpacity={0.9}
-          onPress={() => props.navigateToConsultantProfile(props.data.)}
-        > */}
-        <FastImage
-          source={props.data.consultantProfilePicture}
-          style={staticStyle.profileImage}
-        />
-        {/* </TouchableOpacity> */}
+          onPress={props.navigateToConsultantProfile}
+        >
+          <FastImage
+            source={
+              imageError
+                ? appImages.img_defaultProfile
+                : getProfilePicture(props.data?.userProfilePicture)
+            }
+            onError={() => setImageError(true)}
+            style={staticStyle.profileImage}
+          />
+        </TouchableOpacity>
         <View style={staticStyle.fullLengthView}>
           <MediumTextComponent
-            text={props.data.consultantName}
+            text={props.data?.userName ?? ''}
             textStyle={StyleSheet.flatten([
               staticStyle.titleText,
               styles.primaryText,
             ])}
           />
           <RegularTextComponent
-            text={`${props.data.hours}hr`}
+            text={`${props.data?.hours}hr`}
             textStyle={StyleSheet.flatten([
               staticStyle.subtitleText,
               styles.secondaryText,
@@ -73,7 +84,7 @@ export const BookingSummaryDetailsCard = (
           />
         </View>
         <MediumTextComponent
-          text={`$${props.data.total}`}
+          text={`$${props.data?.total}`}
           textStyle={StyleSheet.flatten([
             staticStyle.titleText,
             staticStyle.text,
@@ -90,16 +101,22 @@ export const BookingSummaryDetailsCard = (
           x: 0,
           y: 0.5,
         }}
-        colors={getGradientColor(props.data.expertise.name)}
+        colors={getGradientColor(props.data?.expertise?.name)}
         style={staticStyle.gradient}
       >
-        <View style={staticStyle.rowLine}>
+        <View
+          style={StyleSheet.flatten([
+            staticStyle.rowLine,
+            staticStyle.padding8,
+          ])}
+        >
           <FastImage
-            // source={props.data.category.image}
+            resizeMode={FastImage.resizeMode.contain}
+            source={getServiceImage(props.data?.expertise?.name)}
             style={staticStyle.categoryIcon}
           />
           <RegularTextComponent
-            text={props.data.expertise.name}
+            text={props.data?.expertise?.name ?? ''}
             textStyle={StyleSheet.flatten([
               styles.primaryText,
               staticStyle.subtitleText,
@@ -110,17 +127,16 @@ export const BookingSummaryDetailsCard = (
       <View
         style={StyleSheet.flatten([styles.separator, staticStyle.separator])}
       />
-      {/* <TouchableOpacity
+      <TouchableOpacity
         style={StyleSheet.flatten([staticStyle.input, styles.innerContainer])}
         activeOpacity={1}
-        onPress={props.navigateToRating}
       >
         <View style={staticStyle.horizontalCard}>
           <MediumTextComponent
             text={
-              props.ratingText.length === 0
-                ? t('rateYourExperience')
-                : t('yourRating')
+              props.review?.[0]?.reviews
+                ? t('yourRating')
+                : t('rateYourExperience')
             }
             textStyle={StyleSheet.flatten([
               styles.secondaryText,
@@ -131,14 +147,14 @@ export const BookingSummaryDetailsCard = (
             imageSize={18}
             ratingCount={5}
             readonly
-            startingValue={props.rating}
+            startingValue={props?.review?.[0]?.rating}
             tintColor={theme.colors.bgSecondary}
           />
         </View>
-        {props.ratingText.length > 0 && (
+        {props.review?.[0]?.reviews && (
           <View>
             <RegularTextComponent
-              text={props.ratingText}
+              text={props.review?.[0].reviews}
               noOfLines={200}
               textStyle={StyleSheet.flatten([
                 staticStyle.subtitleText,
@@ -147,7 +163,7 @@ export const BookingSummaryDetailsCard = (
             />
           </View>
         )}
-      </TouchableOpacity> */}
+      </TouchableOpacity>
     </View>
   );
 };

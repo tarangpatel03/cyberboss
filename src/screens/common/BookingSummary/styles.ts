@@ -50,6 +50,9 @@ export const staticStyle = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
+  padding8: {
+    padding: normalize(8),
+  },
   input: {
     padding: normalize(12),
     borderRadius: normalize(10),
@@ -67,7 +70,6 @@ export const staticStyle = StyleSheet.create({
     marginRight: normalize(12),
   },
   gradient: {
-    padding: normalize(8),
     borderRadius: normalize(8),
   },
   profileImage: {

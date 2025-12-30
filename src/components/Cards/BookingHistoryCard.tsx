@@ -8,30 +8,34 @@ import { appIcons } from '../../config/icons/iconPath';
 import { width } from '../../config/constants/variables';
 import FastImage from 'react-native-fast-image';
 import { memo } from 'react';
+import { tHomeBookingModel } from '../../models/formattedAPI/tBookings';
+import { getFullDate } from '../../utils/format/formatDate';
+import { getProfilePicture } from '../../utils/extractURI/extractImageURI';
+import { appImages } from '../../config/images/imagePath';
+import { useTranslation } from 'react-i18next';
 
-type bookingHistoryCardProp = {
-  image: number | { uri: string } | undefined;
-  name: string;
-  date: string;
-  service: string;
-  charge: number;
-};
-
-export const BookingHistoryCard = memo((props: bookingHistoryCardProp) => {
+export const BookingHistoryCard = memo((props: tHomeBookingModel) => {
+  const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
 
   return (
     <View style={StyleSheet.flatten([staticStyle.container, styles.container])}>
       <View style={StyleSheet.flatten([staticStyle.header, styles.header])}>
-        <FastImage style={staticStyle.image} source={props.image} />
+        <FastImage
+          style={staticStyle.image}
+          source={
+            getProfilePicture(props.consultantProfilePicture) ??
+            appImages.img_defaultProfile
+          }
+        />
         <View>
           <MediumTextComponent
-            text={props.name}
+            text={props.consultantName ?? t('unknownName')}
             textStyle={StyleSheet.flatten([staticStyle.title, styles.title])}
           />
           <RegularTextComponent
-            text={props.date}
+            text={getFullDate(props.bookingDate)}
             textStyle={StyleSheet.flatten([
               staticStyle.subTitle,
               styles.subTitle,
@@ -43,7 +47,7 @@ export const BookingHistoryCard = memo((props: bookingHistoryCardProp) => {
         <View style={staticStyle.header}>
           <FastImage style={staticStyle.icons} source={appIcons.ic_suitcase} />
           <RegularTextComponent
-            text={props.service}
+            text={props.categoryName}
             textStyle={StyleSheet.flatten([
               staticStyle.subTitle,
               styles.subTitle,
@@ -53,7 +57,7 @@ export const BookingHistoryCard = memo((props: bookingHistoryCardProp) => {
         <View style={staticStyle.header}>
           <FastImage style={staticStyle.icons} source={appIcons.ic_cash} />
           <RegularTextComponent
-            text={`$${props.charge}`}
+            text={`$${props.grandTotal}`}
             textStyle={StyleSheet.flatten([
               staticStyle.subTitle,
               styles.subTitle,

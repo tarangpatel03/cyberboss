@@ -8,11 +8,16 @@ import { appIcons } from '../../config/icons/iconPath';
 import { PrimaryButtonComponent } from '../Buttons/PrimaryButton';
 import { CircularIconButtonComponent } from '../Buttons/CircularIconButton';
 import LinearGradient from 'react-native-linear-gradient';
-import { appColors } from '../../config/colors/colors';
 import FastImage from 'react-native-fast-image';
-import { memo, useRef } from 'react';
+import { memo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { tBookingHistoryModel } from '../../models/formattedAPI/tBookings';
+import { getProfilePicture } from '../../utils/extractURI/extractImageURI';
+import { appImages } from '../../config/images/imagePath';
+import {
+  getGradientColor,
+  getServiceImage,
+} from '../../utils/gradientColor/gradientColor';
 
 type bookingCardProps = {
   props: tBookingHistoryModel;
@@ -26,6 +31,7 @@ export const BookingCard = memo(
     const theme = useTheme<Theme>();
     const styles = createStyles(theme);
     const moreButtonRef = useRef<View>(null);
+    const [imageError, setimageError] = useState<boolean>(false);
 
     const handleMorePress = () => {
       if (moreButtonRef.current) {
@@ -79,7 +85,12 @@ export const BookingCard = memo(
         />
         <View style={staticStyle.rowLine}>
           <FastImage
-            source={props.userProfilePicture}
+            source={
+              imageError
+                ? appImages.img_defaultProfile
+                : getProfilePicture(props.userProfilePicture)
+            }
+            onError={() => setimageError(true)}
             style={staticStyle.profileImage}
           />
           <View style={staticStyle.fullLengthView}>
@@ -108,15 +119,21 @@ export const BookingCard = memo(
           />
         </View>
         <LinearGradient
-          colors={[appColors.app_2A71ED12, appColors.app_2A71ED00]}
+          colors={getGradientColor(props.categoryName)}
           start={{ x: 0, y: 0.5 }}
           end={{ x: 1, y: 0.5 }}
           style={staticStyle.gradient}
         >
-          <View style={staticStyle.rowLine}>
+          <View
+            style={StyleSheet.flatten([
+              staticStyle.rowLine,
+              staticStyle.padding8,
+            ])}
+          >
             <FastImage
               style={staticStyle.categoryIcon}
-              // source={obj.}
+              resizeMode={FastImage.resizeMode.contain}
+              source={getServiceImage(props.categoryName)}
             />
             <RegularTextComponent
               text={props.categoryName}
@@ -191,7 +208,6 @@ const staticStyle = StyleSheet.create({
     alignSelf: 'flex-end',
   },
   gradient: {
-    padding: normalize(8),
     borderRadius: normalize(8),
   },
   profileImage: {
@@ -199,6 +215,9 @@ const staticStyle = StyleSheet.create({
     height: normalize(48),
     borderRadius: normalize(25),
     marginRight: normalize(8),
+  },
+  padding8: {
+    padding: normalize(8),
   },
   rowLine: {
     flexDirection: 'row',
@@ -236,7 +255,6 @@ const staticStyle = StyleSheet.create({
   categoryIcon: {
     width: normalize(16),
     height: normalize(16),
-    resizeMode: 'contain',
     marginRight: normalize(12),
   },
   tinyText: {

@@ -65,6 +65,10 @@ export const ClientHomeScreen = ({
     navigation.navigate(routeName.Profile);
   };
 
+  const navigateToHistory = () => {
+    navigation.navigate(routeName.History);
+  };
+
   const navigateToContactSupport = () => {
     navigation.navigate(routeName.ContactSupport);
   };
@@ -75,11 +79,12 @@ export const ClientHomeScreen = ({
 
   const renderBookingItem = ({ item }: any) => (
     <BookingHistoryCard
-      charge={item.charge}
-      date={item.date}
-      name={item.name}
-      service={item.service}
-      image={item.profilePicture}
+      bookingDate={item.bookingDate}
+      categoryName={item.categoryName}
+      consultantName={item.consultantName}
+      consultantProfilePicture={item.consultantProfilePicture}
+      grandTotal={item.grandTotal}
+      id={item.id}
     />
   );
 
@@ -95,6 +100,7 @@ export const ClientHomeScreen = ({
     return (
       <HomeScreenListHeaderComponent
         homeData={homeData}
+        navigateToHistory={navigateToHistory}
         navigateToWorkshop={navigateToWorkshop}
         renderWorkshopItem={renderWorkshopItem}
         renderBookingItem={renderBookingItem}

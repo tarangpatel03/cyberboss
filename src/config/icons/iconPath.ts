@@ -72,5 +72,6 @@ export const appIcons = {
   ic_dot: require(`${iconPath}/ic_dot.png`),
   ic_flag: require(`${iconPath}/ic_flag.png`),
   ic_done: require(`${iconPath}/ic_done.png`),
+  ic_noImage: require(`${iconPath}/ic_noImage.png`),
   ic_download: require(`${iconPath}/ic_download.png`),
 };

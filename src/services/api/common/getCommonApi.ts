@@ -9,6 +9,6 @@ export const getAPIData = async (route: string, page?: number) => {
     });
     return response.data.payload;
   } catch (error) {
-    throw new Error(error as string);
+    throw error;
   }
 };

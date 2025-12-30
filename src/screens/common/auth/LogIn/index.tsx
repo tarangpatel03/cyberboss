@@ -51,7 +51,8 @@ export const LogInScreen = ({
   const handleSignIn = async () => {
     try {
       setButtonText('loading');
-      if (validateEmail(email) && validatePassword(password)) {
+      // if (validateEmail(email) && validatePassword(password)) {
+      if (validateEmail(email)) {
         const res = await signIn(email, password);
         if (res) {
           dispatch(setUser(res.userToken.access_token));

@@ -9,6 +9,7 @@ import { tClientHomeModel } from '../../models/formattedAPI/tHome';
 
 type homeScreenListHeaderProps = {
   homeData: tClientHomeModel;
+  navigateToHistory: () => void;
   navigateToWorkshop: () => void;
   renderWorkshopItem: ({ item }: any) => React.JSX.Element;
   renderBookingItem: ({ item }: any) => React.JSX.Element;
@@ -35,7 +36,7 @@ export const HomeScreenListHeaderComponent = (
         <HomeScreenWorkshopList
           data={props.homeData.bookings}
           type={t('bookingHistory')}
-          navigateToWorkshop={props.navigateToWorkshop}
+          navigateToWorkshop={props.navigateToHistory}
           renderItem={props.renderBookingItem}
         />
       )}

@@ -3,6 +3,8 @@ import {
   apiBookingHistoryModel,
   apiBookingDetailsModel,
   apiHomeBookingModel,
+  apiBookingExpertise,
+  apiReviewModel,
 } from '../api/bookings';
 
 export type tBookingBillCount = {
@@ -12,15 +14,19 @@ export type tBookingBillCount = {
 
 export type tBookingHistoryModel = {
   id: string;
+  bookingId: string;
   userId: string;
   consultantId: string;
   userName: string;
-  userProfilePicture: number | { uri: string } | undefined;
+  userProfilePicture: number | string | { uri: string } | undefined;
+  platformPercentage: number;
+  platformPercentageConsultant: number;
   bookingDate: string;
   status: string;
   categoryName: string;
-  grandTotal: string;
-  bookingId: string;
+  discountAmount: number;
+  total: string;
+  grandTotal: number;
   hours: number;
 };
 
@@ -35,24 +41,41 @@ export type tHomeBookingModel = {
 
 export type tBookingDetailsModel = {
   id: string;
-  consultantName: string;
-  consultantProfilePicture: number | { uri: string } | undefined;
-  bookingDate: string;
-  categoryName: string;
-  grandTotal: string;
   bookingId: string;
+  userId: string;
+  consultantId: string;
+  userName: string;
+  userProfilePicture: string | number | { uri: string } | undefined;
+  platformPercentage: number;
+  platformPercentageConsultant: number;
+  bookingDate: string;
   status: string;
+  categoryName: string;
+  discountAmount: number;
+  total: string;
+  grandTotal: number;
   hours: number;
   hourlyRate: string;
-  total: number;
-  platformFee: number;
-  tax: number;
-  expertise: {
-    id: string;
-    name: string;
-    image: string | null;
-    description: string | null;
-  };
+  platformFee: string;
+  tax: string;
+  expertise: tBookingExpertise;
+};
+
+export type tReviewModel = {
+  id: string;
+  bookingId: string;
+  rating: string;
+  reviews: string;
+  createdAt: string;
+};
+
+export type tBookingExpertise = {
+  id: string;
+  name: string;
+  image: string | number | { uri: string } | undefined;
+  description: string;
+  rate: number;
+  bookingCount: number | null;
 };
 
 export const transformBookingBillCount: (
@@ -81,17 +104,46 @@ export const transformBookingHistoryModel: (
   data: apiBookingHistoryModel,
 ) => tBookingHistoryModel = (data: apiBookingHistoryModel) => {
   return {
-    bookingDate: data.booking_date,
-    bookingId: data.booking_id,
-    categoryName: data.category_name,
-    consultantId: data.consultant_id,
-    grandTotal: data.grand_total,
-    hours: data.hours,
     id: data.id,
+    hours: data.hours,
+    total: data.total,
     status: data.status,
     userId: data.user_id,
     userName: data.user_name,
+    bookingId: data.booking_id,
+    grandTotal: data.grand_total,
+    bookingDate: data.booking_date,
+    categoryName: data.category_name,
+    consultantId: data.consultant_id,
+    discountAmount: data.discount_amount,
+    platformPercentage: data.platform_percentage,
     userProfilePicture: data.user_profile_picture,
+    platformPercentageConsultant: data.platform_percentage_consultant,
+  };
+};
+
+const transformExpertise: (data: apiBookingExpertise) => tBookingExpertise = (
+  data: apiBookingExpertise,
+) => {
+  return {
+    bookingCount: data.booking_count,
+    description: data.description,
+    id: data.id,
+    image: data.image,
+    name: data.name,
+    rate: data.rate,
+  };
+};
+
+export const transformReviewModel: (data: apiReviewModel) => tReviewModel = (
+  data: apiReviewModel,
+) => {
+  return {
+    bookingId: data.booking_id,
+    createdAt: data.created_at,
+    id: data.id,
+    rating: data.rating,
+    reviews: data.reviews,
   };
 };
 
@@ -106,12 +158,17 @@ export const transformBookingDetailsModel: (
     hours: data.hours,
     id: data.id,
     status: data.status,
-    consultantName: data.consultant_name,
-    consultantProfilePicture: data.consultant_profile_picture,
-    expertise: data.expertise,
+    expertise: transformExpertise(data.expertise),
     hourlyRate: data.hourly_rate,
     platformFee: data.platform_fee,
     tax: data.tax,
     total: data.total,
+    consultantId: data.consultant_id,
+    discountAmount: data.discount_amount,
+    platformPercentage: data.platform_percentage,
+    platformPercentageConsultant: data.platform_percentage_consultant,
+    userId: data.user_id,
+    userName: data.user_name,
+    userProfilePicture: data.user_profile_picture,
   };
 };

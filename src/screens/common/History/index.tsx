@@ -57,6 +57,8 @@ export const HistoryScreen = ({
       setHistory(transformedData);
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoader(false);
     }
   };
 
@@ -100,7 +102,7 @@ export const HistoryScreen = ({
   };
 
   useEffect(() => {
-    loadData().then(() => setLoader(false));
+    loadData();
   }, []);
 
   return (

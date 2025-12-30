@@ -19,7 +19,7 @@ export const staticStyle = StyleSheet.create({
   list: {
     alignItems: 'center',
     justifyContent: 'center',
-    paddingBottom: normalize(20),
+    paddingBottom: normalize(100),
   },
   listItems: {
     flexGrow: 1,

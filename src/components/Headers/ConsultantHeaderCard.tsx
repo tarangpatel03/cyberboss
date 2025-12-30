@@ -22,7 +22,7 @@ import { tConsultantHomeModel } from '../../models/formattedAPI/tHome';
 import { tProfileModel } from '../../models/formattedAPI/tProfile';
 import { useSelector } from 'react-redux';
 import { rootState } from '../../redux/store';
-import { getPicture } from '../../utils/extractURI/extractImageURI';
+import { getProfilePicture } from '../../utils/extractURI/extractImageURI';
 
 type consultantHeaderCardProps = {
   profileData: tProfileModel;
@@ -63,7 +63,7 @@ export const ConsultantHeaderCard = (props: consultantHeaderCardProps) => {
                     profilePictureError
                       ? appImages.img_defaultProfile
                       : // : appImages.img_defaultProfile
-                        getPicture(profilePicture)
+                        getProfilePicture(profilePicture)
                   }
                   style={staticStyle.image}
                   onError={() => setProfilePictureError(true)}

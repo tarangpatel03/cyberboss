@@ -35,8 +35,8 @@ export const ChatScreen = ({
   const uid = useSelector(
     (state: rootState) => state.user.userData.firebaseUid,
   );
-  // const testUID = '9f8f1a03-948d-4e66-89c0-656b0a5ae0c1';
-  // const testUID = '9f9fa92c-2a4e-4ad2-b4b1-a72e2132f1a2';
+  // const testUID = '9f8f1a03-948d-4e66-89c0-656b0a5ae0c1'; // More Chat
+  // const testUID = '9f9fa92c-2a4e-4ad2-b4b1-a72e2132f1a2'; // Unread Chats
 
   const getUserChats = async (userId: string) => {
     try {

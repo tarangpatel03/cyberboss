@@ -13,6 +13,8 @@ import {
   staticStyle,
 } from '../../screens/client/ConsultantProfile/styles';
 import { tConsultantDetailsModel } from '../../models/formattedAPI/tConsultant';
+import { getProfilePicture } from '../../utils/extractURI/extractImageURI';
+import { useState } from 'react';
 
 type consultantProfileHeaderProps = {
   data: tConsultantDetailsModel;
@@ -23,6 +25,7 @@ export const ConsultantProfileHeader = (
 ) => {
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
+  const [profilePictureError, setProfilePctureError] = useState<boolean>(false);
 
   return (
     <View style={staticStyle.profileContainer}>
@@ -31,12 +34,11 @@ export const ConsultantProfileHeader = (
       >
         <FastImage
           source={
-            props.data.profilePicture
-              ? {
-                  uri: props.data.profilePicture,
-                }
-              : appImages.img_defaultProfile
+            profilePictureError
+              ? appImages.img_defaultProfile
+              : getProfilePicture(props.data.profilePicture)
           }
+          onError={() => setProfilePctureError(true)}
           style={staticStyle.image}
         />
         <View>

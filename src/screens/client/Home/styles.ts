@@ -41,7 +41,7 @@ export const staticStyle = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'flex-end',
     width: '100%',
-    height: normalize(60, 'height'),
+    height: normalize(70, 'height'),
   },
   profilePictureName: {
     right: 0,

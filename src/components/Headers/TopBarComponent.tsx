@@ -11,7 +11,7 @@ import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { rootState } from '../../redux/store';
-import { getPicture } from '../../utils/extractURI/extractImageURI';
+import { getProfilePicture } from '../../utils/extractURI/extractImageURI';
 
 type topBarComponentProps = {
   isSubscriber: boolean;
@@ -40,7 +40,7 @@ export const TopBarComponent = (props: topBarComponentProps) => {
               source={
                 profileImageError
                   ? appImages.img_defaultProfile
-                  : getPicture(profilePicture)
+                  : getProfilePicture(profilePicture)
               }
               style={staticStyle.image}
               onError={() => setProfileImageError(true)}

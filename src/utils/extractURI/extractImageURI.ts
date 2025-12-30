@@ -18,7 +18,7 @@ export const extractImageUri = (
   return asset?.uri || null;
 };
 
-export const getPicture = (
+export const getProfilePicture = (
   picture: number | string | { uri: string } | undefined,
 ) => {
   if (typeof picture === 'string') {

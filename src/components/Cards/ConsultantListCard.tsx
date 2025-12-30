@@ -8,8 +8,9 @@ import { appIcons } from '../../config/icons/iconPath';
 import { formatBooking } from '../../utils/format/formatDate';
 import { appImages } from '../../config/images/imagePath';
 import FastImage from 'react-native-fast-image';
-import { memo } from 'react';
+import { memo, useState } from 'react';
 import { tConsultantModel } from '../../models/formattedAPI/tConsultant';
+import { getProfilePicture } from '../../utils/extractURI/extractImageURI';
 
 type consultantListCardProps = {
   data: tConsultantModel;
@@ -20,6 +21,8 @@ export const ConsultantListCard = memo(
   ({ data, onPress }: consultantListCardProps) => {
     const theme = useTheme<Theme>();
     const styles = createStyles(theme);
+    const [profilePictureError, setProfilePictureError] =
+      useState<boolean>(false);
 
     return (
       <TouchableOpacity
@@ -33,10 +36,11 @@ export const ConsultantListCard = memo(
           <FastImage
             style={staticStyle.profilePicture}
             source={
-              data.profilePicture
-                ? { uri: data.profilePicture }
-                : appImages.img_defaultProfile
+              profilePictureError
+                ? appImages.img_defaultProfile
+                : { uri: getProfilePicture(data.profilePicture) }
             }
+            onError={() => setProfilePictureError(true)}
           />
           <View
             style={StyleSheet.flatten([

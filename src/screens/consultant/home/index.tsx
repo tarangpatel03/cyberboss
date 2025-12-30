@@ -65,6 +65,10 @@ export const ConsultantHomeScreen = ({
     navigation.navigate(routeName.Notification);
   };
 
+  const navigateToProfile = () => {
+    navigation.navigate(routeName.Profile);
+  };
+
   const getData = async () => {
     try {
       const res1: apiConsultantHomeModel = await getAPIData(
@@ -131,6 +135,7 @@ export const ConsultantHomeScreen = ({
         <ConsultantHeaderCard
           profileData={profileData}
           userData={homeData}
+          navigateToProfile={navigateToProfile}
           navigateToNotification={navigateToNotification}
         />
         {bookingHistory.length !== 0 && (

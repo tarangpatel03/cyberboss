@@ -38,3 +38,36 @@ export const formatBooking = (booking_count: number) => {
     return `${booking_count} Bookings`;
   }
 };
+
+export const formatFirebaseTimestamp = (timestamp: any) => {
+  if (!timestamp?._seconds) return '';
+
+  const date = new Date(
+    timestamp._seconds * 1000 + timestamp._nanoseconds / 1e6,
+  );
+
+  const messageDate = date.toLocaleDateString('en-GB', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  });
+
+  const now = new Date();
+
+  const msgDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const yesterday = new Date(today);
+  yesterday.setDate(today.getDate() - 1);
+
+  if (msgDate.getTime() === today.getTime()) {
+    return date.toLocaleTimeString('en-GB', {
+      hour12: true,
+      hour: 'numeric',
+      minute: '2-digit',
+    });
+  } else if (msgDate.getTime() === yesterday.getTime()) {
+    return 'Yesterday';
+  }
+
+  return messageDate;
+};

@@ -20,17 +20,24 @@ import RadialGradient from 'react-native-radial-gradient';
 import { width } from '../../config/constants/variables';
 import { tConsultantHomeModel } from '../../models/formattedAPI/tHome';
 import { tProfileModel } from '../../models/formattedAPI/tProfile';
+import { useSelector } from 'react-redux';
+import { rootState } from '../../redux/store';
+import { getPicture } from '../../utils/extractURI/extractImageURI';
 
 type consultantHeaderCardProps = {
   profileData: tProfileModel;
   userData: tConsultantHomeModel;
   navigateToNotification: () => void;
+  navigateToProfile: () => void;
 };
 
 export const ConsultantHeaderCard = (props: consultantHeaderCardProps) => {
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
+  const { name, profilePicture } = useSelector(
+    (state: rootState) => state.user.userData,
+  );
   const [profilePictureError, setProfilePictureError] =
     useState<boolean>(false);
 
@@ -45,27 +52,32 @@ export const ConsultantHeaderCard = (props: consultantHeaderCardProps) => {
         <View
           style={StyleSheet.flatten([staticStyle.row, staticStyle.paddingTop])}
         >
-          <View style={staticStyle.row}>
-            <View style={staticStyle.image}>
-              <FastImage
-                source={
-                  profilePictureError
-                    ? appImages.img_defaultProfile
-                    : // : appImages.img_defaultProfile
-                      props.profileData.profilePicture
-                }
-                style={staticStyle.image}
-                onError={() => setProfilePictureError(true)}
+          <TouchableOpacity
+            activeOpacity={0.8}
+            onPress={props.navigateToProfile}
+          >
+            <View style={staticStyle.row}>
+              <View style={staticStyle.image}>
+                <FastImage
+                  source={
+                    profilePictureError
+                      ? appImages.img_defaultProfile
+                      : // : appImages.img_defaultProfile
+                        getPicture(profilePicture)
+                  }
+                  style={staticStyle.image}
+                  onError={() => setProfilePictureError(true)}
+                />
+              </View>
+              <SemiBoldTextComponent
+                text={name}
+                textStyle={StyleSheet.flatten([
+                  staticStyle.name,
+                  styles.whiteText,
+                ])}
               />
             </View>
-            <SemiBoldTextComponent
-              text={props.profileData.name}
-              textStyle={StyleSheet.flatten([
-                staticStyle.name,
-                styles.whiteText,
-              ])}
-            />
-          </View>
+          </TouchableOpacity>
           <TouchableOpacity
             activeOpacity={0.7}
             onPress={props.navigateToNotification}

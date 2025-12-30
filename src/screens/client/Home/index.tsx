@@ -39,8 +39,7 @@ export const ClientHomeScreen = ({
   const handleOnStop = () => dispatch(setShowTour(false));
   const { canStart, start, eventEmitter } = useTourGuideController();
   const showTour = useSelector((state: rootState) => state.user.showTour);
-  const { loader, refreshing, homeData, profileData, onRefresh, getPicture } =
-    useClientHome();
+  const { loader, refreshing, homeData, onRefresh } = useClientHome();
 
   const navigateToWorkshop = () => {
     navigation.navigate(routeName.Workshop);
@@ -145,8 +144,6 @@ export const ClientHomeScreen = ({
           ])}
         >
           <TopBarComponent
-            name={profileData.name}
-            picture={getPicture()}
             isSubscriber={homeData.isSubscriber}
             onPressProfile={navigateToProfile}
             onPressSubscription={navigateToSubscription}

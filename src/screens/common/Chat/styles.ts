@@ -7,9 +7,8 @@ export const staticStyle = StyleSheet.create({
     flex: 1,
   },
   header: {
-    marginVertical: normalize(12, 'height'),
-    paddingHorizontal: normalize(12),
     gap: normalize(12, 'height'),
+    marginVertical: normalize(12, 'height'),
   },
   shimmerContainer: {
     width: '100%',
@@ -17,15 +16,10 @@ export const staticStyle = StyleSheet.create({
     borderRadius: normalize(8),
     marginBottom: normalize(16),
   },
-  listContainer: {
-    paddingHorizontal: normalize(12),
-    flex: 1,
-  },
   list: {
-    height: '100%',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingHorizontal: normalize(12),
+    paddingBottom: normalize(20),
   },
   listItems: {
     flexGrow: 1,

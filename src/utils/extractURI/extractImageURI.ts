@@ -17,3 +17,13 @@ export const extractImageUri = (
     Image.resolveAssetSource(source);
   return asset?.uri || null;
 };
+
+export const getPicture = (
+  picture: number | string | { uri: string } | undefined,
+) => {
+  if (typeof picture === 'string') {
+    return { uri: picture };
+  } else {
+    return picture;
+  }
+};

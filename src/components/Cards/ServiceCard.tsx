@@ -43,11 +43,11 @@ export const ServiceCard = memo(({ data, onPress }: serviceCardProps) => {
             ])}
           />
         </View>
-        {data.bookingCount && data.bookingCount > 0 && (
+        {data.bookingCount !== 0 && (
           <View style={staticStyle.heading}>
             <FastImage source={appIcons.ic_check} style={staticStyle.icon} />
             <RegularTextComponent
-              text={formatBooking(data.bookingCount)}
+              text={formatBooking(data.bookingCount ?? 0)}
               textStyle={StyleSheet.flatten([
                 staticStyle.subTitle,
                 styles.subTitle,

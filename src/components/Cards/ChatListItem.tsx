@@ -5,23 +5,57 @@ import { MediumTextComponent } from '../Text/MediumTextComponent';
 import { RegularTextComponent } from '../Text/RegularTextComponent';
 import normalize from '../../utils/normalize/normalize';
 import FastImage from 'react-native-fast-image';
-import { memo } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { appImages } from '../../config/images/imagePath';
+import firestore from '@react-native-firebase/firestore';
+import { formatFirebaseTimestamp } from '../../utils/format/formatDate';
+import { width } from '../../config/constants/variables';
 
 type chatListItemProps = {
-  name: string;
+  data: any;
   uid: string;
-  lastMessage: string;
-  // time: string;
-  unread: {
-    [symbol: string]: number;
-  };
   onPress: () => void;
+};
+
+type userDataType = {
+  name: string;
+  date: string;
+  profile_image: string;
 };
 
 export const ChatListItem = memo((props: chatListItemProps) => {
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
+  const [userData, setUserData] = useState<userDataType>({
+    name: '',
+    date: '',
+    profile_image: '',
+  });
+
+  const getUserData = async () => {
+    try {
+      const userID = props.data.users.filter((x: string) => x !== props.uid)[0];
+      const data = await firestore()
+        .collection('users')
+        .doc(userID)
+        .get()
+        .then(q => q.data());
+      const date = formatFirebaseTimestamp(props.data.lastMessageTimestamp);
+      if (data)
+        setUserData({
+          name: data.name,
+          profile_image: data.profile_image,
+          date: date,
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getUserData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <TouchableOpacity
@@ -36,30 +70,34 @@ export const ChatListItem = memo((props: chatListItemProps) => {
       <View style={staticStyle.info}>
         <View style={staticStyle.line}>
           <MediumTextComponent
-            text={props.name}
+            text={userData.name}
             textStyle={StyleSheet.flatten([
               staticStyle.titleText,
               styles.titleText,
             ])}
           />
-          {/* <MediumTextComponent
-            text={props.time}
+          <MediumTextComponent
+            text={`${userData.date}`}
             textStyle={StyleSheet.flatten([
               staticStyle.timeText,
-              props.unread > 0 ? styles.timeUnreadText : styles.timeText,
+              props.data.unreadCount[props.uid] > 0
+                ? styles.timeUnreadText
+                : styles.timeText,
             ])}
-          /> */}
+          />
         </View>
         <View style={staticStyle.line}>
           <RegularTextComponent
-            text={props.lastMessage}
+            text={`${
+              props.data.lastMessageSender === props.uid ? 'you:' : ''
+            } ${props.data.lastMessage ?? ''}`}
             noOfLines={1}
             textStyle={StyleSheet.flatten([
               staticStyle.msgText,
               styles.msgText,
             ])}
           />
-          {props.unread.uid > 0 && (
+          {props.data.unreadCount[props.uid] > 0 && (
             <View
               style={StyleSheet.flatten([
                 staticStyle.unReadContainer,
@@ -67,7 +105,7 @@ export const ChatListItem = memo((props: chatListItemProps) => {
               ])}
             >
               <RegularTextComponent
-                text={`${props.unread.uid}`}
+                text={`${props.data.unreadCount[props.uid]}`}
                 textStyle={StyleSheet.flatten([
                   staticStyle.unReadText,
                   styles.unReadText,
@@ -83,26 +121,30 @@ export const ChatListItem = memo((props: chatListItemProps) => {
 
 const staticStyle = StyleSheet.create({
   container: {
+    gap: normalize(8),
     flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: normalize(16, 'height'),
     borderBottomWidth: 0.5,
-    gap: normalize(8),
+    width: width,
+    paddingHorizontal: normalize(12),
+    paddingVertical: normalize(16, 'height'),
   },
   info: {
     gap: normalize(4, 'height'),
   },
   line: {
     flexDirection: 'row',
-    width: '90%',
+    width: '91%',
+    alignItems: 'center',
     justifyContent: 'space-between',
   },
   titleText: {
-    fontSize: normalize(16),
+    fontSize: normalize(14),
     fontWeight: '500',
   },
   msgText: {
     fontSize: normalize(14),
+    maxWidth: normalize(265),
     fontWeight: '400',
   },
   timeText: {
@@ -130,7 +172,7 @@ const staticStyle = StyleSheet.create({
 const createStyles = (theme: Theme) =>
   StyleSheet.create({
     container: {
-      borderBottomColor: theme.colors.borderPrimary,
+      borderColor: theme.colors.borderPrimary,
     },
     titleText: {
       color: theme.colors.textPrimary,

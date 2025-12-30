@@ -17,17 +17,6 @@ import { ChatListItem } from '../../../components/Cards/ChatListItem';
 import { ListEmptyCard } from '../../../components/Cards/ListEmptyCard';
 import { appImages } from '../../../config/images/imagePath';
 
-// type firebaseChatProps = {
-//   createdAt: { _seconds: 1754974672; _nanoseconds: 9000000 };
-//   id: string;
-//   lastMessage: string;
-//   lastMessageSender: string;
-//   lastMessageTimestamp: { seconds: number; nanoseconds: number };
-//   lastMessageType: string;
-//   unreadCount: { [symbol: string]: number };
-//   users: string[];
-// };
-
 export const ChatScreen = ({
   navigation,
 }: rootNavigationProps<routeName.Chat>) => {
@@ -43,11 +32,11 @@ export const ChatScreen = ({
     navigation.navigate(routeName.Notification);
   };
 
-  // const uid = useSelector(
-  //   (state: rootState) => state.user.userData.firebaseUid,
-  // );
+  const uid = useSelector(
+    (state: rootState) => state.user.userData.firebaseUid,
+  );
   // const testUID = '9f8f1a03-948d-4e66-89c0-656b0a5ae0c1';
-  const testUID = '9f9fa92c-2a4e-4ad2-b4b1-a72e2132f1a2';
+  // const testUID = '9f9fa92c-2a4e-4ad2-b4b1-a72e2132f1a2';
 
   const getUserChats = async (userId: string) => {
     try {
@@ -62,7 +51,6 @@ export const ChatScreen = ({
           }));
           return data;
         });
-      console.log('data1: ', data1);
       setChats(data1);
     } catch (error) {
       console.log(error);
@@ -79,7 +67,7 @@ export const ChatScreen = ({
     if (!isLoggedIn) {
       navigateToLogIn();
     }
-    getUserChats(testUID);
+    getUserChats(uid);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoggedIn]);
 
@@ -103,17 +91,13 @@ export const ChatScreen = ({
           <View style={staticStyle.list}>
             <FlatList
               data={chats}
+              directionalLockEnabled={true}
+              keyExtractor={item => item.id}
               showsVerticalScrollIndicator={false}
               renderItem={({ item }) => (
-                <ChatListItem
-                  uid={testUID}
-                  lastMessage={item.lastMessage}
-                  name={item.users[0].slice(0, 7)}
-                  onPress={() => {}}
-                  // time={item.lastMessageTimestamp}
-                  unread={item.unreadCount}
-                />
+                <ChatListItem data={item} uid={uid} onPress={() => {}} />
               )}
+              contentContainerStyle={staticStyle.listItems}
               ListEmptyComponent={
                 <ListEmptyCard
                   text={t('noChatHistory')}

@@ -1,6 +1,5 @@
 import { getAPIData } from '../../../services/api/common/getCommonApi';
 import { useEffect, useState } from 'react';
-import { appImages } from '../../../config/images/imagePath';
 import { setUserData } from '../../../redux/features/userSlice';
 import { useDispatch } from 'react-redux';
 import { endPoints } from '../../../config/endPoint/apiEndPoint';
@@ -12,10 +11,7 @@ import {
   tClientHomeModel,
   transformClientHomeModal,
 } from '../../../models/formattedAPI/tHome';
-import {
-  tProfileModel,
-  transformProfileModel,
-} from '../../../models/formattedAPI/tProfile';
+import { transformProfileModel } from '../../../models/formattedAPI/tProfile';
 
 export function useClientHome() {
   const dispatch = useDispatch();
@@ -27,23 +23,6 @@ export function useClientHome() {
     workshops: [],
     expertises: [],
     isSubscriber: false,
-  });
-
-  const [profileData, setProfileData] = useState<tProfileModel>({
-    id: '',
-    email: '',
-    bio: null,
-    rate: null,
-    name: 'User',
-    loginType: '',
-    services: [],
-    role: 'client',
-    expertises: [],
-    isVerified: null,
-    phoneNumber: null,
-    profileSetup: false,
-    experienceYear: null,
-    profilePicture: appImages.img_defaultProfile,
   });
 
   const handleHomeScreenWithoutLogIn = async () => {
@@ -67,7 +46,6 @@ export function useClientHome() {
         endPoints.consultantProfile,
       );
       const transformedData2 = transformProfileModel(res);
-      setProfileData(transformedData2);
       dispatch(
         setUserData({
           id: transformedData2.id,
@@ -97,14 +75,6 @@ export function useClientHome() {
     }
   };
 
-  const getPicture = () => {
-    if (typeof profileData.profilePicture === 'string') {
-      return { uri: profileData.profilePicture };
-    } else {
-      return profileData.profilePicture;
-    }
-  };
-
   useEffect(() => {
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -114,8 +84,6 @@ export function useClientHome() {
     loader,
     refreshing,
     homeData,
-    profileData,
     onRefresh,
-    getPicture,
   } as const;
 }

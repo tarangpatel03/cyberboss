@@ -9,10 +9,11 @@ import LinearGradient from 'react-native-linear-gradient';
 import { SemiBoldTextComponent } from '../Text/SemiBoldTextComponent';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { rootState } from '../../redux/store';
+import { getPicture } from '../../utils/extractURI/extractImageURI';
 
 type topBarComponentProps = {
-  name: string;
-  picture: number | { uri: string } | undefined;
   isSubscriber: boolean;
   onPressProfile: () => void;
   onPressSubscription: () => void;
@@ -22,7 +23,11 @@ type topBarComponentProps = {
 export const TopBarComponent = (props: topBarComponentProps) => {
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
+  const { name, profilePicture } = useSelector(
+    (state: rootState) => state.user.userData,
+  );
   const [profileImageError, setProfileImageError] = useState<boolean>(false);
+
   return (
     <LinearGradient
       style={staticStyle.topBar}
@@ -33,13 +38,15 @@ export const TopBarComponent = (props: topBarComponentProps) => {
           <View style={staticStyle.profilePictureName}>
             <FastImage
               source={
-                profileImageError ? appImages.img_defaultProfile : props.picture
+                profileImageError
+                  ? appImages.img_defaultProfile
+                  : getPicture(profilePicture)
               }
               style={staticStyle.image}
               onError={() => setProfileImageError(true)}
             />
             <SemiBoldTextComponent
-              text={props.name}
+              text={name}
               textStyle={StyleSheet.flatten([
                 staticStyle.profileText,
                 styles.profileText,

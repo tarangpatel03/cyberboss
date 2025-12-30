@@ -15,7 +15,7 @@ import { isDarkMode } from '../../utils/theme/darkMode';
 import { appImages } from '../../config/images/imagePath';
 import LinearGradient from 'react-native-linear-gradient';
 import { MediumTextComponent } from '../Text/MediumTextComponent';
-import { createStyles, staticStyle } from '../../screens/common/rating/styles';
+import { createStyles, staticStyle } from '../../screens/common/Rating/styles';
 
 type reviewInputProps = {
   text: string;

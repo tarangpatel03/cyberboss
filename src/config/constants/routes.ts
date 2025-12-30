@@ -11,7 +11,7 @@ export enum routeName {
   History = 'History',
   Profile = 'Profile',
   Workshop = 'Workshop',
-  AreaOfExperties = 'AreaOfExperties',
+  AreaOfExpertise = 'AreaOfExpertise',
   ServicesYouOffer = 'ServicesYouOffer',
   PersonalDetails = 'PersonalDetails',
   PendingVerification = 'PendingVerification',

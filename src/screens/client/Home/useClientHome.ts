@@ -4,10 +4,10 @@ import { appImages } from '../../../config/images/imagePath';
 import { setUserData } from '../../../redux/features/userSlice';
 import { useDispatch } from 'react-redux';
 import { endPoints } from '../../../config/endPoint/apiEndPoint';
-import { apiExpertiesModel } from '../../../models/api/consultant';
+import { apiExpertiseModel } from '../../../models/api/consultant';
 import { apiClientHomeModel } from '../../../models/api/home';
 import { apiProfileModel } from '../../../models/api/profile';
-import { transformExpertiesModel } from '../../../models/formattedAPI/tConsultant';
+import { transformExpertiseModel } from '../../../models/formattedAPI/tConsultant';
 import {
   tClientHomeModel,
   transformClientHomeModal,
@@ -47,8 +47,8 @@ export function useClientHome() {
   });
 
   const handleHomeScreenWithoutLogIn = async () => {
-    const res: apiExpertiesModel[] = await getAPIData(endPoints.expertises);
-    const transformedData = res.map(r => transformExpertiesModel(r));
+    const res: apiExpertiseModel[] = await getAPIData(endPoints.expertise);
+    const transformedData = res.map(r => transformExpertiseModel(r));
 
     setHomeData({
       bookings: [],

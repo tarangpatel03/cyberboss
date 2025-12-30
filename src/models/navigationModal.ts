@@ -23,7 +23,7 @@ export type rootNavigationParams = {
   ProfileSetUp: undefined;
   ClientProfileSetUp: undefined;
   SearchServices: undefined;
-  AreaOfExperties: undefined;
+  AreaOfExpertise: undefined;
   ServicesYouOffer: undefined;
   PersonalDetails: undefined;
   PendingVerification: undefined;

@@ -8,10 +8,10 @@ import { appIcons } from '../../config/icons/iconPath';
 import { formatBooking } from '../../utils/format/formatDate';
 import FastImage from 'react-native-fast-image';
 import { memo } from 'react';
-import { tExpertiesModel } from '../../models/formattedAPI/tConsultant';
+import { tExpertiseModel } from '../../models/formattedAPI/tConsultant';
 
 type serviceCardProps = {
-  data: tExpertiesModel;
+  data: tExpertiseModel;
   onPress: (id: string, name: string) => void;
 };
 

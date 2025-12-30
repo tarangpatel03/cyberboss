@@ -83,14 +83,14 @@ export const staticStyle = StyleSheet.create({
     width: normalize(16),
     height: normalize(16),
   },
-  saperator: {
+  separator: {
     height: normalize(1),
   },
   countText: {
     fontSize: normalize(18),
     fontWeight: '700',
   },
-  verticalVaperator: {
+  verticalSeparator: {
     height: '100%',
     width: normalize(1),
   },
@@ -111,7 +111,7 @@ export const staticStyle = StyleSheet.create({
     gap: normalize(12),
     padding: normalize(12),
   },
-  transparantBG: {
+  transparentBG: {
     borderRadius: normalize(7),
     paddingVertical: normalize(8),
     paddingHorizontal: normalize(12),
@@ -149,7 +149,7 @@ export const createStyles = (theme: Theme) =>
     whiteText: {
       color: theme.colors.pureWhite,
     },
-    transparantBG: {
+    transparentBG: {
       backgroundColor: appColors.app_FFFFFF1A,
     },
   });

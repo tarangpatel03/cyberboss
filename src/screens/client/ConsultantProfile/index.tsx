@@ -1,4 +1,4 @@
-import { View, StyleSheet, ScrollView } from 'react-native';
+import { View, StyleSheet, ScrollView, Image } from 'react-native';
 import { useTheme } from '@shopify/restyle';
 import { createStyles, staticStyle } from './styles';
 import { Theme } from '../../../config/themes/themes';
@@ -16,13 +16,15 @@ import { endPoints } from '../../../config/endPoint/apiEndPoint';
 import { useTranslation } from 'react-i18next';
 import { ConsultantProfileScreenShimmer } from '../../../components/Skeleton/consultantProfile';
 import { ConsultantProfileHeader } from '../../../components/Headers/ConsultantProfileHeader';
-import { ConsultantExpertiesCard } from '../../../components/Cards/ConsultantExpertiesCard';
+import { ConsultantExpertiseCard } from '../../../components/Cards/ConsultantExpertiseCard';
 import { ConsultantRatingsList } from '../../../components/ListItems/ConsultantRatingList';
 import {
   tConsultantDetailsModel,
   transformConsultantDetailsModel,
 } from '../../../models/formattedAPI/tConsultant';
 import { apiConsultantDetailsModel } from '../../../models/api/consultant';
+import { Rating } from 'react-native-ratings';
+import { appImages } from '../../../config/images/imagePath';
 
 export const ConsultantProfileScreen = ({
   navigation,
@@ -93,15 +95,15 @@ export const ConsultantProfileScreen = ({
               <ConsultantProfileHeader data={data} />
               <View
                 style={StyleSheet.flatten([
-                  staticStyle.saperator,
-                  styles.saperator,
+                  staticStyle.separator,
+                  styles.separator,
                 ])}
               />
               <View style={staticStyle.secondaryContainer}>
                 <MediumTextComponent
                   text={t('about')}
                   textStyle={StyleSheet.flatten([
-                    staticStyle.semititletext,
+                    staticStyle.semiTitleText,
                     styles.primaryText,
                   ])}
                 />
@@ -109,43 +111,91 @@ export const ConsultantProfileScreen = ({
                   text={data.bio}
                   noOfLines={20}
                   textStyle={StyleSheet.flatten([
-                    staticStyle.subtitletext,
+                    staticStyle.subTitleText,
                     styles.secondaryText,
                   ])}
                 />
               </View>
               <View
                 style={StyleSheet.flatten([
-                  staticStyle.saperator,
-                  styles.saperator,
+                  staticStyle.separator,
+                  styles.separator,
                 ])}
               />
-              <ConsultantExpertiesCard data={data} />
+              <ConsultantExpertiseCard data={data} />
               <View
                 style={StyleSheet.flatten([
-                  staticStyle.saperator,
-                  styles.saperator,
+                  staticStyle.separator,
+                  styles.separator,
                 ])}
               />
               <ConsultantRatingsList data={data} renderItem={renderItem} />
+              <View style={staticStyle.titleLine}>
+                <View
+                  style={StyleSheet.flatten([
+                    staticStyle.separator2,
+                    styles.separator,
+                  ])}
+                />
+                <View
+                  style={StyleSheet.flatten([
+                    staticStyle.rowLine,
+                    staticStyle.line,
+                  ])}
+                >
+                  <Image
+                    style={staticStyle.reviewImage}
+                    source={appImages.img_defaultProfile}
+                  />
+                  <MediumTextComponent
+                    text={'User'}
+                    textStyle={StyleSheet.flatten([
+                      staticStyle.subTitleText,
+                      styles.primaryText,
+                    ])}
+                  />
+                  <RegularTextComponent
+                    textStyle={StyleSheet.flatten([
+                      staticStyle.tinyText,
+                      styles.secondaryText,
+                    ])}
+                    text={'Today'}
+                  />
+                </View>
+                <Rating
+                  readonly
+                  imageSize={15}
+                  ratingCount={5}
+                  style={staticStyle.rating}
+                  tintColor={theme.colors.bgPrimary}
+                  startingValue={4}
+                />
+                <RegularTextComponent
+                  textStyle={StyleSheet.flatten([
+                    staticStyle.tinyText,
+                    styles.secondaryText,
+                  ])}
+                  text={'Today'}
+                />
+              </View>
             </ScrollView>
             <View
               style={StyleSheet.flatten([
                 staticStyle.bottomBar,
-                styles.saperator,
+                styles.separator,
               ])}
             >
               <MediumTextComponent
                 text={`$${Number(data.rate)}/hr`}
                 textStyle={StyleSheet.flatten([
-                  staticStyle.ratingtext,
+                  staticStyle.ratingText,
                   styles.primaryText,
                 ])}
               />
               <PrimaryButtonComponent
                 onPress={navigateToBookingDetails}
                 text={t('bookNow')}
-                buttonStyle={staticStyle.booknowButton}
+                buttonStyle={staticStyle.bookNowButton}
               />
             </View>
           </>

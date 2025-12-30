@@ -58,14 +58,14 @@ export const PersonalDetailsScreen = ({
     navigation.navigate(routeName.PendingVerification);
   };
 
-  const mediaOptoins: ImageLibraryOptions = {
+  const mediaOptions: ImageLibraryOptions = {
     mediaType: 'photo',
     selectionLimit: 1,
   };
 
   const pickImage = async () => {
     try {
-      const res = await launchImageLibrary(mediaOptoins);
+      const res = await launchImageLibrary(mediaOptions);
 
       if (res.assets && res.assets.length > 0) {
         const uri = res.assets[0].uri;
@@ -141,7 +141,7 @@ export const PersonalDetailsScreen = ({
                   value={name}
                 />
                 <CustomInputComponent
-                  placeholder={t('yearsofExperience')}
+                  placeholder={t('yearsOfExperience')}
                   setValue={setExperience}
                   value={experience}
                 />

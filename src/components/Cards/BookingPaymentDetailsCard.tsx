@@ -31,7 +31,7 @@ export const BookingPaymentDetailsCard = (
         text={t('billDetails')}
       />
       <View
-        style={StyleSheet.flatten([staticStyle.saperator, styles.saperator])}
+        style={StyleSheet.flatten([staticStyle.separator, styles.separator])}
       />
       <BillDetailsComponent
         amount={props.billData.hourlyRate}

@@ -10,7 +10,7 @@ import { Theme } from '../../config/themes/themes';
 import { useTheme } from '@shopify/restyle';
 import normalize from '../../utils/normalize/normalize';
 
-type primaryButtonComponenProps = {
+type primaryButtonComponentProps = {
   text: string;
   textStyle?: StyleProp<TextStyle>;
   buttonStyle?: StyleProp<ViewStyle>;
@@ -18,7 +18,7 @@ type primaryButtonComponenProps = {
   isButtonActive?: boolean;
 };
 
-export const PrimaryButtonComponent = (props: primaryButtonComponenProps) => {
+export const PrimaryButtonComponent = (props: primaryButtonComponentProps) => {
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   return (

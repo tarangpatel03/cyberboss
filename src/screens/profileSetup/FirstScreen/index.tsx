@@ -34,7 +34,7 @@ export const ProfileSetUpScreen = ({
     navigation.navigate(routeName.ClientProfileSetUp);
   };
   const setUpConsultant = () => {
-    navigation.navigate(routeName.AreaOfExperties);
+    navigation.navigate(routeName.AreaOfExpertise);
   };
 
   const navigateToProfileSetUp = () => {

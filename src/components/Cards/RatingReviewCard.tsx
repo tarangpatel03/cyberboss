@@ -22,7 +22,7 @@ export const ReviewCard = memo((props: reviewCardProps) => {
   return (
     <View style={staticStyle.titleLine}>
       <View
-        style={StyleSheet.flatten([staticStyle.saperator2, styles.saperator])}
+        style={StyleSheet.flatten([staticStyle.separator2, styles.separator])}
       />
       <View style={StyleSheet.flatten([staticStyle.rowLine, staticStyle.line])}>
         <FastImage
@@ -32,13 +32,13 @@ export const ReviewCard = memo((props: reviewCardProps) => {
         <MediumTextComponent
           text={props.item.name}
           textStyle={StyleSheet.flatten([
-            staticStyle.subtitletext,
+            staticStyle.subTitleText,
             styles.primaryText,
           ])}
         />
         <RegularTextComponent
           textStyle={StyleSheet.flatten([
-            staticStyle.tinytext,
+            staticStyle.tinyText,
             styles.secondaryText,
           ])}
           text={props.item.date}
@@ -56,7 +56,7 @@ export const ReviewCard = memo((props: reviewCardProps) => {
         text={props.item.review}
         noOfLines={20}
         textStyle={StyleSheet.flatten([
-          staticStyle.subtitletext,
+          staticStyle.subTitleText,
           styles.secondaryText,
         ])}
       />

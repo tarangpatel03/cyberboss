@@ -11,7 +11,7 @@ import {
   addToCalendar,
   convertToEventDate,
 } from '../../utils/calendar/addCalendarEvent';
-import { showSucessToast } from '../../utils/toast/toast';
+import { showSuccessToast } from '../../utils/toast/toast';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import FastImage from 'react-native-fast-image';
@@ -37,7 +37,7 @@ export const WorkshopCard = memo(({ data, cardStyle }: workshopCardProps) => {
       endDate: endISO,
     });
 
-    showSucessToast({ title: t('addedToCalendar') });
+    showSuccessToast({ title: t('addedToCalendar') });
   };
 
   return (
@@ -84,7 +84,7 @@ export const WorkshopCard = memo(({ data, cardStyle }: workshopCardProps) => {
       </View>
       <PrimaryButtonComponent
         onPress={addEventToCalendar}
-        text={t('addToCalander')}
+        text={t('addToCalender')}
       />
     </View>
   );

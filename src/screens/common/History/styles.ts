@@ -73,7 +73,7 @@ export const createStyles = (theme: Theme) =>
     bgSecondary: {
       backgroundColor: theme.colors.bgSecondary,
     },
-    primarytext: {
+    primaryText: {
       color: theme.colors.textPrimary,
     },
   });

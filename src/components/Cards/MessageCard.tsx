@@ -14,17 +14,17 @@ export const MessageCard = memo(({ data }: { data: tChatBotChatModel }) => {
   const styles = createStyles(theme);
   return (
     <>
-      <View style={staticStyle.recieveContainer}>
+      <View style={staticStyle.receiveContainer}>
         <FastImage
           tintColor={theme.colors.bgPrimary}
           source={appIcons.ic_reply}
-          style={staticStyle.recieveIcon}
+          style={staticStyle.receiveIcon}
         />
         <View
           style={StyleSheet.flatten([
             staticStyle.centerContainer,
-            staticStyle.recieveRadius,
-            styles.recieveContainer,
+            staticStyle.receiveRadius,
+            styles.receiveContainer,
           ])}
         >
           <RegularTextComponent
@@ -39,7 +39,7 @@ export const MessageCard = memo(({ data }: { data: tChatBotChatModel }) => {
             text={getTime(data.createdAt)}
             textStyle={StyleSheet.flatten([
               staticStyle.timeText,
-              styles.recieveTime,
+              styles.receiveTime,
             ])}
           />
         </View>
@@ -85,7 +85,7 @@ const staticStyle = StyleSheet.create({
     alignSelf: 'flex-end',
     flexDirection: 'row',
   },
-  recieveContainer: {
+  receiveContainer: {
     paddingRight: normalize(24),
     paddingBottom: normalize(12, 'height'),
     flexDirection: 'row',
@@ -104,7 +104,7 @@ const staticStyle = StyleSheet.create({
     borderBottomLeftRadius: 10,
     borderBottomRightRadius: 10,
   },
-  recieveRadius: {
+  receiveRadius: {
     borderTopRightRadius: 10,
     borderBottomLeftRadius: 10,
     borderBottomRightRadius: 10,
@@ -124,7 +124,7 @@ const staticStyle = StyleSheet.create({
     width: normalize(8),
     height: normalize(8),
   },
-  recieveIcon: {
+  receiveIcon: {
     top: 0,
     right: normalize(-1),
     width: normalize(8),
@@ -137,7 +137,7 @@ const createStyles = (theme: Theme) =>
     sendContainer: {
       backgroundColor: theme.colors.primary,
     },
-    recieveContainer: {
+    receiveContainer: {
       backgroundColor: theme.colors.bgPrimary,
     },
     sendMessageText: {
@@ -146,7 +146,7 @@ const createStyles = (theme: Theme) =>
     messageText: {
       color: theme.colors.textPrimary,
     },
-    recieveTime: {
+    receiveTime: {
       color: theme.colors.textSecondary,
     },
     timeText: {

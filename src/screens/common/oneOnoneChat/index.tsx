@@ -11,7 +11,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { rootNavigationProps } from '../../../models/navigationModal';
 import { BorderInputComponent } from '../../../components/Input/BorderInput';
 import { MediumTextComponent } from '../../../components/Text/MediumTextComponent';
-import { OneOnOneCard } from '../../../components/Cards/oneOnOneChat';
+import { OneOnOneCard } from '../../../components/Cards/OneOnOneChat';
 import { ListEmptyCard } from '../../../components/Cards/ListEmptyCard';
 import FastImage from 'react-native-fast-image';
 import { useTranslation } from 'react-i18next';

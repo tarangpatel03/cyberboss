@@ -8,7 +8,7 @@ import FastImage from 'react-native-fast-image';
 import { memo } from 'react';
 
 type messageCardProps = {
-  type: 'send' | 'recieve';
+  type: 'send' | 'receive';
   image?: number | { uri: string } | undefined;
   message: string;
   time: string;
@@ -22,14 +22,14 @@ export const OneOnOneCard = memo((props: messageCardProps) => {
       style={
         props.type === 'send'
           ? staticStyle.sendContainer
-          : staticStyle.recieveContainer
+          : staticStyle.receiveContainer
       }
     >
-      {props.type === 'recieve' && (
+      {props.type === 'receive' && (
         <FastImage
           tintColor={theme.colors.bgPrimary}
           source={appIcons.ic_reply}
-          style={staticStyle.recieveIcon}
+          style={staticStyle.receiveIcon}
         />
       )}
       <View
@@ -37,10 +37,10 @@ export const OneOnOneCard = memo((props: messageCardProps) => {
           staticStyle.centerContainer,
           props.type === 'send'
             ? staticStyle.sendRadius
-            : staticStyle.recieveRadius,
+            : staticStyle.receiveRadius,
           props.type === 'send'
             ? styles.sendContainer
-            : styles.recieveContainer,
+            : styles.receiveContainer,
         ])}
       >
         {props.image && (
@@ -58,7 +58,7 @@ export const OneOnOneCard = memo((props: messageCardProps) => {
           text={props.time}
           textStyle={StyleSheet.flatten([
             staticStyle.timeText,
-            props.type === 'send' ? styles.timeText : styles.recieveTime,
+            props.type === 'send' ? styles.timeText : styles.receiveTime,
           ])}
         />
       </View>
@@ -80,7 +80,7 @@ const staticStyle = StyleSheet.create({
     alignSelf: 'flex-end',
     flexDirection: 'row',
   },
-  recieveContainer: {
+  receiveContainer: {
     paddingRight: normalize(24),
     paddingBottom: normalize(12, 'height'),
     flexDirection: 'row',
@@ -99,7 +99,7 @@ const staticStyle = StyleSheet.create({
     borderBottomLeftRadius: 10,
     borderBottomRightRadius: 10,
   },
-  recieveRadius: {
+  receiveRadius: {
     borderTopRightRadius: 10,
     borderBottomLeftRadius: 10,
     borderBottomRightRadius: 10,
@@ -119,7 +119,7 @@ const staticStyle = StyleSheet.create({
     width: normalize(8),
     height: normalize(8),
   },
-  recieveIcon: {
+  receiveIcon: {
     top: 0,
     right: normalize(-1),
     width: normalize(8),
@@ -132,7 +132,7 @@ const createStyles = (theme: Theme) =>
     sendContainer: {
       backgroundColor: theme.colors.primary,
     },
-    recieveContainer: {
+    receiveContainer: {
       backgroundColor: theme.colors.bgPrimary,
     },
     sendMessageText: {
@@ -141,7 +141,7 @@ const createStyles = (theme: Theme) =>
     messageText: {
       color: theme.colors.textPrimary,
     },
-    recieveTime: {
+    receiveTime: {
       color: theme.colors.textSecondary,
     },
     timeText: {

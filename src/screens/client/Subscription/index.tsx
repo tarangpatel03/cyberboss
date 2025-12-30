@@ -11,7 +11,7 @@ import { SubscriptionHeader } from '../../../components/Headers/SubscriptionHead
 import { SubscriptionTrustedUser } from '../../../components/SubscriptionTrustedUser';
 import { SubscriptionBenefitsCard } from '../../../components/Cards/SubscriptionBenefitsCard';
 import { UpcomingWorkShopsList } from '../../../components/List/UpcomingWorkShopsList';
-import { SupscriptionBottomBar } from '../../../components/SupscriptionBottomBar';
+import { SubscriptionBottomBar } from '../../../components/SubscriptionBottomBar';
 import { apiClientHomeModel } from '../../../models/api/home';
 import { tWorkshopModel } from '../../../models/formattedAPI/tConsultant';
 import { transformClientHomeModal } from '../../../models/formattedAPI/tHome';
@@ -60,14 +60,14 @@ export const SubscriptionScreen = ({
           <View style={staticStyle.mainContainer2}>
             <SubscriptionTrustedUser start={start} end={end} />
             <SubscriptionBenefitsCard start={start} end={end} />
-            <View style={staticStyle.saparator2} />
+            <View style={staticStyle.separator2} />
             <UpcomingWorkShopsList
               workShopData={workShopData}
               renderItem={renderItem}
             />
           </View>
         </ScrollView>
-        <SupscriptionBottomBar />
+        <SubscriptionBottomBar />
       </SafeAreaView>
     </>
   );

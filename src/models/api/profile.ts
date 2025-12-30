@@ -1,4 +1,4 @@
-import { apiExpertiesModel, services } from './consultant';
+import { apiExpertiseModel, services } from './consultant';
 
 export type apiProfileModel = {
   id: string;
@@ -10,7 +10,7 @@ export type apiProfileModel = {
   bio: string | null;
   experience_year: string | number | null;
   rate: number | null;
-  expertises: apiExpertiesModel[];
+  expertises: apiExpertiseModel[];
   services: services[];
   is_verified: boolean | null;
   login_type: string;

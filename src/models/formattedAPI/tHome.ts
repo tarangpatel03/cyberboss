@@ -6,16 +6,16 @@ import {
 } from '../api/home';
 import { tHomeBookingModel, transformHomeBookingModel } from './tBookings';
 import {
-  tExpertiesModel,
+  tExpertiseModel,
   tWorkshopModel,
-  transformExpertiesModel,
+  transformExpertiseModel,
   transformWorkshopModel,
 } from './tConsultant';
 
 export type tClientHomeModel = {
   isSubscriber: boolean;
   bookings: tHomeBookingModel[];
-  expertises: tExpertiesModel[];
+  expertises: tExpertiseModel[];
   workshops: tWorkshopModel[];
 };
 
@@ -49,7 +49,7 @@ export const transformClientHomeModal: (
   return {
     bookings: data.bookings.map(r => transformHomeBookingModel(r)) ?? [],
     expertises: data.expertises
-      ? data.expertises.map(r => transformExpertiesModel(r))
+      ? data.expertises.map(r => transformExpertiseModel(r))
       : [],
     isSubscriber: data.is_subscriber,
     workshops: data.workshops

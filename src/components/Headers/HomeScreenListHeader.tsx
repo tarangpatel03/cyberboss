@@ -1,6 +1,6 @@
 import { StyleSheet, View } from 'react-native';
 import { createStyles, staticStyle } from '../../screens/client/Home/styles';
-import { HomeScreenworkshopList } from '../List/HomeScreenworkshopList';
+import { HomeScreenWorkshopList } from '../List/HomeScreenWorkshopList';
 import { MediumTextComponent } from '../Text/MediumTextComponent';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '@shopify/restyle';
@@ -24,7 +24,7 @@ export const HomeScreenListHeaderComponent = (
   return (
     <View style={staticStyle.container}>
       {props.homeData.workshops.length !== 0 && (
-        <HomeScreenworkshopList
+        <HomeScreenWorkshopList
           data={props.homeData.workshops}
           type={t('workshop')}
           navigateToWorkshop={props.navigateToWorkshop}
@@ -32,7 +32,7 @@ export const HomeScreenListHeaderComponent = (
         />
       )}
       {props.homeData.bookings.length !== 0 && (
-        <HomeScreenworkshopList
+        <HomeScreenWorkshopList
           data={props.homeData.bookings}
           type={t('bookingHistory')}
           navigateToWorkshop={props.navigateToWorkshop}

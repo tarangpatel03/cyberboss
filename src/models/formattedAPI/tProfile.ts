@@ -1,6 +1,6 @@
 import { services } from '../api/consultant';
 import { apiProfileModel, aApiUpdateProfile } from '../api/profile';
-import { tExpertiesModel, transformExpertiesModel } from './tConsultant';
+import { tExpertiseModel, transformExpertiseModel } from './tConsultant';
 
 export type tProfileModel = {
   id: string;
@@ -12,7 +12,7 @@ export type tProfileModel = {
   bio: string | null;
   experienceYear: string | number | null;
   rate: number | null;
-  expertises: tExpertiesModel[];
+  expertises: tExpertiseModel[];
   services: services[];
   isVerified: boolean | null;
   loginType: string;
@@ -21,7 +21,7 @@ export type tProfileModel = {
 
 export type tUpdateProfile = {
   name: string;
-  profileIicture: number | { uri: string } | undefined;
+  profilePicture: number | { uri: string } | undefined;
 };
 
 export const transformProfileModel: (data: apiProfileModel) => tProfileModel = (
@@ -32,7 +32,7 @@ export const transformProfileModel: (data: apiProfileModel) => tProfileModel = (
     email: data.email,
     experienceYear: data.experience_year,
     expertises: data.expertises
-      ? data.expertises.map(r => transformExpertiesModel(r))
+      ? data.expertises.map(r => transformExpertiseModel(r))
       : [],
     id: data.id,
     name: data.name,
@@ -52,6 +52,6 @@ export const transformUpdateProfile: (
 ) => tUpdateProfile = (data: aApiUpdateProfile) => {
   return {
     name: data.name,
-    profileIicture: data.profile_picture,
+    profilePicture: data.profile_picture,
   };
 };

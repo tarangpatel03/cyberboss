@@ -7,7 +7,7 @@ import { RegularTextComponent } from './Text/RegularTextComponent';
 import { staticStyle } from '../screens/client/Subscription/styles';
 import { PrimaryButtonWithIconComponent } from './Buttons/PrimaryButtonWithIcon';
 
-export const SupscriptionBottomBar = () => {
+export const SubscriptionBottomBar = () => {
   const { t } = useTranslation();
   return (
     <View style={staticStyle.bottomButton}>

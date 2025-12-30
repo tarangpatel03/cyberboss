@@ -19,7 +19,7 @@ export const staticStyle = StyleSheet.create({
     paddingHorizontal: normalize(12),
     paddingVertical: normalize(20),
   },
-  titletext: {
+  titleText: {
     width: normalize(100),
     height: normalize(20),
     borderRadius: normalize(4),
@@ -27,7 +27,7 @@ export const staticStyle = StyleSheet.create({
   fullWidth: {
     width: '100%',
   },
-  longrtWidth: {
+  longerWidth: {
     width: normalize(80),
   },
   reviewImage: {
@@ -41,26 +41,30 @@ export const staticStyle = StyleSheet.create({
   moveLeft: {
     left: normalize(4),
   },
-  ratingtext: {
+  ratingTextShimmer: {
     width: normalize(35),
     height: normalize(30),
     borderRadius: normalize(8),
+  },
+  ratingText: {
+    fontWeight: '700',
+    fontSize: normalize(16, 'height'),
   },
   listContainer: {
     gap: normalize(8),
     flexDirection: 'row',
     flexWrap: 'wrap',
   },
-  semititletext: {
+  semiTitleText: {
     fontSize: normalize(16),
     fontWeight: '500',
   },
-  subtitletext: {
+  subTitleText: {
     height: normalize(14),
     width: normalize(100),
     borderRadius: normalize(4),
   },
-  tinytext: {
+  tinyText: {
     fontSize: normalize(12),
     fontWeight: '400',
   },
@@ -79,13 +83,13 @@ export const staticStyle = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  saperator: {
+  separator: {
     borderWidth: 1,
   },
   gap8: {
     gap: normalize(8),
   },
-  saperator2: {
+  separator2: {
     borderWidth: 0.75,
   },
   badgeContainer: {
@@ -101,7 +105,7 @@ export const staticStyle = StyleSheet.create({
     paddingVertical: normalize(12),
     paddingHorizontal: normalize(16),
   },
-  booknowButton: {
+  bookNowButton: {
     paddingHorizontal: normalize(24),
   },
 });
@@ -120,7 +124,7 @@ export const createStyles = (theme: Theme) =>
     secondaryText: {
       color: theme.colors.textSecondary,
     },
-    saperator: {
+    separator: {
       borderColor: theme.colors.borderPrimary,
     },
   });

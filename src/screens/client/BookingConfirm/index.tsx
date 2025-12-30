@@ -15,7 +15,7 @@ import { MediumTextComponent } from '../../../components/Text/MediumTextComponen
 import {
   getGradientColor,
   getServiceImage,
-} from '../../../utils/gradientColor/gradiantColor';
+} from '../../../utils/gradientColor/gradientColor';
 import { appImages } from '../../../config/images/imagePath';
 import FastImage from 'react-native-fast-image';
 import { useTranslation } from 'react-i18next';

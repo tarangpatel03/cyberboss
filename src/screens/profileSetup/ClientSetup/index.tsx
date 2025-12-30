@@ -30,20 +30,20 @@ export const ClientProfileSetUpScreen = ({
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
-  const dispach = useDispatch();
+  const dispatch = useDispatch();
   const [userName, setUserName] = useState<string>('');
   const [profileImage, setProfileImage] = useState<
     number | { uri: string } | undefined
   >(appImages.img_defaultProfile);
 
-  const mediaOptoins: ImageLibraryOptions = {
+  const mediaOptions: ImageLibraryOptions = {
     mediaType: 'photo',
     selectionLimit: 1,
   };
 
   const pickImage = async () => {
     try {
-      const res = await launchImageLibrary(mediaOptoins);
+      const res = await launchImageLibrary(mediaOptions);
       if (res.assets && res.assets.length > 0) {
         const uri = res.assets[0].uri;
         if (uri) {
@@ -58,7 +58,7 @@ export const ClientProfileSetUpScreen = ({
   const setUpProfile = async () => {
     try {
       await updateClientProfile(userName, profileImage);
-      dispach(
+      dispatch(
         setUserData({
           name: userName,
           profilePicture: profileImage,

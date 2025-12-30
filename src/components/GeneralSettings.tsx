@@ -6,7 +6,7 @@ import { appIcons } from '../config/icons/iconPath';
 import { userDetailProps } from '../redux/features/userSlice';
 import { MediumTextComponent } from './Text/MediumTextComponent';
 import { SettingOptionsButton } from './Buttons/SettingsOptionsComponent';
-import { staticStyle, createStyles } from '../screens/common/profile/styles';
+import { staticStyle, createStyles } from '../screens/common/Profile/styles';
 
 type generalSettingsProps = {
   userData: userDetailProps;
@@ -34,7 +34,7 @@ export const GeneralSettings = (props: generalSettingsProps) => {
         ])}
       />
       <View
-        style={StyleSheet.flatten([staticStyle.saperator, styles.saperator])}
+        style={StyleSheet.flatten([staticStyle.separator, styles.separator])}
       />
       <View style={staticStyle.options}>
         {props.userData.role === 'client' && (
@@ -46,8 +46,8 @@ export const GeneralSettings = (props: generalSettingsProps) => {
             />
             <View
               style={StyleSheet.flatten([
-                staticStyle.saperator,
-                styles.saperator,
+                staticStyle.separator,
+                styles.separator,
               ])}
             />
           </>
@@ -58,7 +58,7 @@ export const GeneralSettings = (props: generalSettingsProps) => {
           icon={appIcons.ic_aboutUs}
         />
         <View
-          style={StyleSheet.flatten([staticStyle.saperator, styles.saperator])}
+          style={StyleSheet.flatten([staticStyle.separator, styles.separator])}
         />
         <SettingOptionsButton
           navigate={() => {}}

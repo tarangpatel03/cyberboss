@@ -33,7 +33,7 @@ export const BottomTabHeader = ({ name, onPress }: bottomTabHeaderProp) => {
             styles.container,
           ])}
         >
-          <View style={staticStyle.notificatinDotInner} />
+          <View style={staticStyle.notificationDotInner} />
         </View>
       </TouchableOpacity>
     </View>
@@ -66,7 +66,7 @@ const staticStyle = StyleSheet.create({
     justifyContent: 'center',
     borderRadius: normalize(5),
   },
-  notificatinDotInner: {
+  notificationDotInner: {
     width: normalize(5),
     height: normalize(5),
     borderRadius: normalize(5),

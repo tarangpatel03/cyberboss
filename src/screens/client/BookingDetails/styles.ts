@@ -48,7 +48,7 @@ export const staticStyle = StyleSheet.create({
     padding: normalize(12),
     paddingTop: normalize(16),
   },
-  saperator: {
+  separator: {
     width: '107.5%',
     borderWidth: 0.75,
     left: normalize(-12),
@@ -76,7 +76,7 @@ export const staticStyle = StyleSheet.create({
     flexDirection: 'row',
     padding: normalize(6),
   },
-  countorButton: {
+  counterButton: {
     width: normalize(20),
     alignItems: 'center',
     height: normalize(20),
@@ -126,7 +126,7 @@ export const createStyles = (theme: Theme) =>
     textSecondary: {
       color: theme.colors.textSecondary,
     },
-    saperator: {
+    separator: {
       borderColor: theme.colors.borderPrimary,
     },
     loader: {

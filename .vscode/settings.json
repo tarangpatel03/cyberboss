@@ -4,5 +4,19 @@
     "ios/Pods/RCT-Folly/folly/lang",
     "ios/Pods/boost/boost/predef/language"
   ],
-  "postman.settings.dotenv-detection-notification-visibility": false
+  "postman.settings.dotenv-detection-notification-visibility": false,
+  "i18n-ally.keystyle": "nested",
+  "cSpell.words": [
+    "CACCD",
+    "EBEBEB",
+    "FFFFFFBF",
+    "Forensix",
+    "INTERTIGHT",
+    "kyora",
+    "Mgmt",
+    "tourguide",
+    "WEBCLIENTID",
+    "wscale",
+    "XAPI"
+  ]
 }

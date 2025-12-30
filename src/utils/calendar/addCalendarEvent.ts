@@ -1,7 +1,7 @@
 import RNCalendarEvents, { ISODateString } from 'react-native-calendar-events';
 import { showErrorToast } from '../toast/toast';
 import { appText } from '../../config/text/constantsText';
-import CalanderEvents from 'react-native-calendar-events';
+import CalenderEvents from 'react-native-calendar-events';
 
 export const addToCalendar = async ({
   startDate,
@@ -13,7 +13,7 @@ export const addToCalendar = async ({
   notes: string;
 }) => {
   try {
-    const permission = await CalanderEvents.requestPermissions();
+    const permission = await CalenderEvents.requestPermissions();
     if (permission !== 'authorized') {
       return;
     }

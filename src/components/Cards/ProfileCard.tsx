@@ -8,7 +8,7 @@ import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { MediumTextComponent } from '../Text/MediumTextComponent';
 import { RegularTextComponent } from '../Text/RegularTextComponent';
 import { SettingOptionsButton } from '../Buttons/SettingsOptionsComponent';
-import { staticStyle, createStyles } from '../../screens/common/profile/styles';
+import { staticStyle, createStyles } from '../../screens/common/Profile/styles';
 import { useState } from 'react';
 import { appImages } from '../../config/images/imagePath';
 
@@ -77,13 +77,13 @@ export const ProfileCard = (props: profileCardProps) => {
             staticStyle.consultantCard,
             staticStyle.options,
             styles.utilCard,
-            styles.saperator,
+            styles.separator,
           ])}
         >
           <View
             style={StyleSheet.flatten([
-              staticStyle.saperator,
-              styles.saperator,
+              staticStyle.separator,
+              styles.separator,
             ])}
           />
           <SettingOptionsButton

@@ -45,7 +45,7 @@ export const ThemeModal = ({ isVisible, onclose }: themeModalProps) => {
         style={StyleSheet.flatten([staticStyle.container, styles.container])}
       >
         <CircularIconButtonComponent
-          iconPath={appIcons.ic_cancle}
+          iconPath={appIcons.ic_cancel}
           buttonStyle={StyleSheet.flatten([
             staticStyle.exitBtn,
             styles.exitBtn,

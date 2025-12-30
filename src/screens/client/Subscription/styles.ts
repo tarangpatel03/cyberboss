@@ -13,7 +13,7 @@ export const staticStyle = StyleSheet.create({
     height: normalize(14),
     resizeMode: 'contain',
   },
-  cancleButton: {
+  cancelButton: {
     alignItems: 'center',
     width: normalize(32),
     height: normalize(32),
@@ -26,7 +26,7 @@ export const staticStyle = StyleSheet.create({
   trustedUserContainer: {
     gap: normalize(20),
   },
-  benifits: {
+  benefits: {
     gap: normalize(15),
   },
   bottomLine: {
@@ -50,7 +50,7 @@ export const staticStyle = StyleSheet.create({
     bottom: normalize(0),
     paddingVertical: normalize(12),
   },
-  benifitLine: {
+  benefitLine: {
     gap: normalize(8),
     flexDirection: 'row',
     alignItems: 'center',
@@ -69,14 +69,14 @@ export const staticStyle = StyleSheet.create({
     paddingVertical: normalize(12),
     backgroundColor: appColors.app_3554FF,
   },
-  saperator: {
+  separator: {
     height: normalize(1),
   },
   horizontal: {
     flexDirection: 'row',
     alignItems: 'center',
   },
-  saparator2: {
+  separator2: {
     height: normalize(2),
     backgroundColor: appColors.app_26252A,
   },
@@ -116,7 +116,7 @@ export const staticStyle = StyleSheet.create({
     gap: normalize(32),
     paddingBottom: normalize(20),
   },
-  featuersIcon: {
+  featuresIcon: {
     width: normalize(20),
     height: normalize(20),
     resizeMode: 'contain',
@@ -156,7 +156,7 @@ export const staticStyle = StyleSheet.create({
     fontWeight: '500',
     color: appColors.app_FFFFFF,
   },
-  latterSpece: {
+  latterSpace: {
     letterSpacing: 4,
   },
   text14400: {
@@ -184,7 +184,7 @@ export const staticStyle = StyleSheet.create({
     fontWeight: '500',
     color: appColors.app_FFFFFF,
   },
-  benifitImageContainer: {
+  benefitImageContainer: {
     borderRadius: normalize(7),
     alignItems: 'center',
     width: normalize(28),
@@ -210,7 +210,7 @@ export const staticStyle = StyleSheet.create({
   trustedUserImage5: {
     left: normalize(-28),
   },
-  benifitContainer: {
+  benefitContainer: {
     borderWidth: 0.5,
     borderRadius: normalize(12),
     gap: normalize(20),

@@ -109,7 +109,7 @@ export const ProfileScreen = ({
       <SafeAreaView
         style={StyleSheet.flatten([
           staticStyle.container,
-          { paddingBottom: bottom - 50 },
+          { paddingBottom: bottom - 90 },
           styles.container,
         ])}
       >

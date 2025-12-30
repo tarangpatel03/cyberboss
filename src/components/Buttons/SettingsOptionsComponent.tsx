@@ -40,7 +40,7 @@ export const SettingOptionsButton = ({
         </View>
         <RegularTextComponent
           text={title}
-          textStyle={StyleSheet.flatten([staticStyle.text, styles.primartText])}
+          textStyle={StyleSheet.flatten([staticStyle.text, styles.primaryText])}
         />
       </View>
       <FastImage
@@ -92,7 +92,7 @@ const createStyles = (theme: Theme) =>
     text: {
       color: theme.colors.textSecondary,
     },
-    primartText: {
+    primaryText: {
       color: theme.colors.textPrimary,
     },
     icon: {

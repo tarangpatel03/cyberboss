@@ -25,7 +25,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { rootState } from '../../../redux/store';
 import { useTranslation } from 'react-i18next';
 import { HomeScreenListHeaderComponent } from '../../../components/Headers/HomeScreenListHeader';
-import { tExpertiesModel } from '../../../models/formattedAPI/tConsultant';
+import { tExpertiseModel } from '../../../models/formattedAPI/tConsultant';
 
 export const ClientHomeScreen = ({
   navigation,
@@ -84,7 +84,7 @@ export const ClientHomeScreen = ({
     />
   );
 
-  const renderBrowseServiceItem: ListRenderItem<tExpertiesModel> = useCallback(
+  const renderBrowseServiceItem: ListRenderItem<tExpertiseModel> = useCallback(
     ({ item }) => (
       <ServiceCard onPress={navigateToConsultantList} data={item} />
     ),

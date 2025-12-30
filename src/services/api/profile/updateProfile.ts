@@ -23,11 +23,11 @@ export const updateConsultantProfileSetup = async (
   experience_year: string,
   bio: string,
   profilePicture: number | { uri: string } | undefined,
-  expertisesArray: string[],
+  expertiseArray: string[],
   servicesArray: string[],
 ) => {
   const profile_picture = extractImageUri(profilePicture);
-  const expertises = expertisesArray.join(',');
+  const expertises = expertiseArray.join(',');
   const services = servicesArray.join(',');
 
   try {

@@ -51,7 +51,7 @@ export const EditProfileInputs = (props: editProfileInputsProps) => {
       {props.role === 'consultant' && (
         <>
           <BorderInputComponent
-            placeholder={t('yearsofExperience')}
+            placeholder={t('yearsOfExperience')}
             setValue={props.setExperience ?? (() => {})}
             value={props.experience ?? ''}
           />

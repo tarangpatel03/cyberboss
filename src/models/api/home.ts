@@ -1,10 +1,10 @@
 import { apiHomeBookingModel } from './bookings';
-import { apiExpertiesModel, apiWorkshopModel } from './consultant';
+import { apiExpertiseModel, apiWorkshopModel } from './consultant';
 
 export type apiClientHomeModel = {
   is_subscriber: boolean;
   bookings: apiHomeBookingModel[];
-  expertises: apiExpertiesModel[];
+  expertises: apiExpertiseModel[];
   workshops: apiWorkshopModel[];
 };
 

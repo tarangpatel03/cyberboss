@@ -10,7 +10,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import { View, StyleSheet } from 'react-native';
 import { MediumTextComponent } from '../Text/MediumTextComponent';
 import { RegularTextComponent } from '../Text/RegularTextComponent';
-import { getGradientColor } from '../../utils/gradientColor/gradiantColor';
+import { getGradientColor } from '../../utils/gradientColor/gradientColor';
 import { tBookingDetailsModel } from '../../models/formattedAPI/tBookings';
 
 type bookingSummaryDetailsCardProps = {
@@ -40,9 +40,9 @@ export const BookingSummaryDetailsCard = (
       />
       <View
         style={StyleSheet.flatten([
-          staticStyle.saperator,
+          staticStyle.separator,
           staticStyle.fullWidth,
-          styles.saperator,
+          styles.separator,
         ])}
       />
       <View style={staticStyle.rowLine}>
@@ -108,7 +108,7 @@ export const BookingSummaryDetailsCard = (
         </View>
       </LinearGradient>
       <View
-        style={StyleSheet.flatten([styles.saperator, staticStyle.saperator])}
+        style={StyleSheet.flatten([styles.separator, staticStyle.separator])}
       />
       {/* <TouchableOpacity
         style={StyleSheet.flatten([staticStyle.input, styles.innerContainer])}

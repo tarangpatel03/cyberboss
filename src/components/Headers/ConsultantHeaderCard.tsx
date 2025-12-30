@@ -101,7 +101,7 @@ export const ConsultantHeaderCard = (props: consultantHeaderCardProps) => {
               />
             </View>
             <LinearGradient
-              style={staticStyle.verticalVaperator}
+              style={staticStyle.verticalSeparator}
               colors={[
                 appColors.app_FFFFFF40,
                 appColors.app_FFFFFF00,
@@ -132,7 +132,7 @@ export const ConsultantHeaderCard = (props: consultantHeaderCardProps) => {
             </View>
           </View>
           <LinearGradient
-            style={staticStyle.saperator}
+            style={staticStyle.separator}
             start={{
               x: 0,
               y: 0.5,
@@ -150,8 +150,8 @@ export const ConsultantHeaderCard = (props: consultantHeaderCardProps) => {
           <View
             style={StyleSheet.flatten([
               staticStyle.row,
-              staticStyle.transparantBG,
-              styles.transparantBG,
+              staticStyle.transparentBG,
+              styles.transparentBG,
             ])}
           >
             <View style={staticStyle.directionRow}>

@@ -3,7 +3,7 @@ export type services = {
   name: string;
 };
 
-export type apiExpertiesModel = {
+export type apiExpertiseModel = {
   id: string;
   name: string;
   image: string;
@@ -38,7 +38,7 @@ export type apiConsultantDetailsModel = {
   experience_year: string;
   rate: string;
   bookings_count: number;
-  expertises: apiExpertiesModel[];
+  expertises: apiExpertiseModel[];
   services: services[];
   total_ratings: number;
   average_ratings: number;

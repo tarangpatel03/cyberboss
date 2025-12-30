@@ -110,7 +110,7 @@ export const ConsultantListScreen = ({
       <SafeAreaView
         style={StyleSheet.flatten([staticStyle.container, styles.container])}
       >
-        <View style={staticStyle.topbar}>
+        <View style={staticStyle.topBar}>
           <ScreenHeaderComponent onPress={goBack} headerText={name} />
         </View>
         <View style={staticStyle.searchBar}>

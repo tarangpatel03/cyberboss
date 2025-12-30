@@ -43,7 +43,7 @@ export const ConsultantProfileHeader = (
           <MediumTextComponent
             text={props.data.name}
             textStyle={StyleSheet.flatten([
-              staticStyle.titletext,
+              staticStyle.titleText,
               styles.primaryText,
             ])}
           />
@@ -51,7 +51,7 @@ export const ConsultantProfileHeader = (
             <RegularTextComponent
               text={props.data.expertises.at(0)?.name || ''}
               textStyle={StyleSheet.flatten([
-                staticStyle.subtitletext,
+                staticStyle.subTitleText,
                 staticStyle.leftMoveText,
                 styles.secondaryText,
               ])}

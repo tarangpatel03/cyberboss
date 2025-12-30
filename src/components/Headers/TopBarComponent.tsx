@@ -81,7 +81,7 @@ export const TopBarComponent = (props: topBarComponentProps) => {
                 styles.background,
               ])}
             >
-              <View style={staticStyle.notificatinDotInner} />
+              <View style={staticStyle.notificationDotInner} />
             </View>
           </TouchableOpacity>
         </View>

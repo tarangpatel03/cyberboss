@@ -1,12 +1,12 @@
 import {
   apiConsultantDetailsModel,
   apiConsultantModel,
-  apiExpertiesModel,
+  apiExpertiseModel,
   apiWorkshopModel,
   services,
 } from '../api/consultant';
 
-export type tExpertiesModel = {
+export type tExpertiseModel = {
   id: string;
   name: string;
   image: string;
@@ -41,16 +41,16 @@ export type tConsultantDetailsModel = {
   experienceYear: string;
   rate: string;
   bookingsCount: number;
-  expertises: tExpertiesModel[];
+  expertises: tExpertiseModel[];
   services: services[];
   totalRatings: number;
   averageRatings: number;
   ratingReviews: any[];
 };
 
-export const transformExpertiesModel: (
-  data: apiExpertiesModel,
-) => tExpertiesModel = (data: apiExpertiesModel) => {
+export const transformExpertiseModel: (
+  data: apiExpertiseModel,
+) => tExpertiseModel = (data: apiExpertiseModel) => {
   return {
     bookingCount: data.booking_count,
     description: data.description,
@@ -96,7 +96,7 @@ export const transformConsultantDetailsModel: (
     bookingsCount: data.bookings_count,
     experienceYear: data.experience_year,
     expertises: data.expertises
-      ? data.expertises?.map(r => transformExpertiesModel(r))
+      ? data.expertises?.map(r => transformExpertiseModel(r))
       : [],
     id: data.id,
     name: data.name,

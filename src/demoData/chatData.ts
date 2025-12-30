@@ -2,7 +2,7 @@ import { ImageSourcePropType } from 'react-native';
 import { appImages } from '../config/images/imagePath';
 
 export type oneOnOneChat = {
-  sender: 'send' | 'recieve';
+  sender: 'send' | 'receive';
   image?: ImageSourcePropType | undefined;
   message: string;
   time: string;
@@ -15,7 +15,7 @@ export const chatData: oneOnOneChat[] = [
     time: '15 Oct 2025 at 4:21 PM',
   },
   {
-    sender: 'recieve',
+    sender: 'receive',
     message: 'Hello, How can I help you?',
     time: '15 Oct 2025 at 4:24 PM',
   },
@@ -25,13 +25,13 @@ export const chatData: oneOnOneChat[] = [
     time: '15 Oct 2025 at 4:26 PM',
   },
   {
-    sender: 'recieve',
+    sender: 'receive',
     image: appImages.img_defaultProfile,
     message: 'For this',
     time: '15 Oct 2025 at 4:28 PM',
   },
   {
-    sender: 'recieve',
+    sender: 'receive',
     message:
       'Build is live now Build is live now Build is live now Build is live now Build is live now Build is live now Build is live now Build is live now Build is live now Build is live now Build is live now Build is live now Build is live now ',
     time: '15 Oct 2025 at 4:29 PM',

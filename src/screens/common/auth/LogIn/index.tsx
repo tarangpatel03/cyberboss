@@ -115,7 +115,7 @@ export const LogInScreen = ({
           style={StyleSheet.flatten([staticStyle.container, styles.container])}
         >
           <View style={staticStyle.mainContainer}>
-            <AuthTitle title={'welcomeback'} subTitle={'logInLine'} />
+            <AuthTitle title={'welcomeBack'} subTitle={'logInLine'} />
             <View style={staticStyle.inputs}>
               <LogInInputsContainer
                 buttonText={buttonText}
@@ -144,7 +144,7 @@ export const LogInScreen = ({
         </View>
         <AuthFooterAction
           subTitle={'signUp'}
-          title={'dontHaveAccount'}
+          title={"don'tHaveAccount"}
           navigateTo={navigateToSignUp}
         />
       </View>

@@ -6,7 +6,7 @@ import { MediumTextComponent } from '../Text/MediumTextComponent';
 import normalize from '../../utils/normalize/normalize';
 import { Theme } from '../../config/themes/themes';
 
-type secreenHeaderComponentProps = {
+type screenHeaderComponentProps = {
   iconPath?: number | { uri: string } | undefined;
   onPress: () => void;
   headerText?: string;
@@ -16,7 +16,7 @@ export const ScreenHeaderComponent = ({
   headerText,
   onPress,
   iconPath,
-}: secreenHeaderComponentProps) => {
+}: screenHeaderComponentProps) => {
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
 

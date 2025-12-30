@@ -22,9 +22,9 @@ export const ConsultantRatingsList = (props: consultantRatingsListProps) => {
   return (
     <View style={staticStyle.secondaryContainer}>
       <MediumTextComponent
-        text={t('ratingsandReviews')}
+        text={t('ratingsAndReviews')}
         textStyle={StyleSheet.flatten([
-          staticStyle.semititletext,
+          staticStyle.semiTitleText,
           styles.primaryText,
         ])}
       />
@@ -35,7 +35,7 @@ export const ConsultantRatingsList = (props: consultantRatingsListProps) => {
           <SemiBoldTextComponent
             text={`${props.data.averageRatings}`}
             textStyle={StyleSheet.flatten([
-              staticStyle.ratingtext,
+              staticStyle.ratingText,
               styles.primaryText,
             ])}
           />
@@ -51,7 +51,7 @@ export const ConsultantRatingsList = (props: consultantRatingsListProps) => {
         <RegularTextComponent
           text={`${props.data.totalRatings} Ratings`}
           textStyle={StyleSheet.flatten([
-            staticStyle.subtitletext,
+            staticStyle.subTitleText,
             staticStyle.moveLeft,
             styles.secondaryText,
           ])}

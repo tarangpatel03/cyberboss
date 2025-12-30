@@ -1,7 +1,7 @@
 export const endPoints = {
   feedBackRefine: 'feedback-refine',
   askChatbot: 'ask-chatbot',
-  expertises: 'expertises',
+  expertise: 'expertises',
   consultantList: 'consultants-list',
   clientProfile: 'client-profile',
   billCount: 'bookings/bill-count',

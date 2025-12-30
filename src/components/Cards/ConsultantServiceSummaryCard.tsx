@@ -8,7 +8,7 @@ import { RegularTextComponent } from '../Text/RegularTextComponent';
 import {
   getGradientColor,
   getServiceImage,
-} from '../../utils/gradientColor/gradiantColor';
+} from '../../utils/gradientColor/gradientColor';
 import FastImage from 'react-native-fast-image';
 import { appIcons } from '../../config/icons/iconPath';
 import { CircularIconButtonComponent } from '../Buttons/CircularIconButton';
@@ -46,7 +46,7 @@ export const ConsultantServiceSummaryCard = (
         ])}
       />
       <View
-        style={StyleSheet.flatten([staticStyle.saperator, styles.saperator])}
+        style={StyleSheet.flatten([staticStyle.separator, styles.separator])}
       />
       <View style={staticStyle.consultantProfile}>
         <FastImage
@@ -77,10 +77,10 @@ export const ConsultantServiceSummaryCard = (
           />
         </View>
         <View
-          style={StyleSheet.flatten([staticStyle.counter, styles.saperator])}
+          style={StyleSheet.flatten([staticStyle.counter, styles.separator])}
         >
           <CircularIconButtonComponent
-            buttonStyle={staticStyle.countorButton}
+            buttonStyle={staticStyle.counterButton}
             iconPath={appIcons.ic_minus}
             iconStyle={staticStyle.minusIcon}
             onPress={props.reduceHr}
@@ -93,7 +93,7 @@ export const ConsultantServiceSummaryCard = (
             ])}
           />
           <CircularIconButtonComponent
-            buttonStyle={staticStyle.countorButton}
+            buttonStyle={staticStyle.counterButton}
             iconPath={appIcons.ic_plus}
             iconStyle={staticStyle.plusIcon}
             onPress={() => props.setHrBook(prev => prev + 1)}

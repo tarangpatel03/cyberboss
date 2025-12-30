@@ -25,9 +25,9 @@ export const ConsultantProfileScreenShimmer = () => {
           >
             <ShimmerHolder style={staticStyle.image} />
             <View style={staticStyle.gap8}>
-              <ShimmerHolder style={staticStyle.titletext} />
+              <ShimmerHolder style={staticStyle.titleText} />
               <View style={staticStyle.rowLine}>
-                <ShimmerHolder style={staticStyle.subtitletext} />
+                <ShimmerHolder style={staticStyle.subTitleText} />
               </View>
             </View>
           </View>
@@ -40,43 +40,43 @@ export const ConsultantProfileScreenShimmer = () => {
           </View>
         </View>
         <View
-          style={StyleSheet.flatten([staticStyle.saperator, styles.saperator])}
+          style={StyleSheet.flatten([staticStyle.separator, styles.separator])}
         />
         <View style={staticStyle.secondaryContainer}>
           <MediumTextComponent
             text={t('about')}
             textStyle={StyleSheet.flatten([
-              staticStyle.semititletext,
+              staticStyle.semiTitleText,
               styles.primaryText,
             ])}
           />
           <ShimmerHolder
             style={StyleSheet.flatten([
-              staticStyle.subtitletext,
+              staticStyle.subTitleText,
               staticStyle.fullWidth,
             ])}
           />
           <ShimmerHolder
             style={StyleSheet.flatten([
-              staticStyle.subtitletext,
+              staticStyle.subTitleText,
               staticStyle.fullWidth,
             ])}
           />
           <ShimmerHolder
             style={StyleSheet.flatten([
-              staticStyle.subtitletext,
+              staticStyle.subTitleText,
               staticStyle.fullWidth,
             ])}
           />
         </View>
         <View
-          style={StyleSheet.flatten([staticStyle.saperator, styles.saperator])}
+          style={StyleSheet.flatten([staticStyle.separator, styles.separator])}
         />
         <View style={staticStyle.secondaryContainer}>
           <MediumTextComponent
             text={t('expertiseAndServices')}
             textStyle={StyleSheet.flatten([
-              staticStyle.semititletext,
+              staticStyle.semiTitleText,
               styles.primaryText,
             ])}
           />
@@ -87,8 +87,8 @@ export const ConsultantProfileScreenShimmer = () => {
           </View>
           <View
             style={StyleSheet.flatten([
-              staticStyle.saperator2,
-              styles.saperator,
+              staticStyle.separator2,
+              styles.separator,
             ])}
           />
           <View style={staticStyle.listContainer}>
@@ -98,13 +98,13 @@ export const ConsultantProfileScreenShimmer = () => {
           </View>
         </View>
         <View
-          style={StyleSheet.flatten([staticStyle.saperator, styles.saperator])}
+          style={StyleSheet.flatten([staticStyle.separator, styles.separator])}
         />
         <View style={staticStyle.secondaryContainer}>
           <MediumTextComponent
-            text={t('ratingsandReviews')}
+            text={t('ratingsAndReviews')}
             textStyle={StyleSheet.flatten([
-              staticStyle.semititletext,
+              staticStyle.semiTitleText,
               styles.primaryText,
             ])}
           />
@@ -115,7 +115,7 @@ export const ConsultantProfileScreenShimmer = () => {
                 staticStyle.line,
               ])}
             >
-              <ShimmerHolder style={staticStyle.ratingtext} />
+              <ShimmerHolder style={staticStyle.ratingTextShimmer} />
               <Rating
                 readonly
                 imageSize={20}
@@ -125,23 +125,23 @@ export const ConsultantProfileScreenShimmer = () => {
                 tintColor={theme.colors.bgPrimary}
               />
             </View>
-            <ShimmerHolder style={staticStyle.subtitletext} />
+            <ShimmerHolder style={staticStyle.subTitleText} />
           </View>
         </View>
       </ScrollView>
       <View
-        style={StyleSheet.flatten([staticStyle.bottomBar, styles.saperator])}
+        style={StyleSheet.flatten([staticStyle.bottomBar, styles.separator])}
       >
         <ShimmerHolder
           style={StyleSheet.flatten([
-            staticStyle.ratingtext,
-            staticStyle.longrtWidth,
+            staticStyle.ratingTextShimmer,
+            staticStyle.longerWidth,
           ])}
         />
         <PrimaryButtonComponent
           onPress={() => {}}
           text={t('bookNow')}
-          buttonStyle={staticStyle.booknowButton}
+          buttonStyle={staticStyle.bookNowButton}
         />
       </View>
     </>

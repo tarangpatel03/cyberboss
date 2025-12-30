@@ -114,7 +114,7 @@ export const staticStyle = StyleSheet.create({
     fontSize: normalize(12),
     fontWeight: '500',
   },
-  saperator: {
+  separator: {
     borderWidth: 0.75,
   },
   fullWidth: {
@@ -149,7 +149,7 @@ export const createStyles = (theme: Theme) =>
     greenText: {
       color: theme.colors.pureGreen,
     },
-    saperator: {
+    separator: {
       borderColor: theme.colors.borderPrimary,
     },
   });

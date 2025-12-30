@@ -15,14 +15,14 @@ import { useTranslation } from 'react-i18next';
 import FastImage from 'react-native-fast-image';
 import { tWorkshopModel } from '../../models/formattedAPI/tConsultant';
 
-type homeScreenworkshopListProps = {
+type homeScreenWorkshopListProps = {
   data: tWorkshopModel[] | any[];
   navigateToWorkshop: () => void;
   renderItem: ListRenderItem<any>;
   type: string;
 };
 
-export const HomeScreenworkshopList = (props: homeScreenworkshopListProps) => {
+export const HomeScreenWorkshopList = (props: homeScreenWorkshopListProps) => {
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);

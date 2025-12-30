@@ -124,7 +124,7 @@ export const staticStyle = StyleSheet.create({
     borderBottomLeftRadius: 12,
     borderBottomRightRadius: 12,
   },
-  saperator: {
+  separator: {
     width: '100%',
     borderWidth: 0.5,
   },
@@ -168,7 +168,7 @@ export const createStyles = (theme: Theme) =>
     iconContainer: {
       backgroundColor: theme.colors.borderPrimary,
     },
-    saperator: {
+    separator: {
       borderColor: theme.colors.borderPrimary,
     },
     versionText: {

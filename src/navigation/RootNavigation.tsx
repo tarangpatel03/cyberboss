@@ -7,16 +7,16 @@ import { ForgotPasswordScreen } from '../screens/common/auth/ForgotPassword';
 import { ProfileSetUpScreen } from '../screens/profileSetup/FirstScreen';
 import { BottomNavigation } from './ClientBottomNavigation';
 import { WorkshopScreen } from '../screens/client/Workshop';
-import { AreaOfExpertiesScreen } from '../screens/profileSetup/ConsultantSetup/AreaOfExpertise';
+import { AreaOfExpertiseScreen } from '../screens/profileSetup/ConsultantSetup/AreaOfExpertise';
 import { ConsultantListScreen } from '../screens/client/ConsultantList';
-import { OneOnOneChatScreen } from '../screens/common/OneOnoneChat';
+import { OneOnOneChatScreen } from '../screens/common/OneOnOneChat';
 import { PersonalDetailsScreen } from '../screens/profileSetup/ConsultantSetup/PersonalDetails';
-import { ServicesYouOfferScreen } from '../screens/profileSetup/ConsultantSetup/ServecisesYouOffer';
+import { ServicesYouOfferScreen } from '../screens/profileSetup/ConsultantSetup/ServicesYouOffer';
 import { PendingVerificationScreen } from '../screens/profileSetup/ConsultantSetup/PendingVerification';
 import { EditProfileScreen } from '../screens/common/EditProfile';
 import { ChangePasswordScreen } from '../screens/common/ChangePassword';
 import { BookingSummaryScreen } from '../screens/common/BookingSummary';
-import { YourRatingScreen } from '../screens/common/rating';
+import { YourRatingScreen } from '../screens/common/Rating';
 import { ConsultantProfileScreen } from '../screens/client/ConsultantProfile';
 import { BookingDetailsScreen } from '../screens/client/BookingDetails';
 import { BookingConfirmScreen } from '../screens/client/BookingConfirm';
@@ -74,8 +74,8 @@ export const RootNavigation = () => {
         component={SearchServiceScreen}
       />
       <Root.Screen
-        name={routeName.AreaOfExperties}
-        component={AreaOfExpertiesScreen}
+        name={routeName.AreaOfExpertise}
+        component={AreaOfExpertiseScreen}
       />
       <Root.Screen
         name={routeName.ServicesYouOffer}

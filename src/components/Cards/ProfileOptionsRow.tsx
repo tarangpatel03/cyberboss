@@ -6,7 +6,7 @@ import { Theme } from '../../config/themes/themes';
 import { appIcons } from '../../config/icons/iconPath';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { RegularTextComponent } from '../Text/RegularTextComponent';
-import { staticStyle, createStyles } from '../../screens/common/profile/styles';
+import { staticStyle, createStyles } from '../../screens/common/Profile/styles';
 
 type profileOptionsRowProps = {
   role: 'client' | 'consultant';

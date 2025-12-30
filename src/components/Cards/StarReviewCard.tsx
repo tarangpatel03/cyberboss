@@ -4,7 +4,7 @@ import FastImage from 'react-native-fast-image';
 import { Theme } from '../../config/themes/themes';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import { RegularTextComponent } from '../Text/RegularTextComponent';
-import { createStyles, staticStyle } from '../../screens/common/rating/styles';
+import { createStyles, staticStyle } from '../../screens/common/Rating/styles';
 
 type starReviewCardProps = {
   showStar: (starCount: number) => any;

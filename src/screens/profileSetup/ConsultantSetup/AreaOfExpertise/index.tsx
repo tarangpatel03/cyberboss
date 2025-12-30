@@ -17,20 +17,20 @@ import { getAPIData } from '../../../../services/api/common/getCommonApi';
 import { endPoints } from '../../../../config/endPoint/apiEndPoint';
 import { useDispatch } from 'react-redux';
 import { setUserData } from '../../../../redux/features/userSlice';
-import { apiExpertiesModel } from '../../../../models/api/consultant';
+import { apiExpertiseModel } from '../../../../models/api/consultant';
 import {
-  tExpertiesModel,
-  transformExpertiesModel,
+  tExpertiseModel,
+  transformExpertiseModel,
 } from '../../../../models/formattedAPI/tConsultant';
 
-export const AreaOfExpertiesScreen = ({
+export const AreaOfExpertiseScreen = ({
   navigation,
-}: rootNavigationProps<routeName.AreaOfExperties>) => {
+}: rootNavigationProps<routeName.AreaOfExpertise>) => {
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   const dispatch = useDispatch();
-  const [expertise, setExpertise] = useState<tExpertiesModel[]>([]);
+  const [expertise, setExpertise] = useState<tExpertiseModel[]>([]);
   const [category, setCategory] = useState<string[]>([]);
 
   const goBack = () => {
@@ -39,8 +39,8 @@ export const AreaOfExpertiesScreen = ({
 
   const getExpertise = async () => {
     try {
-      const res: apiExpertiesModel[] = await getAPIData(endPoints.expertises);
-      const transformedRes = res.map(r => transformExpertiesModel(r));
+      const res: apiExpertiseModel[] = await getAPIData(endPoints.expertise);
+      const transformedRes = res.map(r => transformExpertiseModel(r));
       setExpertise(transformedRes);
     } catch (error) {
       console.log(error);
@@ -63,7 +63,7 @@ export const AreaOfExpertiesScreen = ({
     navigation.navigate(routeName.ServicesYouOffer);
   };
 
-  const renderItem: ListRenderItem<tExpertiesModel> = useCallback(
+  const renderItem: ListRenderItem<tExpertiseModel> = useCallback(
     ({ item }) => {
       return (
         <CategoryCard

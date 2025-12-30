@@ -16,9 +16,9 @@ export const SubscriptionHeader = (props: subscriptionHeaderProps) => {
       <TouchableOpacity
         activeOpacity={0.7}
         onPress={props.goBack}
-        style={staticStyle.cancleButton}
+        style={staticStyle.cancelButton}
       >
-        <FastImage source={appIcons.ic_cancle} style={staticStyle.headerIcon} />
+        <FastImage source={appIcons.ic_cancel} style={staticStyle.headerIcon} />
       </TouchableOpacity>
       <TouchableOpacity activeOpacity={0.7} style={staticStyle.restoreButton}>
         <FastImage

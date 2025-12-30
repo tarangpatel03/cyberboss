@@ -14,14 +14,14 @@ type upcomingWorkshopsListProps = {
 export const UpcomingWorkShopsList = (props: upcomingWorkshopsListProps) => {
   const { t } = useTranslation();
   return (
-    <View style={staticStyle.benifits}>
-      <View style={staticStyle.benifitLine}>
+    <View style={staticStyle.benefits}>
+      <View style={staticStyle.benefitLine}>
         <FastImage source={appIcons.ic_energy} style={staticStyle.energyIcon} />
         <MediumTextComponent
           text={t('upcomingWorkshops')}
           textStyle={StyleSheet.flatten([
             staticStyle.text16500,
-            staticStyle.latterSpece,
+            staticStyle.latterSpace,
           ])}
         />
         <FastImage source={appIcons.ic_energy} style={staticStyle.energyIcon} />

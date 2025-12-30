@@ -5,7 +5,7 @@ import { useTheme } from '@shopify/restyle';
 import { Theme } from '../config/themes/themes';
 import { StyleSheet } from 'react-native';
 import { HistoryScreen } from '../screens/common/History';
-import { ProfileScreen } from '../screens/common/profile';
+import { ProfileScreen } from '../screens/common/Profile';
 import { ClientHomeScreen } from '../screens/client/Home';
 import { ChatScreen } from '../screens/common/Chat';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';

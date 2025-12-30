@@ -6,14 +6,14 @@ import { staticStyle } from '../screens/common/EditProfile/styles';
 import { useState } from 'react';
 import { appImages } from '../config/images/imagePath';
 
-type pickPrifilePictureContainerProps = {
+type pickProfilePictureContainerProps = {
   pickImage: () => void;
   changePhotoText?: object;
   getPicture: () => number | { uri: string } | undefined;
 };
 
-export const PickPrifilePictureContainer = (
-  props: pickPrifilePictureContainerProps,
+export const PickProfilePictureContainer = (
+  props: pickProfilePictureContainerProps,
 ) => {
   const { t } = useTranslation();
   const [profilePictureError, setProfilePictureError] =

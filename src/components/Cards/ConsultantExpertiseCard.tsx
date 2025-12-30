@@ -10,12 +10,12 @@ import { ConsultantInfoBadge } from '../ConsultantInfoBadge';
 import { MediumTextComponent } from '../Text/MediumTextComponent';
 import { tConsultantDetailsModel } from '../../models/formattedAPI/tConsultant';
 
-type consultantExpertiesCardProps = {
+type consultantExpertiseCardProps = {
   data: tConsultantDetailsModel;
 };
 
-export const ConsultantExpertiesCard = (
-  props: consultantExpertiesCardProps,
+export const ConsultantExpertiseCard = (
+  props: consultantExpertiseCardProps,
 ) => {
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
@@ -25,7 +25,7 @@ export const ConsultantExpertiesCard = (
       <MediumTextComponent
         text={t('expertiseAndServices')}
         textStyle={StyleSheet.flatten([
-          staticStyle.semititletext,
+          staticStyle.semiTitleText,
           styles.primaryText,
         ])}
       />
@@ -40,7 +40,7 @@ export const ConsultantExpertiesCard = (
           ))}
       </View>
       <View
-        style={StyleSheet.flatten([staticStyle.saperator2, styles.saperator])}
+        style={StyleSheet.flatten([staticStyle.separator2, styles.separator])}
       />
       <View style={staticStyle.listContainer}>
         {props.data.services.length > 0 &&

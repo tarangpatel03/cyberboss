@@ -22,7 +22,7 @@ export const staticStyle = StyleSheet.create({
   listItems: {
     gap: normalize(12),
   },
-  titletext: {
+  titleText: {
     fontSize: normalize(18),
     fontWeight: '500',
   },
@@ -37,7 +37,7 @@ export const staticStyle = StyleSheet.create({
   moveLeft: {
     left: normalize(4),
   },
-  ratingtext: {
+  ratingText: {
     fontSize: normalize(24),
     fontWeight: '600',
   },
@@ -46,15 +46,15 @@ export const staticStyle = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
   },
-  semititletext: {
+  semiTitleText: {
     fontSize: normalize(16),
     fontWeight: '500',
   },
-  subtitletext: {
+  subTitleText: {
     fontSize: normalize(14),
     fontWeight: '400',
   },
-  tinytext: {
+  tinyText: {
     fontSize: normalize(12),
     fontWeight: '400',
   },
@@ -73,10 +73,10 @@ export const staticStyle = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  saperator: {
+  separator: {
     borderWidth: 1,
   },
-  saperator2: {
+  separator2: {
     borderWidth: 0.75,
   },
   bottomBar: {
@@ -87,7 +87,7 @@ export const staticStyle = StyleSheet.create({
     paddingVertical: normalize(12),
     paddingHorizontal: normalize(16),
   },
-  booknowButton: {
+  bookNowButton: {
     paddingHorizontal: normalize(24),
   },
 });
@@ -106,7 +106,7 @@ export const createStyles = (theme: Theme) =>
     secondaryText: {
       color: theme.colors.textSecondary,
     },
-    saperator: {
+    separator: {
       borderColor: theme.colors.borderPrimary,
     },
   });

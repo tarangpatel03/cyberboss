@@ -77,7 +77,7 @@ export const transformHomeBookingModel: (
   };
 };
 
-export const transformBookingHistoyModel: (
+export const transformBookingHistoryModel: (
   data: apiBookingHistoryModel,
 ) => tBookingHistoryModel = (data: apiBookingHistoryModel) => {
   return {

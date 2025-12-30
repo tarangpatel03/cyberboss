@@ -46,7 +46,7 @@ export const ChatListItem = memo((props: chatListItemProps) => {
             text={props.time}
             textStyle={StyleSheet.flatten([
               staticStyle.timeText,
-              props.unread > 0 ? styles.timeUnderadText : styles.timeText,
+              props.unread > 0 ? styles.timeUnreadText : styles.timeText,
             ])}
           /> */}
         </View>
@@ -141,7 +141,7 @@ const createStyles = (theme: Theme) =>
     timeText: {
       color: theme.colors.textSecondary,
     },
-    timeUnderadText: {
+    timeUnreadText: {
       color: theme.colors.primary,
     },
     unReadContainer: {

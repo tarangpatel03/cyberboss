@@ -17,7 +17,7 @@ import { endPoints } from '../../../config/endPoint/apiEndPoint';
 import { useTranslation } from 'react-i18next';
 import { updateClientProfile } from '../../../services/api/profile/updateProfile';
 import { EditProfileInputs } from '../../../components/Input/EditProfileInput';
-import { PickPrifilePictureContainer } from '../../../components/PickProfilePictureContainer';
+import { PickProfilePictureContainer } from '../../../components/PickProfilePictureContainer';
 import { apiProfileModel } from '../../../models/api/profile';
 import {
   tProfileModel,
@@ -57,7 +57,7 @@ export const EditProfileScreen = ({
   const [email, setEmail] = useState<string>(profileData.email);
   const [bio, setBio] = useState<string | null>(profileData.bio);
   const [name, setUserName] = useState<string | null>(profileData.name);
-  const mediaOptoins: ImageLibraryOptions = {
+  const mediaOptions: ImageLibraryOptions = {
     mediaType: 'photo',
     selectionLimit: 1,
   };
@@ -76,7 +76,7 @@ export const EditProfileScreen = ({
 
   const pickImage = async () => {
     try {
-      const res = await launchImageLibrary(mediaOptoins);
+      const res = await launchImageLibrary(mediaOptions);
 
       if (res.assets && res.assets.length > 0) {
         const uri = res.assets[0].uri;
@@ -128,7 +128,7 @@ export const EditProfileScreen = ({
       >
         <ScreenHeaderComponent onPress={goBack} headerText={t('editProfile')} />
         <View style={staticStyle.innerContainer}>
-          <PickPrifilePictureContainer
+          <PickProfilePictureContainer
             getPicture={getPicture}
             pickImage={pickImage}
             changePhotoText={styles.changePhotoText}

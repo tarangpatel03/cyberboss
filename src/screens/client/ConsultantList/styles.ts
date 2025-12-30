@@ -7,7 +7,7 @@ export const staticStyle = StyleSheet.create({
     flex: 1,
     paddingBottom: normalize(12),
   },
-  topbar: {
+  topBar: {
     paddingBottom: normalize(12),
   },
   searchBar: {

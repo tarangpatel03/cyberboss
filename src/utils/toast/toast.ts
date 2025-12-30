@@ -19,7 +19,7 @@ type subToastProps = {
   subtitle?: string;
 };
 
-export const showSucessToast = ({ title, subtitle }: subToastProps) => {
+export const showSuccessToast = ({ title, subtitle }: subToastProps) => {
   showToast({ type: 'success', text1: title, text2: subtitle });
 };
 

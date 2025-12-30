@@ -24,20 +24,20 @@ export const SubscriptionBenefitsCard = (props: linearGradientDirection) => {
     <LinearGradient
       end={props.end}
       start={props.start}
-      style={staticStyle.benifitContainer}
+      style={staticStyle.benefitContainer}
       colors={[
         appColors.app_202126,
         appColors.app_20212680,
         appColors.app_202126,
       ]}
     >
-      <View style={staticStyle.benifitLine}>
+      <View style={staticStyle.benefitLine}>
         <FastImage source={appIcons.ic_energy} style={staticStyle.energyIcon} />
         <MediumTextComponent
           text={t('benefits')}
           textStyle={StyleSheet.flatten([
             staticStyle.text16500,
-            staticStyle.latterSpece,
+            staticStyle.latterSpace,
           ])}
         />
         <FastImage source={appIcons.ic_energy} style={staticStyle.energyIcon} />
@@ -50,18 +50,18 @@ export const SubscriptionBenefitsCard = (props: linearGradientDirection) => {
         ]}
         end={props.end}
         start={props.start}
-        style={staticStyle.saperator}
+        style={staticStyle.separator}
       />
-      <View style={staticStyle.benifits}>
+      <View style={staticStyle.benefits}>
         <View style={staticStyle.horizontal8}>
           <LinearGradient
             colors={getGoldenGradient()}
             end={props.end}
             start={props.start}
-            style={staticStyle.benifitImageContainer}
+            style={staticStyle.benefitImageContainer}
           >
             <FastImage
-              source={appIcons.ic_calander}
+              source={appIcons.ic_calender2}
               style={staticStyle.energyIcon}
             />
           </LinearGradient>
@@ -75,7 +75,7 @@ export const SubscriptionBenefitsCard = (props: linearGradientDirection) => {
             colors={getGoldenGradient()}
             end={props.end}
             start={props.start}
-            style={staticStyle.benifitImageContainer}
+            style={staticStyle.benefitImageContainer}
           >
             <FastImage
               source={appIcons.ic_chat}
@@ -92,7 +92,7 @@ export const SubscriptionBenefitsCard = (props: linearGradientDirection) => {
             colors={getGoldenGradient()}
             end={props.end}
             start={props.start}
-            style={staticStyle.benifitImageContainer}
+            style={staticStyle.benefitImageContainer}
           >
             <FastImage
               source={appIcons.ic_book}

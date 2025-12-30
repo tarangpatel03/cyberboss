@@ -5,7 +5,7 @@ import normalize from '../utils/normalize/normalize';
 import { RegularTextComponent } from './Text/RegularTextComponent';
 import FastImage from 'react-native-fast-image';
 
-type bonsultantInfoBadgeProps = {
+type consultantInfoBadgeProps = {
   text: string;
   image?: string;
   imagePath?: number | { uri: string } | undefined;
@@ -15,7 +15,7 @@ export const ConsultantInfoBadge = ({
   text,
   image,
   imagePath,
-}: bonsultantInfoBadgeProps) => {
+}: consultantInfoBadgeProps) => {
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   return (

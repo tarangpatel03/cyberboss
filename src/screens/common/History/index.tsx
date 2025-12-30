@@ -21,7 +21,7 @@ import { useTranslation } from 'react-i18next';
 import FastImage from 'react-native-fast-image';
 import {
   tBookingHistoryModel,
-  transformBookingHistoyModel,
+  transformBookingHistoryModel,
 } from '../../../models/formattedAPI/tBookings';
 import { apiBookingHistoryModel } from '../../../models/api/bookings';
 
@@ -53,7 +53,7 @@ export const HistoryScreen = ({
       }
       const payload = await getAPIData(endPoints.booking, pageToLoad);
       const data: apiBookingHistoryModel[] = payload.data;
-      const transformedData = data.map(r => transformBookingHistoyModel(r));
+      const transformedData = data.map(r => transformBookingHistoryModel(r));
       setHistory(transformedData);
     } catch (error) {
       console.log(error);
@@ -135,7 +135,7 @@ export const HistoryScreen = ({
                     text={t('report')}
                     textStyle={StyleSheet.flatten([
                       staticStyle.optionText,
-                      styles.primarytext,
+                      styles.primaryText,
                     ])}
                   />
                 </TouchableOpacity>
@@ -147,10 +147,10 @@ export const HistoryScreen = ({
                     style={staticStyle.icon}
                   />
                   <RegularTextComponent
-                    text={t('markasDone')}
+                    text={t('markAsDone')}
                     textStyle={StyleSheet.flatten([
                       staticStyle.optionText,
-                      styles.primarytext,
+                      styles.primaryText,
                     ])}
                   />
                 </TouchableOpacity>

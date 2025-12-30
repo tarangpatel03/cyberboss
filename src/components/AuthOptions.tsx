@@ -5,7 +5,7 @@ import { Theme } from '../config/themes/themes';
 import { appIcons } from '../config/icons/iconPath';
 import { MediumTextComponent } from './Text/MediumTextComponent';
 import { SettingOptionsButton } from './Buttons/SettingsOptionsComponent';
-import { staticStyle, createStyles } from '../screens/common/profile/styles';
+import { staticStyle, createStyles } from '../screens/common/Profile/styles';
 import { Dispatch, SetStateAction } from 'react';
 
 type authOptionsProps = {
@@ -35,7 +35,7 @@ export const AuthOptions = (props: authOptionsProps) => {
         ])}
       />
       <View
-        style={StyleSheet.flatten([staticStyle.saperator, styles.saperator])}
+        style={StyleSheet.flatten([staticStyle.separator, styles.separator])}
       />
       <View style={staticStyle.options}>
         <SettingOptionsButton
@@ -44,7 +44,7 @@ export const AuthOptions = (props: authOptionsProps) => {
           icon={appIcons.ic_bin}
         />
         <View
-          style={StyleSheet.flatten([staticStyle.saperator, styles.saperator])}
+          style={StyleSheet.flatten([staticStyle.separator, styles.separator])}
         />
         <SettingOptionsButton
           navigate={() => props.setLogOutVisible(true)}

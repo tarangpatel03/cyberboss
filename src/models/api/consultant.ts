@@ -21,6 +21,16 @@ export type apiWorkshopModel = {
   link: string;
 };
 
+export type apiRatingReviewModel = {
+  id: string;
+  client_id: string;
+  client_name: string;
+  client_profile_picture: number | { ur: string } | undefined;
+  rating: string;
+  review: string | null;
+  created_at: string;
+};
+
 export type apiConsultantModel = {
   id: string;
   name: string;
@@ -42,5 +52,5 @@ export type apiConsultantDetailsModel = {
   services: services[];
   total_ratings: number;
   average_ratings: number;
-  rating_reviews: any[];
+  rating_reviews: apiRatingReviewModel[];
 };

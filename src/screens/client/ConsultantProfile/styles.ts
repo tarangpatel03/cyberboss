@@ -9,6 +9,16 @@ export const staticStyle = StyleSheet.create({
   titleLine: {
     gap: normalize(12),
   },
+  reviewCard: {
+    gap: normalize(12),
+    paddingBottom: normalize(12),
+    paddingHorizontal: normalize(12),
+  },
+  bulletPoint: {
+    width: normalize(3),
+    height: normalize(3),
+    borderRadius: normalize(3),
+  },
   profileContainer: {
     gap: normalize(20),
     paddingHorizontal: normalize(12),
@@ -105,6 +115,9 @@ export const createStyles = (theme: Theme) =>
     },
     secondaryText: {
       color: theme.colors.textSecondary,
+    },
+    bulletPoint: {
+      backgroundColor: theme.colors.textSecondary,
     },
     separator: {
       borderColor: theme.colors.borderPrimary,

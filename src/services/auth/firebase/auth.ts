@@ -81,6 +81,7 @@ export const signIn = async (email: string, password: string) => {
       push_token: PUSH_TOKEN,
       firebase_token: idToken,
     });
+    console.log('Token: ', userToken);
     return { userToken, uid };
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {

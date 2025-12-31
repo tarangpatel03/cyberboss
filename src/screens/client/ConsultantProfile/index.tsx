@@ -1,4 +1,10 @@
-import { View, StyleSheet, ScrollView, Image } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  ScrollView,
+  FlatList,
+  ListRenderItem,
+} from 'react-native';
 import { useTheme } from '@shopify/restyle';
 import { createStyles, staticStyle } from './styles';
 import { Theme } from '../../../config/themes/themes';
@@ -7,7 +13,7 @@ import { useEffect, useState } from 'react';
 import { routeName } from '../../../config/constants/routes';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { rootNavigationProps } from '../../../models/navigationModal';
-import { ReviewCard } from '../../../components/Cards/RatingReviewCard';
+import { RatingCard } from '../../../components/Cards/RatingReviewCard';
 import { MediumTextComponent } from '../../../components/Text/MediumTextComponent';
 import { RegularTextComponent } from '../../../components/Text/RegularTextComponent';
 import { ScreenHeaderComponent } from '../../../components/Headers/ScreenHeaderComponent';
@@ -21,10 +27,10 @@ import { ConsultantRatingsList } from '../../../components/ListItems/ConsultantR
 import {
   tConsultantDetailsModel,
   transformConsultantDetailsModel,
+  tRatingReviewModel,
 } from '../../../models/formattedAPI/tConsultant';
 import { apiConsultantDetailsModel } from '../../../models/api/consultant';
-import { Rating } from 'react-native-ratings';
-import { appImages } from '../../../config/images/imagePath';
+import { ReviewCard } from '../../../components/Cards/ReviewCard';
 
 export const ConsultantProfileScreen = ({
   navigation,
@@ -54,6 +60,20 @@ export const ConsultantProfileScreen = ({
     navigation.goBack();
   };
 
+  const renderItemReview: ListRenderItem<tRatingReviewModel> = ({ item }) => {
+    return (
+      <ReviewCard
+        clientId={item.clientId}
+        clientName={item.clientName}
+        clientProfilePicture={item.clientProfilePicture}
+        createdAt={item.createdAt}
+        id={item.id}
+        rating={item.rating}
+        review={item.review}
+      />
+    );
+  };
+
   const navigateToBookingDetails = () => {
     navigation.navigate(routeName.BookingDetails, {
       consultantId: data.id,
@@ -74,7 +94,7 @@ export const ConsultantProfileScreen = ({
   };
 
   const renderItem = ({ item }: any) => {
-    return <ReviewCard item={item} />;
+    return <RatingCard item={item} />;
   };
 
   useEffect(() => {
@@ -130,54 +150,15 @@ export const ConsultantProfileScreen = ({
                 ])}
               />
               <ConsultantRatingsList data={data} renderItem={renderItem} />
-              <View style={staticStyle.titleLine}>
-                <View
-                  style={StyleSheet.flatten([
-                    staticStyle.separator2,
-                    styles.separator,
-                  ])}
-                />
-                <View
-                  style={StyleSheet.flatten([
-                    staticStyle.rowLine,
-                    staticStyle.line,
-                  ])}
-                >
-                  <Image
-                    style={staticStyle.reviewImage}
-                    source={appImages.img_defaultProfile}
-                  />
-                  <MediumTextComponent
-                    text={'User'}
-                    textStyle={StyleSheet.flatten([
-                      staticStyle.subTitleText,
-                      styles.primaryText,
-                    ])}
-                  />
-                  <RegularTextComponent
-                    textStyle={StyleSheet.flatten([
-                      staticStyle.tinyText,
-                      styles.secondaryText,
-                    ])}
-                    text={'Today'}
-                  />
-                </View>
-                <Rating
-                  readonly
-                  imageSize={15}
-                  ratingCount={5}
-                  style={staticStyle.rating}
-                  tintColor={theme.colors.bgPrimary}
-                  startingValue={4}
-                />
-                <RegularTextComponent
-                  textStyle={StyleSheet.flatten([
-                    staticStyle.tinyText,
-                    styles.secondaryText,
-                  ])}
-                  text={'Today'}
-                />
-              </View>
+              <FlatList
+                data={data.ratingReviews}
+                scrollEnabled={false}
+                keyExtractor={item => item.id}
+                renderItem={renderItemReview}
+                showsVerticalScrollIndicator={false}
+                initialNumToRender={6}
+                ListEmptyComponent={null}
+              />
             </ScrollView>
             <View
               style={StyleSheet.flatten([

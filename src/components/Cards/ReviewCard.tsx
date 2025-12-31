@@ -1,39 +1,43 @@
+import { useTheme } from '@shopify/restyle';
+import { View, StyleSheet } from 'react-native';
+import FastImage from 'react-native-fast-image';
+import { Rating } from 'react-native-ratings';
+import { appImages } from '../../config/images/imagePath';
+import { getFullDate } from '../../utils/format/formatDate';
+import { MediumTextComponent } from '../Text/MediumTextComponent';
+import { RegularTextComponent } from '../Text/RegularTextComponent';
+import { Theme } from '../../config/themes/themes';
 import {
   createStyles,
   staticStyle,
 } from '../../screens/client/ConsultantProfile/styles';
-import { memo } from 'react';
-import { useTheme } from '@shopify/restyle';
-import { Rating } from 'react-native-ratings';
-import { StyleSheet, View } from 'react-native';
-import FastImage from 'react-native-fast-image';
-import { Theme } from '../../config/themes/themes';
-import { MediumTextComponent } from '../Text/MediumTextComponent';
-import { RegularTextComponent } from '../Text/RegularTextComponent';
+import { tRatingReviewModel } from '../../models/formattedAPI/tConsultant';
 
-type reviewCardProps = {
-  item: any;
-};
-
-export const RatingCard = memo((props: reviewCardProps) => {
+export const ReviewCard = (props: tRatingReviewModel) => {
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
 
   return (
-    <View style={staticStyle.titleLine}>
+    <View style={staticStyle.reviewCard}>
       <View
         style={StyleSheet.flatten([staticStyle.separator2, styles.separator])}
       />
       <View style={StyleSheet.flatten([staticStyle.rowLine, staticStyle.line])}>
         <FastImage
           style={staticStyle.reviewImage}
-          source={props.item.profileImage}
+          source={appImages.img_defaultProfile}
         />
         <MediumTextComponent
-          text={props.item.name}
+          text={props.clientName}
           textStyle={StyleSheet.flatten([
             staticStyle.subTitleText,
             styles.primaryText,
+          ])}
+        />
+        <View
+          style={StyleSheet.flatten([
+            staticStyle.bulletPoint,
+            styles.bulletPoint,
           ])}
         />
         <RegularTextComponent
@@ -41,7 +45,7 @@ export const RatingCard = memo((props: reviewCardProps) => {
             staticStyle.tinyText,
             styles.secondaryText,
           ])}
-          text={props.item.date}
+          text={getFullDate(props.createdAt)}
         />
       </View>
       <Rating
@@ -50,16 +54,16 @@ export const RatingCard = memo((props: reviewCardProps) => {
         ratingCount={5}
         style={staticStyle.rating}
         tintColor={theme.colors.bgPrimary}
-        startingValue={props.item.rating}
+        startingValue={Number(props.rating)}
       />
       <RegularTextComponent
-        text={props.item.review}
-        noOfLines={20}
         textStyle={StyleSheet.flatten([
-          staticStyle.subTitleText,
+          staticStyle.tinyText,
           styles.secondaryText,
         ])}
+        noOfLines={7}
+        text={props.review ?? ''}
       />
     </View>
   );
-});
+};

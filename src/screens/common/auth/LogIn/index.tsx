@@ -14,10 +14,7 @@ import { setUser, setUserData } from '../../../../redux/features/userSlice';
 import { showErrorToast } from '../../../../utils/toast/toast';
 import { routeName } from '../../../../config/constants/routes';
 import { rootNavigationProps } from '../../../../models/navigationModal';
-import {
-  validateEmail,
-  validatePassword,
-} from '../../../../utils/validation/validation';
+import { validateEmail } from '../../../../utils/validation/validation';
 import { LogInInputsContainer } from '../../../../components/Input/LogInInputContainer';
 import { AuthTitle } from '../../../../components/AuthTitle';
 import { AuthFooterAction } from '../../../../components/Buttons/HorizontalTextButton';

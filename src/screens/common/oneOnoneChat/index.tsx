@@ -56,7 +56,7 @@ export const OneOnOneChatScreen = ({
     try {
       const data1 = await firestore()
         .collection('chats')
-        .doc(`${data.users[1]}_${data.users[0]}`)
+        .doc(`${data.users[0]}_${data.users[1]}`)
         .collection('messages')
         .get()
         .then(snapshot => {

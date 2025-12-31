@@ -38,7 +38,8 @@ export const ConsultantListCard = memo(
             source={
               profilePictureError
                 ? appImages.img_defaultProfile
-                : { uri: getProfilePicture(data.profilePicture) }
+                : getProfilePicture(data.profilePicture) ??
+                  appImages.img_defaultProfile
             }
             onError={() => setProfilePictureError(true)}
           />

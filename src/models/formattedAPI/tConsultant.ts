@@ -2,6 +2,7 @@ import {
   apiConsultantDetailsModel,
   apiConsultantModel,
   apiExpertiseModel,
+  apiRatingReviewModel,
   apiWorkshopModel,
   services,
 } from '../api/consultant';
@@ -33,6 +34,16 @@ export type tConsultantModel = {
   bookings: number;
 };
 
+export type tRatingReviewModel = {
+  id: string;
+  clientId: string;
+  clientName: string;
+  clientProfilePicture: number | { ur: string } | undefined;
+  rating: string;
+  review: string | null;
+  createdAt: string;
+};
+
 export type tConsultantDetailsModel = {
   id: string;
   name: string;
@@ -45,7 +56,7 @@ export type tConsultantDetailsModel = {
   services: services[];
   totalRatings: number;
   averageRatings: number;
-  ratingReviews: any[];
+  ratingReviews: tRatingReviewModel[];
 };
 
 export const transformExpertiseModel: (
@@ -87,6 +98,20 @@ export const transformConsultantModel: (
   };
 };
 
+export const transformRatingReviewModel: (
+  data: apiRatingReviewModel,
+) => tRatingReviewModel = (data: apiRatingReviewModel) => {
+  return {
+    id: data.id,
+    rating: data.rating,
+    clientId: data.client_id,
+    clientName: data.client_name,
+    clientProfilePicture: data.client_profile_picture,
+    createdAt: data.created_at,
+    review: data.review,
+  };
+};
+
 export const transformConsultantDetailsModel: (
   data: apiConsultantDetailsModel,
 ) => tConsultantDetailsModel = (data: apiConsultantDetailsModel) => {
@@ -102,7 +127,7 @@ export const transformConsultantDetailsModel: (
     name: data.name,
     profilePicture: data.profile_picture,
     rate: data.rate,
-    ratingReviews: data.rating_reviews,
+    ratingReviews: data.rating_reviews.map(r => transformRatingReviewModel(r)),
     services: data.services,
     totalRatings: data.total_ratings,
   };

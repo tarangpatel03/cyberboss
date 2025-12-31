@@ -14,7 +14,15 @@ import { width } from '../../config/constants/variables';
 type chatListItemProps = {
   data: any;
   uid: string;
-  onPress: () => void;
+  onPress: ({
+    image,
+    name,
+    users,
+  }: {
+    image: number | string | { uri: string } | undefined;
+    name: string;
+    users: string[];
+  }) => void;
 };
 
 type userDataType = {
@@ -60,7 +68,13 @@ export const ChatListItem = memo((props: chatListItemProps) => {
   return (
     <TouchableOpacity
       activeOpacity={0.7}
-      onPress={props.onPress}
+      onPress={() =>
+        props.onPress({
+          image: userData.profile_image,
+          name: userData.name,
+          users: props.data.users,
+        })
+      }
       style={StyleSheet.flatten([staticStyle.container, styles.container])}
     >
       <FastImage

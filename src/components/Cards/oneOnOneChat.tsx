@@ -6,26 +6,20 @@ import { appIcons } from '../../config/icons/iconPath';
 import { RegularTextComponent } from '../Text/RegularTextComponent';
 import FastImage from 'react-native-fast-image';
 import { memo } from 'react';
+import { formatFirebaseTimestamp } from '../../utils/format/formatDate';
 
-type messageCardProps = {
-  type: 'send' | 'receive';
-  image?: number | { uri: string } | undefined;
-  message: string;
-  time: string;
-};
-
-export const OneOnOneCard = memo((props: messageCardProps) => {
+export const OneOnOneCard = memo((props: any) => {
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   return (
     <View
       style={
-        props.type === 'send'
+        props.senderId === props.uid
           ? staticStyle.sendContainer
           : staticStyle.receiveContainer
       }
     >
-      {props.type === 'receive' && (
+      {props.senderId !== props.uid && (
         <FastImage
           tintColor={theme.colors.bgPrimary}
           source={appIcons.ic_reply}
@@ -35,10 +29,10 @@ export const OneOnOneCard = memo((props: messageCardProps) => {
       <View
         style={StyleSheet.flatten([
           staticStyle.centerContainer,
-          props.type === 'send'
+          props.senderId === props.uid
             ? staticStyle.sendRadius
             : staticStyle.receiveRadius,
-          props.type === 'send'
+          props.senderId === props.uid
             ? styles.sendContainer
             : styles.receiveContainer,
         ])}
@@ -51,18 +45,20 @@ export const OneOnOneCard = memo((props: messageCardProps) => {
           noOfLines={Infinity}
           textStyle={StyleSheet.flatten([
             staticStyle.messageText,
-            props.type === 'send' ? styles.sendMessageText : styles.messageText,
+            props.senderId === props.uid
+              ? styles.sendMessageText
+              : styles.messageText,
           ])}
         />
         <RegularTextComponent
-          text={props.time}
+          text={formatFirebaseTimestamp(props.timestamp)}
           textStyle={StyleSheet.flatten([
             staticStyle.timeText,
-            props.type === 'send' ? styles.timeText : styles.receiveTime,
+            props.senderId === props.uid ? styles.timeText : styles.receiveTime,
           ])}
         />
       </View>
-      {props.type === 'send' && (
+      {props.senderId === props.uid && (
         <FastImage
           source={appIcons.ic_yourSend}
           tintColor={theme.colors.primary}

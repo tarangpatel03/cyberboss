@@ -1,4 +1,9 @@
-import { StatusBar, ScrollView, StyleSheet } from 'react-native';
+import {
+  StatusBar,
+  ScrollView,
+  StyleSheet,
+  ListRenderItem,
+} from 'react-native';
 import {
   bookingHistory,
   recentActivities,
@@ -8,7 +13,6 @@ import { useTheme } from '@shopify/restyle';
 import { createStyles, staticStyle } from './styles';
 import { Theme } from '../../../config/themes/themes';
 import { getAPIData } from '../../../services/api/common/getCommonApi';
-import { appImages } from '../../../config/images/imagePath';
 import { routeName } from '../../../config/constants/routes';
 import { endPoints } from '../../../config/endPoint/apiEndPoint';
 import { rootNavigationProps } from '../../../models/navigationModal';
@@ -22,7 +26,9 @@ import { setUserData } from '../../../redux/features/userSlice';
 import { apiConsultantHomeModel } from '../../../models/api/home';
 import { apiProfileModel } from '../../../models/api/profile';
 import {
+  tConsultantHomeBookingModel,
   tConsultantHomeModel,
+  tConsultantHomeNotificationModel,
   transformConsultantHomeModel,
 } from '../../../models/formattedAPI/tHome';
 import {
@@ -95,24 +101,30 @@ export const ConsultantHomeScreen = ({
     }
   };
 
-  const renderBookingHistoryItem = ({ item }: any) => {
+  const renderBookingHistoryItem: ListRenderItem<
+    tConsultantHomeBookingModel
+  > = ({ item }) => {
     return (
       <BookingHistoryCard
-        charge={item.charge}
-        date={item.date}
-        name={item.name}
-        service={item.service}
-        image={appImages.img_test1}
+        bookingDate={item.bookingDate}
+        categoryName={item.categoryName}
+        consultantName={item.consultantName}
+        consultantProfilePicture={item.consultantProfilePicture}
+        grandTotal={item.grandTotal}
+        id={item.id}
       />
     );
   };
 
-  const renderRecentActivityItem = ({ item }: any) => {
+  const renderRecentActivityItem: ListRenderItem<
+    tConsultantHomeNotificationModel
+  > = ({ item }) => {
     return (
       <RecentActivity
-        image={item.image}
-        message={item.message}
-        time={item.time}
+        id={item.id}
+        body={item.body}
+        title={item.title}
+        createdAt={item.createdAt}
       />
     );
   };

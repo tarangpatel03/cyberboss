@@ -58,6 +58,7 @@ export const staticStyle = StyleSheet.create({
     resizeMode: 'contain',
   },
   listContainer: {
+    paddingTop: normalize(8),
     paddingHorizontal: normalize(12),
     flex: 1,
   },
@@ -97,7 +98,7 @@ export const createStyles = (theme: Theme) =>
       color: theme.colors.textPrimary,
     },
     listContainer: {
-      backgroundColor: theme.colors.borderPrimary,
+      backgroundColor: theme.colors.cardBackground,
     },
     inputBar: {
       backgroundColor: theme.colors.bgPrimary,

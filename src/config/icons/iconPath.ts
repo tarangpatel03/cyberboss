@@ -74,4 +74,5 @@ export const appIcons = {
   ic_done: require(`${iconPath}/ic_done.png`),
   ic_noImage: require(`${iconPath}/ic_noImage.png`),
   ic_download: require(`${iconPath}/ic_download.png`),
+  ic_noChatFound: require(`${iconPath}/ic_noChatFound.png`),
 };

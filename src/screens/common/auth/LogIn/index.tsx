@@ -72,7 +72,6 @@ export const LogInScreen = ({
       }
     } catch (error) {
       console.log(error);
-      setButtonText(t('logIn'));
     }
   };
 

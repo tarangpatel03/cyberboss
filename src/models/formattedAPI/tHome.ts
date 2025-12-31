@@ -22,7 +22,7 @@ export type tClientHomeModel = {
 export type tConsultantHomeBookingModel = {
   id: string;
   consultantName: string;
-  consultantProfilePicture: string | null;
+  consultantProfilePicture: string;
   bookingDate: string;
   categoryName: string;
   grandTotal: string;

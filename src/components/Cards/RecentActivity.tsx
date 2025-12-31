@@ -5,39 +5,42 @@ import normalize from '../../utils/normalize/normalize';
 import { RegularTextComponent } from '../Text/RegularTextComponent';
 import FastImage from 'react-native-fast-image';
 import { memo } from 'react';
+import { tConsultantHomeNotificationModel } from '../../models/formattedAPI/tHome';
+import { appImages } from '../../config/images/imagePath';
 
-type recentActivityProps = {
-  image: number | { uri: string } | undefined;
-  message: string;
-  time: string;
-};
-
-export const RecentActivity = memo((props: recentActivityProps) => {
-  const theme = useTheme<Theme>();
-  const styles = createStyles(theme);
-  return (
-    <View style={StyleSheet.flatten([staticStyle.container, styles.container])}>
-      <FastImage source={props.image} style={staticStyle.image} />
-      <View style={staticStyle.row}>
-        <RegularTextComponent
-          text={props.message}
-          noOfLines={2}
-          textStyle={StyleSheet.flatten([
-            staticStyle.title,
-            styles.primaryText,
-          ])}
+export const RecentActivity = memo(
+  (props: tConsultantHomeNotificationModel) => {
+    const theme = useTheme<Theme>();
+    const styles = createStyles(theme);
+    return (
+      <View
+        style={StyleSheet.flatten([staticStyle.container, styles.container])}
+      >
+        <FastImage
+          source={appImages.img_defaultProfile}
+          style={staticStyle.image}
         />
-        <RegularTextComponent
-          text={props.time}
-          textStyle={StyleSheet.flatten([
-            staticStyle.subtitle,
-            styles.secondaryText,
-          ])}
-        />
+        <View style={staticStyle.row}>
+          <RegularTextComponent
+            text={props.title}
+            noOfLines={2}
+            textStyle={StyleSheet.flatten([
+              staticStyle.title,
+              styles.primaryText,
+            ])}
+          />
+          <RegularTextComponent
+            text={props.createdAt}
+            textStyle={StyleSheet.flatten([
+              staticStyle.subtitle,
+              styles.secondaryText,
+            ])}
+          />
+        </View>
       </View>
-    </View>
-  );
-});
+    );
+  },
+);
 
 const staticStyle = StyleSheet.create({
   container: {

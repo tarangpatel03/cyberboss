@@ -30,7 +30,12 @@ export type rootNavigationParams = {
   BottomTab: undefined;
   Workshop: undefined;
   ConsultantList: { id: string; name: string };
-  OneOnOneChat: undefined;
+  OneOnOneChat: {
+    userID: string;
+    users: string[];
+    consultantName: string;
+    consultantImage: string | number | { uri: string } | undefined;
+  };
   EditProfile: undefined;
   ChangePassword: undefined;
   BookingSummary: { id: string };

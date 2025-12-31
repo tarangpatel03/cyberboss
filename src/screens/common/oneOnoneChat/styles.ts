@@ -1,28 +1,28 @@
 import { StyleSheet } from 'react-native';
 import { Theme } from '../../../config/themes/themes';
 import normalize from '../../../utils/normalize/normalize';
+import { width } from '../../../config/constants/variables';
 
 export const staticStyle = StyleSheet.create({
   container: {
     flex: 1,
+    paddingHorizontal: normalize(16),
   },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
+    paddingVertical: normalize(12),
     justifyContent: 'space-between',
-    paddingVertical: normalize(12, 'height'),
-    paddingHorizontal: normalize(20),
     gap: normalize(16),
   },
   subheader: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: normalize(8),
   },
   centralHeader: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: normalize(12),
+    gap: normalize(4),
   },
   profile: {
     width: normalize(44),
@@ -58,9 +58,11 @@ export const staticStyle = StyleSheet.create({
     resizeMode: 'contain',
   },
   listContainer: {
-    paddingTop: normalize(12, 'height'),
-    paddingHorizontal: normalize(12),
     flex: 1,
+    width: width,
+    left: normalize(-12),
+    paddingTop: normalize(8),
+    paddingHorizontal: normalize(12),
   },
   title: {
     fontSize: normalize(16),
@@ -73,8 +75,7 @@ export const staticStyle = StyleSheet.create({
   bottomContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    padding: normalize(12),
-    paddingBottom: normalize(20, 'height'),
+    paddingVertical: normalize(12),
   },
   inputBar: {
     maxWidth: '95%',
@@ -96,7 +97,7 @@ export const createStyles = (theme: Theme) =>
       color: theme.colors.textPrimary,
     },
     listContainer: {
-      backgroundColor: theme.colors.borderPrimary,
+      backgroundColor: theme.colors.cardBackground,
     },
     inputBar: {
       backgroundColor: theme.colors.bgPrimary,

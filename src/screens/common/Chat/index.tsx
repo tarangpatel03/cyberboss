@@ -36,7 +36,7 @@ export const ChatScreen = ({
     (state: rootState) => state.user.userData.firebaseUid,
   );
   // const testUID = '9f8f1a03-948d-4e66-89c0-656b0a5ae0c1'; // More Chat
-  // const testUID = '9f9fa92c-2a4e-4ad2-b4b1-a72e2132f1a2'; // Unread Chats
+  const testUID = '9f9fa92c-2a4e-4ad2-b4b1-a72e2132f1a2'; // Unread Chats
 
   const getUserChats = async (userId: string) => {
     try {
@@ -51,12 +51,30 @@ export const ChatScreen = ({
           }));
           return data;
         });
+      console.log('Chats: ', data1);
       setChats(data1);
     } catch (error) {
       console.log(error);
     } finally {
       setLoader(false);
     }
+  };
+
+  const navigateToChats = ({
+    image,
+    name,
+    users,
+  }: {
+    image: number | string | { uri: string } | undefined;
+    name: string;
+    users: string[];
+  }) => {
+    navigation.navigate(routeName.OneOnOneChat, {
+      users: users,
+      consultantName: name,
+      consultantImage: image,
+      userID: testUID,
+    });
   };
 
   const navigateToLogIn = () => {
@@ -67,7 +85,7 @@ export const ChatScreen = ({
     if (!isLoggedIn) {
       navigateToLogIn();
     }
-    getUserChats(uid);
+    getUserChats(testUID);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoggedIn]);
 
@@ -95,7 +113,11 @@ export const ChatScreen = ({
               keyExtractor={item => item.id}
               showsVerticalScrollIndicator={false}
               renderItem={({ item }) => (
-                <ChatListItem data={item} uid={uid} onPress={() => {}} />
+                <ChatListItem
+                  data={item}
+                  uid={testUID}
+                  onPress={navigateToChats}
+                />
               )}
               contentContainerStyle={staticStyle.listItems}
               ListEmptyComponent={

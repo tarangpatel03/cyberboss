@@ -28,6 +28,7 @@ import {
   transformChatBotChatModel,
 } from '../../../models/formattedAPI/tChatbot';
 import { CustomInputComponent } from '../../../components/Input/EmailAndPasswordInput';
+import { ListEmptyCard } from '../../../components/Cards/ListEmptyCard';
 
 export const ContactSupportScreen = ({
   navigation,
@@ -84,6 +85,17 @@ export const ContactSupportScreen = ({
     [],
   );
 
+  const emptyCard = () => {
+    return (
+      <ListEmptyCard
+        isOneOnOneChat={true}
+        text={t('noChatsFound')}
+        image={appIcons.ic_noChatFound}
+        tintColor={theme.colors.textPrimary}
+      />
+    );
+  };
+
   useEffect(() => {
     loadChat();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -139,7 +151,7 @@ export const ContactSupportScreen = ({
             showsVerticalScrollIndicator={false}
             renderItem={renderItem}
             contentContainerStyle={staticStyle.list}
-            ListEmptyComponent={null}
+            ListEmptyComponent={emptyCard}
           />
         </View>
         <View

@@ -65,6 +65,7 @@ const staticStyle = StyleSheet.create({
     fontWeight: '400',
   },
   tour: {
+    paddingTop: normalize(20),
     alignItems: 'center',
     justifyContent: 'center',
   },

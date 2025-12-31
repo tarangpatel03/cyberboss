@@ -72,6 +72,7 @@
   "deleteConfirm": "Are you sure you want delete your account? This action can't be undone and you will lose all your data.",
   "noHistory": "No Bookings yet",
   "noChatHistory": "No Chats!",
+  "noChatsFound": "No chats found",
   "notifications": "Notifications",
   "noNotification": "no new Notification",
   "bookingConfirmed": "Booking Confirmed!",

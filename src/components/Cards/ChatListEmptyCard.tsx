@@ -1,5 +1,5 @@
 import { useTheme } from '@shopify/restyle';
-import { StyleProp, StyleSheet, View } from 'react-native';
+import { Platform, StyleProp, StyleSheet, View } from 'react-native';
 import { Theme } from '../../config/themes/themes';
 import { SemiBoldTextComponent } from '../Text/SemiBoldTextComponent';
 import normalize from '../../utils/normalize/normalize';
@@ -9,19 +9,21 @@ import FastImage, { ImageStyle } from 'react-native-fast-image';
 type listEmptyCardProps = {
   text: string;
   tintColor?: string;
-  isOneOnOneChat?: boolean;
   image?: number | { uri: string } | undefined;
   style?: StyleProp<ImageStyle>;
 };
 
-export const ListEmptyCard = memo((props: listEmptyCardProps) => {
+export const ChatListEmptyCard = memo((props: listEmptyCardProps) => {
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   return (
     <View
       style={StyleSheet.flatten([
         staticStyle.container,
-        props.isOneOnOneChat ? styles.oneOnOneChat : styles.container,
+        Platform.OS === 'ios'
+          ? staticStyle.transformIos
+          : staticStyle.transformAndroid,
+        styles.oneOnOneChat,
       ])}
     >
       <FastImage
@@ -47,6 +49,12 @@ const staticStyle = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  transformIos: {
+    transform: [{ rotate: '180deg' }, { rotateY: '180deg' }],
+  },
+  transformAndroid: {
+    transform: [{ rotate: '180deg' }],
+  },
   text: {
     fontSize: normalize(16),
     fontWeight: '500',
@@ -60,9 +68,6 @@ const createStyles = (theme: Theme) =>
   StyleSheet.create({
     oneOnOneChat: {
       backgroundColor: theme.colors.cardBackground,
-    },
-    container: {
-      backgroundColor: theme.colors.bgPrimary,
     },
     text: {
       color: theme.colors.textPrimary,

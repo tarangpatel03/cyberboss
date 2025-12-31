@@ -1,10 +1,9 @@
 import { FlatList, StyleSheet, TouchableOpacity, View } from 'react-native';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTheme } from '@shopify/restyle';
 import { createStyles, staticStyle } from './styles';
 import { Theme } from '../../../config/themes/themes';
 import { appIcons } from '../../../config/icons/iconPath';
-import { chatData } from '../../../demoData/chatData';
 import { appImages } from '../../../config/images/imagePath';
 import { routeName } from '../../../config/constants/routes';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -12,17 +11,21 @@ import { rootNavigationProps } from '../../../models/navigationModal';
 import { BorderInputComponent } from '../../../components/Input/BorderInput';
 import { MediumTextComponent } from '../../../components/Text/MediumTextComponent';
 import { OneOnOneCard } from '../../../components/Cards/OneOnOneChat';
-import { ListEmptyCard } from '../../../components/Cards/ListEmptyCard';
 import FastImage from 'react-native-fast-image';
 import { useTranslation } from 'react-i18next';
+import firestore from '@react-native-firebase/firestore';
+import { ChatListEmptyCard } from '../../../components/Cards/ChatListEmptyCard';
 
 export const OneOnOneChatScreen = ({
   navigation,
+  route,
 }: rootNavigationProps<routeName.OneOnOneChat>) => {
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
+  const data = route.params;
   const styles = createStyles(theme);
   const [text, setText] = useState<string | null>('');
+  const [messages, setMessages] = useState<any[]>([]);
 
   const goBack = () => {
     navigation.goBack();
@@ -30,20 +33,51 @@ export const OneOnOneChatScreen = ({
 
   const emptyCard = () => {
     return (
-      <ListEmptyCard text={t('noChatHistory')} image={appImages.img_noChat} />
+      <ChatListEmptyCard
+        text={t('noChatsFound')}
+        image={appIcons.ic_noChatFound}
+        tintColor={theme.colors.textPrimary}
+      />
     );
   };
 
   const renderItem = ({ item }: any) => {
     return (
       <OneOnOneCard
+        uid={data.userID}
+        senderId={item.senderId}
         message={item.message}
-        time={item.time}
-        type={item.sender}
-        image={item.image}
+        timestamp={item.timestamp}
       />
     );
   };
+
+  const getChats = async () => {
+    try {
+      const data1 = await firestore()
+        .collection('chats')
+        .doc(`${data.users[1]}_${data.users[0]}`)
+        .collection('messages')
+        .get()
+        .then(snapshot => {
+          const message = snapshot.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data(),
+          }));
+          return message;
+        });
+      setMessages(data1);
+      console.log('Messages: ', messages);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getChats();
+    console.log('Consultant Data: ', data);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
@@ -60,6 +94,7 @@ export const OneOnOneChatScreen = ({
               onPress={goBack}
             >
               <FastImage
+                resizeMode={FastImage.resizeMode.contain}
                 tintColor={theme.colors.textPrimary}
                 source={appIcons.ic_backIcon}
                 style={staticStyle.backIcon}
@@ -67,11 +102,11 @@ export const OneOnOneChatScreen = ({
             </TouchableOpacity>
             <View style={staticStyle.centralHeader}>
               <FastImage
-                source={appImages.img_test1}
+                source={appImages.img_defaultProfile}
                 style={staticStyle.profile}
               />
               <MediumTextComponent
-                text="Daisy Bell"
+                text={data.consultantName}
                 textStyle={StyleSheet.flatten([
                   staticStyle.title,
                   styles.title,
@@ -84,6 +119,7 @@ export const OneOnOneChatScreen = ({
               source={appIcons.ic_more}
               style={staticStyle.moreIcon}
               tintColor={theme.colors.textPrimary}
+              resizeMode={FastImage.resizeMode.contain}
             />
           </TouchableOpacity>
         </View>
@@ -94,10 +130,11 @@ export const OneOnOneChatScreen = ({
           ])}
         >
           <FlatList
-            data={chatData}
+            data={messages}
+            inverted
             initialNumToRender={10}
             showsVerticalScrollIndicator={false}
-            keyExtractor={item => item.time}
+            keyExtractor={item => item.id}
             renderItem={renderItem}
             contentContainerStyle={staticStyle.list}
             ListEmptyComponent={emptyCard}

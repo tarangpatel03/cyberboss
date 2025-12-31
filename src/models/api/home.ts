@@ -11,7 +11,7 @@ export type apiClientHomeModel = {
 export type consultantHomeBookingModel = {
   id: string;
   consultant_name: string;
-  consultant_profile_picture: string | null;
+  consultant_profile_picture: string;
   booking_date: string;
   category_name: string;
   grand_total: string;

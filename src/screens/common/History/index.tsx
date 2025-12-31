@@ -24,6 +24,8 @@ import {
   transformBookingHistoryModel,
 } from '../../../models/formattedAPI/tBookings';
 import { apiBookingHistoryModel } from '../../../models/api/bookings';
+import { useSelector } from 'react-redux';
+import { rootState } from '../../../redux/store';
 
 export const HistoryScreen = ({
   navigation,
@@ -33,6 +35,7 @@ export const HistoryScreen = ({
   const styles = createStyles(theme);
   const [history, setHistory] = useState<tBookingHistoryModel[]>([]);
   const [loader, setLoader] = useState<boolean>(true);
+  const userIdRead = useSelector((state: rootState) => state.user.userData.id);
   const [isModalVisible, setModalVisible] = useState(false);
   const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 });
   const [selectedMoreId, setSelectedMoreId] = useState<number | null>(null);
@@ -42,6 +45,23 @@ export const HistoryScreen = ({
   };
   const navigateToNotification = () => {
     navigation.navigate(routeName.Notification);
+  };
+
+  const navigateToChat = ({
+    id,
+    image,
+    name,
+  }: {
+    id: string;
+    image: string | number | { uri: string } | undefined;
+    name: string;
+  }) => {
+    navigation.navigate(routeName.OneOnOneChat, {
+      consultantImage: image,
+      consultantName: name,
+      userID: userIdRead,
+      users: [userIdRead, id],
+    });
   };
 
   const loadData = async (pageToLoad = 1, isRefresh = false) => {
@@ -66,6 +86,7 @@ export const HistoryScreen = ({
     return (
       <BookingCard
         props={item}
+        onMessage={navigateToChat}
         onMorePress={(x, y) => onMorePress(index, x, y)}
         navigateToDetails={navigateToDetails}
       />

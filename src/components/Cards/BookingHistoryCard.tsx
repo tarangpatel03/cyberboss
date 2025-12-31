@@ -10,83 +10,112 @@ import FastImage from 'react-native-fast-image';
 import { memo } from 'react';
 import { tHomeBookingModel } from '../../models/formattedAPI/tBookings';
 import { getFullDate } from '../../utils/format/formatDate';
-import { getProfilePicture } from '../../utils/extractURI/extractImageURI';
 import { appImages } from '../../config/images/imagePath';
 import { useTranslation } from 'react-i18next';
 
-export const BookingHistoryCard = memo((props: tHomeBookingModel) => {
-  const { t } = useTranslation();
-  const theme = useTheme<Theme>();
-  const styles = createStyles(theme);
+export const BookingHistoryCard = memo(
+  ({
+    props,
+    navigateToChat,
+  }: {
+    props: tHomeBookingModel;
+    navigateToChat: ({
+      id,
+      image,
+      name,
+    }: {
+      id: string;
+      image: string | number | { uri: string } | undefined;
+      name: string;
+    }) => void;
+  }) => {
+    const { t } = useTranslation();
+    const theme = useTheme<Theme>();
+    const styles = createStyles(theme);
 
-  return (
-    <View style={StyleSheet.flatten([staticStyle.container, styles.container])}>
-      <View style={StyleSheet.flatten([staticStyle.header, styles.header])}>
-        <FastImage
-          style={staticStyle.image}
-          source={
-            getProfilePicture(props.consultantProfilePicture ?? null) ??
-            appImages.img_defaultProfile
-          }
-        />
-        <View>
-          <MediumTextComponent
-            text={props.consultantName ?? t('unknownName')}
-            textStyle={StyleSheet.flatten([staticStyle.title, styles.title])}
-          />
-          <RegularTextComponent
-            text={getFullDate(props.bookingDate)}
-            textStyle={StyleSheet.flatten([
-              staticStyle.subTitle,
-              styles.subTitle,
-            ])}
-          />
-        </View>
-      </View>
-      <View style={staticStyle.detail}>
-        <View style={staticStyle.header}>
-          <FastImage style={staticStyle.icons} source={appIcons.ic_suitcase} />
-          <RegularTextComponent
-            text={props.categoryName}
-            textStyle={StyleSheet.flatten([
-              staticStyle.subTitle,
-              styles.subTitle,
-            ])}
-          />
-        </View>
-        <View style={staticStyle.header}>
-          <FastImage style={staticStyle.icons} source={appIcons.ic_cash} />
-          <RegularTextComponent
-            text={`$${props.grandTotal}`}
-            textStyle={StyleSheet.flatten([
-              staticStyle.subTitle,
-              styles.subTitle,
-            ])}
-          />
-        </View>
-      </View>
-      <TouchableOpacity
-        activeOpacity={0.7}
-        style={StyleSheet.flatten([staticStyle.button, styles.button])}
+    return (
+      <View
+        style={StyleSheet.flatten([staticStyle.container, styles.container])}
       >
-        <FastImage
-          tintColor={theme.colors.primary}
-          source={appIcons.ic_fillChat}
-          style={staticStyle.chat}
-        />
-      </TouchableOpacity>
-    </View>
-  );
-});
+        <View style={StyleSheet.flatten([staticStyle.header, styles.header])}>
+          <FastImage
+            style={staticStyle.image}
+            source={appImages.img_defaultProfile}
+          />
+          <View style={staticStyle.topText}>
+            <MediumTextComponent
+              text={props.userName ?? t('unknownName')}
+              textStyle={StyleSheet.flatten([staticStyle.title, styles.title])}
+            />
+            <RegularTextComponent
+              text={getFullDate(props.bookingDate)}
+              textStyle={StyleSheet.flatten([
+                staticStyle.subTitle,
+                styles.subTitle,
+              ])}
+            />
+          </View>
+        </View>
+        <View style={staticStyle.detail}>
+          <View style={staticStyle.header}>
+            <FastImage
+              style={staticStyle.icons}
+              source={appIcons.ic_suitcase}
+            />
+            <RegularTextComponent
+              text={props.categoryName}
+              textStyle={StyleSheet.flatten([
+                staticStyle.subTitle,
+                styles.subTitle,
+              ])}
+            />
+          </View>
+          <View style={staticStyle.header}>
+            <FastImage style={staticStyle.icons} source={appIcons.ic_cash} />
+            <RegularTextComponent
+              text={`$${props.grandTotal}`}
+              textStyle={StyleSheet.flatten([
+                staticStyle.subTitle,
+                styles.subTitle,
+              ])}
+            />
+          </View>
+        </View>
+        {props.status === 'In progress' && (
+          <TouchableOpacity
+            activeOpacity={0.7}
+            onPress={() =>
+              navigateToChat({
+                id: props.userId,
+                image: props.userProfilePicture,
+                name: props.userName,
+              })
+            }
+            style={StyleSheet.flatten([staticStyle.button, styles.button])}
+          >
+            <FastImage
+              tintColor={theme.colors.primary}
+              source={appIcons.ic_fillChat}
+              style={staticStyle.chat}
+            />
+          </TouchableOpacity>
+        )}
+      </View>
+    );
+  },
+);
 
 const staticStyle = StyleSheet.create({
   container: {
-    gap: normalize(16, 'height'),
+    gap: normalize(16),
     width: normalize(width * 0.7),
     borderRadius: normalize(12),
     padding: normalize(12),
     marginLeft: normalize(12),
     borderWidth: 1,
+  },
+  topText: {
+    gap: normalize(4),
   },
   header: {
     gap: normalize(8, 'height'),

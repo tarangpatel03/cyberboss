@@ -28,6 +28,6 @@ export type apiConsultantHomeModel = {
   total_earnings: string;
   wallet_balance: number;
   average_rating: number;
-  bookings: consultantHomeBookingModel[];
+  bookings: apiHomeBookingModel[];
   notification: consultantHomeNotificationModel[];
 };

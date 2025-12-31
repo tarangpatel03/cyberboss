@@ -35,6 +35,7 @@ export const ClientHomeScreen = ({
   const theme = useTheme<Theme>();
   const isFocused = useIsFocused();
   const styles = createStyles(theme);
+  const userIdRead = useSelector((state: rootState) => state.user.userData.id);
   const [layoutReady, setLayoutReady] = useState(false);
   const handleOnStop = () => dispatch(setShowTour(false));
   const { canStart, start, eventEmitter } = useTourGuideController();
@@ -77,15 +78,25 @@ export const ClientHomeScreen = ({
     <WorkshopCard data={item} cardStyle={staticStyle.card} />
   );
 
+  const navigateToChat = ({
+    id,
+    image,
+    name,
+  }: {
+    id: string;
+    image: string | number | { uri: string } | undefined;
+    name: string;
+  }) => {
+    navigation.navigate(routeName.OneOnOneChat, {
+      consultantImage: image,
+      consultantName: name,
+      userID: userIdRead,
+      users: [userIdRead, id],
+    });
+  };
+
   const renderBookingItem = ({ item }: any) => (
-    <BookingHistoryCard
-      bookingDate={item.bookingDate}
-      categoryName={item.categoryName}
-      consultantName={item.consultantName}
-      consultantProfilePicture={item.consultantProfilePicture}
-      grandTotal={item.grandTotal}
-      id={item.id}
-    />
+    <BookingHistoryCard props={item} navigateToChat={navigateToChat} />
   );
 
   const renderBrowseServiceItem: ListRenderItem<tExpertiseModel> = useCallback(

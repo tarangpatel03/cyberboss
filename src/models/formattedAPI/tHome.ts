@@ -39,7 +39,7 @@ export type tConsultantHomeModel = {
   totalEarnings: string;
   walletBalance: number;
   averageRating: number;
-  bookings: tConsultantHomeBookingModel[];
+  bookings: tHomeBookingModel[];
   notification: tConsultantHomeNotificationModel[];
 };
 
@@ -91,7 +91,7 @@ export const transformConsultantHomeModel: (
     walletBalance: data.wallet_balance,
     totalEarnings: data.total_earnings,
     averageRating: data.average_rating,
-    bookings: data.bookings.map(r => transformConsultantHomeBookings(r)),
+    bookings: data.bookings.map(r => transformHomeBookingModel(r)),
     notification: data.notification.map(r =>
       transformConsultantHomeNotification(r),
     ),

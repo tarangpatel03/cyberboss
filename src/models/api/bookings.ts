@@ -7,7 +7,7 @@ export type apiBookingHistoryModel = {
   id: string;
   booking_id: string;
   user_id: string;
-  consultant_id: string;
+  consultant_id?: string;
   user_name: string;
   user_profile_picture: number | string | { uri: string } | undefined;
   platform_percentage: number;
@@ -62,9 +62,17 @@ export type apiBookingExpertise = {
 
 export type apiHomeBookingModel = {
   id: string;
-  consultant_name: string;
-  consultant_profile_picture: string;
+  booking_id: string;
+  user_id: string;
+  consultant_id?: string;
+  user_name: string;
+  user_profile_picture: number | string | { uri: string } | undefined;
+  platform_percentage: number;
+  platform_percentage_consultant: number;
   booking_date: string;
+  status: string;
   category_name: string;
-  grand_total: string;
+  discount_amount: number;
+  total: string;
+  grand_total: number;
 };

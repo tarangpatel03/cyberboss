@@ -16,7 +16,7 @@ export type tBookingHistoryModel = {
   id: string;
   bookingId: string;
   userId: string;
-  consultantId: string;
+  consultantId?: string;
   userName: string;
   userProfilePicture: number | string | { uri: string } | undefined;
   platformPercentage: number;
@@ -32,11 +32,19 @@ export type tBookingHistoryModel = {
 
 export type tHomeBookingModel = {
   id: string;
-  consultantName: string;
-  consultantProfilePicture: string;
+  bookingId: string;
+  userId: string;
+  consultantId?: string;
+  userName: string;
+  userProfilePicture: number | string | { uri: string } | undefined;
+  platformPercentage: number;
+  platformPercentageConsultant: number;
   bookingDate: string;
+  status: string;
   categoryName: string;
-  grandTotal: string;
+  discountAmount: number;
+  total: string;
+  grandTotal: number;
 };
 
 export type tBookingDetailsModel = {
@@ -92,11 +100,19 @@ export const transformHomeBookingModel: (
 ) => tHomeBookingModel = (data: apiHomeBookingModel) => {
   return {
     id: data.id,
+    total: data.total,
+    status: data.status,
+    userId: data.user_id,
+    userName: data.user_name,
+    bookingId: data.booking_id,
     grandTotal: data.grand_total,
     bookingDate: data.booking_date,
     categoryName: data.category_name,
-    consultantName: data.consultant_name,
-    consultantProfilePicture: data.consultant_profile_picture,
+    consultantId: data.consultant_id,
+    discountAmount: data.discount_amount,
+    platformPercentage: data.platform_percentage,
+    userProfilePicture: data.user_profile_picture,
+    platformPercentageConsultant: data.platform_percentage_consultant,
   };
 };
 

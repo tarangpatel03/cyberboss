@@ -21,12 +21,11 @@ import { BookingHistoryCard } from '../../../components/Cards/BookingHistoryCard
 import { ConsultantHeaderCard } from '../../../components/Headers/ConsultantHeaderCard';
 import { ConsultantBookingHistoryList } from '../../../components/List/ConsultantBookingHistoryList';
 import { RecentActivityList } from '../../../components/List/RecentActivityList';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setUserData } from '../../../redux/features/userSlice';
 import { apiConsultantHomeModel } from '../../../models/api/home';
 import { apiProfileModel } from '../../../models/api/profile';
 import {
-  tConsultantHomeBookingModel,
   tConsultantHomeModel,
   tConsultantHomeNotificationModel,
   transformConsultantHomeModel,
@@ -35,6 +34,8 @@ import {
   tProfileModel,
   transformProfileModel,
 } from '../../../models/formattedAPI/tProfile';
+import { tHomeBookingModel } from '../../../models/formattedAPI/tBookings';
+import { rootState } from '../../../redux/store';
 
 export const ConsultantHomeScreen = ({
   navigation,
@@ -42,6 +43,7 @@ export const ConsultantHomeScreen = ({
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   const dispatch = useDispatch();
+  const userIdRead = useSelector((state: rootState) => state.user.userData.id);
   const [profileData, setProfileData] = useState<tProfileModel>({
     id: '',
     name: 'User',
@@ -101,19 +103,27 @@ export const ConsultantHomeScreen = ({
     }
   };
 
-  const renderBookingHistoryItem: ListRenderItem<
-    tConsultantHomeBookingModel
-  > = ({ item }) => {
-    return (
-      <BookingHistoryCard
-        bookingDate={item.bookingDate}
-        categoryName={item.categoryName}
-        consultantName={item.consultantName}
-        consultantProfilePicture={item.consultantProfilePicture}
-        grandTotal={item.grandTotal}
-        id={item.id}
-      />
-    );
+  const navigateToChat = ({
+    id,
+    image,
+    name,
+  }: {
+    id: string;
+    image: string | number | { uri: string } | undefined;
+    name: string;
+  }) => {
+    navigation.navigate(routeName.OneOnOneChat, {
+      consultantImage: image,
+      consultantName: name,
+      userID: userIdRead,
+      users: [userIdRead, id],
+    });
+  };
+
+  const renderBookingHistoryItem: ListRenderItem<tHomeBookingModel> = ({
+    item,
+  }) => {
+    return <BookingHistoryCard props={item} navigateToChat={navigateToChat} />;
   };
 
   const renderRecentActivityItem: ListRenderItem<

@@ -20,13 +20,22 @@ import {
 } from '../../utils/gradientColor/gradientColor';
 
 type bookingCardProps = {
+  onMessage: ({
+    id,
+    image,
+    name,
+  }: {
+    id: string;
+    image: string | number | { uri: string } | undefined;
+    name: string;
+  }) => void;
   props: tBookingHistoryModel;
   onMorePress: (x: number, y: number) => void;
   navigateToDetails: (id: string) => void;
 };
 
 export const BookingCard = memo(
-  ({ props, onMorePress, navigateToDetails }: bookingCardProps) => {
+  ({ props, onMorePress, navigateToDetails, onMessage }: bookingCardProps) => {
     const { t } = useTranslation();
     const theme = useTheme<Theme>();
     const styles = createStyles(theme);
@@ -144,31 +153,39 @@ export const BookingCard = memo(
             />
           </View>
         </LinearGradient>
-        <View style={staticStyle.rowLine}>
-          <PrimaryButtonComponent
-            onPress={() => {}}
-            text={t('message')}
-            buttonStyle={StyleSheet.flatten([
-              staticStyle.button,
-              styles.button,
-            ])}
-            textStyle={StyleSheet.flatten([
-              staticStyle.subtitleText,
-              styles.primaryText,
-            ])}
-          />
-          <CircularIconButtonComponent
-            onPress={handleMorePress}
-            buttonStyle={StyleSheet.flatten([
-              staticStyle.iconButton,
-              styles.button,
-            ])}
-            iconPath={appIcons.ic_more}
-            tintColor={theme.colors.textPrimary}
-            iconStyle={staticStyle.moreIcon}
-            ref={moreButtonRef}
-          />
-        </View>
+        {props.status === 'In progress' && (
+          <View style={staticStyle.rowLine}>
+            <PrimaryButtonComponent
+              onPress={() =>
+                onMessage({
+                  id: props.userId,
+                  image: props.userProfilePicture,
+                  name: props.userName,
+                })
+              }
+              text={t('message')}
+              buttonStyle={StyleSheet.flatten([
+                staticStyle.button,
+                styles.button,
+              ])}
+              textStyle={StyleSheet.flatten([
+                staticStyle.subtitleText,
+                styles.primaryText,
+              ])}
+            />
+            <CircularIconButtonComponent
+              onPress={handleMorePress}
+              buttonStyle={StyleSheet.flatten([
+                staticStyle.iconButton,
+                styles.button,
+              ])}
+              iconPath={appIcons.ic_more}
+              tintColor={theme.colors.textPrimary}
+              iconStyle={staticStyle.moreIcon}
+              ref={moreButtonRef}
+            />
+          </View>
+        )}
       </TouchableOpacity>
     );
   },

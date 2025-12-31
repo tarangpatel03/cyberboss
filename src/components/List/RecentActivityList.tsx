@@ -8,7 +8,7 @@ import {
 import {
   createStyles,
   staticStyle,
-} from '../../screens/consultant/home/styles';
+} from '../../screens/consultant/Home/styles';
 import { useTheme } from '@shopify/restyle';
 import { useTranslation } from 'react-i18next';
 import FastImage from 'react-native-fast-image';

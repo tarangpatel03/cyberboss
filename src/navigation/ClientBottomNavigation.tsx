@@ -17,7 +17,7 @@ import { useSelector } from 'react-redux';
 import { rootState } from '../redux/store';
 import { navigationRef } from '../services/axios/axiosInterceptors';
 import { EventArg } from '@react-navigation/native';
-import { ConsultantHomeScreen } from '../screens/consultant/home';
+import { ConsultantHomeScreen } from '../screens/consultant/Home';
 
 const Tab = createBottomTabNavigator<clientBottomNavigationParams>();
 type SetBarIconType = {

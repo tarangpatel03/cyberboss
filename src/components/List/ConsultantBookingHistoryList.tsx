@@ -8,7 +8,7 @@ import {
 import {
   createStyles,
   staticStyle,
-} from '../../screens/consultant/home/styles';
+} from '../../screens/consultant/Home/styles';
 import { useTheme } from '@shopify/restyle';
 import { useTranslation } from 'react-i18next';
 import FastImage from 'react-native-fast-image';
@@ -16,11 +16,11 @@ import { Theme } from '../../config/themes/themes';
 import { appIcons } from '../../config/icons/iconPath';
 import { MediumTextComponent } from '../Text/MediumTextComponent';
 import { RegularTextComponent } from '../Text/RegularTextComponent';
-import { tConsultantHomeBookingModel } from '../../models/formattedAPI/tHome';
+import { tHomeBookingModel } from '../../models/formattedAPI/tBookings';
 
 type consultantBookingHistoryListProps = {
-  data: tConsultantHomeBookingModel[];
-  renderBookingHistoryItem: ListRenderItem<tConsultantHomeBookingModel>;
+  data: tHomeBookingModel[];
+  renderBookingHistoryItem: ListRenderItem<tHomeBookingModel>;
 };
 
 export const ConsultantBookingHistoryList = (

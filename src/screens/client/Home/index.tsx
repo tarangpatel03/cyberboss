@@ -99,6 +99,7 @@ export const ClientHomeScreen = ({
         }));
         return data1;
       });
+    // @ts-ignore
     const data1 = data.filter(val => val.users.includes(id));
 
     if (data1.length !== 0) {

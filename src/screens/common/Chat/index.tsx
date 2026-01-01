@@ -45,7 +45,14 @@ export const ChatScreen = ({
               id: doc.id,
               ...doc.data(),
             }));
-            setChats(data2);
+            const filteredData = data2.filter(x => 'lastMessageTimestamp' in x);
+            console.log('Chats Data: ', filteredData);
+            setChats(
+              filteredData.sort(
+                // @ts-ignore
+                (a, b) => b.lastMessageTimestamp - a.lastMessageTimestamp,
+              ),
+            );
           },
           error => {
             console.log('Firestore listener error:', error);

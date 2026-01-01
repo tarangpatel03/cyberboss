@@ -34,21 +34,24 @@ export const ChatScreen = ({
 
   const uid = useSelector((state: rootState) => state.user.userData.id);
 
-  const getUserChats = async (userId: string) => {
+  const getUserChats = (userId: string) => {
     try {
-      const data1 = await firestore()
+      const subscriber = firestore()
         .collection('chats')
         .where('users', 'array-contains', userId)
-        .get()
-        .then(snapshot => {
-          const data = snapshot.docs.map(doc => ({
-            id: doc.id,
-            ...doc.data(),
-          }));
-          return data;
-        });
-      console.log('Chats: ', data1);
-      setChats(data1);
+        .onSnapshot(
+          snapshot => {
+            const data2 = snapshot.docs.map(doc => ({
+              id: doc.id,
+              ...doc.data(),
+            }));
+            setChats(data2);
+          },
+          error => {
+            console.log('Firestore listener error:', error);
+          },
+        );
+      return subscriber;
     } catch (error) {
       console.log(error);
     } finally {
@@ -81,7 +84,13 @@ export const ChatScreen = ({
     if (!isLoggedIn) {
       navigateToLogIn();
     }
-    getUserChats(uid);
+
+    const unsubscribe = getUserChats(uid);
+    return () => {
+      if (unsubscribe) {
+        unsubscribe();
+      }
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoggedIn]);
 

@@ -124,8 +124,22 @@ export const OneOnOneChatScreen = ({
     }
   };
 
+  const updateUnreadCount = async () => {
+    try {
+      await firestore()
+        .collection('chats')
+        .doc(data.chatID)
+        .update({
+          [`unreadCount.${data.userID}`]: 0,
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     getChatFields();
+    updateUnreadCount();
     const unsubscribe = getChats();
 
     return () => {

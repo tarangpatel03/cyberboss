@@ -17,11 +17,11 @@ type chatListItemProps = {
   onPress: ({
     image,
     name,
-    users,
+    chatId,
   }: {
     image: number | string | { uri: string } | undefined;
     name: string;
-    users: string[];
+    chatId: string;
   }) => void;
 };
 
@@ -72,7 +72,7 @@ export const ChatListItem = memo((props: chatListItemProps) => {
         props.onPress({
           image: userData.profile_image,
           name: userData.name,
-          users: props.data.users,
+          chatId: props.data.id,
         })
       }
       style={StyleSheet.flatten([staticStyle.container, styles.container])}

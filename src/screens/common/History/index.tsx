@@ -26,6 +26,7 @@ import {
 import { apiBookingHistoryModel } from '../../../models/api/bookings';
 import { useSelector } from 'react-redux';
 import { rootState } from '../../../redux/store';
+import firestore from '@react-native-firebase/firestore';
 
 export const HistoryScreen = ({
   navigation,
@@ -47,7 +48,7 @@ export const HistoryScreen = ({
     navigation.navigate(routeName.Notification);
   };
 
-  const navigateToChat = ({
+  const navigateToChat = async ({
     id,
     image,
     name,
@@ -56,12 +57,45 @@ export const HistoryScreen = ({
     image: string | number | { uri: string } | undefined;
     name: string;
   }) => {
-    navigation.navigate(routeName.OneOnOneChat, {
-      consultantImage: image,
-      consultantName: name,
-      userID: userIdRead,
-      users: [userIdRead, id],
-    });
+    const data = await firestore()
+      .collection('chats')
+      .where('users', 'array-contains', userIdRead)
+      .get()
+      .then(snapshot => {
+        const data1 = snapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        return data1;
+      });
+    const data1 = data.filter(val => val.users.includes(id));
+    if (data1.length > 0) {
+      navigation.navigate(routeName.OneOnOneChat, {
+        consultantImage: image,
+        consultantName: name,
+        userID: userIdRead,
+        chatID: data1[0].id,
+      });
+    } else {
+      firestore()
+        .collection('chats')
+        .doc(`${userIdRead}_${id}`)
+        .set({
+          users: [userIdRead, id],
+          unreadCount: {
+            id: 0,
+            userIdRead: 0,
+          },
+          createdAt: firestore.FieldValue.serverTimestamp(),
+        });
+      navigation.navigate(routeName.OneOnOneChat, {
+        consultantImage: image,
+        consultantName: name,
+        userID: userIdRead,
+        chatID: `${userIdRead}_${id}`,
+      });
+      console.log('New chat Created');
+    }
   };
 
   const loadData = async (pageToLoad = 1, isRefresh = false) => {

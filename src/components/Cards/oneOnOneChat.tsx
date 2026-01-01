@@ -8,7 +8,14 @@ import FastImage from 'react-native-fast-image';
 import { memo } from 'react';
 import { formatFirebaseTimestamp } from '../../utils/format/formatDate';
 
-export const OneOnOneCard = memo((props: any) => {
+type oneOnOneCardProps = {
+  senderId: string;
+  uid: string;
+  message: string;
+  timestamp: string;
+};
+
+export const OneOnOneCard = memo((props: oneOnOneCardProps) => {
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   return (
@@ -37,9 +44,6 @@ export const OneOnOneCard = memo((props: any) => {
             : styles.receiveContainer,
         ])}
       >
-        {props.image && (
-          <FastImage source={props.image} style={staticStyle.image} />
-        )}
         <RegularTextComponent
           text={props.message}
           noOfLines={Infinity}

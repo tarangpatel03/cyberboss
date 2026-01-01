@@ -21,7 +21,7 @@ import { ProfileCard } from '../../../components/Cards/ProfileCard';
 import { ProfileOptionsRow } from '../../../components/Cards/ProfileOptionsRow';
 import { GeneralSettings } from '../../../components/GeneralSettings';
 import { AuthOptions } from '../../../components/AuthOptions';
-import { logOut } from '../../../services/auth/firebase/auth';
+import { logOut } from '../../../services/firebase/auth/auth';
 
 export const ProfileScreen = ({
   navigation,

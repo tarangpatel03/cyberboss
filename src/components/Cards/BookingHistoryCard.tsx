@@ -11,7 +11,6 @@ import { memo } from 'react';
 import { tHomeBookingModel } from '../../models/formattedAPI/tBookings';
 import { getFullDate } from '../../utils/format/formatDate';
 import { appImages } from '../../config/images/imagePath';
-import { useTranslation } from 'react-i18next';
 
 export const BookingHistoryCard = memo(
   ({
@@ -29,7 +28,6 @@ export const BookingHistoryCard = memo(
       name: string;
     }) => void;
   }) => {
-    const { t } = useTranslation();
     const theme = useTheme<Theme>();
     const styles = createStyles(theme);
 
@@ -44,7 +42,7 @@ export const BookingHistoryCard = memo(
           />
           <View style={staticStyle.topText}>
             <MediumTextComponent
-              text={props.userName ?? t('unknownName')}
+              text={props.userName}
               textStyle={StyleSheet.flatten([staticStyle.title, styles.title])}
             />
             <RegularTextComponent
@@ -108,10 +106,9 @@ export const BookingHistoryCard = memo(
 const staticStyle = StyleSheet.create({
   container: {
     gap: normalize(16),
-    width: normalize(width * 0.7),
+    width: normalize(width * 0.6),
     borderRadius: normalize(12),
     padding: normalize(12),
-    marginLeft: normalize(12),
     borderWidth: 1,
   },
   topText: {

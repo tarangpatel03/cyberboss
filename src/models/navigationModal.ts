@@ -32,7 +32,7 @@ export type rootNavigationParams = {
   ConsultantList: { id: string; name: string };
   OneOnOneChat: {
     userID: string;
-    users: string[];
+    chatID: string;
     consultantName: string;
     consultantImage: string | number | { uri: string } | undefined;
   };

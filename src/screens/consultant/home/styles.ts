@@ -118,7 +118,7 @@ export const staticStyle = StyleSheet.create({
   },
   header: {
     paddingHorizontal: normalize(16),
-    marginBottom: normalize(16, 'height'),
+    marginBottom: normalize(12),
     paddingTop: normalize(12),
     flexDirection: 'row',
     justifyContent: 'space-between',

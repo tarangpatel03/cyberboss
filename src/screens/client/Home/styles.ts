@@ -21,6 +21,8 @@ export const staticStyle = StyleSheet.create({
   searchBarContainer: {
     width: '86%',
   },
+  horizontalListContainer: { marginLeft: normalize(12) },
+  horizontalListItem: { gap: normalize(12) },
   searchContainer: {
     width: '100%',
     borderWidth: 1,
@@ -115,7 +117,7 @@ export const staticStyle = StyleSheet.create({
   },
   header: {
     paddingHorizontal: normalize(16),
-    marginBottom: normalize(16, 'height'),
+    marginBottom: normalize(12),
     paddingTop: normalize(12),
     flexDirection: 'row',
     justifyContent: 'space-between',

@@ -19,7 +19,7 @@ import { LogInInputsContainer } from '../../../../components/Input/LogInInputCon
 import { AuthTitle } from '../../../../components/AuthTitle';
 import { AuthFooterAction } from '../../../../components/Buttons/HorizontalTextButton';
 import { SocialLogIn } from '../../../../components/SocialLogin';
-import { signIn, googleLogIn } from '../../../../services/auth/firebase/auth';
+import { googleLogIn, signIn } from '../../../../services/firebase/auth/auth';
 
 export const LogInScreen = ({
   navigation,

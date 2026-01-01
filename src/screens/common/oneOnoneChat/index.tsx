@@ -1,4 +1,10 @@
-import { FlatList, StyleSheet, TouchableOpacity, View } from 'react-native';
+import {
+  FlatList,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import { useEffect, useState } from 'react';
 import { useTheme } from '@shopify/restyle';
 import { createStyles, staticStyle } from './styles';
@@ -8,13 +14,14 @@ import { appImages } from '../../../config/images/imagePath';
 import { routeName } from '../../../config/constants/routes';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { rootNavigationProps } from '../../../models/navigationModal';
-import { BorderInputComponent } from '../../../components/Input/BorderInput';
 import { MediumTextComponent } from '../../../components/Text/MediumTextComponent';
 import { OneOnOneCard } from '../../../components/Cards/OneOnOneChat';
 import FastImage from 'react-native-fast-image';
 import { useTranslation } from 'react-i18next';
 import firestore from '@react-native-firebase/firestore';
 import { ChatListEmptyCard } from '../../../components/Cards/ChatListEmptyCard';
+import { isDarkMode } from '../../../utils/theme/darkMode';
+import { appColors } from '../../../config/colors/colors';
 
 export const OneOnOneChatScreen = ({
   navigation,
@@ -52,30 +59,65 @@ export const OneOnOneChatScreen = ({
     );
   };
 
-  const getChats = async () => {
+  const getChats = () => {
     try {
-      const data1 = await firestore()
+      const unsubscribe = firestore()
         .collection('chats')
-        .doc(`${data.users[0]}_${data.users[1]}`)
+        .doc(data.chatID)
         .collection('messages')
-        .get()
-        .then(snapshot => {
-          const message = snapshot.docs.map(doc => ({
-            id: doc.id,
-            ...doc.data(),
-          }));
-          return message;
+        .orderBy('timestamp', 'desc')
+        .onSnapshot(
+          snapshot => {
+            const message = snapshot.docs.map(doc => ({
+              id: doc.id,
+              ...doc.data(),
+            }));
+            setMessages(message);
+          },
+          error => {
+            console.log('Firestore listener error:', error);
+          },
+        );
+      return unsubscribe;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const sendChat = async () => {
+    try {
+      const messageText = text;
+      setText('');
+      await firestore()
+        .collection('chats')
+        .doc(data.chatID)
+        .collection('messages')
+        .add({
+          imagePath: '',
+          message: messageText,
+          senderId: data.userID,
+          timestamp: firestore.FieldValue.serverTimestamp(),
+          type: 'text',
         });
-      setMessages(data1);
-      console.log('Messages: ', messages);
+      // await firestore().collection('chats').doc(data.chatID).set({
+      //   lastMessage: messageText,
+      //   lastMessageSender: data.userID,
+      //   // unreadCount: ,
+      //   lastMessageTimestamp: firestore.FieldValue.serverTimestamp(),
+      // });
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
-    getChats();
-    console.log('Consultant Data: ', data);
+    const unsubscribe = getChats();
+
+    return () => {
+      if (unsubscribe) {
+        unsubscribe();
+      }
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -149,23 +191,31 @@ export const OneOnOneChatScreen = ({
           <View
             style={StyleSheet.flatten([staticStyle.inputBar, styles.inputBar])}
           >
-            <TouchableOpacity activeOpacity={0.7} style={staticStyle.buttons}>
+            <TouchableOpacity
+              activeOpacity={0.7}
+              style={staticStyle.bottomButton}
+            >
               <FastImage
                 source={appIcons.ic_addFile}
                 style={staticStyle.buttons}
               />
             </TouchableOpacity>
-            <BorderInputComponent
+            <TextInput
               placeholder={t('sendMessage')}
-              showPlaceholderOnFocus={false}
-              setValue={setText}
-              value={text}
-              borderStyle={staticStyle.removeBorder}
+              multiline
+              style={StyleSheet.flatten([staticStyle.input, styles.input])}
+              autoCapitalize="none"
+              value={text ?? ''}
+              onChangeText={setText}
+              placeholderTextColor={
+                isDarkMode(theme) ? appColors.app_FFFFFF : appColors.app_212121
+              }
             />
             <TouchableOpacity
+              onPress={sendChat}
               activeOpacity={0.7}
               style={StyleSheet.flatten([
-                staticStyle.buttons,
+                staticStyle.bottomButton,
                 styles.sendButton,
               ])}
             >

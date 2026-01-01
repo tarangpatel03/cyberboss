@@ -27,7 +27,7 @@ export const HomeScreenWorkshopList = (props: homeScreenWorkshopListProps) => {
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   return (
-    <View>
+    <View style={staticStyle.horizontalListContainer}>
       <View style={staticStyle.header}>
         <MediumTextComponent
           text={
@@ -60,6 +60,7 @@ export const HomeScreenWorkshopList = (props: homeScreenWorkshopListProps) => {
       <FlatList
         data={props.data}
         horizontal
+        contentContainerStyle={staticStyle.horizontalListItem}
         showsHorizontalScrollIndicator={false}
         keyExtractor={item => item.id}
         renderItem={props.renderItem}

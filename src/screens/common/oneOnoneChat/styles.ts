@@ -6,7 +6,7 @@ import { width } from '../../../config/constants/variables';
 export const staticStyle = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: normalize(16),
+    paddingHorizontal: normalize(12),
   },
   header: {
     flexDirection: 'row',
@@ -17,12 +17,22 @@ export const staticStyle = StyleSheet.create({
   },
   subheader: {
     flexDirection: 'row',
+    gap: normalize(8),
     alignItems: 'center',
   },
   centralHeader: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: normalize(4),
+    gap: normalize(12),
+  },
+  input: {
+    width: '75%',
+    fontWeight: '400',
+    paddingVertical: 0,
+    alignItems: 'center',
+    fontSize: normalize(16),
+    maxHeight: normalize(150),
+    marginLeft: normalize(10),
   },
   profile: {
     width: normalize(44),
@@ -48,6 +58,14 @@ export const staticStyle = StyleSheet.create({
   buttons: {
     justifyContent: 'center',
     alignItems: 'center',
+    width: normalize(32),
+    height: normalize(32),
+    borderRadius: normalize(16),
+  },
+  bottomButton: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'flex-end',
     width: normalize(32),
     height: normalize(32),
     borderRadius: normalize(16),
@@ -81,8 +99,9 @@ export const staticStyle = StyleSheet.create({
     maxWidth: '95%',
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
     padding: normalize(8),
-    height: normalize(48),
+    maxHeight: normalize(150),
     borderRadius: normalize(24),
     borderWidth: 1,
   },
@@ -98,6 +117,9 @@ export const createStyles = (theme: Theme) =>
     },
     listContainer: {
       backgroundColor: theme.colors.cardBackground,
+    },
+    input: {
+      color: theme.colors.textPrimary,
     },
     inputBar: {
       backgroundColor: theme.colors.bgPrimary,

@@ -33,6 +33,7 @@ export const OneOnOneChatScreen = ({
   const styles = createStyles(theme);
   const [text, setText] = useState<string | null>('');
   const [messages, setMessages] = useState<any[]>([]);
+  const [fields, setFields] = useState<any>();
 
   const goBack = () => {
     navigation.goBack();
@@ -84,6 +85,14 @@ export const OneOnOneChatScreen = ({
     }
   };
 
+  const getChatFields = async () => {
+    const data1 = (
+      await firestore().collection('chats').doc(data.chatID).get()
+    ).data();
+    setFields(data1);
+    console.log('Chat Feld: ', data1);
+  };
+
   const sendChat = async () => {
     try {
       const messageText = text;
@@ -99,18 +108,24 @@ export const OneOnOneChatScreen = ({
           timestamp: firestore.FieldValue.serverTimestamp(),
           type: 'text',
         });
-      // await firestore().collection('chats').doc(data.chatID).set({
-      //   lastMessage: messageText,
-      //   lastMessageSender: data.userID,
-      //   // unreadCount: ,
-      //   lastMessageTimestamp: firestore.FieldValue.serverTimestamp(),
-      // });
+      await firestore()
+        .collection('chats')
+        .doc(data.chatID)
+        .update({
+          lastMessage: messageText,
+          lastMessageSender: data.userID,
+          [`unreadCount.${fields.users.filter(
+            (v: string) => v !== data.userID,
+          )}`]: firestore.FieldValue.increment(1),
+          lastMessageTimestamp: firestore.FieldValue.serverTimestamp(),
+        });
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
+    getChatFields();
     const unsubscribe = getChats();
 
     return () => {

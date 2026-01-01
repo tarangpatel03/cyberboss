@@ -14,6 +14,8 @@ export const staticStyle = StyleSheet.create({
   },
   name: {
     paddingLeft: normalize(8),
+    fontSize: normalize(16),
+    fontWeight: '600',
   },
   image: {
     borderRadius: normalize(20),

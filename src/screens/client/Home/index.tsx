@@ -115,8 +115,8 @@ export const ClientHomeScreen = ({
         .set({
           users: [userIdRead, id],
           unreadCount: {
-            id: 0,
-            userIdRead: 0,
+            [`${id}`]: 0,
+            [`${userIdRead}`]: 0,
           },
           createdAt: firestore.FieldValue.serverTimestamp(),
         });
@@ -126,7 +126,6 @@ export const ClientHomeScreen = ({
         userID: userIdRead,
         chatID: `${userIdRead}_${id}`,
       });
-      console.log('New chat Created');
     }
   };
 

@@ -15,7 +15,7 @@ import { Theme } from '../../../config/themes/themes';
 import { getAPIData } from '../../../services/api/common/getCommonApi';
 import { routeName } from '../../../config/constants/routes';
 import { endPoints } from '../../../config/endPoint/apiEndPoint';
-import { rootNavigationProps } from '../../../models/navigationModal';
+import { rootNavigationProps } from '../../../models/navigationModel';
 import { RecentActivity } from '../../../components/Cards/RecentActivity';
 import { BookingHistoryCard } from '../../../components/Cards/BookingHistoryCard';
 import { ConsultantHeaderCard } from '../../../components/Headers/ConsultantHeaderCard';
@@ -37,6 +37,7 @@ import {
 import { tHomeBookingModel } from '../../../models/formattedAPI/tBookings';
 import { rootState } from '../../../redux/store';
 import firestore from '@react-native-firebase/firestore';
+import { ApiResponse } from '../../../models/apiModel';
 
 export const ConsultantHomeScreen = ({
   navigation,
@@ -80,15 +81,19 @@ export const ConsultantHomeScreen = ({
 
   const getData = async () => {
     try {
-      const res1: apiConsultantHomeModel = await getAPIData(
+      const response1 = await getAPIData<ApiResponse<apiConsultantHomeModel>>(
         endPoints.consultantHome,
       );
-      const transformedData1 = transformConsultantHomeModel(res1);
+      if (!response1) return;
+      const data1: apiConsultantHomeModel = response1.payload;
+      const transformedData1 = transformConsultantHomeModel(data1);
       setHomeData(transformedData1);
-      const res2: apiProfileModel = await getAPIData(
+      const response2 = await getAPIData<ApiResponse<apiProfileModel>>(
         endPoints.consultantProfile,
       );
-      const transformedData2 = transformProfileModel(res2);
+      if (!response2) return;
+      const data2: apiProfileModel = response2.payload;
+      const transformedData2 = transformProfileModel(data2);
       setProfileData(transformedData2);
       dispatch(
         setUserData({

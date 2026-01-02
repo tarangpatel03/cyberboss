@@ -1,6 +1,6 @@
 import { FlatList, ListRenderItem, StyleSheet, View } from 'react-native';
 import { routeName } from '../../../config/constants/routes';
-import { rootNavigationProps } from '../../../models/navigationModal';
+import { rootNavigationProps } from '../../../models/navigationModel';
 import { Theme } from '../../../config/themes/themes';
 import { useTheme } from '@shopify/restyle';
 import { createStyles, staticStyle } from './styles';
@@ -19,6 +19,7 @@ import {
   tExpertiseModel,
   transformExpertiseModel,
 } from '../../../models/formattedAPI/tConsultant';
+import { ApiResponse, ListPayload } from '../../../models/apiModel';
 
 export const SearchServiceScreen = ({
   navigation,
@@ -34,9 +35,11 @@ export const SearchServiceScreen = ({
   const loadData = async () => {
     try {
       setLoader(true);
-      const data: apiExpertiseModel[] = await getServiceList(
-        debouncedSearchText,
-      );
+      const response = await getServiceList<
+        ApiResponse<ListPayload<apiExpertiseModel>>
+      >(debouncedSearchText);
+      if (!response) return;
+      const data: apiExpertiseModel[] = response.payload.data;
       const transformedData = data.map(r => transformExpertiseModel(r));
       setServices(transformedData);
     } catch (error) {

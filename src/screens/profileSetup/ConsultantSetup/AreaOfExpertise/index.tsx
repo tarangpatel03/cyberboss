@@ -5,7 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { PrimaryButtonComponent } from '../../../../components/Buttons/PrimaryButton';
 import { CircularIconButtonComponent } from '../../../../components/Buttons/CircularIconButton';
 import { appIcons } from '../../../../config/icons/iconPath';
-import { rootNavigationProps } from '../../../../models/navigationModal';
+import { rootNavigationProps } from '../../../../models/navigationModel';
 import { routeName } from '../../../../config/constants/routes';
 import { SemiBoldTextComponent } from '../../../../components/Text/SemiBoldTextComponent';
 import { RegularTextComponent } from '../../../../components/Text/RegularTextComponent';
@@ -22,6 +22,7 @@ import {
   tExpertiseModel,
   transformExpertiseModel,
 } from '../../../../models/formattedAPI/tConsultant';
+import { ApiResponse, ListPayload } from '../../../../models/apiModel';
 
 export const AreaOfExpertiseScreen = ({
   navigation,
@@ -39,8 +40,12 @@ export const AreaOfExpertiseScreen = ({
 
   const getExpertise = async () => {
     try {
-      const res: apiExpertiseModel[] = await getAPIData(endPoints.expertise);
-      const transformedRes = res.map(r => transformExpertiseModel(r));
+      const response = await getAPIData<
+        ApiResponse<ListPayload<apiExpertiseModel>>
+      >(endPoints.expertise);
+      if (!response) return;
+      const data: apiExpertiseModel[] = response.payload.data;
+      const transformedRes = data.map(r => transformExpertiseModel(r));
       setExpertise(transformedRes);
     } catch (error) {
       console.log(error);

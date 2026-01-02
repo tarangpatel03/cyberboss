@@ -10,7 +10,7 @@ import { ClientHomeScreen } from '../screens/client/Home';
 import { ChatScreen } from '../screens/common/Chat';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import normalize from '../utils/normalize/normalize';
-import { clientBottomNavigationParams } from '../models/navigationModal';
+import { clientBottomNavigationParams } from '../models/navigationModel';
 import { BarTabIconComponent } from '../components/BottomTabIcon/BarTabIcon';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';

@@ -23,7 +23,7 @@ import { BookingConfirmScreen } from '../screens/client/BookingConfirm';
 import { NotificationScreen } from '../screens/common/Notification';
 import { ContactSupportScreen } from '../screens/client/ContactSupport';
 import { SubscriptionScreen } from '../screens/client/Subscription';
-import { rootNavigationParams } from '../models/navigationModal';
+import { rootNavigationParams } from '../models/navigationModel';
 import { SearchServiceScreen } from '../screens/client/SearchService';
 import { rootState } from '../redux/store';
 import { useSelector } from 'react-redux';
@@ -32,9 +32,11 @@ const Root = createNativeStackNavigator<rootNavigationParams>();
 export const RootNavigation = () => {
   const isLoggedIn = useSelector((state: rootState) => state.user.token);
   const isFirstTime = useSelector((state: rootState) => state.user.isFirstTime);
-  const profileSetup = useSelector(
-    (state: rootState) => state.user.userData.profile_setup,
-  );
+  const {
+    role,
+    is_verified: isVerified,
+    profile_setup: profileSetup,
+  } = useSelector((state: rootState) => state.user.userData);
 
   const setInitialRoute = () => {
     if (isFirstTime) {
@@ -42,6 +44,12 @@ export const RootNavigation = () => {
     } else if (isLoggedIn) {
       if (profileSetup) {
         return routeName.ProfileSetUp;
+      }
+      if (role === 'consultant') {
+        if (!isVerified) {
+          return routeName.PendingVerification;
+        }
+        return routeName.BottomTab;
       }
     }
     return routeName.BottomTab;

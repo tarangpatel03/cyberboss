@@ -11,7 +11,7 @@ import { createStyles, staticStyle } from './styles';
 import { ScreenHeaderComponent } from '../../../components/Headers/ScreenHeaderComponent';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { routeName } from '../../../config/constants/routes';
-import { rootNavigationProps } from '../../../models/navigationModal';
+import { rootNavigationProps } from '../../../models/navigationModel';
 import { NotificationCard } from '../../../components/Cards/NotificationCard';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { getAPIData } from '../../../services/api/common/getCommonApi';
@@ -20,11 +20,12 @@ import { appImages } from '../../../config/images/imagePath';
 import { ListShimmer } from '../../../components/Skeleton/ListShimmer';
 import { endPoints } from '../../../config/endPoint/apiEndPoint';
 import { useTranslation } from 'react-i18next';
-import { apiNotificationModel } from '../../../models/api/notificationModel';
+import { apiNotificationModel } from '../../../models/api/notification';
 import {
   tNotificationModel,
   transformNotificationModel,
-} from '../../../models/formattedAPI/tNotificationModel';
+} from '../../../models/formattedAPI/tNotification';
+import { ApiResponse, ListPayload } from '../../../models/apiModel';
 
 export const NotificationScreen = ({
   navigation,
@@ -45,13 +46,17 @@ export const NotificationScreen = ({
       } else {
         setLoader(true);
       }
-      const payload = await getAPIData(endPoints.notification, pageToLoad);
-      const data: apiNotificationModel[] = payload.data;
+      const response = await getAPIData<
+        ApiResponse<ListPayload<apiNotificationModel>>
+      >(endPoints.notification, pageToLoad);
+      if (!response) return;
+      const data: apiNotificationModel[] = response.payload.data;
       const transformedData: tNotificationModel[] = data
         ? data?.map(r => transformNotificationModel(r))
         : [];
-      hasMoreRef.current = payload.meta.current_page < payload.meta.last_page;
-      pageRef.current = payload.meta.current_page;
+      hasMoreRef.current =
+        response.payload.meta.current_page < response.payload.meta.last_page;
+      pageRef.current = response.payload.meta.current_page;
       setNotifications(transformedData);
     } catch (error) {
       console.log(error);

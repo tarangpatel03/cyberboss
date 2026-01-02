@@ -7,7 +7,7 @@ import { appIcons } from '../../config/icons/iconPath';
 import { getDate } from '../../utils/format/formatDate';
 import FastImage from 'react-native-fast-image';
 import { memo } from 'react';
-import { tNotificationModel } from '../../models/formattedAPI/tNotificationModel';
+import { tNotificationModel } from '../../models/formattedAPI/tNotification';
 
 export const NotificationCard = memo(
   ({ data }: { data: tNotificationModel }) => {

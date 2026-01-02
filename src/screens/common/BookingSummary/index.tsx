@@ -1,5 +1,5 @@
 import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
-import { rootNavigationProps } from '../../../models/navigationModal';
+import { rootNavigationProps } from '../../../models/navigationModel';
 import { routeName } from '../../../config/constants/routes';
 import { useTheme } from '@shopify/restyle';
 import { Theme } from '../../../config/themes/themes';
@@ -29,6 +29,7 @@ import {
   apiBookingDetailsModel,
   apiReviewModel,
 } from '../../../models/api/bookings';
+import { ApiResponse, ListPayload } from '../../../models/apiModel';
 
 export const BookingSummaryScreen = ({
   navigation,
@@ -51,9 +52,11 @@ export const BookingSummaryScreen = ({
 
   const getBookingDetails = async () => {
     try {
-      const data: apiBookingDetailsModel = await getAPIData(
+      const response = await getAPIData<ApiResponse<apiBookingDetailsModel>>(
         `${endPoints.booking}/${id}`,
       );
+      if (!response) return;
+      const data = response.payload;
       const transformedData = transformBookingDetailsModel(data);
       setBookingDetails(transformedData);
       loadReview(transformedData.id);
@@ -67,10 +70,13 @@ export const BookingSummaryScreen = ({
   };
 
   const loadReview = async (bookingId: string) => {
-    const res: apiReviewModel[] = await getAPIData(
+    const response = await getAPIData<ApiResponse<ListPayload<apiReviewModel>>>(
       `${endPoints.ratingReviews}/${bookingId}`,
     );
-    const transformedRes = res.map(r => transformReviewModel(r));
+    if (!response) return;
+    const transformedRes = response.payload.data.map(r =>
+      transformReviewModel(r),
+    );
     setReview(transformedRes);
   };
 

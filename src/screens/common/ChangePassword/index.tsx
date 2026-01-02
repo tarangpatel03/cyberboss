@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import { Theme } from '../../../config/themes/themes';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ScreenHeaderComponent } from '../../../components/Headers/ScreenHeaderComponent';
-import { rootNavigationProps } from '../../../models/navigationModal';
+import { rootNavigationProps } from '../../../models/navigationModel';
 import { routeName } from '../../../config/constants/routes';
 import { createStyles, staticStyle } from './styles';
 import { useState } from 'react';

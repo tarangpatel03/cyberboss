@@ -12,7 +12,7 @@ import { getAPIData } from '../../../services/api/common/getCommonApi';
 import { useCallback, useEffect, useState } from 'react';
 import { routeName } from '../../../config/constants/routes';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { rootNavigationProps } from '../../../models/navigationModal';
+import { rootNavigationProps } from '../../../models/navigationModel';
 import { RatingCard } from '../../../components/Cards/RatingReviewCard';
 import { MediumTextComponent } from '../../../components/Text/MediumTextComponent';
 import { RegularTextComponent } from '../../../components/Text/RegularTextComponent';
@@ -31,6 +31,7 @@ import {
 } from '../../../models/formattedAPI/tConsultant';
 import { apiConsultantDetailsModel } from '../../../models/api/consultant';
 import { ReviewCard } from '../../../components/Cards/ReviewCard';
+import { ApiResponse } from '../../../models/apiModel';
 
 export const ConsultantProfileScreen = ({
   navigation,
@@ -86,10 +87,14 @@ export const ConsultantProfileScreen = ({
 
   const loadData = async () => {
     try {
-      const res: apiConsultantDetailsModel = await getAPIData(
+      const response = await getAPIData<ApiResponse<apiConsultantDetailsModel>>(
         `${endPoints.consultant}/${consultantId}`,
       );
-      const transformedData = transformConsultantDetailsModel(res);
+      if (!response) return;
+      console.log('Res: ', response);
+      const resData: apiConsultantDetailsModel = response.payload;
+      console.log('Consultant Detals: ', resData);
+      const transformedData = transformConsultantDetailsModel(resData);
       setData(transformedData);
     } catch (error) {
       console.log(error);

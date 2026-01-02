@@ -1,6 +1,6 @@
 import { createNavigationContainerRef } from '@react-navigation/native';
 import { axiosClient } from './axiosClient';
-import { rootNavigationParams } from '../../models/navigationModal';
+import { rootNavigationParams } from '../../models/navigationModel';
 import { store } from '../../redux/store';
 import { routeName } from '../../config/constants/routes';
 import { showErrorToast } from '../../utils/toast/toast';

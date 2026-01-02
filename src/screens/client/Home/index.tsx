@@ -9,7 +9,7 @@ import { useTheme } from '@shopify/restyle';
 import { Theme } from '../../../config/themes/themes';
 import { createStyles, staticStyle } from './styles';
 import React, { useCallback, useEffect, useState } from 'react';
-import { rootNavigationProps } from '../../../models/navigationModal';
+import { rootNavigationProps } from '../../../models/navigationModel';
 import { routeName } from '../../../config/constants/routes';
 import { BookingHistoryCard } from '../../../components/Cards/BookingHistoryCard';
 import { ServiceCard } from '../../../components/Cards/ServiceCard';

@@ -3,7 +3,7 @@ import { createStyles, staticStyle } from './styles';
 import { Theme } from '../../../config/themes/themes';
 import { useTheme } from '@shopify/restyle';
 import { routeName } from '../../../config/constants/routes';
-import { rootNavigationProps } from '../../../models/navigationModal';
+import { rootNavigationProps } from '../../../models/navigationModel';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { SemiBoldTextComponent } from '../../../components/Text/SemiBoldTextComponent';
 import { RegularTextComponent } from '../../../components/Text/RegularTextComponent';

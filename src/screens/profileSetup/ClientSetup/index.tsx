@@ -12,7 +12,7 @@ import { appIcons } from '../../../config/icons/iconPath';
 import { appImages } from '../../../config/images/imagePath';
 import { routeName } from '../../../config/constants/routes';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { rootNavigationProps } from '../../../models/navigationModal';
+import { rootNavigationProps } from '../../../models/navigationModel';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { PrimaryButtonComponent } from '../../../components/Buttons/PrimaryButton';
 import { MediumTextComponent } from '../../../components/Text/MediumTextComponent';

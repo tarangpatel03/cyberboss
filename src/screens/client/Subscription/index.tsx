@@ -1,7 +1,7 @@
 import { ListRenderItem, ScrollView, StatusBar, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { routeName } from '../../../config/constants/routes';
-import { rootNavigationProps } from '../../../models/navigationModal';
+import { rootNavigationProps } from '../../../models/navigationModel';
 import { staticStyle } from './styles';
 import { useCallback, useEffect, useState } from 'react';
 import { getAPIData } from '../../../services/api/common/getCommonApi';
@@ -15,6 +15,7 @@ import { SubscriptionBottomBar } from '../../../components/SubscriptionBottomBar
 import { apiClientHomeModel } from '../../../models/api/home';
 import { tWorkshopModel } from '../../../models/formattedAPI/tConsultant';
 import { transformClientHomeModal } from '../../../models/formattedAPI/tHome';
+import { ApiResponse } from '../../../models/apiModel';
 
 export type linearGradientDirection = {
   start: { x: number; y: number };
@@ -29,7 +30,11 @@ export const SubscriptionScreen = ({
   const end = { x: 1, y: 0.5 };
   const loadData = async () => {
     try {
-      const data: apiClientHomeModel = await getAPIData(endPoints.clientHome);
+      const response = await getAPIData<ApiResponse<apiClientHomeModel>>(
+        endPoints.clientHome,
+      );
+      if (!response) return;
+      const data: apiClientHomeModel = response.payload;
       const transformedData = transformClientHomeModal(data);
       setWorkShopData(transformedData.workshops);
     } catch (error) {

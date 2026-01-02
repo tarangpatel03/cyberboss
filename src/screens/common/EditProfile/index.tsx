@@ -9,7 +9,7 @@ import { createStyles, staticStyle } from './styles';
 import { Theme } from '../../../config/themes/themes';
 import { routeName } from '../../../config/constants/routes';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { rootNavigationProps } from '../../../models/navigationModal';
+import { rootNavigationProps } from '../../../models/navigationModel';
 import { ScreenHeaderComponent } from '../../../components/Headers/ScreenHeaderComponent';
 import { PrimaryButtonComponent } from '../../../components/Buttons/PrimaryButton';
 import { getAPIData } from '../../../services/api/common/getCommonApi';
@@ -25,6 +25,7 @@ import {
 } from '../../../models/formattedAPI/tProfile';
 import { useDispatch } from 'react-redux';
 import { setUserData } from '../../../redux/features/userSlice';
+import { ApiResponse } from '../../../models/apiModel';
 
 export const EditProfileScreen = ({
   navigation,
@@ -102,10 +103,11 @@ export const EditProfileScreen = ({
 
   const getData = async () => {
     try {
-      const res: apiProfileModel = await getAPIData(
+      const response = await getAPIData<ApiResponse<apiProfileModel>>(
         endPoints.consultantProfile,
       );
-      const transformedData = transformProfileModel(res);
+      if (!response) return;
+      const transformedData = transformProfileModel(response.payload);
       setProfileData(transformedData);
       setBio(transformedData.bio);
       setEmail(transformedData.email);

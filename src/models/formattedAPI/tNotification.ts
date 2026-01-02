@@ -1,4 +1,4 @@
-import { apiNotificationModel } from '../api/notificationModel';
+import { apiNotificationModel } from '../api/notification';
 
 export type tNotificationModel = {
   id: string;

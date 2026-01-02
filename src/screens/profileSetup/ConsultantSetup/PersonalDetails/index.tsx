@@ -7,7 +7,7 @@ import { PrimaryButtonComponent } from '../../../../components/Buttons/PrimaryBu
 import { CircularIconButtonComponent } from '../../../../components/Buttons/CircularIconButton';
 import { appIcons } from '../../../../config/icons/iconPath';
 import { routeName } from '../../../../config/constants/routes';
-import { rootNavigationProps } from '../../../../models/navigationModal';
+import { rootNavigationProps } from '../../../../models/navigationModel';
 import { MediumTextComponent } from '../../../../components/Text/MediumTextComponent';
 import { useState } from 'react';
 import { appImages } from '../../../../config/images/imagePath';

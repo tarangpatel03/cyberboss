@@ -1,11 +1,11 @@
 import { axiosClient } from '../../axios/axiosClient';
 import { endPoints } from '../../../config/endPoint/apiEndPoint';
 
-export const getConsultantList = async (
+export const getConsultantList = async <T>(
   id: string,
   page: number,
   search?: string,
-) => {
+): Promise<T | null> => {
   try {
     const response = await axiosClient.get(endPoints.consultantList, {
       params: {
@@ -14,7 +14,7 @@ export const getConsultantList = async (
         search,
       },
     });
-    return response.data.payload;
+    return response.data;
   } catch (error) {
     throw error;
   }

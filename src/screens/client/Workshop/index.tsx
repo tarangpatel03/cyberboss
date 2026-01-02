@@ -4,7 +4,7 @@ import {
   ListRenderItem,
   StyleSheet,
 } from 'react-native';
-import { rootNavigationProps } from '../../../models/navigationModal';
+import { rootNavigationProps } from '../../../models/navigationModel';
 import { routeName } from '../../../config/constants/routes';
 import { useTheme } from '@shopify/restyle';
 import { Theme } from '../../../config/themes/themes';
@@ -24,6 +24,7 @@ import {
   transformWorkshopModel,
 } from '../../../models/formattedAPI/tConsultant';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { ApiResponse, ListPayload } from '../../../models/apiModel';
 
 export const WorkshopScreen = ({
   navigation,
@@ -48,13 +49,17 @@ export const WorkshopScreen = ({
       } else {
         setLoader(true);
       }
-      const payload = await getAPIData(endPoints.workshopList, pageToLoad);
-      const res: apiWorkshopModel[] = payload.data;
+      const response = await getAPIData<
+        ApiResponse<ListPayload<apiWorkshopModel>>
+      >(endPoints.workshopList, pageToLoad);
+      if (!response) return;
+      const res: apiWorkshopModel[] = response.payload.data;
       const transformedData: tWorkshopModel[] = res
         ? res?.map(r => transformWorkshopModel(r))
         : [];
-      hasMoreRef.current = payload.meta.current_page < payload.meta.last_page;
-      pageRef.current = payload.meta.current_page;
+      hasMoreRef.current =
+        response.payload.meta.current_page < response.payload.meta.last_page;
+      pageRef.current = response.payload.meta.current_page;
       setWorkshop(transformedData);
     } catch (error) {
       console.log(error);

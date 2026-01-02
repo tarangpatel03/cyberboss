@@ -15,7 +15,6 @@ import { appImages } from '../../../config/images/imagePath';
 import { routeName } from '../../../config/constants/routes';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { MessageCard } from '../../../components/Cards/MessageCard';
-import { rootNavigationProps } from '../../../models/navigationModal';
 import { MediumTextComponent } from '../../../components/Text/MediumTextComponent';
 import { getAPIData } from '../../../services/api/common/getCommonApi';
 import { showErrorToast } from '../../../utils/toast/toast';
@@ -30,6 +29,8 @@ import {
 } from '../../../models/formattedAPI/tChatbot';
 import { CustomInputComponent } from '../../../components/Input/EmailAndPasswordInput';
 import { ListEmptyCard } from '../../../components/Cards/ListEmptyCard';
+import { rootNavigationProps } from '../../../models/navigationModel';
+import { ApiResponse, ListPayload } from '../../../models/apiModel';
 
 export const ContactSupportScreen = ({
   navigation,
@@ -60,13 +61,18 @@ export const ContactSupportScreen = ({
       if (isRefresh) {
         pageToLoad = 1;
       }
-      const payload = await getAPIData(endPoints.chatHistory, pageToLoad);
-      const data: apiChatBotChatModel[] = payload.data;
+      const response = await getAPIData<
+        ApiResponse<ListPayload<apiChatBotChatModel>>
+      >(endPoints.chatHistory, pageToLoad);
+      if (!response) return;
+      const data: apiChatBotChatModel[] = response.payload.data;
       const transformedData = data
         ? data?.map(r => transformChatBotChatModel(r))
         : [];
-      setHasMore(payload.meta.current_page < payload.meta.last_page);
-      pageRef.current = payload.meta.current_page;
+      setHasMore(
+        response.payload.meta.current_page < response.payload.meta.last_page,
+      );
+      pageRef.current = response.payload.meta.current_page;
       setChat(transformedData);
       flatListRef.current?.scrollToOffset({ animated: true, offset: 0 });
       // eslint-disable-next-line @typescript-eslint/no-unused-vars

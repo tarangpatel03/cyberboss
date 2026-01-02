@@ -4,7 +4,7 @@ import { SemiBoldTextComponent } from '../../../../components/Text/SemiBoldTextC
 import { useTheme } from '@shopify/restyle';
 import { Theme } from '../../../../config/themes/themes';
 import { createStyles, staticStyles } from './styles';
-import { rootNavigationProps } from '../../../../models/navigationModal';
+import { rootNavigationProps } from '../../../../models/navigationModel';
 import { routeName } from '../../../../config/constants/routes';
 import { useState } from 'react';
 import { PrimaryButtonComponent } from '../../../../components/Buttons/PrimaryButton';

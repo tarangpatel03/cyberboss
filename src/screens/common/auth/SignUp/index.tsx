@@ -4,7 +4,7 @@ import { Theme } from '../../../../config/themes/themes';
 import { createStyles, staticStyle } from './styles';
 import { appImages } from '../../../../config/images/imagePath';
 import { routeName } from '../../../../config/constants/routes';
-import { rootNavigationProps } from '../../../../models/navigationModal';
+import { rootNavigationProps } from '../../../../models/navigationModel';
 import { useState } from 'react';
 import { isDarkMode } from '../../../../utils/theme/darkMode';
 import {
@@ -33,7 +33,7 @@ export const SignUpScreen = ({
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [checkBox, setCheckBox] = useState<boolean>(false);
-  const [buttonText, setButtonText] = useState<string>('logIn');
+  const [buttonText, setButtonText] = useState<string>('signUp');
   const [passVisible, setPassVisible] = useState<boolean>(false);
 
   const navigateToProfileSetUp = () => {

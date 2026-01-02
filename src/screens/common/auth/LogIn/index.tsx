@@ -13,7 +13,7 @@ import { isDarkMode } from '../../../../utils/theme/darkMode';
 import { setUser, setUserData } from '../../../../redux/features/userSlice';
 import { showErrorToast } from '../../../../utils/toast/toast';
 import { routeName } from '../../../../config/constants/routes';
-import { rootNavigationProps } from '../../../../models/navigationModal';
+import { rootNavigationProps } from '../../../../models/navigationModel';
 import { validateEmail } from '../../../../utils/validation/validation';
 import { LogInInputsContainer } from '../../../../components/Input/LogInInputContainer';
 import { AuthTitle } from '../../../../components/AuthTitle';

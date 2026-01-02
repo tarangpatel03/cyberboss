@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import { Theme } from '../../../config/themes/themes';
 import { createStyles, staticStyle } from './styles';
-import { rootNavigationProps } from '../../../models/navigationModal';
+import { rootNavigationProps } from '../../../models/navigationModel';
 import { routeName } from '../../../config/constants/routes';
 import { ConsultantListCard } from '../../../components/Cards/ConsultantListCard';
 import { SearchBorderInputComponent } from '../../../components/Input/SearchInput';
@@ -25,6 +25,7 @@ import {
   transformConsultantModel,
 } from '../../../models/formattedAPI/tConsultant';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { ApiResponse, ListPayload } from '../../../models/apiModel';
 
 export const ConsultantListScreen = ({
   navigation,
@@ -69,13 +70,18 @@ export const ConsultantListScreen = ({
       } else {
         setLoader(true);
       }
-      const payload = await getConsultantList(id, pageToLoad, searchText);
-      const data: apiConsultantModel[] = payload.data;
+      const response = await getConsultantList<
+        ApiResponse<ListPayload<apiConsultantModel>>
+      >(id, pageToLoad, searchText);
+      if (!response) return;
+      const data: apiConsultantModel[] = response.payload.data;
       const formattedData = data
         ? data?.map(res => transformConsultantModel(res))
         : [];
-      setHasMore(payload.meta.current_page < payload.meta.last_page);
-      pageRef.current = payload.meta.current_page;
+      setHasMore(
+        response.payload.meta.current_page < response.payload.meta.last_page,
+      );
+      pageRef.current = response.payload.meta.current_page;
       setConsultantsList(formattedData);
     } catch (error) {
       console.log(error);

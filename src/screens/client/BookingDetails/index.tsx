@@ -5,7 +5,7 @@ import { Theme } from '../../../config/themes/themes';
 import { routeName } from '../../../config/constants/routes';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ActivityIndicator, StyleSheet, View } from 'react-native';
-import { rootNavigationProps } from '../../../models/navigationModal';
+import { rootNavigationProps } from '../../../models/navigationModel';
 import { ScreenHeaderComponent } from '../../../components/Headers/ScreenHeaderComponent';
 import { PrimaryButtonComponent } from '../../../components/Buttons/PrimaryButton';
 import { getAPIData } from '../../../services/api/common/getCommonApi';
@@ -26,6 +26,7 @@ import {
   tConsultantDetailsModel,
   transformConsultantDetailsModel,
 } from '../../../models/formattedAPI/tConsultant';
+import { ApiResponse } from '../../../models/apiModel';
 
 export const BookingDetailsScreen = ({
   navigation,
@@ -76,10 +77,12 @@ export const BookingDetailsScreen = ({
   const loadData = async () => {
     try {
       setLoader(true);
-      const res1: apiConsultantDetailsModel = await getAPIData(
-        `${endPoints.consultant}/${consultantId}`,
-      );
-      const transformedData1 = transformConsultantDetailsModel(res1);
+      const response1 = await getAPIData<
+        ApiResponse<apiConsultantDetailsModel>
+      >(`${endPoints.consultant}/${consultantId}`);
+      if (!response1) return;
+      const data1: apiConsultantDetailsModel = response1.payload;
+      const transformedData1 = transformConsultantDetailsModel(data1);
       setConsultantData(transformedData1);
       const res2: apiBillDetailsModel = await getBillData(hrBook, consultantId);
       const transformedData2 = transformBillDetailsModel(res2);

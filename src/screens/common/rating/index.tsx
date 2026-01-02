@@ -1,5 +1,5 @@
 import { StyleSheet, View } from 'react-native';
-import { rootNavigationProps } from '../../../models/navigationModal';
+import { rootNavigationProps } from '../../../models/navigationModel';
 import { routeName } from '../../../config/constants/routes';
 import { useTheme } from '@shopify/restyle';
 import { createStyles, staticStyle } from './styles';

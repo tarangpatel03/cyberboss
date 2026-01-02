@@ -6,12 +6,16 @@ import { endPoints } from '../../../config/endPoint/apiEndPoint';
 import { apiExpertiseModel } from '../../../models/api/consultant';
 import { apiClientHomeModel } from '../../../models/api/home';
 import { apiProfileModel } from '../../../models/api/profile';
-import { transformExpertiseModel } from '../../../models/formattedAPI/tConsultant';
+import {
+  tExpertiseModel,
+  transformExpertiseModel,
+} from '../../../models/formattedAPI/tConsultant';
 import {
   tClientHomeModel,
   transformClientHomeModal,
 } from '../../../models/formattedAPI/tHome';
 import { transformProfileModel } from '../../../models/formattedAPI/tProfile';
+import { ApiResponse } from '../../../models/apiModel';
 
 export function useClientHome() {
   const dispatch = useDispatch();
@@ -26,9 +30,14 @@ export function useClientHome() {
   });
 
   const handleHomeScreenWithoutLogIn = async () => {
-    const res: apiExpertiseModel[] = await getAPIData(endPoints.expertise);
-    const transformedData = res.map(r => transformExpertiseModel(r));
-
+    const response = await getAPIData<ApiResponse<apiExpertiseModel[]>>(
+      endPoints.expertise,
+    );
+    if (!response) return;
+    const data: apiExpertiseModel[] = response.payload;
+    const transformedData: tExpertiseModel[] = data.map(r =>
+      transformExpertiseModel(r),
+    );
     setHomeData({
       bookings: [],
       workshops: [],
@@ -39,13 +48,19 @@ export function useClientHome() {
 
   const getData = async () => {
     try {
-      const data: apiClientHomeModel = await getAPIData(endPoints.clientHome);
-      const transformedData1 = transformClientHomeModal(data);
+      const response = await getAPIData<ApiResponse<apiClientHomeModel>>(
+        endPoints.clientHome,
+      );
+      if (!response) return;
+      const data1: apiClientHomeModel = response.payload;
+      const transformedData1 = transformClientHomeModal(data1);
       setHomeData(transformedData1);
-      const res: apiProfileModel = await getAPIData(
+      const response2 = await getAPIData<ApiResponse<apiProfileModel>>(
         endPoints.consultantProfile,
       );
-      const transformedData2 = transformProfileModel(res);
+      if (!response2) return;
+      const data2: apiProfileModel = response2.payload;
+      const transformedData2 = transformProfileModel(data2);
       dispatch(
         setUserData({
           id: transformedData2.id,

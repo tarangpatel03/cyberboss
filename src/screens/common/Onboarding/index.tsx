@@ -11,7 +11,7 @@ import { Theme } from '../../../config/themes/themes';
 import { createStyles } from './styles';
 import { PrimaryButtonWithIconComponent } from '../../../components/Buttons/PrimaryButtonWithIcon';
 import { routeName } from '../../../config/constants/routes';
-import { rootNavigationProps } from '../../../models/navigationModal';
+import { rootNavigationProps } from '../../../models/navigationModel';
 import { useDispatch } from 'react-redux';
 import { setIsFirstTime } from '../../../redux/features/userSlice';
 import { useTranslation } from 'react-i18next';

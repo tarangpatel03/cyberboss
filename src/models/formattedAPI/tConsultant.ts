@@ -1,6 +1,7 @@
 import {
   apiConsultantDetailsModel,
   apiConsultantModel,
+  apiConsultantVerifed,
   apiExpertiseModel,
   apiRatingReviewModel,
   apiWorkshopModel,
@@ -57,6 +58,18 @@ export type tConsultantDetailsModel = {
   totalRatings: number;
   averageRatings: number;
   ratingReviews: tRatingReviewModel[];
+};
+
+export type tConsultantVerifed = {
+  isVerified: boolean;
+};
+
+export const transformConsultantVerfied: (
+  data: apiConsultantVerifed,
+) => tConsultantVerifed = (data: apiConsultantVerifed) => {
+  return {
+    isVerified: data.is_verified,
+  };
 };
 
 export const transformExpertiseModel: (

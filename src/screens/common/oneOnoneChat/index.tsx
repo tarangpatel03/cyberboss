@@ -13,7 +13,7 @@ import { appIcons } from '../../../config/icons/iconPath';
 import { appImages } from '../../../config/images/imagePath';
 import { routeName } from '../../../config/constants/routes';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { rootNavigationProps } from '../../../models/navigationModal';
+import { rootNavigationProps } from '../../../models/navigationModel';
 import { MediumTextComponent } from '../../../components/Text/MediumTextComponent';
 import { OneOnOneCard } from '../../../components/Cards/OneOnOneChat';
 import FastImage from 'react-native-fast-image';

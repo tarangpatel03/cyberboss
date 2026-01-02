@@ -7,7 +7,7 @@ import {
   SafeAreaView,
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
-import { rootNavigationProps } from '../../../models/navigationModal';
+import { rootNavigationProps } from '../../../models/navigationModel';
 import { BottomTabHeader } from '../../../components/Headers/BottomTabHeader';
 import { RegularTextComponent } from '../../../components/Text/RegularTextComponent';
 import { ThemeModal } from '../../../components/Modal/ThemeModal';

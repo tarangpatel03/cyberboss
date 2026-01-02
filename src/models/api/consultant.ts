@@ -54,3 +54,7 @@ export type apiConsultantDetailsModel = {
   average_ratings: number;
   rating_reviews: apiRatingReviewModel[];
 };
+
+export type apiConsultantVerifed = {
+  is_verified: boolean;
+};

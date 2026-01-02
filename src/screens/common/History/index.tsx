@@ -5,7 +5,7 @@ import { FlatList, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { BottomTabHeader } from '../../../components/Headers/BottomTabHeader';
 import { BookingCard } from '../../../components/Cards/BookingCard';
-import { rootNavigationProps } from '../../../models/navigationModal';
+import { rootNavigationProps } from '../../../models/navigationModel';
 import { routeName } from '../../../config/constants/routes';
 import { getAPIData } from '../../../services/api/common/getCommonApi';
 import { useCallback, useEffect, useState } from 'react';
@@ -27,6 +27,7 @@ import { apiBookingHistoryModel } from '../../../models/api/bookings';
 import { useSelector } from 'react-redux';
 import { rootState } from '../../../redux/store';
 import firestore from '@react-native-firebase/firestore';
+import { ApiResponse, ListPayload } from '../../../models/apiModel';
 
 export const HistoryScreen = ({
   navigation,
@@ -95,7 +96,6 @@ export const HistoryScreen = ({
         userID: userIdRead,
         chatID: `${userIdRead}_${id}`,
       });
-      console.log('New chat Created');
     }
   };
 
@@ -106,8 +106,11 @@ export const HistoryScreen = ({
       } else {
         setLoader(true);
       }
-      const payload = await getAPIData(endPoints.booking, pageToLoad);
-      const data: apiBookingHistoryModel[] = payload.data;
+      const response = await getAPIData<
+        ApiResponse<ListPayload<apiBookingHistoryModel>>
+      >(endPoints.booking, pageToLoad);
+      if (!response) return;
+      const data: apiBookingHistoryModel[] = response.payload.data;
       const transformedData = data.map(r => transformBookingHistoryModel(r));
       setHistory(transformedData);
     } catch (error) {

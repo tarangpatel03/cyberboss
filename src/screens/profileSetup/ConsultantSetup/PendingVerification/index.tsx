@@ -3,11 +3,10 @@ import { useTheme } from '@shopify/restyle';
 import { Theme } from '../../../../config/themes/themes';
 import { createStyles, staticStyle } from './styles';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { PrimaryButtonComponent } from '../../../../components/Buttons/PrimaryButton';
 import { CircularIconButtonComponent } from '../../../../components/Buttons/CircularIconButton';
 import { appIcons } from '../../../../config/icons/iconPath';
 import { routeName } from '../../../../config/constants/routes';
-import { rootNavigationProps } from '../../../../models/navigationModal';
+import { rootNavigationProps } from '../../../../models/navigationModel';
 import { SemiBoldTextComponent } from '../../../../components/Text/SemiBoldTextComponent';
 import { RegularTextComponent } from '../../../../components/Text/RegularTextComponent';
 import FastImage from 'react-native-fast-image';
@@ -15,6 +14,10 @@ import { useTranslation } from 'react-i18next';
 import { getAPIData } from '../../../../services/api/common/getCommonApi';
 import { endPoints } from '../../../../config/endPoint/apiEndPoint';
 import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { setUserData } from '../../../../redux/features/userSlice';
+import { ApiResponse } from '../../../../models/apiModel';
+import { apiConsultantVerifed } from '../../../../models/api/consultant';
 
 export const PendingVerificationScreen = ({
   navigation,
@@ -22,18 +25,26 @@ export const PendingVerificationScreen = ({
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
+  const dispatch = useDispatch();
 
   const goBack = () => {
     navigation.goBack();
   };
 
-  const navigateToConsultantBottomTab = () => {
-    navigation.replace(routeName.BottomTab);
-  };
-
   const verify = async () => {
     try {
-      await getAPIData(endPoints.consultantVerified);
+      const response = await getAPIData<ApiResponse<apiConsultantVerifed>>(
+        endPoints.consultantVerified,
+      );
+      if (response) {
+        dispatch(
+          setUserData({
+            is_verified: response.payload.is_verified,
+          }),
+        );
+      }
+      console.log('isVerifed: ', response?.payload.is_verified);
+      navigation.navigate(routeName.BottomTab);
     } catch (error) {
       console.log(error);
     }
@@ -41,6 +52,7 @@ export const PendingVerificationScreen = ({
 
   useEffect(() => {
     verify();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -82,12 +94,6 @@ export const PendingVerificationScreen = ({
                 />
               </View>
             </View>
-          </View>
-          <View style={staticStyle.bottomButton}>
-            <PrimaryButtonComponent
-              text={t('continue')}
-              onPress={navigateToConsultantBottomTab}
-            />
           </View>
         </View>
       </SafeAreaView>

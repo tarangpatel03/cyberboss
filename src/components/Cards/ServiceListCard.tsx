@@ -41,6 +41,7 @@ const staticStyle = StyleSheet.create({
   container: {
     paddingVertical: normalize(8),
     paddingHorizontal: normalize(8),
+    marginBottom: normalize(8),
     marginLeft: normalize(8),
     flexDirection: 'row',
     gap: normalize(8),

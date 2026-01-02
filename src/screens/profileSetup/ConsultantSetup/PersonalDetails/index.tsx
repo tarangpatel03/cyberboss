@@ -22,6 +22,7 @@ import FastImage from 'react-native-fast-image';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { rootState } from '../../../../redux/store';
+import firestore from '@react-native-firebase/firestore';
 import { updateConsultantProfileSetup } from '../../../../services/api/profile/updateProfile';
 import { CustomInputComponent } from '../../../../components/Input/EmailAndPasswordInput';
 
@@ -33,6 +34,7 @@ export const PersonalDetailsScreen = ({
   const styles = createStyles(theme);
   const [name, setName] = useState<string>('');
   const [experience, setExperience] = useState<string>('');
+  const id = useSelector((state: rootState) => state.user.userData.id);
   const [bio, setBio] = useState<string | null>(null);
   const { expertises, services } = useSelector(
     (state: rootState) => state.user.userData,
@@ -55,12 +57,19 @@ export const PersonalDetailsScreen = ({
       expertises ?? [],
       services ?? [],
     );
+    updateUserName();
     navigation.navigate(routeName.PendingVerification);
   };
 
   const mediaOptions: ImageLibraryOptions = {
     mediaType: 'photo',
     selectionLimit: 1,
+  };
+
+  const updateUserName = () => {
+    firestore().collection('users').doc(id).update({
+      name: name,
+    });
   };
 
   const pickImage = async () => {

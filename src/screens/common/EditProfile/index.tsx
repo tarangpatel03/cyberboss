@@ -23,9 +23,11 @@ import {
   tProfileModel,
   transformProfileModel,
 } from '../../../models/formattedAPI/tProfile';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setUserData } from '../../../redux/features/userSlice';
+import firestore from '@react-native-firebase/firestore';
 import { ApiResponse } from '../../../models/apiModel';
+import { rootState } from '../../../redux/store';
 
 export const EditProfileScreen = ({
   navigation,
@@ -34,6 +36,7 @@ export const EditProfileScreen = ({
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   const dispatch = useDispatch();
+  const id = useSelector((state: rootState) => state.user.userData.id);
   const [experience, setExperience] = useState<string | null>('');
   const profilePictureRef = useRef<number | { uri: string } | undefined>(
     undefined,
@@ -98,7 +101,14 @@ export const EditProfileScreen = ({
         name: name ?? '',
       }),
     );
+    updateUserName();
     goBack();
+  };
+
+  const updateUserName = () => {
+    firestore().collection('users').doc(id).update({
+      name: name,
+    });
   };
 
   const getData = async () => {

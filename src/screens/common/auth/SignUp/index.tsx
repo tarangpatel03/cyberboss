@@ -22,6 +22,7 @@ import { SignUpInputContainer } from '../../../../components/Input/SignUpInputCo
 import { setUser, setUserData } from '../../../../redux/features/userSlice';
 import { useDispatch } from 'react-redux';
 import { signUp } from '../../../../services/firebase/auth/auth';
+import firestore from '@react-native-firebase/firestore';
 
 export const SignUpScreen = ({
   navigation,
@@ -56,6 +57,15 @@ export const SignUpScreen = ({
     else return appColors.app_212121;
   };
 
+  const createFireBaseUser = (id: string) => {
+    firestore().collection('users').doc(id).set({
+      user_id: id,
+      profile_image: null,
+      timestamp: firestore.FieldValue.serverTimestamp(),
+      lastonlineTimeTimestamp: firestore.FieldValue.serverTimestamp(),
+    });
+  };
+
   const handleSignUp = async () => {
     try {
       setButtonText(t('loading'));
@@ -68,6 +78,7 @@ export const SignUpScreen = ({
               email: email,
             }),
           );
+          createFireBaseUser(res.id);
           navigateToProfileSetUp();
         }
       } else {

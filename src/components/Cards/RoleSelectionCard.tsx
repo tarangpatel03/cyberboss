@@ -4,7 +4,6 @@ import { RegularTextComponent } from '../Text/RegularTextComponent';
 import { Theme } from '../../config/themes/themes';
 import { useTheme } from '@shopify/restyle';
 import normalize from '../../utils/normalize/normalize';
-import { width } from '../../config/constants/variables';
 import { memo } from 'react';
 
 type roleSelectionCardProps = {
@@ -61,7 +60,6 @@ export const RoleSelectionCard = memo((props: roleSelectionCardProps) => {
 const staticStyle = StyleSheet.create({
   card: {
     borderRadius: normalize(12),
-    width: normalize(width - 50),
     padding: normalize(16),
     gap: normalize(8, 'height'),
   },

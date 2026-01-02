@@ -37,6 +37,7 @@ export const ServicesYouOfferScreen = ({
 
   const addService = (serviceText: string) => {
     setServiceList(prev => [...prev, serviceText]);
+    setText('');
   };
 
   const navigateToNext = () => {

@@ -33,6 +33,9 @@ axiosClient.interceptors.response.use(
           if (currentRoute === routeName.Home) {
             return Promise.reject(error);
           }
+          if (currentRoute === routeName.PendingVerification) {
+            return Promise.reject(error);
+          }
           navigationRef.current?.navigate(routeName.LogIn);
           break;
         case 404:

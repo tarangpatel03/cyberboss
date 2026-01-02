@@ -22,7 +22,7 @@ import {
   tExpertiseModel,
   transformExpertiseModel,
 } from '../../../../models/formattedAPI/tConsultant';
-import { ApiResponse, ListPayload } from '../../../../models/apiModel';
+import { ApiResponse } from '../../../../models/apiModel';
 
 export const AreaOfExpertiseScreen = ({
   navigation,
@@ -40,11 +40,11 @@ export const AreaOfExpertiseScreen = ({
 
   const getExpertise = async () => {
     try {
-      const response = await getAPIData<
-        ApiResponse<ListPayload<apiExpertiseModel>>
-      >(endPoints.expertise);
+      const response = await getAPIData<ApiResponse<apiExpertiseModel[]>>(
+        endPoints.expertise,
+      );
       if (!response) return;
-      const data: apiExpertiseModel[] = response.payload.data;
+      const data: apiExpertiseModel[] = response.payload;
       const transformedRes = data.map(r => transformExpertiseModel(r));
       setExpertise(transformedRes);
     } catch (error) {
@@ -128,6 +128,7 @@ export const AreaOfExpertiseScreen = ({
             <FlatList
               data={expertise}
               initialNumToRender={12}
+              showsVerticalScrollIndicator={false}
               keyExtractor={item => item.id}
               renderItem={renderItem}
               contentContainerStyle={staticStyle.listBar}

@@ -1,7 +1,7 @@
 import { useTheme } from '@shopify/restyle';
 import { StyleSheet, View } from 'react-native';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import FastImage from 'react-native-fast-image';
 import { createStyles, staticStyle } from './styles';
@@ -20,6 +20,7 @@ import { AuthTitle } from '../../../../components/AuthTitle';
 import { AuthFooterAction } from '../../../../components/Buttons/HorizontalTextButton';
 import { SocialLogIn } from '../../../../components/SocialLogin';
 import { googleLogIn, signIn } from '../../../../services/firebase/auth/auth';
+import { rootState } from '../../../../redux/store';
 
 export const LogInScreen = ({
   navigation,
@@ -28,6 +29,9 @@ export const LogInScreen = ({
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
+  const { is_verified } = useSelector(
+    (state: rootState) => state.user.userData,
+  );
   const [buttonText, setButtonText] = useState<string>('logIn');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -42,7 +46,9 @@ export const LogInScreen = ({
   };
 
   const navigateToHomeScreen = () => {
-    navigation.replace(routeName.BottomTab);
+    is_verified
+      ? navigation.replace(routeName.BottomTab)
+      : navigation.replace(routeName.PendingVerification);
   };
 
   const handleSignIn = async () => {

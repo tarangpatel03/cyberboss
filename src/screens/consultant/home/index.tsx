@@ -58,7 +58,7 @@ export const ConsultantHomeScreen = ({
     rate: null,
     expertises: [],
     services: [],
-    isVerified: false,
+    isVerified: true,
     loginType: 'social',
     profileSetup: false,
   });
@@ -156,7 +156,6 @@ export const ConsultantHomeScreen = ({
         userID: userIdRead,
         chatID: `${userIdRead}_${id}`,
       });
-      console.log('New chat Created');
     }
   };
 
@@ -178,8 +177,17 @@ export const ConsultantHomeScreen = ({
       );
     }, []);
 
+  const getUserData = async () => {
+    const res = await firestore().collection('users').get();
+    console.log('Users: ');
+    res.forEach(r => {
+      console.log(r.id, r.data());
+    });
+  };
+
   useEffect(() => {
     getData();
+    getUserData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

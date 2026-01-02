@@ -3,7 +3,6 @@ import { useTheme } from '@shopify/restyle';
 import { Theme } from '../../../../config/themes/themes';
 import { createStyles, staticStyle } from './styles';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { CircularIconButtonComponent } from '../../../../components/Buttons/CircularIconButton';
 import { appIcons } from '../../../../config/icons/iconPath';
 import { routeName } from '../../../../config/constants/routes';
 import { rootNavigationProps } from '../../../../models/navigationModel';
@@ -27,10 +26,6 @@ export const PendingVerificationScreen = ({
   const styles = createStyles(theme);
   const dispatch = useDispatch();
 
-  const goBack = () => {
-    navigation.goBack();
-  };
-
   const verify = async () => {
     try {
       const response = await getAPIData<ApiResponse<apiConsultantVerifed>>(
@@ -42,9 +37,10 @@ export const PendingVerificationScreen = ({
             is_verified: response.payload.is_verified,
           }),
         );
+        if (response.payload.is_verified) {
+          navigation.replace(routeName.BottomTab);
+        }
       }
-      console.log('isVerifed: ', response?.payload.is_verified);
-      navigation.navigate(routeName.BottomTab);
     } catch (error) {
       console.log(error);
     }
@@ -62,15 +58,6 @@ export const PendingVerificationScreen = ({
       >
         <View style={StyleSheet.flatten([styles.container])}>
           <View>
-            <View style={staticStyle.topBar}>
-              <CircularIconButtonComponent
-                iconPath={appIcons.ic_backIcon}
-                buttonStyle={staticStyle.backButton}
-                iconStyle={staticStyle.backIcon}
-                tintColor={theme.colors.textPrimary}
-                onPress={goBack}
-              />
-            </View>
             <View style={staticStyle.content}>
               <FastImage
                 style={staticStyle.image}

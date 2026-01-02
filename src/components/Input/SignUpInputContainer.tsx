@@ -119,7 +119,7 @@ export const SignUpInputContainer = (props: signUpInputContainerProps) => {
         </TouchableOpacity>
       </View>
       <PrimaryButtonComponent
-        text={props.buttonText}
+        text={t(props.buttonText)}
         onPress={props.handleSignUp}
       />
     </View>

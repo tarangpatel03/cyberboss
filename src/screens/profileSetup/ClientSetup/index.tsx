@@ -21,8 +21,10 @@ import { SemiBoldTextComponent } from '../../../components/Text/SemiBoldTextComp
 import { CircularIconButtonComponent } from '../../../components/Buttons/CircularIconButton';
 import { updateClientProfile } from '../../../services/api/profile/updateProfile';
 import { CustomInputComponent } from '../../../components/Input/EmailAndPasswordInput';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setUserData } from '../../../redux/features/userSlice';
+import firestore from '@react-native-firebase/firestore';
+import { rootState } from '../../../redux/store';
 
 export const ClientProfileSetUpScreen = ({
   navigation,
@@ -31,6 +33,7 @@ export const ClientProfileSetUpScreen = ({
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   const dispatch = useDispatch();
+  const id = useSelector((state: rootState) => state.user.userData.id);
   const [userName, setUserName] = useState<string>('');
   const [profileImage, setProfileImage] = useState<
     number | { uri: string } | undefined
@@ -55,6 +58,12 @@ export const ClientProfileSetUpScreen = ({
     }
   };
 
+  const updateUserName = () => {
+    firestore().collection('users').doc(id).update({
+      name: userName,
+    });
+  };
+
   const setUpProfile = async () => {
     try {
       await updateClientProfile(userName, profileImage);
@@ -64,6 +73,7 @@ export const ClientProfileSetUpScreen = ({
           profilePicture: profileImage,
         }),
       );
+      updateUserName();
       navigation.replace(routeName.BottomTab);
     } catch (error) {
       console.log(error);

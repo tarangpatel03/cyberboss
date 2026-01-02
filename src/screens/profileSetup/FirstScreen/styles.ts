@@ -47,7 +47,7 @@ export const staticStyle = StyleSheet.create({
     fontWeight: '400',
   },
   selectionCardContainer: {
-    paddingHorizontal: normalize(12),
+    width: '100%',
     gap: normalize(16, 'height'),
   },
   bottomButton: {

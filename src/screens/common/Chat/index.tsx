@@ -6,7 +6,7 @@ import { routeName } from '../../../config/constants/routes';
 import { FlatList, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { BottomTabHeader } from '../../../components/Headers/BottomTabHeader';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { SearchBorderInputComponent } from '../../../components/Input/SearchInput';
 import { ListShimmer } from '../../../components/Skeleton/ListShimmer';
 import { rootState } from '../../../redux/store';
@@ -83,6 +83,14 @@ export const ChatScreen = ({
     });
   };
 
+  const renderChats = useCallback(
+    ({ item }: any) => {
+      return <ChatListItem data={item} uid={uid} onPress={navigateToChats} />;
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [uid],
+  );
+
   const navigateToLogIn = () => {
     navigation.navigate(routeName.LogIn);
   };
@@ -124,9 +132,7 @@ export const ChatScreen = ({
               directionalLockEnabled={true}
               keyExtractor={item => item.id}
               showsVerticalScrollIndicator={false}
-              renderItem={({ item }) => (
-                <ChatListItem data={item} uid={uid} onPress={navigateToChats} />
-              )}
+              renderItem={renderChats}
               contentContainerStyle={staticStyle.listItems}
               ListEmptyComponent={
                 <ListEmptyCard

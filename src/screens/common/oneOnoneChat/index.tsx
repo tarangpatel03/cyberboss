@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useTheme } from '@shopify/restyle';
 import { createStyles, staticStyle } from './styles';
 import { Theme } from '../../../config/themes/themes';
@@ -49,16 +49,19 @@ export const OneOnOneChatScreen = ({
     );
   };
 
-  const renderItem = ({ item }: any) => {
-    return (
-      <OneOnOneCard
-        uid={data.userID}
-        senderId={item.senderId}
-        message={item.message}
-        timestamp={item.timestamp}
-      />
-    );
-  };
+  const renderItem = useCallback(
+    ({ item }: any) => {
+      return (
+        <OneOnOneCard
+          uid={data.userID}
+          senderId={item.senderId}
+          message={item.message}
+          timestamp={item.timestamp}
+        />
+      );
+    },
+    [data.userID],
+  );
 
   const getChats = () => {
     try {

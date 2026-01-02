@@ -1,9 +1,9 @@
-import { ScrollView, StatusBar, View } from 'react-native';
+import { ListRenderItem, ScrollView, StatusBar, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { routeName } from '../../../config/constants/routes';
 import { rootNavigationProps } from '../../../models/navigationModal';
 import { staticStyle } from './styles';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { getAPIData } from '../../../services/api/common/getCommonApi';
 import { WorkshopFlatListCard } from '../../../components/Cards/WorkShopFlatlistCard';
 import { endPoints } from '../../../config/endPoint/apiEndPoint';
@@ -40,9 +40,9 @@ export const SubscriptionScreen = ({
   const goBack = () => {
     navigation.goBack();
   };
-  const renderItem = ({ item }: any) => {
+  const renderItem: ListRenderItem<tWorkshopModel> = useCallback(({ item }) => {
     return <WorkshopFlatListCard data={item} />;
-  };
+  }, []);
 
   useEffect(() => {
     loadData();

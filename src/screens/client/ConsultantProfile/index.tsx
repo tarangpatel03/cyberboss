@@ -9,7 +9,7 @@ import { useTheme } from '@shopify/restyle';
 import { createStyles, staticStyle } from './styles';
 import { Theme } from '../../../config/themes/themes';
 import { getAPIData } from '../../../services/api/common/getCommonApi';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { routeName } from '../../../config/constants/routes';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { rootNavigationProps } from '../../../models/navigationModal';
@@ -60,19 +60,22 @@ export const ConsultantProfileScreen = ({
     navigation.goBack();
   };
 
-  const renderItemReview: ListRenderItem<tRatingReviewModel> = ({ item }) => {
-    return (
-      <ReviewCard
-        clientId={item.clientId}
-        clientName={item.clientName}
-        clientProfilePicture={item.clientProfilePicture}
-        createdAt={item.createdAt}
-        id={item.id}
-        rating={item.rating}
-        review={item.review}
-      />
-    );
-  };
+  const renderItemReview: ListRenderItem<tRatingReviewModel> = useCallback(
+    ({ item }) => {
+      return (
+        <ReviewCard
+          clientId={item.clientId}
+          clientName={item.clientName}
+          clientProfilePicture={item.clientProfilePicture}
+          createdAt={item.createdAt}
+          id={item.id}
+          rating={item.rating}
+          review={item.review}
+        />
+      );
+    },
+    [],
+  );
 
   const navigateToBookingDetails = () => {
     navigation.navigate(routeName.BookingDetails, {

@@ -8,7 +8,7 @@ import {
   bookingHistory,
   recentActivities,
 } from '../../../demoData/homeScreenData';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useTheme } from '@shopify/restyle';
 import { createStyles, staticStyle } from './styles';
 import { Theme } from '../../../config/themes/themes';
@@ -161,18 +161,17 @@ export const ConsultantHomeScreen = ({
     return <BookingHistoryCard props={item} navigateToChat={navigateToChat} />;
   };
 
-  const renderRecentActivityItem: ListRenderItem<
-    tConsultantHomeNotificationModel
-  > = ({ item }) => {
-    return (
-      <RecentActivity
-        id={item.id}
-        body={item.body}
-        title={item.title}
-        createdAt={item.createdAt}
-      />
-    );
-  };
+  const renderRecentActivityItem: ListRenderItem<tConsultantHomeNotificationModel> =
+    useCallback(({ item }) => {
+      return (
+        <RecentActivity
+          id={item.id}
+          body={item.body}
+          title={item.title}
+          createdAt={item.createdAt}
+        />
+      );
+    }, []);
 
   useEffect(() => {
     getData();

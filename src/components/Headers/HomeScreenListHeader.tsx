@@ -1,4 +1,4 @@
-import { StyleSheet, View } from 'react-native';
+import { ListRenderItem, StyleSheet, View } from 'react-native';
 import { createStyles, staticStyle } from '../../screens/client/Home/styles';
 import { HomeScreenWorkshopList } from '../List/HomeScreenWorkshopList';
 import { MediumTextComponent } from '../Text/MediumTextComponent';
@@ -6,13 +6,15 @@ import { useTranslation } from 'react-i18next';
 import { useTheme } from '@shopify/restyle';
 import { Theme } from '../../config/themes/themes';
 import { tClientHomeModel } from '../../models/formattedAPI/tHome';
+import { tHomeBookingModel } from '../../models/formattedAPI/tBookings';
+import { tWorkshopModel } from '../../models/formattedAPI/tConsultant';
 
 type homeScreenListHeaderProps = {
   homeData: tClientHomeModel;
   navigateToHistory: () => void;
   navigateToWorkshop: () => void;
-  renderWorkshopItem: ({ item }: any) => React.JSX.Element;
-  renderBookingItem: ({ item }: any) => React.JSX.Element;
+  renderWorkshopItem: ListRenderItem<tWorkshopModel>;
+  renderBookingItem: ListRenderItem<tHomeBookingModel>;
 };
 
 export const HomeScreenListHeaderComponent = (

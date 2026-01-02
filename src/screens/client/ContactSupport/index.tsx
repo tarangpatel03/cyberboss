@@ -1,4 +1,5 @@
 import {
+  ActivityIndicator,
   FlatList,
   ListRenderItem,
   StyleSheet,
@@ -39,19 +40,33 @@ export const ContactSupportScreen = ({
   const flatListRef = useRef<FlatList>(null);
   const [text, setText] = useState<string>('');
   const [chat, setChat] = useState<tChatBotChatModel[]>([]);
+  const pageRef = useRef<number>(1);
+  const [hasMore, setHasMore] = useState<boolean>(false);
+  const [paginationLoading, setPaginationLoading] = useState<boolean>(false);
 
   const goBack = () => {
     navigation.goBack();
   };
 
-  const loadChat = async () => {
+  const handleLoadMore = () => {
+    if (hasMore) {
+      setPaginationLoading(true);
+      pageRef.current += 1;
+    }
+  };
+
+  const loadChat = async (pageToLoad = 1, isRefresh = false) => {
     try {
-      const data: apiChatBotChatModel[] = await getAPIData(
-        endPoints.chatHistory,
-      ).then(r => r.data);
+      if (isRefresh) {
+        pageToLoad = 1;
+      }
+      const payload = await getAPIData(endPoints.chatHistory, pageToLoad);
+      const data: apiChatBotChatModel[] = payload.data;
       const transformedData = data
         ? data?.map(r => transformChatBotChatModel(r))
         : [];
+      setHasMore(payload.meta.current_page < payload.meta.last_page);
+      pageRef.current = payload.meta.current_page;
       setChat(transformedData);
       flatListRef.current?.scrollToOffset({ animated: true, offset: 0 });
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -149,7 +164,11 @@ export const ContactSupportScreen = ({
             initialNumToRender={10}
             keyExtractor={item => item.createdAt}
             showsVerticalScrollIndicator={false}
+            onEndReached={handleLoadMore}
             renderItem={renderItem}
+            ListFooterComponent={
+              paginationLoading ? <ActivityIndicator size={'large'} /> : null
+            }
             contentContainerStyle={staticStyle.list}
             ListEmptyComponent={emptyCard}
           />

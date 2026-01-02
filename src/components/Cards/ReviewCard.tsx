@@ -12,8 +12,9 @@ import {
   staticStyle,
 } from '../../screens/client/ConsultantProfile/styles';
 import { tRatingReviewModel } from '../../models/formattedAPI/tConsultant';
+import { memo } from 'react';
 
-export const ReviewCard = (props: tRatingReviewModel) => {
+export const ReviewCard = memo((props: tRatingReviewModel) => {
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
 
@@ -66,4 +67,4 @@ export const ReviewCard = (props: tRatingReviewModel) => {
       />
     </View>
   );
-};
+});

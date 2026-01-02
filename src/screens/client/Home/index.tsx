@@ -25,8 +25,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { rootState } from '../../../redux/store';
 import { useTranslation } from 'react-i18next';
 import { HomeScreenListHeaderComponent } from '../../../components/Headers/HomeScreenListHeader';
-import { tExpertiseModel } from '../../../models/formattedAPI/tConsultant';
+import {
+  tExpertiseModel,
+  tWorkshopModel,
+} from '../../../models/formattedAPI/tConsultant';
 import firestore from '@react-native-firebase/firestore';
+import { tHomeBookingModel } from '../../../models/formattedAPI/tBookings';
 
 export const ClientHomeScreen = ({
   navigation,
@@ -75,8 +79,9 @@ export const ClientHomeScreen = ({
     navigation.navigate(routeName.ContactSupport);
   };
 
-  const renderWorkshopItem = ({ item }: any) => (
-    <WorkshopCard data={item} cardStyle={staticStyle.card} />
+  const renderWorkshopItem: ListRenderItem<tWorkshopModel> = useCallback(
+    ({ item }) => <WorkshopCard data={item} cardStyle={staticStyle.card} />,
+    [],
   );
 
   const navigateToChat = async ({
@@ -130,8 +135,12 @@ export const ClientHomeScreen = ({
     }
   };
 
-  const renderBookingItem = ({ item }: any) => (
-    <BookingHistoryCard props={item} navigateToChat={navigateToChat} />
+  const renderBookingItem: ListRenderItem<tHomeBookingModel> = useCallback(
+    ({ item }) => (
+      <BookingHistoryCard props={item} navigateToChat={navigateToChat} />
+    ),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
   );
 
   const renderBrowseServiceItem: ListRenderItem<tExpertiseModel> = useCallback(

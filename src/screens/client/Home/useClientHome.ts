@@ -1,21 +1,21 @@
-import { getAPIData } from '../../../services/api/common/getCommonApi';
+import { getAPIData } from '@services/api/common/getCommonApi';
 import { useEffect, useState } from 'react';
-import { setIsPro, setUserData } from '../../../redux/features/userSlice';
+import { setIsPro, setUserData } from '@redux/features/userSlice';
 import { useDispatch } from 'react-redux';
-import { endPoints } from '../../../config/endPoint/apiEndPoint';
-import { ApiExpertiseModel } from '../../../models/api/consultant';
-import { ApiClientHomeModel } from '../../../models/api/home';
-import { ApiProfileModel } from '../../../models/api/profile';
+import { endPoints } from '@config/endPoint/apiEndPoint';
+import { ApiExpertiseModel } from '@models/api/consultant';
+import { ApiClientHomeModel } from '@models/api/home';
+import { ApiProfileModel } from '@models/api/profile';
 import {
   TExpertiseModel,
   transformExpertiseModel,
-} from '../../../models/formattedAPI/tConsultant';
+} from '@models/formattedAPI/tConsultant';
 import {
   TClientHomeModel,
   transformClientHomeModal,
-} from '../../../models/formattedAPI/tHome';
-import { transformProfileModel } from '../../../models/formattedAPI/tProfile';
-import { ApiResponse } from '../../../models/apiModel';
+} from '@models/formattedAPI/tHome';
+import { transformProfileModel } from '@models/formattedAPI/tProfile';
+import { ApiResponse } from '@models/apiModel';
 
 export function useClientHome() {
   const dispatch = useDispatch();

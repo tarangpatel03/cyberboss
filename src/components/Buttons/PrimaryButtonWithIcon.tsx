@@ -5,9 +5,9 @@ import {
   TouchableOpacity,
   ViewStyle,
 } from 'react-native';
-import { MediumTextComponent } from '../Text/MediumText';
-import normalize from '../../utils/normalize/normalize';
-import { appColors } from '../../config/colors/colors';
+import { MediumTextComponent } from '@components/Text/MediumText';
+import normalize from '@utils/normalize/normalize';
+import { appColors } from '@config/colors/colors';
 import FastImage from 'react-native-fast-image';
 
 type PrimaryButtonWithIconComponentProps = {

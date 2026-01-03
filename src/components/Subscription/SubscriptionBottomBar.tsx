@@ -1,11 +1,11 @@
 import { View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import FastImage from 'react-native-fast-image';
-import { appIcons } from '../config/icons/iconPath';
-import { MediumTextComponent } from './Text/MediumText';
-import { RegularTextComponent } from './Text/RegularText';
-import { staticStyle } from '../screens/client/Subscription/styles';
-import { PrimaryButtonWithIconComponent } from './Buttons/PrimaryButtonWithIcon';
+import { appIcons } from '@config/icons/iconPath';
+import { MediumTextComponent } from '@components/Text/MediumText';
+import { RegularTextComponent } from '@components/Text/RegularText';
+import { staticStyle } from '@screens/client/Subscription/styles';
+import { PrimaryButtonWithIconComponent } from '@components/Buttons/PrimaryButtonWithIcon';
 
 export const SubscriptionBottomBar = () => {
   const { t } = useTranslation();

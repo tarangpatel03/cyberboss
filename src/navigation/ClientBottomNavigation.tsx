@@ -1,23 +1,23 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { routeName } from '../config/constants/routes';
-import { appIcons } from '../config/icons/iconPath';
+import { routeName } from '@config/constants/routes';
+import { appIcons } from '@config/icons/iconPath';
 import { useTheme } from '@shopify/restyle';
-import { Theme } from '../config/themes/themes';
+import { Theme } from '@config/themes/themes';
 import { StyleSheet } from 'react-native';
-import { HistoryScreen } from '../screens/common/History';
-import { ProfileScreen } from '../screens/common/Profile';
-import { ClientHomeScreen } from '../screens/client/Home';
-import { ChatScreen } from '../screens/common/Chat';
+import { HistoryScreen } from '@screens/common/History';
+import { ProfileScreen } from '@screens/common/Profile';
+import { ClientHomeScreen } from '@screens/client/Home';
+import { ChatScreen } from '@screens/common/Chat';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import normalize from '../utils/normalize/normalize';
-import { ClientBottomNavigationParams } from '../models/navigationModel';
-import { BarTabIconComponent } from '../components/BottomTabIcon/BarTabIcon';
+import normalize from '@utils/normalize/normalize';
+import { ClientBottomNavigationParams } from '@models/navigationModel';
+import { BarTabIconComponent } from '@components/BottomTabIcon/BarTabIcon';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { RootState } from '../redux/store';
-import { navigationRef } from '../services/axios/axiosInterceptors';
+import { RootState } from '@redux/store';
+import { navigationRef } from '@services/axios/axiosInterceptors';
 import { EventArg } from '@react-navigation/native';
-import { ConsultantHomeScreen } from '../screens/consultant/Home';
+import { ConsultantHomeScreen } from '@screens/consultant/Home';
 
 const Tab = createBottomTabNavigator<ClientBottomNavigationParams>();
 type SetBarIconType = {

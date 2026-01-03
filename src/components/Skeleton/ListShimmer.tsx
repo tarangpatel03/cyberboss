@@ -1,7 +1,7 @@
 import { StyleProp, StyleSheet, ViewStyle } from 'react-native';
 import { FlatList, View } from 'react-native';
-import { ShimmerHolder } from './ShimmerHolder';
-import normalize from '../../utils/normalize/normalize';
+import { ShimmerHolder } from '@components/Skeleton/ShimmerHolder';
+import normalize from '@utils/normalize/normalize';
 import { useCallback } from 'react';
 
 type ListShimmerProps = {

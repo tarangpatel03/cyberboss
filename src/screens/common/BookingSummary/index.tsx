@@ -1,35 +1,35 @@
 import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
-import { RootNavigationProps } from '../../../models/navigationModel';
-import { routeName } from '../../../config/constants/routes';
+import { RootNavigationProps } from '@models/navigationModel';
+import { routeName } from '@config/constants/routes';
 import { useTheme } from '@shopify/restyle';
-import { Theme } from '../../../config/themes/themes';
-import { createStyles, staticStyle } from './styles';
+import { Theme } from '@config/themes/themes';
+import {
+  createStyles,
+  staticStyle,
+} from '@screens/common/BookingSummary/styles';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { ScreenHeaderComponent } from '../../../components/Headers/ScreenHeader';
-import { appIcons } from '../../../config/icons/iconPath';
-import { MediumTextComponent } from '../../../components/Text/MediumText';
+import { ScreenHeaderComponent } from '@components/Headers/ScreenHeader';
+import { appIcons } from '@config/icons/iconPath';
+import { MediumTextComponent } from '@components/Text/MediumText';
 import { useEffect, useState } from 'react';
-import { PrimaryButtonComponent } from '../../../components/Buttons/PrimaryButton';
+import { PrimaryButtonComponent } from '@components/Buttons/PrimaryButton';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../../redux/store';
+import { RootState } from '@redux/store';
 import FastImage from 'react-native-fast-image';
 import { useTranslation } from 'react-i18next';
-import { BookingStatusCard } from '../../../components/Cards/BookingStatusCard';
-import { BookingSummaryDetailsCard } from '../../../components/Cards/BookingSummaryDetailsCard';
-import { BookingPaymentDetailsCard } from '../../../components/Cards/BookingPaymentDetailsCard';
-import { getAPIData } from '../../../services/api/common/getCommonApi';
-import { endPoints } from '../../../config/endPoint/apiEndPoint';
+import { BookingStatusCard } from '@components/Cards/BookingStatusCard';
+import { BookingSummaryDetailsCard } from '@components/Cards/BookingSummaryDetailsCard';
+import { BookingPaymentDetailsCard } from '@components/Cards/BookingPaymentDetailsCard';
+import { getAPIData } from '@services/api/common/getCommonApi';
+import { endPoints } from '@config/endPoint/apiEndPoint';
 import {
   TBookingDetailsModel,
   transformBookingDetailsModel,
   transformReviewModel,
   TReviewModel,
-} from '../../../models/formattedAPI/tBookings';
-import {
-  ApiBookingDetailsModel,
-  ApiReviewModel,
-} from '../../../models/api/bookings';
-import { ApiResponse } from '../../../models/apiModel';
+} from '@models/formattedAPI/tBookings';
+import { ApiBookingDetailsModel, ApiReviewModel } from '@models/api/bookings';
+import { ApiResponse } from '@models/apiModel';
 
 export const BookingSummaryScreen = ({
   navigation,
@@ -128,12 +128,16 @@ export const BookingSummaryScreen = ({
           />
         </ScrollView>
         <View style={staticStyle.button}>
-          <PrimaryButtonComponent onPress={() => {}} text={t('message')} />
+          {bookingDetails?.status === 'In progress' && (
+            <PrimaryButtonComponent onPress={() => {}} text={t('message')} />
+          )}
           <TouchableOpacity
             activeOpacity={0.7}
             style={StyleSheet.flatten([
               staticStyle.downloadButton,
-              styles.innerContainer,
+              bookingDetails?.status === 'In progress'
+                ? styles.innerContainer
+                : styles.primaryBackground,
             ])}
           >
             <View style={staticStyle.downloadInvoice}>

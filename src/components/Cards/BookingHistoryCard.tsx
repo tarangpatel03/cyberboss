@@ -1,107 +1,99 @@
 import { useTheme } from '@shopify/restyle';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import { Theme } from '../../config/themes/themes';
-import normalize from '../../utils/normalize/normalize';
-import { MediumTextComponent } from '../Text/MediumText';
-import { RegularTextComponent } from '../Text/RegularText';
-import { appIcons } from '../../config/icons/iconPath';
-import { width } from '../../config/constants/variables';
+import { Theme } from '@config/themes/themes';
+import normalize from '@utils/normalize/normalize';
+import { MediumTextComponent } from '@components/Text/MediumText';
+import { RegularTextComponent } from '@components/Text/RegularText';
+import { appIcons } from '@config/icons/iconPath';
+import { width } from '@config/constants/variables';
 import FastImage from 'react-native-fast-image';
 import { memo } from 'react';
-import { THomeBookingModel } from '../../models/formattedAPI/tBookings';
-import { getFullDate } from '../../utils/format/formatDate';
-import { appImages } from '../../config/images/imagePath';
+import { THomeBookingModel } from '@models/formattedAPI/tBookings';
+import { getFullDate } from '@utils/format/formatDate';
+import { appImages } from '@config/images/imagePath';
 
-export const BookingHistoryCard = memo(
-  ({
-    props,
-    navigateToChat,
+type BookingHistoryCardProps = {
+  data: THomeBookingModel;
+  navigateToChat: ({
+    id,
+    image,
+    name,
   }: {
-    props: THomeBookingModel;
-    navigateToChat: ({
-      id,
-      image,
-      name,
-    }: {
-      id: string;
-      image: string | number | { uri: string } | undefined;
-      name: string;
-    }) => void;
-  }) => {
-    const theme = useTheme<Theme>();
-    const styles = createStyles(theme);
+    id: string;
+    image: string | number | { uri: string } | undefined;
+    name: string;
+  }) => void;
+};
 
-    return (
-      <View
-        style={StyleSheet.flatten([staticStyle.container, styles.container])}
-      >
-        <View style={StyleSheet.flatten([staticStyle.header, styles.header])}>
-          <FastImage
-            style={staticStyle.image}
-            source={appImages.img_defaultProfile}
+export const BookingHistoryCard = memo((props: BookingHistoryCardProps) => {
+  const theme = useTheme<Theme>();
+  const styles = createStyles(theme);
+
+  return (
+    <View style={StyleSheet.flatten([staticStyle.container, styles.container])}>
+      <View style={StyleSheet.flatten([staticStyle.header, styles.header])}>
+        <FastImage
+          style={staticStyle.image}
+          source={appImages.img_defaultProfile}
+        />
+        <View style={staticStyle.topText}>
+          <MediumTextComponent
+            text={props.data.userName}
+            textStyle={StyleSheet.flatten([staticStyle.title, styles.title])}
           />
-          <View style={staticStyle.topText}>
-            <MediumTextComponent
-              text={props.userName}
-              textStyle={StyleSheet.flatten([staticStyle.title, styles.title])}
-            />
-            <RegularTextComponent
-              text={getFullDate(props.bookingDate)}
-              textStyle={StyleSheet.flatten([
-                staticStyle.subTitle,
-                styles.subTitle,
-              ])}
-            />
-          </View>
+          <RegularTextComponent
+            text={getFullDate(props.data.bookingDate)}
+            textStyle={StyleSheet.flatten([
+              staticStyle.subTitle,
+              styles.subTitle,
+            ])}
+          />
         </View>
-        <View style={staticStyle.detail}>
-          <View style={staticStyle.header}>
-            <FastImage
-              style={staticStyle.icons}
-              source={appIcons.ic_suitcase}
-            />
-            <RegularTextComponent
-              text={props.categoryName}
-              textStyle={StyleSheet.flatten([
-                staticStyle.subTitle,
-                styles.subTitle,
-              ])}
-            />
-          </View>
-          <View style={staticStyle.header}>
-            <FastImage style={staticStyle.icons} source={appIcons.ic_cash} />
-            <RegularTextComponent
-              text={`$${props.grandTotal}`}
-              textStyle={StyleSheet.flatten([
-                staticStyle.subTitle,
-                styles.subTitle,
-              ])}
-            />
-          </View>
-        </View>
-        {props.status === 'In progress' && (
-          <TouchableOpacity
-            activeOpacity={0.7}
-            onPress={() =>
-              navigateToChat({
-                id: props.userId,
-                image: props.userProfilePicture,
-                name: props.userName,
-              })
-            }
-            style={StyleSheet.flatten([staticStyle.button, styles.button])}
-          >
-            <FastImage
-              tintColor={theme.colors.primary}
-              source={appIcons.ic_fillChat}
-              style={staticStyle.chat}
-            />
-          </TouchableOpacity>
-        )}
       </View>
-    );
-  },
-);
+      <View style={staticStyle.detail}>
+        <View style={staticStyle.header}>
+          <FastImage style={staticStyle.icons} source={appIcons.ic_suitcase} />
+          <RegularTextComponent
+            text={props.data.categoryName}
+            textStyle={StyleSheet.flatten([
+              staticStyle.subTitle,
+              styles.subTitle,
+            ])}
+          />
+        </View>
+        <View style={staticStyle.header}>
+          <FastImage style={staticStyle.icons} source={appIcons.ic_cash} />
+          <RegularTextComponent
+            text={`$${props.data.grandTotal}`}
+            textStyle={StyleSheet.flatten([
+              staticStyle.subTitle,
+              styles.subTitle,
+            ])}
+          />
+        </View>
+      </View>
+      {props.data.status === 'In progress' && (
+        <TouchableOpacity
+          activeOpacity={0.7}
+          onPress={() =>
+            props.navigateToChat({
+              id: props.data.userId,
+              image: props.data.userProfilePicture,
+              name: props.data.userName,
+            })
+          }
+          style={StyleSheet.flatten([staticStyle.button, styles.button])}
+        >
+          <FastImage
+            tintColor={theme.colors.primary}
+            source={appIcons.ic_fillChat}
+            style={staticStyle.chat}
+          />
+        </TouchableOpacity>
+      )}
+    </View>
+  );
+});
 
 const staticStyle = StyleSheet.create({
   container: {

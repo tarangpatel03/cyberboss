@@ -1,5 +1,5 @@
-import { appText } from '../../config/text/constantsText';
-import { showErrorToast } from '../toast/toast';
+import { appText } from '@config/text/constantsText';
+import { showErrorToast } from '@utils/toast/toast';
 
 export const validatePassword = (password: string) => {
   if (password.length < 8) {

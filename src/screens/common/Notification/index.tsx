@@ -5,27 +5,27 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
-import { Theme } from '../../../config/themes/themes';
+import { Theme } from '@config/themes/themes';
 import { useTheme } from '@shopify/restyle';
-import { createStyles, staticStyle } from './styles';
-import { ScreenHeaderComponent } from '../../../components/Headers/ScreenHeader';
+import { createStyles, staticStyle } from '@screens/common/Notification/styles';
+import { ScreenHeaderComponent } from '@components/Headers/ScreenHeader';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { routeName } from '../../../config/constants/routes';
-import { RootNavigationProps } from '../../../models/navigationModel';
-import { NotificationCard } from '../../../components/Cards/NotificationCard';
+import { routeName } from '@config/constants/routes';
+import { RootNavigationProps } from '@models/navigationModel';
+import { NotificationCard } from '@components/Cards/NotificationCard';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { getAPIData } from '../../../services/api/common/getCommonApi';
-import { ListEmptyCard } from '../../../components/Cards/ListEmptyCard';
-import { appImages } from '../../../config/images/imagePath';
-import { ListShimmer } from '../../../components/Skeleton/ListShimmer';
-import { endPoints } from '../../../config/endPoint/apiEndPoint';
+import { getAPIData } from '@services/api/common/getCommonApi';
+import { ListEmptyCard } from '@components/Cards/ListEmptyCard';
+import { appImages } from '@config/images/imagePath';
+import { ListShimmer } from '@components/Skeleton/ListShimmer';
+import { endPoints } from '@config/endPoint/apiEndPoint';
 import { useTranslation } from 'react-i18next';
-import { ApiNotificationModel } from '../../../models/api/notification';
+import { ApiNotificationModel } from '@models/api/notification';
 import {
   TNotificationModel,
   transformNotificationModel,
-} from '../../../models/formattedAPI/tNotification';
-import { ApiResponse, ListPayload } from '../../../models/apiModel';
+} from '@models/formattedAPI/tNotification';
+import { ApiResponse, ListPayload } from '@models/apiModel';
 
 export const NotificationScreen = ({
   navigation,

@@ -1,11 +1,11 @@
 import { useTheme } from '@shopify/restyle';
-import { Theme } from '../../config/themes/themes';
+import { Theme } from '@config/themes/themes';
 import { StyleSheet, TouchableOpacity } from 'react-native';
-import { MediumTextComponent } from '../Text/MediumText';
-import normalize from '../../utils/normalize/normalize';
+import { MediumTextComponent } from '@components/Text/MediumText';
+import normalize from '@utils/normalize/normalize';
 import { memo, useState } from 'react';
 import FastImage from 'react-native-fast-image';
-import { TExpertiseModel } from '../../models/formattedAPI/tConsultant';
+import { TExpertiseModel } from '@models/formattedAPI/tConsultant';
 
 type CategoryCardProp = {
   expertise: TExpertiseModel;

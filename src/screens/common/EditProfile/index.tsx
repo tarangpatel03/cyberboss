@@ -5,29 +5,29 @@ import {
 } from 'react-native-image-picker';
 import { useEffect, useRef, useState } from 'react';
 import { useTheme } from '@shopify/restyle';
-import { createStyles, staticStyle } from './styles';
-import { Theme } from '../../../config/themes/themes';
-import { routeName } from '../../../config/constants/routes';
+import { createStyles, staticStyle } from '@screens/common/EditProfile/styles';
+import { Theme } from '@config/themes/themes';
+import { routeName } from '@config/constants/routes';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { RootNavigationProps } from '../../../models/navigationModel';
-import { ScreenHeaderComponent } from '../../../components/Headers/ScreenHeader';
-import { PrimaryButtonComponent } from '../../../components/Buttons/PrimaryButton';
-import { getAPIData } from '../../../services/api/common/getCommonApi';
-import { endPoints } from '../../../config/endPoint/apiEndPoint';
+import { RootNavigationProps } from '@models/navigationModel';
+import { ScreenHeaderComponent } from '@components/Headers/ScreenHeader';
+import { PrimaryButtonComponent } from '@components/Buttons/PrimaryButton';
+import { getAPIData } from '@services/api/common/getCommonApi';
+import { endPoints } from '@config/endPoint/apiEndPoint';
 import { useTranslation } from 'react-i18next';
-import { updateClientProfile } from '../../../services/api/profile/updateProfile';
-import { EditProfileInputs } from '../../../components/Input/EditProfileInput';
-import { PickProfilePictureContainer } from '../../../components/PickProfilePictureContainer';
-import { ApiProfileModel } from '../../../models/api/profile';
+import { updateClientProfile } from '@services/api/profile/updateProfile';
+import { EditProfileInputs } from '@components/Input/EditProfileInput';
+import { PickProfilePictureContainer } from '@components/PickProfilePictureContainer';
+import { ApiProfileModel } from '@models/api/profile';
 import {
   TProfileModel,
   transformProfileModel,
-} from '../../../models/formattedAPI/tProfile';
+} from '@models/formattedAPI/tProfile';
 import { useDispatch, useSelector } from 'react-redux';
-import { setUserData } from '../../../redux/features/userSlice';
+import { setUserData } from '@redux/features/userSlice';
 import firestore from '@react-native-firebase/firestore';
-import { ApiResponse } from '../../../models/apiModel';
-import { RootState } from '../../../redux/store';
+import { ApiResponse } from '@models/apiModel';
+import { RootState } from '@redux/store';
 
 export const EditProfileScreen = ({
   navigation,

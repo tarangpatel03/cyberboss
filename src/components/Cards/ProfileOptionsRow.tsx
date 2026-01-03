@@ -2,11 +2,11 @@ import { useTheme } from '@shopify/restyle';
 import { useTranslation } from 'react-i18next';
 import FastImage from 'react-native-fast-image';
 import { Dispatch, SetStateAction } from 'react';
-import { Theme } from '../../config/themes/themes';
-import { appIcons } from '../../config/icons/iconPath';
+import { Theme } from '@config/themes/themes';
+import { appIcons } from '@config/icons/iconPath';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import { RegularTextComponent } from '../Text/RegularText';
-import { staticStyle, createStyles } from '../../screens/common/Profile/styles';
+import { RegularTextComponent } from '@components/Text/RegularText';
+import { staticStyle, createStyles } from '@screens/common/Profile/styles';
 
 type ProfileOptionsRowProps = {
   role: 'client' | 'consultant';

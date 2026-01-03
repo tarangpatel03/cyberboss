@@ -1,16 +1,16 @@
 import { useTheme } from '@shopify/restyle';
 import { Modal, StyleSheet, View } from 'react-native';
-import { Theme } from '../../config/themes/themes';
-import normalize from '../../utils/normalize/normalize';
-import { PrimaryButtonComponent } from '../Buttons/PrimaryButton';
-import { MediumTextComponent } from '../Text/MediumText';
-import { ThemeSelectionCard } from '../Cards/ThemeSelectionCard';
+import { Theme } from '@config/themes/themes';
+import normalize from '@utils/normalize/normalize';
+import { PrimaryButtonComponent } from '@components/Buttons/PrimaryButton';
+import { MediumTextComponent } from '@components/Text/MediumText';
+import { ThemeSelectionCard } from '@components/Cards/ThemeSelectionCard';
 import { useState } from 'react';
-import { setThemeMode, ThemeMode } from '../../redux/features/themeSlice';
-import { CircularIconButtonComponent } from '../Buttons/CircularIconButton';
-import { appIcons } from '../../config/icons/iconPath';
+import { setThemeMode, ThemeMode } from '@redux/features/themeSlice';
+import { CircularIconButtonComponent } from '@components/Buttons/CircularIconButton';
+import { appIcons } from '@config/icons/iconPath';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
+import { RootState } from '@redux/store';
 import { useTranslation } from 'react-i18next';
 
 type ThemeModalProps = {

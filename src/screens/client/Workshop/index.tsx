@@ -4,27 +4,27 @@ import {
   ListRenderItem,
   StyleSheet,
 } from 'react-native';
-import { RootNavigationProps } from '../../../models/navigationModel';
-import { routeName } from '../../../config/constants/routes';
+import { RootNavigationProps } from '@models/navigationModel';
+import { routeName } from '@config/constants/routes';
 import { useTheme } from '@shopify/restyle';
-import { Theme } from '../../../config/themes/themes';
-import { createStyles, staticStyle } from './styles';
-import { WorkshopCard } from '../../../components/Cards/WorkshopCard';
-import { ScreenHeaderComponent } from '../../../components/Headers/ScreenHeader';
+import { Theme } from '@config/themes/themes';
+import { createStyles, staticStyle } from '@screens/client/Workshop/styles';
+import { WorkshopCard } from '@components/Cards/WorkshopCard';
+import { ScreenHeaderComponent } from '@components/Headers/ScreenHeader';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { getAPIData } from '../../../services/api/common/getCommonApi';
-import { ListEmptyCard } from '../../../components/Cards/ListEmptyCard';
-import { appImages } from '../../../config/images/imagePath';
-import { ListShimmer } from '../../../components/Skeleton/ListShimmer';
-import { endPoints } from '../../../config/endPoint/apiEndPoint';
+import { getAPIData } from '@services/api/common/getCommonApi';
+import { ListEmptyCard } from '@components/Cards/ListEmptyCard';
+import { appImages } from '@config/images/imagePath';
+import { ListShimmer } from '@components/Skeleton/ListShimmer';
+import { endPoints } from '@config/endPoint/apiEndPoint';
 import { useTranslation } from 'react-i18next';
-import { ApiWorkshopModel } from '../../../models/api/consultant';
+import { ApiWorkshopModel } from '@models/api/consultant';
 import {
   TWorkshopModel,
   transformWorkshopModel,
-} from '../../../models/formattedAPI/tConsultant';
+} from '@models/formattedAPI/tConsultant';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { ApiResponse, ListPayload } from '../../../models/apiModel';
+import { ApiResponse, ListPayload } from '@models/apiModel';
 
 export const WorkshopScreen = ({
   navigation,

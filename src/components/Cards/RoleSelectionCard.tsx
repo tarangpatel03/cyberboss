@@ -1,9 +1,9 @@
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import { MediumTextComponent } from '../Text/MediumText';
-import { RegularTextComponent } from '../Text/RegularText';
-import { Theme } from '../../config/themes/themes';
+import { MediumTextComponent } from '@components/Text/MediumText';
+import { RegularTextComponent } from '@components/Text/RegularText';
+import { Theme } from '@config/themes/themes';
 import { useTheme } from '@shopify/restyle';
-import normalize from '../../utils/normalize/normalize';
+import normalize from '@utils/normalize/normalize';
 import { memo } from 'react';
 
 type RoleSelectionCardProps = {

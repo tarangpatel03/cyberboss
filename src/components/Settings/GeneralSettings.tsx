@@ -1,12 +1,12 @@
 import { useTheme } from '@shopify/restyle';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet, View } from 'react-native';
-import { Theme } from '../config/themes/themes';
-import { appIcons } from '../config/icons/iconPath';
-import { UserDetailProps } from '../redux/features/userSlice';
-import { MediumTextComponent } from './Text/MediumText';
-import { SettingOptionsButton } from './Buttons/SettingsButton';
-import { staticStyle, createStyles } from '../screens/common/Profile/styles';
+import { createStyles, staticStyle } from '@screens/common/Profile/styles';
+import { appIcons } from '@config/icons/iconPath';
+import { UserDetailProps } from '@redux/features/userSlice';
+import { SettingOptionsButton } from '@components/Buttons/SettingsButton';
+import { MediumTextComponent } from '@components/Text/MediumText';
+import { Theme } from '@config/themes/themes';
 
 type GeneralSettingsProps = {
   userData: UserDetailProps;

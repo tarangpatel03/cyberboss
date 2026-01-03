@@ -1,6 +1,6 @@
-import { axiosClient } from '../../axios/axiosClient';
-import { endPoints } from '../../../config/endPoint/apiEndPoint';
-import { extractImageUri } from '../../../utils/extractURI/extractImageURI';
+import { axiosClient } from '@services/axios/axiosClient';
+import { endPoints } from '@config/endPoint/apiEndPoint';
+import { extractImageUri } from '@utils/extractURI/extractImageURI';
 
 export const updateClientProfile = async (
   name: string,

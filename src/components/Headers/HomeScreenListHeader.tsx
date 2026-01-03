@@ -1,15 +1,15 @@
 import { ListRenderItem, StyleSheet, View } from 'react-native';
-import { createStyles, staticStyle } from '../../screens/client/Home/styles';
-import { HomeScreenWorkshopList } from '../List/HomeScreenWorkshopList';
-import { MediumTextComponent } from '../Text/MediumText';
+import { createStyles, staticStyle } from '@screens/client/Home/styles';
+import { HomeScreenWorkshopList } from '@components/List/HomeScreenWorkshopList';
+import { MediumTextComponent } from '@components/Text/MediumText';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '@shopify/restyle';
-import { Theme } from '../../config/themes/themes';
-import { TClientHomeModel } from '../../models/formattedAPI/tHome';
-import { THomeBookingModel } from '../../models/formattedAPI/tBookings';
-import { TWorkshopModel } from '../../models/formattedAPI/tConsultant';
+import { Theme } from '@config/themes/themes';
+import { TClientHomeModel } from '@models/formattedAPI/tHome';
+import { THomeBookingModel } from '@models/formattedAPI/tBookings';
+import { TWorkshopModel } from '@models/formattedAPI/tConsultant';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
+import { RootState } from '@redux/store';
 
 type HomeScreenListHeaderProps = {
   homeData: TClientHomeModel;

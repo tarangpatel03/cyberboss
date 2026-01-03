@@ -1,14 +1,14 @@
 import {
   createStyles,
   staticStyle,
-} from '../../screens/client/BookingDetails/styles';
+} from '@screens/client/BookingDetails/styles';
 import { useTheme } from '@shopify/restyle';
 import { useTranslation } from 'react-i18next';
 import { View, StyleSheet } from 'react-native';
-import { Theme } from '../../config/themes/themes';
-import { BillDetailsComponent } from '../BillDetail';
-import { MediumTextComponent } from '../Text/MediumText';
-import { TBillDetailsModel } from '../../models/formattedAPI/tBilling';
+import { Theme } from '@config/themes/themes';
+import { BillDetailsComponent } from '@components/BillDetail';
+import { MediumTextComponent } from '@components/Text/MediumText';
+import { TBillDetailsModel } from '@models/formattedAPI/tBilling';
 
 type BookingPaymentDetailsCardProps = {
   role: string | undefined;

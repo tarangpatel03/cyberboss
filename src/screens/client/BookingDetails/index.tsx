@@ -1,32 +1,35 @@
 import { useEffect, useState } from 'react';
 import { useTheme } from '@shopify/restyle';
-import { createStyles, staticStyle } from './styles';
-import { Theme } from '../../../config/themes/themes';
-import { routeName } from '../../../config/constants/routes';
+import {
+  createStyles,
+  staticStyle,
+} from '@screens/client/BookingDetails/styles';
+import { Theme } from '@config/themes/themes';
+import { routeName } from '@config/constants/routes';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ActivityIndicator, StyleSheet, View } from 'react-native';
-import { RootNavigationProps } from '../../../models/navigationModel';
-import { ScreenHeaderComponent } from '../../../components/Headers/ScreenHeader';
-import { PrimaryButtonComponent } from '../../../components/Buttons/PrimaryButton';
-import { getAPIData } from '../../../services/api/common/getCommonApi';
-import { RootState } from '../../../redux/store';
+import { RootNavigationProps } from '@models/navigationModel';
+import { ScreenHeaderComponent } from '@components/Headers/ScreenHeader';
+import { PrimaryButtonComponent } from '@components/Buttons/PrimaryButton';
+import { getAPIData } from '@services/api/common/getCommonApi';
+import { RootState } from '@redux/store';
 import { useSelector } from 'react-redux';
-import { endPoints } from '../../../config/endPoint/apiEndPoint';
+import { endPoints } from '@config/endPoint/apiEndPoint';
 import { useTranslation } from 'react-i18next';
-import { getBillData } from '../../../services/api/consultant/getBillData';
-import { ConsultantServiceSummaryCard } from '../../../components/Cards/ConsultantServiceSummaryCard';
-import { BookingPaymentDetailsCard } from '../../../components/Cards/BookingPaymentDetailsCard';
-import { ApiBillDetailsModel } from '../../../models/api/billing';
-import { ApiConsultantDetailsModel } from '../../../models/api/consultant';
+import { getBillData } from '@services/api/consultant/getBillData';
+import { ConsultantServiceSummaryCard } from '@components/Cards/ConsultantServiceSummaryCard';
+import { BookingPaymentDetailsCard } from '@components/Cards/BookingPaymentDetailsCard';
+import { ApiBillDetailsModel } from '@models/api/billing';
+import { ApiConsultantDetailsModel } from '@models/api/consultant';
 import {
   TBillDetailsModel,
   transformBillDetailsModel,
-} from '../../../models/formattedAPI/tBilling';
+} from '@models/formattedAPI/tBilling';
 import {
   TConsultantDetailsModel,
   transformConsultantDetailsModel,
-} from '../../../models/formattedAPI/tConsultant';
-import { ApiResponse } from '../../../models/apiModel';
+} from '@models/formattedAPI/tConsultant';
+import { ApiResponse } from '@models/apiModel';
 
 export const BookingDetailsScreen = ({
   navigation,
@@ -37,6 +40,7 @@ export const BookingDetailsScreen = ({
   const styles = createStyles(theme);
   const { consultantId, type } = route.params;
   const [hrBook, setHrBook] = useState<number>(3);
+  // const debouncedHours = useDebouncedValue<number>(hrBook);
   const [loader, setLoader] = useState<boolean>(true);
   const role = useSelector((state: RootState) => state.user.userData.role);
   const [billData, setBillData] = useState<TBillDetailsModel>({
@@ -74,21 +78,31 @@ export const BookingDetailsScreen = ({
     navigation.goBack();
   };
 
+  const loadConultantData = async () => {
+    const response1 = await getAPIData<ApiResponse<ApiConsultantDetailsModel>>(
+      `${endPoints.consultant}/${consultantId}`,
+    );
+    if (!response1) return;
+    const data1: ApiConsultantDetailsModel = response1.payload;
+    const transformedData1 = transformConsultantDetailsModel(data1);
+    setConsultantData(transformedData1);
+  };
+
   const loadData = async () => {
     try {
       setLoader(true);
-      const response1 = await getAPIData<
-        ApiResponse<ApiConsultantDetailsModel>
-      >(`${endPoints.consultant}/${consultantId}`);
-      if (!response1) return;
-      const data1: ApiConsultantDetailsModel = response1.payload;
-      const transformedData1 = transformConsultantDetailsModel(data1);
-      setConsultantData(transformedData1);
-      const res2: ApiBillDetailsModel = await getBillData(hrBook, consultantId);
-      const transformedData2 = transformBillDetailsModel(res2);
+      const response2 = await getBillData<ApiResponse<ApiBillDetailsModel>>(
+        hrBook,
+        consultantId,
+      );
+      if (!response2) return;
+      const data2: ApiBillDetailsModel = response2.payload;
+      const transformedData2 = transformBillDetailsModel(data2);
       setBillData(transformedData2);
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoader(false);
     }
   };
 
@@ -103,7 +117,12 @@ export const BookingDetailsScreen = ({
   };
 
   useEffect(() => {
-    loadData().then(() => setLoader(false));
+    loadConultantData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    loadData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hrBook]);
 

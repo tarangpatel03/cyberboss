@@ -26,6 +26,7 @@ export const getTime = (date: string) => {
   });
   const formattedTime = dateVal.toLocaleTimeString('en-GB', {
     hour: 'numeric',
+    hour12: true,
     minute: '2-digit',
   });
   return `${formattedDate} at ${formattedTime}`;

@@ -1,10 +1,10 @@
 import { View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { Dispatch, SetStateAction } from 'react';
-import { CustomInputComponent } from './EmailAndPasswordInput';
-import { PrimaryButtonComponent } from '../Buttons/PrimaryButton';
-import { staticStyle } from '../../screens/common/auth/LogIn/styles';
-import { CircularIconButtonComponent } from '../Buttons/CircularIconButton';
+import { CustomInputComponent } from '@components/Input/EmailAndPasswordInput';
+import { PrimaryButtonComponent } from '@components/Buttons/PrimaryButton';
+import { staticStyle } from '@screens/common/auth/LogIn/styles';
+import { CircularIconButtonComponent } from '@components/Buttons/CircularIconButton';
 
 type LogInInputsContainerProps = {
   email: string;

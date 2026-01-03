@@ -1,16 +1,16 @@
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import { Theme } from '../../config/themes/themes';
+import { Theme } from '@config/themes/themes';
 import { useTheme } from '@shopify/restyle';
-import normalize from '../../utils/normalize/normalize';
-import { MediumTextComponent } from '../Text/MediumText';
-import { RegularTextComponent } from '../Text/RegularText';
-import { appIcons } from '../../config/icons/iconPath';
-import { formatBooking } from '../../utils/format/formatDate';
-import { appImages } from '../../config/images/imagePath';
+import normalize from '@utils/normalize/normalize';
+import { MediumTextComponent } from '@components/Text/MediumText';
+import { RegularTextComponent } from '@components/Text/RegularText';
+import { appIcons } from '@config/icons/iconPath';
+import { formatBooking } from '@utils/format/formatDate';
+import { appImages } from '@config/images/imagePath';
 import FastImage from 'react-native-fast-image';
 import { memo, useState } from 'react';
-import { TConsultantModel } from '../../models/formattedAPI/tConsultant';
-import { getProfilePicture } from '../../utils/extractURI/extractImageURI';
+import { TConsultantModel } from '@models/formattedAPI/tConsultant';
+import { getProfilePicture } from '@utils/extractURI/extractImageURI';
 
 type ConsultantListCardProps = {
   data: TConsultantModel;

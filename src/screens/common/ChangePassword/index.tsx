@@ -1,17 +1,17 @@
 import { useTheme } from '@shopify/restyle';
 import { StyleSheet, View } from 'react-native';
-import { Theme } from '../../../config/themes/themes';
+import { Theme } from '@config/themes/themes';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { ScreenHeaderComponent } from '../../../components/Headers/ScreenHeader';
-import { RootNavigationProps } from '../../../models/navigationModel';
-import { routeName } from '../../../config/constants/routes';
-import { createStyles, staticStyle } from './styles';
+import { ScreenHeaderComponent } from '@components/Headers/ScreenHeader';
+import { RootNavigationProps } from '@models/navigationModel';
+import { routeName } from '@config/constants/routes';
+import { createStyles, staticStyle } from '@screens/common/ChangePassword/styles';
 import { useState } from 'react';
-import { PasswordInputComponent } from '../../../components/Input/PasswordInput';
-import { PrimaryButtonComponent } from '../../../components/Buttons/PrimaryButton';
+import { PasswordInputComponent } from '@components/Input/PasswordInput';
+import { PrimaryButtonComponent } from '@components/Buttons/PrimaryButton';
 import { useTranslation } from 'react-i18next';
 import auth from '@react-native-firebase/auth';
-import { showErrorToast } from '../../../utils/toast/toast';
+import { showErrorToast } from '@utils/toast/toast';
 
 export const ChangePasswordScreen = ({
   navigation,

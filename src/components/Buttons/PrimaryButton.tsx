@@ -5,10 +5,10 @@ import {
   TouchableOpacity,
   ViewStyle,
 } from 'react-native';
-import { MediumTextComponent } from '../Text/MediumText';
-import { Theme } from '../../config/themes/themes';
+import { MediumTextComponent } from '@components/Text/MediumText';
+import { Theme } from '@config/themes/themes';
 import { useTheme } from '@shopify/restyle';
-import normalize from '../../utils/normalize/normalize';
+import normalize from '@utils/normalize/normalize';
 
 type PrimaryButtonComponentProps = {
   text: string;

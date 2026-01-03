@@ -9,39 +9,39 @@ import {
 } from 'react-native';
 import { useCallback, useEffect, useState } from 'react';
 import { useTheme } from '@shopify/restyle';
-import { createStyles, staticStyle } from './styles';
-import { Theme } from '../../../config/themes/themes';
-import { getAPIData } from '../../../services/api/common/getCommonApi';
-import { routeName } from '../../../config/constants/routes';
-import { endPoints } from '../../../config/endPoint/apiEndPoint';
-import { RootNavigationProps } from '../../../models/navigationModel';
-import { RecentActivity } from '../../../components/Cards/RecentActivity';
-import { BookingHistoryCard } from '../../../components/Cards/BookingHistoryCard';
-import { ConsultantHeaderCard } from '../../../components/Headers/ConsultantHeaderCard';
-import { ConsultantBookingHistoryList } from '../../../components/List/ConsultantBookingHistoryList';
+import { createStyles, staticStyle } from '@screens/consultant/Home/styles';
+import { Theme } from '@config/themes/themes';
+import { getAPIData } from '@services/api/common/getCommonApi';
+import { routeName } from '@config/constants/routes';
+import { endPoints } from '@config/endPoint/apiEndPoint';
+import { RootNavigationProps } from '@models/navigationModel';
+import { RecentActivity } from '@components/Cards/RecentActivity';
+import { BookingHistoryCard } from '@components/Cards/BookingHistoryCard';
+import { ConsultantHeaderCard } from '@components/Headers/ConsultantHeaderCard';
+import { ConsultantBookingHistoryList } from '@components/List/ConsultantBookingHistoryList';
 import { useDispatch, useSelector } from 'react-redux';
-import { setUserData } from '../../../redux/features/userSlice';
-import { ApiConsultantHomeModel } from '../../../models/api/home';
-import { ApiProfileModel } from '../../../models/api/profile';
+import { setUserData } from '@redux/features/userSlice';
+import { ApiConsultantHomeModel } from '@models/api/home';
+import { ApiProfileModel } from '@models/api/profile';
 import {
   TConsultantHomeModel,
   TConsultantHomeNotificationModel,
   transformConsultantHomeModel,
-} from '../../../models/formattedAPI/tHome';
+} from '@models/formattedAPI/tHome';
 import {
   TProfileModel,
   transformProfileModel,
-} from '../../../models/formattedAPI/tProfile';
-import { THomeBookingModel } from '../../../models/formattedAPI/tBookings';
-import { RootState } from '../../../redux/store';
+} from '@models/formattedAPI/tProfile';
+import { THomeBookingModel } from '@models/formattedAPI/tBookings';
+import { RootState } from '@redux/store';
 import firestore from '@react-native-firebase/firestore';
-import { ApiResponse } from '../../../models/apiModel';
-import { MediumTextComponent } from '../../../components/Text/MediumText';
+import { ApiResponse } from '@models/apiModel';
+import { MediumTextComponent } from '@components/Text/MediumText';
 import { useTranslation } from 'react-i18next';
-import { RegularTextComponent } from '../../../components/Text/RegularText';
+import { RegularTextComponent } from '@components/Text/RegularText';
 import FastImage from 'react-native-fast-image';
-import { appIcons } from '../../../config/icons/iconPath';
-import { ListEmptyCard } from '../../../components/Cards/ListEmptyCard';
+import { appIcons } from '@config/icons/iconPath';
+import { ListEmptyCard } from '@components/Cards/ListEmptyCard';
 
 export const ConsultantHomeScreen = ({
   navigation,
@@ -164,11 +164,11 @@ export const ConsultantHomeScreen = ({
     }
   };
 
-  const renderBookingHistoryItem: ListRenderItem<THomeBookingModel> = ({
-    item,
-  }) => {
-    return <BookingHistoryCard props={item} navigateToChat={navigateToChat} />;
-  };
+  const renderBookingHistoryItem: ListRenderItem<THomeBookingModel> =
+    useCallback(({ item }) => {
+      return <BookingHistoryCard data={item} navigateToChat={navigateToChat} />;
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
   const renderRecentActivityItem: ListRenderItem<TConsultantHomeNotificationModel> =
     useCallback(({ item }) => {

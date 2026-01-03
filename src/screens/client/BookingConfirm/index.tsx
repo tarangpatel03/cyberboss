@@ -1,22 +1,22 @@
 import { useTheme } from '@shopify/restyle';
-import { createStyles, staticStyle } from './styles';
-import { Theme } from '../../../config/themes/themes';
+import { createStyles, staticStyle } from '@screens/client/BookingConfirm/styles';
+import { Theme } from '@config/themes/themes';
 import { StyleSheet, View } from 'react-native';
-import { routeName } from '../../../config/constants/routes';
+import { routeName } from '@config/constants/routes';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { RootNavigationProps } from '../../../models/navigationModel';
-import { ScreenHeaderComponent } from '../../../components/Headers/ScreenHeader';
-import { PrimaryButtonComponent } from '../../../components/Buttons/PrimaryButton';
-import { appIcons } from '../../../config/icons/iconPath';
-import { SemiBoldTextComponent } from '../../../components/Text/SemiBoldText';
-import { RegularTextComponent } from '../../../components/Text/RegularText';
+import { RootNavigationProps } from '@models/navigationModel';
+import { ScreenHeaderComponent } from '@components/Headers/ScreenHeader';
+import { PrimaryButtonComponent } from '@components/Buttons/PrimaryButton';
+import { appIcons } from '@config/icons/iconPath';
+import { SemiBoldTextComponent } from '@components/Text/SemiBoldText';
+import { RegularTextComponent } from '@components/Text/RegularText';
 import LinearGradient from 'react-native-linear-gradient';
-import { MediumTextComponent } from '../../../components/Text/MediumText';
+import { MediumTextComponent } from '@components/Text/MediumText';
 import {
   getGradientColor,
   getServiceImage,
-} from '../../../utils/gradientColor/gradientColor';
-import { appImages } from '../../../config/images/imagePath';
+} from '@utils/gradientColor/gradientColor';
+import { appImages } from '@config/images/imagePath';
 import FastImage from 'react-native-fast-image';
 import { useTranslation } from 'react-i18next';
 

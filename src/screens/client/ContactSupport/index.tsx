@@ -3,34 +3,39 @@ import {
   FlatList,
   ListRenderItem,
   StyleSheet,
+  TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTheme } from '@shopify/restyle';
-import { createStyles, staticStyle } from './styles';
-import { Theme } from '../../../config/themes/themes';
-import { appIcons } from '../../../config/icons/iconPath';
-import { appImages } from '../../../config/images/imagePath';
-import { routeName } from '../../../config/constants/routes';
+import {
+  createStyles,
+  staticStyle,
+} from '@screens/client/ContactSupport/styles';
+import { Theme } from '@config/themes/themes';
+import { appIcons } from '@config/icons/iconPath';
+import { appImages } from '@config/images/imagePath';
+import { routeName } from '@config/constants/routes';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { MessageCard } from '../../../components/Cards/MessageCard';
-import { MediumTextComponent } from '../../../components/Text/MediumText';
-import { getAPIData } from '../../../services/api/common/getCommonApi';
-import { showErrorToast } from '../../../utils/toast/toast';
+import { MessageCard } from '@components/Cards/MessageCard';
+import { MediumTextComponent } from '@components/Text/MediumText';
+import { getAPIData } from '@services/api/common/getCommonApi';
+import { showErrorToast } from '@utils/toast/toast';
 import FastImage from 'react-native-fast-image';
-import { endPoints } from '../../../config/endPoint/apiEndPoint';
+import { endPoints } from '@config/endPoint/apiEndPoint';
 import { useTranslation } from 'react-i18next';
-import { sendChat } from '../../../services/api/chat/sendBotChat';
-import { ApiChatBotChatModel } from '../../../models/api/chatbot';
+import { sendChat } from '@services/api/chat/sendBotChat';
+import { ApiChatBotChatModel } from '@models/api/chatbot';
 import {
   TChatBotChatModel,
   transformChatBotChatModel,
-} from '../../../models/formattedAPI/tChatbot';
-import { CustomInputComponent } from '../../../components/Input/EmailAndPasswordInput';
-import { ListEmptyCard } from '../../../components/Cards/ListEmptyCard';
-import { RootNavigationProps } from '../../../models/navigationModel';
-import { ApiResponse, ListPayload } from '../../../models/apiModel';
+} from '@models/formattedAPI/tChatbot';
+import { RootNavigationProps } from '@models/navigationModel';
+import { ApiResponse, ListPayload } from '@models/apiModel';
+import { ChatListEmptyCard } from '@components/Cards/ChatListEmptyCard';
+import { isDarkMode } from '@utils/theme/darkMode';
+import { appColors } from '@config/colors/colors';
 
 export const ContactSupportScreen = ({
   navigation,
@@ -86,10 +91,16 @@ export const ContactSupportScreen = ({
 
   const sendChatToBot = async () => {
     try {
-      const chatData: ApiChatBotChatModel = await sendChat(text ?? '');
-      const transformedChat = transformChatBotChatModel(chatData);
-      setChat(prev => [...prev, transformedChat]);
+      const chat1 = text;
       setText('');
+      const chatData: ApiChatBotChatModel = await sendChat(chat1 ?? '');
+      const transformedChat = transformChatBotChatModel({
+        request: chatData.request,
+        response: chatData.response,
+        session_id: chatData.response,
+        created_at: new Date().toString(),
+      });
+      setChat(prev => [transformedChat, ...prev]);
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       showErrorToast({
@@ -108,8 +119,7 @@ export const ContactSupportScreen = ({
 
   const emptyCard = () => {
     return (
-      <ListEmptyCard
-        isOneOnOneChat={true}
+      <ChatListEmptyCard
         text={t('noChatsFound')}
         image={appIcons.ic_noChatFound}
         tintColor={theme.colors.textPrimary}
@@ -188,18 +198,22 @@ export const ContactSupportScreen = ({
           <View
             style={StyleSheet.flatten([staticStyle.inputBar, styles.inputBar])}
           >
-            <CustomInputComponent
+            <TextInput
               placeholder={t('sendMessage')}
-              showPlaceholderOnFocus={false}
-              setValue={setText}
-              value={text}
-              borderStyle={staticStyle.removeBorder}
+              multiline
+              style={StyleSheet.flatten([staticStyle.input, styles.title])}
+              autoCapitalize="none"
+              value={text ?? ''}
+              onChangeText={setText}
+              placeholderTextColor={
+                isDarkMode(theme) ? appColors.app_FFFFFF : appColors.app_212121
+              }
             />
             <TouchableOpacity
-              activeOpacity={0.7}
               onPress={sendChatToBot}
+              activeOpacity={0.7}
               style={StyleSheet.flatten([
-                staticStyle.buttons,
+                staticStyle.bottomButton,
                 styles.sendButton,
               ])}
             >

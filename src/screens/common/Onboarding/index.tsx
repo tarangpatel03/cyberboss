@@ -1,19 +1,19 @@
 import { FlatList, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { PrimaryButtonComponent } from '../../../components/Buttons/PrimaryButton';
-import { OnboardingList } from '../../../components/List/OnboardingList';
-import { onboardingData } from './onboardingData';
+import { PrimaryButtonComponent } from '@components/Buttons/PrimaryButton';
+import { OnboardingList } from '@components/List/OnboardingList';
+import { onboardingData } from '@screens/common/Onboarding/onboardingData';
 import { useRef, useState } from 'react';
-import { IndicationBar } from '../../../components/IndicationBar';
-import { appIcons } from '../../../config/icons/iconPath';
+import { IndicationBar } from '@components/IndicationBar';
+import { appIcons } from '@config/icons/iconPath';
 import { useTheme } from '@shopify/restyle';
-import { Theme } from '../../../config/themes/themes';
-import { createStyles } from './styles';
-import { PrimaryButtonWithIconComponent } from '../../../components/Buttons/PrimaryButtonWithIcon';
-import { routeName } from '../../../config/constants/routes';
-import { RootNavigationProps } from '../../../models/navigationModel';
+import { Theme } from '@config/themes/themes';
+import { createStyles } from '@screens/common/Onboarding/styles';
+import { PrimaryButtonWithIconComponent } from '@components/Buttons/PrimaryButtonWithIcon';
+import { routeName } from '@config/constants/routes';
+import { RootNavigationProps } from '@models/navigationModel';
 import { useDispatch } from 'react-redux';
-import { setIsFirstTime } from '../../../redux/features/userSlice';
+import { setIsFirstTime } from '@redux/features/userSlice';
 import { useTranslation } from 'react-i18next';
 
 export const OnboardingScreen = ({

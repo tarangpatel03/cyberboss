@@ -1,5 +1,5 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RatingProps } from '../demoData/bookingHistory';
+import { RatingProps } from '@demoData/bookingHistory';
 
 export type ClientBottomNavigationParams = {
   Home: undefined;

@@ -1,13 +1,13 @@
 import { useTranslation } from 'react-i18next';
 import { View, StyleSheet } from 'react-native';
 import FastImage from 'react-native-fast-image';
-import { appColors } from '../../config/colors/colors';
-import { appIcons } from '../../config/icons/iconPath';
+import { appColors } from '@config/colors/colors';
+import { appIcons } from '@config/icons/iconPath';
 import LinearGradient from 'react-native-linear-gradient';
-import { MediumTextComponent } from '../Text/MediumText';
-import { RegularTextComponent } from '../Text/RegularText';
-import { staticStyle } from '../../screens/client/Subscription/styles';
-import { linearGradientDirection } from '../../screens/client/Subscription';
+import { MediumTextComponent } from '@components/Text/MediumText';
+import { RegularTextComponent } from '@components/Text/RegularText';
+import { staticStyle } from '@screens/client/Subscription/styles';
+import { linearGradientDirection } from '@screens/client/Subscription';
 
 export const SubscriptionBenefitsCard = (props: linearGradientDirection) => {
   const { t } = useTranslation();

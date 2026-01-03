@@ -1,12 +1,12 @@
 import { useTheme } from '@shopify/restyle';
 import { Rating } from 'react-native-ratings';
 import { useTranslation } from 'react-i18next';
-import { createStyles, staticStyle } from './styles';
+import { createStyles, staticStyle } from '@components/Skeleton/consultantProfile/styles';
 import { ScrollView, StyleSheet, View } from 'react-native';
-import { ShimmerHolder } from '../ShimmerHolder';
-import { MediumTextComponent } from '../../Text/MediumText';
-import { PrimaryButtonComponent } from '../../Buttons/PrimaryButton';
-import { Theme } from '../../../config/themes/themes';
+import { ShimmerHolder } from '@components/Skeleton/ShimmerHolder';
+import { MediumTextComponent } from '@components/Text/MediumText';
+import { PrimaryButtonComponent } from '@components/Buttons/PrimaryButton';
+import { Theme } from '@config/themes/themes';
 
 export const ConsultantProfileScreenShimmer = () => {
   const { t } = useTranslation();

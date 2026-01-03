@@ -8,11 +8,11 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
-import { Theme } from '../../config/themes/themes';
-import normalize from '../../utils/normalize/normalize';
-import { appColors } from '../../config/colors/colors';
+import { Theme } from '@config/themes/themes';
+import normalize from '@utils/normalize/normalize';
+import { appColors } from '@config/colors/colors';
 import { Dispatch, SetStateAction } from 'react';
-import { appIcons } from '../../config/icons/iconPath';
+import { appIcons } from '@config/icons/iconPath';
 import FastImage from 'react-native-fast-image';
 
 type BorderInputComponentProps = {

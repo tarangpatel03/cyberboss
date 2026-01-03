@@ -1,17 +1,17 @@
 import {
   createStyles,
   staticStyle,
-} from '../../screens/common/BookingSummary/styles';
+} from '@screens/common/BookingSummary/styles';
 import { useTheme } from '@shopify/restyle';
 import { useTranslation } from 'react-i18next';
 import { View, StyleSheet } from 'react-native';
 import FastImage from 'react-native-fast-image';
-import { Theme } from '../../config/themes/themes';
-import { appIcons } from '../../config/icons/iconPath';
-import { MediumTextComponent } from '../Text/MediumText';
-import { RegularTextComponent } from '../Text/RegularText';
-import { TBookingDetailsModel } from '../../models/formattedAPI/tBookings';
-import { getFullDate } from '../../utils/format/formatDate';
+import { Theme } from '@config/themes/themes';
+import { appIcons } from '@config/icons/iconPath';
+import { MediumTextComponent } from '@components/Text/MediumText';
+import { RegularTextComponent } from '@components/Text/RegularText';
+import { TBookingDetailsModel } from '@models/formattedAPI/tBookings';
+import { getFullDate } from '@utils/format/formatDate';
 
 type BookingStatusCardProps = {
   props: TBookingDetailsModel | undefined;

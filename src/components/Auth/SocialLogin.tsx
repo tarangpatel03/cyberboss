@@ -1,11 +1,11 @@
 import { useTheme } from '@shopify/restyle';
 import { useTranslation } from 'react-i18next';
-import { Theme } from '../config/themes/themes';
-import { appIcons } from '../config/icons/iconPath';
+import { Theme } from '@config/themes/themes';
+import { appIcons } from '@config/icons/iconPath';
 import { View, StyleSheet, Platform } from 'react-native';
-import { RegularTextComponent } from './Text/RegularText';
-import { CircularIconButtonComponent } from './Buttons/CircularIconButton';
-import { createStyles, staticStyle } from '../screens/common/auth/LogIn/styles';
+import { RegularTextComponent } from '@components/Text/RegularText';
+import { CircularIconButtonComponent } from '@components/Buttons/CircularIconButton';
+import { createStyles, staticStyle } from '@screens/common/auth/LogIn/styles';
 
 type SocialLogInProps = {
   getTintColor: () => string;

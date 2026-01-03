@@ -1,12 +1,12 @@
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import { staticStyle, createStyles } from '../../screens/client/Home/styles';
-import { RegularTextComponent } from '../Text/RegularText';
+import { staticStyle, createStyles } from '@screens/client/Home/styles';
+import { RegularTextComponent } from '@components/Text/RegularText';
 import FastImage from 'react-native-fast-image';
-import { appIcons } from '../../config/icons/iconPath';
-import { isDarkMode } from '../../utils/theme/darkMode';
+import { appIcons } from '@config/icons/iconPath';
+import { isDarkMode } from '@utils/theme/darkMode';
 import { useTheme } from '@shopify/restyle';
-import { Theme } from '../../config/themes/themes';
-import { MediumTextComponent } from '../Text/MediumText';
+import { Theme } from '@config/themes/themes';
+import { MediumTextComponent } from '@components/Text/MediumText';
 import { useTranslation } from 'react-i18next';
 import { TourGuideZone } from 'rn-tourguide';
 
@@ -15,10 +15,7 @@ type SearchBarProps = {
   onHelpPress: () => void;
 };
 
-export const HomeScreenSearchButtons = ({
-  onSearchPress,
-  onHelpPress,
-}: SearchBarProps) => {
+export const HomeScreenSearchButtons = (props: SearchBarProps) => {
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
@@ -29,7 +26,7 @@ export const HomeScreenSearchButtons = ({
         <TourGuideZone zone={2} text={t('tour2')}>
           <TouchableOpacity
             activeOpacity={1}
-            onPress={onSearchPress}
+            onPress={props.onSearchPress}
             style={StyleSheet.flatten([
               staticStyle.searchContainer,
               styles.borderPrimary,
@@ -52,7 +49,7 @@ export const HomeScreenSearchButtons = ({
       <TourGuideZone zone={3} text={t('tour3')}>
         <TouchableOpacity
           activeOpacity={0.7}
-          onPress={onHelpPress}
+          onPress={props.onHelpPress}
           style={staticStyle.helpButton}
         >
           <FastImage

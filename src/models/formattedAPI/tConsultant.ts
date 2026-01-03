@@ -6,7 +6,7 @@ import {
   ApiRatingReviewModel,
   ApiWorkshopModel,
   Services,
-} from '../api/consultant';
+} from '@models/api/consultant';
 
 export type TExpertiseModel = {
   id: string;

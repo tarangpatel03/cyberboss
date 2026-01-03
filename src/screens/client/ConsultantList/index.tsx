@@ -6,26 +6,29 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
-import { Theme } from '../../../config/themes/themes';
-import { createStyles, staticStyle } from './styles';
-import { RootNavigationProps } from '../../../models/navigationModel';
-import { routeName } from '../../../config/constants/routes';
-import { ConsultantListCard } from '../../../components/Cards/ConsultantListCard';
-import { SearchBorderInputComponent } from '../../../components/Input/SearchInput';
+import { Theme } from '@config/themes/themes';
+import {
+  createStyles,
+  staticStyle,
+} from '@screens/client/ConsultantList/styles';
+import { RootNavigationProps } from '@models/navigationModel';
+import { routeName } from '@config/constants/routes';
+import { ConsultantListCard } from '@components/Cards/ConsultantListCard';
+import { SearchBorderInputComponent } from '@components/Input/SearchInput';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { ScreenHeaderComponent } from '../../../components/Headers/ScreenHeader';
-import { useDebouncedValue } from '../../../hooks/debounce/useDebounce';
-import { ListEmptyCard } from '../../../components/Cards/ListEmptyCard';
-import { ListShimmer } from '../../../components/Skeleton/ListShimmer';
+import { ScreenHeaderComponent } from '@components/Headers/ScreenHeader';
+import { useDebouncedValue } from '@hooks/debounce/useDebounce';
+import { ListEmptyCard } from '@components/Cards/ListEmptyCard';
+import { ListShimmer } from '@components/Skeleton/ListShimmer';
 import { useTranslation } from 'react-i18next';
-import { getConsultantList } from '../../../services/api/consultant/getConsultantList';
-import { ApiConsultantModel } from '../../../models/api/consultant';
+import { getConsultantList } from '@services/api/consultant/getConsultantList';
+import { ApiConsultantModel } from '@models/api/consultant';
 import {
   TConsultantModel,
   transformConsultantModel,
-} from '../../../models/formattedAPI/tConsultant';
+} from '@models/formattedAPI/tConsultant';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { ApiResponse, ListPayload } from '../../../models/apiModel';
+import { ApiResponse, ListPayload } from '@models/apiModel';
 
 export const ConsultantListScreen = ({
   navigation,
@@ -40,7 +43,7 @@ export const ConsultantListScreen = ({
   const [hasMore, setHasMore] = useState<boolean>(false);
   const [searchText, setSearchText] = useState<string>('');
   const [paginationLoading, setPaginationLoading] = useState<boolean>(false);
-  const debouncedSearchText = useDebouncedValue(searchText);
+  const debouncedSearchText = useDebouncedValue<string>(searchText);
   const [consultantsList, setConsultantsList] = useState<TConsultantModel[]>(
     [],
   );

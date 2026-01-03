@@ -1,4 +1,4 @@
-import { fontFamilies } from '../../config/constants/fontFamily';
+import { fontFamilies } from '@config/constants/fontFamily';
 
 export const getFontFamily = (
   weight: 'regular' | 'medium' | 'bold' | 'light' | 'semiBold',

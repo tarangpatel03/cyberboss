@@ -1,15 +1,15 @@
 import { StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { SemiBoldTextComponent } from '../../../../components/Text/SemiBoldText';
+import { SemiBoldTextComponent } from '@components/Text/SemiBoldText';
 import { useTheme } from '@shopify/restyle';
-import { Theme } from '../../../../config/themes/themes';
-import { createStyles, staticStyles } from './styles';
-import { RootNavigationProps } from '../../../../models/navigationModel';
-import { routeName } from '../../../../config/constants/routes';
+import { Theme } from '@config/themes/themes';
+import { createStyles, staticStyles } from '@screens/common/auth/ForgotPassword/styles';
+import { RootNavigationProps } from '@models/navigationModel';
+import { routeName } from '@config/constants/routes';
 import { useState } from 'react';
-import { PrimaryButtonComponent } from '../../../../components/Buttons/PrimaryButton';
-import { ScreenHeaderComponent } from '../../../../components/Headers/ScreenHeader';
-import { CustomInputComponent } from '../../../../components/Input/EmailAndPasswordInput';
+import { PrimaryButtonComponent } from '@components/Buttons/PrimaryButton';
+import { ScreenHeaderComponent } from '@components/Headers/ScreenHeader';
+import { CustomInputComponent } from '@components/Input/EmailAndPasswordInput';
 import { useTranslation } from 'react-i18next';
 
 export const ForgotPasswordScreen = ({

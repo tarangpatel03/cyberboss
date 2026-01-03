@@ -2,9 +2,9 @@ import { StyleSheet, View } from 'react-native';
 import { useTheme } from '@shopify/restyle';
 import { TourGuideZone } from 'rn-tourguide';
 import FastImage from 'react-native-fast-image';
-import normalize from '../../utils/normalize/normalize';
-import { RegularTextComponent } from '../Text/RegularText';
-import { Theme } from '../../config/themes/themes';
+import normalize from '@utils/normalize/normalize';
+import { RegularTextComponent } from '@components/Text/RegularText';
+import { Theme } from '@config/themes/themes';
 import { useTranslation } from 'react-i18next';
 
 type BarTabIconProps = {
@@ -14,12 +14,7 @@ type BarTabIconProps = {
   zone: number;
 };
 
-export const BarTabIconComponent = ({
-  icon,
-  title,
-  isFocus,
-  zone,
-}: BarTabIconProps) => {
+export const BarTabIconComponent = (props: BarTabIconProps) => {
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
@@ -29,18 +24,18 @@ export const BarTabIconComponent = ({
       <View
         style={StyleSheet.flatten([
           staticStyle.topBar,
-          isFocus ? styles.topBar : styles.inactiveTab,
+          props.isFocus ? styles.topBar : styles.inactiveTab,
         ])}
       />
       <TourGuideZone
-        zone={zone}
+        zone={props.zone}
         borderRadius={normalize(4)}
-        text={t(`tour${zone}`)}
+        text={t(`tour${props.zone}`)}
         style={staticStyle.tour}
       >
-        <FastImage source={icon} style={staticStyle.tabIcon} />
+        <FastImage source={props.icon} style={staticStyle.tabIcon} />
         <RegularTextComponent
-          text={title}
+          text={props.title}
           textStyle={StyleSheet.flatten([staticStyle.text, styles.text])}
         />
       </TourGuideZone>

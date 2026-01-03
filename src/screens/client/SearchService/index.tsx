@@ -1,25 +1,28 @@
 import { FlatList, ListRenderItem, StyleSheet, View } from 'react-native';
-import { routeName } from '../../../config/constants/routes';
-import { RootNavigationProps } from '../../../models/navigationModel';
-import { Theme } from '../../../config/themes/themes';
+import { routeName } from '@config/constants/routes';
+import { RootNavigationProps } from '@models/navigationModel';
+import { Theme } from '@config/themes/themes';
 import { useTheme } from '@shopify/restyle';
-import { createStyles, staticStyle } from './styles';
+import {
+  createStyles,
+  staticStyle,
+} from '@screens/client/SearchService/styles';
 import { useCallback, useEffect, useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { SearchBorderInputComponent } from '../../../components/Input/SearchInput';
-import { appIcons } from '../../../config/icons/iconPath';
-import { useDebouncedValue } from '../../../hooks/debounce/useDebounce';
-import { ServiceCard } from '../../../components/Cards/ServiceCard';
-import { ListEmptyCard } from '../../../components/Cards/ListEmptyCard';
-import { ListShimmer } from '../../../components/Skeleton/ListShimmer';
+import { SearchBorderInputComponent } from '@components/Input/SearchInput';
+import { appIcons } from '@config/icons/iconPath';
+import { useDebouncedValue } from '@hooks/debounce/useDebounce';
+import { ServiceCard } from '@components/Cards/ServiceCard';
+import { ListEmptyCard } from '@components/Cards/ListEmptyCard';
+import { ListShimmer } from '@components/Skeleton/ListShimmer';
 import { useTranslation } from 'react-i18next';
-import { getServiceList } from '../../../services/api/expertise/getServicesList';
-import { ApiExpertiseModel } from '../../../models/api/consultant';
+import { getServiceList } from '@services/api/expertise/getServicesList';
+import { ApiExpertiseModel } from '@models/api/consultant';
 import {
   TExpertiseModel,
   transformExpertiseModel,
-} from '../../../models/formattedAPI/tConsultant';
-import { ApiResponse } from '../../../models/apiModel';
+} from '@models/formattedAPI/tConsultant';
+import { ApiResponse } from '@models/apiModel';
 
 export const SearchServiceScreen = ({
   navigation,
@@ -29,7 +32,7 @@ export const SearchServiceScreen = ({
   const styles = createStyles(theme);
   const [searchText, setText] = useState<string>('');
   const [loader, setLoader] = useState<boolean>(true);
-  const debouncedSearchText = useDebouncedValue(searchText);
+  const debouncedSearchText = useDebouncedValue<string>(searchText);
   const [services, setServices] = useState<TExpertiseModel[]>([]);
 
   const loadData = async () => {

@@ -1,5 +1,5 @@
-import { axiosClient } from '../../axios/axiosClient';
-import { endPoints } from '../../../config/endPoint/apiEndPoint';
+import { axiosClient } from '@services/axios/axiosClient';
+import { endPoints } from '@config/endPoint/apiEndPoint';
 import auth from '@react-native-firebase/auth';
 import appleAuth from '@invertase/react-native-apple-authentication';
 
@@ -20,9 +20,9 @@ import {
   WEBCLIENTID,
   iosClientID,
   PUSH_TOKEN,
-} from '../../../config/constants/axiosValues';
-import { appText } from '../../../config/text/constantsText';
-import { showErrorToast } from '../../../utils/toast/toast';
+} from '@config/constants/axiosValues';
+import { appText } from '@config/text/constantsText';
+import { showErrorToast } from '@utils/toast/toast';
 
 export const getUserToken = async (data: {
   email: string | null;

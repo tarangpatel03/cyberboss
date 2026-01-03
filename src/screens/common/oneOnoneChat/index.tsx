@@ -8,20 +8,20 @@ import {
 import { useCallback, useEffect, useState } from 'react';
 import { useTheme } from '@shopify/restyle';
 import { createStyles, staticStyle } from './styles';
-import { Theme } from '../../../config/themes/themes';
-import { appIcons } from '../../../config/icons/iconPath';
-import { appImages } from '../../../config/images/imagePath';
-import { routeName } from '../../../config/constants/routes';
+import { Theme } from '@config/themes/themes';
+import { appIcons } from '@config/icons/iconPath';
+import { appImages } from '@config/images/imagePath';
+import { routeName } from '@config/constants/routes';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { RootNavigationProps } from '../../../models/navigationModel';
-import { MediumTextComponent } from '../../../components/Text/MediumText';
-import { OneOnOneCard } from '../../../components/Cards/OneOnOneChat';
+import { RootNavigationProps } from '@models/navigationModel';
+import { MediumTextComponent } from '@components/Text/MediumText';
+import { OneOnOneCard } from '@components/Cards/OneOnOneChat';
 import FastImage from 'react-native-fast-image';
 import { useTranslation } from 'react-i18next';
 import firestore from '@react-native-firebase/firestore';
-import { ChatListEmptyCard } from '../../../components/Cards/ChatListEmptyCard';
-import { isDarkMode } from '../../../utils/theme/darkMode';
-import { appColors } from '../../../config/colors/colors';
+import { ChatListEmptyCard } from '@components/Cards/ChatListEmptyCard';
+import { isDarkMode } from '@utils/theme/darkMode';
+import { appColors } from '@config/colors/colors';
 
 export const OneOnOneChatScreen = ({
   navigation,
@@ -79,7 +79,7 @@ export const OneOnOneChatScreen = ({
             setMessages(message);
           },
           error => {
-            console.log('Firestore listener error:', error);
+            console.log(error);
           },
         );
       return unsubscribe;

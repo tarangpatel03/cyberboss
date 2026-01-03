@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
-import { Theme } from '../../../config/themes/themes';
-import normalize from '../../../utils/normalize/normalize';
+import { Theme } from '@config/themes/themes';
+import normalize from '@utils/normalize/normalize';
 
 export const staticStyle = StyleSheet.create({
   container: {
@@ -28,6 +28,23 @@ export const staticStyle = StyleSheet.create({
     width: normalize(44),
     height: normalize(44),
     borderRadius: normalize(22),
+  },
+  bottomButton: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'flex-end',
+    width: normalize(32),
+    height: normalize(32),
+    borderRadius: normalize(16),
+  },
+  input: {
+    width: '85%',
+    fontWeight: '400',
+    paddingVertical: 0,
+    alignItems: 'center',
+    fontSize: normalize(16),
+    maxHeight: normalize(150),
+    marginLeft: normalize(10),
   },
   removeBorder: {
     borderWidth: 0,
@@ -73,17 +90,15 @@ export const staticStyle = StyleSheet.create({
   bottomContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    padding: normalize(12),
-    paddingBottom: normalize(20),
+    paddingVertical: normalize(12),
   },
   inputBar: {
     maxWidth: '95%',
     flexDirection: 'row',
     alignItems: 'center',
-    width: '100%',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     padding: normalize(8),
-    height: normalize(48),
+    maxHeight: normalize(150),
     borderRadius: normalize(24),
     borderWidth: 1,
   },

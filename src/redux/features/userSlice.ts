@@ -1,6 +1,6 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
-import { appImages } from '../../config/images/imagePath';
+import { appImages } from '@config/images/imagePath';
 
 export type UserDetailProps = {
   id: string;

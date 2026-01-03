@@ -1,10 +1,10 @@
 import { StyleProp, ViewStyle } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import ShimmerPlaceHolder from 'react-native-shimmer-placeholder';
-import { appColors } from '../../config/colors/colors';
-import { Theme } from '../../config/themes/themes';
+import { appColors } from '@config/colors/colors';
+import { Theme } from '@config/themes/themes';
 import { useTheme } from '@shopify/restyle';
-import { isDarkMode } from '../../utils/theme/darkMode';
+import { isDarkMode } from '@utils/theme/darkMode';
 import { memo } from 'react';
 
 export const ShimmerHolder = memo(

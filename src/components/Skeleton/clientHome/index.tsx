@@ -1,16 +1,16 @@
 import { useTheme } from '@shopify/restyle';
-import { Theme } from '../../../config/themes/themes';
-import { appColors } from '../../../config/colors/colors';
-import { appIcons } from '../../../config/icons/iconPath';
-import { createStyles, staticStyle } from './styles';
-import { isDarkMode } from '../../../utils/theme/darkMode';
+import { Theme } from '@config/themes/themes';
+import { appColors } from '@config/colors/colors';
+import { appIcons } from '@config/icons/iconPath';
+import { createStyles, staticStyle } from '@components/Skeleton/clientHome/styles';
+import { isDarkMode } from '@utils/theme/darkMode';
 import LinearGradient from 'react-native-linear-gradient';
-import { ShimmerHolder } from '../ShimmerHolder';
+import { ShimmerHolder } from '@components/Skeleton/ShimmerHolder';
 import { FlatList, ScrollView, StyleSheet, View } from 'react-native';
-import { MediumTextComponent } from '../../Text/MediumText';
-import { RegularTextComponent } from '../../Text/RegularText';
+import { MediumTextComponent } from '@components/Text/MediumText';
+import { RegularTextComponent } from '@components/Text/RegularText';
 import FastImage from 'react-native-fast-image';
-import { ListShimmer } from '../ListShimmer';
+import { ListShimmer } from '@components/Skeleton/ListShimmer';
 import { useTranslation } from 'react-i18next';
 import { useCallback } from 'react';
 

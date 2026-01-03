@@ -1,28 +1,28 @@
 import {
   createStyles,
   staticStyle,
-} from '../../screens/consultant/Home/styles';
+} from '@screens/consultant/Home/styles';
 import { useTheme } from '@shopify/restyle';
 import { useTranslation } from 'react-i18next';
 import FastImage from 'react-native-fast-image';
-import { Theme } from '../../config/themes/themes';
-import { appColors } from '../../config/colors/colors';
-import { appIcons } from '../../config/icons/iconPath';
+import { Theme } from '@config/themes/themes';
+import { appColors } from '@config/colors/colors';
+import { appIcons } from '@config/icons/iconPath';
 import LinearGradient from 'react-native-linear-gradient';
-import { BoldTextComponent } from '../Text/BoldText';
+import { BoldTextComponent } from '@components/Text/BoldText';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
-import { MediumTextComponent } from '../Text/MediumText';
-import { RegularTextComponent } from '../Text/RegularText';
-import { SemiBoldTextComponent } from '../Text/SemiBoldText';
+import { MediumTextComponent } from '@components/Text/MediumText';
+import { RegularTextComponent } from '@components/Text/RegularText';
+import { SemiBoldTextComponent } from '@components/Text/SemiBoldText';
 import { useState } from 'react';
-import { appImages } from '../../config/images/imagePath';
+import { appImages } from '@config/images/imagePath';
 import RadialGradient from 'react-native-radial-gradient';
-import { width } from '../../config/constants/variables';
-import { TConsultantHomeModel } from '../../models/formattedAPI/tHome';
-import { TProfileModel } from '../../models/formattedAPI/tProfile';
+import { width } from '@config/constants/variables';
+import { TConsultantHomeModel } from '@models/formattedAPI/tHome';
+import { TProfileModel } from '@models/formattedAPI/tProfile';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
-import { getProfilePicture } from '../../utils/extractURI/extractImageURI';
+import { RootState } from '@redux/store';
+import { getProfilePicture } from '@utils/extractURI/extractImageURI';
 
 type ConsultantHeaderCardProps = {
   profileData: TProfileModel;

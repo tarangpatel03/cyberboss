@@ -1,14 +1,14 @@
 import {
   createStyles,
   staticStyle,
-} from '../../screens/client/ConsultantProfile/styles';
+} from '@screens/client/ConsultantProfile/styles';
 import { useTheme } from '@shopify/restyle';
 import { useTranslation } from 'react-i18next';
 import { View, StyleSheet } from 'react-native';
-import { Theme } from '../../config/themes/themes';
-import { ConsultantInfoBadge } from '../ConsultantInfoBadge';
-import { MediumTextComponent } from '../Text/MediumText';
-import { TConsultantDetailsModel } from '../../models/formattedAPI/tConsultant';
+import { Theme } from '@config/themes/themes';
+import { ConsultantInfoBadge } from '@components/ConsultantInfoBadge';
+import { MediumTextComponent } from '@components/Text/MediumText';
+import { TConsultantDetailsModel } from '@models/formattedAPI/tConsultant';
 
 type ConsultantExpertiseCardProps = {
   data: TConsultantDetailsModel;

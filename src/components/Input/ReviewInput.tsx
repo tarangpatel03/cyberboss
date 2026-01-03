@@ -9,13 +9,13 @@ import { useTheme } from '@shopify/restyle';
 import { useTranslation } from 'react-i18next';
 import FastImage from 'react-native-fast-image';
 import { Dispatch, SetStateAction } from 'react';
-import { Theme } from '../../config/themes/themes';
-import { appColors } from '../../config/colors/colors';
-import { isDarkMode } from '../../utils/theme/darkMode';
-import { appImages } from '../../config/images/imagePath';
+import { Theme } from '@config/themes/themes';
+import { appColors } from '@config/colors/colors';
+import { isDarkMode } from '@utils/theme/darkMode';
+import { appImages } from '@config/images/imagePath';
 import LinearGradient from 'react-native-linear-gradient';
-import { MediumTextComponent } from '../Text/MediumText';
-import { createStyles, staticStyle } from '../../screens/common/Rating/styles';
+import { MediumTextComponent } from '@components/Text/MediumText';
+import { createStyles, staticStyle } from '@screens/common/Rating/styles';
 
 type ReviewInputProps = {
   text: string;

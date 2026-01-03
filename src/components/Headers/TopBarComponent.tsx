@@ -1,17 +1,17 @@
-import { staticStyle, createStyles } from '../../screens/client/Home/styles';
+import { staticStyle, createStyles } from '@screens/client/Home/styles';
 import { useTheme } from '@shopify/restyle';
 import FastImage from 'react-native-fast-image';
-import { Theme } from '../../config/themes/themes';
-import { appColors } from '../../config/colors/colors';
-import { appIcons } from '../../config/icons/iconPath';
-import { appImages } from '../../config/images/imagePath';
+import { Theme } from '@config/themes/themes';
+import { appColors } from '@config/colors/colors';
+import { appIcons } from '@config/icons/iconPath';
+import { appImages } from '@config/images/imagePath';
 import LinearGradient from 'react-native-linear-gradient';
-import { SemiBoldTextComponent } from '../Text/SemiBoldText';
+import { SemiBoldTextComponent } from '@components/Text/SemiBoldText';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
-import { getProfilePicture } from '../../utils/extractURI/extractImageURI';
+import { RootState } from '@redux/store';
+import { getProfilePicture } from '@utils/extractURI/extractImageURI';
 
 type TopBarComponentProps = {
   isSubscriber: boolean;

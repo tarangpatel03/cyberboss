@@ -1,11 +1,11 @@
 import { useTheme } from '@shopify/restyle';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet, View } from 'react-native';
-import { Theme } from '../config/themes/themes';
-import { appIcons } from '../config/icons/iconPath';
-import { MediumTextComponent } from './Text/MediumText';
-import { SettingOptionsButton } from './Buttons/SettingsButton';
-import { staticStyle, createStyles } from '../screens/common/Profile/styles';
+import { Theme } from '@config/themes/themes';
+import { appIcons } from '@config/icons/iconPath';
+import { MediumTextComponent } from '@components/Text/MediumText';
+import { SettingOptionsButton } from '@components/Buttons/SettingsButton';
+import { staticStyle, createStyles } from '@screens/common/Profile/styles';
 import { Dispatch, SetStateAction } from 'react';
 
 type AuthOptionsProps = {

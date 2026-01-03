@@ -1,10 +1,10 @@
 import { useTheme } from '@shopify/restyle';
 import { StyleSheet, View } from 'react-native';
-import { CircularIconButtonComponent } from '../Buttons/CircularIconButton';
-import { appIcons } from '../../config/icons/iconPath';
-import { MediumTextComponent } from '../Text/MediumText';
-import normalize from '../../utils/normalize/normalize';
-import { Theme } from '../../config/themes/themes';
+import { CircularIconButtonComponent } from '@components/Buttons/CircularIconButton';
+import { appIcons } from '@config/icons/iconPath';
+import { MediumTextComponent } from '@components/Text/MediumText';
+import normalize from '@utils/normalize/normalize';
+import { Theme } from '@config/themes/themes';
 
 type ScreenHeaderComponentProps = {
   iconPath?: number | { uri: string } | undefined;

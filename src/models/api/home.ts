@@ -1,5 +1,5 @@
-import { ApiHomeBookingModel } from './bookings';
-import { ApiExpertiseModel, ApiWorkshopModel } from './consultant';
+import { ApiHomeBookingModel } from '@models/api/bookings';
+import { ApiExpertiseModel, ApiWorkshopModel } from '@models/api/consultant';
 
 export type ApiClientHomeModel = {
   is_subscriber: boolean;

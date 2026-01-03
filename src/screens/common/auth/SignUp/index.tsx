@@ -1,32 +1,32 @@
 import { useTheme } from '@shopify/restyle';
 import { StyleSheet, View } from 'react-native';
-import { Theme } from '../../../../config/themes/themes';
-import { createStyles, staticStyle } from './styles';
-import { appImages } from '../../../../config/images/imagePath';
-import { routeName } from '../../../../config/constants/routes';
-import { RootNavigationProps } from '../../../../models/navigationModel';
+import { Theme } from '@config/themes/themes';
+import { createStyles, staticStyle } from '@screens/common/auth/SignUp/styles';
+import { appImages } from '@config/images/imagePath';
+import { routeName } from '@config/constants/routes';
+import { RootNavigationProps } from '@models/navigationModel';
 import { useState } from 'react';
-import { isDarkMode } from '../../../../utils/theme/darkMode';
+import { isDarkMode } from '@utils/theme/darkMode';
 import {
   validateEmail,
   validatePassword,
-} from '../../../../utils/validation/validation';
-import { showErrorToast } from '../../../../utils/toast/toast';
+} from '@utils/validation/validation';
+import { showErrorToast } from '@utils/toast/toast';
 import FastImage from 'react-native-fast-image';
 import { useTranslation } from 'react-i18next';
-import { AuthTitle } from '../../../../components/AuthTitle';
-import { SocialLogIn } from '../../../../components/SocialLogin';
-import { appColors } from '../../../../config/colors/colors';
-import { AuthFooterAction } from '../../../../components/Buttons/HorizontalTextButton';
-import { SignUpInputContainer } from '../../../../components/Input/SignUpInputContainer';
-import { setUser, setUserData } from '../../../../redux/features/userSlice';
+import { appColors } from '@config/colors/colors';
+import { AuthFooterAction } from '@components/Buttons/HorizontalTextButton';
+import { SignUpInputContainer } from '@components/Input/SignUpInputContainer';
+import { setUser, setUserData } from '@redux/features/userSlice';
 import { useDispatch } from 'react-redux';
 import {
   appleLogIn,
   googleLogIn,
   signUp,
-} from '../../../../services/firebase/auth/auth';
+} from '@services/firebase/auth/auth';
 import firestore from '@react-native-firebase/firestore';
+import { AuthTitle } from '@components/Auth/AuthTitle';
+import { SocialLogIn } from '@components/Auth/SocialLogin';
 
 export const SignUpScreen = ({
   navigation,

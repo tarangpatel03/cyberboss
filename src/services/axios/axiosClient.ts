@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { BASE_URL, XAPI_TOKEN } from '../../config/constants/axiosValues';
+import { BASE_URL, XAPI_TOKEN } from '@config/constants/axiosValues';
 
 export const axiosClient = axios.create({
   baseURL: BASE_URL,

@@ -1,10 +1,10 @@
 import { useTheme } from '@shopify/restyle';
 import { useTranslation } from 'react-i18next';
 import { View, StyleSheet } from 'react-native';
-import { Theme } from '../config/themes/themes';
-import { RegularTextComponent } from './Text/RegularText';
-import { SemiBoldTextComponent } from './Text/SemiBoldText';
-import { createStyles, staticStyle } from '../screens/common/auth/LogIn/styles';
+import { Theme } from '@config/themes/themes';
+import { RegularTextComponent } from '@components/Text/RegularText';
+import { SemiBoldTextComponent } from '@components/Text/SemiBoldText';
+import { createStyles, staticStyle } from '@screens/common/auth/LogIn/styles';
 
 type AuthInTitleProps = {
   title: string;

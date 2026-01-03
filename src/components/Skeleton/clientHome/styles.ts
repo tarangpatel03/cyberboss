@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
-import normalize from '../../../utils/normalize/normalize';
-import { height } from '../../../config/constants/variables';
-import { Theme } from '../../../config/themes/themes';
+import normalize from '@utils/normalize/normalize';
+import { height } from '@config/constants/variables';
+import { Theme } from '@config/themes/themes';
 
 export const staticStyle = StyleSheet.create({
   topBar: {

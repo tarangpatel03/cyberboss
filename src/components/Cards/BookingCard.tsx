@@ -1,23 +1,23 @@
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import { Theme } from '../../config/themes/themes';
+import { Theme } from '@config/themes/themes';
 import { useTheme } from '@shopify/restyle';
-import normalize from '../../utils/normalize/normalize';
-import { MediumTextComponent } from '../Text/MediumText';
-import { RegularTextComponent } from '../Text/RegularText';
-import { appIcons } from '../../config/icons/iconPath';
-import { PrimaryButtonComponent } from '../Buttons/PrimaryButton';
-import { CircularIconButtonComponent } from '../Buttons/CircularIconButton';
+import normalize from '@utils/normalize/normalize';
+import { MediumTextComponent } from '@components/Text/MediumText';
+import { RegularTextComponent } from '@components/Text/RegularText';
+import { appIcons } from '@config/icons/iconPath';
+import { PrimaryButtonComponent } from '@components/Buttons/PrimaryButton';
+import { CircularIconButtonComponent } from '@components/Buttons/CircularIconButton';
 import LinearGradient from 'react-native-linear-gradient';
 import FastImage from 'react-native-fast-image';
 import { memo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { TBookingHistoryModel } from '../../models/formattedAPI/tBookings';
-import { getProfilePicture } from '../../utils/extractURI/extractImageURI';
-import { appImages } from '../../config/images/imagePath';
+import { TBookingHistoryModel } from '@models/formattedAPI/tBookings';
+import { getProfilePicture } from '@utils/extractURI/extractImageURI';
+import { appImages } from '@config/images/imagePath';
 import {
   getGradientColor,
   getServiceImage,
-} from '../../utils/gradientColor/gradientColor';
+} from '@utils/gradientColor/gradientColor';
 
 type BookingCardProps = {
   onMessage: ({
@@ -29,167 +29,165 @@ type BookingCardProps = {
     image: string | number | { uri: string } | undefined;
     name: string;
   }) => void;
-  props: TBookingHistoryModel;
+  data: TBookingHistoryModel;
   onMorePress: (x: number, y: number) => void;
   navigateToDetails: (id: string) => void;
 };
 
-export const BookingCard = memo(
-  ({ props, onMorePress, navigateToDetails, onMessage }: BookingCardProps) => {
-    const { t } = useTranslation();
-    const theme = useTheme<Theme>();
-    const styles = createStyles(theme);
-    const moreButtonRef = useRef<View>(null);
-    const [imageError, setimageError] = useState<boolean>(false);
+export const BookingCard = memo((props: BookingCardProps) => {
+  const { t } = useTranslation();
+  const theme = useTheme<Theme>();
+  const styles = createStyles(theme);
+  const moreButtonRef = useRef<View>(null);
+  const [imageError, setimageError] = useState<boolean>(false);
 
-    const handleMorePress = () => {
-      if (moreButtonRef.current) {
-        moreButtonRef.current.measureInWindow((x, y, width, height) => {
-          onMorePress(x, y + height);
-        });
-      }
-    };
+  const handleMorePress = () => {
+    if (moreButtonRef.current) {
+      moreButtonRef.current.measureInWindow((x, y, width, height) => {
+        props.onMorePress(x, y + height);
+      });
+    }
+  };
 
-    return (
-      <TouchableOpacity
-        activeOpacity={0.7}
-        onPress={() => navigateToDetails(props.id)}
-        style={StyleSheet.flatten([staticStyle.container, styles.container])}
-      >
-        <View style={staticStyle.row}>
+  return (
+    <TouchableOpacity
+      activeOpacity={0.7}
+      onPress={() => props.navigateToDetails(props.data.id)}
+      style={StyleSheet.flatten([staticStyle.container, styles.container])}
+    >
+      <View style={staticStyle.row}>
+        <MediumTextComponent
+          text={`${t('bookingId')}: ${props.data.bookingId}`}
+          textStyle={StyleSheet.flatten([
+            staticStyle.titleText,
+            styles.secondaryText,
+          ])}
+        />
+        <View
+          style={StyleSheet.flatten([
+            staticStyle.statusContainer,
+            props.data.status === 'Completed' ? styles.greenBG : styles.redBG,
+          ])}
+        >
+          <FastImage
+            source={
+              props.data.status === 'Completed'
+                ? appIcons.ic_completed
+                : appIcons.ic_inProgress
+            }
+            style={staticStyle.icon}
+          />
           <MediumTextComponent
-            text={`${t('bookingId')}: ${props.bookingId}`}
+            text={props.data.status}
+            textStyle={StyleSheet.flatten([
+              staticStyle.tinyText,
+              props.data.status === 'Completed'
+                ? styles.greenText
+                : styles.redText,
+            ])}
+          />
+        </View>
+      </View>
+      <View
+        style={StyleSheet.flatten([staticStyle.separator, styles.separator])}
+      />
+      <View style={staticStyle.rowLine}>
+        <FastImage
+          source={
+            imageError
+              ? appImages.img_defaultProfile
+              : getProfilePicture(props.data.userProfilePicture)
+          }
+          onError={() => setimageError(true)}
+          style={staticStyle.profileImage}
+        />
+        <View style={staticStyle.fullLengthView}>
+          <MediumTextComponent
+            text={props.data.userName}
             textStyle={StyleSheet.flatten([
               staticStyle.titleText,
+              styles.primaryText,
+            ])}
+          />
+          <RegularTextComponent
+            text={`${props.data.hours}hr`}
+            textStyle={StyleSheet.flatten([
+              staticStyle.subtitleText,
               styles.secondaryText,
             ])}
           />
-          <View
-            style={StyleSheet.flatten([
-              staticStyle.statusContainer,
-              props.status === 'Completed' ? styles.greenBG : styles.redBG,
-            ])}
-          >
-            <FastImage
-              source={
-                props.status === 'Completed'
-                  ? appIcons.ic_completed
-                  : appIcons.ic_inProgress
-              }
-              style={staticStyle.icon}
-            />
-            <MediumTextComponent
-              text={props.status}
-              textStyle={StyleSheet.flatten([
-                staticStyle.tinyText,
-                props.status === 'Completed'
-                  ? styles.greenText
-                  : styles.redText,
-              ])}
-            />
-          </View>
         </View>
-        <View
-          style={StyleSheet.flatten([staticStyle.separator, styles.separator])}
+        <MediumTextComponent
+          text={`$${props.data.grandTotal}`}
+          textStyle={StyleSheet.flatten([
+            staticStyle.titleText,
+            staticStyle.text,
+            styles.primaryText,
+          ])}
         />
-        <View style={staticStyle.rowLine}>
+      </View>
+      <LinearGradient
+        colors={getGradientColor(props.data.categoryName)}
+        start={{ x: 0, y: 0.5 }}
+        end={{ x: 1, y: 0.5 }}
+        style={staticStyle.gradient}
+      >
+        <View
+          style={StyleSheet.flatten([
+            staticStyle.rowLine,
+            staticStyle.padding8,
+          ])}
+        >
           <FastImage
-            source={
-              imageError
-                ? appImages.img_defaultProfile
-                : getProfilePicture(props.userProfilePicture)
-            }
-            onError={() => setimageError(true)}
-            style={staticStyle.profileImage}
+            style={staticStyle.categoryIcon}
+            resizeMode={FastImage.resizeMode.contain}
+            source={getServiceImage(props.data.categoryName)}
           />
-          <View style={staticStyle.fullLengthView}>
-            <MediumTextComponent
-              text={props.userName}
-              textStyle={StyleSheet.flatten([
-                staticStyle.titleText,
-                styles.primaryText,
-              ])}
-            />
-            <RegularTextComponent
-              text={`${props.hours}hr`}
-              textStyle={StyleSheet.flatten([
-                staticStyle.subtitleText,
-                styles.secondaryText,
-              ])}
-            />
-          </View>
-          <MediumTextComponent
-            text={`$${props.grandTotal}`}
+          <RegularTextComponent
+            text={props.data.categoryName}
             textStyle={StyleSheet.flatten([
-              staticStyle.titleText,
-              staticStyle.text,
+              staticStyle.subtitleText,
               styles.primaryText,
             ])}
           />
         </View>
-        <LinearGradient
-          colors={getGradientColor(props.categoryName)}
-          start={{ x: 0, y: 0.5 }}
-          end={{ x: 1, y: 0.5 }}
-          style={staticStyle.gradient}
-        >
-          <View
-            style={StyleSheet.flatten([
-              staticStyle.rowLine,
-              staticStyle.padding8,
+      </LinearGradient>
+      {props.data.status === 'In progress' && (
+        <View style={staticStyle.rowLine}>
+          <PrimaryButtonComponent
+            onPress={() =>
+              props.onMessage({
+                id: props.data.userId,
+                image: props.data.userProfilePicture,
+                name: props.data.userName,
+              })
+            }
+            text={t('message')}
+            buttonStyle={StyleSheet.flatten([
+              staticStyle.button,
+              styles.button,
             ])}
-          >
-            <FastImage
-              style={staticStyle.categoryIcon}
-              resizeMode={FastImage.resizeMode.contain}
-              source={getServiceImage(props.categoryName)}
-            />
-            <RegularTextComponent
-              text={props.categoryName}
-              textStyle={StyleSheet.flatten([
-                staticStyle.subtitleText,
-                styles.primaryText,
-              ])}
-            />
-          </View>
-        </LinearGradient>
-        {props.status === 'In progress' && (
-          <View style={staticStyle.rowLine}>
-            <PrimaryButtonComponent
-              onPress={() =>
-                onMessage({
-                  id: props.userId,
-                  image: props.userProfilePicture,
-                  name: props.userName,
-                })
-              }
-              text={t('message')}
-              buttonStyle={StyleSheet.flatten([
-                staticStyle.button,
-                styles.button,
-              ])}
-              textStyle={StyleSheet.flatten([
-                staticStyle.subtitleText,
-                styles.primaryText,
-              ])}
-            />
-            <CircularIconButtonComponent
-              onPress={handleMorePress}
-              buttonStyle={StyleSheet.flatten([
-                staticStyle.iconButton,
-                styles.button,
-              ])}
-              iconPath={appIcons.ic_more}
-              tintColor={theme.colors.textPrimary}
-              iconStyle={staticStyle.moreIcon}
-              ref={moreButtonRef}
-            />
-          </View>
-        )}
-      </TouchableOpacity>
-    );
-  },
-);
+            textStyle={StyleSheet.flatten([
+              staticStyle.subtitleText,
+              styles.primaryText,
+            ])}
+          />
+          <CircularIconButtonComponent
+            onPress={handleMorePress}
+            buttonStyle={StyleSheet.flatten([
+              staticStyle.iconButton,
+              styles.button,
+            ])}
+            iconPath={appIcons.ic_more}
+            tintColor={theme.colors.textPrimary}
+            iconStyle={staticStyle.moreIcon}
+            ref={moreButtonRef}
+          />
+        </View>
+      )}
+    </TouchableOpacity>
+  );
+});
 
 const staticStyle = StyleSheet.create({
   container: {

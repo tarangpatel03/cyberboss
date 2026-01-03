@@ -3,23 +3,23 @@ import LinearGradient from 'react-native-linear-gradient';
 import {
   staticStyle,
   createStyles,
-} from '../../screens/client/BookingDetails/styles';
-import { RegularTextComponent } from '../Text/RegularText';
+} from '@screens/client/BookingDetails/styles';
+import { RegularTextComponent } from '@components/Text/RegularText';
 import {
   getGradientColor,
   getServiceImage,
-} from '../../utils/gradientColor/gradientColor';
+} from '@utils/gradientColor/gradientColor';
 import FastImage from 'react-native-fast-image';
-import { appIcons } from '../../config/icons/iconPath';
-import { CircularIconButtonComponent } from '../Buttons/CircularIconButton';
-import { SemiBoldTextComponent } from '../Text/SemiBoldText';
-import { MediumTextComponent } from '../Text/MediumText';
-import { appImages } from '../../config/images/imagePath';
+import { appIcons } from '@config/icons/iconPath';
+import { CircularIconButtonComponent } from '@components/Buttons/CircularIconButton';
+import { SemiBoldTextComponent } from '@components/Text/SemiBoldText';
+import { MediumTextComponent } from '@components/Text/MediumText';
+import { appImages } from '@config/images/imagePath';
 import { Dispatch, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '@shopify/restyle';
-import { Theme } from '../../config/themes/themes';
-import { TConsultantDetailsModel } from '../../models/formattedAPI/tConsultant';
+import { Theme } from '@config/themes/themes';
+import { TConsultantDetailsModel } from '@models/formattedAPI/tConsultant';
 
 type ConsultantServiceSummaryCardProps = {
   consultantData: TConsultantDetailsModel;

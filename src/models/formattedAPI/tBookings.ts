@@ -5,7 +5,7 @@ import {
   ApiHomeBookingModel,
   ApiBookingExpertise,
   ApiReviewModel,
-} from '../api/bookings';
+} from '@models/api/bookings';
 
 export type TBookingBillCount = {
   hours: number;

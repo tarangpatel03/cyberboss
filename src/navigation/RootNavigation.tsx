@@ -1,37 +1,40 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { routeName } from '../config/constants/routes';
-import { OnboardingScreen } from '../screens/common/Onboarding';
-import { LogInScreen } from '../screens/common/auth/LogIn';
-import { SignUpScreen } from '../screens/common/auth/SignUp';
-import { ForgotPasswordScreen } from '../screens/common/auth/ForgotPassword';
-import { ProfileSetUpScreen } from '../screens/profileSetup/FirstScreen';
-import { BottomNavigation } from './ClientBottomNavigation';
-import { WorkshopScreen } from '../screens/client/Workshop';
-import { AreaOfExpertiseScreen } from '../screens/profileSetup/ConsultantSetup/AreaOfExpertise';
-import { ConsultantListScreen } from '../screens/client/ConsultantList';
-import { OneOnOneChatScreen } from '../screens/common/OneOnOneChat';
-import { PersonalDetailsScreen } from '../screens/profileSetup/ConsultantSetup/PersonalDetails';
-import { ServicesYouOfferScreen } from '../screens/profileSetup/ConsultantSetup/ServicesYouOffer';
-import { PendingVerificationScreen } from '../screens/profileSetup/ConsultantSetup/PendingVerification';
-import { EditProfileScreen } from '../screens/common/EditProfile';
-import { ChangePasswordScreen } from '../screens/common/ChangePassword';
-import { BookingSummaryScreen } from '../screens/common/BookingSummary';
-import { YourRatingScreen } from '../screens/common/Rating';
-import { ConsultantProfileScreen } from '../screens/client/ConsultantProfile';
-import { BookingDetailsScreen } from '../screens/client/BookingDetails';
-import { BookingConfirmScreen } from '../screens/client/BookingConfirm';
-import { NotificationScreen } from '../screens/common/Notification';
-import { ContactSupportScreen } from '../screens/client/ContactSupport';
-import { SubscriptionScreen } from '../screens/client/Subscription';
-import { RootNavigationParams } from '../models/navigationModel';
-import { SearchServiceScreen } from '../screens/client/SearchService';
-import { RootState } from '../redux/store';
+import { routeName } from '@config/constants/routes';
+import { OnboardingScreen } from '@screens/common/Onboarding';
+import { LogInScreen } from '@screens/common/auth/LogIn';
+import { SignUpScreen } from '@screens/common/auth/SignUp';
+import { ForgotPasswordScreen } from '@screens/common/auth/ForgotPassword';
+import { ProfileSetUpScreen } from '@screens/profileSetup/FirstScreen';
+import { BottomNavigation } from '@navigation/ClientBottomNavigation';
+import { WorkshopScreen } from '@screens/client/Workshop';
+import { AreaOfExpertiseScreen } from '@screens/profileSetup/ConsultantSetup/AreaOfExpertise';
+import { ConsultantListScreen } from '@screens/client/ConsultantList';
+import { OneOnOneChatScreen } from '@screens/common/OneOnOneChat';
+import { PersonalDetailsScreen } from '@screens/profileSetup/ConsultantSetup/PersonalDetails';
+import { ServicesYouOfferScreen } from '@screens/profileSetup/ConsultantSetup/ServicesYouOffer';
+import { PendingVerificationScreen } from '@screens/profileSetup/ConsultantSetup/PendingVerification';
+import { EditProfileScreen } from '@screens/common/EditProfile';
+import { ChangePasswordScreen } from '@screens/common/ChangePassword';
+import { BookingSummaryScreen } from '@screens/common/BookingSummary';
+import { YourRatingScreen } from '@screens/common/Rating';
+import { ConsultantProfileScreen } from '@screens/client/ConsultantProfile';
+import { BookingDetailsScreen } from '@screens/client/BookingDetails';
+import { BookingConfirmScreen } from '@screens/client/BookingConfirm';
+import { NotificationScreen } from '@screens/common/Notification';
+import { ContactSupportScreen } from '@screens/client/ContactSupport';
+import { SubscriptionScreen } from '@screens/client/Subscription';
+import { RootNavigationParams } from '@models/navigationModel';
+import { SearchServiceScreen } from '@screens/client/SearchService';
+import { RootState } from '@redux/store';
 import { useSelector } from 'react-redux';
-import { ClientProfileSetUpScreen } from '../screens/profileSetup/ClientSetup';
+import { ClientProfileSetUpScreen } from '@screens/profileSetup/ClientSetup';
+
 const Root = createNativeStackNavigator<RootNavigationParams>();
+
 export const RootNavigation = () => {
-  const isLoggedIn = useSelector((state: RootState) => state.user.token);
-  const isFirstTime = useSelector((state: RootState) => state.user.isFirstTime);
+  const { token: isLoggedIn, isFirstTime } = useSelector(
+    (state: RootState) => state.user,
+  );
   const {
     role,
     is_verified: isVerified,

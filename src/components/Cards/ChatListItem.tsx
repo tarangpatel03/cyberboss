@@ -1,15 +1,15 @@
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import { Theme } from '../../config/themes/themes';
+import { Theme } from '@config/themes/themes';
 import { useTheme } from '@shopify/restyle';
-import { MediumTextComponent } from '../Text/MediumText';
-import { RegularTextComponent } from '../Text/RegularText';
-import normalize from '../../utils/normalize/normalize';
+import { MediumTextComponent } from '@components/Text/MediumText';
+import { RegularTextComponent } from '@components/Text/RegularText';
+import normalize from '@utils/normalize/normalize';
 import FastImage from 'react-native-fast-image';
 import { memo, useEffect, useState } from 'react';
-import { appImages } from '../../config/images/imagePath';
+import { appImages } from '@config/images/imagePath';
 import firestore from '@react-native-firebase/firestore';
-import { formatFirebaseTimestamp } from '../../utils/format/formatDate';
-import { width } from '../../config/constants/variables';
+import { formatFirebaseTimestamp } from '@utils/format/formatDate';
+import { width } from '@config/constants/variables';
 
 type ChatListItemProps = {
   data: any;

@@ -1,21 +1,21 @@
 import { useTheme } from '@shopify/restyle';
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
-import { Theme } from '../../config/themes/themes';
-import normalize from '../../utils/normalize/normalize';
-import { MediumTextComponent } from '../Text/MediumText';
-import { PrimaryButtonComponent } from '../Buttons/PrimaryButton';
-import { RegularTextComponent } from '../Text/RegularText';
-import { appIcons } from '../../config/icons/iconPath';
-import { getFullDate } from '../../utils/format/formatDate';
+import { Theme } from '@config/themes/themes';
+import normalize from '@utils/normalize/normalize';
+import { MediumTextComponent } from '@components/Text/MediumText';
+import { PrimaryButtonComponent } from '@components/Buttons/PrimaryButton';
+import { RegularTextComponent } from '@components/Text/RegularText';
+import { appIcons } from '@config/icons/iconPath';
+import { getFullDate } from '@utils/format/formatDate';
 import {
   addToCalendar,
   convertToEventDate,
-} from '../../utils/calendar/addCalendarEvent';
-import { showSuccessToast } from '../../utils/toast/toast';
+} from '@utils/calendar/addCalendarEvent';
+import { showSuccessToast } from '@utils/toast/toast';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import FastImage from 'react-native-fast-image';
-import { TWorkshopModel } from '../../models/formattedAPI/tConsultant';
+import { TWorkshopModel } from '@models/formattedAPI/tConsultant';
 
 type WorkshopCardProps = {
   data: TWorkshopModel;

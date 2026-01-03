@@ -6,32 +6,32 @@ import {
   ListRenderItem,
 } from 'react-native';
 import { useTheme } from '@shopify/restyle';
-import { createStyles, staticStyle } from './styles';
-import { Theme } from '../../../config/themes/themes';
-import { getAPIData } from '../../../services/api/common/getCommonApi';
+import { createStyles, staticStyle } from '@screens/client/ConsultantProfile/styles';
+import { Theme } from '@config/themes/themes';
+import { getAPIData } from '@services/api/common/getCommonApi';
 import { useCallback, useEffect, useState } from 'react';
-import { routeName } from '../../../config/constants/routes';
+import { routeName } from '@config/constants/routes';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { RootNavigationProps } from '../../../models/navigationModel';
-import { RatingCard } from '../../../components/Cards/RatingReviewCard';
-import { MediumTextComponent } from '../../../components/Text/MediumText';
-import { RegularTextComponent } from '../../../components/Text/RegularText';
-import { ScreenHeaderComponent } from '../../../components/Headers/ScreenHeader';
-import { PrimaryButtonComponent } from '../../../components/Buttons/PrimaryButton';
-import { endPoints } from '../../../config/endPoint/apiEndPoint';
+import { RootNavigationProps } from '@models/navigationModel';
+import { RatingCard } from '@components/Cards/RatingReviewCard';
+import { MediumTextComponent } from '@components/Text/MediumText';
+import { RegularTextComponent } from '@components/Text/RegularText';
+import { ScreenHeaderComponent } from '@components/Headers/ScreenHeader';
+import { PrimaryButtonComponent } from '@components/Buttons/PrimaryButton';
+import { endPoints } from '@config/endPoint/apiEndPoint';
 import { useTranslation } from 'react-i18next';
-import { ConsultantProfileScreenShimmer } from '../../../components/Skeleton/consultantProfile';
-import { ConsultantProfileHeader } from '../../../components/Headers/ConsultantProfileHeader';
-import { ConsultantExpertiseCard } from '../../../components/Cards/ConsultantExpertiseCard';
-import { ConsultantRatingsList } from '../../../components/ListItems/ConsultantRatingListItem';
+import { ConsultantProfileScreenShimmer } from '@components/Skeleton/consultantProfile';
+import { ConsultantProfileHeader } from '@components/Headers/ConsultantProfileHeader';
+import { ConsultantExpertiseCard } from '@components/Cards/ConsultantExpertiseCard';
+import { ConsultantRatingsList } from '@components/ListItems/ConsultantRatingListItem';
 import {
   TConsultantDetailsModel,
   transformConsultantDetailsModel,
   TRatingReviewModel,
-} from '../../../models/formattedAPI/tConsultant';
-import { ApiConsultantDetailsModel } from '../../../models/api/consultant';
-import { ReviewCard } from '../../../components/Cards/ReviewCard';
-import { ApiResponse } from '../../../models/apiModel';
+} from '@models/formattedAPI/tConsultant';
+import { ApiConsultantDetailsModel } from '@models/api/consultant';
+import { ReviewCard } from '@components/Cards/ReviewCard';
+import { ApiResponse } from '@models/apiModel';
 
 export const ConsultantProfileScreen = ({
   navigation,

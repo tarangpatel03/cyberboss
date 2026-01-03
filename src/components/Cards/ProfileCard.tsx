@@ -1,16 +1,16 @@
 import { useTheme } from '@shopify/restyle';
 import { useTranslation } from 'react-i18next';
 import FastImage from 'react-native-fast-image';
-import { Theme } from '../../config/themes/themes';
-import { appIcons } from '../../config/icons/iconPath';
-import { UserDetailProps } from '../../redux/features/userSlice';
+import { Theme } from '@config/themes/themes';
+import { appIcons } from '@config/icons/iconPath';
+import { UserDetailProps } from '@redux/features/userSlice';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import { MediumTextComponent } from '../Text/MediumText';
-import { RegularTextComponent } from '../Text/RegularText';
-import { SettingOptionsButton } from '../Buttons/SettingsButton';
-import { staticStyle, createStyles } from '../../screens/common/Profile/styles';
+import { MediumTextComponent } from '@components/Text/MediumText';
+import { RegularTextComponent } from '@components/Text/RegularText';
+import { SettingOptionsButton } from '@components/Buttons/SettingsButton';
+import { staticStyle, createStyles } from '@screens/common/Profile/styles';
 import { useState } from 'react';
-import { appImages } from '../../config/images/imagePath';
+import { appImages } from '@config/images/imagePath';
 
 type ProfileCardProps = {
   userData: UserDetailProps;

@@ -1,4 +1,4 @@
-import { ApiBillDetailsModel } from '../api/billing';
+import { ApiBillDetailsModel } from '@models/api/billing';
 
 export type TBillDetailsModel = {
   hourlyRate: number;

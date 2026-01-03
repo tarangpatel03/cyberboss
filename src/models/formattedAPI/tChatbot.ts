@@ -1,4 +1,4 @@
-import { ApiChatBotChatModel } from '../api/chatbot';
+import { ApiChatBotChatModel } from '@models/api/chatbot';
 
 export type TChatBotChatModel = {
   sessionId: string;

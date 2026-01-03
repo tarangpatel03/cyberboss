@@ -5,15 +5,15 @@ import {
   ListRenderItem,
   TouchableOpacity,
 } from 'react-native';
-import { staticStyle, createStyles } from '../../screens/client/Home/styles';
+import { staticStyle, createStyles } from '@screens/client/Home/styles';
 import { useTheme } from '@shopify/restyle';
-import { Theme } from '../../config/themes/themes';
-import { appIcons } from '../../config/icons/iconPath';
-import { MediumTextComponent } from '../Text/MediumText';
-import { RegularTextComponent } from '../Text/RegularText';
+import { Theme } from '@config/themes/themes';
+import { appIcons } from '@config/icons/iconPath';
+import { MediumTextComponent } from '@components/Text/MediumText';
+import { RegularTextComponent } from '@components/Text/RegularText';
 import { useTranslation } from 'react-i18next';
 import FastImage from 'react-native-fast-image';
-import { TWorkshopModel } from '../../models/formattedAPI/tConsultant';
+import { TWorkshopModel } from '@models/formattedAPI/tConsultant';
 
 type HomeScreenWorkshopListProps = {
   data: TWorkshopModel[] | any[];

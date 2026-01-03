@@ -1,6 +1,6 @@
 import { StyleSheet, View } from 'react-native';
-import normalize from '../utils/normalize/normalize';
-import { Theme } from '../config/themes/themes';
+import normalize from '@utils/normalize/normalize';
+import { Theme } from '@config/themes/themes';
 import { useTheme } from '@shopify/restyle';
 
 type IndicationBarProps = {

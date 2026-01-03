@@ -1,4 +1,4 @@
-import { axiosClient } from '../../axios/axiosClient';
+import { axiosClient } from '@services/axios/axiosClient';
 
 export const getAPIData = async <T>(
   route: string,

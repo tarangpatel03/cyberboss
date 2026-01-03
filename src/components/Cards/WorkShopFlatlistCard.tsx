@@ -1,14 +1,14 @@
 import { StyleSheet, View } from 'react-native';
-import normalize from '../../utils/normalize/normalize';
-import { MediumTextComponent } from '../Text/MediumText';
-import { RegularTextComponent } from '../Text/RegularText';
-import { appIcons } from '../../config/icons/iconPath';
-import { getFullDate } from '../../utils/format/formatDate';
-import { appColors } from '../../config/colors/colors';
-import { width } from '../../config/constants/variables';
+import normalize from '@utils/normalize/normalize';
+import { MediumTextComponent } from '@components/Text/MediumText';
+import { RegularTextComponent } from '@components/Text/RegularText';
+import { appIcons } from '@config/icons/iconPath';
+import { getFullDate } from '@utils/format/formatDate';
+import { appColors } from '@config/colors/colors';
+import { width } from '@config/constants/variables';
 import FastImage from 'react-native-fast-image';
 import { memo } from 'react';
-import { TWorkshopModel } from '../../models/formattedAPI/tConsultant';
+import { TWorkshopModel } from '@models/formattedAPI/tConsultant';
 
 type WorkshopCardProps = {
   data: TWorkshopModel;

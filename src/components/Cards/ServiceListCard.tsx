@@ -1,9 +1,9 @@
 import { StyleSheet, TouchableOpacity } from 'react-native';
-import { RegularTextComponent } from '../Text/RegularText';
-import { Theme } from '../../config/themes/themes';
+import { RegularTextComponent } from '@components/Text/RegularText';
+import { Theme } from '@config/themes/themes';
 import { useTheme } from '@shopify/restyle';
-import normalize from '../../utils/normalize/normalize';
-import { appIcons } from '../../config/icons/iconPath';
+import normalize from '@utils/normalize/normalize';
+import { appIcons } from '@config/icons/iconPath';
 import { memo } from 'react';
 import FastImage from 'react-native-fast-image';
 

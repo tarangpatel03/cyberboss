@@ -1,5 +1,5 @@
 import { StyleProp, StyleSheet, Text, TextStyle } from 'react-native';
-import { getFontFamily } from '../../utils/fonts/getFontFamily';
+import { getFontFamily } from '@utils/fonts/getFontFamily';
 
 type RegularTextComponentProps = {
   text: string;

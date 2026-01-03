@@ -1,15 +1,15 @@
 import {
   createStyles,
   staticStyle,
-} from '../../screens/common/EditProfile/styles';
+} from '@screens/common/EditProfile/styles';
 import { useTheme } from '@shopify/restyle';
 import { useTranslation } from 'react-i18next';
 import { View, StyleSheet } from 'react-native';
 import { Dispatch, SetStateAction } from 'react';
-import { Theme } from '../../config/themes/themes';
-import { BorderInputComponent } from './BorderInput';
-import { BioInputComponent } from './MultiLineInput';
-import { RegularTextComponent } from '../Text/RegularText';
+import { Theme } from '@config/themes/themes';
+import { BorderInputComponent } from '@components/Input/BorderInput';
+import { BioInputComponent } from '@components/Input/MultiLineInput';
+import { RegularTextComponent } from '@components/Text/RegularText';
 
 type EditProfileInputsProps = {
   email: string;

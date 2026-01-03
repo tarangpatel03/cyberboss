@@ -1,28 +1,28 @@
 import { FlatList, ListRenderItem, StyleSheet, View } from 'react-native';
 import { useTheme } from '@shopify/restyle';
-import { Theme } from '../../../../config/themes/themes';
+import { Theme } from '@config/themes/themes';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { PrimaryButtonComponent } from '../../../../components/Buttons/PrimaryButton';
-import { CircularIconButtonComponent } from '../../../../components/Buttons/CircularIconButton';
-import { appIcons } from '../../../../config/icons/iconPath';
-import { RootNavigationProps } from '../../../../models/navigationModel';
-import { routeName } from '../../../../config/constants/routes';
-import { SemiBoldTextComponent } from '../../../../components/Text/SemiBoldText';
-import { RegularTextComponent } from '../../../../components/Text/RegularText';
-import { CategoryCard } from '../../../../components/Cards/CategoryCard';
+import { PrimaryButtonComponent } from '@components/Buttons/PrimaryButton';
+import { CircularIconButtonComponent } from '@components/Buttons/CircularIconButton';
+import { appIcons } from '@config/icons/iconPath';
+import { RootNavigationProps } from '@models/navigationModel';
+import { routeName } from '@config/constants/routes';
+import { SemiBoldTextComponent } from '@components/Text/SemiBoldText';
+import { RegularTextComponent } from '@components/Text/RegularText';
+import { CategoryCard } from '@components/Cards/CategoryCard';
 import { useCallback, useEffect, useState } from 'react';
-import { createStyles, staticStyle } from './styles';
+import { createStyles, staticStyle } from '@screens/profileSetup/ConsultantSetup/AreaOfExpertise/styles';
 import { useTranslation } from 'react-i18next';
-import { getAPIData } from '../../../../services/api/common/getCommonApi';
-import { endPoints } from '../../../../config/endPoint/apiEndPoint';
+import { getAPIData } from '@services/api/common/getCommonApi';
+import { endPoints } from '@config/endPoint/apiEndPoint';
 import { useDispatch } from 'react-redux';
-import { setUserData } from '../../../../redux/features/userSlice';
-import { ApiExpertiseModel } from '../../../../models/api/consultant';
+import { setUserData } from '@redux/features/userSlice';
+import { ApiExpertiseModel } from '@models/api/consultant';
 import {
   TExpertiseModel,
   transformExpertiseModel,
-} from '../../../../models/formattedAPI/tConsultant';
-import { ApiResponse } from '../../../../models/apiModel';
+} from '@models/formattedAPI/tConsultant';
+import { ApiResponse } from '@models/apiModel';
 
 export const AreaOfExpertiseScreen = ({
   navigation,

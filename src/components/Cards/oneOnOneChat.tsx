@@ -1,12 +1,12 @@
 import { StyleSheet, View } from 'react-native';
-import { Theme } from '../../config/themes/themes';
+import { Theme } from '@config/themes/themes';
 import { useTheme } from '@shopify/restyle';
-import normalize from '../../utils/normalize/normalize';
-import { appIcons } from '../../config/icons/iconPath';
-import { RegularTextComponent } from '../Text/RegularText';
+import normalize from '@utils/normalize/normalize';
+import { appIcons } from '@config/icons/iconPath';
+import { RegularTextComponent } from '@components/Text/RegularText';
 import FastImage from 'react-native-fast-image';
 import { memo } from 'react';
-import { formatFirebaseTimestamp } from '../../utils/format/formatDate';
+import { formatFirebaseTimestamp } from '@utils/format/formatDate';
 
 type OneOnOneCardProps = {
   senderId: string;

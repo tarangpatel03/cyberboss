@@ -1,6 +1,6 @@
-import { Services } from '../api/consultant';
-import { ApiProfileModel, ApiUpdateProfile } from '../api/profile';
-import { TExpertiseModel, transformExpertiseModel } from './tConsultant';
+import { Services } from '@models/api/consultant';
+import { ApiProfileModel, ApiUpdateProfile } from '@models/api/profile';
+import { TExpertiseModel, transformExpertiseModel } from '@models/formattedAPI/tConsultant';
 
 export type TProfileModel = {
   id: string;

@@ -1,11 +1,11 @@
 import { Dispatch, SetStateAction } from 'react';
-import { BorderInputComponent } from './BorderInput';
-import { CircularIconButtonComponent } from '../Buttons/CircularIconButton';
-import { appIcons } from '../../config/icons/iconPath';
+import { BorderInputComponent } from '@components/Input/BorderInput';
+import { CircularIconButtonComponent } from '@components/Buttons/CircularIconButton';
+import { appIcons } from '@config/icons/iconPath';
 import { StyleSheet, View } from 'react-native';
-import { Theme } from '../../config/themes/themes';
+import { Theme } from '@config/themes/themes';
 import { useTheme } from '@shopify/restyle';
-import normalize from '../../utils/normalize/normalize';
+import normalize from '@utils/normalize/normalize';
 
 type PasswordInputProps = {
   value: string;

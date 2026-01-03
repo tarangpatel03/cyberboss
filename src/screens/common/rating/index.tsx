@@ -1,21 +1,21 @@
 import { StyleSheet, View } from 'react-native';
-import { RootNavigationProps } from '../../../models/navigationModel';
-import { routeName } from '../../../config/constants/routes';
+import { RootNavigationProps } from '@models/navigationModel';
+import { routeName } from '@config/constants/routes';
 import { useTheme } from '@shopify/restyle';
-import { createStyles, staticStyle } from './styles';
-import { Theme } from '../../../config/themes/themes';
-import { isDarkMode } from '../../../utils/theme/darkMode';
-import { ScreenHeaderComponent } from '../../../components/Headers/ScreenHeader';
+import { createStyles, staticStyle } from '@screens/common/Rating/styles';
+import { Theme } from '@config/themes/themes';
+import { isDarkMode } from '@utils/theme/darkMode';
+import { ScreenHeaderComponent } from '@components/Headers/ScreenHeader';
 import { useState } from 'react';
-import { appColors } from '../../../config/colors/colors';
-import { appIcons } from '../../../config/icons/iconPath';
-import { PrimaryButtonComponent } from '../../../components/Buttons/PrimaryButton';
+import { appColors } from '@config/colors/colors';
+import { appIcons } from '@config/icons/iconPath';
+import { PrimaryButtonComponent } from '@components/Buttons/PrimaryButton';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import normalize from '../../../utils/normalize/normalize';
+import normalize from '@utils/normalize/normalize';
 import { useTranslation } from 'react-i18next';
-import { refineFeedBack } from '../../../services/api/feedback/refineFeedBack';
-import { StarReviewCard } from '../../../components/Cards/StarReviewCard';
-import { ReviewInput } from '../../../components/Input/ReviewInput';
+import { refineFeedBack } from '@services/api/feedback/refineFeedBack';
+import { StarReviewCard } from '@components/Cards/StarReviewCard';
+import { ReviewInput } from '@components/Input/ReviewInput';
 
 export const YourRatingScreen = ({
   navigation,

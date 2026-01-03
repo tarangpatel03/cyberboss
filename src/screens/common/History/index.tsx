@@ -1,6 +1,6 @@
 import { useTheme } from '@shopify/restyle';
-import { Theme } from '../../../config/themes/themes';
-import { createStyles, staticStyle } from './styles';
+import { Theme } from '@config/themes/themes';
+import { createStyles, staticStyle } from '@screens/common/History/styles';
 import {
   FlatList,
   Platform,
@@ -9,31 +9,31 @@ import {
   View,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { BottomTabHeader } from '../../../components/Headers/BottomTabHeader';
-import { BookingCard } from '../../../components/Cards/BookingCard';
-import { RootNavigationProps } from '../../../models/navigationModel';
-import { routeName } from '../../../config/constants/routes';
-import { getAPIData } from '../../../services/api/common/getCommonApi';
+import { BottomTabHeader } from '@components/Headers/BottomTabHeader';
+import { BookingCard } from '@components/Cards/BookingCard';
+import { RootNavigationProps } from '@models/navigationModel';
+import { routeName } from '@config/constants/routes';
+import { getAPIData } from '@services/api/common/getCommonApi';
 import { useCallback, useEffect, useState } from 'react';
-import { ListEmptyCard } from '../../../components/Cards/ListEmptyCard';
-import { appImages } from '../../../config/images/imagePath';
-import { height } from '../../../config/constants/variables';
-import normalize from '../../../utils/normalize/normalize';
-import { appIcons } from '../../../config/icons/iconPath';
-import { RegularTextComponent } from '../../../components/Text/RegularText';
-import { ListShimmer } from '../../../components/Skeleton/ListShimmer';
-import { endPoints } from '../../../config/endPoint/apiEndPoint';
+import { ListEmptyCard } from '@components/Cards/ListEmptyCard';
+import { appImages } from '@config/images/imagePath';
+import { height } from '@config/constants/variables';
+import normalize from '@utils/normalize/normalize';
+import { appIcons } from '@config/icons/iconPath';
+import { RegularTextComponent } from '@components/Text/RegularText';
+import { ListShimmer } from '@components/Skeleton/ListShimmer';
+import { endPoints } from '@config/endPoint/apiEndPoint';
 import { useTranslation } from 'react-i18next';
 import FastImage from 'react-native-fast-image';
 import {
   TBookingHistoryModel,
   transformBookingHistoryModel,
-} from '../../../models/formattedAPI/tBookings';
-import { ApiBookingHistoryModel } from '../../../models/api/bookings';
+} from '@models/formattedAPI/tBookings';
+import { ApiBookingHistoryModel } from '@models/api/bookings';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../../redux/store';
+import { RootState } from '@redux/store';
 import firestore from '@react-native-firebase/firestore';
-import { ApiResponse, ListPayload } from '../../../models/apiModel';
+import { ApiResponse, ListPayload } from '@models/apiModel';
 
 export const HistoryScreen = ({
   navigation,
@@ -129,7 +129,7 @@ export const HistoryScreen = ({
   const renderItem = useCallback(({ item, index }: any) => {
     return (
       <BookingCard
-        props={item}
+        data={item}
         onMessage={navigateToChat}
         onMorePress={(x, y) => onMorePress(index, x, y)}
         navigateToDetails={navigateToDetails}

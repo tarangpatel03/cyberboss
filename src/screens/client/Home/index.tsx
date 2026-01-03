@@ -6,31 +6,31 @@ import {
   View,
 } from 'react-native';
 import { useTheme } from '@shopify/restyle';
-import { Theme } from '../../../config/themes/themes';
-import { createStyles, staticStyle } from './styles';
+import { Theme } from '@config/themes/themes';
+import { createStyles, staticStyle } from '@screens/client/Home/styles';
 import React, { useCallback, useEffect, useState } from 'react';
-import { RootNavigationProps } from '../../../models/navigationModel';
-import { routeName } from '../../../config/constants/routes';
-import { BookingHistoryCard } from '../../../components/Cards/BookingHistoryCard';
-import { ServiceCard } from '../../../components/Cards/ServiceCard';
-import { WorkshopCard } from '../../../components/Cards/WorkshopCard';
-import { ClientHomeScreenShimmer } from '../../../components/Skeleton/clientHome';
+import { RootNavigationProps } from '@models/navigationModel';
+import { routeName } from '@config/constants/routes';
+import { BookingHistoryCard } from '@components/Cards/BookingHistoryCard';
+import { ServiceCard } from '@components/Cards/ServiceCard';
+import { WorkshopCard } from '@components/Cards/WorkshopCard';
+import { ClientHomeScreenShimmer } from '@components/Skeleton/clientHome';
 import { TourGuideZone, useTourGuideController } from 'rn-tourguide';
 import { useIsFocused } from '@react-navigation/native';
-import { setShowTour } from '../../../redux/features/userSlice';
-import { useClientHome } from './useClientHome';
-import { HomeScreenSearchButtons } from '../../../components/Buttons/HomeScreenSearchBar';
-import { TopBarComponent } from '../../../components/Headers/TopBarComponent';
+import { setShowTour } from '@redux/features/userSlice';
+import { useClientHome } from '@screens/client/Home/useClientHome';
+import { HomeScreenSearchButtons } from '@components/Buttons/HomeScreenSearchBar';
+import { TopBarComponent } from '@components/Headers/TopBarComponent';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../../redux/store';
 import { useTranslation } from 'react-i18next';
-import { HomeScreenListHeaderComponent } from '../../../components/Headers/HomeScreenListHeader';
+import { HomeScreenListHeaderComponent } from '@components/Headers/HomeScreenListHeader';
 import {
   TExpertiseModel,
   TWorkshopModel,
-} from '../../../models/formattedAPI/tConsultant';
+} from '@models/formattedAPI/tConsultant';
 import firestore from '@react-native-firebase/firestore';
-import { THomeBookingModel } from '../../../models/formattedAPI/tBookings';
+import { THomeBookingModel } from '@models/formattedAPI/tBookings';
+import { RootState } from '@redux/store';
 
 export const ClientHomeScreen = ({
   navigation,
@@ -137,7 +137,7 @@ export const ClientHomeScreen = ({
 
   const renderBookingItem: ListRenderItem<THomeBookingModel> = useCallback(
     ({ item }) => (
-      <BookingHistoryCard props={item} navigateToChat={navigateToChat} />
+      <BookingHistoryCard data={item} navigateToChat={navigateToChat} />
     ),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [],

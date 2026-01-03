@@ -1,9 +1,9 @@
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import { RegularTextComponent } from '../Text/RegularText';
-import { Theme } from '../../config/themes/themes';
+import { RegularTextComponent } from '@components/Text/RegularText';
+import { Theme } from '@config/themes/themes';
 import { useTheme } from '@shopify/restyle';
-import { appIcons } from '../../config/icons/iconPath';
-import normalize from '../../utils/normalize/normalize';
+import { appIcons } from '@config/icons/iconPath';
+import normalize from '@utils/normalize/normalize';
 import FastImage from 'react-native-fast-image';
 
 type SettingOptionsButtonProps = {
@@ -12,17 +12,13 @@ type SettingOptionsButtonProps = {
   navigate: () => void;
 };
 
-export const SettingOptionsButton = ({
-  icon,
-  navigate,
-  title,
-}: SettingOptionsButtonProps) => {
+export const SettingOptionsButton = (props: SettingOptionsButtonProps) => {
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   return (
     <TouchableOpacity
       activeOpacity={0.7}
-      onPress={navigate}
+      onPress={props.navigate}
       style={staticStyle.container}
     >
       <View style={staticStyle.mainContainer}>
@@ -34,12 +30,12 @@ export const SettingOptionsButton = ({
         >
           <FastImage
             resizeMode={FastImage.resizeMode.contain}
-            source={icon}
+            source={props.icon}
             style={staticStyle.icon}
           />
         </View>
         <RegularTextComponent
-          text={title}
+          text={props.title}
           textStyle={StyleSheet.flatten([staticStyle.text, styles.primaryText])}
         />
       </View>

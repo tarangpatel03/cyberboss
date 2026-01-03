@@ -1,21 +1,21 @@
 import { useTheme } from '@shopify/restyle';
-import { Theme } from '../../../config/themes/themes';
-import { createStyles, staticStyle } from './styles';
-import { RootNavigationProps } from '../../../models/navigationModel';
-import { routeName } from '../../../config/constants/routes';
+import { Theme } from '@config/themes/themes';
+import { createStyles, staticStyle } from '@screens/common/Chat/styles';
+import { RootNavigationProps } from '@models/navigationModel';
+import { routeName } from '@config/constants/routes';
 import { FlatList, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { BottomTabHeader } from '../../../components/Headers/BottomTabHeader';
+import { BottomTabHeader } from '@components/Headers/BottomTabHeader';
 import { useCallback, useEffect, useState } from 'react';
-import { SearchBorderInputComponent } from '../../../components/Input/SearchInput';
-import { ListShimmer } from '../../../components/Skeleton/ListShimmer';
-import { RootState } from '../../../redux/store';
+import { SearchBorderInputComponent } from '@components/Input/SearchInput';
+import { ListShimmer } from '@components/Skeleton/ListShimmer';
+import { RootState } from '@redux/store';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import firestore from '@react-native-firebase/firestore';
-import { ChatListItem } from '../../../components/Cards/ChatListItem';
-import { ListEmptyCard } from '../../../components/Cards/ListEmptyCard';
-import { appImages } from '../../../config/images/imagePath';
+import { ChatListItem } from '@components/Cards/ChatListItem';
+import { ListEmptyCard } from '@components/Cards/ListEmptyCard';
+import { appImages } from '@config/images/imagePath';
 
 export const ChatScreen = ({
   navigation,

@@ -1,6 +1,6 @@
 import RNCalendarEvents, { ISODateString } from 'react-native-calendar-events';
-import { showErrorToast } from '../toast/toast';
-import { appText } from '../../config/text/constantsText';
+import { showErrorToast } from '@utils/toast/toast';
+import { appText } from '@config/text/constantsText';
 import CalenderEvents from 'react-native-calendar-events';
 
 type AddToCalendarProps = {

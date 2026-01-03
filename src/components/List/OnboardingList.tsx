@@ -1,10 +1,10 @@
 import { RefObject, useCallback } from 'react';
 import { FlatList, ListRenderItem } from 'react-native';
-import { OnboardingListComponent } from '../ListItems/OnboardingListItem';
+import { OnboardingListComponent } from '@components/ListItems/OnboardingListItem';
 import {
   onboardingData,
   onboardingDataProps,
-} from '../../screens/common/Onboarding/onboardingData';
+} from '@screens/common/Onboarding/onboardingData';
 
 type OnboardingListProp = {
   flatListRef: RefObject<FlatList | null>;

@@ -1,12 +1,9 @@
 import { useTheme } from '@shopify/restyle';
 import { useTranslation } from 'react-i18next';
-import { Theme } from '../../config/themes/themes';
+import { Theme } from '@config/themes/themes';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
-import { MediumTextComponent } from '../Text/MediumText';
-import {
-  createStyles,
-  staticStyle,
-} from '../../screens/common/auth/LogIn/styles';
+import { MediumTextComponent } from '@components/Text/MediumText';
+import { createStyles, staticStyle } from '@screens/common/auth/LogIn/styles';
 
 type AuthFooterAction = {
   title: string;

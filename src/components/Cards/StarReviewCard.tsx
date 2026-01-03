@@ -1,10 +1,10 @@
 import { useTheme } from '@shopify/restyle';
 import { useTranslation } from 'react-i18next';
 import FastImage from 'react-native-fast-image';
-import { Theme } from '../../config/themes/themes';
+import { Theme } from '@config/themes/themes';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
-import { RegularTextComponent } from '../Text/RegularText';
-import { createStyles, staticStyle } from '../../screens/common/Rating/styles';
+import { RegularTextComponent } from '@components/Text/RegularText';
+import { createStyles, staticStyle } from '@screens/common/Rating/styles';
 
 type StarReviewCardProps = {
   showStar: (starCount: number) => any;

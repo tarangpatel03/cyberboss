@@ -3,14 +3,14 @@ import {
   ConsultantHomeBookingModel,
   ConsultantHomeNotificationModel,
   ApiConsultantHomeModel,
-} from '../api/home';
-import { THomeBookingModel, transformHomeBookingModel } from './tBookings';
+} from '@models/api/home';
+import { THomeBookingModel, transformHomeBookingModel } from '@models/formattedAPI/tBookings';
 import {
   TExpertiseModel,
   TWorkshopModel,
   transformExpertiseModel,
   transformWorkshopModel,
-} from './tConsultant';
+} from '@models/formattedAPI/tConsultant';
 
 export type TClientHomeModel = {
   isSubscriber: boolean;

@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
-import { appColors } from '../../../config/colors/colors';
-import normalize from '../../../utils/normalize/normalize';
+import { appColors } from '@config/colors/colors';
+import normalize from '@utils/normalize/normalize';
 
 export const staticStyle = StyleSheet.create({
   container: {

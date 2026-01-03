@@ -1,10 +1,10 @@
 import { useTranslation } from 'react-i18next';
 import FastImage from 'react-native-fast-image';
-import { MediumTextComponent } from './Text/MediumText';
+import { MediumTextComponent } from '@components/Text/MediumText';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
-import { staticStyle } from '../screens/common/EditProfile/styles';
+import { staticStyle } from '@screens/common/EditProfile/styles';
 import { useState } from 'react';
-import { appImages } from '../config/images/imagePath';
+import { appImages } from '@config/images/imagePath';
 
 type PickProfilePictureContainerProps = {
   pickImage: () => void;

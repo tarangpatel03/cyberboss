@@ -1,5 +1,5 @@
-import { appColors } from '../../config/colors/colors';
-import { appIcons } from '../../config/icons/iconPath';
+import { appColors } from '@config/colors/colors';
+import { appIcons } from '@config/icons/iconPath';
 
 export const getGradientColor = (type: string | undefined) => {
   switch (type) {

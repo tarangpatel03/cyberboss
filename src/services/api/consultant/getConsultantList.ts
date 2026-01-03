@@ -1,5 +1,5 @@
-import { axiosClient } from '../../axios/axiosClient';
-import { endPoints } from '../../../config/endPoint/apiEndPoint';
+import { axiosClient } from '@services/axios/axiosClient';
+import { endPoints } from '@config/endPoint/apiEndPoint';
 
 export const getConsultantList = async <T>(
   id: string,

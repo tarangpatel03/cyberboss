@@ -1,4 +1,4 @@
-import { appColors } from '../colors/colors';
+import { appColors } from '@config/colors/colors';
 import { createTheme } from '@shopify/restyle';
 
 export const LightTheme = createTheme({

@@ -1,8 +1,8 @@
 import { StyleSheet, View } from 'react-native';
-import { RegularTextComponent } from './Text/RegularText';
-import { Theme } from '../config/themes/themes';
+import { RegularTextComponent } from '@components/Text/RegularText';
+import { Theme } from '@config/themes/themes';
 import { useTheme } from '@shopify/restyle';
-import normalize from '../utils/normalize/normalize';
+import normalize from '@utils/normalize/normalize';
 
 type BillDetailsComponentProps = {
   title: string;

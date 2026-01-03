@@ -1,15 +1,15 @@
 import {
   createStyles,
   staticStyle,
-} from '../../screens/client/ConsultantProfile/styles';
+} from '@screens/client/ConsultantProfile/styles';
 import { memo } from 'react';
 import { useTheme } from '@shopify/restyle';
 import { Rating } from 'react-native-ratings';
 import { StyleSheet, View } from 'react-native';
 import FastImage from 'react-native-fast-image';
-import { Theme } from '../../config/themes/themes';
-import { MediumTextComponent } from '../Text/MediumText';
-import { RegularTextComponent } from '../Text/RegularText';
+import { Theme } from '@config/themes/themes';
+import { MediumTextComponent } from '@components/Text/MediumText';
+import { RegularTextComponent } from '@components/Text/RegularText';
 
 type ReviewCardProps = {
   item: any;

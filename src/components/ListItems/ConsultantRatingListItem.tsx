@@ -2,13 +2,13 @@ import { useTheme } from '@shopify/restyle';
 import { Rating } from 'react-native-ratings';
 import { useTranslation } from 'react-i18next';
 import { View, StyleSheet } from 'react-native';
-import { Theme } from '../../config/themes/themes';
-import { MediumTextComponent } from '../Text/MediumText';
-import { staticStyle } from '../Skeleton/consultantProfile/styles';
-import { RegularTextComponent } from '../Text/RegularText';
-import { SemiBoldTextComponent } from '../Text/SemiBoldText';
-import { createStyles } from '../../screens/client/ConsultantProfile/styles';
-import { TConsultantDetailsModel } from '../../models/formattedAPI/tConsultant';
+import { Theme } from '@config/themes/themes';
+import { MediumTextComponent } from '@components/Text/MediumText';
+import { staticStyle } from '@components/Skeleton/consultantProfile/styles';
+import { RegularTextComponent } from '@components/Text/RegularText';
+import { SemiBoldTextComponent } from '@components/Text/SemiBoldText';
+import { createStyles } from '@screens/client/ConsultantProfile/styles';
+import { TConsultantDetailsModel } from '@models/formattedAPI/tConsultant';
 
 type ConsultantRatingsListProps = {
   data: TConsultantDetailsModel;

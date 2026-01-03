@@ -1,4 +1,4 @@
-import { ApiExpertiseModel, Services } from './consultant';
+import { ApiExpertiseModel, Services } from '@models/api/consultant';
 
 export type ApiProfileModel = {
   id: string;

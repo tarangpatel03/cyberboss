@@ -6,12 +6,12 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import { MediumTextComponent } from '../Text/MediumText';
-import { RegularTextComponent } from '../Text/RegularText';
-import { Theme } from '../../config/themes/themes';
-import normalize from '../../utils/normalize/normalize';
+import { MediumTextComponent } from '@components/Text/MediumText';
+import { RegularTextComponent } from '@components/Text/RegularText';
+import { Theme } from '@config/themes/themes';
+import normalize from '@utils/normalize/normalize';
 import { useTheme } from '@shopify/restyle';
-import { appColors } from '../../config/colors/colors';
+import { appColors } from '@config/colors/colors';
 import { useTranslation } from 'react-i18next';
 
 type LogOutModalProps = {

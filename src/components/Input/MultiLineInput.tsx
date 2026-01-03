@@ -7,13 +7,13 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
-import { Theme } from '../../config/themes/themes';
-import normalize from '../../utils/normalize/normalize';
-import { appColors } from '../../config/colors/colors';
+import { Theme } from '@config/themes/themes';
+import normalize from '@utils/normalize/normalize';
+import { appColors } from '@config/colors/colors';
 import { Dispatch, SetStateAction, useState } from 'react';
-import { RegularTextComponent } from '../Text/RegularText';
-import { isDarkMode } from '../../utils/theme/darkMode';
-import { appImages } from '../../config/images/imagePath';
+import { RegularTextComponent } from '@components/Text/RegularText';
+import { isDarkMode } from '@utils/theme/darkMode';
+import { appImages } from '@config/images/imagePath';
 import FastImage from 'react-native-fast-image';
 
 type MultiLineInputComponentProps = {

@@ -1,8 +1,8 @@
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import { Theme } from '../../config/themes/themes';
+import { Theme } from '@config/themes/themes';
 import { useTheme } from '@shopify/restyle';
-import normalize from '../../utils/normalize/normalize';
-import { RegularTextComponent } from '../Text/RegularText';
+import normalize from '@utils/normalize/normalize';
+import { RegularTextComponent } from '@components/Text/RegularText';
 import { memo } from 'react';
 
 type ThemeSelectionCardProps = {

@@ -1,27 +1,27 @@
 import { ScrollView, StyleSheet, View } from 'react-native';
 import { useTheme } from '@shopify/restyle';
-import { createStyles, staticStyle } from './styles';
-import { Theme } from '../../../config/themes/themes';
-import { routeName } from '../../../config/constants/routes';
+import { createStyles, staticStyle } from '@screens/common/Profile/styles';
+import { Theme } from '@config/themes/themes';
+import { routeName } from '@config/constants/routes';
 import {
   SafeAreaView,
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
-import { RootNavigationProps } from '../../../models/navigationModel';
-import { BottomTabHeader } from '../../../components/Headers/BottomTabHeader';
-import { RegularTextComponent } from '../../../components/Text/RegularText';
-import { ThemeModal } from '../../../components/Modal/ThemeModal';
+import { RootNavigationProps } from '@models/navigationModel';
+import { BottomTabHeader } from '@components/Headers/BottomTabHeader';
+import { RegularTextComponent } from '@components/Text/RegularText';
+import { ThemeModal } from '@components/Modal/ThemeModal';
 import { useEffect, useState } from 'react';
-import { LogOutModal } from '../../../components/Modal/LogOutModal';
-import { clearUser } from '../../../redux/features/userSlice';
+import { LogOutModal } from '@components/Modal/LogOutModal';
+import { clearUser } from '@redux/features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../../redux/store';
+import { RootState } from '@redux/store';
 import { useTranslation } from 'react-i18next';
-import { ProfileCard } from '../../../components/Cards/ProfileCard';
-import { ProfileOptionsRow } from '../../../components/Cards/ProfileOptionsRow';
-import { GeneralSettings } from '../../../components/GeneralSettings';
-import { AuthOptions } from '../../../components/AuthOptions';
-import { logOut } from '../../../services/firebase/auth/auth';
+import { ProfileCard } from '@components/Cards/ProfileCard';
+import { ProfileOptionsRow } from '@components/Cards/ProfileOptionsRow';
+import { AuthOptions } from '@components/Auth/AuthOptions';
+import { logOut } from '@services/firebase/auth/auth';
+import { GeneralSettings } from '@components/Settings/GeneralSettings';
 
 export const ProfileScreen = ({
   navigation,

@@ -1,9 +1,9 @@
 import i18n from 'i18next';
-import en from './en.json';
-import fr from './fr.json';
-import ar from './ar.json';
-import jp from './jp.json';
-import es from './es.json';
+import en from '@locale/en.json';
+import fr from '@locale/fr.json';
+import ar from '@locale/ar.json';
+import jp from '@locale/jp.json';
+import es from '@locale/es.json';
 import { initReactI18next } from 'react-i18next';
 
 const resources = {

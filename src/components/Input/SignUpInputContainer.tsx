@@ -1,18 +1,18 @@
 import {
   createStyles,
   staticStyle,
-} from '../../screens/common/auth/SignUp/styles';
+} from '@screens/common/auth/SignUp/styles';
 import { useTheme } from '@shopify/restyle';
 import { useTranslation } from 'react-i18next';
 import FastImage from 'react-native-fast-image';
 import { Dispatch, SetStateAction } from 'react';
-import { Theme } from '../../config/themes/themes';
-import { appIcons } from '../../config/icons/iconPath';
-import { CustomInputComponent } from './EmailAndPasswordInput';
+import { Theme } from '@config/themes/themes';
+import { appIcons } from '@config/icons/iconPath';
+import { CustomInputComponent } from '@components/Input/EmailAndPasswordInput';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
-import { PrimaryButtonComponent } from '../Buttons/PrimaryButton';
-import { RegularTextComponent } from '../Text/RegularText';
-import { CircularIconButtonComponent } from '../Buttons/CircularIconButton';
+import { PrimaryButtonComponent } from '@components/Buttons/PrimaryButton';
+import { RegularTextComponent } from '@components/Text/RegularText';
+import { CircularIconButtonComponent } from '@components/Buttons/CircularIconButton';
 
 type SignUpInputContainerProps = {
   email: string;

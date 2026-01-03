@@ -1,21 +1,21 @@
 import { ListRenderItem, ScrollView, StatusBar, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { routeName } from '../../../config/constants/routes';
-import { RootNavigationProps } from '../../../models/navigationModel';
-import { staticStyle } from './styles';
+import { routeName } from '@config/constants/routes';
+import { RootNavigationProps } from '@models/navigationModel';
+import { staticStyle } from '@screens/client/Subscription/styles';
 import { useCallback, useEffect, useState } from 'react';
-import { getAPIData } from '../../../services/api/common/getCommonApi';
-import { WorkshopFlatListCard } from '../../../components/Cards/WorkShopFlatlistCard';
-import { endPoints } from '../../../config/endPoint/apiEndPoint';
-import { SubscriptionHeader } from '../../../components/Headers/SubscriptionHeader';
-import { SubscriptionTrustedUser } from '../../../components/SubscriptionTrustedUser';
-import { SubscriptionBenefitsCard } from '../../../components/Cards/SubscriptionBenefitsCard';
-import { UpcomingWorkShopsList } from '../../../components/List/UpcomingWorkShopsList';
-import { SubscriptionBottomBar } from '../../../components/SubscriptionBottomBar';
-import { ApiClientHomeModel } from '../../../models/api/home';
-import { TWorkshopModel } from '../../../models/formattedAPI/tConsultant';
-import { transformClientHomeModal } from '../../../models/formattedAPI/tHome';
-import { ApiResponse } from '../../../models/apiModel';
+import { getAPIData } from '@services/api/common/getCommonApi';
+import { WorkshopFlatListCard } from '@components/Cards/WorkShopFlatlistCard';
+import { endPoints } from '@config/endPoint/apiEndPoint';
+import { SubscriptionHeader } from '@components/Headers/SubscriptionHeader';
+import { SubscriptionBenefitsCard } from '@components/Cards/SubscriptionBenefitsCard';
+import { UpcomingWorkShopsList } from '@components/List/UpcomingWorkShopsList';
+import { ApiClientHomeModel } from '@models/api/home';
+import { TWorkshopModel } from '@models/formattedAPI/tConsultant';
+import { transformClientHomeModal } from '@models/formattedAPI/tHome';
+import { ApiResponse } from '@models/apiModel';
+import { SubscriptionBottomBar } from '@components/Subscription/SubscriptionBottomBar';
+import { SubscriptionTrustedUser } from '@components/Subscription/SubscriptionTrustedUser';
 
 export type linearGradientDirection = {
   start: { x: number; y: number };

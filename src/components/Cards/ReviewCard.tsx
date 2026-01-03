@@ -2,16 +2,16 @@ import { useTheme } from '@shopify/restyle';
 import { View, StyleSheet } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { Rating } from 'react-native-ratings';
-import { appImages } from '../../config/images/imagePath';
-import { getFullDate } from '../../utils/format/formatDate';
-import { MediumTextComponent } from '../Text/MediumText';
-import { RegularTextComponent } from '../Text/RegularText';
-import { Theme } from '../../config/themes/themes';
+import { appImages } from '@config/images/imagePath';
+import { getFullDate } from '@utils/format/formatDate';
+import { MediumTextComponent } from '@components/Text/MediumText';
+import { RegularTextComponent } from '@components/Text/RegularText';
+import { Theme } from '@config/themes/themes';
 import {
   createStyles,
   staticStyle,
-} from '../../screens/client/ConsultantProfile/styles';
-import { TRatingReviewModel } from '../../models/formattedAPI/tConsultant';
+} from '@screens/client/ConsultantProfile/styles';
+import { TRatingReviewModel } from '@models/formattedAPI/tConsultant';
 import { memo } from 'react';
 
 export const ReviewCard = memo((props: TRatingReviewModel) => {

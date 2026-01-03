@@ -1,4 +1,4 @@
-import { appImages } from '../../../config/images/imagePath';
+import { appImages } from '@config/images/imagePath';
 
 export type onboardingDataProps = {
   id: string;

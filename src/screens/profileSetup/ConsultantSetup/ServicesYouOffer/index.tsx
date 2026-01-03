@@ -1,21 +1,21 @@
 import { StyleSheet, View } from 'react-native';
-import { routeName } from '../../../../config/constants/routes';
-import { RootNavigationProps } from '../../../../models/navigationModel';
+import { routeName } from '@config/constants/routes';
+import { RootNavigationProps } from '@models/navigationModel';
 import { useTheme } from '@shopify/restyle';
-import { Theme } from '../../../../config/themes/themes';
-import { createStyles, staticStyle } from './styles';
+import { Theme } from '@config/themes/themes';
+import { createStyles, staticStyle } from '@screens/profileSetup/ConsultantSetup/ServicesYouOffer/styles';
 import { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { CircularIconButtonComponent } from '../../../../components/Buttons/CircularIconButton';
-import { appIcons } from '../../../../config/icons/iconPath';
-import { SemiBoldTextComponent } from '../../../../components/Text/SemiBoldText';
-import { RegularTextComponent } from '../../../../components/Text/RegularText';
-import { BorderInputComponent } from '../../../../components/Input/BorderInput';
-import { ServiceListCard } from '../../../../components/Cards/ServiceListCard';
-import { PrimaryButtonComponent } from '../../../../components/Buttons/PrimaryButton';
+import { CircularIconButtonComponent } from '@components/Buttons/CircularIconButton';
+import { appIcons } from '@config/icons/iconPath';
+import { SemiBoldTextComponent } from '@components/Text/SemiBoldText';
+import { RegularTextComponent } from '@components/Text/RegularText';
+import { BorderInputComponent } from '@components/Input/BorderInput';
+import { ServiceListCard } from '@components/Cards/ServiceListCard';
+import { PrimaryButtonComponent } from '@components/Buttons/PrimaryButton';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
-import { setUserData } from '../../../../redux/features/userSlice';
+import { setUserData } from '@redux/features/userSlice';
 
 export const ServicesYouOfferScreen = ({
   navigation,

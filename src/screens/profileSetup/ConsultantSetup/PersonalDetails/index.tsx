@@ -1,30 +1,30 @@
 import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { useTheme } from '@shopify/restyle';
-import { Theme } from '../../../../config/themes/themes';
-import { createStyles, staticStyle } from './styles';
+import { Theme } from '@config/themes/themes';
+import { createStyles, staticStyle } from '@screens/profileSetup/ConsultantSetup/PersonalDetails/styles';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { PrimaryButtonComponent } from '../../../../components/Buttons/PrimaryButton';
-import { CircularIconButtonComponent } from '../../../../components/Buttons/CircularIconButton';
-import { appIcons } from '../../../../config/icons/iconPath';
-import { routeName } from '../../../../config/constants/routes';
-import { RootNavigationProps } from '../../../../models/navigationModel';
-import { MediumTextComponent } from '../../../../components/Text/MediumText';
+import { PrimaryButtonComponent } from '@components/Buttons/PrimaryButton';
+import { CircularIconButtonComponent } from '@components/Buttons/CircularIconButton';
+import { appIcons } from '@config/icons/iconPath';
+import { routeName } from '@config/constants/routes';
+import { RootNavigationProps } from '@models/navigationModel';
+import { MediumTextComponent } from '@components/Text/MediumText';
 import { useState } from 'react';
-import { appImages } from '../../../../config/images/imagePath';
+import { appImages } from '@config/images/imagePath';
 import {
   ImageLibraryOptions,
   launchImageLibrary,
 } from 'react-native-image-picker';
-import { SemiBoldTextComponent } from '../../../../components/Text/SemiBoldText';
-import { RegularTextComponent } from '../../../../components/Text/RegularText';
-import { BioInputComponent } from '../../../../components/Input/MultiLineInput';
+import { SemiBoldTextComponent } from '@components/Text/SemiBoldText';
+import { RegularTextComponent } from '@components/Text/RegularText';
+import { BioInputComponent } from '@components/Input/MultiLineInput';
 import FastImage from 'react-native-fast-image';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../../../redux/store';
+import { RootState } from '@redux/store';
 import firestore from '@react-native-firebase/firestore';
-import { updateConsultantProfileSetup } from '../../../../services/api/profile/updateProfile';
-import { CustomInputComponent } from '../../../../components/Input/EmailAndPasswordInput';
+import { updateConsultantProfileSetup } from '@services/api/profile/updateProfile';
+import { CustomInputComponent } from '@components/Input/EmailAndPasswordInput';
 
 export const PersonalDetailsScreen = ({
   navigation,
@@ -34,9 +34,8 @@ export const PersonalDetailsScreen = ({
   const styles = createStyles(theme);
   const [name, setName] = useState<string>('');
   const [experience, setExperience] = useState<string>('');
-  const id = useSelector((state: RootState) => state.user.userData.id);
   const [bio, setBio] = useState<string | null>(null);
-  const { expertises, services } = useSelector(
+  const { expertises, services, id } = useSelector(
     (state: RootState) => state.user.userData,
   );
 

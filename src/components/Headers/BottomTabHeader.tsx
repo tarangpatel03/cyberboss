@@ -1,10 +1,10 @@
 import { useTheme } from '@shopify/restyle';
-import { Theme } from '../../config/themes/themes';
+import { Theme } from '@config/themes/themes';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import { MediumTextComponent } from '../Text/MediumText';
-import normalize from '../../utils/normalize/normalize';
-import { appIcons } from '../../config/icons/iconPath';
-import { appColors } from '../../config/colors/colors';
+import { MediumTextComponent } from '@components/Text/MediumText';
+import normalize from '@utils/normalize/normalize';
+import { appIcons } from '@config/icons/iconPath';
+import { appColors } from '@config/colors/colors';
 import FastImage from 'react-native-fast-image';
 
 type BottomTabHeaderProp = {

@@ -2,7 +2,7 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 import { appImages } from '../../config/images/imagePath';
 
-export type userDetailProps = {
+export type UserDetailProps = {
   id: string;
   name: string;
   email: string;
@@ -19,7 +19,7 @@ export type userDetailProps = {
   profile_setup: boolean;
 };
 
-export type updateUserDetailProps = {
+export type UpdateUserDetailProps = {
   id?: string;
   name?: string;
   email?: string;
@@ -41,7 +41,7 @@ export interface UserState {
   isFirstTime: boolean;
   showTour: boolean;
   isPro: boolean | undefined;
-  userData: userDetailProps;
+  userData: UserDetailProps;
 }
 
 const initialState: UserState = {
@@ -83,7 +83,7 @@ export const userSlice = createSlice({
     setShowTour: (state, action: PayloadAction<boolean>) => {
       state.showTour = action.payload;
     },
-    setUserData: (state, action: PayloadAction<updateUserDetailProps>) => {
+    setUserData: (state, action: PayloadAction<UpdateUserDetailProps>) => {
       if (action.payload.bio !== undefined)
         state.userData.bio = action.payload.bio;
       if (action.payload.email !== undefined)

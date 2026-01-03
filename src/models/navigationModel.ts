@@ -1,21 +1,14 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { ratingProps } from '../demoData/bookingHistory';
+import { RatingProps } from '../demoData/bookingHistory';
 
-export type clientBottomNavigationParams = {
+export type ClientBottomNavigationParams = {
   Home: undefined;
   History: undefined;
   Profile: undefined;
   Chat: undefined;
 };
 
-export type consultantBottomNavigationParams = {
-  ConsultantHome: undefined;
-  History: undefined;
-  Profile: undefined;
-  Chat: undefined;
-};
-
-export type rootNavigationParams = {
+export type RootNavigationParams = {
   Onboarding: undefined;
   LogIn: undefined;
   SignUp: undefined;
@@ -39,7 +32,7 @@ export type rootNavigationParams = {
   EditProfile: undefined;
   ChangePassword: undefined;
   BookingSummary: { id: string };
-  YourRating: ratingProps;
+  YourRating: RatingProps;
   ConsultantProfile: { consultantId: string; type: string };
   BookingDetails: { consultantId: string; type: string };
   BookingConfirm: {
@@ -54,9 +47,7 @@ export type rootNavigationParams = {
   Subscription: undefined;
 };
 
-export type appParamList = rootNavigationParams &
-  clientBottomNavigationParams &
-  consultantBottomNavigationParams;
+export type AppParamList = RootNavigationParams & ClientBottomNavigationParams;
 
-export type rootNavigationProps<T extends keyof appParamList> =
-  NativeStackScreenProps<appParamList, T>;
+export type RootNavigationProps<T extends keyof AppParamList> =
+  NativeStackScreenProps<AppParamList, T>;

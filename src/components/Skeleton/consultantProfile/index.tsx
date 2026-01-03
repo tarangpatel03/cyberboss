@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { createStyles, staticStyle } from './styles';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import { ShimmerHolder } from '../ShimmerHolder';
-import { MediumTextComponent } from '../../Text/MediumTextComponent';
+import { MediumTextComponent } from '../../Text/MediumText';
 import { PrimaryButtonComponent } from '../../Buttons/PrimaryButton';
 import { Theme } from '../../../config/themes/themes';
 

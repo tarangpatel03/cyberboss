@@ -3,19 +3,19 @@ import { Theme } from '../../config/themes/themes';
 import { useTheme } from '@shopify/restyle';
 import normalize from '../../utils/normalize/normalize';
 import { appIcons } from '../../config/icons/iconPath';
-import { RegularTextComponent } from '../Text/RegularTextComponent';
+import { RegularTextComponent } from '../Text/RegularText';
 import FastImage from 'react-native-fast-image';
 import { memo } from 'react';
 import { formatFirebaseTimestamp } from '../../utils/format/formatDate';
 
-type oneOnOneCardProps = {
+type OneOnOneCardProps = {
   senderId: string;
   uid: string;
   message: string;
   timestamp: string;
 };
 
-export const OneOnOneCard = memo((props: oneOnOneCardProps) => {
+export const OneOnOneCard = memo((props: OneOnOneCardProps) => {
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   return (

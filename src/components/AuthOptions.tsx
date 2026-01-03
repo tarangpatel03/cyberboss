@@ -3,18 +3,18 @@ import { useTranslation } from 'react-i18next';
 import { StyleSheet, View } from 'react-native';
 import { Theme } from '../config/themes/themes';
 import { appIcons } from '../config/icons/iconPath';
-import { MediumTextComponent } from './Text/MediumTextComponent';
-import { SettingOptionsButton } from './Buttons/SettingsOptionsComponent';
+import { MediumTextComponent } from './Text/MediumText';
+import { SettingOptionsButton } from './Buttons/SettingsButton';
 import { staticStyle, createStyles } from '../screens/common/Profile/styles';
 import { Dispatch, SetStateAction } from 'react';
 
-type authOptionsProps = {
+type AuthOptionsProps = {
   role: 'client' | 'consultant';
   setLogOutVisible: Dispatch<SetStateAction<boolean>>;
   setDeleteVisible: Dispatch<SetStateAction<boolean>>;
 };
 
-export const AuthOptions = (props: authOptionsProps) => {
+export const AuthOptions = (props: AuthOptionsProps) => {
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);

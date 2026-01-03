@@ -5,12 +5,12 @@ import {
   TouchableOpacity,
   ViewStyle,
 } from 'react-native';
-import { MediumTextComponent } from '../Text/MediumTextComponent';
+import { MediumTextComponent } from '../Text/MediumText';
 import normalize from '../../utils/normalize/normalize';
 import { appColors } from '../../config/colors/colors';
 import FastImage from 'react-native-fast-image';
 
-type primaryButtonWithIconComponentProps = {
+type PrimaryButtonWithIconComponentProps = {
   text: string;
   textStyle: StyleProp<TextStyle>;
   buttonStyle: StyleProp<ViewStyle>;
@@ -19,7 +19,7 @@ type primaryButtonWithIconComponentProps = {
 };
 
 export const PrimaryButtonWithIconComponent = (
-  props: primaryButtonWithIconComponentProps,
+  props: PrimaryButtonWithIconComponentProps,
 ) => {
   return (
     <TouchableOpacity

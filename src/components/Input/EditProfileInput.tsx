@@ -9,9 +9,9 @@ import { Dispatch, SetStateAction } from 'react';
 import { Theme } from '../../config/themes/themes';
 import { BorderInputComponent } from './BorderInput';
 import { BioInputComponent } from './MultiLineInput';
-import { RegularTextComponent } from '../Text/RegularTextComponent';
+import { RegularTextComponent } from '../Text/RegularText';
 
-type editProfileInputsProps = {
+type EditProfileInputsProps = {
   email: string;
   bio: string | null;
   name: string | null;
@@ -22,7 +22,7 @@ type editProfileInputsProps = {
   setExperience?: Dispatch<SetStateAction<string | null>>;
 };
 
-export const EditProfileInputs = (props: editProfileInputsProps) => {
+export const EditProfileInputs = (props: EditProfileInputsProps) => {
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);

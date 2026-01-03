@@ -7,15 +7,15 @@ import { useTranslation } from 'react-i18next';
 import { View, StyleSheet } from 'react-native';
 import { Theme } from '../../config/themes/themes';
 import { ConsultantInfoBadge } from '../ConsultantInfoBadge';
-import { MediumTextComponent } from '../Text/MediumTextComponent';
-import { tConsultantDetailsModel } from '../../models/formattedAPI/tConsultant';
+import { MediumTextComponent } from '../Text/MediumText';
+import { TConsultantDetailsModel } from '../../models/formattedAPI/tConsultant';
 
-type consultantExpertiseCardProps = {
-  data: tConsultantDetailsModel;
+type ConsultantExpertiseCardProps = {
+  data: TConsultantDetailsModel;
 };
 
 export const ConsultantExpertiseCard = (
-  props: consultantExpertiseCardProps,
+  props: ConsultantExpertiseCardProps,
 ) => {
   const { t } = useTranslation();
   const theme = useTheme<Theme>();

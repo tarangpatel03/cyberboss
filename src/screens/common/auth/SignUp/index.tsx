@@ -4,7 +4,7 @@ import { Theme } from '../../../../config/themes/themes';
 import { createStyles, staticStyle } from './styles';
 import { appImages } from '../../../../config/images/imagePath';
 import { routeName } from '../../../../config/constants/routes';
-import { rootNavigationProps } from '../../../../models/navigationModel';
+import { RootNavigationProps } from '../../../../models/navigationModel';
 import { useState } from 'react';
 import { isDarkMode } from '../../../../utils/theme/darkMode';
 import {
@@ -21,12 +21,16 @@ import { AuthFooterAction } from '../../../../components/Buttons/HorizontalTextB
 import { SignUpInputContainer } from '../../../../components/Input/SignUpInputContainer';
 import { setUser, setUserData } from '../../../../redux/features/userSlice';
 import { useDispatch } from 'react-redux';
-import { signUp } from '../../../../services/firebase/auth/auth';
+import {
+  appleLogIn,
+  googleLogIn,
+  signUp,
+} from '../../../../services/firebase/auth/auth';
 import firestore from '@react-native-firebase/firestore';
 
 export const SignUpScreen = ({
   navigation,
-}: rootNavigationProps<routeName.SignUp>) => {
+}: RootNavigationProps<routeName.SignUp>) => {
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
@@ -64,6 +68,39 @@ export const SignUpScreen = ({
       timestamp: firestore.FieldValue.serverTimestamp(),
       lastonlineTimeTimestamp: firestore.FieldValue.serverTimestamp(),
     });
+  };
+
+  const handleAppleLogIn = async () => {
+    try {
+      const res = await appleLogIn();
+
+      if (res) {
+        dispatch(setUser(res.userToken.access_token));
+
+        dispatch(
+          setUserData({
+            firebaseUid: res.uid,
+            role: res.userToken.role,
+          }),
+        );
+        navigateToProfileSetUp();
+      }
+    } catch (error) {
+      console.log(error);
+      showErrorToast({ title: 'Apple login failed' });
+    }
+  };
+
+  const handleGoogleLogIn = async () => {
+    try {
+      const res = await googleLogIn();
+      if (res) {
+        dispatch(setUser(res));
+        navigateToProfileSetUp();
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleSignUp = async () => {
@@ -122,8 +159,9 @@ export const SignUpScreen = ({
               handleSignUp={handleSignUp}
             />
             <SocialLogIn
+              handleAppleLogIn={handleAppleLogIn}
               getTintColor={getTintColor}
-              handleGoogleLogIn={() => {}}
+              handleGoogleLogIn={handleGoogleLogIn}
             />
           </View>
         </View>

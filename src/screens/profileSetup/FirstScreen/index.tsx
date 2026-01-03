@@ -3,10 +3,10 @@ import { createStyles, staticStyle } from './styles';
 import { Theme } from '../../../config/themes/themes';
 import { useTheme } from '@shopify/restyle';
 import { routeName } from '../../../config/constants/routes';
-import { rootNavigationProps } from '../../../models/navigationModel';
+import { RootNavigationProps } from '../../../models/navigationModel';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { SemiBoldTextComponent } from '../../../components/Text/SemiBoldTextComponent';
-import { RegularTextComponent } from '../../../components/Text/RegularTextComponent';
+import { SemiBoldTextComponent } from '../../../components/Text/SemiBoldText';
+import { RegularTextComponent } from '../../../components/Text/RegularText';
 import { RoleSelectionCard } from '../../../components/Cards/RoleSelectionCard';
 import { useState } from 'react';
 import { PrimaryButtonComponent } from '../../../components/Buttons/PrimaryButton';
@@ -14,7 +14,7 @@ import { useTranslation } from 'react-i18next';
 
 export const ProfileSetUpScreen = ({
   navigation,
-}: rootNavigationProps<routeName.ProfileSetUp>) => {
+}: RootNavigationProps<routeName.ProfileSetUp>) => {
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);

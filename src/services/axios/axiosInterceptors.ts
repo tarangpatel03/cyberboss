@@ -1,6 +1,6 @@
 import { createNavigationContainerRef } from '@react-navigation/native';
 import { axiosClient } from './axiosClient';
-import { rootNavigationParams } from '../../models/navigationModel';
+import { RootNavigationParams } from '../../models/navigationModel';
 import { store } from '../../redux/store';
 import { routeName } from '../../config/constants/routes';
 import { showErrorToast } from '../../utils/toast/toast';
@@ -8,7 +8,7 @@ import { appText } from '../../config/text/constantsText';
 import { clearUser } from '../../redux/features/userSlice';
 
 export const navigationRef =
-  createNavigationContainerRef<rootNavigationParams>();
+  createNavigationContainerRef<RootNavigationParams>();
 
 axiosClient.interceptors.request.use(config => {
   const state = store.getState();

@@ -12,28 +12,28 @@ import { appIcons } from '../../../config/icons/iconPath';
 import { appImages } from '../../../config/images/imagePath';
 import { routeName } from '../../../config/constants/routes';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { rootNavigationProps } from '../../../models/navigationModel';
+import { RootNavigationProps } from '../../../models/navigationModel';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { PrimaryButtonComponent } from '../../../components/Buttons/PrimaryButton';
-import { MediumTextComponent } from '../../../components/Text/MediumTextComponent';
-import { RegularTextComponent } from '../../../components/Text/RegularTextComponent';
-import { SemiBoldTextComponent } from '../../../components/Text/SemiBoldTextComponent';
+import { MediumTextComponent } from '../../../components/Text/MediumText';
+import { RegularTextComponent } from '../../../components/Text/RegularText';
+import { SemiBoldTextComponent } from '../../../components/Text/SemiBoldText';
 import { CircularIconButtonComponent } from '../../../components/Buttons/CircularIconButton';
 import { updateClientProfile } from '../../../services/api/profile/updateProfile';
 import { CustomInputComponent } from '../../../components/Input/EmailAndPasswordInput';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUserData } from '../../../redux/features/userSlice';
 import firestore from '@react-native-firebase/firestore';
-import { rootState } from '../../../redux/store';
+import { RootState } from '../../../redux/store';
 
 export const ClientProfileSetUpScreen = ({
   navigation,
-}: rootNavigationProps<routeName.ClientProfileSetUp>) => {
+}: RootNavigationProps<routeName.ClientProfileSetUp>) => {
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   const dispatch = useDispatch();
-  const id = useSelector((state: rootState) => state.user.userData.id);
+  const id = useSelector((state: RootState) => state.user.userData.id);
   const [userName, setUserName] = useState<string>('');
   const [profileImage, setProfileImage] = useState<
     number | { uri: string } | undefined

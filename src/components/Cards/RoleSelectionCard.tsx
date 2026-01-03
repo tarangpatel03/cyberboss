@@ -1,19 +1,19 @@
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import { MediumTextComponent } from '../Text/MediumTextComponent';
-import { RegularTextComponent } from '../Text/RegularTextComponent';
+import { MediumTextComponent } from '../Text/MediumText';
+import { RegularTextComponent } from '../Text/RegularText';
 import { Theme } from '../../config/themes/themes';
 import { useTheme } from '@shopify/restyle';
 import normalize from '../../utils/normalize/normalize';
 import { memo } from 'react';
 
-type roleSelectionCardProps = {
+type RoleSelectionCardProps = {
   title: string;
   subtitle: string;
   isSelected: boolean;
   onPress: () => void;
 };
 
-export const RoleSelectionCard = memo((props: roleSelectionCardProps) => {
+export const RoleSelectionCard = memo((props: RoleSelectionCardProps) => {
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   return (

@@ -3,16 +3,17 @@ import { useTranslation } from 'react-i18next';
 import { Theme } from '../config/themes/themes';
 import { appIcons } from '../config/icons/iconPath';
 import { View, StyleSheet, Platform } from 'react-native';
-import { RegularTextComponent } from './Text/RegularTextComponent';
+import { RegularTextComponent } from './Text/RegularText';
 import { CircularIconButtonComponent } from './Buttons/CircularIconButton';
 import { createStyles, staticStyle } from '../screens/common/auth/LogIn/styles';
 
-type socialLogInProps = {
+type SocialLogInProps = {
   getTintColor: () => string;
+  handleAppleLogIn: () => void;
   handleGoogleLogIn: () => Promise<void> | void;
 };
 
-export const SocialLogIn = (props: socialLogInProps) => {
+export const SocialLogIn = (props: SocialLogInProps) => {
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
@@ -36,8 +37,8 @@ export const SocialLogIn = (props: socialLogInProps) => {
           ])}
         />
       </View>
-      {Platform.OS === 'ios' ? (
-        <View style={staticStyle.bottomButtons}>
+      <View style={staticStyle.bottomButtons}>
+        {Platform.OS === 'ios' ? (
           <CircularIconButtonComponent
             buttonStyle={StyleSheet.flatten([
               StyleSheet.flatten([staticStyle.button, styles.button]),
@@ -45,19 +46,9 @@ export const SocialLogIn = (props: socialLogInProps) => {
             iconPath={appIcons.ic_apple}
             iconStyle={staticStyle.buttonIcon}
             tintColor={props.getTintColor()}
-            onPress={() => {}}
+            onPress={props.handleAppleLogIn}
           />
-          <CircularIconButtonComponent
-            buttonStyle={StyleSheet.flatten([
-              staticStyle.button,
-              styles.button,
-            ])}
-            iconPath={appIcons.ic_google}
-            iconStyle={staticStyle.googleButtonIcon}
-            onPress={props.handleGoogleLogIn}
-          />
-        </View>
-      ) : (
+        ) : null}
         <View style={staticStyle.bottomButtons}>
           <CircularIconButtonComponent
             buttonStyle={StyleSheet.flatten([
@@ -69,7 +60,7 @@ export const SocialLogIn = (props: socialLogInProps) => {
             onPress={props.handleGoogleLogIn}
           />
         </View>
-      )}
+      </View>
     </View>
   );
 };

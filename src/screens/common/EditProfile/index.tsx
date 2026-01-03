@@ -9,8 +9,8 @@ import { createStyles, staticStyle } from './styles';
 import { Theme } from '../../../config/themes/themes';
 import { routeName } from '../../../config/constants/routes';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { rootNavigationProps } from '../../../models/navigationModel';
-import { ScreenHeaderComponent } from '../../../components/Headers/ScreenHeaderComponent';
+import { RootNavigationProps } from '../../../models/navigationModel';
+import { ScreenHeaderComponent } from '../../../components/Headers/ScreenHeader';
 import { PrimaryButtonComponent } from '../../../components/Buttons/PrimaryButton';
 import { getAPIData } from '../../../services/api/common/getCommonApi';
 import { endPoints } from '../../../config/endPoint/apiEndPoint';
@@ -18,30 +18,30 @@ import { useTranslation } from 'react-i18next';
 import { updateClientProfile } from '../../../services/api/profile/updateProfile';
 import { EditProfileInputs } from '../../../components/Input/EditProfileInput';
 import { PickProfilePictureContainer } from '../../../components/PickProfilePictureContainer';
-import { apiProfileModel } from '../../../models/api/profile';
+import { ApiProfileModel } from '../../../models/api/profile';
 import {
-  tProfileModel,
+  TProfileModel,
   transformProfileModel,
 } from '../../../models/formattedAPI/tProfile';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUserData } from '../../../redux/features/userSlice';
 import firestore from '@react-native-firebase/firestore';
 import { ApiResponse } from '../../../models/apiModel';
-import { rootState } from '../../../redux/store';
+import { RootState } from '../../../redux/store';
 
 export const EditProfileScreen = ({
   navigation,
-}: rootNavigationProps<routeName.EditProfile>) => {
+}: RootNavigationProps<routeName.EditProfile>) => {
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   const dispatch = useDispatch();
-  const id = useSelector((state: rootState) => state.user.userData.id);
+  const id = useSelector((state: RootState) => state.user.userData.id);
   const [experience, setExperience] = useState<string | null>('');
   const profilePictureRef = useRef<number | { uri: string } | undefined>(
     undefined,
   );
-  const [profileData, setProfileData] = useState<tProfileModel>({
+  const [profileData, setProfileData] = useState<TProfileModel>({
     id: '',
     name: 'User',
     email: '',
@@ -113,7 +113,7 @@ export const EditProfileScreen = ({
 
   const getData = async () => {
     try {
-      const response = await getAPIData<ApiResponse<apiProfileModel>>(
+      const response = await getAPIData<ApiResponse<ApiProfileModel>>(
         endPoints.consultantProfile,
       );
       if (!response) return;

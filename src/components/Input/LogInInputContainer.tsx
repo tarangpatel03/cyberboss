@@ -6,7 +6,7 @@ import { PrimaryButtonComponent } from '../Buttons/PrimaryButton';
 import { staticStyle } from '../../screens/common/auth/LogIn/styles';
 import { CircularIconButtonComponent } from '../Buttons/CircularIconButton';
 
-type logInInputsContainerProps = {
+type LogInInputsContainerProps = {
   email: string;
   password: string;
   getIcon: () => any;
@@ -20,7 +20,7 @@ type logInInputsContainerProps = {
   setPassVisible: Dispatch<SetStateAction<boolean>>;
 };
 
-export const LogInInputsContainer = (props: logInInputsContainerProps) => {
+export const LogInInputsContainer = (props: LogInInputsContainerProps) => {
   const { t } = useTranslation();
 
   return (

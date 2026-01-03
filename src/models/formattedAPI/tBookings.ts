@@ -1,18 +1,18 @@
 import {
-  apiBookingBillCount,
-  apiBookingHistoryModel,
-  apiBookingDetailsModel,
-  apiHomeBookingModel,
-  apiBookingExpertise,
-  apiReviewModel,
+  ApiBookingBillCount,
+  ApiBookingHistoryModel,
+  ApiBookingDetailsModel,
+  ApiHomeBookingModel,
+  ApiBookingExpertise,
+  ApiReviewModel,
 } from '../api/bookings';
 
-export type tBookingBillCount = {
+export type TBookingBillCount = {
   hours: number;
   consultantId: string;
 };
 
-export type tBookingHistoryModel = {
+export type TBookingHistoryModel = {
   id: string;
   bookingId: string;
   userId: string;
@@ -30,7 +30,7 @@ export type tBookingHistoryModel = {
   hours: number;
 };
 
-export type tHomeBookingModel = {
+export type THomeBookingModel = {
   id: string;
   bookingId: string;
   userId: string;
@@ -47,7 +47,7 @@ export type tHomeBookingModel = {
   grandTotal: number;
 };
 
-export type tBookingDetailsModel = {
+export type TBookingDetailsModel = {
   id: string;
   bookingId: string;
   userId: string;
@@ -66,10 +66,10 @@ export type tBookingDetailsModel = {
   hourlyRate: string;
   platformFee: string;
   tax: string;
-  expertise: tBookingExpertise;
+  expertise: TBookingExpertise;
 };
 
-export type tReviewModel = {
+export type TReviewModel = {
   id: string;
   bookingId: string;
   rating: string;
@@ -77,7 +77,7 @@ export type tReviewModel = {
   createdAt: string;
 };
 
-export type tBookingExpertise = {
+export type TBookingExpertise = {
   id: string;
   name: string;
   image: string | number | { uri: string } | undefined;
@@ -87,8 +87,8 @@ export type tBookingExpertise = {
 };
 
 export const transformBookingBillCount: (
-  data: apiBookingBillCount,
-) => tBookingBillCount = (data: apiBookingBillCount) => {
+  data: ApiBookingBillCount,
+) => TBookingBillCount = (data: ApiBookingBillCount) => {
   return {
     consultantId: data.consultant_id,
     hours: data.hours,
@@ -96,8 +96,8 @@ export const transformBookingBillCount: (
 };
 
 export const transformHomeBookingModel: (
-  data: apiHomeBookingModel,
-) => tHomeBookingModel = (data: apiHomeBookingModel) => {
+  data: ApiHomeBookingModel,
+) => THomeBookingModel = (data: ApiHomeBookingModel) => {
   return {
     id: data.id,
     total: data.total,
@@ -117,8 +117,8 @@ export const transformHomeBookingModel: (
 };
 
 export const transformBookingHistoryModel: (
-  data: apiBookingHistoryModel,
-) => tBookingHistoryModel = (data: apiBookingHistoryModel) => {
+  data: ApiBookingHistoryModel,
+) => TBookingHistoryModel = (data: ApiBookingHistoryModel) => {
   return {
     id: data.id,
     hours: data.hours,
@@ -138,8 +138,8 @@ export const transformBookingHistoryModel: (
   };
 };
 
-const transformExpertise: (data: apiBookingExpertise) => tBookingExpertise = (
-  data: apiBookingExpertise,
+const transformExpertise: (data: ApiBookingExpertise) => TBookingExpertise = (
+  data: ApiBookingExpertise,
 ) => {
   return {
     bookingCount: data.booking_count,
@@ -151,8 +151,8 @@ const transformExpertise: (data: apiBookingExpertise) => tBookingExpertise = (
   };
 };
 
-export const transformReviewModel: (data: apiReviewModel) => tReviewModel = (
-  data: apiReviewModel,
+export const transformReviewModel: (data: ApiReviewModel) => TReviewModel = (
+  data: ApiReviewModel,
 ) => {
   return {
     bookingId: data.booking_id,
@@ -164,8 +164,8 @@ export const transformReviewModel: (data: apiReviewModel) => tReviewModel = (
 };
 
 export const transformBookingDetailsModel: (
-  data: apiBookingDetailsModel,
-) => tBookingDetailsModel = (data: apiBookingDetailsModel) => {
+  data: ApiBookingDetailsModel,
+) => TBookingDetailsModel = (data: ApiBookingDetailsModel) => {
   return {
     bookingDate: data.booking_date,
     bookingId: data.booking_id,

@@ -2,14 +2,14 @@ import { StyleSheet, View } from 'react-native';
 import { Theme } from '../../config/themes/themes';
 import { useTheme } from '@shopify/restyle';
 import normalize from '../../utils/normalize/normalize';
-import { RegularTextComponent } from '../Text/RegularTextComponent';
+import { RegularTextComponent } from '../Text/RegularText';
 import FastImage from 'react-native-fast-image';
 import { memo } from 'react';
-import { tConsultantHomeNotificationModel } from '../../models/formattedAPI/tHome';
+import { TConsultantHomeNotificationModel } from '../../models/formattedAPI/tHome';
 import { appImages } from '../../config/images/imagePath';
 
 export const RecentActivity = memo(
-  (props: tConsultantHomeNotificationModel) => {
+  (props: TConsultantHomeNotificationModel) => {
     const theme = useTheme<Theme>();
     const styles = createStyles(theme);
     return (

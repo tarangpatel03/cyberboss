@@ -1,17 +1,17 @@
 import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
-import { rootNavigationProps } from '../../../models/navigationModel';
+import { RootNavigationProps } from '../../../models/navigationModel';
 import { routeName } from '../../../config/constants/routes';
 import { useTheme } from '@shopify/restyle';
 import { Theme } from '../../../config/themes/themes';
 import { createStyles, staticStyle } from './styles';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { ScreenHeaderComponent } from '../../../components/Headers/ScreenHeaderComponent';
+import { ScreenHeaderComponent } from '../../../components/Headers/ScreenHeader';
 import { appIcons } from '../../../config/icons/iconPath';
-import { MediumTextComponent } from '../../../components/Text/MediumTextComponent';
+import { MediumTextComponent } from '../../../components/Text/MediumText';
 import { useEffect, useState } from 'react';
 import { PrimaryButtonComponent } from '../../../components/Buttons/PrimaryButton';
 import { useSelector } from 'react-redux';
-import { rootState } from '../../../redux/store';
+import { RootState } from '../../../redux/store';
 import FastImage from 'react-native-fast-image';
 import { useTranslation } from 'react-i18next';
 import { BookingStatusCard } from '../../../components/Cards/BookingStatusCard';
@@ -20,28 +20,28 @@ import { BookingPaymentDetailsCard } from '../../../components/Cards/BookingPaym
 import { getAPIData } from '../../../services/api/common/getCommonApi';
 import { endPoints } from '../../../config/endPoint/apiEndPoint';
 import {
-  tBookingDetailsModel,
+  TBookingDetailsModel,
   transformBookingDetailsModel,
   transformReviewModel,
-  tReviewModel,
+  TReviewModel,
 } from '../../../models/formattedAPI/tBookings';
 import {
-  apiBookingDetailsModel,
-  apiReviewModel,
+  ApiBookingDetailsModel,
+  ApiReviewModel,
 } from '../../../models/api/bookings';
 import { ApiResponse } from '../../../models/apiModel';
 
 export const BookingSummaryScreen = ({
   navigation,
   route,
-}: rootNavigationProps<routeName.BookingSummary>) => {
+}: RootNavigationProps<routeName.BookingSummary>) => {
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   const { id } = route.params;
-  const userRole = useSelector((state: rootState) => state.user.userData.role);
-  const [bookingDetails, setBookingDetails] = useState<tBookingDetailsModel>();
-  const [review, setReview] = useState<tReviewModel[]>([]);
+  const userRole = useSelector((state: RootState) => state.user.userData.role);
+  const [bookingDetails, setBookingDetails] = useState<TBookingDetailsModel>();
+  const [review, setReview] = useState<TReviewModel[]>([]);
 
   const navigateToConsultantProfile = () => {
     navigation.navigate(routeName.ConsultantProfile, {
@@ -52,7 +52,7 @@ export const BookingSummaryScreen = ({
 
   const getBookingDetails = async () => {
     try {
-      const response = await getAPIData<ApiResponse<apiBookingDetailsModel>>(
+      const response = await getAPIData<ApiResponse<ApiBookingDetailsModel>>(
         `${endPoints.booking}/${id}`,
       );
       if (!response) return;
@@ -70,7 +70,7 @@ export const BookingSummaryScreen = ({
   };
 
   const loadReview = async (bookingId: string) => {
-    const response = await getAPIData<ApiResponse<apiReviewModel[]>>(
+    const response = await getAPIData<ApiResponse<ApiReviewModel[]>>(
       `${endPoints.ratingReviews}/${bookingId}`,
     );
     if (!response) return;

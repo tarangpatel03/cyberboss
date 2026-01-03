@@ -14,17 +14,17 @@ import { useTranslation } from 'react-i18next';
 import FastImage from 'react-native-fast-image';
 import { Theme } from '../../config/themes/themes';
 import { appIcons } from '../../config/icons/iconPath';
-import { MediumTextComponent } from '../Text/MediumTextComponent';
-import { RegularTextComponent } from '../Text/RegularTextComponent';
-import { tHomeBookingModel } from '../../models/formattedAPI/tBookings';
+import { MediumTextComponent } from '../Text/MediumText';
+import { RegularTextComponent } from '../Text/RegularText';
+import { THomeBookingModel } from '../../models/formattedAPI/tBookings';
 
-type consultantBookingHistoryListProps = {
-  data: tHomeBookingModel[];
-  renderBookingHistoryItem: ListRenderItem<tHomeBookingModel>;
+type ConsultantBookingHistoryListProps = {
+  data: THomeBookingModel[];
+  renderBookingHistoryItem: ListRenderItem<THomeBookingModel>;
 };
 
 export const ConsultantBookingHistoryList = (
-  props: consultantBookingHistoryListProps,
+  props: ConsultantBookingHistoryListProps,
 ) => {
   const { t } = useTranslation();
   const theme = useTheme<Theme>();

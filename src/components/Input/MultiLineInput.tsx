@@ -11,12 +11,12 @@ import { Theme } from '../../config/themes/themes';
 import normalize from '../../utils/normalize/normalize';
 import { appColors } from '../../config/colors/colors';
 import { Dispatch, SetStateAction, useState } from 'react';
-import { RegularTextComponent } from '../Text/RegularTextComponent';
+import { RegularTextComponent } from '../Text/RegularText';
 import { isDarkMode } from '../../utils/theme/darkMode';
 import { appImages } from '../../config/images/imagePath';
 import FastImage from 'react-native-fast-image';
 
-type multiLineInputComponentProps = {
+type MultiLineInputComponentProps = {
   placeholder: string;
   value: string | null;
   setValue: Dispatch<SetStateAction<string | null>>;
@@ -26,7 +26,7 @@ type multiLineInputComponentProps = {
   isNotBio?: boolean;
 };
 
-export const BioInputComponent = (props: multiLineInputComponentProps) => {
+export const BioInputComponent = (props: MultiLineInputComponentProps) => {
   const [isFocus, setIsFocus] = useState(false);
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);

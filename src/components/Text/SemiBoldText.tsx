@@ -1,21 +1,21 @@
 import { StyleProp, StyleSheet, Text, TextStyle } from 'react-native';
 import { getFontFamily } from '../../utils/fonts/getFontFamily';
 
-type regularTextComponentProps = {
+type SemiBoldTextComponentProps = {
   text: string;
   textStyle: StyleProp<TextStyle>;
   noOfLines?: number;
 };
 
-export const RegularTextComponent = ({
+export const SemiBoldTextComponent = ({
   text,
   textStyle,
   noOfLines,
-}: regularTextComponentProps) => {
+}: SemiBoldTextComponentProps) => {
   return (
     <Text
       numberOfLines={noOfLines ?? 1}
-      style={StyleSheet.flatten([textStyle, styles.text])}
+      style={StyleSheet.flatten([styles.text, textStyle])}
     >
       {text}
     </Text>
@@ -24,6 +24,6 @@ export const RegularTextComponent = ({
 
 const styles = StyleSheet.create({
   text: {
-    fontFamily: getFontFamily('regular'),
+    fontFamily: getFontFamily('semiBold'),
   },
 });

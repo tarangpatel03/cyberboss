@@ -2,23 +2,23 @@ import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { Theme } from '../../config/themes/themes';
 import { useTheme } from '@shopify/restyle';
 import normalize from '../../utils/normalize/normalize';
-import { MediumTextComponent } from '../Text/MediumTextComponent';
-import { RegularTextComponent } from '../Text/RegularTextComponent';
+import { MediumTextComponent } from '../Text/MediumText';
+import { RegularTextComponent } from '../Text/RegularText';
 import { appIcons } from '../../config/icons/iconPath';
 import { formatBooking } from '../../utils/format/formatDate';
 import { appImages } from '../../config/images/imagePath';
 import FastImage from 'react-native-fast-image';
 import { memo, useState } from 'react';
-import { tConsultantModel } from '../../models/formattedAPI/tConsultant';
+import { TConsultantModel } from '../../models/formattedAPI/tConsultant';
 import { getProfilePicture } from '../../utils/extractURI/extractImageURI';
 
-type consultantListCardProps = {
-  data: tConsultantModel;
+type ConsultantListCardProps = {
+  data: TConsultantModel;
   onPress: (consultantId: string) => void;
 };
 
 export const ConsultantListCard = memo(
-  ({ data, onPress }: consultantListCardProps) => {
+  ({ data, onPress }: ConsultantListCardProps) => {
     const theme = useTheme<Theme>();
     const styles = createStyles(theme);
     const [profilePictureError, setProfilePictureError] =

@@ -2,11 +2,11 @@ import { useTheme } from '@shopify/restyle';
 import { StyleSheet, View } from 'react-native';
 import { CircularIconButtonComponent } from '../Buttons/CircularIconButton';
 import { appIcons } from '../../config/icons/iconPath';
-import { MediumTextComponent } from '../Text/MediumTextComponent';
+import { MediumTextComponent } from '../Text/MediumText';
 import normalize from '../../utils/normalize/normalize';
 import { Theme } from '../../config/themes/themes';
 
-type screenHeaderComponentProps = {
+type ScreenHeaderComponentProps = {
   iconPath?: number | { uri: string } | undefined;
   onPress: () => void;
   headerText?: string;
@@ -16,7 +16,7 @@ export const ScreenHeaderComponent = ({
   headerText,
   onPress,
   iconPath,
-}: screenHeaderComponentProps) => {
+}: ScreenHeaderComponentProps) => {
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
 

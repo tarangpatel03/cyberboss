@@ -2,8 +2,8 @@ import { View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import FastImage from 'react-native-fast-image';
 import { appIcons } from '../config/icons/iconPath';
-import { MediumTextComponent } from './Text/MediumTextComponent';
-import { RegularTextComponent } from './Text/RegularTextComponent';
+import { MediumTextComponent } from './Text/MediumText';
+import { RegularTextComponent } from './Text/RegularText';
 import { staticStyle } from '../screens/client/Subscription/styles';
 import { PrimaryButtonWithIconComponent } from './Buttons/PrimaryButtonWithIcon';
 

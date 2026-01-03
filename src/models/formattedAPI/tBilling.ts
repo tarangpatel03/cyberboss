@@ -1,6 +1,6 @@
-import { apiBillDetailsModel } from '../api/billing';
+import { ApiBillDetailsModel } from '../api/billing';
 
-export type tBillDetailsModel = {
+export type TBillDetailsModel = {
   hourlyRate: number;
   hours: number;
   total: number;
@@ -11,8 +11,8 @@ export type tBillDetailsModel = {
 };
 
 export const transformBillDetailsModel: (
-  data: apiBillDetailsModel,
-) => tBillDetailsModel = (data: apiBillDetailsModel) => {
+  data: ApiBillDetailsModel,
+) => TBillDetailsModel = (data: ApiBillDetailsModel) => {
   return {
     grandTotal: data.grand_total,
     hourlyRate: data.hourly_rate,

@@ -2,8 +2,8 @@ import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { Theme } from '../../config/themes/themes';
 import { useTheme } from '@shopify/restyle';
 import normalize from '../../utils/normalize/normalize';
-import { MediumTextComponent } from '../Text/MediumTextComponent';
-import { RegularTextComponent } from '../Text/RegularTextComponent';
+import { MediumTextComponent } from '../Text/MediumText';
+import { RegularTextComponent } from '../Text/RegularText';
 import { appIcons } from '../../config/icons/iconPath';
 import { PrimaryButtonComponent } from '../Buttons/PrimaryButton';
 import { CircularIconButtonComponent } from '../Buttons/CircularIconButton';
@@ -11,7 +11,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import FastImage from 'react-native-fast-image';
 import { memo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { tBookingHistoryModel } from '../../models/formattedAPI/tBookings';
+import { TBookingHistoryModel } from '../../models/formattedAPI/tBookings';
 import { getProfilePicture } from '../../utils/extractURI/extractImageURI';
 import { appImages } from '../../config/images/imagePath';
 import {
@@ -19,7 +19,7 @@ import {
   getServiceImage,
 } from '../../utils/gradientColor/gradientColor';
 
-type bookingCardProps = {
+type BookingCardProps = {
   onMessage: ({
     id,
     image,
@@ -29,13 +29,13 @@ type bookingCardProps = {
     image: string | number | { uri: string } | undefined;
     name: string;
   }) => void;
-  props: tBookingHistoryModel;
+  props: TBookingHistoryModel;
   onMorePress: (x: number, y: number) => void;
   navigateToDetails: (id: string) => void;
 };
 
 export const BookingCard = memo(
-  ({ props, onMorePress, navigateToDetails, onMessage }: bookingCardProps) => {
+  ({ props, onMorePress, navigateToDetails, onMessage }: BookingCardProps) => {
     const { t } = useTranslation();
     const theme = useTheme<Theme>();
     const styles = createStyles(theme);

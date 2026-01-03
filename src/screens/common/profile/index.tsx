@@ -7,15 +7,15 @@ import {
   SafeAreaView,
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
-import { rootNavigationProps } from '../../../models/navigationModel';
+import { RootNavigationProps } from '../../../models/navigationModel';
 import { BottomTabHeader } from '../../../components/Headers/BottomTabHeader';
-import { RegularTextComponent } from '../../../components/Text/RegularTextComponent';
+import { RegularTextComponent } from '../../../components/Text/RegularText';
 import { ThemeModal } from '../../../components/Modal/ThemeModal';
 import { useEffect, useState } from 'react';
 import { LogOutModal } from '../../../components/Modal/LogOutModal';
 import { clearUser } from '../../../redux/features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { rootState } from '../../../redux/store';
+import { RootState } from '../../../redux/store';
 import { useTranslation } from 'react-i18next';
 import { ProfileCard } from '../../../components/Cards/ProfileCard';
 import { ProfileOptionsRow } from '../../../components/Cards/ProfileOptionsRow';
@@ -25,14 +25,14 @@ import { logOut } from '../../../services/firebase/auth/auth';
 
 export const ProfileScreen = ({
   navigation,
-}: rootNavigationProps<routeName.Profile>) => {
+}: RootNavigationProps<routeName.Profile>) => {
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   const { bottom } = useSafeAreaInsets();
   const dispatch = useDispatch();
   const { userData, token: isLoggedIn } = useSelector(
-    (state: rootState) => state.user,
+    (state: RootState) => state.user,
   );
   const [isThemeModalVisible, setThemeModalVisible] = useState<boolean>(false);
   const [logOutVisible, setLogOutVisible] = useState<boolean>(false);

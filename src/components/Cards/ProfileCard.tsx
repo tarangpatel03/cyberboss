@@ -3,22 +3,22 @@ import { useTranslation } from 'react-i18next';
 import FastImage from 'react-native-fast-image';
 import { Theme } from '../../config/themes/themes';
 import { appIcons } from '../../config/icons/iconPath';
-import { userDetailProps } from '../../redux/features/userSlice';
+import { UserDetailProps } from '../../redux/features/userSlice';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import { MediumTextComponent } from '../Text/MediumTextComponent';
-import { RegularTextComponent } from '../Text/RegularTextComponent';
-import { SettingOptionsButton } from '../Buttons/SettingsOptionsComponent';
+import { MediumTextComponent } from '../Text/MediumText';
+import { RegularTextComponent } from '../Text/RegularText';
+import { SettingOptionsButton } from '../Buttons/SettingsButton';
 import { staticStyle, createStyles } from '../../screens/common/Profile/styles';
 import { useState } from 'react';
 import { appImages } from '../../config/images/imagePath';
 
-type profileCardProps = {
-  userData: userDetailProps;
+type ProfileCardProps = {
+  userData: UserDetailProps;
   navigateToEditProfile: () => void;
   getPicture: () => number | { uri: string } | undefined;
 };
 
-export const ProfileCard = (props: profileCardProps) => {
+export const ProfileCard = (props: ProfileCardProps) => {
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);

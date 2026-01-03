@@ -1,20 +1,20 @@
 import { StyleSheet, View } from 'react-native';
 import normalize from '../../utils/normalize/normalize';
-import { MediumTextComponent } from '../Text/MediumTextComponent';
-import { RegularTextComponent } from '../Text/RegularTextComponent';
+import { MediumTextComponent } from '../Text/MediumText';
+import { RegularTextComponent } from '../Text/RegularText';
 import { appIcons } from '../../config/icons/iconPath';
 import { getFullDate } from '../../utils/format/formatDate';
 import { appColors } from '../../config/colors/colors';
 import { width } from '../../config/constants/variables';
 import FastImage from 'react-native-fast-image';
 import { memo } from 'react';
-import { tWorkshopModel } from '../../models/formattedAPI/tConsultant';
+import { TWorkshopModel } from '../../models/formattedAPI/tConsultant';
 
-type workshopCardProps = {
-  data: tWorkshopModel;
+type WorkshopCardProps = {
+  data: TWorkshopModel;
 };
 
-export const WorkshopFlatListCard = memo(({ data }: workshopCardProps) => {
+export const WorkshopFlatListCard = memo(({ data }: WorkshopCardProps) => {
   return (
     <View style={StyleSheet.flatten([staticStyle.container])}>
       <MediumTextComponent

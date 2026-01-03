@@ -1,20 +1,20 @@
 import { useTheme } from '@shopify/restyle';
 import { Theme } from '../../config/themes/themes';
 import { StyleSheet, TouchableOpacity } from 'react-native';
-import { MediumTextComponent } from '../Text/MediumTextComponent';
+import { MediumTextComponent } from '../Text/MediumText';
 import normalize from '../../utils/normalize/normalize';
 import { memo, useState } from 'react';
 import FastImage from 'react-native-fast-image';
-import { tExpertiseModel } from '../../models/formattedAPI/tConsultant';
+import { TExpertiseModel } from '../../models/formattedAPI/tConsultant';
 
-type categoryCardProp = {
-  expertise: tExpertiseModel;
+type CategoryCardProp = {
+  expertise: TExpertiseModel;
   add: (text: string) => void;
   remove: (text: string) => void;
   data: string[];
 };
 
-export const CategoryCard = memo((props: categoryCardProp) => {
+export const CategoryCard = memo((props: CategoryCardProp) => {
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   const [isSelected, setIsSelected] = useState<boolean>(

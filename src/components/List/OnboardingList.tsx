@@ -1,12 +1,12 @@
 import { RefObject, useCallback } from 'react';
 import { FlatList, ListRenderItem } from 'react-native';
-import { OnboardingListComponent } from '../ListItems/OnboardingListComponent';
+import { OnboardingListComponent } from '../ListItems/OnboardingListItem';
 import {
   onboardingData,
   onboardingDataProps,
 } from '../../screens/common/Onboarding/onboardingData';
 
-type onboardingListProp = {
+type OnboardingListProp = {
   flatListRef: RefObject<FlatList | null>;
   handleScroll: (event: any) => void;
 };
@@ -14,7 +14,7 @@ type onboardingListProp = {
 export const OnboardingList = ({
   flatListRef,
   handleScroll,
-}: onboardingListProp) => {
+}: OnboardingListProp) => {
   const renderItem: ListRenderItem<onboardingDataProps> = useCallback(
     ({ item }) => {
       return <OnboardingListComponent data={item} />;

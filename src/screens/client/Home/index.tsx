@@ -9,7 +9,7 @@ import { useTheme } from '@shopify/restyle';
 import { Theme } from '../../../config/themes/themes';
 import { createStyles, staticStyle } from './styles';
 import React, { useCallback, useEffect, useState } from 'react';
-import { rootNavigationProps } from '../../../models/navigationModel';
+import { RootNavigationProps } from '../../../models/navigationModel';
 import { routeName } from '../../../config/constants/routes';
 import { BookingHistoryCard } from '../../../components/Cards/BookingHistoryCard';
 import { ServiceCard } from '../../../components/Cards/ServiceCard';
@@ -22,29 +22,29 @@ import { useClientHome } from './useClientHome';
 import { HomeScreenSearchButtons } from '../../../components/Buttons/HomeScreenSearchBar';
 import { TopBarComponent } from '../../../components/Headers/TopBarComponent';
 import { useDispatch, useSelector } from 'react-redux';
-import { rootState } from '../../../redux/store';
+import { RootState } from '../../../redux/store';
 import { useTranslation } from 'react-i18next';
 import { HomeScreenListHeaderComponent } from '../../../components/Headers/HomeScreenListHeader';
 import {
-  tExpertiseModel,
-  tWorkshopModel,
+  TExpertiseModel,
+  TWorkshopModel,
 } from '../../../models/formattedAPI/tConsultant';
 import firestore from '@react-native-firebase/firestore';
-import { tHomeBookingModel } from '../../../models/formattedAPI/tBookings';
+import { THomeBookingModel } from '../../../models/formattedAPI/tBookings';
 
 export const ClientHomeScreen = ({
   navigation,
-}: rootNavigationProps<routeName.Home>) => {
+}: RootNavigationProps<routeName.Home>) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const theme = useTheme<Theme>();
   const isFocused = useIsFocused();
   const styles = createStyles(theme);
-  const userIdRead = useSelector((state: rootState) => state.user.userData.id);
+  const userIdRead = useSelector((state: RootState) => state.user.userData.id);
   const [layoutReady, setLayoutReady] = useState(false);
   const handleOnStop = () => dispatch(setShowTour(false));
   const { canStart, start, eventEmitter } = useTourGuideController();
-  const showTour = useSelector((state: rootState) => state.user.showTour);
+  const showTour = useSelector((state: RootState) => state.user.showTour);
   const { loader, refreshing, homeData, onRefresh } = useClientHome();
 
   const navigateToWorkshop = () => {
@@ -79,7 +79,7 @@ export const ClientHomeScreen = ({
     navigation.navigate(routeName.ContactSupport);
   };
 
-  const renderWorkshopItem: ListRenderItem<tWorkshopModel> = useCallback(
+  const renderWorkshopItem: ListRenderItem<TWorkshopModel> = useCallback(
     ({ item }) => <WorkshopCard data={item} cardStyle={staticStyle.card} />,
     [],
   );
@@ -135,7 +135,7 @@ export const ClientHomeScreen = ({
     }
   };
 
-  const renderBookingItem: ListRenderItem<tHomeBookingModel> = useCallback(
+  const renderBookingItem: ListRenderItem<THomeBookingModel> = useCallback(
     ({ item }) => (
       <BookingHistoryCard props={item} navigateToChat={navigateToChat} />
     ),
@@ -143,7 +143,7 @@ export const ClientHomeScreen = ({
     [],
   );
 
-  const renderBrowseServiceItem: ListRenderItem<tExpertiseModel> = useCallback(
+  const renderBrowseServiceItem: ListRenderItem<TExpertiseModel> = useCallback(
     ({ item }) => (
       <ServiceCard onPress={navigateToConsultantList} data={item} />
     ),

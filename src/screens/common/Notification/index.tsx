@@ -8,10 +8,10 @@ import {
 import { Theme } from '../../../config/themes/themes';
 import { useTheme } from '@shopify/restyle';
 import { createStyles, staticStyle } from './styles';
-import { ScreenHeaderComponent } from '../../../components/Headers/ScreenHeaderComponent';
+import { ScreenHeaderComponent } from '../../../components/Headers/ScreenHeader';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { routeName } from '../../../config/constants/routes';
-import { rootNavigationProps } from '../../../models/navigationModel';
+import { RootNavigationProps } from '../../../models/navigationModel';
 import { NotificationCard } from '../../../components/Cards/NotificationCard';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { getAPIData } from '../../../services/api/common/getCommonApi';
@@ -20,20 +20,20 @@ import { appImages } from '../../../config/images/imagePath';
 import { ListShimmer } from '../../../components/Skeleton/ListShimmer';
 import { endPoints } from '../../../config/endPoint/apiEndPoint';
 import { useTranslation } from 'react-i18next';
-import { apiNotificationModel } from '../../../models/api/notification';
+import { ApiNotificationModel } from '../../../models/api/notification';
 import {
-  tNotificationModel,
+  TNotificationModel,
   transformNotificationModel,
 } from '../../../models/formattedAPI/tNotification';
 import { ApiResponse, ListPayload } from '../../../models/apiModel';
 
 export const NotificationScreen = ({
   navigation,
-}: rootNavigationProps<routeName.Notification>) => {
+}: RootNavigationProps<routeName.Notification>) => {
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
-  const [notifications, setNotifications] = useState<tNotificationModel[]>([]);
+  const [notifications, setNotifications] = useState<TNotificationModel[]>([]);
   const [loader, setLoader] = useState<boolean>(true);
   const pageRef = useRef<number>(1);
   const hasMoreRef = useRef<boolean>(false);
@@ -47,11 +47,11 @@ export const NotificationScreen = ({
         setLoader(true);
       }
       const response = await getAPIData<
-        ApiResponse<ListPayload<apiNotificationModel>>
+        ApiResponse<ListPayload<ApiNotificationModel>>
       >(endPoints.notification, pageToLoad);
       if (!response) return;
-      const data: apiNotificationModel[] = response.payload.data;
-      const transformedData: tNotificationModel[] = data
+      const data: ApiNotificationModel[] = response.payload.data;
+      const transformedData: TNotificationModel[] = data
         ? data?.map(r => transformNotificationModel(r))
         : [];
       hasMoreRef.current =
@@ -76,7 +76,7 @@ export const NotificationScreen = ({
     navigation.goBack();
   };
 
-  const renderItem: ListRenderItem<tNotificationModel> = useCallback(
+  const renderItem: ListRenderItem<TNotificationModel> = useCallback(
     ({ item }) => {
       return <NotificationCard data={item} />;
     },

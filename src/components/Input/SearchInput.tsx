@@ -15,7 +15,7 @@ import { Dispatch, SetStateAction } from 'react';
 import { appIcons } from '../../config/icons/iconPath';
 import FastImage from 'react-native-fast-image';
 
-type borderInputComponentProps = {
+type BorderInputComponentProps = {
   placeholder: string;
   value: string;
   autoFocus?: boolean;
@@ -26,7 +26,7 @@ type borderInputComponentProps = {
 };
 
 export const SearchBorderInputComponent = (
-  props: borderInputComponentProps,
+  props: BorderInputComponentProps,
 ) => {
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);

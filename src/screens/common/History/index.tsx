@@ -11,7 +11,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { BottomTabHeader } from '../../../components/Headers/BottomTabHeader';
 import { BookingCard } from '../../../components/Cards/BookingCard';
-import { rootNavigationProps } from '../../../models/navigationModel';
+import { RootNavigationProps } from '../../../models/navigationModel';
 import { routeName } from '../../../config/constants/routes';
 import { getAPIData } from '../../../services/api/common/getCommonApi';
 import { useCallback, useEffect, useState } from 'react';
@@ -20,30 +20,30 @@ import { appImages } from '../../../config/images/imagePath';
 import { height } from '../../../config/constants/variables';
 import normalize from '../../../utils/normalize/normalize';
 import { appIcons } from '../../../config/icons/iconPath';
-import { RegularTextComponent } from '../../../components/Text/RegularTextComponent';
+import { RegularTextComponent } from '../../../components/Text/RegularText';
 import { ListShimmer } from '../../../components/Skeleton/ListShimmer';
 import { endPoints } from '../../../config/endPoint/apiEndPoint';
 import { useTranslation } from 'react-i18next';
 import FastImage from 'react-native-fast-image';
 import {
-  tBookingHistoryModel,
+  TBookingHistoryModel,
   transformBookingHistoryModel,
 } from '../../../models/formattedAPI/tBookings';
-import { apiBookingHistoryModel } from '../../../models/api/bookings';
+import { ApiBookingHistoryModel } from '../../../models/api/bookings';
 import { useSelector } from 'react-redux';
-import { rootState } from '../../../redux/store';
+import { RootState } from '../../../redux/store';
 import firestore from '@react-native-firebase/firestore';
 import { ApiResponse, ListPayload } from '../../../models/apiModel';
 
 export const HistoryScreen = ({
   navigation,
-}: rootNavigationProps<routeName.History>) => {
+}: RootNavigationProps<routeName.History>) => {
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
-  const [history, setHistory] = useState<tBookingHistoryModel[]>([]);
+  const [history, setHistory] = useState<TBookingHistoryModel[]>([]);
   const [loader, setLoader] = useState<boolean>(true);
-  const userIdRead = useSelector((state: rootState) => state.user.userData.id);
+  const userIdRead = useSelector((state: RootState) => state.user.userData.id);
   const [isModalVisible, setModalVisible] = useState(false);
   const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 });
   const [selectedMoreId, setSelectedMoreId] = useState<number | null>(null);
@@ -113,10 +113,10 @@ export const HistoryScreen = ({
         setLoader(true);
       }
       const response = await getAPIData<
-        ApiResponse<ListPayload<apiBookingHistoryModel>>
+        ApiResponse<ListPayload<ApiBookingHistoryModel>>
       >(endPoints.booking, pageToLoad);
       if (!response) return;
-      const data: apiBookingHistoryModel[] = response.payload.data;
+      const data: ApiBookingHistoryModel[] = response.payload.data;
       const transformedData = data.map(r => transformBookingHistoryModel(r));
       setHistory(transformedData);
     } catch (error) {

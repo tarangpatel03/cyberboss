@@ -1,17 +1,17 @@
 import { StyleProp, StyleSheet, Text, TextStyle } from 'react-native';
 import { getFontFamily } from '../../utils/fonts/getFontFamily';
 
-type semiBoldTextComponentProps = {
+type BoldTextComponentProps = {
   text: string;
   textStyle: StyleProp<TextStyle>;
   noOfLines?: number;
 };
 
-export const SemiBoldTextComponent = ({
+export const BoldTextComponent = ({
   text,
   textStyle,
   noOfLines,
-}: semiBoldTextComponentProps) => {
+}: BoldTextComponentProps) => {
   return (
     <Text
       numberOfLines={noOfLines ?? 1}
@@ -24,6 +24,6 @@ export const SemiBoldTextComponent = ({
 
 const styles = StyleSheet.create({
   text: {
-    fontFamily: getFontFamily('semiBold'),
+    fontFamily: getFontFamily('bold'),
   },
 });

@@ -1,31 +1,31 @@
 import { ListRenderItem, StyleSheet, View } from 'react-native';
 import { createStyles, staticStyle } from '../../screens/client/Home/styles';
 import { HomeScreenWorkshopList } from '../List/HomeScreenWorkshopList';
-import { MediumTextComponent } from '../Text/MediumTextComponent';
+import { MediumTextComponent } from '../Text/MediumText';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '@shopify/restyle';
 import { Theme } from '../../config/themes/themes';
-import { tClientHomeModel } from '../../models/formattedAPI/tHome';
-import { tHomeBookingModel } from '../../models/formattedAPI/tBookings';
-import { tWorkshopModel } from '../../models/formattedAPI/tConsultant';
+import { TClientHomeModel } from '../../models/formattedAPI/tHome';
+import { THomeBookingModel } from '../../models/formattedAPI/tBookings';
+import { TWorkshopModel } from '../../models/formattedAPI/tConsultant';
 import { useSelector } from 'react-redux';
-import { rootState } from '../../redux/store';
+import { RootState } from '../../redux/store';
 
-type homeScreenListHeaderProps = {
-  homeData: tClientHomeModel;
+type HomeScreenListHeaderProps = {
+  homeData: TClientHomeModel;
   navigateToHistory: () => void;
   navigateToWorkshop: () => void;
-  renderWorkshopItem: ListRenderItem<tWorkshopModel>;
-  renderBookingItem: ListRenderItem<tHomeBookingModel>;
+  renderWorkshopItem: ListRenderItem<TWorkshopModel>;
+  renderBookingItem: ListRenderItem<THomeBookingModel>;
 };
 
 export const HomeScreenListHeaderComponent = (
-  props: homeScreenListHeaderProps,
+  props: HomeScreenListHeaderProps,
 ) => {
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
-  const isPro = useSelector((state: rootState) => state.user.isPro);
+  const isPro = useSelector((state: RootState) => state.user.isPro);
 
   return (
     <View style={staticStyle.container}>

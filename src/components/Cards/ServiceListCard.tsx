@@ -1,5 +1,5 @@
 import { StyleSheet, TouchableOpacity } from 'react-native';
-import { RegularTextComponent } from '../Text/RegularTextComponent';
+import { RegularTextComponent } from '../Text/RegularText';
 import { Theme } from '../../config/themes/themes';
 import { useTheme } from '@shopify/restyle';
 import normalize from '../../utils/normalize/normalize';
@@ -7,13 +7,13 @@ import { appIcons } from '../../config/icons/iconPath';
 import { memo } from 'react';
 import FastImage from 'react-native-fast-image';
 
-type serviceListCardProp = {
+type ServiceListCardProp = {
   text: string;
   onRemove: (serviceText: string) => void;
 };
 
 export const ServiceListCard = memo(
-  ({ text, onRemove }: serviceListCardProp) => {
+  ({ text, onRemove }: ServiceListCardProp) => {
     const theme = useTheme<Theme>();
     const styles = createStyles(theme);
 

@@ -2,7 +2,7 @@ import { RefObject } from 'react';
 import { StyleProp, TouchableOpacity, View, ViewStyle } from 'react-native';
 import FastImage, { ImageStyle } from 'react-native-fast-image';
 
-type circularIconButtonProps = {
+type CircularIconButtonProps = {
   iconPath: number | { uri: string } | undefined;
   iconStyle: StyleProp<ImageStyle>;
   tintColor?: string;
@@ -11,7 +11,7 @@ type circularIconButtonProps = {
   ref?: RefObject<View | null>;
 };
 
-export const CircularIconButtonComponent = (props: circularIconButtonProps) => {
+export const CircularIconButtonComponent = (props: CircularIconButtonProps) => {
   return (
     <TouchableOpacity
       ref={props.ref}

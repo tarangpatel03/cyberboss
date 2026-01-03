@@ -2,9 +2,9 @@ import { useTheme } from '@shopify/restyle';
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 import { Theme } from '../../config/themes/themes';
 import normalize from '../../utils/normalize/normalize';
-import { MediumTextComponent } from '../Text/MediumTextComponent';
+import { MediumTextComponent } from '../Text/MediumText';
 import { PrimaryButtonComponent } from '../Buttons/PrimaryButton';
-import { RegularTextComponent } from '../Text/RegularTextComponent';
+import { RegularTextComponent } from '../Text/RegularText';
 import { appIcons } from '../../config/icons/iconPath';
 import { getFullDate } from '../../utils/format/formatDate';
 import {
@@ -15,14 +15,14 @@ import { showSuccessToast } from '../../utils/toast/toast';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import FastImage from 'react-native-fast-image';
-import { tWorkshopModel } from '../../models/formattedAPI/tConsultant';
+import { TWorkshopModel } from '../../models/formattedAPI/tConsultant';
 
-type workshopCardProps = {
-  data: tWorkshopModel;
+type WorkshopCardProps = {
+  data: TWorkshopModel;
   cardStyle: StyleProp<ViewStyle>;
 };
 
-export const WorkshopCard = memo(({ data, cardStyle }: workshopCardProps) => {
+export const WorkshopCard = memo(({ data, cardStyle }: WorkshopCardProps) => {
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);

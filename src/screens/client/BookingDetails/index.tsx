@@ -5,25 +5,25 @@ import { Theme } from '../../../config/themes/themes';
 import { routeName } from '../../../config/constants/routes';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ActivityIndicator, StyleSheet, View } from 'react-native';
-import { rootNavigationProps } from '../../../models/navigationModel';
-import { ScreenHeaderComponent } from '../../../components/Headers/ScreenHeaderComponent';
+import { RootNavigationProps } from '../../../models/navigationModel';
+import { ScreenHeaderComponent } from '../../../components/Headers/ScreenHeader';
 import { PrimaryButtonComponent } from '../../../components/Buttons/PrimaryButton';
 import { getAPIData } from '../../../services/api/common/getCommonApi';
-import { rootState } from '../../../redux/store';
+import { RootState } from '../../../redux/store';
 import { useSelector } from 'react-redux';
 import { endPoints } from '../../../config/endPoint/apiEndPoint';
 import { useTranslation } from 'react-i18next';
 import { getBillData } from '../../../services/api/consultant/getBillData';
 import { ConsultantServiceSummaryCard } from '../../../components/Cards/ConsultantServiceSummaryCard';
 import { BookingPaymentDetailsCard } from '../../../components/Cards/BookingPaymentDetailsCard';
-import { apiBillDetailsModel } from '../../../models/api/billing';
-import { apiConsultantDetailsModel } from '../../../models/api/consultant';
+import { ApiBillDetailsModel } from '../../../models/api/billing';
+import { ApiConsultantDetailsModel } from '../../../models/api/consultant';
 import {
-  tBillDetailsModel,
+  TBillDetailsModel,
   transformBillDetailsModel,
 } from '../../../models/formattedAPI/tBilling';
 import {
-  tConsultantDetailsModel,
+  TConsultantDetailsModel,
   transformConsultantDetailsModel,
 } from '../../../models/formattedAPI/tConsultant';
 import { ApiResponse } from '../../../models/apiModel';
@@ -31,15 +31,15 @@ import { ApiResponse } from '../../../models/apiModel';
 export const BookingDetailsScreen = ({
   navigation,
   route,
-}: rootNavigationProps<routeName.BookingDetails>) => {
+}: RootNavigationProps<routeName.BookingDetails>) => {
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   const { consultantId, type } = route.params;
   const [hrBook, setHrBook] = useState<number>(3);
   const [loader, setLoader] = useState<boolean>(true);
-  const role = useSelector((state: rootState) => state.user.userData.role);
-  const [billData, setBillData] = useState<tBillDetailsModel>({
+  const role = useSelector((state: RootState) => state.user.userData.role);
+  const [billData, setBillData] = useState<TBillDetailsModel>({
     grandTotal: 0,
     hourlyRate: 0,
     hours: 0,
@@ -48,7 +48,7 @@ export const BookingDetailsScreen = ({
     tax: 0,
     total: 0,
   });
-  const [consultantData, setConsultantData] = useState<tConsultantDetailsModel>(
+  const [consultantData, setConsultantData] = useState<TConsultantDetailsModel>(
     {
       averageRatings: 0,
       bio: '',
@@ -78,13 +78,13 @@ export const BookingDetailsScreen = ({
     try {
       setLoader(true);
       const response1 = await getAPIData<
-        ApiResponse<apiConsultantDetailsModel>
+        ApiResponse<ApiConsultantDetailsModel>
       >(`${endPoints.consultant}/${consultantId}`);
       if (!response1) return;
-      const data1: apiConsultantDetailsModel = response1.payload;
+      const data1: ApiConsultantDetailsModel = response1.payload;
       const transformedData1 = transformConsultantDetailsModel(data1);
       setConsultantData(transformedData1);
-      const res2: apiBillDetailsModel = await getBillData(hrBook, consultantId);
+      const res2: ApiBillDetailsModel = await getBillData(hrBook, consultantId);
       const transformedData2 = transformBillDetailsModel(res2);
       setBillData(transformedData2);
     } catch (error) {

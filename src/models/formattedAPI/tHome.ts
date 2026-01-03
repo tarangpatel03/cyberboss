@@ -1,25 +1,25 @@
 import {
-  apiClientHomeModel,
-  consultantHomeBookingModel,
-  consultantHomeNotificationModel,
-  apiConsultantHomeModel,
+  ApiClientHomeModel,
+  ConsultantHomeBookingModel,
+  ConsultantHomeNotificationModel,
+  ApiConsultantHomeModel,
 } from '../api/home';
-import { tHomeBookingModel, transformHomeBookingModel } from './tBookings';
+import { THomeBookingModel, transformHomeBookingModel } from './tBookings';
 import {
-  tExpertiseModel,
-  tWorkshopModel,
+  TExpertiseModel,
+  TWorkshopModel,
   transformExpertiseModel,
   transformWorkshopModel,
 } from './tConsultant';
 
-export type tClientHomeModel = {
+export type TClientHomeModel = {
   isSubscriber: boolean;
-  bookings: tHomeBookingModel[];
-  expertises: tExpertiseModel[];
-  workshops: tWorkshopModel[];
+  bookings: THomeBookingModel[];
+  expertises: TExpertiseModel[];
+  workshops: TWorkshopModel[];
 };
 
-export type tConsultantHomeBookingModel = {
+export type TConsultantHomeBookingModel = {
   id: string;
   consultantName: string;
   consultantProfilePicture: string;
@@ -28,24 +28,24 @@ export type tConsultantHomeBookingModel = {
   grandTotal: string;
 };
 
-export type tConsultantHomeNotificationModel = {
+export type TConsultantHomeNotificationModel = {
   id: string;
   title: string;
   body: string | null;
   createdAt: string;
 };
 
-export type tConsultantHomeModel = {
+export type TConsultantHomeModel = {
   totalEarnings: string;
   walletBalance: number;
   averageRating: number;
-  bookings: tHomeBookingModel[];
-  notification: tConsultantHomeNotificationModel[];
+  bookings: THomeBookingModel[];
+  notification: TConsultantHomeNotificationModel[];
 };
 
 export const transformClientHomeModal: (
-  data: apiClientHomeModel,
-) => tClientHomeModel = (data: apiClientHomeModel) => {
+  data: ApiClientHomeModel,
+) => TClientHomeModel = (data: ApiClientHomeModel) => {
   return {
     bookings: data.bookings.map(r => transformHomeBookingModel(r)) ?? [],
     expertises: data.expertises
@@ -59,8 +59,8 @@ export const transformClientHomeModal: (
 };
 
 export const transformConsultantHomeBookings: (
-  data: consultantHomeBookingModel,
-) => tConsultantHomeBookingModel = (data: consultantHomeBookingModel) => {
+  data: ConsultantHomeBookingModel,
+) => TConsultantHomeBookingModel = (data: ConsultantHomeBookingModel) => {
   return {
     id: data.id,
     grandTotal: data.grand_total,
@@ -72,9 +72,9 @@ export const transformConsultantHomeBookings: (
 };
 
 export const transformConsultantHomeNotification: (
-  data: consultantHomeNotificationModel,
-) => tConsultantHomeNotificationModel = (
-  data: consultantHomeNotificationModel,
+  data: ConsultantHomeNotificationModel,
+) => TConsultantHomeNotificationModel = (
+  data: ConsultantHomeNotificationModel,
 ) => {
   return {
     id: data.id,
@@ -85,8 +85,8 @@ export const transformConsultantHomeNotification: (
 };
 
 export const transformConsultantHomeModel: (
-  data: apiConsultantHomeModel,
-) => tConsultantHomeModel = (data: apiConsultantHomeModel) => {
+  data: ApiConsultantHomeModel,
+) => TConsultantHomeModel = (data: ApiConsultantHomeModel) => {
   return {
     walletBalance: data.wallet_balance,
     totalEarnings: data.total_earnings,

@@ -7,7 +7,7 @@ import { Theme } from '../../config/themes/themes';
 import { useTheme } from '@shopify/restyle';
 import normalize from '../../utils/normalize/normalize';
 
-type passwordInputProps = {
+type PasswordInputProps = {
   value: string;
   visible: boolean;
   placeholder: string;
@@ -21,7 +21,7 @@ export const PasswordInputComponent = ({
   setVisible,
   value,
   visible,
-}: passwordInputProps) => {
+}: PasswordInputProps) => {
   const theme = useTheme<Theme>();
   return (
     <View style={staticStyle.passwordInput}>

@@ -4,7 +4,7 @@ import { ShimmerHolder } from './ShimmerHolder';
 import normalize from '../../utils/normalize/normalize';
 import { useCallback } from 'react';
 
-type listShimmerProps = {
+type ListShimmerProps = {
   containerStyle: StyleProp<ViewStyle>;
   scrollEnabled?: boolean;
 };
@@ -12,7 +12,7 @@ type listShimmerProps = {
 export const ListShimmer = ({
   containerStyle,
   scrollEnabled,
-}: listShimmerProps) => {
+}: ListShimmerProps) => {
   const renderItem = useCallback(() => {
     return <ShimmerHolder style={containerStyle} />;
   }, [containerStyle]);

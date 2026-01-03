@@ -3,15 +3,17 @@ import { showErrorToast } from '../toast/toast';
 import { appText } from '../../config/text/constantsText';
 import CalenderEvents from 'react-native-calendar-events';
 
+type AddToCalendarProps = {
+  startDate: ISODateString;
+  endDate: ISODateString;
+  notes: string;
+};
+
 export const addToCalendar = async ({
   startDate,
   endDate,
   notes,
-}: {
-  startDate: ISODateString;
-  endDate: ISODateString;
-  notes: string;
-}) => {
+}: AddToCalendarProps) => {
   try {
     const permission = await CalenderEvents.requestPermissions();
     if (permission !== 'authorized') {

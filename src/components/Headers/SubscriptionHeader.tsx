@@ -2,14 +2,14 @@ import { useTranslation } from 'react-i18next';
 import FastImage from 'react-native-fast-image';
 import { View, TouchableOpacity } from 'react-native';
 import { appIcons } from '../../config/icons/iconPath';
-import { MediumTextComponent } from '../Text/MediumTextComponent';
+import { MediumTextComponent } from '../Text/MediumText';
 import { staticStyle } from '../../screens/client/Subscription/styles';
 
-type subscriptionHeaderProps = {
+type SubscriptionHeaderProps = {
   goBack: () => void;
 };
 
-export const SubscriptionHeader = (props: subscriptionHeaderProps) => {
+export const SubscriptionHeader = (props: SubscriptionHeaderProps) => {
   const { t } = useTranslation();
   return (
     <View style={staticStyle.header}>

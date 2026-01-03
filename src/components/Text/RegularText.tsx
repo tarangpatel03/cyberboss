@@ -1,21 +1,21 @@
 import { StyleProp, StyleSheet, Text, TextStyle } from 'react-native';
 import { getFontFamily } from '../../utils/fonts/getFontFamily';
 
-type boldTextComponentProps = {
+type RegularTextComponentProps = {
   text: string;
   textStyle: StyleProp<TextStyle>;
   noOfLines?: number;
 };
 
-export const BoldTextComponent = ({
+export const RegularTextComponent = ({
   text,
   textStyle,
   noOfLines,
-}: boldTextComponentProps) => {
+}: RegularTextComponentProps) => {
   return (
     <Text
       numberOfLines={noOfLines ?? 1}
-      style={StyleSheet.flatten([styles.text, textStyle])}
+      style={StyleSheet.flatten([textStyle, styles.text])}
     >
       {text}
     </Text>
@@ -24,6 +24,6 @@ export const BoldTextComponent = ({
 
 const styles = StyleSheet.create({
   text: {
-    fontFamily: getFontFamily('bold'),
+    fontFamily: getFontFamily('regular'),
   },
 });

@@ -1504,6 +1504,11 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-2.0.3.tgz#4a2868d75d6d6963e423bcf90b7fd1be343409d3"
   integrity sha512-93zYdMES/c1D69yZiKDBj0V24vqNzB/koF26KPaagAfd3P/4gUlh3Dys5ogAK+Exi9QyzlD8x/08Zt7wIKcDcA==
 
+"@invertase/react-native-apple-authentication@^2.5.0":
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/@invertase/react-native-apple-authentication/-/react-native-apple-authentication-2.5.0.tgz#04626e2fd35e13724fad70621bffa62939895ed4"
+  integrity sha512-PL5tUd1WCw365L2fWlkB4HXy7QjZHCU9o6qi8osMvftBIlynSpi76YStJCeJcwU6aYXB09+iV/V5g+8lwafNwQ==
+
 "@isaacs/ttlcache@^1.4.1":
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/@isaacs/ttlcache/-/ttlcache-1.4.1.tgz#21fb23db34e9b6220c6ba023a0118a2dd3461ea2"
@@ -6307,11 +6312,6 @@ react-is@^19.1.0, react-is@^19.2.0:
   version "19.2.3"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-19.2.3.tgz#eec2feb69c7fb31f77d0b5c08c10ae1c88886b29"
   integrity sha512-qJNJfu81ByyabuG7hPFEbXqNcWSU3+eVus+KJs+0ncpGfMyYdvSmxiJxbWR65lYi1I+/0HBcliO029gc4F+PnA==
-
-react-native-apple-authentication@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/react-native-apple-authentication/-/react-native-apple-authentication-2.0.0.tgz#519a769fc1cb8ebc0093a5881d7f0ffec02275ca"
-  integrity sha512-7SZJ5Gl+9C0Dztu/hFag2j2ET2yhI9wf6Q0liiEwFWPbrP7Jd5/XfMNxDGJerrV/yv949h3bxiVTl4Ce0Xb8lg==
 
 react-native-asset@^2.2.4:
   version "2.2.4"

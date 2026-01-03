@@ -3,11 +3,10 @@ import {
   ScrollView,
   StyleSheet,
   ListRenderItem,
+  View,
+  TouchableOpacity,
+  FlatList,
 } from 'react-native';
-import {
-  bookingHistory,
-  recentActivities,
-} from '../../../demoData/homeScreenData';
 import { useCallback, useEffect, useState } from 'react';
 import { useTheme } from '@shopify/restyle';
 import { createStyles, staticStyle } from './styles';
@@ -15,38 +14,44 @@ import { Theme } from '../../../config/themes/themes';
 import { getAPIData } from '../../../services/api/common/getCommonApi';
 import { routeName } from '../../../config/constants/routes';
 import { endPoints } from '../../../config/endPoint/apiEndPoint';
-import { rootNavigationProps } from '../../../models/navigationModel';
+import { RootNavigationProps } from '../../../models/navigationModel';
 import { RecentActivity } from '../../../components/Cards/RecentActivity';
 import { BookingHistoryCard } from '../../../components/Cards/BookingHistoryCard';
 import { ConsultantHeaderCard } from '../../../components/Headers/ConsultantHeaderCard';
 import { ConsultantBookingHistoryList } from '../../../components/List/ConsultantBookingHistoryList';
-import { RecentActivityList } from '../../../components/List/RecentActivityList';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUserData } from '../../../redux/features/userSlice';
-import { apiConsultantHomeModel } from '../../../models/api/home';
-import { apiProfileModel } from '../../../models/api/profile';
+import { ApiConsultantHomeModel } from '../../../models/api/home';
+import { ApiProfileModel } from '../../../models/api/profile';
 import {
-  tConsultantHomeModel,
-  tConsultantHomeNotificationModel,
+  TConsultantHomeModel,
+  TConsultantHomeNotificationModel,
   transformConsultantHomeModel,
 } from '../../../models/formattedAPI/tHome';
 import {
-  tProfileModel,
+  TProfileModel,
   transformProfileModel,
 } from '../../../models/formattedAPI/tProfile';
-import { tHomeBookingModel } from '../../../models/formattedAPI/tBookings';
-import { rootState } from '../../../redux/store';
+import { THomeBookingModel } from '../../../models/formattedAPI/tBookings';
+import { RootState } from '../../../redux/store';
 import firestore from '@react-native-firebase/firestore';
 import { ApiResponse } from '../../../models/apiModel';
+import { MediumTextComponent } from '../../../components/Text/MediumText';
+import { useTranslation } from 'react-i18next';
+import { RegularTextComponent } from '../../../components/Text/RegularText';
+import FastImage from 'react-native-fast-image';
+import { appIcons } from '../../../config/icons/iconPath';
+import { ListEmptyCard } from '../../../components/Cards/ListEmptyCard';
 
 export const ConsultantHomeScreen = ({
   navigation,
-}: rootNavigationProps<routeName.Home>) => {
+}: RootNavigationProps<routeName.Home>) => {
+  const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   const dispatch = useDispatch();
-  const userIdRead = useSelector((state: rootState) => state.user.userData.id);
-  const [profileData, setProfileData] = useState<tProfileModel>({
+  const userIdRead = useSelector((state: RootState) => state.user.userData.id);
+  const [profileData, setProfileData] = useState<TProfileModel>({
     id: '',
     name: 'User',
     email: '',
@@ -63,7 +68,7 @@ export const ConsultantHomeScreen = ({
     profileSetup: false,
   });
 
-  const [homeData, setHomeData] = useState<tConsultantHomeModel>({
+  const [homeData, setHomeData] = useState<TConsultantHomeModel>({
     averageRating: 0,
     bookings: [],
     notification: [],
@@ -81,18 +86,18 @@ export const ConsultantHomeScreen = ({
 
   const getData = async () => {
     try {
-      const response1 = await getAPIData<ApiResponse<apiConsultantHomeModel>>(
+      const response1 = await getAPIData<ApiResponse<ApiConsultantHomeModel>>(
         endPoints.consultantHome,
       );
       if (!response1) return;
-      const data1: apiConsultantHomeModel = response1.payload;
+      const data1: ApiConsultantHomeModel = response1.payload;
       const transformedData1 = transformConsultantHomeModel(data1);
       setHomeData(transformedData1);
-      const response2 = await getAPIData<ApiResponse<apiProfileModel>>(
+      const response2 = await getAPIData<ApiResponse<ApiProfileModel>>(
         endPoints.consultantProfile,
       );
       if (!response2) return;
-      const data2: apiProfileModel = response2.payload;
+      const data2: ApiProfileModel = response2.payload;
       const transformedData2 = transformProfileModel(data2);
       setProfileData(transformedData2);
       dispatch(
@@ -159,13 +164,13 @@ export const ConsultantHomeScreen = ({
     }
   };
 
-  const renderBookingHistoryItem: ListRenderItem<tHomeBookingModel> = ({
+  const renderBookingHistoryItem: ListRenderItem<THomeBookingModel> = ({
     item,
   }) => {
     return <BookingHistoryCard props={item} navigateToChat={navigateToChat} />;
   };
 
-  const renderRecentActivityItem: ListRenderItem<tConsultantHomeNotificationModel> =
+  const renderRecentActivityItem: ListRenderItem<TConsultantHomeNotificationModel> =
     useCallback(({ item }) => {
       return (
         <RecentActivity
@@ -198,18 +203,53 @@ export const ConsultantHomeScreen = ({
           navigateToProfile={navigateToProfile}
           navigateToNotification={navigateToNotification}
         />
-        {bookingHistory.length !== 0 && (
+        {homeData.bookings.length !== 0 && (
           <ConsultantBookingHistoryList
             data={homeData.bookings}
             renderBookingHistoryItem={renderBookingHistoryItem}
           />
         )}
-        {recentActivities.length !== 0 && (
-          <RecentActivityList
-            data={homeData.notification}
-            renderRecentActivityItem={renderRecentActivityItem}
+        <View style={staticStyle.header}>
+          <MediumTextComponent
+            text={t('recentActivity')}
+            textStyle={StyleSheet.flatten([
+              staticStyle.headerText,
+              styles.textPrimary,
+            ])}
           />
-        )}
+          {homeData.notification.length !== 0 && (
+            <TouchableOpacity
+              activeOpacity={0.7}
+              onPress={navigateToNotification}
+              style={staticStyle.viewAllButton}
+            >
+              <RegularTextComponent
+                text={t('viewAll')}
+                textStyle={StyleSheet.flatten([
+                  staticStyle.viewAllText,
+                  styles.viewAllText,
+                ])}
+              />
+              <FastImage
+                source={appIcons.ic_rightArrow}
+                style={staticStyle.viewAllIcon}
+                tintColor={theme.colors.primary}
+              />
+            </TouchableOpacity>
+          )}
+        </View>
+        <FlatList
+          data={homeData.notification}
+          scrollEnabled={false}
+          initialNumToRender={5}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={staticStyle.listItems}
+          keyExtractor={item => item.id}
+          renderItem={renderRecentActivityItem}
+          ListEmptyComponent={
+            <ListEmptyCard text={t('noRecentActivityFound')} />
+          }
+        />
       </ScrollView>
     </>
   );

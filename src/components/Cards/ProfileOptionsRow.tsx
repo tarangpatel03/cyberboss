@@ -5,16 +5,16 @@ import { Dispatch, SetStateAction } from 'react';
 import { Theme } from '../../config/themes/themes';
 import { appIcons } from '../../config/icons/iconPath';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import { RegularTextComponent } from '../Text/RegularTextComponent';
+import { RegularTextComponent } from '../Text/RegularText';
 import { staticStyle, createStyles } from '../../screens/common/Profile/styles';
 
-type profileOptionsRowProps = {
+type ProfileOptionsRowProps = {
   role: 'client' | 'consultant';
   navigateToChangePassword: () => void;
   setThemeModalVisible: Dispatch<SetStateAction<boolean>>;
 };
 
-export const ProfileOptionsRow = (props: profileOptionsRowProps) => {
+export const ProfileOptionsRow = (props: ProfileOptionsRowProps) => {
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);

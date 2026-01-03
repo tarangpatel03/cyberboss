@@ -1,14 +1,14 @@
 import {
-  apiConsultantDetailsModel,
-  apiConsultantModel,
-  apiConsultantVerifed,
-  apiExpertiseModel,
-  apiRatingReviewModel,
-  apiWorkshopModel,
-  services,
+  ApiConsultantDetailsModel,
+  ApiConsultantModel,
+  ApiConsultantVerifed,
+  ApiExpertiseModel,
+  ApiRatingReviewModel,
+  ApiWorkshopModel,
+  Services,
 } from '../api/consultant';
 
-export type tExpertiseModel = {
+export type TExpertiseModel = {
   id: string;
   name: string;
   image: string;
@@ -17,7 +17,7 @@ export type tExpertiseModel = {
   bookingCount: number | null;
 };
 
-export type tWorkshopModel = {
+export type TWorkshopModel = {
   id: string;
   name: string;
   date: string;
@@ -26,7 +26,7 @@ export type tWorkshopModel = {
   link: string;
 };
 
-export type tConsultantModel = {
+export type TConsultantModel = {
   id: string;
   name: string;
   experienceYear: string;
@@ -35,7 +35,7 @@ export type tConsultantModel = {
   bookings: number;
 };
 
-export type tRatingReviewModel = {
+export type TRatingReviewModel = {
   id: string;
   clientId: string;
   clientName: string;
@@ -45,7 +45,7 @@ export type tRatingReviewModel = {
   createdAt: string;
 };
 
-export type tConsultantDetailsModel = {
+export type TConsultantDetailsModel = {
   id: string;
   name: string;
   profilePicture: string | undefined;
@@ -53,28 +53,28 @@ export type tConsultantDetailsModel = {
   experienceYear: string;
   rate: string;
   bookingsCount: number;
-  expertises: tExpertiseModel[];
-  services: services[];
+  expertises: TExpertiseModel[];
+  services: Services[];
   totalRatings: number;
   averageRatings: number;
-  ratingReviews: tRatingReviewModel[];
+  ratingReviews: TRatingReviewModel[];
 };
 
-export type tConsultantVerifed = {
+export type TConsultantVerifed = {
   isVerified: boolean;
 };
 
 export const transformConsultantVerfied: (
-  data: apiConsultantVerifed,
-) => tConsultantVerifed = (data: apiConsultantVerifed) => {
+  data: ApiConsultantVerifed,
+) => TConsultantVerifed = (data: ApiConsultantVerifed) => {
   return {
     isVerified: data.is_verified,
   };
 };
 
 export const transformExpertiseModel: (
-  data: apiExpertiseModel,
-) => tExpertiseModel = (data: apiExpertiseModel) => {
+  data: ApiExpertiseModel,
+) => TExpertiseModel = (data: ApiExpertiseModel) => {
   return {
     bookingCount: data.booking_count,
     description: data.description,
@@ -86,8 +86,8 @@ export const transformExpertiseModel: (
 };
 
 export const transformWorkshopModel: (
-  data: apiWorkshopModel,
-) => tWorkshopModel = (data: apiWorkshopModel) => {
+  data: ApiWorkshopModel,
+) => TWorkshopModel = (data: ApiWorkshopModel) => {
   return {
     date: data.date,
     endTime: data.end_time,
@@ -99,8 +99,8 @@ export const transformWorkshopModel: (
 };
 
 export const transformConsultantModel: (
-  data: apiConsultantModel,
-) => tConsultantModel = (data: apiConsultantModel) => {
+  data: ApiConsultantModel,
+) => TConsultantModel = (data: ApiConsultantModel) => {
   return {
     bookings: data.bookings,
     experienceYear: data.experience_year,
@@ -112,8 +112,8 @@ export const transformConsultantModel: (
 };
 
 export const transformRatingReviewModel: (
-  data: apiRatingReviewModel,
-) => tRatingReviewModel = (data: apiRatingReviewModel) => {
+  data: ApiRatingReviewModel,
+) => TRatingReviewModel = (data: ApiRatingReviewModel) => {
   return {
     id: data.id,
     rating: data.rating,
@@ -126,8 +126,8 @@ export const transformRatingReviewModel: (
 };
 
 export const transformConsultantDetailsModel: (
-  data: apiConsultantDetailsModel,
-) => tConsultantDetailsModel = (data: apiConsultantDetailsModel) => {
+  data: ApiConsultantDetailsModel,
+) => TConsultantDetailsModel = (data: ApiConsultantDetailsModel) => {
   return {
     averageRatings: data.average_ratings,
     bio: data.bio,

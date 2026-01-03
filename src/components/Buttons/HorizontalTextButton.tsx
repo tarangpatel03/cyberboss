@@ -2,19 +2,19 @@ import { useTheme } from '@shopify/restyle';
 import { useTranslation } from 'react-i18next';
 import { Theme } from '../../config/themes/themes';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
-import { MediumTextComponent } from '../Text/MediumTextComponent';
+import { MediumTextComponent } from '../Text/MediumText';
 import {
   createStyles,
   staticStyle,
 } from '../../screens/common/auth/LogIn/styles';
 
-type authFooterAction = {
+type AuthFooterAction = {
   title: string;
   subTitle: string;
   navigateTo: () => void;
 };
 
-export const AuthFooterAction = (props: authFooterAction) => {
+export const AuthFooterAction = (props: AuthFooterAction) => {
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);

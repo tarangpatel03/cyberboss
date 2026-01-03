@@ -4,14 +4,14 @@ import { Theme } from '../../../config/themes/themes';
 import { StyleSheet, View } from 'react-native';
 import { routeName } from '../../../config/constants/routes';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { rootNavigationProps } from '../../../models/navigationModel';
-import { ScreenHeaderComponent } from '../../../components/Headers/ScreenHeaderComponent';
+import { RootNavigationProps } from '../../../models/navigationModel';
+import { ScreenHeaderComponent } from '../../../components/Headers/ScreenHeader';
 import { PrimaryButtonComponent } from '../../../components/Buttons/PrimaryButton';
 import { appIcons } from '../../../config/icons/iconPath';
-import { SemiBoldTextComponent } from '../../../components/Text/SemiBoldTextComponent';
-import { RegularTextComponent } from '../../../components/Text/RegularTextComponent';
+import { SemiBoldTextComponent } from '../../../components/Text/SemiBoldText';
+import { RegularTextComponent } from '../../../components/Text/RegularText';
 import LinearGradient from 'react-native-linear-gradient';
-import { MediumTextComponent } from '../../../components/Text/MediumTextComponent';
+import { MediumTextComponent } from '../../../components/Text/MediumText';
 import {
   getGradientColor,
   getServiceImage,
@@ -23,7 +23,7 @@ import { useTranslation } from 'react-i18next';
 export const BookingConfirmScreen = ({
   navigation,
   route,
-}: rootNavigationProps<routeName.BookingConfirm>) => {
+}: RootNavigationProps<routeName.BookingConfirm>) => {
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);

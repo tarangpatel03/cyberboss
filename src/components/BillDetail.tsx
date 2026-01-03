@@ -1,17 +1,17 @@
 import { StyleSheet, View } from 'react-native';
-import { RegularTextComponent } from './Text/RegularTextComponent';
+import { RegularTextComponent } from './Text/RegularText';
 import { Theme } from '../config/themes/themes';
 import { useTheme } from '@shopify/restyle';
 import normalize from '../utils/normalize/normalize';
 
-type billDetailsComponentProps = {
+type BillDetailsComponentProps = {
   title: string;
   amount: number;
   isHour?: boolean;
   isGrandTotal?: boolean;
 };
 
-export const BillDetailsComponent = (props: billDetailsComponentProps) => {
+export const BillDetailsComponent = (props: BillDetailsComponentProps) => {
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   return (

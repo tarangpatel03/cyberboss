@@ -1,8 +1,8 @@
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { Theme } from '../../config/themes/themes';
 import { useTheme } from '@shopify/restyle';
-import { MediumTextComponent } from '../Text/MediumTextComponent';
-import { RegularTextComponent } from '../Text/RegularTextComponent';
+import { MediumTextComponent } from '../Text/MediumText';
+import { RegularTextComponent } from '../Text/RegularText';
 import normalize from '../../utils/normalize/normalize';
 import FastImage from 'react-native-fast-image';
 import { memo, useEffect, useState } from 'react';
@@ -11,7 +11,7 @@ import firestore from '@react-native-firebase/firestore';
 import { formatFirebaseTimestamp } from '../../utils/format/formatDate';
 import { width } from '../../config/constants/variables';
 
-type chatListItemProps = {
+type ChatListItemProps = {
   data: any;
   uid: string;
   onPress: ({
@@ -25,16 +25,16 @@ type chatListItemProps = {
   }) => void;
 };
 
-type userDataType = {
+type UserDataType = {
   name: string;
   date: string;
   profile_image: string;
 };
 
-export const ChatListItem = memo((props: chatListItemProps) => {
+export const ChatListItem = memo((props: ChatListItemProps) => {
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
-  const [userData, setUserData] = useState<userDataType>({
+  const [userData, setUserData] = useState<UserDataType>({
     name: '',
     date: '',
     profile_image: '',

@@ -10,10 +10,10 @@ import { Theme } from '../../config/themes/themes';
 import normalize from '../../utils/normalize/normalize';
 import { appColors } from '../../config/colors/colors';
 import { Dispatch, SetStateAction, useState } from 'react';
-import { RegularTextComponent } from '../Text/RegularTextComponent';
+import { RegularTextComponent } from '../Text/RegularText';
 import { isDarkMode } from '../../utils/theme/darkMode';
 
-type borderInputComponentProps = {
+type BorderInputComponentProps = {
   placeholder: string;
   value: string | null;
   setValue: Dispatch<SetStateAction<string | null>>;
@@ -31,7 +31,7 @@ export const BorderInputComponent = ({
   secureText,
   onSubmit,
   showPlaceholderOnFocus = true,
-}: borderInputComponentProps) => {
+}: BorderInputComponentProps) => {
   const [isFocus, setIsFocus] = useState(value && value.length > 0);
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);

@@ -9,34 +9,34 @@ import { Theme } from '../../config/themes/themes';
 import { appColors } from '../../config/colors/colors';
 import { appIcons } from '../../config/icons/iconPath';
 import LinearGradient from 'react-native-linear-gradient';
-import { BoldTextComponent } from '../Text/BoldTextComponent';
+import { BoldTextComponent } from '../Text/BoldText';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
-import { MediumTextComponent } from '../Text/MediumTextComponent';
-import { RegularTextComponent } from '../Text/RegularTextComponent';
-import { SemiBoldTextComponent } from '../Text/SemiBoldTextComponent';
+import { MediumTextComponent } from '../Text/MediumText';
+import { RegularTextComponent } from '../Text/RegularText';
+import { SemiBoldTextComponent } from '../Text/SemiBoldText';
 import { useState } from 'react';
 import { appImages } from '../../config/images/imagePath';
 import RadialGradient from 'react-native-radial-gradient';
 import { width } from '../../config/constants/variables';
-import { tConsultantHomeModel } from '../../models/formattedAPI/tHome';
-import { tProfileModel } from '../../models/formattedAPI/tProfile';
+import { TConsultantHomeModel } from '../../models/formattedAPI/tHome';
+import { TProfileModel } from '../../models/formattedAPI/tProfile';
 import { useSelector } from 'react-redux';
-import { rootState } from '../../redux/store';
+import { RootState } from '../../redux/store';
 import { getProfilePicture } from '../../utils/extractURI/extractImageURI';
 
-type consultantHeaderCardProps = {
-  profileData: tProfileModel;
-  userData: tConsultantHomeModel;
+type ConsultantHeaderCardProps = {
+  profileData: TProfileModel;
+  userData: TConsultantHomeModel;
   navigateToNotification: () => void;
   navigateToProfile: () => void;
 };
 
-export const ConsultantHeaderCard = (props: consultantHeaderCardProps) => {
+export const ConsultantHeaderCard = (props: ConsultantHeaderCardProps) => {
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   const { name, profilePicture } = useSelector(
-    (state: rootState) => state.user.userData,
+    (state: RootState) => state.user.userData,
   );
   const [profilePictureError, setProfilePictureError] =
     useState<boolean>(false);

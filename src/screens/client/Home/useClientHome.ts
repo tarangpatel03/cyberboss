@@ -3,15 +3,15 @@ import { useEffect, useState } from 'react';
 import { setIsPro, setUserData } from '../../../redux/features/userSlice';
 import { useDispatch } from 'react-redux';
 import { endPoints } from '../../../config/endPoint/apiEndPoint';
-import { apiExpertiseModel } from '../../../models/api/consultant';
-import { apiClientHomeModel } from '../../../models/api/home';
-import { apiProfileModel } from '../../../models/api/profile';
+import { ApiExpertiseModel } from '../../../models/api/consultant';
+import { ApiClientHomeModel } from '../../../models/api/home';
+import { ApiProfileModel } from '../../../models/api/profile';
 import {
-  tExpertiseModel,
+  TExpertiseModel,
   transformExpertiseModel,
 } from '../../../models/formattedAPI/tConsultant';
 import {
-  tClientHomeModel,
+  TClientHomeModel,
   transformClientHomeModal,
 } from '../../../models/formattedAPI/tHome';
 import { transformProfileModel } from '../../../models/formattedAPI/tProfile';
@@ -22,7 +22,7 @@ export function useClientHome() {
   const [loader, setLoader] = useState<boolean>(true);
   const [refreshing, setRefreshing] = useState<boolean>(false);
 
-  const [homeData, setHomeData] = useState<tClientHomeModel>({
+  const [homeData, setHomeData] = useState<TClientHomeModel>({
     bookings: [],
     workshops: [],
     expertises: [],
@@ -30,12 +30,12 @@ export function useClientHome() {
   });
 
   const handleHomeScreenWithoutLogIn = async () => {
-    const response = await getAPIData<ApiResponse<apiExpertiseModel[]>>(
+    const response = await getAPIData<ApiResponse<ApiExpertiseModel[]>>(
       endPoints.expertise,
     );
     if (!response) return;
-    const data: apiExpertiseModel[] = response.payload;
-    const transformedData: tExpertiseModel[] = data.map(r =>
+    const data: ApiExpertiseModel[] = response.payload;
+    const transformedData: TExpertiseModel[] = data.map(r =>
       transformExpertiseModel(r),
     );
     setHomeData({
@@ -48,18 +48,18 @@ export function useClientHome() {
 
   const getData = async () => {
     try {
-      const response = await getAPIData<ApiResponse<apiClientHomeModel>>(
+      const response = await getAPIData<ApiResponse<ApiClientHomeModel>>(
         endPoints.clientHome,
       );
       if (!response) return;
-      const data1: apiClientHomeModel = response.payload;
+      const data1: ApiClientHomeModel = response.payload;
       const transformedData1 = transformClientHomeModal(data1);
       setHomeData(transformedData1);
-      const response2 = await getAPIData<ApiResponse<apiProfileModel>>(
+      const response2 = await getAPIData<ApiResponse<ApiProfileModel>>(
         endPoints.consultantProfile,
       );
       if (!response2) return;
-      const data2: apiProfileModel = response2.payload;
+      const data2: ApiProfileModel = response2.payload;
       const transformedData2 = transformProfileModel(data2);
       dispatch(
         setUserData({

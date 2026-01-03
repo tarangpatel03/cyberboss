@@ -1,17 +1,17 @@
 import { useTranslation } from 'react-i18next';
 import FastImage from 'react-native-fast-image';
 import { appIcons } from '../../config/icons/iconPath';
-import { MediumTextComponent } from '../Text/MediumTextComponent';
+import { MediumTextComponent } from '../Text/MediumText';
 import { staticStyle } from '../../screens/client/Subscription/styles';
 import { ListRenderItem, View, StyleSheet, FlatList } from 'react-native';
-import { tWorkshopModel } from '../../models/formattedAPI/tConsultant';
+import { TWorkshopModel } from '../../models/formattedAPI/tConsultant';
 
-type upcomingWorkshopsListProps = {
-  workShopData: tWorkshopModel[];
-  renderItem: ListRenderItem<tWorkshopModel>;
+type UpcomingWorkshopsListProps = {
+  workShopData: TWorkshopModel[];
+  renderItem: ListRenderItem<TWorkshopModel>;
 };
 
-export const UpcomingWorkShopsList = (props: upcomingWorkshopsListProps) => {
+export const UpcomingWorkShopsList = (props: UpcomingWorkshopsListProps) => {
   const { t } = useTranslation();
   return (
     <View style={staticStyle.benefits}>

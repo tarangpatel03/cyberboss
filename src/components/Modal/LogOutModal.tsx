@@ -6,15 +6,15 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import { MediumTextComponent } from '../Text/MediumTextComponent';
-import { RegularTextComponent } from '../Text/RegularTextComponent';
+import { MediumTextComponent } from '../Text/MediumText';
+import { RegularTextComponent } from '../Text/RegularText';
 import { Theme } from '../../config/themes/themes';
 import normalize from '../../utils/normalize/normalize';
 import { useTheme } from '@shopify/restyle';
 import { appColors } from '../../config/colors/colors';
 import { useTranslation } from 'react-i18next';
 
-type logOutModalProps = {
+type LogOutModalProps = {
   isModal: boolean;
   message: string;
   title: string;
@@ -23,7 +23,7 @@ type logOutModalProps = {
   onConfirm: () => void;
 };
 
-export const LogOutModal = (props: logOutModalProps) => {
+export const LogOutModal = (props: LogOutModalProps) => {
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);

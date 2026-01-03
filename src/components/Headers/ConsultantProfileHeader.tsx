@@ -6,22 +6,22 @@ import { appIcons } from '../../config/icons/iconPath';
 import { appImages } from '../../config/images/imagePath';
 import { ConsultantInfoBadge } from '../ConsultantInfoBadge';
 import { formatBooking } from '../../utils/format/formatDate';
-import { MediumTextComponent } from '../Text/MediumTextComponent';
-import { RegularTextComponent } from '../Text/RegularTextComponent';
+import { MediumTextComponent } from '../Text/MediumText';
+import { RegularTextComponent } from '../Text/RegularText';
 import {
   createStyles,
   staticStyle,
 } from '../../screens/client/ConsultantProfile/styles';
-import { tConsultantDetailsModel } from '../../models/formattedAPI/tConsultant';
+import { TConsultantDetailsModel } from '../../models/formattedAPI/tConsultant';
 import { getProfilePicture } from '../../utils/extractURI/extractImageURI';
 import { useState } from 'react';
 
-type consultantProfileHeaderProps = {
-  data: tConsultantDetailsModel;
+type ConsultantProfileHeaderProps = {
+  data: TConsultantDetailsModel;
 };
 
 export const ConsultantProfileHeader = (
-  props: consultantProfileHeaderProps,
+  props: ConsultantProfileHeaderProps,
 ) => {
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);

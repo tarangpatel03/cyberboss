@@ -8,16 +8,16 @@ import { View, StyleSheet } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { Theme } from '../../config/themes/themes';
 import { appIcons } from '../../config/icons/iconPath';
-import { MediumTextComponent } from '../Text/MediumTextComponent';
-import { RegularTextComponent } from '../Text/RegularTextComponent';
-import { tBookingDetailsModel } from '../../models/formattedAPI/tBookings';
+import { MediumTextComponent } from '../Text/MediumText';
+import { RegularTextComponent } from '../Text/RegularText';
+import { TBookingDetailsModel } from '../../models/formattedAPI/tBookings';
 import { getFullDate } from '../../utils/format/formatDate';
 
-type bookingStatusCardProps = {
-  props: tBookingDetailsModel | undefined;
+type BookingStatusCardProps = {
+  props: TBookingDetailsModel | undefined;
 };
 
-export const BookingStatusCard = ({ props }: bookingStatusCardProps) => {
+export const BookingStatusCard = ({ props }: BookingStatusCardProps) => {
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);

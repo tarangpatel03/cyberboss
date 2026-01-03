@@ -4,8 +4,8 @@ import FastImage from 'react-native-fast-image';
 import { appColors } from '../../config/colors/colors';
 import { appIcons } from '../../config/icons/iconPath';
 import LinearGradient from 'react-native-linear-gradient';
-import { MediumTextComponent } from '../Text/MediumTextComponent';
-import { RegularTextComponent } from '../Text/RegularTextComponent';
+import { MediumTextComponent } from '../Text/MediumText';
+import { RegularTextComponent } from '../Text/RegularText';
 import { staticStyle } from '../../screens/client/Subscription/styles';
 import { linearGradientDirection } from '../../screens/client/Subscription';
 

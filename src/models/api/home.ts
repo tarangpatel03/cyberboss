@@ -1,14 +1,14 @@
-import { apiHomeBookingModel } from './bookings';
-import { apiExpertiseModel, apiWorkshopModel } from './consultant';
+import { ApiHomeBookingModel } from './bookings';
+import { ApiExpertiseModel, ApiWorkshopModel } from './consultant';
 
-export type apiClientHomeModel = {
+export type ApiClientHomeModel = {
   is_subscriber: boolean;
-  bookings: apiHomeBookingModel[];
-  expertises: apiExpertiseModel[];
-  workshops: apiWorkshopModel[];
+  bookings: ApiHomeBookingModel[];
+  expertises: ApiExpertiseModel[];
+  workshops: ApiWorkshopModel[];
 };
 
-export type consultantHomeBookingModel = {
+export type ConsultantHomeBookingModel = {
   id: string;
   consultant_name: string;
   consultant_profile_picture: string;
@@ -17,17 +17,17 @@ export type consultantHomeBookingModel = {
   grand_total: string;
 };
 
-export type consultantHomeNotificationModel = {
+export type ConsultantHomeNotificationModel = {
   id: string;
   title: string;
   body: string | null;
   created_at: string;
 };
 
-export type apiConsultantHomeModel = {
+export type ApiConsultantHomeModel = {
   total_earnings: string;
   wallet_balance: number;
   average_rating: number;
-  bookings: apiHomeBookingModel[];
-  notification: consultantHomeNotificationModel[];
+  bookings: ApiHomeBookingModel[];
+  notification: ConsultantHomeNotificationModel[];
 };

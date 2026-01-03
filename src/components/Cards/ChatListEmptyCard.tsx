@@ -1,19 +1,19 @@
 import { useTheme } from '@shopify/restyle';
 import { Platform, StyleProp, StyleSheet, View } from 'react-native';
 import { Theme } from '../../config/themes/themes';
-import { SemiBoldTextComponent } from '../Text/SemiBoldTextComponent';
+import { SemiBoldTextComponent } from '../Text/SemiBoldText';
 import normalize from '../../utils/normalize/normalize';
 import { memo } from 'react';
 import FastImage, { ImageStyle } from 'react-native-fast-image';
 
-type listEmptyCardProps = {
+type ListEmptyCardProps = {
   text: string;
   tintColor?: string;
   image?: number | { uri: string } | undefined;
   style?: StyleProp<ImageStyle>;
 };
 
-export const ChatListEmptyCard = memo((props: listEmptyCardProps) => {
+export const ChatListEmptyCard = memo((props: ListEmptyCardProps) => {
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   return (

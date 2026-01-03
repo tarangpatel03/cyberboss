@@ -1,6 +1,6 @@
-import { apiExpertiseModel, services } from './consultant';
+import { ApiExpertiseModel, Services } from './consultant';
 
-export type apiProfileModel = {
+export type ApiProfileModel = {
   id: string;
   name: string;
   email: string;
@@ -10,14 +10,14 @@ export type apiProfileModel = {
   bio: string | null;
   experience_year: string | number | null;
   rate: number | null;
-  expertises: apiExpertiseModel[];
-  services: services[];
+  expertises: ApiExpertiseModel[];
+  services: Services[];
   is_verified: boolean | null;
   login_type: string;
   profile_setup: boolean;
 };
 
-export type aApiUpdateProfile = {
+export type ApiUpdateProfile = {
   name: string;
   profile_picture: number | { uri: string } | undefined;
 };

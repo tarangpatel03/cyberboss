@@ -4,13 +4,13 @@ import {
   ListRenderItem,
   StyleSheet,
 } from 'react-native';
-import { rootNavigationProps } from '../../../models/navigationModel';
+import { RootNavigationProps } from '../../../models/navigationModel';
 import { routeName } from '../../../config/constants/routes';
 import { useTheme } from '@shopify/restyle';
 import { Theme } from '../../../config/themes/themes';
 import { createStyles, staticStyle } from './styles';
 import { WorkshopCard } from '../../../components/Cards/WorkshopCard';
-import { ScreenHeaderComponent } from '../../../components/Headers/ScreenHeaderComponent';
+import { ScreenHeaderComponent } from '../../../components/Headers/ScreenHeader';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { getAPIData } from '../../../services/api/common/getCommonApi';
 import { ListEmptyCard } from '../../../components/Cards/ListEmptyCard';
@@ -18,9 +18,9 @@ import { appImages } from '../../../config/images/imagePath';
 import { ListShimmer } from '../../../components/Skeleton/ListShimmer';
 import { endPoints } from '../../../config/endPoint/apiEndPoint';
 import { useTranslation } from 'react-i18next';
-import { apiWorkshopModel } from '../../../models/api/consultant';
+import { ApiWorkshopModel } from '../../../models/api/consultant';
 import {
-  tWorkshopModel,
+  TWorkshopModel,
   transformWorkshopModel,
 } from '../../../models/formattedAPI/tConsultant';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -28,12 +28,12 @@ import { ApiResponse, ListPayload } from '../../../models/apiModel';
 
 export const WorkshopScreen = ({
   navigation,
-}: rootNavigationProps<routeName.Workshop>) => {
+}: RootNavigationProps<routeName.Workshop>) => {
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   const [loader, setLoader] = useState<boolean>(true);
-  const [workshop, setWorkshop] = useState<tWorkshopModel[]>([]);
+  const [workshop, setWorkshop] = useState<TWorkshopModel[]>([]);
   const pageRef = useRef<number>(1);
   const hasMoreRef = useRef<boolean>(false);
   const [paginationLoading, setPaginationLoading] = useState<boolean>(false);
@@ -50,11 +50,11 @@ export const WorkshopScreen = ({
         setLoader(true);
       }
       const response = await getAPIData<
-        ApiResponse<ListPayload<apiWorkshopModel>>
+        ApiResponse<ListPayload<ApiWorkshopModel>>
       >(endPoints.workshopList, pageToLoad);
       if (!response) return;
-      const res: apiWorkshopModel[] = response.payload.data;
-      const transformedData: tWorkshopModel[] = res
+      const res: ApiWorkshopModel[] = response.payload.data;
+      const transformedData: TWorkshopModel[] = res
         ? res?.map(r => transformWorkshopModel(r))
         : [];
       hasMoreRef.current =
@@ -82,7 +82,7 @@ export const WorkshopScreen = ({
     );
   };
 
-  const renderItem: ListRenderItem<tWorkshopModel> = useCallback(({ item }) => {
+  const renderItem: ListRenderItem<TWorkshopModel> = useCallback(({ item }) => {
     return <WorkshopCard data={item} cardStyle={staticStyle.cardStyle} />;
   }, []);
 

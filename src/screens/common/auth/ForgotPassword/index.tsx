@@ -1,20 +1,20 @@
 import { StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { SemiBoldTextComponent } from '../../../../components/Text/SemiBoldTextComponent';
+import { SemiBoldTextComponent } from '../../../../components/Text/SemiBoldText';
 import { useTheme } from '@shopify/restyle';
 import { Theme } from '../../../../config/themes/themes';
 import { createStyles, staticStyles } from './styles';
-import { rootNavigationProps } from '../../../../models/navigationModel';
+import { RootNavigationProps } from '../../../../models/navigationModel';
 import { routeName } from '../../../../config/constants/routes';
 import { useState } from 'react';
 import { PrimaryButtonComponent } from '../../../../components/Buttons/PrimaryButton';
-import { ScreenHeaderComponent } from '../../../../components/Headers/ScreenHeaderComponent';
+import { ScreenHeaderComponent } from '../../../../components/Headers/ScreenHeader';
 import { CustomInputComponent } from '../../../../components/Input/EmailAndPasswordInput';
 import { useTranslation } from 'react-i18next';
 
 export const ForgotPasswordScreen = ({
   navigation,
-}: rootNavigationProps<routeName.ForgotPassword>) => {
+}: RootNavigationProps<routeName.ForgotPassword>) => {
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);

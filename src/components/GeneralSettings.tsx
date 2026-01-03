@@ -3,17 +3,17 @@ import { useTranslation } from 'react-i18next';
 import { StyleSheet, View } from 'react-native';
 import { Theme } from '../config/themes/themes';
 import { appIcons } from '../config/icons/iconPath';
-import { userDetailProps } from '../redux/features/userSlice';
-import { MediumTextComponent } from './Text/MediumTextComponent';
-import { SettingOptionsButton } from './Buttons/SettingsOptionsComponent';
+import { UserDetailProps } from '../redux/features/userSlice';
+import { MediumTextComponent } from './Text/MediumText';
+import { SettingOptionsButton } from './Buttons/SettingsButton';
 import { staticStyle, createStyles } from '../screens/common/Profile/styles';
 
-type generalSettingsProps = {
-  userData: userDetailProps;
+type GeneralSettingsProps = {
+  userData: UserDetailProps;
   navigateToContactSupport: () => void;
 };
 
-export const GeneralSettings = (props: generalSettingsProps) => {
+export const GeneralSettings = (props: GeneralSettingsProps) => {
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);

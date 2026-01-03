@@ -3,11 +3,11 @@ import normalize from '../utils/normalize/normalize';
 import { Theme } from '../config/themes/themes';
 import { useTheme } from '@shopify/restyle';
 
-type indicationBarProps = {
+type IndicationBarProps = {
   currentIndex: number;
 };
 
-export const IndicationBar = ({ currentIndex }: indicationBarProps) => {
+export const IndicationBar = ({ currentIndex }: IndicationBarProps) => {
   const theme = useTheme<Theme>();
 
   const styles = createStyles(theme);

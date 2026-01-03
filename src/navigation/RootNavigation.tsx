@@ -23,20 +23,20 @@ import { BookingConfirmScreen } from '../screens/client/BookingConfirm';
 import { NotificationScreen } from '../screens/common/Notification';
 import { ContactSupportScreen } from '../screens/client/ContactSupport';
 import { SubscriptionScreen } from '../screens/client/Subscription';
-import { rootNavigationParams } from '../models/navigationModel';
+import { RootNavigationParams } from '../models/navigationModel';
 import { SearchServiceScreen } from '../screens/client/SearchService';
-import { rootState } from '../redux/store';
+import { RootState } from '../redux/store';
 import { useSelector } from 'react-redux';
 import { ClientProfileSetUpScreen } from '../screens/profileSetup/ClientSetup';
-const Root = createNativeStackNavigator<rootNavigationParams>();
+const Root = createNativeStackNavigator<RootNavigationParams>();
 export const RootNavigation = () => {
-  const isLoggedIn = useSelector((state: rootState) => state.user.token);
-  const isFirstTime = useSelector((state: rootState) => state.user.isFirstTime);
+  const isLoggedIn = useSelector((state: RootState) => state.user.token);
+  const isFirstTime = useSelector((state: RootState) => state.user.isFirstTime);
   const {
     role,
     is_verified: isVerified,
     profile_setup: profileSetup,
-  } = useSelector((state: rootState) => state.user.userData);
+  } = useSelector((state: RootState) => state.user.userData);
 
   const setInitialRoute = () => {
     if (isFirstTime) {

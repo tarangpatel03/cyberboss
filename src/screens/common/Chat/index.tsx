@@ -1,7 +1,7 @@
 import { useTheme } from '@shopify/restyle';
 import { Theme } from '../../../config/themes/themes';
 import { createStyles, staticStyle } from './styles';
-import { rootNavigationProps } from '../../../models/navigationModel';
+import { RootNavigationProps } from '../../../models/navigationModel';
 import { routeName } from '../../../config/constants/routes';
 import { FlatList, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -9,7 +9,7 @@ import { BottomTabHeader } from '../../../components/Headers/BottomTabHeader';
 import { useCallback, useEffect, useState } from 'react';
 import { SearchBorderInputComponent } from '../../../components/Input/SearchInput';
 import { ListShimmer } from '../../../components/Skeleton/ListShimmer';
-import { rootState } from '../../../redux/store';
+import { RootState } from '../../../redux/store';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import firestore from '@react-native-firebase/firestore';
@@ -19,20 +19,20 @@ import { appImages } from '../../../config/images/imagePath';
 
 export const ChatScreen = ({
   navigation,
-}: rootNavigationProps<routeName.Chat>) => {
+}: RootNavigationProps<routeName.Chat>) => {
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   const [searchText, setSearchText] = useState<string>('');
   const [loader, setLoader] = useState<boolean>(true);
-  const isLoggedIn = useSelector((state: rootState) => state.user.token);
+  const isLoggedIn = useSelector((state: RootState) => state.user.token);
   const [chats, setChats] = useState<any[]>([]);
 
   const navigateToNotification = () => {
     navigation.navigate(routeName.Notification);
   };
 
-  const uid = useSelector((state: rootState) => state.user.userData.id);
+  const uid = useSelector((state: RootState) => state.user.userData.id);
 
   const getUserChats = (userId: string) => {
     try {

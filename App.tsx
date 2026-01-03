@@ -1,7 +1,7 @@
 import './src/locale/i18n';
 import { RootNavigation } from './src/navigation/RootNavigation';
 import { Provider, useSelector } from 'react-redux';
-import { persistor, rootState, store } from './src/redux/store';
+import { persistor, RootState, store } from './src/redux/store';
 import { PersistGate } from 'redux-persist/integration/react';
 import { DarkTheme, LightTheme } from './src/config/themes/themes';
 import { StatusBar, StyleSheet, useColorScheme } from 'react-native';
@@ -34,7 +34,7 @@ function App() {
 const ThemedApp = () => {
   const deviceTheme = useColorScheme();
   const currentThemeMode = useSelector(
-    (state: rootState) => state.theme.themeMode,
+    (state: RootState) => state.theme.themeMode,
   );
 
   const currentTheme = useMemo(() => {

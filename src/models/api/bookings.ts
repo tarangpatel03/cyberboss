@@ -1,9 +1,9 @@
-export type apiBookingBillCount = {
+export type ApiBookingBillCount = {
   hours: number;
   consultant_id: string;
 };
 
-export type apiBookingHistoryModel = {
+export type ApiBookingHistoryModel = {
   id: string;
   booking_id: string;
   user_id: string;
@@ -21,7 +21,7 @@ export type apiBookingHistoryModel = {
   hours: number;
 };
 
-export type apiBookingDetailsModel = {
+export type ApiBookingDetailsModel = {
   id: string;
   booking_id: string;
   user_id: string;
@@ -40,10 +40,10 @@ export type apiBookingDetailsModel = {
   hourly_rate: string;
   platform_fee: string;
   tax: string;
-  expertise: apiBookingExpertise;
+  expertise: ApiBookingExpertise;
 };
 
-export type apiReviewModel = {
+export type ApiReviewModel = {
   id: string;
   booking_id: string;
   rating: string;
@@ -51,7 +51,7 @@ export type apiReviewModel = {
   created_at: string;
 };
 
-export type apiBookingExpertise = {
+export type ApiBookingExpertise = {
   id: string;
   name: string;
   image: string | number | { uri: string } | undefined;
@@ -60,7 +60,7 @@ export type apiBookingExpertise = {
   booking_count: number | null;
 };
 
-export type apiHomeBookingModel = {
+export type ApiHomeBookingModel = {
   id: string;
   booking_id: string;
   user_id: string;

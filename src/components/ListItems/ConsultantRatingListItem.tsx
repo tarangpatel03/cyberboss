@@ -3,19 +3,19 @@ import { Rating } from 'react-native-ratings';
 import { useTranslation } from 'react-i18next';
 import { View, StyleSheet } from 'react-native';
 import { Theme } from '../../config/themes/themes';
-import { MediumTextComponent } from '../Text/MediumTextComponent';
+import { MediumTextComponent } from '../Text/MediumText';
 import { staticStyle } from '../Skeleton/consultantProfile/styles';
-import { RegularTextComponent } from '../Text/RegularTextComponent';
-import { SemiBoldTextComponent } from '../Text/SemiBoldTextComponent';
+import { RegularTextComponent } from '../Text/RegularText';
+import { SemiBoldTextComponent } from '../Text/SemiBoldText';
 import { createStyles } from '../../screens/client/ConsultantProfile/styles';
-import { tConsultantDetailsModel } from '../../models/formattedAPI/tConsultant';
+import { TConsultantDetailsModel } from '../../models/formattedAPI/tConsultant';
 
-type consultantRatingsListProps = {
-  data: tConsultantDetailsModel;
+type ConsultantRatingsListProps = {
+  data: TConsultantDetailsModel;
   renderItem: ({ item }: any) => Element;
 };
 
-export const ConsultantRatingsList = (props: consultantRatingsListProps) => {
+export const ConsultantRatingsList = (props: ConsultantRatingsListProps) => {
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);

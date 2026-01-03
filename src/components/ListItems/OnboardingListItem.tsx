@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { useTheme } from '@shopify/restyle';
-import { rootState } from '../../redux/store';
+import { RootState } from '../../redux/store';
 import { useTranslation } from 'react-i18next';
 import FastImage from 'react-native-fast-image';
 import { Theme } from '../../config/themes/themes';
@@ -8,17 +8,17 @@ import normalize from '../../utils/normalize/normalize';
 import { width } from '../../config/constants/variables';
 import { ThemeMode } from '../../redux/features/themeSlice';
 import { StyleSheet, useColorScheme, View } from 'react-native';
-import { RegularTextComponent } from '../Text/RegularTextComponent';
-import { SemiBoldTextComponent } from '../Text/SemiBoldTextComponent';
+import { RegularTextComponent } from '../Text/RegularText';
+import { SemiBoldTextComponent } from '../Text/SemiBoldText';
 import { onboardingDataProps } from '../../screens/common/Onboarding/onboardingData';
 
-type onboardingListProps = {
+type OnboardingListProps = {
   data: onboardingDataProps;
 };
 
-export const OnboardingListComponent = ({ data }: onboardingListProps) => {
+export const OnboardingListComponent = ({ data }: OnboardingListProps) => {
   const { t } = useTranslation();
-  const currenTheme = useSelector((state: rootState) => state.theme.themeMode);
+  const currenTheme = useSelector((state: RootState) => state.theme.themeMode);
   const theme = useTheme<Theme>();
   const deviceTheme = useColorScheme();
   const styles = createStyles(theme);

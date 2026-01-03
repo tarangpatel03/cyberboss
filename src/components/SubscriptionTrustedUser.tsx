@@ -2,9 +2,9 @@ import { View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { appColors } from '../config/colors/colors';
 import LinearGradient from 'react-native-linear-gradient';
-import { MediumTextComponent } from './Text/MediumTextComponent';
+import { MediumTextComponent } from './Text/MediumText';
 import { staticStyle } from '../screens/client/Subscription/styles';
-import { SemiBoldTextComponent } from './Text/SemiBoldTextComponent';
+import { SemiBoldTextComponent } from './Text/SemiBoldText';
 import { linearGradientDirection } from '../screens/client/Subscription';
 
 export const SubscriptionTrustedUser = (props: linearGradientDirection) => {

@@ -3,15 +3,15 @@ import { useTranslation } from 'react-i18next';
 import FastImage from 'react-native-fast-image';
 import { Theme } from '../../config/themes/themes';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
-import { RegularTextComponent } from '../Text/RegularTextComponent';
+import { RegularTextComponent } from '../Text/RegularText';
 import { createStyles, staticStyle } from '../../screens/common/Rating/styles';
 
-type starReviewCardProps = {
+type StarReviewCardProps = {
   showStar: (starCount: number) => any;
   setStarRating: (starCount: number) => void;
 };
 
-export const StarReviewCard = (props: starReviewCardProps) => {
+export const StarReviewCard = (props: StarReviewCardProps) => {
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);

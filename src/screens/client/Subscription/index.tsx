@@ -1,7 +1,7 @@
 import { ListRenderItem, ScrollView, StatusBar, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { routeName } from '../../../config/constants/routes';
-import { rootNavigationProps } from '../../../models/navigationModel';
+import { RootNavigationProps } from '../../../models/navigationModel';
 import { staticStyle } from './styles';
 import { useCallback, useEffect, useState } from 'react';
 import { getAPIData } from '../../../services/api/common/getCommonApi';
@@ -12,8 +12,8 @@ import { SubscriptionTrustedUser } from '../../../components/SubscriptionTrusted
 import { SubscriptionBenefitsCard } from '../../../components/Cards/SubscriptionBenefitsCard';
 import { UpcomingWorkShopsList } from '../../../components/List/UpcomingWorkShopsList';
 import { SubscriptionBottomBar } from '../../../components/SubscriptionBottomBar';
-import { apiClientHomeModel } from '../../../models/api/home';
-import { tWorkshopModel } from '../../../models/formattedAPI/tConsultant';
+import { ApiClientHomeModel } from '../../../models/api/home';
+import { TWorkshopModel } from '../../../models/formattedAPI/tConsultant';
 import { transformClientHomeModal } from '../../../models/formattedAPI/tHome';
 import { ApiResponse } from '../../../models/apiModel';
 
@@ -24,17 +24,17 @@ export type linearGradientDirection = {
 
 export const SubscriptionScreen = ({
   navigation,
-}: rootNavigationProps<routeName.Subscription>) => {
-  const [workShopData, setWorkShopData] = useState<tWorkshopModel[]>([]);
+}: RootNavigationProps<routeName.Subscription>) => {
+  const [workShopData, setWorkShopData] = useState<TWorkshopModel[]>([]);
   const start = { x: 0, y: 0.5 };
   const end = { x: 1, y: 0.5 };
   const loadData = async () => {
     try {
-      const response = await getAPIData<ApiResponse<apiClientHomeModel>>(
+      const response = await getAPIData<ApiResponse<ApiClientHomeModel>>(
         endPoints.clientHome,
       );
       if (!response) return;
-      const data: apiClientHomeModel = response.payload;
+      const data: ApiClientHomeModel = response.payload;
       const transformedData = transformClientHomeModal(data);
       setWorkShopData(transformedData.workshops);
     } catch (error) {
@@ -45,7 +45,7 @@ export const SubscriptionScreen = ({
   const goBack = () => {
     navigation.goBack();
   };
-  const renderItem: ListRenderItem<tWorkshopModel> = useCallback(({ item }) => {
+  const renderItem: ListRenderItem<TWorkshopModel> = useCallback(({ item }) => {
     return <WorkshopFlatListCard data={item} />;
   }, []);
 

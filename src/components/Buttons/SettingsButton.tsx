@@ -1,12 +1,12 @@
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import { RegularTextComponent } from '../Text/RegularTextComponent';
+import { RegularTextComponent } from '../Text/RegularText';
 import { Theme } from '../../config/themes/themes';
 import { useTheme } from '@shopify/restyle';
 import { appIcons } from '../../config/icons/iconPath';
 import normalize from '../../utils/normalize/normalize';
 import FastImage from 'react-native-fast-image';
 
-type settingOptionsButtonProps = {
+type SettingOptionsButtonProps = {
   title: string;
   icon: number | { uri: string } | undefined;
   navigate: () => void;
@@ -16,7 +16,7 @@ export const SettingOptionsButton = ({
   icon,
   navigate,
   title,
-}: settingOptionsButtonProps) => {
+}: SettingOptionsButtonProps) => {
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   return (

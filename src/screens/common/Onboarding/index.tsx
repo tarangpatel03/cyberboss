@@ -11,14 +11,14 @@ import { Theme } from '../../../config/themes/themes';
 import { createStyles } from './styles';
 import { PrimaryButtonWithIconComponent } from '../../../components/Buttons/PrimaryButtonWithIcon';
 import { routeName } from '../../../config/constants/routes';
-import { rootNavigationProps } from '../../../models/navigationModel';
+import { RootNavigationProps } from '../../../models/navigationModel';
 import { useDispatch } from 'react-redux';
 import { setIsFirstTime } from '../../../redux/features/userSlice';
 import { useTranslation } from 'react-i18next';
 
 export const OnboardingScreen = ({
   navigation,
-}: rootNavigationProps<routeName.Onboarding>) => {
+}: RootNavigationProps<routeName.Onboarding>) => {
   const { t } = useTranslation();
   const flatListRef = useRef<FlatList>(null);
   const [currentIndex, setCurrentIndex] = useState(0);

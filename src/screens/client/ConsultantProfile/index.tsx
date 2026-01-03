@@ -12,37 +12,37 @@ import { getAPIData } from '../../../services/api/common/getCommonApi';
 import { useCallback, useEffect, useState } from 'react';
 import { routeName } from '../../../config/constants/routes';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { rootNavigationProps } from '../../../models/navigationModel';
+import { RootNavigationProps } from '../../../models/navigationModel';
 import { RatingCard } from '../../../components/Cards/RatingReviewCard';
-import { MediumTextComponent } from '../../../components/Text/MediumTextComponent';
-import { RegularTextComponent } from '../../../components/Text/RegularTextComponent';
-import { ScreenHeaderComponent } from '../../../components/Headers/ScreenHeaderComponent';
+import { MediumTextComponent } from '../../../components/Text/MediumText';
+import { RegularTextComponent } from '../../../components/Text/RegularText';
+import { ScreenHeaderComponent } from '../../../components/Headers/ScreenHeader';
 import { PrimaryButtonComponent } from '../../../components/Buttons/PrimaryButton';
 import { endPoints } from '../../../config/endPoint/apiEndPoint';
 import { useTranslation } from 'react-i18next';
 import { ConsultantProfileScreenShimmer } from '../../../components/Skeleton/consultantProfile';
 import { ConsultantProfileHeader } from '../../../components/Headers/ConsultantProfileHeader';
 import { ConsultantExpertiseCard } from '../../../components/Cards/ConsultantExpertiseCard';
-import { ConsultantRatingsList } from '../../../components/ListItems/ConsultantRatingList';
+import { ConsultantRatingsList } from '../../../components/ListItems/ConsultantRatingListItem';
 import {
-  tConsultantDetailsModel,
+  TConsultantDetailsModel,
   transformConsultantDetailsModel,
-  tRatingReviewModel,
+  TRatingReviewModel,
 } from '../../../models/formattedAPI/tConsultant';
-import { apiConsultantDetailsModel } from '../../../models/api/consultant';
+import { ApiConsultantDetailsModel } from '../../../models/api/consultant';
 import { ReviewCard } from '../../../components/Cards/ReviewCard';
 import { ApiResponse } from '../../../models/apiModel';
 
 export const ConsultantProfileScreen = ({
   navigation,
   route,
-}: rootNavigationProps<routeName.ConsultantProfile>) => {
+}: RootNavigationProps<routeName.ConsultantProfile>) => {
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   const { consultantId, type } = route.params;
   const [loader, setLoader] = useState<boolean>(true);
-  const [data, setData] = useState<tConsultantDetailsModel>({
+  const [data, setData] = useState<TConsultantDetailsModel>({
     id: '',
     bio: '',
     name: '',
@@ -61,7 +61,7 @@ export const ConsultantProfileScreen = ({
     navigation.goBack();
   };
 
-  const renderItemReview: ListRenderItem<tRatingReviewModel> = useCallback(
+  const renderItemReview: ListRenderItem<TRatingReviewModel> = useCallback(
     ({ item }) => {
       return (
         <ReviewCard
@@ -87,11 +87,11 @@ export const ConsultantProfileScreen = ({
 
   const loadData = async () => {
     try {
-      const response = await getAPIData<ApiResponse<apiConsultantDetailsModel>>(
+      const response = await getAPIData<ApiResponse<ApiConsultantDetailsModel>>(
         `${endPoints.consultant}/${consultantId}`,
       );
       if (!response) return;
-      const resData: apiConsultantDetailsModel = response.payload;
+      const resData: ApiConsultantDetailsModel = response.payload;
       const transformedData = transformConsultantDetailsModel(resData);
       setData(transformedData);
     } catch (error) {

@@ -2,21 +2,21 @@ import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { Theme } from '../../config/themes/themes';
 import { useTheme } from '@shopify/restyle';
 import normalize from '../../utils/normalize/normalize';
-import { MediumTextComponent } from '../Text/MediumTextComponent';
-import { RegularTextComponent } from '../Text/RegularTextComponent';
+import { MediumTextComponent } from '../Text/MediumText';
+import { RegularTextComponent } from '../Text/RegularText';
 import { appIcons } from '../../config/icons/iconPath';
 import { formatBooking } from '../../utils/format/formatDate';
 import FastImage from 'react-native-fast-image';
 import { memo, useState } from 'react';
-import { tExpertiseModel } from '../../models/formattedAPI/tConsultant';
+import { TExpertiseModel } from '../../models/formattedAPI/tConsultant';
 import { getProfilePicture } from '../../utils/extractURI/extractImageURI';
 
-type serviceCardProps = {
-  data: tExpertiseModel;
+type ServiceCardProps = {
+  data: TExpertiseModel;
   onPress: (id: string, name: string) => void;
 };
 
-export const ServiceCard = memo(({ data, onPress }: serviceCardProps) => {
+export const ServiceCard = memo(({ data, onPress }: ServiceCardProps) => {
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   const [imageError, setImageError] = useState<boolean>(false);

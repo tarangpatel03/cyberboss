@@ -1,11 +1,11 @@
 import { StyleSheet, View } from 'react-native';
-import { rootNavigationProps } from '../../../models/navigationModel';
+import { RootNavigationProps } from '../../../models/navigationModel';
 import { routeName } from '../../../config/constants/routes';
 import { useTheme } from '@shopify/restyle';
 import { createStyles, staticStyle } from './styles';
 import { Theme } from '../../../config/themes/themes';
 import { isDarkMode } from '../../../utils/theme/darkMode';
-import { ScreenHeaderComponent } from '../../../components/Headers/ScreenHeaderComponent';
+import { ScreenHeaderComponent } from '../../../components/Headers/ScreenHeader';
 import { useState } from 'react';
 import { appColors } from '../../../config/colors/colors';
 import { appIcons } from '../../../config/icons/iconPath';
@@ -20,7 +20,7 @@ import { ReviewInput } from '../../../components/Input/ReviewInput';
 export const YourRatingScreen = ({
   navigation,
   route,
-}: rootNavigationProps<routeName.YourRating>) => {
+}: RootNavigationProps<routeName.YourRating>) => {
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);

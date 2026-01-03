@@ -1,6 +1,6 @@
 import { FlatList, ListRenderItem, StyleSheet, View } from 'react-native';
 import { routeName } from '../../../config/constants/routes';
-import { rootNavigationProps } from '../../../models/navigationModel';
+import { RootNavigationProps } from '../../../models/navigationModel';
 import { Theme } from '../../../config/themes/themes';
 import { useTheme } from '@shopify/restyle';
 import { createStyles, staticStyle } from './styles';
@@ -8,38 +8,38 @@ import { useCallback, useEffect, useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { SearchBorderInputComponent } from '../../../components/Input/SearchInput';
 import { appIcons } from '../../../config/icons/iconPath';
-import { useDebouncedValue } from '../../../utils/debounce/debounce';
+import { useDebouncedValue } from '../../../hooks/debounce/useDebounce';
 import { ServiceCard } from '../../../components/Cards/ServiceCard';
 import { ListEmptyCard } from '../../../components/Cards/ListEmptyCard';
 import { ListShimmer } from '../../../components/Skeleton/ListShimmer';
 import { useTranslation } from 'react-i18next';
 import { getServiceList } from '../../../services/api/expertise/getServicesList';
-import { apiExpertiseModel } from '../../../models/api/consultant';
+import { ApiExpertiseModel } from '../../../models/api/consultant';
 import {
-  tExpertiseModel,
+  TExpertiseModel,
   transformExpertiseModel,
 } from '../../../models/formattedAPI/tConsultant';
 import { ApiResponse } from '../../../models/apiModel';
 
 export const SearchServiceScreen = ({
   navigation,
-}: rootNavigationProps<routeName.SearchServices>) => {
+}: RootNavigationProps<routeName.SearchServices>) => {
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   const [searchText, setText] = useState<string>('');
   const [loader, setLoader] = useState<boolean>(true);
   const debouncedSearchText = useDebouncedValue(searchText);
-  const [services, setServices] = useState<tExpertiseModel[]>([]);
+  const [services, setServices] = useState<TExpertiseModel[]>([]);
 
   const loadData = async () => {
     try {
       setLoader(true);
-      const response = await getServiceList<ApiResponse<apiExpertiseModel[]>>(
+      const response = await getServiceList<ApiResponse<ApiExpertiseModel[]>>(
         debouncedSearchText,
       );
       if (!response) return;
-      const data: apiExpertiseModel[] = response.payload;
+      const data: ApiExpertiseModel[] = response.payload;
       const transformedData = data.map(r => transformExpertiseModel(r));
       setServices(transformedData);
     } catch (error) {
@@ -54,7 +54,7 @@ export const SearchServiceScreen = ({
     navigation.navigate(routeName.ConsultantList, { id, name });
   };
 
-  const renderItem: ListRenderItem<tExpertiseModel> = useCallback(
+  const renderItem: ListRenderItem<TExpertiseModel> = useCallback(
     ({ item }) => {
       return <ServiceCard onPress={navigateToConsultantList} data={item} />;
     },

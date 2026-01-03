@@ -3,13 +3,13 @@ import { Theme } from '../../config/themes/themes';
 import { useTheme } from '@shopify/restyle';
 import normalize from '../../utils/normalize/normalize';
 import { appIcons } from '../../config/icons/iconPath';
-import { RegularTextComponent } from '../Text/RegularTextComponent';
+import { RegularTextComponent } from '../Text/RegularText';
 import { getTime } from '../../utils/format/formatDate';
 import { memo } from 'react';
 import FastImage from 'react-native-fast-image';
-import { tChatBotChatModel } from '../../models/formattedAPI/tChatbot';
+import { TChatBotChatModel } from '../../models/formattedAPI/tChatbot';
 
-export const MessageCard = memo(({ data }: { data: tChatBotChatModel }) => {
+export const MessageCard = memo(({ data }: { data: TChatBotChatModel }) => {
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   return (

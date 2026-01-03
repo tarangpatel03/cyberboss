@@ -13,8 +13,8 @@ import { appIcons } from '../../../config/icons/iconPath';
 import { appImages } from '../../../config/images/imagePath';
 import { routeName } from '../../../config/constants/routes';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { rootNavigationProps } from '../../../models/navigationModel';
-import { MediumTextComponent } from '../../../components/Text/MediumTextComponent';
+import { RootNavigationProps } from '../../../models/navigationModel';
+import { MediumTextComponent } from '../../../components/Text/MediumText';
 import { OneOnOneCard } from '../../../components/Cards/OneOnOneChat';
 import FastImage from 'react-native-fast-image';
 import { useTranslation } from 'react-i18next';
@@ -26,7 +26,7 @@ import { appColors } from '../../../config/colors/colors';
 export const OneOnOneChatScreen = ({
   navigation,
   route,
-}: rootNavigationProps<routeName.OneOnOneChat>) => {
+}: RootNavigationProps<routeName.OneOnOneChat>) => {
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const data = route.params;

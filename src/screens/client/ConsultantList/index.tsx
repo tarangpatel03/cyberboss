@@ -8,20 +8,20 @@ import {
 } from 'react-native';
 import { Theme } from '../../../config/themes/themes';
 import { createStyles, staticStyle } from './styles';
-import { rootNavigationProps } from '../../../models/navigationModel';
+import { RootNavigationProps } from '../../../models/navigationModel';
 import { routeName } from '../../../config/constants/routes';
 import { ConsultantListCard } from '../../../components/Cards/ConsultantListCard';
 import { SearchBorderInputComponent } from '../../../components/Input/SearchInput';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { ScreenHeaderComponent } from '../../../components/Headers/ScreenHeaderComponent';
-import { useDebouncedValue } from '../../../utils/debounce/debounce';
+import { ScreenHeaderComponent } from '../../../components/Headers/ScreenHeader';
+import { useDebouncedValue } from '../../../hooks/debounce/useDebounce';
 import { ListEmptyCard } from '../../../components/Cards/ListEmptyCard';
 import { ListShimmer } from '../../../components/Skeleton/ListShimmer';
 import { useTranslation } from 'react-i18next';
 import { getConsultantList } from '../../../services/api/consultant/getConsultantList';
-import { apiConsultantModel } from '../../../models/api/consultant';
+import { ApiConsultantModel } from '../../../models/api/consultant';
 import {
-  tConsultantModel,
+  TConsultantModel,
   transformConsultantModel,
 } from '../../../models/formattedAPI/tConsultant';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -30,7 +30,7 @@ import { ApiResponse, ListPayload } from '../../../models/apiModel';
 export const ConsultantListScreen = ({
   navigation,
   route,
-}: rootNavigationProps<routeName.ConsultantList>) => {
+}: RootNavigationProps<routeName.ConsultantList>) => {
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const { id, name } = route.params;
@@ -41,7 +41,7 @@ export const ConsultantListScreen = ({
   const [searchText, setSearchText] = useState<string>('');
   const [paginationLoading, setPaginationLoading] = useState<boolean>(false);
   const debouncedSearchText = useDebouncedValue(searchText);
-  const [consultantsList, setConsultantsList] = useState<tConsultantModel[]>(
+  const [consultantsList, setConsultantsList] = useState<TConsultantModel[]>(
     [],
   );
 
@@ -71,10 +71,10 @@ export const ConsultantListScreen = ({
         setLoader(true);
       }
       const response = await getConsultantList<
-        ApiResponse<ListPayload<apiConsultantModel>>
+        ApiResponse<ListPayload<ApiConsultantModel>>
       >(id, pageToLoad, searchText);
       if (!response) return;
-      const data: apiConsultantModel[] = response.payload.data;
+      const data: ApiConsultantModel[] = response.payload.data;
       const formattedData = data
         ? data?.map(res => transformConsultantModel(res))
         : [];
@@ -91,7 +91,7 @@ export const ConsultantListScreen = ({
     }
   };
 
-  const renderItem: ListRenderItem<tConsultantModel> = useCallback(
+  const renderItem: ListRenderItem<TConsultantModel> = useCallback(
     ({ item }) => {
       return <ConsultantListCard data={item} onPress={navigateToConsultant} />;
     },

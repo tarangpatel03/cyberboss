@@ -15,32 +15,32 @@ import { appImages } from '../../../config/images/imagePath';
 import { routeName } from '../../../config/constants/routes';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { MessageCard } from '../../../components/Cards/MessageCard';
-import { MediumTextComponent } from '../../../components/Text/MediumTextComponent';
+import { MediumTextComponent } from '../../../components/Text/MediumText';
 import { getAPIData } from '../../../services/api/common/getCommonApi';
 import { showErrorToast } from '../../../utils/toast/toast';
 import FastImage from 'react-native-fast-image';
 import { endPoints } from '../../../config/endPoint/apiEndPoint';
 import { useTranslation } from 'react-i18next';
 import { sendChat } from '../../../services/api/chat/sendBotChat';
-import { apiChatBotChatModel } from '../../../models/api/chatbot';
+import { ApiChatBotChatModel } from '../../../models/api/chatbot';
 import {
-  tChatBotChatModel,
+  TChatBotChatModel,
   transformChatBotChatModel,
 } from '../../../models/formattedAPI/tChatbot';
 import { CustomInputComponent } from '../../../components/Input/EmailAndPasswordInput';
 import { ListEmptyCard } from '../../../components/Cards/ListEmptyCard';
-import { rootNavigationProps } from '../../../models/navigationModel';
+import { RootNavigationProps } from '../../../models/navigationModel';
 import { ApiResponse, ListPayload } from '../../../models/apiModel';
 
 export const ContactSupportScreen = ({
   navigation,
-}: rootNavigationProps<routeName.ContactSupport>) => {
+}: RootNavigationProps<routeName.ContactSupport>) => {
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   const flatListRef = useRef<FlatList>(null);
   const [text, setText] = useState<string>('');
-  const [chat, setChat] = useState<tChatBotChatModel[]>([]);
+  const [chat, setChat] = useState<TChatBotChatModel[]>([]);
   const pageRef = useRef<number>(1);
   const [hasMore, setHasMore] = useState<boolean>(false);
   const [paginationLoading, setPaginationLoading] = useState<boolean>(false);
@@ -62,10 +62,10 @@ export const ContactSupportScreen = ({
         pageToLoad = 1;
       }
       const response = await getAPIData<
-        ApiResponse<ListPayload<apiChatBotChatModel>>
+        ApiResponse<ListPayload<ApiChatBotChatModel>>
       >(endPoints.chatHistory, pageToLoad);
       if (!response) return;
-      const data: apiChatBotChatModel[] = response.payload.data;
+      const data: ApiChatBotChatModel[] = response.payload.data;
       const transformedData = data
         ? data?.map(r => transformChatBotChatModel(r))
         : [];
@@ -86,7 +86,7 @@ export const ContactSupportScreen = ({
 
   const sendChatToBot = async () => {
     try {
-      const chatData: apiChatBotChatModel = await sendChat(text ?? '');
+      const chatData: ApiChatBotChatModel = await sendChat(text ?? '');
       const transformedChat = transformChatBotChatModel(chatData);
       setChat(prev => [...prev, transformedChat]);
       setText('');
@@ -99,7 +99,7 @@ export const ContactSupportScreen = ({
     }
   };
 
-  const renderItem: ListRenderItem<tChatBotChatModel> = useCallback(
+  const renderItem: ListRenderItem<TChatBotChatModel> = useCallback(
     ({ item }) => {
       return <MessageCard data={item} />;
     },

@@ -11,10 +11,10 @@ import { appIcons } from '../../config/icons/iconPath';
 import { CustomInputComponent } from './EmailAndPasswordInput';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import { PrimaryButtonComponent } from '../Buttons/PrimaryButton';
-import { RegularTextComponent } from '../Text/RegularTextComponent';
+import { RegularTextComponent } from '../Text/RegularText';
 import { CircularIconButtonComponent } from '../Buttons/CircularIconButton';
 
-type signUpInputContainerProps = {
+type SignUpInputContainerProps = {
   email: string;
   password: string;
   checkBox: boolean;
@@ -27,7 +27,7 @@ type signUpInputContainerProps = {
   setPassVisible: Dispatch<SetStateAction<boolean>>;
 };
 
-export const SignUpInputContainer = (props: signUpInputContainerProps) => {
+export const SignUpInputContainer = (props: SignUpInputContainerProps) => {
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);

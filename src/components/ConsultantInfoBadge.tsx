@@ -2,10 +2,10 @@ import { StyleSheet, View } from 'react-native';
 import { Theme } from '../config/themes/themes';
 import { useTheme } from '@shopify/restyle';
 import normalize from '../utils/normalize/normalize';
-import { RegularTextComponent } from './Text/RegularTextComponent';
+import { RegularTextComponent } from './Text/RegularText';
 import FastImage from 'react-native-fast-image';
 
-type consultantInfoBadgeProps = {
+type ConsultantInfoBadgeProps = {
   text: string;
   image?: string;
   imagePath?: number | { uri: string } | undefined;
@@ -15,7 +15,7 @@ export const ConsultantInfoBadge = ({
   text,
   image,
   imagePath,
-}: consultantInfoBadgeProps) => {
+}: ConsultantInfoBadgeProps) => {
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   return (

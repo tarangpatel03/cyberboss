@@ -10,16 +10,16 @@ import { ClientHomeScreen } from '../screens/client/Home';
 import { ChatScreen } from '../screens/common/Chat';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import normalize from '../utils/normalize/normalize';
-import { clientBottomNavigationParams } from '../models/navigationModel';
+import { ClientBottomNavigationParams } from '../models/navigationModel';
 import { BarTabIconComponent } from '../components/BottomTabIcon/BarTabIcon';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { rootState } from '../redux/store';
+import { RootState } from '../redux/store';
 import { navigationRef } from '../services/axios/axiosInterceptors';
 import { EventArg } from '@react-navigation/native';
 import { ConsultantHomeScreen } from '../screens/consultant/Home';
 
-const Tab = createBottomTabNavigator<clientBottomNavigationParams>();
+const Tab = createBottomTabNavigator<ClientBottomNavigationParams>();
 type SetBarIconType = {
   focused: boolean;
   icon: number | { uri: string } | undefined;
@@ -33,8 +33,8 @@ export const BottomNavigation = () => {
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   const { bottom } = useSafeAreaInsets();
-  const token = useSelector((state: rootState) => state.user.token);
-  const role = useSelector((state: rootState) => state.user.userData.role);
+  const token = useSelector((state: RootState) => state.user.token);
+  const role = useSelector((state: RootState) => state.user.userData.role);
 
   const checkAuth = (e: EventArg<'tabPress', true, undefined>) => {
     if (!token) {

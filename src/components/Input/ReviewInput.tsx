@@ -14,10 +14,10 @@ import { appColors } from '../../config/colors/colors';
 import { isDarkMode } from '../../utils/theme/darkMode';
 import { appImages } from '../../config/images/imagePath';
 import LinearGradient from 'react-native-linear-gradient';
-import { MediumTextComponent } from '../Text/MediumTextComponent';
+import { MediumTextComponent } from '../Text/MediumText';
 import { createStyles, staticStyle } from '../../screens/common/Rating/styles';
 
-type reviewInputProps = {
+type ReviewInputProps = {
   text: string;
   loader: boolean;
   refineRating: () => void;
@@ -28,7 +28,7 @@ type reviewInputProps = {
   setText: Dispatch<SetStateAction<string>>;
 };
 
-export const ReviewInput = (props: reviewInputProps) => {
+export const ReviewInput = (props: ReviewInputProps) => {
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);

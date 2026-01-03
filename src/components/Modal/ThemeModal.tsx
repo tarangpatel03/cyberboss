@@ -3,26 +3,26 @@ import { Modal, StyleSheet, View } from 'react-native';
 import { Theme } from '../../config/themes/themes';
 import normalize from '../../utils/normalize/normalize';
 import { PrimaryButtonComponent } from '../Buttons/PrimaryButton';
-import { MediumTextComponent } from '../Text/MediumTextComponent';
+import { MediumTextComponent } from '../Text/MediumText';
 import { ThemeSelectionCard } from '../Cards/ThemeSelectionCard';
 import { useState } from 'react';
 import { setThemeMode, ThemeMode } from '../../redux/features/themeSlice';
 import { CircularIconButtonComponent } from '../Buttons/CircularIconButton';
 import { appIcons } from '../../config/icons/iconPath';
 import { useDispatch, useSelector } from 'react-redux';
-import { rootState } from '../../redux/store';
+import { RootState } from '../../redux/store';
 import { useTranslation } from 'react-i18next';
 
-type themeModalProps = {
+type ThemeModalProps = {
   isVisible: boolean;
   onclose: () => void;
 };
 
-export const ThemeModal = ({ isVisible, onclose }: themeModalProps) => {
+export const ThemeModal = ({ isVisible, onclose }: ThemeModalProps) => {
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
-  const currentTheme = useSelector((state: rootState) => state.theme.themeMode);
+  const currentTheme = useSelector((state: RootState) => state.theme.themeMode);
   const dispatch = useDispatch();
   const [selectedTheme, setSelectedTheme] = useState<ThemeMode>(currentTheme);
 

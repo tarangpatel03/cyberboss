@@ -6,17 +6,17 @@ import { useTheme } from '@shopify/restyle';
 import { useTranslation } from 'react-i18next';
 import { View, StyleSheet } from 'react-native';
 import { Theme } from '../../config/themes/themes';
-import { BillDetailsComponent } from '../BillDetailComponent';
-import { MediumTextComponent } from '../Text/MediumTextComponent';
-import { tBillDetailsModel } from '../../models/formattedAPI/tBilling';
+import { BillDetailsComponent } from '../BillDetail';
+import { MediumTextComponent } from '../Text/MediumText';
+import { TBillDetailsModel } from '../../models/formattedAPI/tBilling';
 
-type bookingPaymentDetailsCardProps = {
+type BookingPaymentDetailsCardProps = {
   role: string | undefined;
-  billData: tBillDetailsModel;
+  billData: TBillDetailsModel;
 };
 
 export const BookingPaymentDetailsCard = (
-  props: bookingPaymentDetailsCardProps,
+  props: BookingPaymentDetailsCardProps,
 ) => {
   const { t } = useTranslation();
   const theme = useTheme<Theme>();

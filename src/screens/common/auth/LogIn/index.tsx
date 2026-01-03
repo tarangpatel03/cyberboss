@@ -13,24 +13,25 @@ import { isDarkMode } from '../../../../utils/theme/darkMode';
 import { setUser, setUserData } from '../../../../redux/features/userSlice';
 import { showErrorToast } from '../../../../utils/toast/toast';
 import { routeName } from '../../../../config/constants/routes';
-import { rootNavigationProps } from '../../../../models/navigationModel';
+import { RootNavigationProps } from '../../../../models/navigationModel';
 import { validateEmail } from '../../../../utils/validation/validation';
 import { LogInInputsContainer } from '../../../../components/Input/LogInInputContainer';
 import { AuthTitle } from '../../../../components/AuthTitle';
 import { AuthFooterAction } from '../../../../components/Buttons/HorizontalTextButton';
 import { SocialLogIn } from '../../../../components/SocialLogin';
 import { googleLogIn, signIn } from '../../../../services/firebase/auth/auth';
-import { rootState } from '../../../../redux/store';
+import { RootState } from '../../../../redux/store';
+import { appleLogIn } from '../../../../services/firebase/auth/auth';
 
 export const LogInScreen = ({
   navigation,
-}: rootNavigationProps<routeName.LogIn>) => {
+}: RootNavigationProps<routeName.LogIn>) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   const { is_verified, role } = useSelector(
-    (state: rootState) => state.user.userData,
+    (state: RootState) => state.user.userData,
   );
   const [buttonText, setButtonText] = useState<string>('logIn');
   const [email, setEmail] = useState<string>('');
@@ -52,6 +53,27 @@ export const LogInScreen = ({
       is_verified
         ? navigation.replace(routeName.BottomTab)
         : navigation.replace(routeName.PendingVerification);
+    }
+  };
+
+  const handleAppleLogIn = async () => {
+    try {
+      const res = await appleLogIn();
+
+      if (res) {
+        dispatch(setUser(res.userToken.access_token));
+
+        dispatch(
+          setUserData({
+            firebaseUid: res.uid,
+            role: res.userToken.role,
+          }),
+        );
+        navigateToHomeScreen();
+      }
+    } catch (error) {
+      console.log(error);
+      showErrorToast({ title: 'Apple login failed' });
     }
   };
 
@@ -144,6 +166,7 @@ export const LogInScreen = ({
               />
             </View>
             <SocialLogIn
+              handleAppleLogIn={handleAppleLogIn}
               handleGoogleLogIn={handleGoogleLogIn}
               getTintColor={getTintColor}
             />

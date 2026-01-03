@@ -5,10 +5,10 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { PrimaryButtonComponent } from '../../../../components/Buttons/PrimaryButton';
 import { CircularIconButtonComponent } from '../../../../components/Buttons/CircularIconButton';
 import { appIcons } from '../../../../config/icons/iconPath';
-import { rootNavigationProps } from '../../../../models/navigationModel';
+import { RootNavigationProps } from '../../../../models/navigationModel';
 import { routeName } from '../../../../config/constants/routes';
-import { SemiBoldTextComponent } from '../../../../components/Text/SemiBoldTextComponent';
-import { RegularTextComponent } from '../../../../components/Text/RegularTextComponent';
+import { SemiBoldTextComponent } from '../../../../components/Text/SemiBoldText';
+import { RegularTextComponent } from '../../../../components/Text/RegularText';
 import { CategoryCard } from '../../../../components/Cards/CategoryCard';
 import { useCallback, useEffect, useState } from 'react';
 import { createStyles, staticStyle } from './styles';
@@ -17,21 +17,21 @@ import { getAPIData } from '../../../../services/api/common/getCommonApi';
 import { endPoints } from '../../../../config/endPoint/apiEndPoint';
 import { useDispatch } from 'react-redux';
 import { setUserData } from '../../../../redux/features/userSlice';
-import { apiExpertiseModel } from '../../../../models/api/consultant';
+import { ApiExpertiseModel } from '../../../../models/api/consultant';
 import {
-  tExpertiseModel,
+  TExpertiseModel,
   transformExpertiseModel,
 } from '../../../../models/formattedAPI/tConsultant';
 import { ApiResponse } from '../../../../models/apiModel';
 
 export const AreaOfExpertiseScreen = ({
   navigation,
-}: rootNavigationProps<routeName.AreaOfExpertise>) => {
+}: RootNavigationProps<routeName.AreaOfExpertise>) => {
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   const dispatch = useDispatch();
-  const [expertise, setExpertise] = useState<tExpertiseModel[]>([]);
+  const [expertise, setExpertise] = useState<TExpertiseModel[]>([]);
   const [category, setCategory] = useState<string[]>([]);
 
   const goBack = () => {
@@ -40,11 +40,11 @@ export const AreaOfExpertiseScreen = ({
 
   const getExpertise = async () => {
     try {
-      const response = await getAPIData<ApiResponse<apiExpertiseModel[]>>(
+      const response = await getAPIData<ApiResponse<ApiExpertiseModel[]>>(
         endPoints.expertise,
       );
       if (!response) return;
-      const data: apiExpertiseModel[] = response.payload;
+      const data: ApiExpertiseModel[] = response.payload;
       const transformedRes = data.map(r => transformExpertiseModel(r));
       setExpertise(transformedRes);
     } catch (error) {
@@ -68,7 +68,7 @@ export const AreaOfExpertiseScreen = ({
     navigation.navigate(routeName.ServicesYouOffer);
   };
 
-  const renderItem: ListRenderItem<tExpertiseModel> = useCallback(
+  const renderItem: ListRenderItem<TExpertiseModel> = useCallback(
     ({ item }) => {
       return (
         <CategoryCard

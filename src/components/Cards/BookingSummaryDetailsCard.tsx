@@ -8,27 +8,27 @@ import FastImage from 'react-native-fast-image';
 import { Theme } from '../../config/themes/themes';
 import LinearGradient from 'react-native-linear-gradient';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
-import { MediumTextComponent } from '../Text/MediumTextComponent';
-import { RegularTextComponent } from '../Text/RegularTextComponent';
+import { MediumTextComponent } from '../Text/MediumText';
+import { RegularTextComponent } from '../Text/RegularText';
 import {
   getGradientColor,
   getServiceImage,
 } from '../../utils/gradientColor/gradientColor';
-import { tBookingDetailsModel } from '../../models/formattedAPI/tBookings';
+import { TBookingDetailsModel } from '../../models/formattedAPI/tBookings';
 import { getProfilePicture } from '../../utils/extractURI/extractImageURI';
 import { appImages } from '../../config/images/imagePath';
 import { useState } from 'react';
 import { Rating } from 'react-native-ratings';
 
-type bookingSummaryDetailsCardProps = {
+type BookingSummaryDetailsCardProps = {
   userRole: 'consultant' | 'client';
-  data: tBookingDetailsModel | undefined;
+  data: TBookingDetailsModel | undefined;
   review: any;
   navigateToConsultantProfile: () => void;
 };
 
 export const BookingSummaryDetailsCard = (
-  props: bookingSummaryDetailsCardProps,
+  props: BookingSummaryDetailsCardProps,
 ) => {
   const { t } = useTranslation();
   const theme = useTheme<Theme>();

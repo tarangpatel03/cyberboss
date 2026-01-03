@@ -4,17 +4,17 @@ import FastImage from 'react-native-fast-image';
 import { Rating } from 'react-native-ratings';
 import { appImages } from '../../config/images/imagePath';
 import { getFullDate } from '../../utils/format/formatDate';
-import { MediumTextComponent } from '../Text/MediumTextComponent';
-import { RegularTextComponent } from '../Text/RegularTextComponent';
+import { MediumTextComponent } from '../Text/MediumText';
+import { RegularTextComponent } from '../Text/RegularText';
 import { Theme } from '../../config/themes/themes';
 import {
   createStyles,
   staticStyle,
 } from '../../screens/client/ConsultantProfile/styles';
-import { tRatingReviewModel } from '../../models/formattedAPI/tConsultant';
+import { TRatingReviewModel } from '../../models/formattedAPI/tConsultant';
 import { memo } from 'react';
 
-export const ReviewCard = memo((props: tRatingReviewModel) => {
+export const ReviewCard = memo((props: TRatingReviewModel) => {
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
 

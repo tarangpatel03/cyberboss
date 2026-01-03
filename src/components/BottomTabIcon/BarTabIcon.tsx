@@ -3,11 +3,11 @@ import { useTheme } from '@shopify/restyle';
 import { TourGuideZone } from 'rn-tourguide';
 import FastImage from 'react-native-fast-image';
 import normalize from '../../utils/normalize/normalize';
-import { RegularTextComponent } from '../Text/RegularTextComponent';
+import { RegularTextComponent } from '../Text/RegularText';
 import { Theme } from '../../config/themes/themes';
 import { useTranslation } from 'react-i18next';
 
-type barTabIconProps = {
+type BarTabIconProps = {
   icon: number | { uri: string } | undefined;
   title: string;
   isFocus: boolean;
@@ -19,7 +19,7 @@ export const BarTabIconComponent = ({
   title,
   isFocus,
   zone,
-}: barTabIconProps) => {
+}: BarTabIconProps) => {
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);

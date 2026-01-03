@@ -2,17 +2,17 @@ import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { Theme } from '../../config/themes/themes';
 import { useTheme } from '@shopify/restyle';
 import normalize from '../../utils/normalize/normalize';
-import { RegularTextComponent } from '../Text/RegularTextComponent';
+import { RegularTextComponent } from '../Text/RegularText';
 import { memo } from 'react';
 
-type themeSelectionCardProps = {
+type ThemeSelectionCardProps = {
   title: string;
   isSelected: boolean;
   onPress: () => void;
 };
 
 export const ThemeSelectionCard = memo(
-  ({ isSelected, onPress, title }: themeSelectionCardProps) => {
+  ({ isSelected, onPress, title }: ThemeSelectionCardProps) => {
     const theme = useTheme<Theme>();
     const styles = createStyles(theme);
     return (

@@ -1,9 +1,9 @@
-export type services = {
+export type Services = {
   id: string;
   name: string;
 };
 
-export type apiExpertiseModel = {
+export type ApiExpertiseModel = {
   id: string;
   name: string;
   image: string;
@@ -12,7 +12,7 @@ export type apiExpertiseModel = {
   booking_count: number | null;
 };
 
-export type apiWorkshopModel = {
+export type ApiWorkshopModel = {
   id: string;
   name: string;
   date: string;
@@ -21,7 +21,7 @@ export type apiWorkshopModel = {
   link: string;
 };
 
-export type apiRatingReviewModel = {
+export type ApiRatingReviewModel = {
   id: string;
   client_id: string;
   client_name: string;
@@ -31,7 +31,7 @@ export type apiRatingReviewModel = {
   created_at: string;
 };
 
-export type apiConsultantModel = {
+export type ApiConsultantModel = {
   id: string;
   name: string;
   experience_year: string;
@@ -40,7 +40,7 @@ export type apiConsultantModel = {
   bookings: number;
 };
 
-export type apiConsultantDetailsModel = {
+export type ApiConsultantDetailsModel = {
   id: string;
   name: string;
   profile_picture: string | undefined;
@@ -48,13 +48,13 @@ export type apiConsultantDetailsModel = {
   experience_year: string;
   rate: string;
   bookings_count: number;
-  expertises: apiExpertiseModel[];
-  services: services[];
+  expertises: ApiExpertiseModel[];
+  services: Services[];
   total_ratings: number;
   average_ratings: number;
-  rating_reviews: apiRatingReviewModel[];
+  rating_reviews: ApiRatingReviewModel[];
 };
 
-export type apiConsultantVerifed = {
+export type ApiConsultantVerifed = {
   is_verified: boolean;
 };

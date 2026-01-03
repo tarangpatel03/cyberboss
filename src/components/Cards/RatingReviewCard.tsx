@@ -8,14 +8,14 @@ import { Rating } from 'react-native-ratings';
 import { StyleSheet, View } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { Theme } from '../../config/themes/themes';
-import { MediumTextComponent } from '../Text/MediumTextComponent';
-import { RegularTextComponent } from '../Text/RegularTextComponent';
+import { MediumTextComponent } from '../Text/MediumText';
+import { RegularTextComponent } from '../Text/RegularText';
 
-type reviewCardProps = {
+type ReviewCardProps = {
   item: any;
 };
 
-export const RatingCard = memo((props: reviewCardProps) => {
+export const RatingCard = memo((props: ReviewCardProps) => {
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
 

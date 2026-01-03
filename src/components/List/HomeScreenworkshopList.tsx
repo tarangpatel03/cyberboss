@@ -9,20 +9,20 @@ import { staticStyle, createStyles } from '../../screens/client/Home/styles';
 import { useTheme } from '@shopify/restyle';
 import { Theme } from '../../config/themes/themes';
 import { appIcons } from '../../config/icons/iconPath';
-import { MediumTextComponent } from '../Text/MediumTextComponent';
-import { RegularTextComponent } from '../Text/RegularTextComponent';
+import { MediumTextComponent } from '../Text/MediumText';
+import { RegularTextComponent } from '../Text/RegularText';
 import { useTranslation } from 'react-i18next';
 import FastImage from 'react-native-fast-image';
-import { tWorkshopModel } from '../../models/formattedAPI/tConsultant';
+import { TWorkshopModel } from '../../models/formattedAPI/tConsultant';
 
-type homeScreenWorkshopListProps = {
-  data: tWorkshopModel[] | any[];
+type HomeScreenWorkshopListProps = {
+  data: TWorkshopModel[] | any[];
   navigateToWorkshop: () => void;
   renderItem: ListRenderItem<any>;
   type: string;
 };
 
-export const HomeScreenWorkshopList = (props: homeScreenWorkshopListProps) => {
+export const HomeScreenWorkshopList = (props: HomeScreenWorkshopListProps) => {
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);

@@ -2,15 +2,15 @@ import { StyleSheet, View } from 'react-native';
 import { Theme } from '../../config/themes/themes';
 import { useTheme } from '@shopify/restyle';
 import normalize from '../../utils/normalize/normalize';
-import { RegularTextComponent } from '../Text/RegularTextComponent';
+import { RegularTextComponent } from '../Text/RegularText';
 import { appIcons } from '../../config/icons/iconPath';
 import { getDate } from '../../utils/format/formatDate';
 import FastImage from 'react-native-fast-image';
 import { memo } from 'react';
-import { tNotificationModel } from '../../models/formattedAPI/tNotification';
+import { TNotificationModel } from '../../models/formattedAPI/tNotification';
 
 export const NotificationCard = memo(
-  ({ data }: { data: tNotificationModel }) => {
+  ({ data }: { data: TNotificationModel }) => {
     const theme = useTheme<Theme>();
     const styles = createStyles(theme);
     return (

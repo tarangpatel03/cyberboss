@@ -5,12 +5,12 @@ import {
   TouchableOpacity,
   ViewStyle,
 } from 'react-native';
-import { MediumTextComponent } from '../Text/MediumTextComponent';
+import { MediumTextComponent } from '../Text/MediumText';
 import { Theme } from '../../config/themes/themes';
 import { useTheme } from '@shopify/restyle';
 import normalize from '../../utils/normalize/normalize';
 
-type primaryButtonComponentProps = {
+type PrimaryButtonComponentProps = {
   text: string;
   textStyle?: StyleProp<TextStyle>;
   buttonStyle?: StyleProp<ViewStyle>;
@@ -18,7 +18,7 @@ type primaryButtonComponentProps = {
   isButtonActive?: boolean;
 };
 
-export const PrimaryButtonComponent = (props: primaryButtonComponentProps) => {
+export const PrimaryButtonComponent = (props: PrimaryButtonComponentProps) => {
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   return (

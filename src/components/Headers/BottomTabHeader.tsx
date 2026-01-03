@@ -1,18 +1,18 @@
 import { useTheme } from '@shopify/restyle';
 import { Theme } from '../../config/themes/themes';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import { MediumTextComponent } from '../Text/MediumTextComponent';
+import { MediumTextComponent } from '../Text/MediumText';
 import normalize from '../../utils/normalize/normalize';
 import { appIcons } from '../../config/icons/iconPath';
 import { appColors } from '../../config/colors/colors';
 import FastImage from 'react-native-fast-image';
 
-type bottomTabHeaderProp = {
+type BottomTabHeaderProp = {
   name: string;
   onPress: () => void;
 };
 
-export const BottomTabHeader = ({ name, onPress }: bottomTabHeaderProp) => {
+export const BottomTabHeader = ({ name, onPress }: BottomTabHeaderProp) => {
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   return (
@@ -27,14 +27,14 @@ export const BottomTabHeader = ({ name, onPress }: bottomTabHeaderProp) => {
           tintColor={theme.colors.textPrimary}
           style={staticStyle.icon}
         />
-        <View
+        {/* <View
           style={StyleSheet.flatten([
             staticStyle.notificationDot,
             styles.container,
           ])}
         >
           <View style={staticStyle.notificationDotInner} />
-        </View>
+        </View> */}
       </TouchableOpacity>
     </View>
   );

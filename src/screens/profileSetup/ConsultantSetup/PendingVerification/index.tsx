@@ -5,9 +5,9 @@ import { createStyles, staticStyle } from './styles';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { appIcons } from '../../../../config/icons/iconPath';
 import { routeName } from '../../../../config/constants/routes';
-import { rootNavigationProps } from '../../../../models/navigationModel';
-import { SemiBoldTextComponent } from '../../../../components/Text/SemiBoldTextComponent';
-import { RegularTextComponent } from '../../../../components/Text/RegularTextComponent';
+import { RootNavigationProps } from '../../../../models/navigationModel';
+import { SemiBoldTextComponent } from '../../../../components/Text/SemiBoldText';
+import { RegularTextComponent } from '../../../../components/Text/RegularText';
 import FastImage from 'react-native-fast-image';
 import { useTranslation } from 'react-i18next';
 import { getAPIData } from '../../../../services/api/common/getCommonApi';
@@ -16,11 +16,11 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { setUserData } from '../../../../redux/features/userSlice';
 import { ApiResponse } from '../../../../models/apiModel';
-import { apiConsultantVerifed } from '../../../../models/api/consultant';
+import { ApiConsultantVerifed } from '../../../../models/api/consultant';
 
 export const PendingVerificationScreen = ({
   navigation,
-}: rootNavigationProps<routeName.PendingVerification>) => {
+}: RootNavigationProps<routeName.PendingVerification>) => {
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
@@ -28,7 +28,7 @@ export const PendingVerificationScreen = ({
 
   const verify = async () => {
     try {
-      const response = await getAPIData<ApiResponse<apiConsultantVerifed>>(
+      const response = await getAPIData<ApiResponse<ApiConsultantVerifed>>(
         endPoints.consultantVerified,
       );
       if (response) {

@@ -1,5 +1,8 @@
 import { axiosClient } from '../../axios/axiosClient';
 import { endPoints } from '../../../config/endPoint/apiEndPoint';
+import auth from '@react-native-firebase/auth';
+import appleAuth from '@invertase/react-native-apple-authentication';
+
 import {
   GoogleAuthProvider,
   signInWithCredential,
@@ -118,4 +121,38 @@ export const logOut = async () => {
   } catch (error) {
     console.log(error);
   }
+};
+
+export const appleLogIn = async () => {
+  const appleResponse = await appleAuth.performRequest({
+    requestedOperation: appleAuth.Operation.LOGIN,
+    requestedScopes: [appleAuth.Scope.EMAIL, appleAuth.Scope.FULL_NAME],
+  });
+
+  const { identityToken, nonce } = appleResponse;
+
+  if (!identityToken) {
+    throw new Error('Apple Sign-In failed');
+  }
+
+  const appleCredential = auth.AppleAuthProvider.credential(
+    identityToken,
+    nonce,
+  );
+
+  const firebaseResponse = await signInWithCredential(
+    getAuth(),
+    appleCredential,
+  );
+  const uid = firebaseResponse.user.uid;
+  const idToken = await firebaseResponse.user.getIdToken();
+  const userToken = await getUserToken({
+    email: null,
+    login_type: 'email',
+    device_type: Platform.OS === 'android' ? 'android' : 'ios',
+    push_token: PUSH_TOKEN,
+    firebase_token: idToken,
+  });
+
+  return { userToken, uid };
 };

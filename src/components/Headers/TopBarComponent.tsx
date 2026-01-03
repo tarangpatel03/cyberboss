@@ -6,25 +6,25 @@ import { appColors } from '../../config/colors/colors';
 import { appIcons } from '../../config/icons/iconPath';
 import { appImages } from '../../config/images/imagePath';
 import LinearGradient from 'react-native-linear-gradient';
-import { SemiBoldTextComponent } from '../Text/SemiBoldTextComponent';
+import { SemiBoldTextComponent } from '../Text/SemiBoldText';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { rootState } from '../../redux/store';
+import { RootState } from '../../redux/store';
 import { getProfilePicture } from '../../utils/extractURI/extractImageURI';
 
-type topBarComponentProps = {
+type TopBarComponentProps = {
   isSubscriber: boolean;
   onPressProfile: () => void;
   onPressSubscription: () => void;
   onPressNotification: () => void;
 };
 
-export const TopBarComponent = (props: topBarComponentProps) => {
+export const TopBarComponent = (props: TopBarComponentProps) => {
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   const { name, profilePicture } = useSelector(
-    (state: rootState) => state.user.userData,
+    (state: RootState) => state.user.userData,
   );
   const [profileImageError, setProfileImageError] = useState<boolean>(false);
 
@@ -82,14 +82,14 @@ export const TopBarComponent = (props: topBarComponentProps) => {
               source={appIcons.ic_notificationBell}
               style={staticStyle.bellButton}
             />
-            <View
+            {/* <View
               style={StyleSheet.flatten([
                 staticStyle.notificationDot,
                 styles.background,
               ])}
             >
               <View style={staticStyle.notificationDotInner} />
-            </View>
+            </View> */}
           </TouchableOpacity>
         </View>
       </View>

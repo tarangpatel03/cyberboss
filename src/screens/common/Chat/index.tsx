@@ -46,7 +46,6 @@ export const ChatScreen = ({
               ...doc.data(),
             }));
             const filteredData = data2.filter(x => 'lastMessageTimestamp' in x);
-            console.log('Chats Data: ', filteredData);
             setChats(
               filteredData.sort(
                 // @ts-ignore

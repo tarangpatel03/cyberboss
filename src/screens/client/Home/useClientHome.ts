@@ -1,6 +1,6 @@
 import { getAPIData } from '../../../services/api/common/getCommonApi';
 import { useEffect, useState } from 'react';
-import { setUserData } from '../../../redux/features/userSlice';
+import { setIsPro, setUserData } from '../../../redux/features/userSlice';
 import { useDispatch } from 'react-redux';
 import { endPoints } from '../../../config/endPoint/apiEndPoint';
 import { apiExpertiseModel } from '../../../models/api/consultant';
@@ -69,6 +69,7 @@ export function useClientHome() {
           profile_setup: transformedData2.profileSetup,
           profilePicture: transformedData2.profilePicture,
         }),
+        setIsPro(transformedData1.isSubscriber),
       );
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {

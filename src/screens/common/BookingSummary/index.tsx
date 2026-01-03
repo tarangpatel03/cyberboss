@@ -29,7 +29,7 @@ import {
   apiBookingDetailsModel,
   apiReviewModel,
 } from '../../../models/api/bookings';
-import { ApiResponse, ListPayload } from '../../../models/apiModel';
+import { ApiResponse } from '../../../models/apiModel';
 
 export const BookingSummaryScreen = ({
   navigation,
@@ -70,13 +70,11 @@ export const BookingSummaryScreen = ({
   };
 
   const loadReview = async (bookingId: string) => {
-    const response = await getAPIData<ApiResponse<ListPayload<apiReviewModel>>>(
+    const response = await getAPIData<ApiResponse<apiReviewModel[]>>(
       `${endPoints.ratingReviews}/${bookingId}`,
     );
     if (!response) return;
-    const transformedRes = response.payload.data.map(r =>
-      transformReviewModel(r),
-    );
+    const transformedRes = response.payload.map(r => transformReviewModel(r));
     setReview(transformedRes);
   };
 

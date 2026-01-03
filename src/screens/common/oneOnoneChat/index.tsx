@@ -93,7 +93,6 @@ export const OneOnOneChatScreen = ({
       await firestore().collection('chats').doc(data.chatID).get()
     ).data();
     setFields(data1);
-    console.log('Chat Field: ', data1);
   };
 
   const sendChat = async () => {

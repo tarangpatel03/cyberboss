@@ -177,17 +177,8 @@ export const ConsultantHomeScreen = ({
       );
     }, []);
 
-  const getUserData = async () => {
-    const res = await firestore().collection('users').get();
-    console.log('Users: ');
-    res.forEach(r => {
-      console.log(r.id, r.data());
-    });
-  };
-
   useEffect(() => {
     getData();
-    getUserData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

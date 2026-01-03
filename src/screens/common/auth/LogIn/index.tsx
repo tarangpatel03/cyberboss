@@ -29,7 +29,7 @@ export const LogInScreen = ({
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
-  const { is_verified } = useSelector(
+  const { is_verified, role } = useSelector(
     (state: rootState) => state.user.userData,
   );
   const [buttonText, setButtonText] = useState<string>('logIn');
@@ -46,9 +46,13 @@ export const LogInScreen = ({
   };
 
   const navigateToHomeScreen = () => {
-    is_verified
-      ? navigation.replace(routeName.BottomTab)
-      : navigation.replace(routeName.PendingVerification);
+    if (role === 'client') {
+      navigation.replace(routeName.BottomTab);
+    } else {
+      is_verified
+        ? navigation.replace(routeName.BottomTab)
+        : navigation.replace(routeName.PendingVerification);
+    }
   };
 
   const handleSignIn = async () => {

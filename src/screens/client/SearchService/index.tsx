@@ -19,7 +19,7 @@ import {
   tExpertiseModel,
   transformExpertiseModel,
 } from '../../../models/formattedAPI/tConsultant';
-import { ApiResponse, ListPayload } from '../../../models/apiModel';
+import { ApiResponse } from '../../../models/apiModel';
 
 export const SearchServiceScreen = ({
   navigation,
@@ -35,11 +35,11 @@ export const SearchServiceScreen = ({
   const loadData = async () => {
     try {
       setLoader(true);
-      const response = await getServiceList<
-        ApiResponse<ListPayload<apiExpertiseModel>>
-      >(debouncedSearchText);
+      const response = await getServiceList<ApiResponse<apiExpertiseModel[]>>(
+        debouncedSearchText,
+      );
       if (!response) return;
-      const data: apiExpertiseModel[] = response.payload.data;
+      const data: apiExpertiseModel[] = response.payload;
       const transformedData = data.map(r => transformExpertiseModel(r));
       setServices(transformedData);
     } catch (error) {
@@ -67,6 +67,7 @@ export const SearchServiceScreen = ({
   };
 
   useEffect(() => {
+    console.log('API Called');
     loadData().then(() => setLoader(false));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedSearchText]);

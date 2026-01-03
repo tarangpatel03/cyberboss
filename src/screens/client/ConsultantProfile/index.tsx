@@ -91,9 +91,7 @@ export const ConsultantProfileScreen = ({
         `${endPoints.consultant}/${consultantId}`,
       );
       if (!response) return;
-      console.log('Res: ', response);
       const resData: apiConsultantDetailsModel = response.payload;
-      console.log('Consultant Detals: ', resData);
       const transformedData = transformConsultantDetailsModel(resData);
       setData(transformedData);
     } catch (error) {

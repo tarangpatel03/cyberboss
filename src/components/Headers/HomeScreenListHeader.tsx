@@ -8,6 +8,8 @@ import { Theme } from '../../config/themes/themes';
 import { tClientHomeModel } from '../../models/formattedAPI/tHome';
 import { tHomeBookingModel } from '../../models/formattedAPI/tBookings';
 import { tWorkshopModel } from '../../models/formattedAPI/tConsultant';
+import { useSelector } from 'react-redux';
+import { rootState } from '../../redux/store';
 
 type homeScreenListHeaderProps = {
   homeData: tClientHomeModel;
@@ -23,10 +25,11 @@ export const HomeScreenListHeaderComponent = (
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
+  const isPro = useSelector((state: rootState) => state.user.isPro);
 
   return (
     <View style={staticStyle.container}>
-      {props.homeData.workshops.length !== 0 && (
+      {isPro && props.homeData.workshops.length !== 0 && (
         <HomeScreenWorkshopList
           data={props.homeData.workshops}
           type={t('workshop')}

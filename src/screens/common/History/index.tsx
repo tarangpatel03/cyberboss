@@ -1,7 +1,13 @@
 import { useTheme } from '@shopify/restyle';
 import { Theme } from '../../../config/themes/themes';
 import { createStyles, staticStyle } from './styles';
-import { FlatList, StyleSheet, TouchableOpacity, View } from 'react-native';
+import {
+  FlatList,
+  Platform,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { BottomTabHeader } from '../../../components/Headers/BottomTabHeader';
 import { BookingCard } from '../../../components/Cards/BookingCard';
@@ -133,22 +139,27 @@ export const HistoryScreen = ({
   }, []);
 
   const onMorePress = (id: number, x: number, y: number) => {
-    const screenHeight = height;
+    const screenHeight = height - normalize(50);
     const menuHeight = normalize(150);
+    const margin = normalize(10);
 
-    let finalTop = y;
+    const fitsBelow = y + menuHeight + margin < screenHeight;
+    let finalTop = fitsBelow
+      ? y + (Platform.OS === 'android' ? normalize(20) : normalize(-20))
+      : y -
+        menuHeight -
+        margin -
+        (Platform.OS === 'ios' ? normalize(10) : normalize(-20));
 
-    if (y + menuHeight > screenHeight) {
-      finalTop = y - menuHeight + normalize(10);
+    if (selectedMoreId === id && isModalVisible) {
+      setModalVisible(false);
+      setSelectedMoreId(null);
+      return;
     }
 
-    if (selectedMoreId === id) {
-      setModalVisible(prev => !prev);
-    } else {
-      setSelectedMoreId(id);
-      setModalPosition({ top: finalTop, left: x });
-      setModalVisible(true);
-    }
+    setSelectedMoreId(id);
+    setModalPosition({ top: finalTop, left: x });
+    setModalVisible(true);
   };
   const emptyCard = () => {
     return (
@@ -170,7 +181,14 @@ export const HistoryScreen = ({
         style={StyleSheet.flatten([staticStyle.container, styles.container])}
       >
         {isModalVisible && (
-          <View style={staticStyle.modalOverlay} pointerEvents="box-none">
+          <TouchableOpacity
+            activeOpacity={1}
+            style={staticStyle.modalOverlay}
+            onPress={() => {
+              setModalVisible(false);
+              setSelectedMoreId(null);
+            }}
+          >
             <View
               style={StyleSheet.flatten([
                 staticStyle.modalWrapper,
@@ -180,7 +198,8 @@ export const HistoryScreen = ({
                 },
               ])}
             >
-              <View
+              <TouchableOpacity
+                activeOpacity={1}
                 style={StyleSheet.flatten([
                   staticStyle.modalContent,
                   styles.bgSecondary,
@@ -215,9 +234,9 @@ export const HistoryScreen = ({
                     ])}
                   />
                 </TouchableOpacity>
-              </View>
+              </TouchableOpacity>
             </View>
-          </View>
+          </TouchableOpacity>
         )}
         <View style={StyleSheet.flatten([staticStyle.header])}>
           <BottomTabHeader

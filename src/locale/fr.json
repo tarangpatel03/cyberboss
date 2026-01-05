@@ -185,5 +185,9 @@
   "yearsOfExperience": "Années d'expérience",
   "yourExpertise": "Quelle est votre expertise ?",
   "yourExpertiseLine": "Sélectionnez les catégories qui représentent le mieux votre travail",
-  "yourRating": "Votre note"
+  "yourRating": "Votre note",
+  "enterValidEmail": "Entrez une adresse e-mail valide",
+  "linkSend": "Lien de réinitialisation envoyé à votre e-mail",
+  "noChatsFound": "Aucune discussion trouvée",
+  "unknownName": "Nom inconnu"
 }

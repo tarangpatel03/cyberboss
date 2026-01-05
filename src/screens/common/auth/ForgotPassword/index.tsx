@@ -15,6 +15,7 @@ import { ScreenHeaderComponent } from '@components/Headers/ScreenHeader';
 import { CustomInputComponent } from '@components/Input/EmailAndPasswordInput';
 import { useTranslation } from 'react-i18next';
 import { getAuth, sendPasswordResetEmail } from '@react-native-firebase/auth';
+import { showErrorToast, showSuccessToast } from '@utils/toast/toast';
 
 export const ForgotPasswordScreen = ({
   navigation,
@@ -29,8 +30,11 @@ export const ForgotPasswordScreen = ({
 
   const resetPassword = async () => {
     try {
-      if (email.trim()) await sendPasswordResetEmail(getAuth(), email);
-      else console.log('Enter Email');
+      if (email.trim()) {
+        await sendPasswordResetEmail(getAuth(), email);
+        showSuccessToast({ title: t('linkSend') });
+        goBack();
+      } else showErrorToast({ title: t('enterValidEmail') });
     } catch (error) {
       console.log(error);
     }

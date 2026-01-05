@@ -40,9 +40,7 @@ export const ClientHomeScreen = ({
   const theme = useTheme<Theme>();
   const isFocused = useIsFocused();
   const styles = createStyles(theme);
-  const { id: userIdRead, profilePicture } = useSelector(
-    (state: RootState) => state.user.userData,
-  );
+  const userIdRead = useSelector((state: RootState) => state.user.userData.id);
   const [layoutReady, setLayoutReady] = useState(false);
   const handleOnStop = () => dispatch(setShowTour(false));
   const { canStart, start, eventEmitter } = useTourGuideController();
@@ -108,7 +106,6 @@ export const ClientHomeScreen = ({
         };
         return data1;
       });
-    console.log('ChatData: ', data);
 
     if (data) {
       navigation.navigate(routeName.OneOnOneChat, {
@@ -176,8 +173,6 @@ export const ClientHomeScreen = ({
   };
 
   useEffect(() => {
-    console.log('User Data: ', profilePicture);
-
     const dataLoaded =
       homeData.workshops.length > 0 ||
       homeData.bookings.length > 0 ||

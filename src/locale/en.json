@@ -59,6 +59,8 @@
   "inProgress": "In Progress",
   "send": "send",
   "receive": "receive",
+  "enterValidEmail": "Enter valid email",
+  "linkSend": "Reset link send to your email",
   "passwordLength": "Password Must be 8 characters long.",
   "mustHaveCapitalValue": "Password Must have least 1 capital latter",
   "mustHaveSmallValue": "Password Must have least 1 small latter",

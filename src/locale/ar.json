@@ -185,5 +185,9 @@
   "yearsOfExperience": "سنوات من الخبرة",
   "yourExpertise": "ما هي خبرتك؟",
   "yourExpertiseLine": "حدد الفئات التي تمثل عملك على أفضل وجه",
-  "yourRating": "تقييمك"
+  "yourRating": "تقييمك",
+  "enterValidEmail": "أدخل بريدًا إلكترونيًا صالحًا",
+  "linkSend": "إعادة تعيين الرابط إرسالها إلى البريد الإلكتروني الخاص بك",
+  "noChatsFound": "لم يتم العثور على محادثات",
+  "unknownName": "اسم غير معروف"
 }

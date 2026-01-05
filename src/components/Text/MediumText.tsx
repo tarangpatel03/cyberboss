@@ -7,17 +7,13 @@ type MediumTextComponentProps = {
   noOfLines?: number;
 };
 
-export const MediumTextComponent = ({
-  text,
-  textStyle,
-  noOfLines,
-}: MediumTextComponentProps) => {
+export const MediumTextComponent = (props: MediumTextComponentProps) => {
   return (
     <Text
-      numberOfLines={noOfLines ?? 1}
-      style={StyleSheet.flatten([styles.text, textStyle])}
+      numberOfLines={props.noOfLines ?? 1}
+      style={StyleSheet.flatten([styles.text, props.textStyle])}
     >
-      {text}
+      {props.text}
     </Text>
   );
 };

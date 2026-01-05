@@ -1,5 +1,5 @@
 import { useTheme } from '@shopify/restyle';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
@@ -40,6 +40,10 @@ export const LogInScreen = ({
 
   const navigateToSignUp = () => {
     navigation.replace(routeName.SignUp);
+  };
+
+  const goBack = () => {
+    navigation.goBack();
   };
 
   const navigateToForgotPassword = () => {
@@ -101,6 +105,8 @@ export const LogInScreen = ({
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      setButtonText(t('logIn'));
     }
   };
 
@@ -136,6 +142,18 @@ export const LogInScreen = ({
       <View
         style={StyleSheet.flatten([staticStyle.background, styles.background])}
       >
+        <TouchableOpacity
+          onPress={goBack}
+          activeOpacity={0.8}
+          style={StyleSheet.flatten([staticStyle.backButton])}
+        >
+          <FastImage
+            style={staticStyle.backIcon}
+            source={appIcons.ic_backIcon}
+            tintColor={appColors.app_FFFFFF}
+            resizeMode={FastImage.resizeMode.contain}
+          />
+        </TouchableOpacity>
         <FastImage
           source={appImages.img_authCard}
           style={staticStyle.topCard}

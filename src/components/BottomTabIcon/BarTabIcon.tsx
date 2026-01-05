@@ -1,4 +1,4 @@
-import { StyleSheet, View } from 'react-native';
+import { Platform, StyleSheet, View } from 'react-native';
 import { useTheme } from '@shopify/restyle';
 import { TourGuideZone } from 'rn-tourguide';
 import FastImage from 'react-native-fast-image';
@@ -47,9 +47,7 @@ const staticStyle = StyleSheet.create({
   container: {
     alignItems: 'center',
     justifyContent: 'center',
-    height: normalize(50),
     width: normalize(40),
-    paddingTop: normalize(20),
   },
   tabIcon: {
     width: normalize(24),
@@ -67,9 +65,8 @@ const staticStyle = StyleSheet.create({
   topBar: {
     borderBottomRightRadius: 5,
     borderBottomLeftRadius: 5,
-    top: normalize(8),
+    top: Platform.OS === 'ios' ? normalize(12) : normalize(14),
     width: normalize(64),
-    position: 'absolute',
     height: normalize(4),
     marginBottom: normalize(8),
   },

@@ -15,7 +15,7 @@ type OneOnOneCardProps = {
   timestamp: string;
 };
 
-export const OneOnOneCard = memo((props: OneOnOneCardProps) => {
+export const OneToOneChatCard = memo((props: OneOnOneCardProps) => {
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   return (

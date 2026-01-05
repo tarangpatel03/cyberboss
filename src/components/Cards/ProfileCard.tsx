@@ -38,6 +38,8 @@ export const ProfileCard = (props: ProfileCardProps) => {
             profileImageError
               ? appImages.img_defaultProfile
               : props.getPicture()
+              ? props.getPicture()
+              : appImages.img_defaultProfile
           }
           style={staticStyle.profileImage}
           onError={() => setProfileImageError(true)}

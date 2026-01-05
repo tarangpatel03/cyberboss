@@ -5,7 +5,10 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { ScreenHeaderComponent } from '@components/Headers/ScreenHeader';
 import { RootNavigationProps } from '@models/navigationModel';
 import { routeName } from '@config/constants/routes';
-import { createStyles, staticStyle } from '@screens/common/ChangePassword/styles';
+import {
+  createStyles,
+  staticStyle,
+} from '@screens/common/ChangePassword/styles';
 import { useState } from 'react';
 import { PasswordInputComponent } from '@components/Input/PasswordInput';
 import { PrimaryButtonComponent } from '@components/Buttons/PrimaryButton';

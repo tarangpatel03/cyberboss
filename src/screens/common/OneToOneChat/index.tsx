@@ -15,15 +15,17 @@ import { routeName } from '@config/constants/routes';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { RootNavigationProps } from '@models/navigationModel';
 import { MediumTextComponent } from '@components/Text/MediumText';
-import { OneOnOneCard } from '@components/Cards/OneOnOneChat';
+import { OneToOneChatCard } from '@components/Cards/OneToOneChatCard';
 import FastImage from 'react-native-fast-image';
 import { useTranslation } from 'react-i18next';
 import firestore from '@react-native-firebase/firestore';
 import { ChatListEmptyCard } from '@components/Cards/ChatListEmptyCard';
 import { isDarkMode } from '@utils/theme/darkMode';
 import { appColors } from '@config/colors/colors';
+import { RegularTextComponent } from '@components/Text/RegularText';
+import { getProfilePicture } from '@utils/extractURI/extractImageURI';
 
-export const OneOnOneChatScreen = ({
+export const OneToOneChatScreen = ({
   navigation,
   route,
 }: RootNavigationProps<routeName.OneOnOneChat>) => {
@@ -31,13 +33,10 @@ export const OneOnOneChatScreen = ({
   const theme = useTheme<Theme>();
   const data = route.params;
   const styles = createStyles(theme);
+  const [imageError, setImageError] = useState<boolean>(false);
   const [text, setText] = useState<string | null>('');
   const [messages, setMessages] = useState<any[]>([]);
   const [fields, setFields] = useState<any>();
-
-  const goBack = () => {
-    navigation.goBack();
-  };
 
   const emptyCard = () => {
     return (
@@ -52,7 +51,7 @@ export const OneOnOneChatScreen = ({
   const renderItem = useCallback(
     ({ item }: any) => {
       return (
-        <OneOnOneCard
+        <OneToOneChatCard
           uid={data.userID}
           senderId={item.senderId}
           message={item.message}
@@ -88,11 +87,22 @@ export const OneOnOneChatScreen = ({
     }
   };
 
-  const getChatFields = async () => {
-    const data1 = (
-      await firestore().collection('chats').doc(data.chatID).get()
-    ).data();
-    setFields(data1);
+  const getChatFields = () => {
+    const unsubscribe = firestore()
+      .collection('chats')
+      .doc(data.chatID)
+      .onSnapshot(
+        snapshot => {
+          const fieldsData = {
+            ...snapshot.data(),
+          };
+          setFields(fieldsData);
+        },
+        error => {
+          console.log(error);
+        },
+      );
+    return unsubscribe;
   };
 
   const sendChat = async () => {
@@ -126,12 +136,15 @@ export const OneOnOneChatScreen = ({
     }
   };
 
-  const updateUnreadCount = async () => {
+  const updateOnOnline = async () => {
     try {
       await firestore()
         .collection('chats')
         .doc(data.chatID)
         .update({
+          [`lastSeenTimestamp.${data.userID}`]:
+            firestore.FieldValue.serverTimestamp(),
+          [`onlineStatus.${data.userID}`]: true,
           [`unreadCount.${data.userID}`]: 0,
         });
     } catch (error) {
@@ -139,14 +152,37 @@ export const OneOnOneChatScreen = ({
     }
   };
 
+  const updateOnOffline = async () => {
+    try {
+      await firestore()
+        .collection('chats')
+        .doc(data.chatID)
+        .update({
+          [`lastSeenTimestamp.${data.userID}`]:
+            firestore.FieldValue.serverTimestamp(),
+          [`onlineStatus.${data.userID}`]: false,
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const goBack = async () => {
+    await updateOnOffline();
+    navigation.goBack();
+  };
+
   useEffect(() => {
-    getChatFields();
-    updateUnreadCount();
+    const unsubscribeField = getChatFields();
+    updateOnOnline();
     const unsubscribe = getChats();
 
     return () => {
       if (unsubscribe) {
         unsubscribe();
+      }
+      if (unsubscribeField) {
+        unsubscribeField();
       }
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -175,16 +211,31 @@ export const OneOnOneChatScreen = ({
             </TouchableOpacity>
             <View style={staticStyle.centralHeader}>
               <FastImage
-                source={appImages.img_defaultProfile}
+                onError={() => setImageError(true)}
+                source={
+                  imageError
+                    ? appImages.img_defaultProfile
+                    : getProfilePicture(data.consultantImage)
+                }
                 style={staticStyle.profile}
               />
-              <MediumTextComponent
-                text={data.consultantName}
-                textStyle={StyleSheet.flatten([
-                  staticStyle.title,
-                  styles.title,
-                ])}
-              />
+              <View>
+                <MediumTextComponent
+                  text={data.consultantName}
+                  textStyle={StyleSheet.flatten([
+                    staticStyle.title,
+                    styles.title,
+                  ])}
+                />
+                {fields?.onlineStatus?.[
+                  fields.users.filter((v: string) => v !== data.userID)
+                ] && (
+                  <RegularTextComponent
+                    text="online"
+                    textStyle={StyleSheet.flatten([styles.title])}
+                  />
+                )}
+              </View>
             </View>
           </View>
           <TouchableOpacity style={staticStyle.buttons} activeOpacity={0.7}>

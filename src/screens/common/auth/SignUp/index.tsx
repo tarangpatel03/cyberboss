@@ -7,10 +7,7 @@ import { routeName } from '@config/constants/routes';
 import { RootNavigationProps } from '@models/navigationModel';
 import { useState } from 'react';
 import { isDarkMode } from '@utils/theme/darkMode';
-import {
-  validateEmail,
-  validatePassword,
-} from '@utils/validation/validation';
+import { validateEmail } from '@utils/validation/validation';
 import { showErrorToast } from '@utils/toast/toast';
 import FastImage from 'react-native-fast-image';
 import { useTranslation } from 'react-i18next';
@@ -19,11 +16,7 @@ import { AuthFooterAction } from '@components/Buttons/HorizontalTextButton';
 import { SignUpInputContainer } from '@components/Input/SignUpInputContainer';
 import { setUser, setUserData } from '@redux/features/userSlice';
 import { useDispatch } from 'react-redux';
-import {
-  appleLogIn,
-  googleLogIn,
-  signUp,
-} from '@services/firebase/auth/auth';
+import { appleLogIn, googleLogIn, signUp } from '@services/firebase/auth/auth';
 import firestore from '@react-native-firebase/firestore';
 import { AuthTitle } from '@components/Auth/AuthTitle';
 import { SocialLogIn } from '@components/Auth/SocialLogin';
@@ -106,7 +99,8 @@ export const SignUpScreen = ({
   const handleSignUp = async () => {
     try {
       setButtonText(t('loading'));
-      if (validateEmail(email) && validatePassword(password)) {
+      // if (validateEmail(email) && validatePassword(password)) {
+      if (validateEmail(email)) {
         const res = await signUp(email, password);
         if (res) {
           dispatch(setUser(res.access_token));
@@ -126,7 +120,6 @@ export const SignUpScreen = ({
       }
     } catch (error) {
       console.log(error);
-      setButtonText(t('signUp'));
     } finally {
       setButtonText(t('signUp'));
     }

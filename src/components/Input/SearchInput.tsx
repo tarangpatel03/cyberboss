@@ -33,7 +33,7 @@ export const SearchBorderInputComponent = (
   return (
     <View
       style={StyleSheet.flatten([
-        staticStyles.container,
+        staticStyle.container,
         styles.container,
         props.style,
       ])}
@@ -43,14 +43,14 @@ export const SearchBorderInputComponent = (
           resizeMode={FastImage.resizeMode.contain}
           source={props.icon ?? appIcons.ic_search}
           tintColor={theme.colors.textPrimary}
-          style={staticStyles.icon}
+          style={staticStyle.icon}
         />
       </TouchableOpacity>
       <TextInput
         autoFocus={props.autoFocus ?? false}
         placeholder={props.placeholder}
         autoCapitalize="none"
-        style={StyleSheet.flatten([staticStyles.input, styles.input])}
+        style={StyleSheet.flatten([staticStyle.input, styles.input])}
         value={props.value}
         onChangeText={props.setValue}
         placeholderTextColor={appColors.app_8C8694}
@@ -59,7 +59,7 @@ export const SearchBorderInputComponent = (
   );
 };
 
-const staticStyles = StyleSheet.create({
+const staticStyle = StyleSheet.create({
   container: {
     width: '100%',
     borderWidth: 1,

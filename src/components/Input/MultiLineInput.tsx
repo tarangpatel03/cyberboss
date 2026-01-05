@@ -33,7 +33,7 @@ export const BioInputComponent = (props: MultiLineInputComponentProps) => {
   return (
     <View
       style={StyleSheet.flatten([
-        staticStyles.container,
+        staticStyle.container,
         styles.container,
         props.borderStyle,
       ])}
@@ -41,7 +41,7 @@ export const BioInputComponent = (props: MultiLineInputComponentProps) => {
       {isFocus && (
         <RegularTextComponent
           textStyle={StyleSheet.flatten([
-            staticStyles.placeHolder,
+            staticStyle.placeHolder,
             styles.placeHolder,
             props.borderStyle,
           ])}
@@ -52,8 +52,8 @@ export const BioInputComponent = (props: MultiLineInputComponentProps) => {
         placeholder={!isFocus ? props.placeholder : ''}
         multiline={true}
         style={StyleSheet.flatten([
-          staticStyles.input,
-          props.isNotBio && staticStyles.boiInput,
+          staticStyle.input,
+          props.isNotBio && staticStyle.boiInput,
           styles.input,
           props.borderStyle,
         ])}
@@ -72,14 +72,14 @@ export const BioInputComponent = (props: MultiLineInputComponentProps) => {
           isDarkMode(theme) ? appColors.app_FFFFFF : appColors.app_212121
         }
       />
-      <TouchableOpacity activeOpacity={0.7} style={staticStyles.askAi}>
-        <FastImage source={appImages.img_askAi} style={staticStyles.askAi} />
+      <TouchableOpacity activeOpacity={0.7} style={staticStyle.askAi}>
+        <FastImage source={appImages.img_askAi} style={staticStyle.askAi} />
       </TouchableOpacity>
     </View>
   );
 };
 
-const staticStyles = StyleSheet.create({
+const staticStyle = StyleSheet.create({
   container: {
     width: '100%',
     borderWidth: 1,

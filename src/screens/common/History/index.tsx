@@ -56,43 +56,52 @@ export const HistoryScreen = ({
   };
 
   const navigateToChat = async ({
+    bookingId,
     id,
     image,
     name,
   }: {
+    bookingId: string;
     id: string;
     image: string | number | { uri: string } | undefined;
     name: string;
   }) => {
     const data = await firestore()
       .collection('chats')
-      .where('users', 'array-contains', userIdRead)
+      .doc(`booking_${bookingId}`)
       .get()
       .then(snapshot => {
-        const data1 = snapshot.docs.map(doc => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
+        const data1 = {
+          id: snapshot.id,
+          ...snapshot.data(),
+        };
         return data1;
       });
-    // @ts-ignore
-    const data1 = data.filter(val => val.users.includes(id));
-    if (data1.length > 0) {
+    if (data) {
       navigation.navigate(routeName.OneOnOneChat, {
         consultantImage: image,
         consultantName: name,
         userID: userIdRead,
-        chatID: data1[0].id,
+        chatID: `booking_${bookingId}`,
       });
     } else {
       firestore()
         .collection('chats')
-        .doc(`${userIdRead}_${id}`)
+        .doc(`booking_${bookingId}`)
         .set({
+          bookingId: bookingId,
           users: [userIdRead, id],
           unreadCount: {
-            id: 0,
-            userIdRead: 0,
+            [`${id}`]: 0,
+            [`${userIdRead}`]: 0,
+          },
+          lastSeenTimestamp: {
+            [`${id}`]: firestore.FieldValue.serverTimestamp(),
+            [`${userIdRead}`]: firestore.FieldValue.serverTimestamp(),
+          },
+          onlineStatus: {
+            [`${id}`]: false,
+            [`${userIdRead}`]: true,
           },
           createdAt: firestore.FieldValue.serverTimestamp(),
         });
@@ -100,7 +109,7 @@ export const HistoryScreen = ({
         consultantImage: image,
         consultantName: name,
         userID: userIdRead,
-        chatID: `${userIdRead}_${id}`,
+        chatID: `booking_${bookingId}`,
       });
     }
   };

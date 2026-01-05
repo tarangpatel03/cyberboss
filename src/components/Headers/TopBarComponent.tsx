@@ -40,7 +40,9 @@ export const TopBarComponent = (props: TopBarComponentProps) => {
               source={
                 profileImageError
                   ? appImages.img_defaultProfile
-                  : getProfilePicture(profilePicture)
+                  : profilePicture
+                  ? getProfilePicture(profilePicture)
+                  : appImages.img_defaultProfile
               }
               style={staticStyle.image}
               onError={() => setProfileImageError(true)}

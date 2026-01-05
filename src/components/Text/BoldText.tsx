@@ -7,17 +7,13 @@ type BoldTextComponentProps = {
   noOfLines?: number;
 };
 
-export const BoldTextComponent = ({
-  text,
-  textStyle,
-  noOfLines,
-}: BoldTextComponentProps) => {
+export const BoldTextComponent = (props: BoldTextComponentProps) => {
   return (
     <Text
-      numberOfLines={noOfLines ?? 1}
-      style={StyleSheet.flatten([styles.text, textStyle])}
+      numberOfLines={props.noOfLines ?? 1}
+      style={StyleSheet.flatten([styles.text, props.textStyle])}
     >
-      {text}
+      {props.text}
     </Text>
   );
 };

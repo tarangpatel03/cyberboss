@@ -22,37 +22,37 @@ export const ScreenHeaderComponent = ({
 
   return (
     <>
-      <View style={staticStyles.container}>
+      <View style={staticStyle.container}>
         <CircularIconButtonComponent
           iconPath={appIcons.ic_backIcon}
-          iconStyle={staticStyles.backIcon}
+          iconStyle={staticStyle.backIcon}
           tintColor={theme.colors.textPrimary}
-          buttonStyle={staticStyles.backButton}
+          buttonStyle={staticStyle.backButton}
           onPress={onPress}
         />
         {headerText && (
           <MediumTextComponent
             text={headerText}
-            textStyle={StyleSheet.flatten([staticStyles.title, styles.title])}
+            textStyle={StyleSheet.flatten([staticStyle.title, styles.title])}
           />
         )}
         {iconPath ? (
           <CircularIconButtonComponent
-            buttonStyle={staticStyles.backButton}
+            buttonStyle={staticStyle.backButton}
             iconPath={iconPath}
             tintColor={theme.colors.textPrimary}
-            iconStyle={staticStyles.backIcon}
+            iconStyle={staticStyle.backIcon}
             onPress={() => {}}
           />
         ) : (
-          <View style={staticStyles.backButton} />
+          <View style={staticStyle.backButton} />
         )}
       </View>
     </>
   );
 };
 
-const staticStyles = StyleSheet.create({
+const staticStyle = StyleSheet.create({
   container: {
     flexDirection: 'row',
     paddingTop: normalize(12),

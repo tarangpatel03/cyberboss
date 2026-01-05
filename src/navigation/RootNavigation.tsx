@@ -9,7 +9,7 @@ import { BottomNavigation } from '@navigation/ClientBottomNavigation';
 import { WorkshopScreen } from '@screens/client/Workshop';
 import { AreaOfExpertiseScreen } from '@screens/profileSetup/ConsultantSetup/AreaOfExpertise';
 import { ConsultantListScreen } from '@screens/client/ConsultantList';
-import { OneOnOneChatScreen } from '@screens/common/OneOnOneChat';
+import { OneToOneChatScreen } from '@screens/common/OneToOneChat';
 import { PersonalDetailsScreen } from '@screens/profileSetup/ConsultantSetup/PersonalDetails';
 import { ServicesYouOfferScreen } from '@screens/profileSetup/ConsultantSetup/ServicesYouOffer';
 import { PendingVerificationScreen } from '@screens/profileSetup/ConsultantSetup/PendingVerification';
@@ -108,7 +108,7 @@ export const RootNavigation = () => {
       />
       <Root.Screen
         name={routeName.OneOnOneChat}
-        component={OneOnOneChatScreen}
+        component={OneToOneChatScreen}
       />
       <Root.Screen name={routeName.EditProfile} component={EditProfileScreen} />
       <Root.Screen

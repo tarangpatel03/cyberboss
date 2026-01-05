@@ -1,7 +1,4 @@
-import {
-  createStyles,
-  staticStyle,
-} from '@screens/consultant/Home/styles';
+import { createStyles, staticStyle } from '@screens/consultant/Home/styles';
 import { useTheme } from '@shopify/restyle';
 import { useTranslation } from 'react-i18next';
 import FastImage from 'react-native-fast-image';
@@ -62,8 +59,9 @@ export const ConsultantHeaderCard = (props: ConsultantHeaderCardProps) => {
                   source={
                     profilePictureError
                       ? appImages.img_defaultProfile
-                      : // : appImages.img_defaultProfile
-                        getProfilePicture(profilePicture)
+                      : profilePicture
+                      ? getProfilePicture(profilePicture)
+                      : appImages.img_defaultProfile
                   }
                   style={staticStyle.image}
                   onError={() => setProfilePictureError(true)}

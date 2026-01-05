@@ -38,7 +38,7 @@ export const BorderInputComponent = ({
   return (
     <View
       style={StyleSheet.flatten([
-        staticStyles.container,
+        staticStyle.container,
         styles.container,
         borderStyle,
       ])}
@@ -46,7 +46,7 @@ export const BorderInputComponent = ({
       {showPlaceholderOnFocus && isFocus && (
         <RegularTextComponent
           textStyle={StyleSheet.flatten([
-            staticStyles.placeHolder,
+            staticStyle.placeHolder,
             styles.placeHolder,
             borderStyle,
           ])}
@@ -56,7 +56,7 @@ export const BorderInputComponent = ({
       <TextInput
         placeholder={!isFocus ? placeholder : ''}
         style={StyleSheet.flatten([
-          staticStyles.input,
+          staticStyle.input,
           styles.input,
           borderStyle,
         ])}
@@ -77,7 +77,7 @@ export const BorderInputComponent = ({
   );
 };
 
-const staticStyles = StyleSheet.create({
+const staticStyle = StyleSheet.create({
   container: {
     width: '100%',
     borderWidth: 1,

@@ -3,7 +3,10 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { SemiBoldTextComponent } from '@components/Text/SemiBoldText';
 import { useTheme } from '@shopify/restyle';
 import { Theme } from '@config/themes/themes';
-import { createStyles, staticStyles } from '@screens/common/auth/ForgotPassword/styles';
+import {
+  createStyles,
+  staticStyle,
+} from '@screens/common/auth/ForgotPassword/styles';
 import { RootNavigationProps } from '@models/navigationModel';
 import { routeName } from '@config/constants/routes';
 import { useState } from 'react';
@@ -11,6 +14,7 @@ import { PrimaryButtonComponent } from '@components/Buttons/PrimaryButton';
 import { ScreenHeaderComponent } from '@components/Headers/ScreenHeader';
 import { CustomInputComponent } from '@components/Input/EmailAndPasswordInput';
 import { useTranslation } from 'react-i18next';
+import { getAuth, sendPasswordResetEmail } from '@react-native-firebase/auth';
 
 export const ForgotPasswordScreen = ({
   navigation,
@@ -22,23 +26,33 @@ export const ForgotPasswordScreen = ({
   const goBack = () => {
     navigation.goBack();
   };
+
+  const resetPassword = async () => {
+    try {
+      if (email.trim()) await sendPasswordResetEmail(getAuth(), email);
+      else console.log('Enter Email');
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <SafeAreaView
-        style={StyleSheet.flatten([staticStyles.container, styles.container])}
+        style={StyleSheet.flatten([staticStyle.container, styles.container])}
       >
         <View
-          style={StyleSheet.flatten([staticStyles.container, styles.container])}
+          style={StyleSheet.flatten([staticStyle.container, styles.container])}
         >
-          <View style={staticStyles.topBar}>
+          <View style={staticStyle.topBar}>
             <ScreenHeaderComponent onPress={goBack} />
           </View>
-          <View style={staticStyles.content}>
-            <View style={staticStyles.titleLine}>
+          <View style={staticStyle.content}>
+            <View style={staticStyle.titleLine}>
               <SemiBoldTextComponent
                 text={t('forgotPassword')}
                 textStyle={StyleSheet.flatten([
-                  staticStyles.title,
+                  staticStyle.title,
                   styles.title,
                 ])}
               />
@@ -46,19 +60,22 @@ export const ForgotPasswordScreen = ({
                 text={t('forgotPasswordLine')}
                 noOfLines={2}
                 textStyle={StyleSheet.flatten([
-                  staticStyles.subTitle,
+                  staticStyle.subTitle,
                   styles.subTitle,
                 ])}
               />
             </View>
-            <View style={staticStyles.bottomContainer}>
+            <View style={staticStyle.bottomContainer}>
               <CustomInputComponent
                 keyboardType="email-address"
                 placeholder={t('email')}
                 value={email}
                 setValue={setEmail}
               />
-              <PrimaryButtonComponent text={t('sendNow')} onPress={() => {}} />
+              <PrimaryButtonComponent
+                text={t('sendNow')}
+                onPress={resetPassword}
+              />
             </View>
           </View>
         </View>

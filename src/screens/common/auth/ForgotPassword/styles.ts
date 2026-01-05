@@ -3,7 +3,7 @@ import { Theme } from '@config/themes/themes';
 import normalize from '@utils/normalize/normalize';
 import { height } from '@config/constants/variables';
 
-export const staticStyles = StyleSheet.create({
+export const staticStyle = StyleSheet.create({
   topBar: {
     paddingVertical: normalize(12, 'height'),
   },

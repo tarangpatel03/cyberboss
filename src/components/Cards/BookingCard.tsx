@@ -24,10 +24,12 @@ type BookingCardProps = {
     id,
     image,
     name,
+    bookingId,
   }: {
     id: string;
     image: string | number | { uri: string } | undefined;
     name: string;
+    bookingId: string;
   }) => void;
   data: TBookingHistoryModel;
   onMorePress: (x: number, y: number) => void;
@@ -157,6 +159,7 @@ export const BookingCard = memo((props: BookingCardProps) => {
           <PrimaryButtonComponent
             onPress={() =>
               props.onMessage({
+                bookingId: props.data.bookingId,
                 id: props.data.userId,
                 image: props.data.userProfilePicture,
                 name: props.data.userName,

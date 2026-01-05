@@ -26,7 +26,7 @@ export const PrimaryButtonComponent = (props: PrimaryButtonComponentProps) => {
       disabled={props.isButtonActive || false}
       activeOpacity={0.7}
       style={StyleSheet.flatten([
-        staticStyles.button,
+        staticStyle.button,
         styles.button,
         props.buttonStyle,
       ])}
@@ -35,7 +35,7 @@ export const PrimaryButtonComponent = (props: PrimaryButtonComponentProps) => {
       <MediumTextComponent
         text={props.text}
         textStyle={StyleSheet.flatten([
-          staticStyles.text,
+          staticStyle.text,
           styles.text,
           props.textStyle,
         ])}
@@ -44,7 +44,7 @@ export const PrimaryButtonComponent = (props: PrimaryButtonComponentProps) => {
   );
 };
 
-const staticStyles = StyleSheet.create({
+const staticStyle = StyleSheet.create({
   button: {
     borderRadius: normalize(12),
     alignItems: 'center',

@@ -15,10 +15,12 @@ import { appImages } from '@config/images/imagePath';
 type BookingHistoryCardProps = {
   data: THomeBookingModel;
   navigateToChat: ({
+    bookingId,
     id,
     image,
     name,
   }: {
+    bookingId: string;
     id: string;
     image: string | number | { uri: string } | undefined;
     name: string;
@@ -77,6 +79,7 @@ export const BookingHistoryCard = memo((props: BookingHistoryCardProps) => {
           activeOpacity={0.7}
           onPress={() =>
             props.navigateToChat({
+              bookingId: props.data.bookingId,
               id: props.data.userId,
               image: props.data.userProfilePicture,
               name: props.data.userName,

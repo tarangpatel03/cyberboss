@@ -10,6 +10,7 @@ import { appImages } from '@config/images/imagePath';
 import firestore from '@react-native-firebase/firestore';
 import { formatFirebaseTimestamp } from '@utils/format/formatDate';
 import { width } from '@config/constants/variables';
+import { getProfilePicture } from '@utils/extractURI/extractImageURI';
 
 type ChatListItemProps = {
   data: any;
@@ -61,7 +62,7 @@ export const ChatListItem = memo((props: ChatListItemProps) => {
   };
 
   useEffect(() => {
-    getUserData();
+    getUserData().then(() => console.log('Picture: ', userData.profile_image));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -77,10 +78,19 @@ export const ChatListItem = memo((props: ChatListItemProps) => {
       }
       style={StyleSheet.flatten([staticStyle.container, styles.container])}
     >
-      <FastImage
-        source={appImages.img_defaultProfile}
-        style={staticStyle.image}
-      />
+      <View>
+        <FastImage
+          source={
+            userData.profile_image
+              ? getProfilePicture(userData.profile_image)
+              : appImages.img_defaultProfile
+          }
+          style={staticStyle.image}
+        />
+        {props.data?.onlineStatus?.[
+          props.data.users.filter((v: string) => v !== props.uid)
+        ] && <View style={staticStyle.userStatus} />}
+      </View>
       <View style={staticStyle.info}>
         <View style={staticStyle.line}>
           <MediumTextComponent
@@ -175,6 +185,15 @@ const staticStyle = StyleSheet.create({
   unReadText: {
     fontSize: normalize(12),
     fontWeight: '400',
+  },
+  userStatus: {
+    right: 0,
+    bottom: 0,
+    position: 'absolute',
+    width: normalize(10),
+    height: normalize(10),
+    backgroundColor: 'green',
+    borderRadius: normalize(8),
   },
   image: {
     width: normalize(48),

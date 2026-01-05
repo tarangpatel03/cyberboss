@@ -21,9 +21,6 @@ export const extractImageUri = (
 export const getProfilePicture = (
   picture: number | string | { uri: string } | undefined,
 ) => {
-  if (typeof picture === 'string') {
-    return { uri: picture };
-  } else {
-    return picture;
-  }
+  if (typeof picture === 'string') return { uri: picture };
+  return picture;
 };

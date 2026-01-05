@@ -2,6 +2,7 @@ import { StyleSheet } from 'react-native';
 import { Theme } from '@config/themes/themes';
 import normalize from '@utils/normalize/normalize';
 import { width } from '@config/constants/variables';
+import { appColors } from '@config/colors/colors';
 
 export const staticStyle = StyleSheet.create({
   topCard: {
@@ -24,6 +25,22 @@ export const staticStyle = StyleSheet.create({
     top: normalize(-20),
     width: width + 15,
     left: normalize(-7),
+  },
+  backButton: {
+    zIndex: 100,
+    top: normalize(40),
+    left: normalize(16),
+    alignItems: 'center',
+    width: normalize(32),
+    position: 'absolute',
+    height: normalize(32),
+    justifyContent: 'center',
+    borderRadius: normalize(20),
+    backgroundColor: appColors.app_FFFFFF40,
+  },
+  backIcon: {
+    width: normalize(16),
+    height: normalize(12),
   },
   mainContainer: {
     flex: 1,

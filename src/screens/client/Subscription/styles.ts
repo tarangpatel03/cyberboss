@@ -76,11 +76,18 @@ export const staticStyle = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
+  horizontalUsers: {
+    width: '31%',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
   separator2: {
     height: normalize(2),
     backgroundColor: appColors.app_26252A,
   },
   features: {
+    gap: normalize(8),
+    flexDirection: 'row',
     borderRadius: normalize(10),
     paddingVertical: normalize(10),
     paddingHorizontal: normalize(12),
@@ -196,18 +203,23 @@ export const staticStyle = StyleSheet.create({
     borderRadius: normalize(20),
     width: normalize(28),
     height: normalize(28),
+    backgroundColor: 'red',
     borderColor: appColors.app_211A3B,
   },
   trustedUserImage2: {
+    backgroundColor: 'blue',
     left: normalize(-7),
   },
   trustedUserImage3: {
+    backgroundColor: 'orange',
     left: normalize(-14),
   },
   trustedUserImage4: {
+    backgroundColor: 'purple',
     left: normalize(-21),
   },
   trustedUserImage5: {
+    backgroundColor: 'pink',
     left: normalize(-28),
   },
   benefitContainer: {

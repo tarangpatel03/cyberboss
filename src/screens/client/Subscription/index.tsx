@@ -10,12 +10,15 @@ import { endPoints } from '@config/endPoint/apiEndPoint';
 import { SubscriptionHeader } from '@components/Headers/SubscriptionHeader';
 import { SubscriptionBenefitsCard } from '@components/Cards/SubscriptionBenefitsCard';
 import { UpcomingWorkShopsList } from '@components/List/UpcomingWorkShopsList';
-import { ApiClientHomeModel } from '@models/api/home';
 import { TWorkshopModel } from '@models/formattedAPI/tConsultant';
-import { transformClientHomeModal } from '@models/formattedAPI/tHome';
 import { ApiResponse } from '@models/apiModel';
 import { SubscriptionBottomBar } from '@components/Subscription/SubscriptionBottomBar';
 import { SubscriptionTrustedUser } from '@components/Subscription/SubscriptionTrustedUser';
+import { ApiSubscriptionModel } from '@models/api/client';
+import {
+  transformSubscrptionModel,
+  TSubscriptionModel,
+} from '@models/formattedAPI/tclient';
 
 export type linearGradientDirection = {
   start: { x: number; y: number };
@@ -25,18 +28,19 @@ export type linearGradientDirection = {
 export const SubscriptionScreen = ({
   navigation,
 }: RootNavigationProps<routeName.Subscription>) => {
-  const [workShopData, setWorkShopData] = useState<TWorkshopModel[]>([]);
+  const [subscriptionData, setSubscriptionData] =
+    useState<TSubscriptionModel>();
   const start = { x: 0, y: 0.5 };
   const end = { x: 1, y: 0.5 };
   const loadData = async () => {
     try {
-      const response = await getAPIData<ApiResponse<ApiClientHomeModel>>(
-        endPoints.clientHome,
+      const response = await getAPIData<ApiResponse<ApiSubscriptionModel>>(
+        endPoints.plans,
       );
       if (!response) return;
-      const data: ApiClientHomeModel = response.payload;
-      const transformedData = transformClientHomeModal(data);
-      setWorkShopData(transformedData.workshops);
+      const data: ApiSubscriptionModel = response.payload;
+      const transformedData = transformSubscrptionModel(data);
+      setSubscriptionData(transformedData);
     } catch (error) {
       console.log(error);
     }
@@ -63,16 +67,23 @@ export const SubscriptionScreen = ({
           showsVerticalScrollIndicator={false}
         >
           <View style={staticStyle.mainContainer2}>
-            <SubscriptionTrustedUser start={start} end={end} />
-            <SubscriptionBenefitsCard start={start} end={end} />
+            <SubscriptionTrustedUser
+              direction={{ end: end, start: start }}
+              noOfUser={subscriptionData?.currentUsers}
+              userImages={subscriptionData?.currentUsersProfileImages}
+            />
+            <SubscriptionBenefitsCard benefits={subscriptionData?.benefits} />
             <View style={staticStyle.separator2} />
             <UpcomingWorkShopsList
-              workShopData={workShopData}
+              workShopData={subscriptionData?.workshops}
               renderItem={renderItem}
             />
           </View>
         </ScrollView>
-        <SubscriptionBottomBar />
+        <SubscriptionBottomBar
+          duration={subscriptionData?.duration}
+          price={subscriptionData?.price}
+        />
       </SafeAreaView>
     </>
   );

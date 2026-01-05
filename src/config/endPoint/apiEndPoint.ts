@@ -17,4 +17,5 @@ export const endPoints = {
   consultantVerified: 'consultant-verified',
   consultantHome: 'consultant-home',
   ratingReviews: 'rating-reviews',
+  plans: 'plans',
 };

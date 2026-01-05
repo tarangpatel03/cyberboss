@@ -24,6 +24,7 @@ export const SubscriptionHeader = (props: SubscriptionHeaderProps) => {
         <FastImage
           source={appIcons.ic_refresh}
           style={staticStyle.headerIcon}
+          resizeMode={FastImage.resizeMode.contain}
         />
         <MediumTextComponent
           text={t('restore')}

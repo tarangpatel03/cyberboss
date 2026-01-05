@@ -7,24 +7,29 @@ import { RegularTextComponent } from '@components/Text/RegularText';
 import { staticStyle } from '@screens/client/Subscription/styles';
 import { PrimaryButtonWithIconComponent } from '@components/Buttons/PrimaryButtonWithIcon';
 
-export const SubscriptionBottomBar = () => {
+type SubscriptionBottomBarPorps = {
+  price: string | undefined;
+  duration: string | undefined;
+};
+
+export const SubscriptionBottomBar = (props: SubscriptionBottomBarPorps) => {
   const { t } = useTranslation();
   return (
     <View style={staticStyle.bottomButton}>
       <View style={staticStyle.bottomLine}>
         <View style={staticStyle.horizontal}>
           <MediumTextComponent
-            text={t('d99')}
+            text={props.price ?? ''}
             textStyle={staticStyle.text20500}
           />
           <RegularTextComponent
-            text={t('perMo')}
+            text={`/${props.duration?.slice(0, 2) ?? ''}`}
             textStyle={staticStyle.text16400}
           />
         </View>
         <View style={staticStyle.monthlyContainer}>
           <MediumTextComponent
-            text={t('monthly')}
+            text={props.duration?.toUpperCase() ?? ''}
             textStyle={staticStyle.text12500}
           />
         </View>

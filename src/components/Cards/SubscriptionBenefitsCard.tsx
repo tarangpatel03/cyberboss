@@ -1,34 +1,32 @@
 import { useTranslation } from 'react-i18next';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, FlatList } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { appColors } from '@config/colors/colors';
 import { appIcons } from '@config/icons/iconPath';
 import LinearGradient from 'react-native-linear-gradient';
 import { MediumTextComponent } from '@components/Text/MediumText';
-import { RegularTextComponent } from '@components/Text/RegularText';
 import { staticStyle } from '@screens/client/Subscription/styles';
-import { linearGradientDirection } from '@screens/client/Subscription';
+import { SubscriptionBenefits } from '@components/ListItems/SubscriptionBenefts';
 
-export const SubscriptionBenefitsCard = (props: linearGradientDirection) => {
+export const SubscriptionBenefitsCard = ({
+  benefits,
+}: {
+  benefits: string[] | undefined;
+}) => {
   const { t } = useTranslation();
 
-  const getGoldenGradient = () => {
-    return [
-      appColors.app_FFD84D12,
-      appColors.app_FFE89312,
-      appColors.app_FFD84D12,
-    ];
-  };
+  const start = { x: 0, y: 0.5 };
+  const end = { x: 1, y: 0.5 };
 
   return (
     <LinearGradient
-      end={props.end}
-      start={props.start}
+      end={end}
+      start={start}
       style={staticStyle.benefitContainer}
       colors={[
-        appColors.app_202126,
         appColors.app_20212680,
         appColors.app_202126,
+        appColors.app_20212680,
       ]}
     >
       <View style={staticStyle.benefitLine}>
@@ -44,67 +42,21 @@ export const SubscriptionBenefitsCard = (props: linearGradientDirection) => {
       </View>
       <LinearGradient
         colors={[
-          appColors.app_FFFFFF00,
           appColors.app_FFFFFF40,
           appColors.app_FFFFFF00,
+          appColors.app_FFFFFF40,
         ]}
-        end={props.end}
-        start={props.start}
+        end={end}
+        start={start}
         style={staticStyle.separator}
       />
-      <View style={staticStyle.benefits}>
-        <View style={staticStyle.horizontal8}>
-          <LinearGradient
-            colors={getGoldenGradient()}
-            end={props.end}
-            start={props.start}
-            style={staticStyle.benefitImageContainer}
-          >
-            <FastImage
-              source={appIcons.ic_calender2}
-              style={staticStyle.energyIcon}
-            />
-          </LinearGradient>
-          <RegularTextComponent
-            text={t('workshopsEveryMondayThroughSaturday')}
-            textStyle={staticStyle.text14400}
-          />
-        </View>
-        <View style={staticStyle.horizontal8}>
-          <LinearGradient
-            colors={getGoldenGradient()}
-            end={props.end}
-            start={props.start}
-            style={staticStyle.benefitImageContainer}
-          >
-            <FastImage
-              source={appIcons.ic_chat}
-              style={staticStyle.energyIcon}
-            />
-          </LinearGradient>
-          <RegularTextComponent
-            text={t('realTimeQAwithExperts')}
-            textStyle={staticStyle.text14400}
-          />
-        </View>
-        <View style={staticStyle.horizontal8}>
-          <LinearGradient
-            colors={getGoldenGradient()}
-            end={props.end}
-            start={props.start}
-            style={staticStyle.benefitImageContainer}
-          >
-            <FastImage
-              source={appIcons.ic_book}
-              style={staticStyle.energyIcon}
-            />
-          </LinearGradient>
-          <RegularTextComponent
-            text={t('threatDetectionCareerGrowthToolsMore')}
-            textStyle={staticStyle.text14400}
-          />
-        </View>
-      </View>
+      <FlatList
+        data={benefits}
+        scrollEnabled={false}
+        contentContainerStyle={staticStyle.benefits}
+        keyExtractor={item => item}
+        renderItem={({ item }) => <SubscriptionBenefits props={item} />}
+      />
     </LinearGradient>
   );
 };

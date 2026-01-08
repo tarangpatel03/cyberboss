@@ -14,16 +14,10 @@ import {
   staticStyle,
 } from '@screens/client/ContactSupport/styles';
 import { Theme } from '@config/themes/themes';
-import { appIcons } from '@config/icons/iconPath';
-import { appImages } from '@config/images/imagePath';
 import { routeName } from '@config/constants/routes';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { MessageCard } from '@components/Cards/MessageCard';
-import { MediumTextComponent } from '@components/Text/MediumText';
 import { getAPIData } from '@services/api/common/getCommonApi';
-import { showErrorToast } from '@utils/toast/toast';
 import FastImage from 'react-native-fast-image';
-import { endPoints } from '@config/endPoint/apiEndPoint';
 import { useTranslation } from 'react-i18next';
 import { sendChat } from '@services/api/chat/sendBotChat';
 import { ApiChatBotChatModel } from '@models/api/chatbot';
@@ -33,9 +27,9 @@ import {
 } from '@models/formattedAPI/tChatbot';
 import { RootNavigationProps } from '@models/navigationModel';
 import { ApiResponse, ListPayload } from '@models/apiModel';
-import { ChatListEmptyCard } from '@components/Cards/ChatListEmptyCard';
-import { isDarkMode } from '@utils/theme/darkMode';
-import { appColors } from '@config/colors/colors';
+import { Utils } from '@utils/index';
+import { Config } from '@config/index';
+import { Components } from '@components/index';
 
 export const ContactSupportScreen = ({
   navigation,
@@ -68,7 +62,7 @@ export const ContactSupportScreen = ({
       }
       const response = await getAPIData<
         ApiResponse<ListPayload<ApiChatBotChatModel>>
-      >(endPoints.chatHistory, pageToLoad);
+      >(Config.endPoints.chatHistory, pageToLoad);
       if (!response) return;
       const data: ApiChatBotChatModel[] = response.payload.data;
       const transformedData = data
@@ -82,7 +76,7 @@ export const ContactSupportScreen = ({
       flatListRef.current?.scrollToOffset({ animated: true, offset: 0 });
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
-      showErrorToast({
+      Utils.showErrorToast({
         title: t('somethingWentWrong'),
         subtitle: t('pleaseTryAgain'),
       });
@@ -103,7 +97,7 @@ export const ContactSupportScreen = ({
       setChat(prev => [transformedChat, ...prev]);
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
-      showErrorToast({
+      Utils.showErrorToast({
         title: t('somethingWentWrong'),
         subtitle: t('pleaseTryAgain'),
       });
@@ -112,16 +106,16 @@ export const ContactSupportScreen = ({
 
   const renderItem: ListRenderItem<TChatBotChatModel> = useCallback(
     ({ item }) => {
-      return <MessageCard data={item} />;
+      return <Components.Cards.MessageCard data={item} />;
     },
     [],
   );
 
   const emptyCard = () => {
     return (
-      <ChatListEmptyCard
+      <Components.Cards.ChatListEmptyCard
         text={t('noChatsFound')}
-        image={appIcons.ic_noChatFound}
+        image={Config.appIcons.ic_noChatFound}
         tintColor={theme.colors.textPrimary}
       />
     );
@@ -147,17 +141,17 @@ export const ContactSupportScreen = ({
               onPress={goBack}
             >
               <FastImage
-                source={appIcons.ic_backIcon}
+                source={Config.appIcons.ic_backIcon}
                 style={staticStyle.backIcon}
                 tintColor={theme.colors.textPrimary}
               />
             </TouchableOpacity>
             <View style={staticStyle.centralHeader}>
               <FastImage
-                source={appImages.img_contactSupport}
+                source={Config.appImages.img_contactSupport}
                 style={staticStyle.profile}
               />
-              <MediumTextComponent
+              <Components.Text.MediumTextComponent
                 text={t('kyoraBot')}
                 textStyle={StyleSheet.flatten([
                   staticStyle.title,
@@ -206,7 +200,7 @@ export const ContactSupportScreen = ({
               value={text ?? ''}
               onChangeText={setText}
               placeholderTextColor={
-                isDarkMode(theme) ? appColors.app_FFFFFF : appColors.app_212121
+                Utils.isDarkMode(theme) ? Config.appColors.app_FFFFFF : Config.appColors.app_212121
               }
             />
             <TouchableOpacity
@@ -218,7 +212,7 @@ export const ContactSupportScreen = ({
               ])}
             >
               <FastImage
-                source={appIcons.ic_sendArrow}
+                source={Config.appIcons.ic_sendArrow}
                 style={staticStyle.sendIcon}
               />
             </TouchableOpacity>

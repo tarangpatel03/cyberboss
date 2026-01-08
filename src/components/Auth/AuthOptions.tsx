@@ -2,9 +2,8 @@ import { useTheme } from '@shopify/restyle';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet, View } from 'react-native';
 import { Theme } from '@config/themes/themes';
-import { appIcons } from '@config/icons/iconPath';
-import { MediumTextComponent } from '@components/Text/MediumText';
-import { SettingOptionsButton } from '@components/Buttons/SettingsButton';
+import { Config } from '@config/index';
+import { Components } from '@components/index';
 import { staticStyle, createStyles } from '@screens/common/Profile/styles';
 import { Dispatch, SetStateAction } from 'react';
 
@@ -27,7 +26,7 @@ export const AuthOptions = (props: AuthOptionsProps) => {
         styles.utilCard,
       ])}
     >
-      <MediumTextComponent
+      <Components.Text.MediumTextComponent
         text={t('account')}
         textStyle={StyleSheet.flatten([
           staticStyle.optionTitle,
@@ -38,18 +37,18 @@ export const AuthOptions = (props: AuthOptionsProps) => {
         style={StyleSheet.flatten([staticStyle.separator, styles.separator])}
       />
       <View style={staticStyle.options}>
-        <SettingOptionsButton
+        <Components.Buttons.SettingOptionsButton
           navigate={() => props.setDeleteVisible(true)}
           title={t('deleteAccount')}
-          icon={appIcons.ic_bin}
+          icon={Config.appIcons.ic_bin}
         />
         <View
           style={StyleSheet.flatten([staticStyle.separator, styles.separator])}
         />
-        <SettingOptionsButton
+        <Components.Buttons.SettingOptionsButton
           navigate={() => props.setLogOutVisible(true)}
           title={t('logout')}
-          icon={appIcons.ic_logOut}
+          icon={Config.appIcons.ic_logOut}
         />
       </View>
     </View>

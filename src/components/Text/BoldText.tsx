@@ -1,5 +1,5 @@
+import { Utils } from '@utils/index';
 import { StyleProp, StyleSheet, Text, TextStyle } from 'react-native';
-import { getFontFamily } from '@utils/fonts/getFontFamily';
 
 type BoldTextComponentProps = {
   text: string;
@@ -20,6 +20,6 @@ export const BoldTextComponent = (props: BoldTextComponentProps) => {
 
 const styles = StyleSheet.create({
   text: {
-    fontFamily: getFontFamily('bold'),
+    fontFamily: Utils.getFontFamily('bold'),
   },
 });

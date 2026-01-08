@@ -8,23 +8,17 @@ import { useTranslation } from 'react-i18next';
 import FastImage from 'react-native-fast-image';
 import { createStyles, staticStyle } from '@screens/profileSetup/ClientSetup/styles';
 import { Theme } from '@config/themes/themes';
-import { appIcons } from '@config/icons/iconPath';
-import { appImages } from '@config/images/imagePath';
 import { routeName } from '@config/constants/routes';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { RootNavigationProps } from '@models/navigationModel';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import { PrimaryButtonComponent } from '@components/Buttons/PrimaryButton';
-import { MediumTextComponent } from '@components/Text/MediumText';
-import { RegularTextComponent } from '@components/Text/RegularText';
-import { SemiBoldTextComponent } from '@components/Text/SemiBoldText';
-import { CircularIconButtonComponent } from '@components/Buttons/CircularIconButton';
 import { updateClientProfile } from '@services/api/profile/updateProfile';
-import { CustomInputComponent } from '@components/Input/EmailAndPasswordInput';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUserData } from '@redux/features/userSlice';
 import firestore from '@react-native-firebase/firestore';
 import { RootState } from '@redux/store';
+import { Config } from '@config/index';
+import { Components } from '@components/index';
 
 export const ClientProfileSetUpScreen = ({
   navigation,
@@ -37,7 +31,7 @@ export const ClientProfileSetUpScreen = ({
   const [userName, setUserName] = useState<string>('');
   const [profileImage, setProfileImage] = useState<
     number | { uri: string } | undefined
-  >(appImages.img_defaultProfile);
+  >(Config.appImages.img_defaultProfile);
 
   const mediaOptions: ImageLibraryOptions = {
     mediaType: 'photo',
@@ -92,8 +86,8 @@ export const ClientProfileSetUpScreen = ({
         <View style={staticStyle.container}>
           <View style={staticStyle.container}>
             <View style={staticStyle.topBar}>
-              <CircularIconButtonComponent
-                iconPath={appIcons.ic_backIcon}
+              <Components.Buttons.CircularIconButton
+                iconPath={Config.appIcons.ic_backIcon}
                 buttonStyle={staticStyle.backButton}
                 iconStyle={staticStyle.backIcon}
                 tintColor={theme.colors.textPrimary}
@@ -111,14 +105,14 @@ export const ClientProfileSetUpScreen = ({
             </View>
             <View style={staticStyle.contentContainer}>
               <View style={staticStyle.titleView}>
-                <SemiBoldTextComponent
+                <Components.Text.SemiBoldTextComponent
                   text={t('completeProfile')}
                   textStyle={StyleSheet.flatten([
                     staticStyle.title,
                     styles.title,
                   ])}
                 />
-                <RegularTextComponent
+                <Components.Text.RegularTextComponent
                   text={t('completeProfileLine')}
                   textStyle={StyleSheet.flatten([
                     staticStyle.subTitle,
@@ -129,7 +123,7 @@ export const ClientProfileSetUpScreen = ({
               <View style={staticStyle.profileImage}>
                 <FastImage source={profileImage} style={staticStyle.image} />
                 <TouchableOpacity activeOpacity={0.7} onPress={pickImage}>
-                  <MediumTextComponent
+                  <Components.Text.MediumTextComponent
                     text={t('uploadPhoto')}
                     textStyle={StyleSheet.flatten([
                       staticStyle.uploadText,
@@ -139,7 +133,7 @@ export const ClientProfileSetUpScreen = ({
                 </TouchableOpacity>
               </View>
               <View style={staticStyle.input}>
-                <CustomInputComponent
+                <Components.Inputs.CustomInput
                   placeholder={t('name')}
                   setValue={setUserName}
                   value={userName}
@@ -148,7 +142,7 @@ export const ClientProfileSetUpScreen = ({
             </View>
           </View>
           <View style={staticStyle.bottomButton}>
-            <PrimaryButtonComponent
+            <Components.Buttons.PrimaryButton
               onPress={setUpProfile}
               text={t('continue')}
             />

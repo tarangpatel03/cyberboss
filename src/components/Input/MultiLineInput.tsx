@@ -8,13 +8,11 @@ import {
   ViewStyle,
 } from 'react-native';
 import { Theme } from '@config/themes/themes';
-import normalize from '@utils/normalize/normalize';
-import { appColors } from '@config/colors/colors';
+import {Utils} from '@utils/index';
 import { Dispatch, SetStateAction, useState } from 'react';
-import { RegularTextComponent } from '@components/Text/RegularText';
-import { isDarkMode } from '@utils/theme/darkMode';
-import { appImages } from '@config/images/imagePath';
+import { Components } from '@components/index';
 import FastImage from 'react-native-fast-image';
+import { Config } from '@config/index';
 
 type MultiLineInputComponentProps = {
   placeholder: string;
@@ -39,7 +37,7 @@ export const BioInputComponent = (props: MultiLineInputComponentProps) => {
       ])}
     >
       {isFocus && (
-        <RegularTextComponent
+        <Components.Text.RegularTextComponent
           textStyle={StyleSheet.flatten([
             staticStyle.placeHolder,
             styles.placeHolder,
@@ -69,11 +67,11 @@ export const BioInputComponent = (props: MultiLineInputComponentProps) => {
         onChangeText={props.setValue}
         secureTextEntry={props.secureText ? props.secureText : false}
         placeholderTextColor={
-          isDarkMode(theme) ? appColors.app_FFFFFF : appColors.app_212121
+          Utils.isDarkMode(theme) ? Config.appColors.app_FFFFFF : Config.appColors.app_212121
         }
       />
       <TouchableOpacity activeOpacity={0.7} style={staticStyle.askAi}>
-        <FastImage source={appImages.img_askAi} style={staticStyle.askAi} />
+        <FastImage source={Config.appImages.img_askAi} style={staticStyle.askAi} />
       </TouchableOpacity>
     </View>
   );
@@ -83,31 +81,31 @@ const staticStyle = StyleSheet.create({
   container: {
     width: '100%',
     borderWidth: 1,
-    borderRadius: normalize(12),
-    minHeight: normalize(80),
-    paddingHorizontal: normalize(6),
+    borderRadius: Utils.normalize(12),
+    minHeight: Utils.normalize(80),
+    paddingHorizontal: Utils.normalize(6),
   },
   input: {
     left: 3,
-    fontSize: normalize(14),
+    fontSize: Utils.normalize(14),
     fontWeight: '400',
   },
   boiInput: {
-    top: normalize(-20),
+    top: Utils.normalize(-20),
   },
   placeHolder: {
-    top: normalize(0),
-    fontSize: normalize(12),
+    top: Utils.normalize(0),
+    fontSize: Utils.normalize(12),
     fontWeight: '400',
-    left: normalize(8),
+    left: Utils.normalize(8),
   },
   askAi: {
-    width: normalize(76),
-    height: normalize(27),
+    width: Utils.normalize(76),
+    height: Utils.normalize(27),
     position: 'absolute',
-    bottom: normalize(4),
-    right: normalize(4),
-    paddingBottom: normalize(8),
+    bottom: Utils.normalize(4),
+    right: Utils.normalize(4),
+    paddingBottom: Utils.normalize(8),
     resizeMode: 'contain',
   },
 });

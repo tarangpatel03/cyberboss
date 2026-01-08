@@ -9,20 +9,12 @@ import {
   View,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { BottomTabHeader } from '@components/Headers/BottomTabHeader';
-import { BookingCard } from '@components/Cards/BookingCard';
 import { RootNavigationProps } from '@models/navigationModel';
 import { routeName } from '@config/constants/routes';
 import { getAPIData } from '@services/api/common/getCommonApi';
 import { useCallback, useEffect, useState } from 'react';
-import { ListEmptyCard } from '@components/Cards/ListEmptyCard';
-import { appImages } from '@config/images/imagePath';
 import { height } from '@config/constants/variables';
 import normalize from '@utils/normalize/normalize';
-import { appIcons } from '@config/icons/iconPath';
-import { RegularTextComponent } from '@components/Text/RegularText';
-import { ListShimmer } from '@components/Skeleton/ListShimmer';
-import { endPoints } from '@config/endPoint/apiEndPoint';
 import { useTranslation } from 'react-i18next';
 import FastImage from 'react-native-fast-image';
 import {
@@ -34,6 +26,8 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@redux/store';
 import firestore from '@react-native-firebase/firestore';
 import { ApiResponse, ListPayload } from '@models/apiModel';
+import { Config } from '@config/index';
+import { Components } from '@components/index';
 
 export const HistoryScreen = ({
   navigation,
@@ -123,7 +117,7 @@ export const HistoryScreen = ({
       }
       const response = await getAPIData<
         ApiResponse<ListPayload<ApiBookingHistoryModel>>
-      >(endPoints.booking, pageToLoad);
+      >(Config.endPoints.booking, pageToLoad);
       if (!response) return;
       const data: ApiBookingHistoryModel[] = response.payload.data;
       const transformedData = data.map(r => transformBookingHistoryModel(r));
@@ -137,7 +131,7 @@ export const HistoryScreen = ({
 
   const renderItem = useCallback(({ item, index }: any) => {
     return (
-      <BookingCard
+      <Components.Cards.BookingCard
         data={item}
         onMessage={navigateToChat}
         onMorePress={(x, y) => onMorePress(index, x, y)}
@@ -172,10 +166,10 @@ export const HistoryScreen = ({
   };
   const emptyCard = () => {
     return (
-      <ListEmptyCard
+      <Components.Cards.ListEmptyCard
         tintColor={theme.colors.textPrimary}
         text={t('noHistory')}
-        image={appImages.img_noHistory}
+        image={Config.appImages.img_noHistory}
       />
     );
   };
@@ -216,11 +210,11 @@ export const HistoryScreen = ({
               >
                 <TouchableOpacity style={staticStyle.option}>
                   <FastImage
-                    source={appIcons.ic_flag}
+                    source={Config.appIcons.ic_flag}
                     tintColor={theme.colors.textPrimary}
                     style={staticStyle.icon}
                   />
-                  <RegularTextComponent
+                  <Components.Text.RegularTextComponent
                     text={t('report')}
                     textStyle={StyleSheet.flatten([
                       staticStyle.optionText,
@@ -232,10 +226,10 @@ export const HistoryScreen = ({
                 <TouchableOpacity style={staticStyle.option}>
                   <FastImage
                     tintColor={theme.colors.textPrimary}
-                    source={appIcons.ic_done}
+                    source={Config.appIcons.ic_done}
                     style={staticStyle.icon}
                   />
-                  <RegularTextComponent
+                  <Components.Text.RegularTextComponent
                     text={t('markAsDone')}
                     textStyle={StyleSheet.flatten([
                       staticStyle.optionText,
@@ -248,13 +242,13 @@ export const HistoryScreen = ({
           </TouchableOpacity>
         )}
         <View style={StyleSheet.flatten([staticStyle.header])}>
-          <BottomTabHeader
+          <Components.Headers.BottomTabHeader
             name={t('history')}
             onPress={navigateToNotification}
           />
         </View>
         {loader && (
-          <ListShimmer containerStyle={staticStyle.shimmerContainer} />
+          <Components.Skeleton.ListShimmer containerStyle={staticStyle.shimmerContainer} />
         )}
         {!loader && (
           <View style={staticStyle.list}>

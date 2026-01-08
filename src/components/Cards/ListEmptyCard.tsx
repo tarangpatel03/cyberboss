@@ -1,8 +1,8 @@
 import { useTheme } from '@shopify/restyle';
 import { StyleProp, StyleSheet, View } from 'react-native';
 import { Theme } from '@config/themes/themes';
-import { SemiBoldTextComponent } from '@components/Text/SemiBoldText';
-import normalize from '@utils/normalize/normalize';
+import { Components } from '@components/index';
+import {Utils} from '@utils/index';
 import { memo } from 'react';
 import FastImage, { ImageStyle } from 'react-native-fast-image';
 
@@ -30,7 +30,7 @@ export const ListEmptyCard = memo((props: ListEmptyCardProps) => {
         tintColor={props.tintColor}
         style={StyleSheet.flatten([staticStyle.image, props.style])}
       />
-      <SemiBoldTextComponent
+      <Components.Text.SemiBoldTextComponent
         text={props.text}
         textStyle={StyleSheet.flatten([staticStyle.text, styles.text])}
       />
@@ -43,17 +43,17 @@ const staticStyle = StyleSheet.create({
     flex: 1,
     width: '100%',
     height: '100%',
-    gap: normalize(8),
+    gap: Utils.normalize(8),
     alignItems: 'center',
     justifyContent: 'center',
   },
   text: {
-    fontSize: normalize(16),
+    fontSize: Utils.normalize(16),
     fontWeight: '500',
   },
   image: {
-    width: normalize(150),
-    height: normalize(150),
+    width: Utils.normalize(150),
+    height: Utils.normalize(150),
   },
 });
 const createStyles = (theme: Theme) =>

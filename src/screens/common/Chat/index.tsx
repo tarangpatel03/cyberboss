@@ -5,17 +5,13 @@ import { RootNavigationProps } from '@models/navigationModel';
 import { routeName } from '@config/constants/routes';
 import { FlatList, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { BottomTabHeader } from '@components/Headers/BottomTabHeader';
 import { useCallback, useEffect, useState } from 'react';
-import { SearchBorderInputComponent } from '@components/Input/SearchInput';
-import { ListShimmer } from '@components/Skeleton/ListShimmer';
 import { RootState } from '@redux/store';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import firestore from '@react-native-firebase/firestore';
-import { ChatListItem } from '@components/Cards/ChatListItem';
-import { ListEmptyCard } from '@components/Cards/ListEmptyCard';
-import { appImages } from '@config/images/imagePath';
+import { Config } from '@config/index';
+import { Components } from '@components/index';
 
 export const ChatScreen = ({
   navigation,
@@ -84,7 +80,7 @@ export const ChatScreen = ({
 
   const renderChats = useCallback(
     ({ item }: any) => {
-      return <ChatListItem data={item} uid={uid} onPress={navigateToChats} />;
+      return <Components.Cards.ChatListItem data={item} uid={uid} onPress={navigateToChats} />;
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [uid],
@@ -114,15 +110,15 @@ export const ChatScreen = ({
         style={StyleSheet.flatten([staticStyle.container, styles.container])}
       >
         <View style={staticStyle.header}>
-          <BottomTabHeader name={t('chat')} onPress={navigateToNotification} />
-          <SearchBorderInputComponent
+          <Components.Headers.BottomTabHeader name={t('chat')} onPress={navigateToNotification} />
+          <Components.Inputs.SearchBorderInputComponent
             placeholder={t('searchClients')}
             setValue={setSearchText}
             value={searchText}
           />
         </View>
         {loader && (
-          <ListShimmer containerStyle={staticStyle.shimmerContainer} />
+          <Components.Skeleton.ListShimmer containerStyle={staticStyle.shimmerContainer} />
         )}
         {!loader && (
           <View style={staticStyle.list}>
@@ -134,9 +130,9 @@ export const ChatScreen = ({
               renderItem={renderChats}
               contentContainerStyle={staticStyle.listItems}
               ListEmptyComponent={
-                <ListEmptyCard
+                <Components.Cards.ListEmptyCard
                   text={t('noChatHistory')}
-                  image={appImages.img_noChat}
+                  image={Config.appImages.img_noChat}
                 />
               }
             />

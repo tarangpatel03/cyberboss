@@ -1,89 +1,89 @@
 import { StyleSheet } from 'react-native';
 import { Theme } from '@config/themes/themes';
-import normalize from '@utils/normalize/normalize';
+import { Utils } from '@utils/index';
 import { width } from '@config/constants/variables';
-import { appColors } from '@config/colors/colors';
+import { Config } from '@config/index';
 
 export const staticStyle = StyleSheet.create({
   topCard: {
     width: '100%',
-    height: normalize(140, 'height'),
+    height: Utils.normalize(140, 'height'),
   },
   background: {
     flex: 1,
-    paddingBottom: normalize(20),
+    paddingBottom: Utils.normalize(20),
   },
   container: {
     flex: 1,
-    paddingTop: normalize(10, 'height'),
-    paddingHorizontal: normalize(16),
+    paddingTop: Utils.normalize(10, 'height'),
+    paddingHorizontal: Utils.normalize(16),
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     borderTopWidth: 10,
     borderLeftWidth: 5,
     borderRightWidth: 5,
-    top: normalize(-20),
+    top: Utils.normalize(-20),
     width: width + 15,
-    left: normalize(-7),
+    left: Utils.normalize(-7),
   },
   backButton: {
     zIndex: 100,
-    top: normalize(40),
-    left: normalize(16),
+    top: Utils.normalize(40),
+    left: Utils.normalize(16),
     alignItems: 'center',
-    width: normalize(32),
+    width: Utils.normalize(32),
     position: 'absolute',
-    height: normalize(32),
+    height: Utils.normalize(32),
     justifyContent: 'center',
-    borderRadius: normalize(20),
-    backgroundColor: appColors.app_FFFFFF40,
+    borderRadius: Utils.normalize(20),
+    backgroundColor: Config.appColors.app_FFFFFF40,
   },
   backIcon: {
-    width: normalize(16),
-    height: normalize(12),
+    width: Utils.normalize(16),
+    height: Utils.normalize(12),
   },
   mainContainer: {
     flex: 1,
-    gap: normalize(20, 'height'),
+    gap: Utils.normalize(20, 'height'),
   },
   titleContainer: {
-    gap: normalize(8, 'height'),
+    gap: Utils.normalize(8, 'height'),
   },
   emailPassInput: {
-    gap: normalize(16),
+    gap: Utils.normalize(16),
   },
   passwordInput: {
     justifyContent: 'center',
   },
   passwordButton: {
     position: 'absolute',
-    width: normalize(24),
-    height: normalize(24),
-    right: normalize(12),
+    width: Utils.normalize(24),
+    height: Utils.normalize(24),
+    right: Utils.normalize(12),
     justifyContent: 'center',
     alignItems: 'center',
   },
   hiddenPasswordIcon: {
-    width: normalize(18),
-    height: normalize(10, 'height'),
+    width: Utils.normalize(18),
+    height: Utils.normalize(10, 'height'),
     resizeMode: 'contain',
   },
   showPasswordIcon: {
-    width: normalize(22),
-    height: normalize(12, 'height'),
+    width: Utils.normalize(22),
+    height: Utils.normalize(12, 'height'),
     resizeMode: 'contain',
   },
   title: {
-    fontSize: normalize(24),
+    fontSize: Utils.normalize(24),
     fontWeight: '600',
   },
   subTitle: {
-    fontSize: normalize(14),
+    fontSize: Utils.normalize(14),
     fontWeight: '400',
   },
   socialLogin: {
     alignItems: 'center',
-    gap: normalize(16),
+    gap: Utils.normalize(16),
   },
   continueWith: {
     width: '100%',
@@ -93,59 +93,59 @@ export const staticStyle = StyleSheet.create({
   },
   centerText: {
     alignSelf: 'center',
-    paddingHorizontal: normalize(16),
-    top: normalize(-9, 'height'),
+    paddingHorizontal: Utils.normalize(16),
+    top: Utils.normalize(-9, 'height'),
   },
   bottomButtons: {
     flexDirection: 'row',
-    gap: normalize(16, 'height'),
+    gap: Utils.normalize(16, 'height'),
   },
   button: {
-    width: normalize(50),
-    height: normalize(50),
-    borderRadius: normalize(30),
+    width: Utils.normalize(50),
+    height: Utils.normalize(50),
+    borderRadius: Utils.normalize(30),
     borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
   buttonIcon: {
-    width: normalize(20),
-    height: normalize(20, 'height'),
+    width: Utils.normalize(20),
+    height: Utils.normalize(20, 'height'),
     resizeMode: 'cover',
   },
   googleButtonIcon: {
-    width: normalize(23),
-    height: normalize(20, 'height'),
+    width: Utils.normalize(23),
+    height: Utils.normalize(20, 'height'),
     resizeMode: 'cover',
   },
   signUpLine: {
     flexDirection: 'row',
-    bottom: normalize(10, 'height'),
+    bottom: Utils.normalize(10, 'height'),
     alignSelf: 'center',
   },
   forgotPassword: {
-    paddingBottom: normalize(16, 'height'),
-    marginTop: normalize(5),
+    paddingBottom: Utils.normalize(16, 'height'),
+    marginTop: Utils.normalize(5),
     flexDirection: 'row',
     alignSelf: 'center',
   },
   signUp: {
-    fontSize: normalize(14),
+    fontSize: Utils.normalize(14),
     fontWeight: '400',
     textDecorationLine: 'underline',
   },
   logInText: {
-    fontSize: normalize(16),
+    fontSize: Utils.normalize(16),
     fontWeight: '500',
   },
   logInButton: {
-    borderRadius: normalize(12),
+    borderRadius: Utils.normalize(12),
     alignItems: 'center',
     justifyContent: 'center',
-    height: normalize(48),
+    height: Utils.normalize(48),
   },
   inputs: {
-    gap: normalize(20, 'height'),
+    gap: Utils.normalize(20, 'height'),
   },
 });
 

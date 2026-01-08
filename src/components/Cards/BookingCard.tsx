@@ -1,23 +1,14 @@
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { Theme } from '@config/themes/themes';
 import { useTheme } from '@shopify/restyle';
-import normalize from '@utils/normalize/normalize';
-import { MediumTextComponent } from '@components/Text/MediumText';
-import { RegularTextComponent } from '@components/Text/RegularText';
-import { appIcons } from '@config/icons/iconPath';
-import { PrimaryButtonComponent } from '@components/Buttons/PrimaryButton';
-import { CircularIconButtonComponent } from '@components/Buttons/CircularIconButton';
+import {Utils} from '@utils/index';
+import { Components } from '@components/index';
 import LinearGradient from 'react-native-linear-gradient';
 import FastImage from 'react-native-fast-image';
 import { memo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TBookingHistoryModel } from '@models/formattedAPI/tBookings';
-import { getProfilePicture } from '@utils/extractURI/extractImageURI';
-import { appImages } from '@config/images/imagePath';
-import {
-  getGradientColor,
-  getServiceImage,
-} from '@utils/gradientColor/gradientColor';
+import { Config } from '@config/index';
 
 type BookingCardProps = {
   onMessage: ({
@@ -58,7 +49,7 @@ export const BookingCard = memo((props: BookingCardProps) => {
       style={StyleSheet.flatten([staticStyle.container, styles.container])}
     >
       <View style={staticStyle.row}>
-        <MediumTextComponent
+        <Components.Text.MediumTextComponent
           text={`${t('bookingId')}: ${props.data.bookingId}`}
           textStyle={StyleSheet.flatten([
             staticStyle.titleText,
@@ -74,12 +65,12 @@ export const BookingCard = memo((props: BookingCardProps) => {
           <FastImage
             source={
               props.data.status === 'Completed'
-                ? appIcons.ic_completed
-                : appIcons.ic_inProgress
+                ? Config.appIcons.ic_completed
+                : Config.appIcons.ic_inProgress
             }
             style={staticStyle.icon}
           />
-          <MediumTextComponent
+          <Components.Text.MediumTextComponent
             text={props.data.status}
             textStyle={StyleSheet.flatten([
               staticStyle.tinyText,
@@ -97,21 +88,21 @@ export const BookingCard = memo((props: BookingCardProps) => {
         <FastImage
           source={
             imageError
-              ? appImages.img_defaultProfile
-              : getProfilePicture(props.data.userProfilePicture)
+              ? Config.appImages.img_defaultProfile
+              : Utils.getProfilePicture(props.data.userProfilePicture)
           }
           onError={() => setimageError(true)}
           style={staticStyle.profileImage}
         />
         <View style={staticStyle.fullLengthView}>
-          <MediumTextComponent
+          <Components.Text.MediumTextComponent
             text={props.data.userName}
             textStyle={StyleSheet.flatten([
               staticStyle.titleText,
               styles.primaryText,
             ])}
           />
-          <RegularTextComponent
+          <Components.Text.RegularTextComponent
             text={`${props.data.hours}hr`}
             textStyle={StyleSheet.flatten([
               staticStyle.subtitleText,
@@ -119,7 +110,7 @@ export const BookingCard = memo((props: BookingCardProps) => {
             ])}
           />
         </View>
-        <MediumTextComponent
+        <Components.Text.MediumTextComponent
           text={`$${props.data.grandTotal}`}
           textStyle={StyleSheet.flatten([
             staticStyle.titleText,
@@ -129,7 +120,7 @@ export const BookingCard = memo((props: BookingCardProps) => {
         />
       </View>
       <LinearGradient
-        colors={getGradientColor(props.data.categoryName)}
+        colors={Utils.getGradientColor(props.data.categoryName)}
         start={{ x: 0, y: 0.5 }}
         end={{ x: 1, y: 0.5 }}
         style={staticStyle.gradient}
@@ -143,9 +134,9 @@ export const BookingCard = memo((props: BookingCardProps) => {
           <FastImage
             style={staticStyle.categoryIcon}
             resizeMode={FastImage.resizeMode.contain}
-            source={getServiceImage(props.data.categoryName)}
+            source={Utils.getServiceImage(props.data.categoryName)}
           />
-          <RegularTextComponent
+          <Components.Text.RegularTextComponent
             text={props.data.categoryName}
             textStyle={StyleSheet.flatten([
               staticStyle.subtitleText,
@@ -156,7 +147,7 @@ export const BookingCard = memo((props: BookingCardProps) => {
       </LinearGradient>
       {props.data.status === 'In progress' && (
         <View style={staticStyle.rowLine}>
-          <PrimaryButtonComponent
+          <Components.Buttons.PrimaryButton
             onPress={() =>
               props.onMessage({
                 bookingId: props.data.bookingId,
@@ -175,13 +166,13 @@ export const BookingCard = memo((props: BookingCardProps) => {
               styles.primaryText,
             ])}
           />
-          <CircularIconButtonComponent
+          <Components.Buttons.CircularIconButton
             onPress={handleMorePress}
             buttonStyle={StyleSheet.flatten([
               staticStyle.iconButton,
               styles.button,
             ])}
-            iconPath={appIcons.ic_more}
+            iconPath={Config.appIcons.ic_more}
             tintColor={theme.colors.textPrimary}
             iconStyle={staticStyle.moreIcon}
             ref={moreButtonRef}
@@ -194,22 +185,22 @@ export const BookingCard = memo((props: BookingCardProps) => {
 
 const staticStyle = StyleSheet.create({
   container: {
-    borderRadius: normalize(12),
+    borderRadius: Utils.normalize(12),
     borderWidth: 0.75,
-    padding: normalize(12),
-    gap: normalize(16, 'height'),
+    padding: Utils.normalize(12),
+    gap: Utils.normalize(16, 'height'),
   },
   titleText: {
-    fontSize: normalize(14),
+    fontSize: Utils.normalize(14),
     fontWeight: '500',
   },
   subtitleText: {
-    fontSize: normalize(14),
+    fontSize: Utils.normalize(14),
     fontWeight: '400',
   },
   fullLengthView: {
-    paddingLeft: normalize(2),
-    gap: normalize(8),
+    paddingLeft: Utils.normalize(2),
+    gap: Utils.normalize(8),
     flex: 1,
   },
   row: {
@@ -218,7 +209,7 @@ const staticStyle = StyleSheet.create({
     justifyContent: 'space-between',
   },
   separator: {
-    left: normalize(-12),
+    left: Utils.normalize(-12),
     width: '107.5%',
     borderWidth: 0.75,
   },
@@ -226,16 +217,16 @@ const staticStyle = StyleSheet.create({
     alignSelf: 'flex-end',
   },
   gradient: {
-    borderRadius: normalize(8),
+    borderRadius: Utils.normalize(8),
   },
   profileImage: {
-    width: normalize(48),
-    height: normalize(48),
-    borderRadius: normalize(25),
-    marginRight: normalize(8),
+    width: Utils.normalize(48),
+    height: Utils.normalize(48),
+    borderRadius: Utils.normalize(25),
+    marginRight: Utils.normalize(8),
   },
   padding8: {
-    padding: normalize(8),
+    padding: Utils.normalize(8),
   },
   rowLine: {
     flexDirection: 'row',
@@ -245,38 +236,38 @@ const staticStyle = StyleSheet.create({
     flex: 1,
   },
   iconButton: {
-    marginLeft: normalize(8),
-    width: normalize(45),
-    height: normalize(45),
+    marginLeft: Utils.normalize(8),
+    width: Utils.normalize(45),
+    height: Utils.normalize(45),
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: normalize(8),
+    borderRadius: Utils.normalize(8),
   },
   moreIcon: {
-    width: normalize(17),
-    height: normalize(4),
+    width: Utils.normalize(17),
+    height: Utils.normalize(4),
   },
   statusContainer: {
-    paddingVertical: normalize(6),
-    paddingHorizontal: normalize(12),
-    gap: normalize(6),
-    borderRadius: normalize(24),
+    paddingVertical: Utils.normalize(6),
+    paddingHorizontal: Utils.normalize(12),
+    gap: Utils.normalize(6),
+    borderRadius: Utils.normalize(24),
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
   },
   icon: {
-    width: normalize(14),
-    height: normalize(14),
-    borderRadius: normalize(10),
+    width: Utils.normalize(14),
+    height: Utils.normalize(14),
+    borderRadius: Utils.normalize(10),
   },
   categoryIcon: {
-    width: normalize(16),
-    height: normalize(16),
-    marginRight: normalize(12),
+    width: Utils.normalize(16),
+    height: Utils.normalize(16),
+    marginRight: Utils.normalize(12),
   },
   tinyText: {
-    fontSize: normalize(12),
+    fontSize: Utils.normalize(12),
     fontWeight: '500',
   },
 });

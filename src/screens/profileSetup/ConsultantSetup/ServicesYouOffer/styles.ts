@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import normalize from '@utils/normalize/normalize';
+import {Utils} from '@utils/index';
 import { Theme } from '@config/themes/themes';
 
 export const staticStyle = StyleSheet.create({
@@ -7,46 +7,46 @@ export const staticStyle = StyleSheet.create({
     flex: 1,
   },
   bottomButton: {
-    paddingHorizontal: normalize(16),
-    bottom: normalize(50, 'height'),
+    paddingHorizontal: Utils.normalize(16),
+    bottom: Utils.normalize(50, 'height'),
   },
   topBar: {
     alignItems: 'center',
     justifyContent: 'center',
-    paddingTop: normalize(15, 'height'),
-    paddingHorizontal: normalize(16),
+    paddingTop: Utils.normalize(15, 'height'),
+    paddingHorizontal: Utils.normalize(16),
     flexDirection: 'row',
   },
   backButton: {
     position: 'absolute',
-    left: normalize(16),
-    top: normalize(12, 'height'),
-    width: normalize(16),
-    height: normalize(12, 'height'),
+    left: Utils.normalize(16),
+    top: Utils.normalize(12, 'height'),
+    width: Utils.normalize(16),
+    height: Utils.normalize(12, 'height'),
     justifyContent: 'center',
     alignItems: 'center',
   },
   contentSelection: {
-    paddingTop: normalize(16, 'height'),
-    paddingHorizontal: normalize(12),
-    gap: normalize(8),
+    paddingTop: Utils.normalize(16, 'height'),
+    paddingHorizontal: Utils.normalize(12),
+    gap: Utils.normalize(8),
   },
   backIcon: {
-    width: normalize(20),
-    height: normalize(20),
+    width: Utils.normalize(20),
+    height: Utils.normalize(20),
     alignItems: 'center',
     justifyContent: 'center',
     resizeMode: 'contain',
   },
   line: {
     width: '70%',
-    borderRadius: normalize(5),
-    height: normalize(5, 'height'),
+    borderRadius: Utils.normalize(5),
+    height: Utils.normalize(5, 'height'),
   },
   services: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    paddingTop: normalize(10),
+    paddingTop: Utils.normalize(10),
   },
   lineDetail: {
     borderTopLeftRadius: 5,
@@ -56,37 +56,37 @@ export const staticStyle = StyleSheet.create({
   },
   content: {
     alignItems: 'center',
-    paddingTop: normalize(24, 'height'),
-    gap: normalize(8),
+    paddingTop: Utils.normalize(24, 'height'),
+    gap: Utils.normalize(8),
   },
   title: {
-    fontSize: normalize(24),
+    fontSize: Utils.normalize(24),
     fontWeight: '600',
   },
   subTitle: {
-    fontSize: normalize(14),
+    fontSize: Utils.normalize(14),
     fontWeight: '400',
   },
   button: {
     justifyContent: 'center',
     alignItems: 'center',
     width: '48%',
-    borderRadius: normalize(12),
+    borderRadius: Utils.normalize(12),
     padding: 12,
-    height: normalize(48),
+    height: Utils.normalize(48),
   },
   bottomButtons: {
     flexDirection: 'row',
-    gap: normalize(12),
-    paddingHorizontal: normalize(12),
-    paddingBottom: normalize(10, 'height'),
+    gap: Utils.normalize(12),
+    paddingHorizontal: Utils.normalize(12),
+    paddingBottom: Utils.normalize(10, 'height'),
   },
   nextText: {
-    fontSize: normalize(16),
+    fontSize: Utils.normalize(16),
     fontWeight: '500',
   },
   skipText: {
-    fontSize: normalize(16),
+    fontSize: Utils.normalize(16),
     fontWeight: '500',
   },
 });

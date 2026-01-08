@@ -1,6 +1,5 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { routeName } from '@config/constants/routes';
-import { appIcons } from '@config/icons/iconPath';
 import { useTheme } from '@shopify/restyle';
 import { Theme } from '@config/themes/themes';
 import { StyleSheet } from 'react-native';
@@ -11,13 +10,14 @@ import { ChatScreen } from '@screens/common/Chat';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import normalize from '@utils/normalize/normalize';
 import { ClientBottomNavigationParams } from '@models/navigationModel';
-import { BarTabIconComponent } from '@components/BottomTabIcon/BarTabIcon';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { RootState } from '@redux/store';
 import { navigationRef } from '@services/axios/axiosInterceptors';
 import { EventArg } from '@react-navigation/native';
 import { ConsultantHomeScreen } from '@screens/consultant/Home';
+import { Config } from '@config/index';
+import { Components } from '@components/index';
 
 const Tab = createBottomTabNavigator<ClientBottomNavigationParams>();
 type SetBarIconType = {
@@ -51,7 +51,7 @@ export const BottomNavigation = () => {
     zone,
   }: SetBarIconType) => {
     return (
-      <BarTabIconComponent
+      <Components.BarTabIcon
         icon={focused ? fillIcon : icon}
         isFocus={focused}
         title={title}
@@ -83,8 +83,8 @@ export const BottomNavigation = () => {
           tabBarIcon: ({ focused }) =>
             setBarIcon({
               focused: focused,
-              fillIcon: appIcons.ic_fillHome,
-              icon: appIcons.ic_borderHome,
+              fillIcon: Config.appIcons.ic_fillHome,
+              icon: Config.appIcons.ic_borderHome,
               title: t('home'),
               zone: 5,
             }),
@@ -97,8 +97,8 @@ export const BottomNavigation = () => {
           tabBarIcon: ({ focused }) =>
             setBarIcon({
               focused: focused,
-              fillIcon: appIcons.ic_fillChat,
-              icon: appIcons.ic_borderChat,
+              fillIcon: Config.appIcons.ic_fillChat,
+              icon: Config.appIcons.ic_borderChat,
               title: t('chat'),
               zone: 6,
             }),
@@ -112,8 +112,8 @@ export const BottomNavigation = () => {
           tabBarIcon: ({ focused }) =>
             setBarIcon({
               focused: focused,
-              fillIcon: appIcons.ic_fillHistory,
-              icon: appIcons.ic_borderHistory,
+              fillIcon: Config.appIcons.ic_fillHistory,
+              icon: Config.appIcons.ic_borderHistory,
               title: t('history'),
               zone: 7,
             }),
@@ -127,8 +127,8 @@ export const BottomNavigation = () => {
           tabBarIcon: ({ focused }) =>
             setBarIcon({
               focused: focused,
-              fillIcon: appIcons.ic_fillProfile,
-              icon: appIcons.ic_borderProfile,
+              fillIcon: Config.appIcons.ic_fillProfile,
+              icon: Config.appIcons.ic_borderProfile,
               title: t('profile'),
               zone: 8,
             }),

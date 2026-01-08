@@ -1,8 +1,8 @@
 import { StyleProp, StyleSheet, ViewStyle } from 'react-native';
 import { FlatList, View } from 'react-native';
-import { ShimmerHolder } from '@components/Skeleton/ShimmerHolder';
-import normalize from '@utils/normalize/normalize';
+import {Utils} from '@utils/index';
 import { useCallback } from 'react';
+import { Components } from '@components/index';
 
 type ListShimmerProps = {
   containerStyle: StyleProp<ViewStyle>;
@@ -14,7 +14,7 @@ export const ListShimmer = ({
   scrollEnabled,
 }: ListShimmerProps) => {
   const renderItem = useCallback(() => {
-    return <ShimmerHolder style={containerStyle} />;
+    return <Components.Skeleton.ShimmerHolder style={containerStyle} />;
   }, [containerStyle]);
 
   return (
@@ -35,9 +35,9 @@ export const ListShimmer = ({
 export const staticStyle = StyleSheet.create({
   listItems: {
     flexGrow: 1,
-    gap: normalize(12),
+    gap: Utils.normalize(12),
   },
   list: {
-    paddingHorizontal: normalize(12),
+    paddingHorizontal: Utils.normalize(12),
   },
 });

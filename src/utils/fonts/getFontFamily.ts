@@ -1,8 +1,9 @@
-import { fontFamilies } from '@config/constants/fontFamily';
+import { Config } from "@config/index";
+
 
 export const getFontFamily = (
   weight: 'regular' | 'medium' | 'bold' | 'light' | 'semiBold',
 ) => {
-  const selectedFontFamily = fontFamilies.INTERTIGHT;
+  const selectedFontFamily = Config.fontFamilies.INTERTIGHT;
   return selectedFontFamily[weight];
 };

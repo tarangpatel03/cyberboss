@@ -6,8 +6,7 @@ import { useTheme } from '@shopify/restyle';
 import { useTranslation } from 'react-i18next';
 import { View, StyleSheet } from 'react-native';
 import { Theme } from '@config/themes/themes';
-import { BillDetailsComponent } from '@components/BillDetail';
-import { MediumTextComponent } from '@components/Text/MediumText';
+import { Components } from '@components/index';
 import { TBillDetailsModel } from '@models/formattedAPI/tBilling';
 
 type BookingPaymentDetailsCardProps = {
@@ -23,7 +22,7 @@ export const BookingPaymentDetailsCard = (
   const styles = createStyles(theme);
   return (
     <View style={StyleSheet.flatten([staticStyle.card, styles.bgPrimary])}>
-      <MediumTextComponent
+      <Components.Text.MediumTextComponent
         textStyle={StyleSheet.flatten([
           staticStyle.titleText,
           styles.textSecondary,
@@ -33,28 +32,28 @@ export const BookingPaymentDetailsCard = (
       <View
         style={StyleSheet.flatten([staticStyle.separator, styles.separator])}
       />
-      <BillDetailsComponent
+      <Components.BillDetailsComponent
         amount={props.billData.hourlyRate}
         title={t('hourlyRate')}
       />
-      <BillDetailsComponent
+      <Components.BillDetailsComponent
         isHour={true}
         amount={props.billData.hours}
         title={t('hoursBooked')}
       />
-      <BillDetailsComponent amount={props.billData.total} title={t('total')} />
-      <BillDetailsComponent
+      <Components.BillDetailsComponent amount={props.billData.total} title={t('total')} />
+      <Components.BillDetailsComponent
         amount={props.billData.platformFee}
         title={`${t('platformFee')} (${props.billData.platformPercentage}%)`}
       />
-      <BillDetailsComponent amount={props.billData.tax} title={t('tax')} />
+      <Components.BillDetailsComponent amount={props.billData.tax} title={t('tax')} />
       <View
         style={StyleSheet.flatten([
           staticStyle.totalContainer,
           styles.bgSecondary,
         ])}
       >
-        <BillDetailsComponent
+        <Components.BillDetailsComponent
           isGrandTotal={true}
           amount={props.billData.grandTotal}
           title={t('grandTotal')}

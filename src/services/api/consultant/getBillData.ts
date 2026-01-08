@@ -1,4 +1,4 @@
-import { endPoints } from '@config/endPoint/apiEndPoint';
+import { Config } from '@config/index';
 import { axiosClient } from '@services/axios/axiosClient';
 
 export const getBillData = async <T>(
@@ -6,7 +6,7 @@ export const getBillData = async <T>(
   consultant_id: string,
 ): Promise<T | null> => {
   try {
-    const response = await axiosClient.post(endPoints.billCount, {
+    const response = await axiosClient.post(Config.endPoints.billCount, {
       hours,
       consultant_id,
     });

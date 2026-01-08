@@ -1,5 +1,5 @@
+import { Utils } from '@utils/index';
 import { StyleProp, StyleSheet, Text, TextStyle } from 'react-native';
-import { getFontFamily } from '@utils/fonts/getFontFamily';
 
 type SemiBoldTextComponentProps = {
   text: string;
@@ -24,6 +24,6 @@ export const SemiBoldTextComponent = ({
 
 const styles = StyleSheet.create({
   text: {
-    fontFamily: getFontFamily('semiBold'),
+    fontFamily: Utils.getFontFamily('semiBold'),
   },
 });

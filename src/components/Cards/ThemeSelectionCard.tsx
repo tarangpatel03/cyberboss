@@ -1,8 +1,8 @@
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { Theme } from '@config/themes/themes';
 import { useTheme } from '@shopify/restyle';
-import normalize from '@utils/normalize/normalize';
-import { RegularTextComponent } from '@components/Text/RegularText';
+import {Utils} from '@utils/index';
+import { Components } from '@components/index';
 import { memo } from 'react';
 
 type ThemeSelectionCardProps = {
@@ -22,7 +22,7 @@ export const ThemeSelectionCard = memo(
         style={staticStyle.card}
       >
         <View style={staticStyle.header}>
-          <RegularTextComponent
+          <Components.Text.RegularTextComponent
             text={title}
             textStyle={StyleSheet.flatten([
               staticStyle.titleText,
@@ -53,7 +53,7 @@ export const ThemeSelectionCard = memo(
 const staticStyle = StyleSheet.create({
   card: {
     justifyContent: 'center',
-    height: normalize(36),
+    height: Utils.normalize(36),
     width: '100%',
   },
   header: {
@@ -63,18 +63,18 @@ const staticStyle = StyleSheet.create({
   selector: {
     justifyContent: 'center',
     alignItems: 'center',
-    width: normalize(22),
-    height: normalize(22),
-    borderRadius: normalize(15),
+    width: Utils.normalize(22),
+    height: Utils.normalize(22),
+    borderRadius: Utils.normalize(15),
     borderWidth: 2,
   },
   selectedInner: {
-    width: normalize(12),
-    height: normalize(12),
-    borderRadius: normalize(10),
+    width: Utils.normalize(12),
+    height: Utils.normalize(12),
+    borderRadius: Utils.normalize(10),
   },
   titleText: {
-    fontSize: normalize(14),
+    fontSize: Utils.normalize(14),
     fontWeight: '400',
   },
 });

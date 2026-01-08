@@ -13,25 +13,16 @@ import { useCallback, useEffect, useState } from 'react';
 import { routeName } from '@config/constants/routes';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { RootNavigationProps } from '@models/navigationModel';
-import { RatingCard } from '@components/Cards/RatingReviewCard';
-import { MediumTextComponent } from '@components/Text/MediumText';
-import { RegularTextComponent } from '@components/Text/RegularText';
-import { ScreenHeaderComponent } from '@components/Headers/ScreenHeader';
-import { PrimaryButtonComponent } from '@components/Buttons/PrimaryButton';
-import { endPoints } from '@config/endPoint/apiEndPoint';
 import { useTranslation } from 'react-i18next';
-import { ConsultantProfileScreenShimmer } from '@components/Skeleton/consultantProfile';
-import { ConsultantProfileHeader } from '@components/Headers/ConsultantProfileHeader';
-import { ConsultantExpertiseCard } from '@components/Cards/ConsultantExpertiseCard';
-import { ConsultantRatingsList } from '@components/ListItems/ConsultantRatingListItem';
 import {
   TConsultantDetailsModel,
   transformConsultantDetailsModel,
   TRatingReviewModel,
 } from '@models/formattedAPI/tConsultant';
 import { ApiConsultantDetailsModel } from '@models/api/consultant';
-import { ReviewCard } from '@components/Cards/ReviewCard';
 import { ApiResponse } from '@models/apiModel';
+import { Config } from '@config/index';
+import { Components } from '@components/index';
 
 export const ConsultantProfileScreen = ({
   navigation,
@@ -64,7 +55,7 @@ export const ConsultantProfileScreen = ({
   const renderItemReview: ListRenderItem<TRatingReviewModel> = useCallback(
     ({ item }) => {
       return (
-        <ReviewCard
+        <Components.Cards.ReviewCard
           clientId={item.clientId}
           clientName={item.clientName}
           clientProfilePicture={item.clientProfilePicture}
@@ -88,7 +79,7 @@ export const ConsultantProfileScreen = ({
   const loadData = async () => {
     try {
       const response = await getAPIData<ApiResponse<ApiConsultantDetailsModel>>(
-        `${endPoints.consultant}/${consultantId}`,
+        `${Config.endPoints.consultant}/${consultantId}`,
       );
       if (!response) return;
       const resData: ApiConsultantDetailsModel = response.payload;
@@ -100,7 +91,7 @@ export const ConsultantProfileScreen = ({
   };
 
   const renderItem = ({ item }: any) => {
-    return <RatingCard item={item} />;
+    return <Components.Cards.RatingCard item={item} />;
   };
 
   useEffect(() => {
@@ -113,12 +104,12 @@ export const ConsultantProfileScreen = ({
       <SafeAreaView
         style={StyleSheet.flatten([staticStyle.container, styles.primaryBg])}
       >
-        <ScreenHeaderComponent onPress={goBack} />
-        {loader && <ConsultantProfileScreenShimmer />}
+        <Components.Headers.ScreenHeader onPress={goBack} />
+        {loader && <Components.Skeleton.ConsultantProfileScreenShimmer />}
         {!loader && (
           <>
             <ScrollView showsVerticalScrollIndicator={false}>
-              <ConsultantProfileHeader data={data} />
+              <Components.Headers.ConsultantProfileHeader data={data} />
               <View
                 style={StyleSheet.flatten([
                   staticStyle.separator,
@@ -126,14 +117,14 @@ export const ConsultantProfileScreen = ({
                 ])}
               />
               <View style={staticStyle.secondaryContainer}>
-                <MediumTextComponent
+                <Components.Text.MediumTextComponent
                   text={t('about')}
                   textStyle={StyleSheet.flatten([
                     staticStyle.semiTitleText,
                     styles.primaryText,
                   ])}
                 />
-                <RegularTextComponent
+                <Components.Text.RegularTextComponent
                   text={data.bio}
                   noOfLines={20}
                   textStyle={StyleSheet.flatten([
@@ -148,14 +139,14 @@ export const ConsultantProfileScreen = ({
                   styles.separator,
                 ])}
               />
-              <ConsultantExpertiseCard data={data} />
+              <Components.Cards.ConsultantExpertiseCard data={data} />
               <View
                 style={StyleSheet.flatten([
                   staticStyle.separator,
                   styles.separator,
                 ])}
               />
-              <ConsultantRatingsList data={data} renderItem={renderItem} />
+              <Components.ListItems.ConsultantRatingsList data={data} renderItem={renderItem} />
               <FlatList
                 data={data.ratingReviews}
                 scrollEnabled={false}
@@ -172,14 +163,14 @@ export const ConsultantProfileScreen = ({
                 styles.separator,
               ])}
             >
-              <MediumTextComponent
+              <Components.Text.MediumTextComponent
                 text={`$${Number(data.rate)}/hr`}
                 textStyle={StyleSheet.flatten([
                   staticStyle.ratingText,
                   styles.primaryText,
                 ])}
               />
-              <PrimaryButtonComponent
+              <Components.Buttons.PrimaryButton
                 onPress={navigateToBookingDetails}
                 text={t('bookNow')}
                 buttonStyle={staticStyle.bookNowButton}

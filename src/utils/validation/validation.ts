@@ -1,21 +1,21 @@
-import { appText } from '@config/text/constantsText';
+import { Config } from '@config/index';
 import { showErrorToast } from '@utils/toast/toast';
 
 export const validatePassword = (password: string) => {
   if (password.length < 8) {
-    showErrorToast({ title: appText.passwordLength });
+    showErrorToast({ title: Config.appText.passwordLength });
     return false;
   } else if (!/[A-Z]/.test(password)) {
-    showErrorToast({ title: appText.mustHaveCapitalValue });
+    showErrorToast({ title: Config.appText.mustHaveCapitalValue });
     return false;
   } else if (!/[a-z]/.test(password)) {
-    showErrorToast({ title: appText.mustHaveSmallValue });
+    showErrorToast({ title: Config.appText.mustHaveSmallValue });
     return false;
   } else if (!/[0-9]/.test(password)) {
-    showErrorToast({ title: appText.mustHaveNumber });
+    showErrorToast({ title: Config.appText.mustHaveNumber });
     return false;
   } else if (!/[!@#$%^&*()]/.test(password)) {
-    showErrorToast({ title: appText.mustHaveSpecialChar });
+    showErrorToast({ title: Config.appText.mustHaveSpecialChar });
     return false;
   }
   return true;

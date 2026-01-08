@@ -7,12 +7,9 @@ import { useTranslation } from 'react-i18next';
 import FastImage from 'react-native-fast-image';
 import { Dispatch, SetStateAction } from 'react';
 import { Theme } from '@config/themes/themes';
-import { appIcons } from '@config/icons/iconPath';
-import { CustomInputComponent } from '@components/Input/EmailAndPasswordInput';
+import { Components } from '@components/index';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
-import { PrimaryButtonComponent } from '@components/Buttons/PrimaryButton';
-import { RegularTextComponent } from '@components/Text/RegularText';
-import { CircularIconButtonComponent } from '@components/Buttons/CircularIconButton';
+import { Config } from '@config/index';
 
 type SignUpInputContainerProps = {
   email: string;
@@ -33,24 +30,24 @@ export const SignUpInputContainer = (props: SignUpInputContainerProps) => {
   const styles = createStyles(theme);
   return (
     <View style={staticStyle.inputs}>
-      <CustomInputComponent
+      <Components.Inputs.CustomInput
         keyboardType="email-address"
         placeholder={t('email')}
         value={props.email}
         setValue={props.setEmail}
       />
       <View style={staticStyle.passwordInput}>
-        <CustomInputComponent
+        <Components.Inputs.CustomInput
           placeholder={t('password')}
           value={props.password}
           setValue={props.setPassword}
           secureText={!props.passVisible}
         />
-        <CircularIconButtonComponent
+        <Components.Buttons.CircularIconButton
           iconPath={
             props.passVisible
-              ? appIcons.ic_showPassword
-              : appIcons.ic_hiddenPassword
+              ? Config.appIcons.ic_showPassword
+              : Config.appIcons.ic_hiddenPassword
           }
           buttonStyle={staticStyle.passwordButton}
           iconStyle={
@@ -77,7 +74,7 @@ export const SignUpInputContainer = (props: SignUpInputContainerProps) => {
               >
                 <FastImage
                   resizeMode={FastImage.resizeMode.contain}
-                  source={appIcons.ic_checkMark}
+                  source={Config.appIcons.ic_checkMark}
                   style={staticStyle.checkMark}
                   tintColor={theme.colors.pureWhite}
                 />
@@ -85,7 +82,7 @@ export const SignUpInputContainer = (props: SignUpInputContainerProps) => {
             )}
           </TouchableOpacity>
         </View>
-        <RegularTextComponent
+        <Components.Text.RegularTextComponent
           text={t('agreeTo')}
           textStyle={StyleSheet.flatten([
             staticStyle.termsLine,
@@ -93,7 +90,7 @@ export const SignUpInputContainer = (props: SignUpInputContainerProps) => {
           ])}
         />
         <TouchableOpacity activeOpacity={0.7}>
-          <RegularTextComponent
+          <Components.Text.RegularTextComponent
             text={t('privacyPolicy')}
             textStyle={StyleSheet.flatten([
               staticStyle.termsLine,
@@ -101,7 +98,7 @@ export const SignUpInputContainer = (props: SignUpInputContainerProps) => {
             ])}
           />
         </TouchableOpacity>
-        <RegularTextComponent
+        <Components.Text.RegularTextComponent
           text={t('and')}
           textStyle={StyleSheet.flatten([
             staticStyle.termsLine,
@@ -109,7 +106,7 @@ export const SignUpInputContainer = (props: SignUpInputContainerProps) => {
           ])}
         />
         <TouchableOpacity activeOpacity={0.7}>
-          <RegularTextComponent
+          <Components.Text.RegularTextComponent
             text={t('terms')}
             textStyle={StyleSheet.flatten([
               staticStyle.termsLine,
@@ -118,7 +115,7 @@ export const SignUpInputContainer = (props: SignUpInputContainerProps) => {
           />
         </TouchableOpacity>
       </View>
-      <PrimaryButtonComponent
+      <Components.Buttons.PrimaryButton
         text={t(props.buttonText)}
         onPress={props.handleSignUp}
       />

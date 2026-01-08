@@ -1,5 +1,5 @@
+import { Utils } from '@utils/index';
 import { StyleProp, StyleSheet, Text, TextStyle } from 'react-native';
-import { getFontFamily } from '@utils/fonts/getFontFamily';
 
 type MediumTextComponentProps = {
   text: string;
@@ -20,6 +20,6 @@ export const MediumTextComponent = (props: MediumTextComponentProps) => {
 
 const styles = StyleSheet.create({
   text: {
-    fontFamily: getFontFamily('medium'),
+    fontFamily: Utils.getFontFamily('medium'),
   },
 });

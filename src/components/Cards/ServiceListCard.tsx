@@ -1,11 +1,11 @@
 import { StyleSheet, TouchableOpacity } from 'react-native';
-import { RegularTextComponent } from '@components/Text/RegularText';
+import { Components } from '@components/index';
 import { Theme } from '@config/themes/themes';
 import { useTheme } from '@shopify/restyle';
-import normalize from '@utils/normalize/normalize';
-import { appIcons } from '@config/icons/iconPath';
+import {Utils} from '@utils/index';
 import { memo } from 'react';
 import FastImage from 'react-native-fast-image';
+import { Config } from '@config/index';
 
 type ServiceListCardProp = {
   text: string;
@@ -23,12 +23,12 @@ export const ServiceListCard = memo(
         onPress={() => onRemove(text)}
         style={StyleSheet.flatten([staticStyle.container, styles.container])}
       >
-        <RegularTextComponent
+        <Components.Text.RegularTextComponent
           text={text}
           textStyle={StyleSheet.flatten([staticStyle.text, styles.text])}
         />
         <FastImage
-          source={appIcons.ic_cross}
+          source={Config.appIcons.ic_cross}
           tintColor={theme.colors.textPrimary}
           style={staticStyle.image}
         />
@@ -39,24 +39,24 @@ export const ServiceListCard = memo(
 
 const staticStyle = StyleSheet.create({
   container: {
-    paddingVertical: normalize(8),
-    paddingHorizontal: normalize(8),
-    marginBottom: normalize(8),
-    marginLeft: normalize(8),
+    paddingVertical: Utils.normalize(8),
+    paddingHorizontal: Utils.normalize(8),
+    marginBottom: Utils.normalize(8),
+    marginLeft: Utils.normalize(8),
     flexDirection: 'row',
-    gap: normalize(8),
+    gap: Utils.normalize(8),
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 0.5,
-    borderRadius: normalize(8),
+    borderRadius: Utils.normalize(8),
   },
   text: {
-    fontSize: normalize(14),
+    fontSize: Utils.normalize(14),
     fontWeight: '400',
   },
   image: {
-    width: normalize(16),
-    height: normalize(16),
+    width: Utils.normalize(16),
+    height: Utils.normalize(16),
   },
 });
 

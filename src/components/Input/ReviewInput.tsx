@@ -10,12 +10,11 @@ import { useTranslation } from 'react-i18next';
 import FastImage from 'react-native-fast-image';
 import { Dispatch, SetStateAction } from 'react';
 import { Theme } from '@config/themes/themes';
-import { appColors } from '@config/colors/colors';
-import { isDarkMode } from '@utils/theme/darkMode';
-import { appImages } from '@config/images/imagePath';
 import LinearGradient from 'react-native-linear-gradient';
-import { MediumTextComponent } from '@components/Text/MediumText';
+import { Components } from '@components/index';
 import { createStyles, staticStyle } from '@screens/common/Rating/styles';
+import { Utils } from '@utils/index';
+import { Config } from '@config/index';
 
 type ReviewInputProps = {
   text: string;
@@ -42,7 +41,7 @@ export const ReviewInput = (props: ReviewInputProps) => {
           end={props.end}
           start={props.start}
         />
-        <MediumTextComponent
+        <Components.Text.MediumTextComponent
           text={t('tellUsMore')}
           textStyle={StyleSheet.flatten([
             staticStyle.text,
@@ -83,7 +82,7 @@ export const ReviewInput = (props: ReviewInputProps) => {
               value={props.text}
               onChangeText={props.setText}
               placeholderTextColor={
-                isDarkMode(theme) ? appColors.app_FFFFFF : appColors.app_212121
+                Utils.isDarkMode(theme) ? Config.appColors.app_FFFFFF : Config.appColors.app_212121
               }
             />
             <TouchableOpacity
@@ -92,7 +91,7 @@ export const ReviewInput = (props: ReviewInputProps) => {
               style={staticStyle.askAi}
             >
               <FastImage
-                source={appImages.img_askAi}
+                source={Config.appImages.img_askAi}
                 style={staticStyle.askAi}
               />
             </TouchableOpacity>

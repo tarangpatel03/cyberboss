@@ -1,11 +1,10 @@
 import { Dispatch, SetStateAction } from 'react';
-import { BorderInputComponent } from '@components/Input/BorderInput';
-import { CircularIconButtonComponent } from '@components/Buttons/CircularIconButton';
-import { appIcons } from '@config/icons/iconPath';
+import { Components } from '@components/index';
 import { StyleSheet, View } from 'react-native';
 import { Theme } from '@config/themes/themes';
 import { useTheme } from '@shopify/restyle';
-import normalize from '@utils/normalize/normalize';
+import {Utils} from '@utils/index';
+import { Config } from '@config/index';
 
 type PasswordInputProps = {
   value: string;
@@ -15,7 +14,7 @@ type PasswordInputProps = {
   setVisible: Dispatch<SetStateAction<boolean>>;
 };
 
-export const PasswordInputComponent = ({
+export const PasswordInput = ({
   setValue,
   placeholder,
   setVisible,
@@ -25,15 +24,15 @@ export const PasswordInputComponent = ({
   const theme = useTheme<Theme>();
   return (
     <View style={staticStyle.passwordInput}>
-      <BorderInputComponent
+      <Components.Inputs.BorderInput
         placeholder={placeholder}
         value={value}
         setValue={setValue}
         secureText={!visible}
       />
-      <CircularIconButtonComponent
+      <Components.Buttons.CircularIconButton
         iconPath={
-          visible ? appIcons.ic_showPassword : appIcons.ic_hiddenPassword
+          visible ? Config.appIcons.ic_showPassword : Config.appIcons.ic_hiddenPassword
         }
         buttonStyle={staticStyle.passwordButton}
         iconStyle={
@@ -54,20 +53,20 @@ const staticStyle = StyleSheet.create({
   },
   passwordButton: {
     position: 'absolute',
-    width: normalize(24),
-    height: normalize(24),
-    right: normalize(12),
+    width: Utils.normalize(24),
+    height: Utils.normalize(24),
+    right: Utils.normalize(12),
     justifyContent: 'center',
     alignItems: 'center',
   },
   hiddenPasswordIcon: {
-    width: normalize(18),
-    height: normalize(10, 'height'),
+    width: Utils.normalize(18),
+    height: Utils.normalize(10, 'height'),
     resizeMode: 'contain',
   },
   showPasswordIcon: {
-    width: normalize(22),
-    height: normalize(12, 'height'),
+    width: Utils.normalize(22),
+    height: Utils.normalize(12, 'height'),
     resizeMode: 'contain',
   },
 });

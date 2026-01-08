@@ -9,16 +9,11 @@ import { routeName } from '@config/constants/routes';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ActivityIndicator, StyleSheet, View } from 'react-native';
 import { RootNavigationProps } from '@models/navigationModel';
-import { ScreenHeaderComponent } from '@components/Headers/ScreenHeader';
-import { PrimaryButtonComponent } from '@components/Buttons/PrimaryButton';
 import { getAPIData } from '@services/api/common/getCommonApi';
 import { RootState } from '@redux/store';
 import { useSelector } from 'react-redux';
-import { endPoints } from '@config/endPoint/apiEndPoint';
 import { useTranslation } from 'react-i18next';
 import { getBillData } from '@services/api/consultant/getBillData';
-import { ConsultantServiceSummaryCard } from '@components/Cards/ConsultantServiceSummaryCard';
-import { BookingPaymentDetailsCard } from '@components/Cards/BookingPaymentDetailsCard';
 import { ApiBillDetailsModel } from '@models/api/billing';
 import { ApiConsultantDetailsModel } from '@models/api/consultant';
 import {
@@ -30,6 +25,8 @@ import {
   transformConsultantDetailsModel,
 } from '@models/formattedAPI/tConsultant';
 import { ApiResponse } from '@models/apiModel';
+import { Config } from '@config/index';
+import { Components } from '@components/index';
 
 export const BookingDetailsScreen = ({
   navigation,
@@ -80,7 +77,7 @@ export const BookingDetailsScreen = ({
 
   const loadConultantData = async () => {
     const response1 = await getAPIData<ApiResponse<ApiConsultantDetailsModel>>(
-      `${endPoints.consultant}/${consultantId}`,
+      `${Config.endPoints.consultant}/${consultantId}`,
     );
     if (!response1) return;
     const data1: ApiConsultantDetailsModel = response1.payload;
@@ -146,7 +143,7 @@ export const BookingDetailsScreen = ({
         {
           <>
             <View style={staticStyle.header}>
-              <ScreenHeaderComponent
+              <Components.Headers.ScreenHeader
                 onPress={goBack}
                 headerText={t('bookingDetails')}
               />
@@ -158,7 +155,7 @@ export const BookingDetailsScreen = ({
                 styles.bgSecondary,
               ])}
             >
-              <ConsultantServiceSummaryCard
+              <Components.Cards.ConsultantServiceSummaryCard
                 type={type}
                 hrBook={hrBook}
                 setHrBook={setHrBook}
@@ -166,12 +163,12 @@ export const BookingDetailsScreen = ({
                 consultantData={consultantData}
                 reduceHr={reduceHr}
               />
-              <BookingPaymentDetailsCard role={role} billData={billData} />
+              <Components.Cards.BookingPaymentDetailsCard role={role} billData={billData} />
             </View>
             <View
               style={StyleSheet.flatten([staticStyle.button, styles.bgPrimary])}
             >
-              <PrimaryButtonComponent
+              <Components.Buttons.PrimaryButton
                 onPress={navigateToConfirm}
                 text={t('payNow')}
               />

@@ -1,10 +1,9 @@
 import { useTheme } from '@shopify/restyle';
 import { StyleSheet, View } from 'react-native';
-import { CircularIconButtonComponent } from '@components/Buttons/CircularIconButton';
-import { appIcons } from '@config/icons/iconPath';
-import { MediumTextComponent } from '@components/Text/MediumText';
-import normalize from '@utils/normalize/normalize';
+import { Components } from '@components/index';
+import {Utils} from '@utils/index';
 import { Theme } from '@config/themes/themes';
+import { Config } from '@config/index';
 
 type ScreenHeaderComponentProps = {
   iconPath?: number | { uri: string } | undefined;
@@ -12,7 +11,7 @@ type ScreenHeaderComponentProps = {
   headerText?: string;
 };
 
-export const ScreenHeaderComponent = ({
+export const ScreenHeader = ({
   headerText,
   onPress,
   iconPath,
@@ -23,21 +22,21 @@ export const ScreenHeaderComponent = ({
   return (
     <>
       <View style={staticStyle.container}>
-        <CircularIconButtonComponent
-          iconPath={appIcons.ic_backIcon}
+        <Components.Buttons.CircularIconButton
+          iconPath={Config.appIcons.ic_backIcon}
           iconStyle={staticStyle.backIcon}
           tintColor={theme.colors.textPrimary}
           buttonStyle={staticStyle.backButton}
           onPress={onPress}
         />
         {headerText && (
-          <MediumTextComponent
+          <Components.Text.MediumTextComponent
             text={headerText}
             textStyle={StyleSheet.flatten([staticStyle.title, styles.title])}
           />
         )}
         {iconPath ? (
-          <CircularIconButtonComponent
+          <Components.Buttons.CircularIconButton
             buttonStyle={staticStyle.backButton}
             iconPath={iconPath}
             tintColor={theme.colors.textPrimary}
@@ -55,34 +54,34 @@ export const ScreenHeaderComponent = ({
 const staticStyle = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    paddingTop: normalize(12),
-    paddingHorizontal: normalize(20),
-    height: normalize(32, 'height'),
+    paddingTop: Utils.normalize(12),
+    paddingHorizontal: Utils.normalize(20),
+    height: Utils.normalize(32, 'height'),
     alignItems: 'center',
     justifyContent: 'space-between',
   },
   title: {
     width: '70%',
     textAlign: 'center',
-    fontSize: normalize(18),
+    fontSize: Utils.normalize(18),
     fontWeight: '500',
   },
   backIcon: {
-    width: normalize(20),
-    height: normalize(20),
+    width: Utils.normalize(20),
+    height: Utils.normalize(20),
     alignItems: 'center',
     justifyContent: 'center',
     resizeMode: 'contain',
   },
   backButton: {
-    width: normalize(16),
-    height: normalize(12, 'height'),
+    width: Utils.normalize(16),
+    height: Utils.normalize(12, 'height'),
     justifyContent: 'center',
     alignItems: 'center',
   },
   moreIcon: {
-    width: normalize(16),
-    height: normalize(12, 'height'),
+    width: Utils.normalize(16),
+    height: Utils.normalize(12, 'height'),
     justifyContent: 'center',
     alignItems: 'center',
   },

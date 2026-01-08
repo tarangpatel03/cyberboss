@@ -1,19 +1,19 @@
 import { StyleSheet } from 'react-native';
 import { Theme } from '@config/themes/themes';
-import normalize from '@utils/normalize/normalize';
+import { Utils } from '@utils/index';
 
 export const staticStyle = StyleSheet.create({
   container: {
     flex: 1,
-    gap: normalize(18, 'height'),
+    gap: Utils.normalize(18, 'height'),
   },
   inputField: {
     flex: 1,
-    gap: normalize(20),
-    paddingHorizontal: normalize(12),
+    gap: Utils.normalize(20),
+    paddingHorizontal: Utils.normalize(12),
   },
   buttonContainer: {
-    padding: normalize(12),
+    padding: Utils.normalize(12),
   },
 });
 export const createStyles = (theme: Theme) =>

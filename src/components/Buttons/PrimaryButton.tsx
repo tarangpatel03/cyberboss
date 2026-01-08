@@ -5,10 +5,10 @@ import {
   TouchableOpacity,
   ViewStyle,
 } from 'react-native';
-import { MediumTextComponent } from '@components/Text/MediumText';
+import { Components } from '@components/index';
 import { Theme } from '@config/themes/themes';
 import { useTheme } from '@shopify/restyle';
-import normalize from '@utils/normalize/normalize';
+import {Utils} from '@utils/index';
 
 type PrimaryButtonComponentProps = {
   text: string;
@@ -18,7 +18,7 @@ type PrimaryButtonComponentProps = {
   isButtonActive?: boolean;
 };
 
-export const PrimaryButtonComponent = (props: PrimaryButtonComponentProps) => {
+export const PrimaryButton = (props: PrimaryButtonComponentProps) => {
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   return (
@@ -32,7 +32,7 @@ export const PrimaryButtonComponent = (props: PrimaryButtonComponentProps) => {
       ])}
       onPress={props.onPress}
     >
-      <MediumTextComponent
+      <Components.Text.MediumTextComponent
         text={props.text}
         textStyle={StyleSheet.flatten([
           staticStyle.text,
@@ -46,13 +46,13 @@ export const PrimaryButtonComponent = (props: PrimaryButtonComponentProps) => {
 
 const staticStyle = StyleSheet.create({
   button: {
-    borderRadius: normalize(12),
+    borderRadius: Utils.normalize(12),
     alignItems: 'center',
     justifyContent: 'center',
-    height: normalize(36, 'height'),
+    height: Utils.normalize(36, 'height'),
   },
   text: {
-    fontSize: normalize(16),
+    fontSize: Utils.normalize(16),
     fontWeight: '500',
   },
 });

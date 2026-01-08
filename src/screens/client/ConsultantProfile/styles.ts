@@ -1,83 +1,83 @@
 import { StyleSheet } from 'react-native';
 import { Theme } from '@config/themes/themes';
-import normalize from '@utils/normalize/normalize';
+import { Utils } from '@utils/index';
 
 export const staticStyle = StyleSheet.create({
   container: {
     flex: 1,
   },
   titleLine: {
-    gap: normalize(12),
+    gap: Utils.normalize(12),
   },
   reviewCard: {
-    gap: normalize(12),
-    paddingBottom: normalize(12),
-    paddingHorizontal: normalize(12),
+    gap: Utils.normalize(12),
+    paddingBottom: Utils.normalize(12),
+    paddingHorizontal: Utils.normalize(12),
   },
   bulletPoint: {
-    width: normalize(3),
-    height: normalize(3),
-    borderRadius: normalize(3),
+    width: Utils.normalize(3),
+    height: Utils.normalize(3),
+    borderRadius: Utils.normalize(3),
   },
   profileContainer: {
-    gap: normalize(20),
-    paddingHorizontal: normalize(12),
-    paddingVertical: normalize(16),
+    gap: Utils.normalize(20),
+    paddingHorizontal: Utils.normalize(12),
+    paddingVertical: Utils.normalize(16),
   },
   secondaryContainer: {
-    gap: normalize(16),
-    paddingHorizontal: normalize(12),
-    paddingVertical: normalize(20),
+    gap: Utils.normalize(16),
+    paddingHorizontal: Utils.normalize(12),
+    paddingVertical: Utils.normalize(20),
   },
   listItems: {
-    gap: normalize(12),
+    gap: Utils.normalize(12),
   },
   titleText: {
-    fontSize: normalize(18),
+    fontSize: Utils.normalize(18),
     fontWeight: '500',
   },
   reviewImage: {
-    width: normalize(32),
-    height: normalize(32),
-    borderRadius: normalize(50),
+    width: Utils.normalize(32),
+    height: Utils.normalize(32),
+    borderRadius: Utils.normalize(50),
   },
   rating: {
     alignSelf: 'flex-start',
   },
   moveLeft: {
-    left: normalize(4),
+    left: Utils.normalize(4),
   },
   ratingText: {
-    fontSize: normalize(24),
+    fontSize: Utils.normalize(24),
     fontWeight: '600',
   },
   listContainer: {
-    gap: normalize(8),
+    gap: Utils.normalize(8),
     flexDirection: 'row',
     flexWrap: 'wrap',
   },
   semiTitleText: {
-    fontSize: normalize(16),
+    fontSize: Utils.normalize(16),
     fontWeight: '500',
   },
   subTitleText: {
-    fontSize: normalize(14),
+    fontSize: Utils.normalize(14),
     fontWeight: '400',
   },
   tinyText: {
-    fontSize: normalize(12),
+    fontSize: Utils.normalize(12),
     fontWeight: '400',
   },
   line: {
-    gap: normalize(8),
+    gap: Utils.normalize(8),
   },
   image: {
-    width: normalize(64),
-    height: normalize(64),
-    borderRadius: normalize(50),
+    width: Utils.normalize(64),
+    height: Utils.normalize(64),
+    borderRadius: Utils.normalize(50),
   },
   leftMoveText: {
-    paddingLeft: normalize(4),
+    paddingLeft: Utils.normalize(4),
   },
   rowLine: {
     flexDirection: 'row',
@@ -94,11 +94,11 @@ export const staticStyle = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingVertical: normalize(12),
-    paddingHorizontal: normalize(16),
+    paddingVertical: Utils.normalize(12),
+    paddingHorizontal: Utils.normalize(16),
   },
   bookNowButton: {
-    paddingHorizontal: normalize(24),
+    paddingHorizontal: Utils.normalize(24),
   },
 });
 

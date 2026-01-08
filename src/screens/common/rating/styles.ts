@@ -1,25 +1,25 @@
 import { StyleSheet } from 'react-native';
 import { Theme } from '@config/themes/themes';
-import normalize from '@utils/normalize/normalize';
+import {Utils} from '@utils/index';
 
 export const staticStyle = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: normalize(12),
-    paddingHorizontal: normalize(12),
+    paddingTop: Utils.normalize(12),
+    paddingHorizontal: Utils.normalize(12),
   },
   header: {
-    paddingTop: normalize(20),
-    paddingBottom: normalize(12),
+    paddingTop: Utils.normalize(20),
+    paddingBottom: Utils.normalize(12),
   },
   card: {
-    gap: normalize(32),
-    padding: normalize(12),
-    paddingTop: normalize(20),
-    borderRadius: normalize(12),
+    gap: Utils.normalize(32),
+    padding: Utils.normalize(12),
+    paddingTop: Utils.normalize(20),
+    borderRadius: Utils.normalize(12),
   },
   ratingLine: {
-    gap: normalize(8),
+    gap: Utils.normalize(8),
     alignSelf: 'center',
     alignItems: 'center',
     flexDirection: 'row',
@@ -27,16 +27,16 @@ export const staticStyle = StyleSheet.create({
   },
   tinyText: {
     fontWeight: '400',
-    fontSize: normalize(12),
+    fontSize: Utils.normalize(12),
   },
   star: {
-    width: normalize(36),
-    height: normalize(36),
-    marginHorizontal: normalize(7),
+    width: Utils.normalize(36),
+    height: Utils.normalize(36),
+    marginHorizontal: Utils.normalize(7),
   },
   line: {
     width: '35%',
-    height: normalize(1),
+    height: Utils.normalize(1),
   },
   row: {
     flexDirection: 'row',
@@ -44,40 +44,40 @@ export const staticStyle = StyleSheet.create({
     justifyContent: 'space-between',
   },
   ratingContainer: {
-    gap: normalize(8),
+    gap: Utils.normalize(8),
     alignItems: 'center',
     justifyContent: 'center',
   },
   text: {
-    fontSize: normalize(14),
+    fontSize: Utils.normalize(14),
     fontWeight: '500',
   },
   review: {
-    gap: normalize(16),
+    gap: Utils.normalize(16),
   },
   button: {
-    padding: normalize(12),
+    padding: Utils.normalize(12),
   },
   inputContainer: {
     width: '100%',
     borderWidth: 1,
-    minHeight: normalize(80),
-    borderRadius: normalize(12),
-    paddingHorizontal: normalize(6),
+    minHeight: Utils.normalize(80),
+    borderRadius: Utils.normalize(12),
+    paddingHorizontal: Utils.normalize(6),
   },
   input: {
     top: 0,
     fontWeight: '400',
-    fontSize: normalize(14),
+    fontSize: Utils.normalize(14),
   },
   askAi: {
-    right: normalize(4),
-    width: normalize(76),
+    right: Utils.normalize(4),
+    width: Utils.normalize(76),
     position: 'absolute',
-    bottom: normalize(4),
-    height: normalize(27),
+    bottom: Utils.normalize(4),
+    height: Utils.normalize(27),
     resizeMode: 'contain',
-    paddingBottom: normalize(8),
+    paddingBottom: Utils.normalize(8),
   },
   refresherContainer: {
     flex: 1,

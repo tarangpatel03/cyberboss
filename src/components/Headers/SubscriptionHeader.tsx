@@ -1,9 +1,9 @@
 import { useTranslation } from 'react-i18next';
 import FastImage from 'react-native-fast-image';
 import { View, TouchableOpacity } from 'react-native';
-import { appIcons } from '@config/icons/iconPath';
-import { MediumTextComponent } from '@components/Text/MediumText';
+import { Components } from '@components/index';
 import { staticStyle } from '@screens/client/Subscription/styles';
+import { Config } from '@config/index';
 
 type SubscriptionHeaderProps = {
   goBack: () => void;
@@ -18,15 +18,15 @@ export const SubscriptionHeader = (props: SubscriptionHeaderProps) => {
         onPress={props.goBack}
         style={staticStyle.cancelButton}
       >
-        <FastImage source={appIcons.ic_cancel} style={staticStyle.headerIcon} />
+        <FastImage source={Config.appIcons.ic_cancel} style={staticStyle.headerIcon} />
       </TouchableOpacity>
       <TouchableOpacity activeOpacity={0.7} style={staticStyle.restoreButton}>
         <FastImage
-          source={appIcons.ic_refresh}
+          source={Config.appIcons.ic_refresh}
           style={staticStyle.headerIcon}
           resizeMode={FastImage.resizeMode.contain}
         />
-        <MediumTextComponent
+        <Components.Text.MediumTextComponent
           text={t('restore')}
           textStyle={staticStyle.text14500}
         />

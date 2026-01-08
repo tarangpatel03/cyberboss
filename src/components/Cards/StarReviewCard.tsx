@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import FastImage from 'react-native-fast-image';
 import { Theme } from '@config/themes/themes';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
-import { RegularTextComponent } from '@components/Text/RegularText';
+import { Components } from '@components/index';
 import { createStyles, staticStyle } from '@screens/common/Rating/styles';
 
 type StarReviewCardProps = {
@@ -24,7 +24,7 @@ export const StarReviewCard = (props: StarReviewCardProps) => {
         activeOpacity={0.9}
       >
         <FastImage source={props.showStar(1)} style={staticStyle.star} />
-        <RegularTextComponent
+        <Components.Text.RegularTextComponent
           text={t('terrible')}
           textStyle={StyleSheet.flatten([
             staticStyle.tinyText,
@@ -38,7 +38,7 @@ export const StarReviewCard = (props: StarReviewCardProps) => {
         style={staticStyle.ratingContainer}
       >
         <FastImage source={props.showStar(2)} style={staticStyle.star} />
-        <RegularTextComponent
+        <Components.Text.RegularTextComponent
           text={t('bad')}
           textStyle={StyleSheet.flatten([
             staticStyle.tinyText,
@@ -52,7 +52,7 @@ export const StarReviewCard = (props: StarReviewCardProps) => {
         style={staticStyle.ratingContainer}
       >
         <FastImage source={props.showStar(3)} style={staticStyle.star} />
-        <RegularTextComponent
+        <Components.Text.RegularTextComponent
           text={t('okay')}
           textStyle={StyleSheet.flatten([
             staticStyle.tinyText,
@@ -66,7 +66,7 @@ export const StarReviewCard = (props: StarReviewCardProps) => {
         style={staticStyle.ratingContainer}
       >
         <FastImage source={props.showStar(4)} style={staticStyle.star} />
-        <RegularTextComponent
+        <Components.Text.RegularTextComponent
           text={t('good')}
           textStyle={StyleSheet.flatten([
             staticStyle.tinyText,
@@ -80,7 +80,7 @@ export const StarReviewCard = (props: StarReviewCardProps) => {
         style={staticStyle.ratingContainer}
       >
         <FastImage source={props.showStar(5)} style={staticStyle.star} />
-        <RegularTextComponent
+        <Components.Text.RegularTextComponent
           text={t('excellent')}
           textStyle={StyleSheet.flatten([
             staticStyle.tinyText,

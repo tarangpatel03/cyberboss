@@ -1,15 +1,12 @@
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { Theme } from '@config/themes/themes';
 import { useTheme } from '@shopify/restyle';
-import normalize from '@utils/normalize/normalize';
-import { MediumTextComponent } from '@components/Text/MediumText';
-import { RegularTextComponent } from '@components/Text/RegularText';
-import { appIcons } from '@config/icons/iconPath';
-import { formatBooking } from '@utils/format/formatDate';
+import {Utils} from '@utils/index';
+import { Components } from '@components/index';
 import FastImage from 'react-native-fast-image';
 import { memo, useState } from 'react';
 import { TExpertiseModel } from '@models/formattedAPI/tConsultant';
-import { getProfilePicture } from '@utils/extractURI/extractImageURI';
+import { Config } from '@config/index';
 
 type ServiceCardProps = {
   data: TExpertiseModel;
@@ -30,22 +27,22 @@ export const ServiceCard = memo(({ data, onPress }: ServiceCardProps) => {
       <View style={staticStyle.heading}>
         <FastImage
           source={
-            imageError ? appIcons.ic_noImage : getProfilePicture(data.image)
+            imageError ? Config.appIcons.ic_noImage : Utils.getProfilePicture(data.image)
           }
           onError={() => setImageError(true)}
           resizeMode={FastImage.resizeMode.contain}
           tintColor={imageError ? theme.colors.textPrimary : ''}
           style={staticStyle.image}
         />
-        <MediumTextComponent
+        <Components.Text.MediumTextComponent
           text={data.name}
           textStyle={StyleSheet.flatten([staticStyle.title, styles.title])}
         />
       </View>
       <View style={staticStyle.details}>
         <View style={staticStyle.heading}>
-          <FastImage source={appIcons.ic_cash} style={staticStyle.icon} />
-          <RegularTextComponent
+          <FastImage source={Config.appIcons.ic_cash} style={staticStyle.icon} />
+          <Components.Text.RegularTextComponent
             text={`$${Number(data.rate)}/hr`}
             textStyle={StyleSheet.flatten([
               staticStyle.subTitle,
@@ -55,9 +52,9 @@ export const ServiceCard = memo(({ data, onPress }: ServiceCardProps) => {
         </View>
         {data.bookingCount !== 0 && (
           <View style={staticStyle.heading}>
-            <FastImage source={appIcons.ic_check} style={staticStyle.icon} />
-            <RegularTextComponent
-              text={formatBooking(data.bookingCount ?? 0)}
+            <FastImage source={Config.appIcons.ic_check} style={staticStyle.icon} />
+            <Components.Text.RegularTextComponent
+              text={Utils.formatBooking(data.bookingCount ?? 0)}
               textStyle={StyleSheet.flatten([
                 staticStyle.subTitle,
                 styles.subTitle,
@@ -72,37 +69,37 @@ export const ServiceCard = memo(({ data, onPress }: ServiceCardProps) => {
 
 const staticStyle = StyleSheet.create({
   container: {
-    gap: normalize(16, 'height'),
+    gap: Utils.normalize(16, 'height'),
     width: '93%',
     alignSelf: 'center',
-    borderRadius: normalize(12),
-    padding: normalize(12),
+    borderRadius: Utils.normalize(12),
+    padding: Utils.normalize(12),
     borderWidth: 1,
   },
   heading: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: normalize(8),
+    gap: Utils.normalize(8),
   },
   title: {
-    fontSize: normalize(16),
+    fontSize: Utils.normalize(16),
     fontWeight: '500',
   },
   subTitle: {
-    fontSize: normalize(14),
+    fontSize: Utils.normalize(14),
     fontWeight: '400',
   },
   details: {
-    gap: normalize(12),
+    gap: Utils.normalize(12),
   },
   image: {
-    width: normalize(36),
-    height: normalize(36),
-    borderRadius: normalize(8),
+    width: Utils.normalize(36),
+    height: Utils.normalize(36),
+    borderRadius: Utils.normalize(8),
   },
   icon: {
-    width: normalize(14),
-    height: normalize(14),
+    width: Utils.normalize(14),
+    height: Utils.normalize(14),
   },
 });
 

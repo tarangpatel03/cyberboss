@@ -1,25 +1,25 @@
 import { StyleSheet } from 'react-native';
 import { Theme } from '@config/themes/themes';
-import normalize from '@utils/normalize/normalize';
+import { Utils } from '@utils/index';
 
 export const staticStyle = StyleSheet.create({
   container: {
     flex: 1,
   },
   header: {
-    gap: normalize(12, 'height'),
-    marginVertical: normalize(12, 'height'),
+    gap: Utils.normalize(12, 'height'),
+    marginVertical: Utils.normalize(12, 'height'),
   },
   shimmerContainer: {
     width: '100%',
-    height: normalize(80),
-    borderRadius: normalize(8),
-    marginBottom: normalize(16),
+    height: Utils.normalize(80),
+    borderRadius: Utils.normalize(8),
+    marginBottom: Utils.normalize(16),
   },
   list: {
     alignItems: 'center',
     justifyContent: 'center',
-    paddingBottom: normalize(100),
+    paddingBottom: Utils.normalize(100),
   },
   listItems: {
     flexGrow: 1,

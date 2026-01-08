@@ -1,10 +1,10 @@
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import { RegularTextComponent } from '@components/Text/RegularText';
+import { Components } from '@components/index';
 import { Theme } from '@config/themes/themes';
 import { useTheme } from '@shopify/restyle';
-import { appIcons } from '@config/icons/iconPath';
-import normalize from '@utils/normalize/normalize';
+import {Utils} from '@utils/index';
 import FastImage from 'react-native-fast-image';
+import { Config } from '@config/index';
 
 type SettingOptionsButtonProps = {
   title: string;
@@ -34,7 +34,7 @@ export const SettingOptionsButton = (props: SettingOptionsButtonProps) => {
             style={staticStyle.icon}
           />
         </View>
-        <RegularTextComponent
+        <Components.Text.RegularTextComponent
           text={props.title}
           textStyle={StyleSheet.flatten([staticStyle.text, styles.primaryText])}
         />
@@ -43,7 +43,7 @@ export const SettingOptionsButton = (props: SettingOptionsButtonProps) => {
         style={staticStyle.nextIcon}
         resizeMode={FastImage.resizeMode.contain}
         tintColor={theme.colors.textSecondary}
-        source={appIcons.ic_rightArrow}
+        source={Config.appIcons.ic_rightArrow}
       />
     </TouchableOpacity>
   );
@@ -55,32 +55,32 @@ const staticStyle = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingRight: normalize(8),
+    paddingRight: Utils.normalize(8),
   },
   mainContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: normalize(12),
+    gap: Utils.normalize(12),
   },
   text: {
-    fontSize: normalize(16),
+    fontSize: Utils.normalize(16),
     fontWeight: '400',
   },
   iconContainer: {
-    width: normalize(28),
+    width: Utils.normalize(28),
     alignItems: 'center',
-    height: normalize(28),
+    height: Utils.normalize(28),
     justifyContent: 'center',
-    borderRadius: normalize(20),
+    borderRadius: Utils.normalize(20),
   },
   icon: {
-    width: normalize(16),
-    height: normalize(16),
+    width: Utils.normalize(16),
+    height: Utils.normalize(16),
   },
   nextIcon: {
-    width: normalize(7),
-    height: normalize(14),
-    borderRadius: normalize(20),
+    width: Utils.normalize(7),
+    height: Utils.normalize(14),
+    borderRadius: Utils.normalize(20),
   },
 });
 

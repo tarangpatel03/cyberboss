@@ -1,14 +1,14 @@
+import { Config } from '@config/index';
 import { axiosClient } from '@services/axios/axiosClient';
-import { endPoints } from '@config/endPoint/apiEndPoint';
-import { extractImageUri } from '@utils/extractURI/extractImageURI';
+import { Utils } from '@utils/index';
 
 export const updateClientProfile = async (
   name: string,
   profilePicture: number | { uri: string } | undefined,
 ) => {
-  const profile_picture = extractImageUri(profilePicture);
+  const profile_picture = Utils.extractImageUri(profilePicture);
   try {
-    const response = await axiosClient.post(endPoints.clientProfile, {
+    const response = await axiosClient.post(Config.endPoints.clientProfile, {
       name,
       profile_picture,
     });
@@ -26,12 +26,12 @@ export const updateConsultantProfileSetup = async (
   expertiseArray: string[],
   servicesArray: string[],
 ) => {
-  const profile_picture = extractImageUri(profilePicture);
+  const profile_picture = Utils.extractImageUri(profilePicture);
   const expertises = expertiseArray.join(',');
   const services = servicesArray.join(',');
 
   try {
-    const res = await axiosClient.post(endPoints.consultantProfileSetup, {
+    const res = await axiosClient.post(Config.endPoints.consultantProfileSetup, {
       name,
       experience_year,
       bio,

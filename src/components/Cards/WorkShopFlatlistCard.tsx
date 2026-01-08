@@ -1,10 +1,7 @@
 import { StyleSheet, View } from 'react-native';
-import normalize from '@utils/normalize/normalize';
-import { MediumTextComponent } from '@components/Text/MediumText';
-import { RegularTextComponent } from '@components/Text/RegularText';
-import { appIcons } from '@config/icons/iconPath';
-import { getFullDate } from '@utils/format/formatDate';
-import { appColors } from '@config/colors/colors';
+import {Utils} from '@utils/index';
+import { Components } from '@components/index';
+import { Config } from '@config/index';
 import { width } from '@config/constants/variables';
 import FastImage from 'react-native-fast-image';
 import { memo } from 'react';
@@ -17,27 +14,27 @@ type WorkshopCardProps = {
 export const WorkshopFlatListCard = memo(({ data }: WorkshopCardProps) => {
   return (
     <View style={StyleSheet.flatten([staticStyle.container])}>
-      <MediumTextComponent
+      <Components.Text.MediumTextComponent
         text={data.name}
         textStyle={StyleSheet.flatten([staticStyle.title])}
       />
       <View style={staticStyle.detail}>
         <View style={staticStyle.line}>
           <FastImage
-            source={appIcons.ic_calender}
+            source={Config.appIcons.ic_calender}
             style={StyleSheet.flatten([staticStyle.icon])}
           />
-          <RegularTextComponent
-            text={getFullDate(data.date)}
+          <Components.Text.RegularTextComponent
+            text={Utils.getFullDate(data.date)}
             textStyle={StyleSheet.flatten([staticStyle.subTitle])}
           />
         </View>
         <View style={staticStyle.line}>
           <FastImage
-            source={appIcons.ic_fillHistory}
+            source={Config.appIcons.ic_fillHistory}
             style={StyleSheet.flatten([staticStyle.icon])}
           />
-          <RegularTextComponent
+          <Components.Text.RegularTextComponent
             text={`${data.startTime} - ${data.endTime}`}
             textStyle={StyleSheet.flatten([staticStyle.subTitle])}
           />
@@ -50,35 +47,35 @@ export const WorkshopFlatListCard = memo(({ data }: WorkshopCardProps) => {
 const staticStyle = StyleSheet.create({
   container: {
     borderWidth: 1,
-    borderRadius: normalize(12),
-    gap: normalize(16),
+    borderRadius: Utils.normalize(12),
+    gap: Utils.normalize(16),
     alignSelf: 'center',
-    padding: normalize(12),
-    width: normalize(width * 0.7),
-    borderColor: appColors.app_FFFFFF80,
-    backgroundColor: appColors.app_202126,
+    padding: Utils.normalize(12),
+    width: Utils.normalize(width * 0.7),
+    borderColor: Config.appColors.app_FFFFFF80,
+    backgroundColor: Config.appColors.app_202126,
   },
   title: {
-    fontSize: normalize(16),
+    fontSize: Utils.normalize(16),
     fontWeight: '500',
-    color: appColors.app_FFFFFF,
+    color: Config.appColors.app_FFFFFF,
   },
   subTitle: {
-    fontSize: normalize(14),
+    fontSize: Utils.normalize(14),
     fontWeight: '400',
-    color: appColors.app_FFFFFFBF,
+    color: Config.appColors.app_FFFFFFBF,
   },
   detail: {
-    gap: normalize(12),
+    gap: Utils.normalize(12),
   },
   line: {
-    gap: normalize(8),
+    gap: Utils.normalize(8),
     flexDirection: 'row',
     alignItems: 'center',
   },
   icon: {
-    width: normalize(14),
-    height: normalize(14),
-    tintColor: appColors.app_FFFFFFBF,
+    width: Utils.normalize(14),
+    height: Utils.normalize(14),
+    tintColor: Config.appColors.app_FFFFFFBF,
   },
 });

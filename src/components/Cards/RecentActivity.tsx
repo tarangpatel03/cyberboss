@@ -1,12 +1,12 @@
 import { StyleSheet, View } from 'react-native';
 import { Theme } from '@config/themes/themes';
 import { useTheme } from '@shopify/restyle';
-import normalize from '@utils/normalize/normalize';
-import { RegularTextComponent } from '@components/Text/RegularText';
+import {Utils} from '@utils/index';
+import { Components } from '@components/index';
 import FastImage from 'react-native-fast-image';
 import { memo } from 'react';
 import { TConsultantHomeNotificationModel } from '@models/formattedAPI/tHome';
-import { appImages } from '@config/images/imagePath';
+import { Config } from '@config/index';
 
 export const RecentActivity = memo(
   (props: TConsultantHomeNotificationModel) => {
@@ -17,11 +17,11 @@ export const RecentActivity = memo(
         style={StyleSheet.flatten([staticStyle.container, styles.container])}
       >
         <FastImage
-          source={appImages.img_defaultProfile}
+          source={Config.appImages.img_defaultProfile}
           style={staticStyle.image}
         />
         <View style={staticStyle.row}>
-          <RegularTextComponent
+          <Components.Text.RegularTextComponent
             text={props.title}
             noOfLines={2}
             textStyle={StyleSheet.flatten([
@@ -29,7 +29,7 @@ export const RecentActivity = memo(
               styles.primaryText,
             ])}
           />
-          <RegularTextComponent
+          <Components.Text.RegularTextComponent
             text={props.createdAt}
             textStyle={StyleSheet.flatten([
               staticStyle.subtitle,
@@ -44,28 +44,28 @@ export const RecentActivity = memo(
 
 const staticStyle = StyleSheet.create({
   container: {
-    borderRadius: normalize(12),
+    borderRadius: Utils.normalize(12),
     borderWidth: 0.5,
-    gap: normalize(12),
+    gap: Utils.normalize(12),
     flexDirection: 'row',
-    padding: normalize(12),
-    marginHorizontal: normalize(12),
+    padding: Utils.normalize(12),
+    marginHorizontal: Utils.normalize(12),
   },
   row: {
     width: '80%',
-    gap: normalize(4),
+    gap: Utils.normalize(4),
   },
   image: {
-    borderRadius: normalize(30),
-    width: normalize(48),
-    height: normalize(48),
+    borderRadius: Utils.normalize(30),
+    width: Utils.normalize(48),
+    height: Utils.normalize(48),
   },
   title: {
-    fontSize: normalize(16),
+    fontSize: Utils.normalize(16),
     fontWeight: '600',
   },
   subtitle: {
-    fontSize: normalize(14),
+    fontSize: Utils.normalize(14),
     fontWeight: '400',
   },
 });

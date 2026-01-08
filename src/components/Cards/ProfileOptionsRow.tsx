@@ -3,10 +3,10 @@ import { useTranslation } from 'react-i18next';
 import FastImage from 'react-native-fast-image';
 import { Dispatch, SetStateAction } from 'react';
 import { Theme } from '@config/themes/themes';
-import { appIcons } from '@config/icons/iconPath';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import { RegularTextComponent } from '@components/Text/RegularText';
+import { Components } from '@components/index';
 import { staticStyle, createStyles } from '@screens/common/Profile/styles';
+import { Config } from '@config/index';
 
 type ProfileOptionsRowProps = {
   role: 'client' | 'consultant';
@@ -40,11 +40,11 @@ export const ProfileOptionsRow = (props: ProfileOptionsRowProps) => {
           <FastImage
             resizeMode={FastImage.resizeMode.contain}
             tintColor={theme.colors.textSecondary}
-            source={appIcons.ic_theme}
+            source={Config.appIcons.ic_theme}
             style={staticStyle.icon}
           />
         </View>
-        <RegularTextComponent
+        <Components.Text.RegularTextComponent
           text={t('appearance')}
           textStyle={StyleSheet.flatten([
             staticStyle.infoText,
@@ -66,11 +66,11 @@ export const ProfileOptionsRow = (props: ProfileOptionsRowProps) => {
           <FastImage
             resizeMode={FastImage.resizeMode.contain}
             tintColor={theme.colors.textSecondary}
-            source={appIcons.ic_changePass}
+            source={Config.appIcons.ic_changePass}
             style={staticStyle.icon}
           />
         </View>
-        <RegularTextComponent
+        <Components.Text.RegularTextComponent
           text={t('changePassword')}
           textStyle={StyleSheet.flatten([
             staticStyle.infoText,

@@ -1,35 +1,35 @@
 import { StyleSheet } from 'react-native';
 import { Theme } from '@config/themes/themes';
-import normalize from '@utils/normalize/normalize';
-import { appColors } from '@config/colors/colors';
+import { Utils } from '@utils/index';
+import { Config } from '@config/index';
 
 export const staticStyle = StyleSheet.create({
   container: {
     flex: 1,
-    gap: normalize(12),
-    paddingBottom: normalize(30),
+    gap: Utils.normalize(12),
+    paddingBottom: Utils.normalize(30),
   },
   shimmerContainer: {
     width: '100%',
-    height: normalize(233),
-    marginBottom: normalize(12),
-    borderRadius: normalize(12),
+    height: Utils.normalize(233),
+    marginBottom: Utils.normalize(12),
+    borderRadius: Utils.normalize(12),
   },
   header: {
-    paddingTop: normalize(10),
-    paddingHorizontal: normalize(12),
+    paddingTop: Utils.normalize(10),
+    paddingHorizontal: Utils.normalize(12),
   },
   list: {
     height: '100%',
-    paddingHorizontal: normalize(12),
+    paddingHorizontal: Utils.normalize(12),
   },
   optionText: {
     fontWeight: '400',
-    fontSize: normalize(16),
+    fontSize: Utils.normalize(16),
   },
   listItems: {
     flexGrow: 1,
-    gap: normalize(12),
+    gap: Utils.normalize(12),
   },
   modalWrapper: {
     position: 'absolute',
@@ -44,20 +44,20 @@ export const staticStyle = StyleSheet.create({
     zIndex: 1,
   },
   modalContent: {
-    width: normalize(169),
-    padding: normalize(16),
-    backgroundColor: appColors.app_FFFFFF,
-    borderRadius: normalize(12),
+    width: Utils.normalize(169),
+    padding: Utils.normalize(16),
+    backgroundColor: Config.appColors.app_FFFFFF,
+    borderRadius: Utils.normalize(12),
     elevation: 10,
-    gap: normalize(24),
+    gap: Utils.normalize(24),
   },
   option: {
     flexDirection: 'row',
-    gap: normalize(8),
+    gap: Utils.normalize(8),
   },
   icon: {
-    width: normalize(20),
-    height: normalize(20),
+    width: Utils.normalize(20),
+    height: Utils.normalize(20),
     resizeMode: 'contain',
   },
 });

@@ -9,21 +9,15 @@ import { useCallback, useEffect, useState } from 'react';
 import { useTheme } from '@shopify/restyle';
 import { createStyles, staticStyle } from './styles';
 import { Theme } from '@config/themes/themes';
-import { appIcons } from '@config/icons/iconPath';
-import { appImages } from '@config/images/imagePath';
 import { routeName } from '@config/constants/routes';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { RootNavigationProps } from '@models/navigationModel';
-import { MediumTextComponent } from '@components/Text/MediumText';
-import { OneToOneChatCard } from '@components/Cards/OneToOneChatCard';
 import FastImage from 'react-native-fast-image';
 import { useTranslation } from 'react-i18next';
 import firestore from '@react-native-firebase/firestore';
-import { ChatListEmptyCard } from '@components/Cards/ChatListEmptyCard';
-import { isDarkMode } from '@utils/theme/darkMode';
-import { appColors } from '@config/colors/colors';
-import { RegularTextComponent } from '@components/Text/RegularText';
-import { getProfilePicture } from '@utils/extractURI/extractImageURI';
+import { Utils } from '@utils/index';
+import { Config } from '@config/index';
+import { Components } from '@components/index';
 
 export const OneToOneChatScreen = ({
   navigation,
@@ -40,9 +34,9 @@ export const OneToOneChatScreen = ({
 
   const emptyCard = () => {
     return (
-      <ChatListEmptyCard
+      <Components.Cards.ChatListEmptyCard
         text={t('noChatsFound')}
-        image={appIcons.ic_noChatFound}
+        image={Config.appIcons.ic_noChatFound}
         tintColor={theme.colors.textPrimary}
       />
     );
@@ -51,7 +45,7 @@ export const OneToOneChatScreen = ({
   const renderItem = useCallback(
     ({ item }: any) => {
       return (
-        <OneToOneChatCard
+        <Components.Cards.OneToOneChatCard
           uid={data.userID}
           senderId={item.senderId}
           message={item.message}
@@ -205,7 +199,7 @@ export const OneToOneChatScreen = ({
               <FastImage
                 resizeMode={FastImage.resizeMode.contain}
                 tintColor={theme.colors.textPrimary}
-                source={appIcons.ic_backIcon}
+                source={Config.appIcons.ic_backIcon}
                 style={staticStyle.backIcon}
               />
             </TouchableOpacity>
@@ -214,13 +208,13 @@ export const OneToOneChatScreen = ({
                 onError={() => setImageError(true)}
                 source={
                   imageError
-                    ? appImages.img_defaultProfile
-                    : getProfilePicture(data.consultantImage)
+                    ? Config.appImages.img_defaultProfile
+                    : Utils.getProfilePicture(data.consultantImage)
                 }
                 style={staticStyle.profile}
               />
               <View>
-                <MediumTextComponent
+                <Components.Text.MediumTextComponent
                   text={data.consultantName}
                   textStyle={StyleSheet.flatten([
                     staticStyle.title,
@@ -230,7 +224,7 @@ export const OneToOneChatScreen = ({
                 {fields?.onlineStatus?.[
                   fields.users.filter((v: string) => v !== data.userID)
                 ] && (
-                  <RegularTextComponent
+                  <Components.Text.RegularTextComponent
                     text="online"
                     textStyle={StyleSheet.flatten([styles.title])}
                   />
@@ -240,7 +234,7 @@ export const OneToOneChatScreen = ({
           </View>
           <TouchableOpacity style={staticStyle.buttons} activeOpacity={0.7}>
             <FastImage
-              source={appIcons.ic_more}
+              source={Config.appIcons.ic_more}
               style={staticStyle.moreIcon}
               tintColor={theme.colors.textPrimary}
               resizeMode={FastImage.resizeMode.contain}
@@ -278,7 +272,7 @@ export const OneToOneChatScreen = ({
               style={staticStyle.bottomButton}
             >
               <FastImage
-                source={appIcons.ic_addFile}
+                source={Config.appIcons.ic_addFile}
                 style={staticStyle.buttons}
               />
             </TouchableOpacity>
@@ -290,7 +284,7 @@ export const OneToOneChatScreen = ({
               value={text ?? ''}
               onChangeText={setText}
               placeholderTextColor={
-                isDarkMode(theme) ? appColors.app_FFFFFF : appColors.app_212121
+                Utils.isDarkMode(theme) ? Config.appColors.app_FFFFFF : Config.appColors.app_212121
               }
             />
             <TouchableOpacity
@@ -302,7 +296,7 @@ export const OneToOneChatScreen = ({
               ])}
             >
               <FastImage
-                source={appIcons.ic_sendArrow}
+                source={Config.appIcons.ic_sendArrow}
                 style={staticStyle.sendIcon}
               />
             </TouchableOpacity>

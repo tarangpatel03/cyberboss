@@ -1,16 +1,12 @@
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { Theme } from '@config/themes/themes';
 import { useTheme } from '@shopify/restyle';
-import normalize from '@utils/normalize/normalize';
-import { MediumTextComponent } from '@components/Text/MediumText';
-import { RegularTextComponent } from '@components/Text/RegularText';
-import { appIcons } from '@config/icons/iconPath';
-import { formatBooking } from '@utils/format/formatDate';
-import { appImages } from '@config/images/imagePath';
+import {Utils} from '@utils/index';
+import { Components } from '@components/index';
 import FastImage from 'react-native-fast-image';
 import { memo, useState } from 'react';
 import { TConsultantModel } from '@models/formattedAPI/tConsultant';
-import { getProfilePicture } from '@utils/extractURI/extractImageURI';
+import { Config } from '@config/index';
 
 type ConsultantListCardProps = {
   data: TConsultantModel;
@@ -37,9 +33,9 @@ export const ConsultantListCard = memo(
             style={staticStyle.profilePicture}
             source={
               profilePictureError
-                ? appImages.img_defaultProfile
-                : getProfilePicture(data.profilePicture) ??
-                  appImages.img_defaultProfile
+                ? Config.appImages.img_defaultProfile
+                : Utils.getProfilePicture(data.profilePicture) ??
+                  Config.appImages.img_defaultProfile
             }
             onError={() => setProfilePictureError(true)}
           />
@@ -49,8 +45,8 @@ export const ConsultantListCard = memo(
               styles.ratingContainer,
             ])}
           >
-            <FastImage source={appIcons.ic_star} style={staticStyle.starIcon} />
-            <MediumTextComponent
+            <FastImage source={Config.appIcons.ic_star} style={staticStyle.starIcon} />
+            <Components.Text.MediumTextComponent
               text={`${data.rating}`}
               textStyle={StyleSheet.flatten([
                 staticStyle.ratingText,
@@ -60,7 +56,7 @@ export const ConsultantListCard = memo(
           </View>
         </View>
         <View style={staticStyle.detailContainer}>
-          <MediumTextComponent
+          <Components.Text.MediumTextComponent
             text={data.name}
             textStyle={StyleSheet.flatten([staticStyle.name, styles.name])}
           />
@@ -68,11 +64,11 @@ export const ConsultantListCard = memo(
             {data.bookings > 0 && (
               <View style={staticStyle.detailLine}>
                 <FastImage
-                  source={appIcons.ic_check}
+                  source={Config.appIcons.ic_check}
                   style={staticStyle.icons}
                 />
-                <RegularTextComponent
-                  text={formatBooking(data.bookings)}
+                <Components.Text.RegularTextComponent
+                  text={Utils.formatBooking(data.bookings)}
                   textStyle={StyleSheet.flatten([
                     staticStyle.detailText,
                     styles.detailText,
@@ -82,10 +78,10 @@ export const ConsultantListCard = memo(
             )}
             <View style={staticStyle.detailLine}>
               <FastImage
-                source={appIcons.ic_experience}
+                source={Config.appIcons.ic_experience}
                 style={staticStyle.icons}
               />
-              <RegularTextComponent
+              <Components.Text.RegularTextComponent
                 text={`Exp: ${data.experienceYear} Years`}
                 textStyle={StyleSheet.flatten([
                   staticStyle.detailText,
@@ -102,16 +98,16 @@ export const ConsultantListCard = memo(
 
 const staticStyle = StyleSheet.create({
   container: {
-    borderRadius: normalize(12),
-    padding: normalize(12),
-    gap: normalize(16),
+    borderRadius: Utils.normalize(12),
+    padding: Utils.normalize(12),
+    gap: Utils.normalize(16),
     borderWidth: 0.75,
     flexDirection: 'row',
     alignItems: 'center',
   },
   profilePictureContainer: {
-    width: normalize(80),
-    height: normalize(89),
+    width: Utils.normalize(80),
+    height: Utils.normalize(89),
   },
   ratingContainer: {
     flexDirection: 'row',
@@ -119,42 +115,42 @@ const staticStyle = StyleSheet.create({
     alignSelf: 'center',
     position: 'absolute',
     borderWidth: 1,
-    bottom: normalize(0, 'height'),
-    gap: normalize(3),
-    borderRadius: normalize(27),
-    paddingVertical: normalize(3, 'height'),
-    paddingHorizontal: normalize(8),
+    bottom: Utils.normalize(0, 'height'),
+    gap: Utils.normalize(3),
+    borderRadius: Utils.normalize(27),
+    paddingVertical: Utils.normalize(3, 'height'),
+    paddingHorizontal: Utils.normalize(8),
   },
   profilePicture: {
-    width: normalize(80),
-    height: normalize(80),
-    borderRadius: normalize(40),
+    width: Utils.normalize(80),
+    height: Utils.normalize(80),
+    borderRadius: Utils.normalize(40),
   },
   name: {
-    fontSize: normalize(16),
+    fontSize: Utils.normalize(16),
     fontWeight: '500',
   },
   detailText: {
-    fontSize: normalize(14),
+    fontSize: Utils.normalize(14),
     fontWeight: '400',
   },
   detailContainer: {
-    gap: normalize(12, 'height'),
+    gap: Utils.normalize(12, 'height'),
   },
   detailLine: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: normalize(8),
+    gap: Utils.normalize(8),
   },
   ratingText: {
-    fontSize: normalize(10),
+    fontSize: Utils.normalize(10),
     fontWeight: '500',
   },
   detailLineContainer: {
-    gap: normalize(8),
+    gap: Utils.normalize(8),
   },
-  starIcon: { width: normalize(10), height: normalize(10) },
-  icons: { width: normalize(14), height: normalize(14) },
+  starIcon: { width: Utils.normalize(10), height: Utils.normalize(10) },
+  icons: { width: Utils.normalize(14), height: Utils.normalize(14) },
 });
 
 const createStyles = (theme: Theme) =>

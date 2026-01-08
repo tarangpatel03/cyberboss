@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { Theme } from '@config/themes/themes';
-import normalize from '@utils/normalize/normalize';
+import {Utils} from '@utils/index';
 
 export const staticStyle = StyleSheet.create({
   container: {
@@ -8,21 +8,21 @@ export const staticStyle = StyleSheet.create({
   },
   subContainer: {
     flex: 1,
-    paddingTop: normalize(16),
-    paddingHorizontal: normalize(12),
+    paddingTop: Utils.normalize(16),
+    paddingHorizontal: Utils.normalize(12),
   },
   notificationList: {
-    paddingVertical: normalize(20),
+    paddingVertical: Utils.normalize(20),
   },
   shimmerContainer: {
     width: '100%',
-    height: normalize(80),
-    borderRadius: normalize(8),
-    marginBottom: normalize(16),
+    height: Utils.normalize(80),
+    borderRadius: Utils.normalize(8),
+    marginBottom: Utils.normalize(16),
   },
   listItems: {
     flexGrow: 1,
-    gap: normalize(12),
+    gap: Utils.normalize(12),
   },
 });
 

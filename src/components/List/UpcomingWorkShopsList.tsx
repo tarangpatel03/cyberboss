@@ -1,10 +1,10 @@
 import { useTranslation } from 'react-i18next';
 import FastImage from 'react-native-fast-image';
-import { appIcons } from '@config/icons/iconPath';
-import { MediumTextComponent } from '@components/Text/MediumText';
+import { Components } from '@components/index';
 import { staticStyle } from '@screens/client/Subscription/styles';
 import { ListRenderItem, View, StyleSheet, FlatList } from 'react-native';
 import { TSubscriptionWorkshop } from '@models/formattedAPI/tclient';
+import { Config } from '@config/index';
 
 type UpcomingWorkshopsListProps = {
   workShopData: TSubscriptionWorkshop[] | undefined;
@@ -16,15 +16,15 @@ export const UpcomingWorkShopsList = (props: UpcomingWorkshopsListProps) => {
   return (
     <View style={staticStyle.benefits}>
       <View style={staticStyle.benefitLine}>
-        <FastImage source={appIcons.ic_energy} style={staticStyle.energyIcon} />
-        <MediumTextComponent
+        <FastImage source={Config.appIcons.ic_energy} style={staticStyle.energyIcon} />
+        <Components.Text.MediumTextComponent
           text={t('upcomingWorkshops')}
           textStyle={StyleSheet.flatten([
             staticStyle.text16500,
             staticStyle.latterSpace,
           ])}
         />
-        <FastImage source={appIcons.ic_energy} style={staticStyle.energyIcon} />
+        <FastImage source={Config.appIcons.ic_energy} style={staticStyle.energyIcon} />
       </View>
       <FlatList
         contentContainerStyle={staticStyle.listItems}

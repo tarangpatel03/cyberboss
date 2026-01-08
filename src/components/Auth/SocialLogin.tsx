@@ -1,10 +1,9 @@
 import { useTheme } from '@shopify/restyle';
 import { useTranslation } from 'react-i18next';
 import { Theme } from '@config/themes/themes';
-import { appIcons } from '@config/icons/iconPath';
+import { Config } from '@config/index';
 import { View, StyleSheet, Platform } from 'react-native';
-import { RegularTextComponent } from '@components/Text/RegularText';
-import { CircularIconButtonComponent } from '@components/Buttons/CircularIconButton';
+import { Components } from '@components/index';
 import { createStyles, staticStyle } from '@screens/common/auth/LogIn/styles';
 
 type SocialLogInProps = {
@@ -27,7 +26,7 @@ export const SocialLogIn = (props: SocialLogInProps) => {
         ])}
       >
         <View style={StyleSheet.flatten([staticStyle.line, styles.line])} />
-        <RegularTextComponent
+        <Components.Text.RegularTextComponent
           text={t('continueWith')}
           textStyle={StyleSheet.flatten([
             staticStyle.subTitle,
@@ -39,23 +38,23 @@ export const SocialLogIn = (props: SocialLogInProps) => {
       </View>
       <View style={staticStyle.bottomButtons}>
         {Platform.OS === 'ios' ? (
-          <CircularIconButtonComponent
+          <Components.Buttons.CircularIconButton
             buttonStyle={StyleSheet.flatten([
               StyleSheet.flatten([staticStyle.button, styles.button]),
             ])}
-            iconPath={appIcons.ic_apple}
+            iconPath={Config.appIcons.ic_apple}
             iconStyle={staticStyle.buttonIcon}
             tintColor={props.getTintColor()}
             onPress={props.handleAppleLogIn}
           />
         ) : null}
         <View style={staticStyle.bottomButtons}>
-          <CircularIconButtonComponent
+          <Components.Buttons.CircularIconButton
             buttonStyle={StyleSheet.flatten([
               staticStyle.button,
               styles.button,
             ])}
-            iconPath={appIcons.ic_google}
+            iconPath={Config.appIcons.ic_google}
             iconStyle={staticStyle.googleButtonIcon}
             onPress={props.handleGoogleLogIn}
           />

@@ -6,22 +6,15 @@ import { useTranslation } from 'react-i18next';
 import FastImage from 'react-native-fast-image';
 import { createStyles, staticStyle } from '@screens/common/auth/LogIn/styles';
 import { Theme } from '@config/themes/themes';
-import { appIcons } from '@config/icons/iconPath';
-import { appColors } from '@config/colors/colors';
-import { appImages } from '@config/images/imagePath';
-import { isDarkMode } from '@utils/theme/darkMode';
 import { setUser, setUserData } from '@redux/features/userSlice';
-import { showErrorToast } from '@utils/toast/toast';
 import { routeName } from '@config/constants/routes';
 import { RootNavigationProps } from '@models/navigationModel';
-import { validateEmail } from '@utils/validation/validation';
-import { LogInInputsContainer } from '@components/Input/LogInInputContainer';
-import { AuthFooterAction } from '@components/Buttons/HorizontalTextButton';
 import { googleLogIn, signIn } from '@services/firebase/auth/auth';
 import { RootState } from '@redux/store';
 import { appleLogIn } from '@services/firebase/auth/auth';
-import { AuthTitle } from '@components/Auth/AuthTitle';
-import { SocialLogIn } from '@components/Auth/SocialLogin';
+import { Utils } from '@utils/index';
+import { Config } from '@config/index';
+import { Components } from '@components/index';
 
 export const LogInScreen = ({
   navigation,
@@ -77,15 +70,15 @@ export const LogInScreen = ({
       }
     } catch (error) {
       console.log(error);
-      showErrorToast({ title: 'Apple login failed' });
+      Utils.showErrorToast({ title: 'Apple login failed' });
     }
   };
 
   const handleSignIn = async () => {
     try {
       setButtonText('loading');
-      // if (validateEmail(email) && validatePassword(password)) {
-      if (validateEmail(email)) {
+      // if (Utils.validateEmail(email) && Utils.validatePassword(password)) {
+      if (Utils.validateEmail(email)) {
         const res = await signIn(email, password);
         if (res) {
           dispatch(setUser(res.userToken.access_token));
@@ -98,7 +91,7 @@ export const LogInScreen = ({
           navigateToHomeScreen();
         }
       } else {
-        showErrorToast({
+        Utils.showErrorToast({
           title: t('invalidEmailOrPassword'),
         });
         setButtonText(t('logIn'));
@@ -123,8 +116,8 @@ export const LogInScreen = ({
   };
 
   const getTintColor = () => {
-    if (isDarkMode(theme)) return appColors.app_FFFFFF;
-    else return appColors.app_212121;
+    if (Utils.isDarkMode(theme)) return Config.appColors.app_FFFFFF;
+    else return Config.appColors.app_212121;
   };
 
   const getIconStyle = () => {
@@ -133,8 +126,8 @@ export const LogInScreen = ({
   };
 
   const getIcon = () => {
-    if (passVisible) return appIcons.ic_showPassword;
-    else return appIcons.ic_hiddenPassword;
+    if (passVisible) return Config.appIcons.ic_showPassword;
+    else return Config.appIcons.ic_hiddenPassword;
   };
 
   return (
@@ -149,22 +142,22 @@ export const LogInScreen = ({
         >
           <FastImage
             style={staticStyle.backIcon}
-            source={appIcons.ic_backIcon}
-            tintColor={appColors.app_FFFFFF}
+            source={Config.appIcons.ic_backIcon}
+            tintColor={Config.appColors.app_FFFFFF}
             resizeMode={FastImage.resizeMode.contain}
           />
         </TouchableOpacity>
         <FastImage
-          source={appImages.img_authCard}
+          source={Config.appImages.img_authCard}
           style={staticStyle.topCard}
         />
         <View
           style={StyleSheet.flatten([staticStyle.container, styles.container])}
         >
           <View style={staticStyle.mainContainer}>
-            <AuthTitle title={'welcomeBack'} subTitle={'logInLine'} />
+            <Components.Auth.AuthTitle title={'welcomeBack'} subTitle={'logInLine'} />
             <View style={staticStyle.inputs}>
-              <LogInInputsContainer
+              <Components.Inputs.LogInInputsContainer
                 buttonText={buttonText}
                 email={email}
                 setEmail={setEmail}
@@ -177,20 +170,20 @@ export const LogInScreen = ({
                 getIconStyle={getIconStyle}
                 getIcon={getIcon}
               />
-              <AuthFooterAction
+              <Components.Buttons.AuthFooterAction
                 subTitle={'reset'}
                 title={'forgotPassword'}
                 navigateTo={navigateToForgotPassword}
               />
             </View>
-            <SocialLogIn
+            <Components.Auth.SocialLogIn
               handleAppleLogIn={handleAppleLogIn}
               handleGoogleLogIn={handleGoogleLogIn}
               getTintColor={getTintColor}
             />
           </View>
         </View>
-        <AuthFooterAction
+        <Components.Buttons.AuthFooterAction
           subTitle={'signUp'}
           title={"don'tHaveAccount"}
           navigateTo={navigateToSignUp}

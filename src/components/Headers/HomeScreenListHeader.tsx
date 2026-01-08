@@ -1,7 +1,6 @@
 import { ListRenderItem, StyleSheet, View } from 'react-native';
 import { createStyles, staticStyle } from '@screens/client/Home/styles';
-import { HomeScreenWorkshopList } from '@components/List/HomeScreenWorkshopList';
-import { MediumTextComponent } from '@components/Text/MediumText';
+import { Components } from '@components/index';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '@shopify/restyle';
 import { Theme } from '@config/themes/themes';
@@ -19,7 +18,7 @@ type HomeScreenListHeaderProps = {
   renderBookingItem: ListRenderItem<THomeBookingModel>;
 };
 
-export const HomeScreenListHeaderComponent = (
+export const HomeScreenListHeader = (
   props: HomeScreenListHeaderProps,
 ) => {
   const { t } = useTranslation();
@@ -30,7 +29,7 @@ export const HomeScreenListHeaderComponent = (
   return (
     <View style={staticStyle.container}>
       {isPro && props.homeData.workshops.length !== 0 && (
-        <HomeScreenWorkshopList
+        <Components.List.HomeScreenWorkshopList
           data={props.homeData.workshops}
           type={t('workshop')}
           navigateToWorkshop={props.navigateToWorkshop}
@@ -38,14 +37,14 @@ export const HomeScreenListHeaderComponent = (
         />
       )}
       {props.homeData.bookings.length !== 0 && (
-        <HomeScreenWorkshopList
+        <Components.List.HomeScreenWorkshopList
           data={props.homeData.bookings}
           type={t('bookingHistory')}
           navigateToWorkshop={props.navigateToHistory}
           renderItem={props.renderBookingItem}
         />
       )}
-      <MediumTextComponent
+      <Components.Text.MediumTextComponent
         text={t('browseServices')}
         textStyle={StyleSheet.flatten([
           staticStyle.header,

@@ -1,12 +1,11 @@
 import { StyleSheet, View } from 'react-native';
 import { Theme } from '@config/themes/themes';
 import { useTheme } from '@shopify/restyle';
-import normalize from '@utils/normalize/normalize';
-import { appIcons } from '@config/icons/iconPath';
-import { RegularTextComponent } from '@components/Text/RegularText';
+import {Utils} from '@utils/index';
+import { Components } from '@components/index';
 import FastImage from 'react-native-fast-image';
 import { memo } from 'react';
-import { formatFirebaseTimestamp } from '@utils/format/formatDate';
+import { Config } from '@config/index';
 
 type OneOnOneCardProps = {
   senderId: string;
@@ -29,7 +28,7 @@ export const OneToOneChatCard = memo((props: OneOnOneCardProps) => {
       {props.senderId !== props.uid && (
         <FastImage
           tintColor={theme.colors.bgPrimary}
-          source={appIcons.ic_reply}
+          source={Config.appIcons.ic_reply}
           style={staticStyle.receiveIcon}
         />
       )}
@@ -44,7 +43,7 @@ export const OneToOneChatCard = memo((props: OneOnOneCardProps) => {
             : styles.receiveContainer,
         ])}
       >
-        <RegularTextComponent
+        <Components.Text.RegularTextComponent
           text={props.message}
           noOfLines={Infinity}
           textStyle={StyleSheet.flatten([
@@ -54,8 +53,8 @@ export const OneToOneChatCard = memo((props: OneOnOneCardProps) => {
               : styles.messageText,
           ])}
         />
-        <RegularTextComponent
-          text={formatFirebaseTimestamp(props.timestamp)}
+        <Components.Text.RegularTextComponent
+          text={Utils.formatFirebaseTimestamp(props.timestamp)}
           textStyle={StyleSheet.flatten([
             staticStyle.timeText,
             props.senderId === props.uid ? styles.timeText : styles.receiveTime,
@@ -64,7 +63,7 @@ export const OneToOneChatCard = memo((props: OneOnOneCardProps) => {
       </View>
       {props.senderId === props.uid && (
         <FastImage
-          source={appIcons.ic_yourSend}
+          source={Config.appIcons.ic_yourSend}
           tintColor={theme.colors.primary}
           style={staticStyle.sendIcon}
         />
@@ -75,14 +74,14 @@ export const OneToOneChatCard = memo((props: OneOnOneCardProps) => {
 
 const staticStyle = StyleSheet.create({
   sendContainer: {
-    paddingLeft: normalize(24),
-    paddingBottom: normalize(12, 'height'),
+    paddingLeft: Utils.normalize(24),
+    paddingBottom: Utils.normalize(12, 'height'),
     alignSelf: 'flex-end',
     flexDirection: 'row',
   },
   receiveContainer: {
-    paddingRight: normalize(24),
-    paddingBottom: normalize(12, 'height'),
+    paddingRight: Utils.normalize(24),
+    paddingBottom: Utils.normalize(12, 'height'),
     flexDirection: 'row',
     alignSelf: 'flex-start',
   },
@@ -90,9 +89,9 @@ const staticStyle = StyleSheet.create({
     alignSelf: 'center',
   },
   centerContainer: {
-    paddingVertical: normalize(8, 'height'),
-    paddingHorizontal: normalize(12),
-    gap: normalize(6, 'height'),
+    paddingVertical: Utils.normalize(8, 'height'),
+    paddingHorizontal: Utils.normalize(12),
+    gap: Utils.normalize(6, 'height'),
   },
   sendRadius: {
     borderTopLeftRadius: 10,
@@ -105,25 +104,25 @@ const staticStyle = StyleSheet.create({
     borderBottomRightRadius: 10,
   },
   messageText: {
-    fontSize: normalize(16),
+    fontSize: Utils.normalize(16),
     fontWeight: '400',
   },
   timeText: {
-    fontSize: normalize(12),
+    fontSize: Utils.normalize(12),
     fontWeight: '400',
     alignSelf: 'flex-end',
   },
   sendIcon: {
     top: 0,
-    left: normalize(-1),
-    width: normalize(8),
-    height: normalize(8),
+    left: Utils.normalize(-1),
+    width: Utils.normalize(8),
+    height: Utils.normalize(8),
   },
   receiveIcon: {
     top: 0,
-    right: normalize(-1),
-    width: normalize(8),
-    height: normalize(8),
+    right: Utils.normalize(-1),
+    width: Utils.normalize(8),
+    height: Utils.normalize(8),
   },
 });
 

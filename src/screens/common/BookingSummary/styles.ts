@@ -1,62 +1,62 @@
 import { StyleSheet } from 'react-native';
 import { Theme } from '@config/themes/themes';
-import normalize from '@utils/normalize/normalize';
+import { Utils } from '@utils/index';
 
 export const staticStyle = StyleSheet.create({
   container: {
     flex: 1,
   },
   header: {
-    paddingBottom: normalize(12),
+    paddingBottom: Utils.normalize(12),
   },
   innerContainer: {
-    paddingHorizontal: normalize(12),
-    paddingTop: normalize(12),
-    gap: normalize(12),
+    paddingHorizontal: Utils.normalize(12),
+    paddingTop: Utils.normalize(12),
+    gap: Utils.normalize(12),
   },
   titleText: {
-    fontSize: normalize(14),
+    fontSize: Utils.normalize(14),
     fontWeight: '500',
   },
   downloadInvoice: {
-    gap: normalize(8),
+    gap: Utils.normalize(8),
     flexDirection: 'row',
     alignItems: 'center',
   },
   downloadIcon: {
-    width: normalize(15),
-    height: normalize(15),
+    width: Utils.normalize(15),
+    height: Utils.normalize(15),
   },
   buttonText: {
-    fontSize: normalize(16),
+    fontSize: Utils.normalize(16),
     fontWeight: '500',
   },
   subtitleText: {
-    fontSize: normalize(14),
+    fontSize: Utils.normalize(14),
     fontWeight: '400',
-    paddingLeft: normalize(3),
+    paddingLeft: Utils.normalize(3),
   },
   text: {
     alignSelf: 'flex-end',
   },
   card: {
-    borderRadius: normalize(12),
-    gap: normalize(16),
-    paddingHorizontal: normalize(12),
-    paddingVertical: normalize(16),
-    marginBottom: normalize(12),
+    borderRadius: Utils.normalize(12),
+    gap: Utils.normalize(16),
+    paddingHorizontal: Utils.normalize(12),
+    paddingVertical: Utils.normalize(16),
+    marginBottom: Utils.normalize(12),
   },
   rowLine: {
     flexDirection: 'row',
     alignItems: 'center',
   },
   padding8: {
-    padding: normalize(8),
+    padding: Utils.normalize(8),
   },
   input: {
-    padding: normalize(12),
-    borderRadius: normalize(10),
-    gap: normalize(12),
+    padding: Utils.normalize(12),
+    borderRadius: Utils.normalize(10),
+    gap: Utils.normalize(12),
   },
   horizontalCard: {
     flexDirection: 'row',
@@ -64,37 +64,37 @@ export const staticStyle = StyleSheet.create({
     justifyContent: 'space-between',
   },
   categoryIcon: {
-    width: normalize(16),
-    height: normalize(16),
+    width: Utils.normalize(16),
+    height: Utils.normalize(16),
     resizeMode: 'contain',
-    marginRight: normalize(12),
+    marginRight: Utils.normalize(12),
   },
   gradient: {
-    borderRadius: normalize(8),
+    borderRadius: Utils.normalize(8),
   },
   profileImage: {
-    width: normalize(48),
-    height: normalize(48),
-    borderRadius: normalize(25),
-    marginRight: normalize(8),
+    width: Utils.normalize(48),
+    height: Utils.normalize(48),
+    borderRadius: Utils.normalize(25),
+    marginRight: Utils.normalize(8),
   },
   fullLengthView: {
-    paddingLeft: normalize(2),
-    gap: normalize(8),
+    paddingLeft: Utils.normalize(2),
+    gap: Utils.normalize(8),
     flex: 1,
   },
   id: {
-    gap: normalize(8),
+    gap: Utils.normalize(8),
   },
   button: {
-    padding: normalize(12),
-    gap: normalize(12),
+    padding: Utils.normalize(12),
+    gap: Utils.normalize(12),
   },
   statusContainer: {
-    paddingVertical: normalize(6),
-    paddingHorizontal: normalize(12),
-    gap: normalize(6),
-    borderRadius: normalize(24),
+    paddingVertical: Utils.normalize(6),
+    paddingHorizontal: Utils.normalize(12),
+    gap: Utils.normalize(6),
+    borderRadius: Utils.normalize(24),
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
@@ -103,17 +103,17 @@ export const staticStyle = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
-    gap: normalize(8),
-    paddingVertical: normalize(12),
-    borderRadius: normalize(12),
+    gap: Utils.normalize(8),
+    paddingVertical: Utils.normalize(12),
+    borderRadius: Utils.normalize(12),
   },
   icon: {
-    width: normalize(14),
-    height: normalize(14),
-    borderRadius: normalize(10),
+    width: Utils.normalize(14),
+    height: Utils.normalize(14),
+    borderRadius: Utils.normalize(10),
   },
   tinyText: {
-    fontSize: normalize(12),
+    fontSize: Utils.normalize(12),
     fontWeight: '500',
   },
   separator: {
@@ -121,7 +121,7 @@ export const staticStyle = StyleSheet.create({
   },
   fullWidth: {
     width: '107.5%',
-    left: normalize(-12),
+    left: Utils.normalize(-12),
   },
 });
 

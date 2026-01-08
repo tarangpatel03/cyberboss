@@ -1,7 +1,7 @@
 import RNCalendarEvents, { ISODateString } from 'react-native-calendar-events';
-import { showErrorToast } from '@utils/toast/toast';
-import { appText } from '@config/text/constantsText';
 import CalenderEvents from 'react-native-calendar-events';
+import { Utils } from '..';
+import { Config } from '@config/index';
 
 type AddToCalendarProps = {
   startDate: ISODateString;
@@ -28,9 +28,9 @@ export const addToCalendar = async ({
     return true;
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {
-    showErrorToast({
-      title: appText.somethingWentWrong,
-      subtitle: appText.pleaseTryAgain,
+    Utils.showErrorToast({
+      title: Config.appText.somethingWentWrong,
+      subtitle: Config.appText.pleaseTryAgain,
     });
   }
 };

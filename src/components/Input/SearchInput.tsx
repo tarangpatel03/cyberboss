@@ -9,11 +9,10 @@ import {
   ViewStyle,
 } from 'react-native';
 import { Theme } from '@config/themes/themes';
-import normalize from '@utils/normalize/normalize';
-import { appColors } from '@config/colors/colors';
+import {Utils} from '@utils/index';
 import { Dispatch, SetStateAction } from 'react';
-import { appIcons } from '@config/icons/iconPath';
 import FastImage from 'react-native-fast-image';
+import { Config } from '@config/index';
 
 type BorderInputComponentProps = {
   placeholder: string;
@@ -41,7 +40,7 @@ export const SearchBorderInputComponent = (
       <TouchableOpacity activeOpacity={0.7} onPress={props.onIconPress}>
         <FastImage
           resizeMode={FastImage.resizeMode.contain}
-          source={props.icon ?? appIcons.ic_search}
+          source={props.icon ?? Config.appIcons.ic_search}
           tintColor={theme.colors.textPrimary}
           style={staticStyle.icon}
         />
@@ -53,7 +52,7 @@ export const SearchBorderInputComponent = (
         style={StyleSheet.flatten([staticStyle.input, styles.input])}
         value={props.value}
         onChangeText={props.setValue}
-        placeholderTextColor={appColors.app_8C8694}
+        placeholderTextColor={Config.appColors.app_8C8694}
       />
     </View>
   );
@@ -63,31 +62,31 @@ const staticStyle = StyleSheet.create({
   container: {
     width: '100%',
     borderWidth: 1,
-    borderRadius: normalize(12),
+    borderRadius: Utils.normalize(12),
     alignItems: 'center',
     flexDirection: 'row',
-    height: normalize(40, 'height'),
-    paddingHorizontal: normalize(12),
+    height: Utils.normalize(40, 'height'),
+    paddingHorizontal: Utils.normalize(12),
   },
   icon: {
-    width: normalize(24),
-    height: normalize(24),
+    width: Utils.normalize(24),
+    height: Utils.normalize(24),
     resizeMode: 'contain',
   },
   input: {
     width: '100%',
-    fontSize: normalize(16),
+    fontSize: Utils.normalize(16),
     fontWeight: '400',
-    paddingHorizontal: normalize(12),
-    paddingVertical: normalize(8),
+    paddingHorizontal: Utils.normalize(12),
+    paddingVertical: Utils.normalize(8),
     justifyContent: 'center',
   },
   placeHolder: {
     position: 'absolute',
-    top: normalize(0),
-    fontSize: normalize(12),
+    top: Utils.normalize(0),
+    fontSize: Utils.normalize(12),
     fontWeight: '400',
-    left: normalize(12),
+    left: Utils.normalize(12),
   },
 });
 

@@ -1,17 +1,14 @@
 import { useTheme } from '@shopify/restyle';
 import { Modal, StyleSheet, View } from 'react-native';
 import { Theme } from '@config/themes/themes';
-import normalize from '@utils/normalize/normalize';
-import { PrimaryButtonComponent } from '@components/Buttons/PrimaryButton';
-import { MediumTextComponent } from '@components/Text/MediumText';
-import { ThemeSelectionCard } from '@components/Cards/ThemeSelectionCard';
+import {Utils} from '@utils/index';
+import { Components } from '@components/index';
 import { useState } from 'react';
 import { setThemeMode, ThemeMode } from '@redux/features/themeSlice';
-import { CircularIconButtonComponent } from '@components/Buttons/CircularIconButton';
-import { appIcons } from '@config/icons/iconPath';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@redux/store';
 import { useTranslation } from 'react-i18next';
+import { Config } from '@config/index';
 
 type ThemeModalProps = {
   isVisible: boolean;
@@ -44,8 +41,8 @@ export const ThemeModal = ({ isVisible, onclose }: ThemeModalProps) => {
       <View
         style={StyleSheet.flatten([staticStyle.container, styles.container])}
       >
-        <CircularIconButtonComponent
-          iconPath={appIcons.ic_cancel}
+        <Components.Buttons.CircularIconButton
+          iconPath={Config.appIcons.ic_cancel}
           buttonStyle={StyleSheet.flatten([
             staticStyle.exitBtn,
             styles.exitBtn,
@@ -59,7 +56,7 @@ export const ThemeModal = ({ isVisible, onclose }: ThemeModalProps) => {
           ])}
         >
           <View style={StyleSheet.flatten([staticStyle.title, styles.title])}>
-            <MediumTextComponent
+            <Components.Text.MediumTextComponent
               text={t('appearance')}
               textStyle={StyleSheet.flatten([
                 staticStyle.titleText,
@@ -68,7 +65,7 @@ export const ThemeModal = ({ isVisible, onclose }: ThemeModalProps) => {
             />
           </View>
           <View style={staticStyle.themeOptions}>
-            <ThemeSelectionCard
+            <Components.Cards.ThemeSelectionCard
               isSelected={selectedTheme === ThemeMode.Light}
               onPress={() => setSelectedTheme(ThemeMode.Light)}
               title={t('lightTheme')}
@@ -76,7 +73,7 @@ export const ThemeModal = ({ isVisible, onclose }: ThemeModalProps) => {
             <View
               style={StyleSheet.flatten([staticStyle.separator, styles.title])}
             />
-            <ThemeSelectionCard
+            <Components.Cards.ThemeSelectionCard
               isSelected={selectedTheme === ThemeMode.Dark}
               onPress={() => setSelectedTheme(ThemeMode.Dark)}
               title={t('darkTheme')}
@@ -84,14 +81,14 @@ export const ThemeModal = ({ isVisible, onclose }: ThemeModalProps) => {
             <View
               style={StyleSheet.flatten([staticStyle.separator, styles.title])}
             />
-            <ThemeSelectionCard
+            <Components.Cards.ThemeSelectionCard
               isSelected={selectedTheme === ThemeMode.Device}
               onPress={() => setSelectedTheme(ThemeMode.Device)}
               title={t('deviceTheme')}
             />
           </View>
           <View style={staticStyle.button}>
-            <PrimaryButtonComponent
+            <Components.Buttons.PrimaryButton
               onPress={changeTheme}
               text={t('savePreference')}
             />
@@ -107,47 +104,47 @@ const staticStyle = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'flex-end',
-    gap: normalize(16, 'height'),
+    gap: Utils.normalize(16, 'height'),
   },
   menu: {
     width: '100%',
-    gap: normalize(12),
+    gap: Utils.normalize(12),
     borderTopLeftRadius: 12,
     borderTopRightRadius: 12,
   },
   titleText: {
-    fontSize: normalize(18),
+    fontSize: Utils.normalize(18),
     fontWeight: '500',
   },
   title: {
     borderBottomWidth: 1,
-    paddingHorizontal: normalize(12),
-    paddingVertical: normalize(16, 'height'),
+    paddingHorizontal: Utils.normalize(12),
+    paddingVertical: Utils.normalize(16, 'height'),
   },
   button: {
-    paddingBottom: normalize(40),
-    paddingHorizontal: normalize(12),
+    paddingBottom: Utils.normalize(40),
+    paddingHorizontal: Utils.normalize(12),
   },
   themeOptions: {
     alignItems: 'center',
-    gap: normalize(8, 'height'),
-    paddingHorizontal: normalize(12),
+    gap: Utils.normalize(8, 'height'),
+    paddingHorizontal: Utils.normalize(12),
   },
   separator: {
     width: '100%',
     borderWidth: 0.5,
   },
   exitBtn: {
-    borderRadius: normalize(30),
+    borderRadius: Utils.normalize(30),
     alignSelf: 'center',
     alignItems: 'center',
-    width: normalize(40),
-    height: normalize(40),
+    width: Utils.normalize(40),
+    height: Utils.normalize(40),
     justifyContent: 'center',
   },
   icon: {
-    width: normalize(12),
-    height: normalize(12),
+    width: Utils.normalize(12),
+    height: Utils.normalize(12),
   },
 });
 

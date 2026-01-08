@@ -7,11 +7,10 @@ import { useTranslation } from 'react-i18next';
 import { View, StyleSheet } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { Theme } from '@config/themes/themes';
-import { appIcons } from '@config/icons/iconPath';
-import { MediumTextComponent } from '@components/Text/MediumText';
-import { RegularTextComponent } from '@components/Text/RegularText';
+import { Components } from '@components/index';
 import { TBookingDetailsModel } from '@models/formattedAPI/tBookings';
-import { getFullDate } from '@utils/format/formatDate';
+import { Utils } from '@utils/index';
+import { Config } from '@config/index';
 
 type BookingStatusCardProps = {
   props: TBookingDetailsModel | undefined;
@@ -31,19 +30,19 @@ export const BookingStatusCard = ({ props }: BookingStatusCardProps) => {
       ])}
     >
       <View style={staticStyle.id}>
-        <MediumTextComponent
+        <Components.Text.MediumTextComponent
           textStyle={StyleSheet.flatten([
             staticStyle.titleText,
             styles.secondaryText,
           ])}
           text={`${t('bookingId')}: ${props?.bookingId}`}
         />
-        <RegularTextComponent
+        <Components.Text.RegularTextComponent
           textStyle={StyleSheet.flatten([
             staticStyle.subtitleText,
             styles.primaryText,
           ])}
-          text={getFullDate(props?.bookingDate ?? '')}
+          text={Utils.getFullDate(props?.bookingDate ?? '')}
         />
       </View>
       <View
@@ -55,12 +54,12 @@ export const BookingStatusCard = ({ props }: BookingStatusCardProps) => {
         <FastImage
           source={
             props?.status === 'Completed'
-              ? appIcons.ic_completed
-              : appIcons.ic_inProgress
+              ? Config.appIcons.ic_completed
+              : Config.appIcons.ic_inProgress
           }
           style={staticStyle.icon}
         />
-        <MediumTextComponent
+        <Components.Text.MediumTextComponent
           text={props?.status ?? ''}
           textStyle={StyleSheet.flatten([
             staticStyle.tinyText,

@@ -2,8 +2,7 @@ import { useTheme } from '@shopify/restyle';
 import { useTranslation } from 'react-i18next';
 import { View, StyleSheet } from 'react-native';
 import { Theme } from '@config/themes/themes';
-import { RegularTextComponent } from '@components/Text/RegularText';
-import { SemiBoldTextComponent } from '@components/Text/SemiBoldText';
+import { Components } from '@components/index';
 import { createStyles, staticStyle } from '@screens/common/auth/LogIn/styles';
 
 type AuthInTitleProps = {
@@ -18,11 +17,11 @@ export const AuthTitle = (props: AuthInTitleProps) => {
 
   return (
     <View style={staticStyle.titleContainer}>
-      <SemiBoldTextComponent
+      <Components.Text.SemiBoldTextComponent
         text={t(props.title)}
         textStyle={StyleSheet.flatten([staticStyle.title, styles.title])}
       />
-      <RegularTextComponent
+      <Components.Text.RegularTextComponent
         text={t(props.subTitle)}
         textStyle={StyleSheet.flatten([staticStyle.subTitle, styles.subTitle])}
       />

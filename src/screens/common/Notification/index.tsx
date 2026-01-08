@@ -8,17 +8,11 @@ import {
 import { Theme } from '@config/themes/themes';
 import { useTheme } from '@shopify/restyle';
 import { createStyles, staticStyle } from '@screens/common/Notification/styles';
-import { ScreenHeaderComponent } from '@components/Headers/ScreenHeader';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { routeName } from '@config/constants/routes';
 import { RootNavigationProps } from '@models/navigationModel';
-import { NotificationCard } from '@components/Cards/NotificationCard';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { getAPIData } from '@services/api/common/getCommonApi';
-import { ListEmptyCard } from '@components/Cards/ListEmptyCard';
-import { appImages } from '@config/images/imagePath';
-import { ListShimmer } from '@components/Skeleton/ListShimmer';
-import { endPoints } from '@config/endPoint/apiEndPoint';
 import { useTranslation } from 'react-i18next';
 import { ApiNotificationModel } from '@models/api/notification';
 import {
@@ -26,6 +20,8 @@ import {
   transformNotificationModel,
 } from '@models/formattedAPI/tNotification';
 import { ApiResponse, ListPayload } from '@models/apiModel';
+import { Config } from '@config/index';
+import { Components } from '@components/index';
 
 export const NotificationScreen = ({
   navigation,
@@ -48,7 +44,7 @@ export const NotificationScreen = ({
       }
       const response = await getAPIData<
         ApiResponse<ListPayload<ApiNotificationModel>>
-      >(endPoints.notification, pageToLoad);
+      >(Config.endPoints.notification, pageToLoad);
       if (!response) return;
       const data: ApiNotificationModel[] = response.payload.data;
       const transformedData: TNotificationModel[] = data
@@ -64,9 +60,9 @@ export const NotificationScreen = ({
   };
   const emptyCard = () => {
     return (
-      <ListEmptyCard
+      <Components.Cards.ListEmptyCard
         text={t('noNotification')}
-        image={appImages.img_noNotification}
+        image={Config.appImages.img_noNotification}
         tintColor={theme.colors.textPrimary}
       />
     );
@@ -78,7 +74,7 @@ export const NotificationScreen = ({
 
   const renderItem: ListRenderItem<TNotificationModel> = useCallback(
     ({ item }) => {
-      return <NotificationCard data={item} />;
+      return <Components.Cards.NotificationCard data={item} />;
     },
     [],
   );
@@ -99,12 +95,12 @@ export const NotificationScreen = ({
       <SafeAreaView
         style={StyleSheet.flatten([staticStyle.container, styles.bgPrimary])}
       >
-        <ScreenHeaderComponent
+        <Components.Headers.ScreenHeader
           onPress={goBack}
           headerText={t('notifications')}
         />
         {loader && (
-          <ListShimmer containerStyle={staticStyle.shimmerContainer} />
+          <Components.Skeleton.ListShimmer containerStyle={staticStyle.shimmerContainer} />
         )}
         {!loader && (
           <View style={staticStyle.subContainer}>

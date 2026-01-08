@@ -5,20 +5,12 @@ import { StyleSheet, View } from 'react-native';
 import { routeName } from '@config/constants/routes';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { RootNavigationProps } from '@models/navigationModel';
-import { ScreenHeaderComponent } from '@components/Headers/ScreenHeader';
-import { PrimaryButtonComponent } from '@components/Buttons/PrimaryButton';
-import { appIcons } from '@config/icons/iconPath';
-import { SemiBoldTextComponent } from '@components/Text/SemiBoldText';
-import { RegularTextComponent } from '@components/Text/RegularText';
 import LinearGradient from 'react-native-linear-gradient';
-import { MediumTextComponent } from '@components/Text/MediumText';
-import {
-  getGradientColor,
-  getServiceImage,
-} from '@utils/gradientColor/gradientColor';
-import { appImages } from '@config/images/imagePath';
 import FastImage from 'react-native-fast-image';
 import { useTranslation } from 'react-i18next';
+import { Utils } from '@utils/index';
+import { Config } from '@config/index';
+import { Components } from '@components/index';
 
 export const BookingConfirmScreen = ({
   navigation,
@@ -38,22 +30,22 @@ export const BookingConfirmScreen = ({
       <SafeAreaView
         style={StyleSheet.flatten([staticStyle.container, styles.bgPrimary])}
       >
-        <ScreenHeaderComponent onPress={goBack} />
+        <Components.Headers.ScreenHeader onPress={goBack} />
         <View style={staticStyle.mainContainer}>
           <View style={staticStyle.confirmCard}>
             <FastImage
-              source={appIcons.ic_confirm}
+              source={Config.appIcons.ic_confirm}
               style={staticStyle.confirmIcon}
             />
             <View style={staticStyle.confirmLine}>
-              <SemiBoldTextComponent
+              <Components.Text.SemiBoldTextComponent
                 text={t('bookingConfirmed')}
                 textStyle={StyleSheet.flatten([
                   staticStyle.confirmText,
                   styles.textPrimary,
                 ])}
               />
-              <RegularTextComponent
+              <Components.Text.RegularTextComponent
                 text={t('consultantWillReachOutToYouViaInAppChat')}
                 textStyle={StyleSheet.flatten([
                   staticStyle.subtitleText,
@@ -73,7 +65,7 @@ export const BookingConfirmScreen = ({
                   styles.bottomBorder,
                 ])}
               >
-                <MediumTextComponent
+                <Components.Text.MediumTextComponent
                   text={`${t('bookingId')}: #RTX5090`}
                   textStyle={StyleSheet.flatten([
                     staticStyle.titleText,
@@ -86,19 +78,19 @@ export const BookingConfirmScreen = ({
                   source={
                     bookingData.image
                       ? { uri: bookingData.image }
-                      : appImages.img_defaultProfile
+                      : Config.appImages.img_defaultProfile
                   }
                   style={staticStyle.profileImage}
                 />
                 <View style={staticStyle.fullLengthView}>
-                  <MediumTextComponent
+                  <Components.Text.MediumTextComponent
                     text={bookingData.name}
                     textStyle={StyleSheet.flatten([
                       staticStyle.titleText,
                       styles.textPrimary,
                     ])}
                   />
-                  <RegularTextComponent
+                  <Components.Text.RegularTextComponent
                     text={`${bookingData.hours}hr`}
                     textStyle={StyleSheet.flatten([
                       staticStyle.subtitleText,
@@ -106,7 +98,7 @@ export const BookingConfirmScreen = ({
                     ])}
                   />
                 </View>
-                <MediumTextComponent
+                <Components.Text.MediumTextComponent
                   text={`$${bookingData.total}`}
                   textStyle={StyleSheet.flatten([
                     staticStyle.titleText,
@@ -116,7 +108,7 @@ export const BookingConfirmScreen = ({
                 />
               </View>
               <LinearGradient
-                colors={getGradientColor(bookingData.type)}
+                colors={Utils.getGradientColor(bookingData.type)}
                 start={{ x: 0, y: 0.5 }}
                 end={{ x: 1, y: 0.5 }}
                 style={staticStyle.gradient}
@@ -124,9 +116,9 @@ export const BookingConfirmScreen = ({
                 <View style={staticStyle.typeRow}>
                   <FastImage
                     style={staticStyle.categoryIcon}
-                    source={getServiceImage(bookingData.type)}
+                    source={Utils.getServiceImage(bookingData.type)}
                   />
-                  <RegularTextComponent
+                  <Components.Text.RegularTextComponent
                     text={bookingData.type}
                     textStyle={StyleSheet.flatten([
                       staticStyle.subtitleText,
@@ -141,7 +133,7 @@ export const BookingConfirmScreen = ({
         <View
           style={StyleSheet.flatten([staticStyle.button, styles.bgPrimary])}
         >
-          <PrimaryButtonComponent onPress={goBack} text={t('gotIt')} />
+          <Components.Buttons.PrimaryButton onPress={goBack} text={t('gotIt')} />
         </View>
       </SafeAreaView>
     </>

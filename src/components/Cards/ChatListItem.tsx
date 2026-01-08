@@ -1,16 +1,13 @@
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { Theme } from '@config/themes/themes';
 import { useTheme } from '@shopify/restyle';
-import { MediumTextComponent } from '@components/Text/MediumText';
-import { RegularTextComponent } from '@components/Text/RegularText';
-import normalize from '@utils/normalize/normalize';
+import { Components } from '@components/index';
+import {Utils} from '@utils/index';
 import FastImage from 'react-native-fast-image';
 import { memo, useEffect, useState } from 'react';
-import { appImages } from '@config/images/imagePath';
 import firestore from '@react-native-firebase/firestore';
-import { formatFirebaseTimestamp } from '@utils/format/formatDate';
 import { width } from '@config/constants/variables';
-import { getProfilePicture } from '@utils/extractURI/extractImageURI';
+import { Config } from '@config/index';
 
 type ChatListItemProps = {
   data: any;
@@ -49,7 +46,7 @@ export const ChatListItem = memo((props: ChatListItemProps) => {
         .doc(userID)
         .get()
         .then(q => q.data());
-      const date = formatFirebaseTimestamp(props.data.lastMessageTimestamp);
+      const date = Utils.formatFirebaseTimestamp(props.data.lastMessageTimestamp);
       if (data)
         setUserData({
           name: data.name,
@@ -82,8 +79,8 @@ export const ChatListItem = memo((props: ChatListItemProps) => {
         <FastImage
           source={
             userData.profile_image
-              ? getProfilePicture(userData.profile_image)
-              : appImages.img_defaultProfile
+              ? Utils.getProfilePicture(userData.profile_image)
+              : Config.appImages.img_defaultProfile
           }
           style={staticStyle.image}
         />
@@ -93,14 +90,14 @@ export const ChatListItem = memo((props: ChatListItemProps) => {
       </View>
       <View style={staticStyle.info}>
         <View style={staticStyle.line}>
-          <MediumTextComponent
+          <Components.Text.MediumTextComponent
             text={userData.name}
             textStyle={StyleSheet.flatten([
               staticStyle.titleText,
               styles.titleText,
             ])}
           />
-          <MediumTextComponent
+          <Components.Text.MediumTextComponent
             text={`${userData.date}`}
             textStyle={StyleSheet.flatten([
               staticStyle.timeText,
@@ -111,7 +108,7 @@ export const ChatListItem = memo((props: ChatListItemProps) => {
           />
         </View>
         <View style={staticStyle.line}>
-          <RegularTextComponent
+          <Components.Text.RegularTextComponent
             text={`${
               props.data.lastMessageSender === props.uid ? 'you:' : ''
             } ${props.data.lastMessage ?? ''}`}
@@ -128,7 +125,7 @@ export const ChatListItem = memo((props: ChatListItemProps) => {
                 styles.unReadContainer,
               ])}
             >
-              <RegularTextComponent
+              <Components.Text.RegularTextComponent
                 text={`${props.data.unreadCount[props.uid]}`}
                 textStyle={StyleSheet.flatten([
                   staticStyle.unReadText,
@@ -145,16 +142,16 @@ export const ChatListItem = memo((props: ChatListItemProps) => {
 
 const staticStyle = StyleSheet.create({
   container: {
-    gap: normalize(8),
+    gap: Utils.normalize(8),
     flexDirection: 'row',
     alignItems: 'center',
     borderBottomWidth: 0.5,
     width: width,
-    paddingHorizontal: normalize(12),
-    paddingVertical: normalize(16, 'height'),
+    paddingHorizontal: Utils.normalize(12),
+    paddingVertical: Utils.normalize(16, 'height'),
   },
   info: {
-    gap: normalize(4, 'height'),
+    gap: Utils.normalize(4, 'height'),
   },
   line: {
     flexDirection: 'row',
@@ -163,42 +160,42 @@ const staticStyle = StyleSheet.create({
     justifyContent: 'space-between',
   },
   titleText: {
-    fontSize: normalize(14),
+    fontSize: Utils.normalize(14),
     fontWeight: '500',
   },
   msgText: {
-    fontSize: normalize(14),
-    maxWidth: normalize(265),
+    fontSize: Utils.normalize(14),
+    maxWidth: Utils.normalize(265),
     fontWeight: '400',
   },
   timeText: {
-    fontSize: normalize(12),
+    fontSize: Utils.normalize(12),
     fontWeight: '500',
   },
   unReadContainer: {
-    width: normalize(23),
-    height: normalize(17, 'height'),
+    width: Utils.normalize(23),
+    height: Utils.normalize(17, 'height'),
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: normalize(18),
+    borderRadius: Utils.normalize(18),
   },
   unReadText: {
-    fontSize: normalize(12),
+    fontSize: Utils.normalize(12),
     fontWeight: '400',
   },
   userStatus: {
     right: 0,
     bottom: 0,
     position: 'absolute',
-    width: normalize(10),
-    height: normalize(10),
+    width: Utils.normalize(10),
+    height: Utils.normalize(10),
     backgroundColor: 'green',
-    borderRadius: normalize(8),
+    borderRadius: Utils.normalize(8),
   },
   image: {
-    width: normalize(48),
-    height: normalize(48),
-    borderRadius: normalize(24),
+    width: Utils.normalize(48),
+    height: Utils.normalize(48),
+    borderRadius: Utils.normalize(24),
   },
 });
 

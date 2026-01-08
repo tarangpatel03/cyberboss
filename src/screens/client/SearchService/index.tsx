@@ -9,12 +9,7 @@ import {
 } from '@screens/client/SearchService/styles';
 import { useCallback, useEffect, useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { SearchBorderInputComponent } from '@components/Input/SearchInput';
-import { appIcons } from '@config/icons/iconPath';
 import { useDebouncedValue } from '@hooks/debounce/useDebounce';
-import { ServiceCard } from '@components/Cards/ServiceCard';
-import { ListEmptyCard } from '@components/Cards/ListEmptyCard';
-import { ListShimmer } from '@components/Skeleton/ListShimmer';
 import { useTranslation } from 'react-i18next';
 import { getServiceList } from '@services/api/expertise/getServicesList';
 import { ApiExpertiseModel } from '@models/api/consultant';
@@ -23,6 +18,8 @@ import {
   transformExpertiseModel,
 } from '@models/formattedAPI/tConsultant';
 import { ApiResponse } from '@models/apiModel';
+import { Config } from '@config/index';
+import { Components } from '@components/index';
 
 export const SearchServiceScreen = ({
   navigation,
@@ -59,14 +56,14 @@ export const SearchServiceScreen = ({
 
   const renderItem: ListRenderItem<TExpertiseModel> = useCallback(
     ({ item }) => {
-      return <ServiceCard onPress={navigateToConsultantList} data={item} />;
+      return <Components.Cards.ServiceCard onPress={navigateToConsultantList} data={item} />;
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [],
   );
 
   const emptyCard = () => {
-    return <ListEmptyCard text={`${t('noServiceFound', { searchText })}`} />;
+    return <Components.Cards.ListEmptyCard text={`${t('noServiceFound', { searchText })}`} />;
   };
 
   useEffect(() => {
@@ -81,15 +78,15 @@ export const SearchServiceScreen = ({
         style={StyleSheet.flatten([staticStyle.container, styles.container])}
       >
         <View style={staticStyle.searchHeader}>
-          <SearchBorderInputComponent
+          <Components.Inputs.SearchBorderInputComponent
             placeholder={t('searchHere')}
             setValue={setText}
             value={searchText}
-            icon={appIcons.ic_backIcon}
+            icon={Config.appIcons.ic_backIcon}
             onIconPress={goBack}
           />
         </View>
-        {loader && <ListShimmer containerStyle={staticStyle.browseService} />}
+        {loader && <Components.Skeleton.ListShimmer containerStyle={staticStyle.browseService} />}
         {!loader && (
           <FlatList
             data={services}

@@ -11,19 +11,12 @@ import { createStyles, staticStyle } from '@screens/client/Home/styles';
 import React, { useCallback, useEffect, useState } from 'react';
 import { RootNavigationProps } from '@models/navigationModel';
 import { routeName } from '@config/constants/routes';
-import { BookingHistoryCard } from '@components/Cards/BookingHistoryCard';
-import { ServiceCard } from '@components/Cards/ServiceCard';
-import { WorkshopCard } from '@components/Cards/WorkshopCard';
-import { ClientHomeScreenShimmer } from '@components/Skeleton/clientHome';
 import { TourGuideZone, useTourGuideController } from 'rn-tourguide';
 import { useIsFocused } from '@react-navigation/native';
 import { setShowTour } from '@redux/features/userSlice';
 import { useClientHome } from '@screens/client/Home/useClientHome';
-import { HomeScreenSearchButtons } from '@components/Buttons/HomeScreenSearchBar';
-import { TopBarComponent } from '@components/Headers/TopBarComponent';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { HomeScreenListHeaderComponent } from '@components/Headers/HomeScreenListHeader';
 import {
   TExpertiseModel,
   TWorkshopModel,
@@ -31,6 +24,7 @@ import {
 import firestore from '@react-native-firebase/firestore';
 import { THomeBookingModel } from '@models/formattedAPI/tBookings';
 import { RootState } from '@redux/store';
+import { Components } from '@components/index';
 
 export const ClientHomeScreen = ({
   navigation,
@@ -80,7 +74,7 @@ export const ClientHomeScreen = ({
   };
 
   const renderWorkshopItem: ListRenderItem<TWorkshopModel> = useCallback(
-    ({ item }) => <WorkshopCard data={item} cardStyle={staticStyle.card} />,
+    ({ item }) => <Components.Cards.WorkshopCard data={item} cardStyle={staticStyle.card} />,
     [],
   );
 
@@ -146,7 +140,7 @@ export const ClientHomeScreen = ({
 
   const renderBookingItem: ListRenderItem<THomeBookingModel> = useCallback(
     ({ item }) => (
-      <BookingHistoryCard data={item} navigateToChat={navigateToChat} />
+      <Components.Cards.BookingHistoryCard data={item} navigateToChat={navigateToChat} />
     ),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [],
@@ -154,7 +148,7 @@ export const ClientHomeScreen = ({
 
   const renderBrowseServiceItem: ListRenderItem<TExpertiseModel> = useCallback(
     ({ item }) => (
-      <ServiceCard onPress={navigateToConsultantList} data={item} />
+      <Components.Cards.ServiceCard onPress={navigateToConsultantList} data={item} />
     ),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [],
@@ -162,7 +156,7 @@ export const ClientHomeScreen = ({
 
   const headerComponent = () => {
     return (
-      <HomeScreenListHeaderComponent
+      <Components.Headers.HomeScreenListHeader
         homeData={homeData}
         navigateToHistory={navigateToHistory}
         navigateToWorkshop={navigateToWorkshop}
@@ -204,7 +198,7 @@ export const ClientHomeScreen = ({
 
   return (
     <>
-      {loader && <ClientHomeScreenShimmer />}
+      {loader && <Components.Skeleton.ClientHomeScreenShimmer />}
       {!loader && (
         <View
           onLayout={() => setLayoutReady(true)}
@@ -213,13 +207,13 @@ export const ClientHomeScreen = ({
             styles.background,
           ])}
         >
-          <TopBarComponent
+          <Components.Headers.TopBarHeader
             isSubscriber={homeData.isSubscriber}
             onPressProfile={navigateToProfile}
             onPressSubscription={navigateToSubscription}
             onPressNotification={navigateToNotification}
           />
-          <HomeScreenSearchButtons
+          <Components.Buttons.HomeScreenSearchButtons
             onSearchPress={navigateToSearchService}
             onHelpPress={navigateToContactSupport}
           />

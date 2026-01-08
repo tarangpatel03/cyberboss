@@ -1,58 +1,58 @@
 import { StyleSheet } from 'react-native';
 import { Theme } from '@config/themes/themes';
-import normalize from '@utils/normalize/normalize';
+import {Utils} from '@utils/index';
 
 export const staticStyle = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: normalize(15, 'height'),
+    paddingTop: Utils.normalize(15, 'height'),
   },
   backIcon: {
-    width: normalize(20),
-    height: normalize(20),
+    width: Utils.normalize(20),
+    height: Utils.normalize(20),
     alignItems: 'center',
     justifyContent: 'center',
     resizeMode: 'contain',
   },
   backButton: {
     position: 'absolute',
-    left: normalize(16),
-    top: normalize(12, 'height'),
-    width: normalize(16),
-    height: normalize(12, 'height'),
+    left: Utils.normalize(16),
+    top: Utils.normalize(12, 'height'),
+    width: Utils.normalize(16),
+    height: Utils.normalize(12, 'height'),
     justifyContent: 'center',
     alignItems: 'center',
   },
   line: {
-    borderRadius: normalize(5),
-    width: normalize(239),
+    borderRadius: Utils.normalize(5),
+    width: Utils.normalize(239),
     alignSelf: 'center',
-    height: normalize(5, 'height'),
+    height: Utils.normalize(5, 'height'),
   },
   content: {
-    gap: normalize(32, 'height'),
+    gap: Utils.normalize(32, 'height'),
     alignItems: 'center',
-    paddingTop: normalize(20, 'height'),
-    paddingHorizontal: normalize(12),
+    paddingTop: Utils.normalize(20, 'height'),
+    paddingHorizontal: Utils.normalize(12),
   },
   titleView: {
-    gap: normalize(8, 'height'),
+    gap: Utils.normalize(8, 'height'),
   },
   title: {
-    fontSize: normalize(24),
+    fontSize: Utils.normalize(24),
     fontWeight: '600',
   },
   subTitle: {
-    fontSize: normalize(14),
+    fontSize: Utils.normalize(14),
     fontWeight: '400',
   },
   selectionCardContainer: {
     width: '100%',
-    gap: normalize(16, 'height'),
+    gap: Utils.normalize(16, 'height'),
   },
   bottomButton: {
-    paddingHorizontal: normalize(16),
-    bottom: normalize(10, 'height'),
+    paddingHorizontal: Utils.normalize(16),
+    bottom: Utils.normalize(10, 'height'),
   },
 });
 

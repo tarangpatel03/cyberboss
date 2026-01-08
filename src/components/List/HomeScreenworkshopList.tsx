@@ -8,12 +8,11 @@ import {
 import { staticStyle, createStyles } from '@screens/client/Home/styles';
 import { useTheme } from '@shopify/restyle';
 import { Theme } from '@config/themes/themes';
-import { appIcons } from '@config/icons/iconPath';
-import { MediumTextComponent } from '@components/Text/MediumText';
-import { RegularTextComponent } from '@components/Text/RegularText';
+import { Components } from '@components/index';
 import { useTranslation } from 'react-i18next';
 import FastImage from 'react-native-fast-image';
 import { TWorkshopModel } from '@models/formattedAPI/tConsultant';
+import { Config } from '@config/index';
 
 type HomeScreenWorkshopListProps = {
   data: TWorkshopModel[] | any[];
@@ -29,7 +28,7 @@ export const HomeScreenWorkshopList = (props: HomeScreenWorkshopListProps) => {
   return (
     <View style={staticStyle.horizontalListContainer}>
       <View style={staticStyle.header}>
-        <MediumTextComponent
+        <Components.Text.MediumTextComponent
           text={
             props.type === t('workshop') ? t('workshop') : t('bookingHistory')
           }
@@ -43,7 +42,7 @@ export const HomeScreenWorkshopList = (props: HomeScreenWorkshopListProps) => {
           style={staticStyle.viewAllButton}
           onPress={props.navigateToWorkshop}
         >
-          <RegularTextComponent
+          <Components.Text.RegularTextComponent
             text={t('viewAll')}
             textStyle={StyleSheet.flatten([
               staticStyle.viewAllText,
@@ -51,7 +50,7 @@ export const HomeScreenWorkshopList = (props: HomeScreenWorkshopListProps) => {
             ])}
           />
           <FastImage
-            source={appIcons.ic_rightArrow}
+            source={Config.appIcons.ic_rightArrow}
             style={staticStyle.viewAllIcon}
             tintColor={theme.colors.primary}
           />

@@ -2,7 +2,6 @@ import { getAPIData } from '@services/api/common/getCommonApi';
 import { useEffect, useState } from 'react';
 import { setIsPro, setUserData } from '@redux/features/userSlice';
 import { useDispatch } from 'react-redux';
-import { endPoints } from '@config/endPoint/apiEndPoint';
 import { ApiExpertiseModel } from '@models/api/consultant';
 import { ApiClientHomeModel } from '@models/api/home';
 import { ApiProfileModel } from '@models/api/profile';
@@ -16,6 +15,7 @@ import {
 } from '@models/formattedAPI/tHome';
 import { transformProfileModel } from '@models/formattedAPI/tProfile';
 import { ApiResponse } from '@models/apiModel';
+import { Config } from '@config/index';
 
 export function useClientHome() {
   const dispatch = useDispatch();
@@ -31,7 +31,7 @@ export function useClientHome() {
 
   const handleHomeScreenWithoutLogIn = async () => {
     const response = await getAPIData<ApiResponse<ApiExpertiseModel[]>>(
-      endPoints.expertise,
+      Config.endPoints.expertise,
     );
     if (!response) return;
     const data: ApiExpertiseModel[] = response.payload;
@@ -49,14 +49,14 @@ export function useClientHome() {
   const getData = async () => {
     try {
       const response = await getAPIData<ApiResponse<ApiClientHomeModel>>(
-        endPoints.clientHome,
+        Config.endPoints.clientHome,
       );
       if (!response) return;
       const data1: ApiClientHomeModel = response.payload;
       const transformedData1 = transformClientHomeModal(data1);
       setHomeData(transformedData1);
       const response2 = await getAPIData<ApiResponse<ApiProfileModel>>(
-        endPoints.consultantProfile,
+        Config.endPoints.consultantProfile,
       );
       if (!response2) return;
       const data2: ApiProfileModel = response2.payload;

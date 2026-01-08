@@ -1,21 +1,13 @@
 import { useTheme } from '@shopify/restyle';
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 import { Theme } from '@config/themes/themes';
-import normalize from '@utils/normalize/normalize';
-import { MediumTextComponent } from '@components/Text/MediumText';
-import { PrimaryButtonComponent } from '@components/Buttons/PrimaryButton';
-import { RegularTextComponent } from '@components/Text/RegularText';
-import { appIcons } from '@config/icons/iconPath';
-import { getFullDate } from '@utils/format/formatDate';
-import {
-  addToCalendar,
-  convertToEventDate,
-} from '@utils/calendar/addCalendarEvent';
-import { showSuccessToast } from '@utils/toast/toast';
+import {Utils} from '@utils/index';
+import { Components } from '@components/index';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import FastImage from 'react-native-fast-image';
 import { TWorkshopModel } from '@models/formattedAPI/tConsultant';
+import { Config } from '@config/index';
 
 type WorkshopCardProps = {
   data: TWorkshopModel;
@@ -28,16 +20,16 @@ export const WorkshopCard = memo(({ data, cardStyle }: WorkshopCardProps) => {
   const styles = createStyles(theme);
 
   const addEventToCalendar = async () => {
-    const startISO = convertToEventDate(data.date, data.startTime);
-    const endISO = convertToEventDate(data.date, data.endTime);
+    const startISO = Utils.convertToEventDate(data.date, data.startTime);
+    const endISO = Utils.convertToEventDate(data.date, data.endTime);
 
-    addToCalendar({
+    Utils.addToCalendar({
       notes: data.name,
       startDate: startISO,
       endDate: endISO,
     });
 
-    showSuccessToast({ title: t('addedToCalendar') });
+    Utils.showSuccessToast({ title: t('addedToCalendar') });
   };
 
   return (
@@ -48,19 +40,19 @@ export const WorkshopCard = memo(({ data, cardStyle }: WorkshopCardProps) => {
         styles.container,
       ])}
     >
-      <MediumTextComponent
+      <Components.Text.MediumTextComponent
         text={data.name}
         textStyle={StyleSheet.flatten([staticStyle.title, styles.title])}
       />
       <View style={staticStyle.detail}>
         <View style={staticStyle.line}>
           <FastImage
-            source={appIcons.ic_calender}
+            source={Config.appIcons.ic_calender}
             tintColor={theme.colors.textSecondary}
             style={staticStyle.icon}
           />
-          <RegularTextComponent
-            text={getFullDate(data.date)}
+          <Components.Text.RegularTextComponent
+            text={Utils.getFullDate(data.date)}
             textStyle={StyleSheet.flatten([
               staticStyle.subTitle,
               styles.subTitle,
@@ -69,11 +61,11 @@ export const WorkshopCard = memo(({ data, cardStyle }: WorkshopCardProps) => {
         </View>
         <View style={staticStyle.line}>
           <FastImage
-            source={appIcons.ic_fillHistory}
+            source={Config.appIcons.ic_fillHistory}
             tintColor={theme.colors.textSecondary}
             style={staticStyle.icon}
           />
-          <RegularTextComponent
+          <Components.Text.RegularTextComponent
             text={`${data.startTime} - ${data.endTime}`}
             textStyle={StyleSheet.flatten([
               staticStyle.subTitle,
@@ -82,7 +74,7 @@ export const WorkshopCard = memo(({ data, cardStyle }: WorkshopCardProps) => {
           />
         </View>
       </View>
-      <PrimaryButtonComponent
+      <Components.Buttons.PrimaryButton
         onPress={addEventToCalendar}
         text={t('addToCalender')}
       />
@@ -93,30 +85,30 @@ export const WorkshopCard = memo(({ data, cardStyle }: WorkshopCardProps) => {
 const staticStyle = StyleSheet.create({
   container: {
     alignSelf: 'center',
-    borderRadius: normalize(12),
-    gap: normalize(16),
-    padding: normalize(12),
+    borderRadius: Utils.normalize(12),
+    gap: Utils.normalize(16),
+    padding: Utils.normalize(12),
     borderWidth: 1,
   },
   title: {
-    fontSize: normalize(16),
+    fontSize: Utils.normalize(16),
     fontWeight: '500',
   },
   subTitle: {
-    fontSize: normalize(14),
+    fontSize: Utils.normalize(14),
     fontWeight: '400',
   },
   detail: {
-    gap: normalize(12),
+    gap: Utils.normalize(12),
   },
   line: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: normalize(8),
+    gap: Utils.normalize(8),
   },
   icon: {
-    width: normalize(14),
-    height: normalize(14),
+    width: Utils.normalize(14),
+    height: Utils.normalize(14),
   },
 });
 

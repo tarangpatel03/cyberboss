@@ -13,12 +13,7 @@ import { createStyles, staticStyle } from '@screens/consultant/Home/styles';
 import { Theme } from '@config/themes/themes';
 import { getAPIData } from '@services/api/common/getCommonApi';
 import { routeName } from '@config/constants/routes';
-import { endPoints } from '@config/endPoint/apiEndPoint';
 import { RootNavigationProps } from '@models/navigationModel';
-import { RecentActivity } from '@components/Cards/RecentActivity';
-import { BookingHistoryCard } from '@components/Cards/BookingHistoryCard';
-import { ConsultantHeaderCard } from '@components/Headers/ConsultantHeaderCard';
-import { ConsultantBookingHistoryList } from '@components/List/ConsultantBookingHistoryList';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUserData } from '@redux/features/userSlice';
 import { ApiConsultantHomeModel } from '@models/api/home';
@@ -36,12 +31,10 @@ import { THomeBookingModel } from '@models/formattedAPI/tBookings';
 import { RootState } from '@redux/store';
 import firestore from '@react-native-firebase/firestore';
 import { ApiResponse } from '@models/apiModel';
-import { MediumTextComponent } from '@components/Text/MediumText';
 import { useTranslation } from 'react-i18next';
-import { RegularTextComponent } from '@components/Text/RegularText';
 import FastImage from 'react-native-fast-image';
-import { appIcons } from '@config/icons/iconPath';
-import { ListEmptyCard } from '@components/Cards/ListEmptyCard';
+import { Config } from '@config/index';
+import { Components } from '@components/index';
 
 export const ConsultantHomeScreen = ({
   navigation,
@@ -87,14 +80,14 @@ export const ConsultantHomeScreen = ({
   const getData = async () => {
     try {
       const response1 = await getAPIData<ApiResponse<ApiConsultantHomeModel>>(
-        endPoints.consultantHome,
+        Config.endPoints.consultantHome,
       );
       if (!response1) return;
       const data1: ApiConsultantHomeModel = response1.payload;
       const transformedData1 = transformConsultantHomeModel(data1);
       setHomeData(transformedData1);
       const response2 = await getAPIData<ApiResponse<ApiProfileModel>>(
-        endPoints.consultantProfile,
+        Config.endPoints.consultantProfile,
       );
       if (!response2) return;
       const data2: ApiProfileModel = response2.payload;
@@ -176,14 +169,14 @@ export const ConsultantHomeScreen = ({
 
   const renderBookingHistoryItem: ListRenderItem<THomeBookingModel> =
     useCallback(({ item }) => {
-      return <BookingHistoryCard data={item} navigateToChat={navigateToChat} />;
+      return <Components.Cards.BookingHistoryCard data={item} navigateToChat={navigateToChat} />;
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
   const renderRecentActivityItem: ListRenderItem<TConsultantHomeNotificationModel> =
     useCallback(({ item }) => {
       return (
-        <RecentActivity
+        <Components.Cards.RecentActivity
           id={item.id}
           body={item.body}
           title={item.title}
@@ -207,20 +200,20 @@ export const ConsultantHomeScreen = ({
           styles.backgroundPrimary,
         ])}
       >
-        <ConsultantHeaderCard
+        <Components.Headers.ConsultantHeaderCard
           profileData={profileData}
           userData={homeData}
           navigateToProfile={navigateToProfile}
           navigateToNotification={navigateToNotification}
         />
         {homeData.bookings.length !== 0 && (
-          <ConsultantBookingHistoryList
+          <Components.List.ConsultantBookingHistoryList
             data={homeData.bookings}
             renderBookingHistoryItem={renderBookingHistoryItem}
           />
         )}
         <View style={staticStyle.header}>
-          <MediumTextComponent
+          <Components.Text.MediumTextComponent
             text={t('recentActivity')}
             textStyle={StyleSheet.flatten([
               staticStyle.headerText,
@@ -233,7 +226,7 @@ export const ConsultantHomeScreen = ({
               onPress={navigateToNotification}
               style={staticStyle.viewAllButton}
             >
-              <RegularTextComponent
+              <Components.Text.RegularTextComponent
                 text={t('viewAll')}
                 textStyle={StyleSheet.flatten([
                   staticStyle.viewAllText,
@@ -241,7 +234,7 @@ export const ConsultantHomeScreen = ({
                 ])}
               />
               <FastImage
-                source={appIcons.ic_rightArrow}
+                source={Config.appIcons.ic_rightArrow}
                 style={staticStyle.viewAllIcon}
                 tintColor={theme.colors.primary}
               />
@@ -257,7 +250,7 @@ export const ConsultantHomeScreen = ({
           keyExtractor={item => item.id}
           renderItem={renderRecentActivityItem}
           ListEmptyComponent={
-            <ListEmptyCard text={t('noRecentActivityFound')} />
+            <Components.Cards.ListEmptyCard text={t('noRecentActivityFound')} />
           }
         />
       </ScrollView>

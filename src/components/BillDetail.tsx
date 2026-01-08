@@ -1,8 +1,8 @@
 import { StyleSheet, View } from 'react-native';
-import { RegularTextComponent } from '@components/Text/RegularText';
 import { Theme } from '@config/themes/themes';
 import { useTheme } from '@shopify/restyle';
-import normalize from '@utils/normalize/normalize';
+import {Utils} from '@utils/index';
+import { Components } from '@components/index';
 
 type BillDetailsComponentProps = {
   title: string;
@@ -16,14 +16,14 @@ export const BillDetailsComponent = (props: BillDetailsComponentProps) => {
   const styles = createStyles(theme);
   return (
     <View style={staticStyle.container}>
-      <RegularTextComponent
+      <Components.Text.RegularTextComponent
         text={props.title}
         textStyle={StyleSheet.flatten([
           props.isGrandTotal ? staticStyle.totalText : staticStyle.text,
           styles.text,
         ])}
       />
-      <RegularTextComponent
+      <Components.Text.RegularTextComponent
         text={props.isHour ? `${props.amount}h` : `$${props.amount}`}
         textStyle={StyleSheet.flatten([
           props.isGrandTotal ? staticStyle.totalText : staticStyle.text,
@@ -41,11 +41,11 @@ const staticStyle = StyleSheet.create({
     alignItems: 'center',
   },
   text: {
-    fontSize: normalize(14),
+    fontSize: Utils.normalize(14),
     fontWeight: '400',
   },
   totalText: {
-    fontSize: normalize(16),
+    fontSize: Utils.normalize(16),
     fontWeight: '500',
   },
 });

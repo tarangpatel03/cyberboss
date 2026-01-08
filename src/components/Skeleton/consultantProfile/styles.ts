@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import normalize from '@utils/normalize/normalize';
+import {Utils} from '@utils/index';
 import { Theme } from '@config/themes/themes';
 
 export const staticStyle = StyleSheet.create({
@@ -7,77 +7,77 @@ export const staticStyle = StyleSheet.create({
     flex: 1,
   },
   titleLine: {
-    gap: normalize(12),
+    gap: Utils.normalize(12),
   },
   profileContainer: {
-    gap: normalize(20),
-    paddingHorizontal: normalize(12),
-    paddingVertical: normalize(16),
+    gap: Utils.normalize(20),
+    paddingHorizontal: Utils.normalize(12),
+    paddingVertical: Utils.normalize(16),
   },
   secondaryContainer: {
-    gap: normalize(16),
-    paddingHorizontal: normalize(12),
-    paddingVertical: normalize(20),
+    gap: Utils.normalize(16),
+    paddingHorizontal: Utils.normalize(12),
+    paddingVertical: Utils.normalize(20),
   },
   titleText: {
-    width: normalize(100),
-    height: normalize(20),
-    borderRadius: normalize(4),
+    width: Utils.normalize(100),
+    height: Utils.normalize(20),
+    borderRadius: Utils.normalize(4),
   },
   fullWidth: {
     width: '100%',
   },
   longerWidth: {
-    width: normalize(80),
+    width: Utils.normalize(80),
   },
   reviewImage: {
-    width: normalize(32),
-    height: normalize(32),
-    borderRadius: normalize(50),
+    width: Utils.normalize(32),
+    height: Utils.normalize(32),
+    borderRadius: Utils.normalize(50),
   },
   rating: {
     alignSelf: 'flex-start',
   },
   moveLeft: {
-    left: normalize(4),
+    left: Utils.normalize(4),
   },
   ratingTextShimmer: {
-    width: normalize(35),
-    height: normalize(30),
-    borderRadius: normalize(8),
+    width: Utils.normalize(35),
+    height: Utils.normalize(30),
+    borderRadius: Utils.normalize(8),
   },
   ratingText: {
     fontWeight: '700',
-    fontSize: normalize(16, 'height'),
+    fontSize: Utils.normalize(16, 'height'),
   },
   listContainer: {
-    gap: normalize(8),
+    gap: Utils.normalize(8),
     flexDirection: 'row',
     flexWrap: 'wrap',
   },
   semiTitleText: {
-    fontSize: normalize(16),
+    fontSize: Utils.normalize(16),
     fontWeight: '500',
   },
   subTitleText: {
-    height: normalize(14),
-    width: normalize(100),
-    borderRadius: normalize(4),
+    height: Utils.normalize(14),
+    width: Utils.normalize(100),
+    borderRadius: Utils.normalize(4),
   },
   tinyText: {
-    fontSize: normalize(12),
+    fontSize: Utils.normalize(12),
     fontWeight: '400',
   },
   line: {
-    gap: normalize(8),
+    gap: Utils.normalize(8),
   },
   image: {
-    width: normalize(64),
-    height: normalize(64),
-    borderRadius: normalize(50),
+    width: Utils.normalize(64),
+    height: Utils.normalize(64),
+    borderRadius: Utils.normalize(50),
   },
   leftMoveText: {
-    paddingLeft: normalize(4),
+    paddingLeft: Utils.normalize(4),
   },
   rowLine: {
     flexDirection: 'row',
@@ -87,26 +87,26 @@ export const staticStyle = StyleSheet.create({
     borderWidth: 1,
   },
   gap8: {
-    gap: normalize(8),
+    gap: Utils.normalize(8),
   },
   separator2: {
     borderWidth: 0.75,
   },
   badgeContainer: {
-    height: normalize(33),
-    width: normalize(87),
-    borderRadius: normalize(20),
+    height: Utils.normalize(33),
+    width: Utils.normalize(87),
+    borderRadius: Utils.normalize(20),
   },
   bottomBar: {
     borderTopWidth: 1,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingVertical: normalize(12),
-    paddingHorizontal: normalize(16),
+    paddingVertical: Utils.normalize(12),
+    paddingHorizontal: Utils.normalize(16),
   },
   bookNowButton: {
-    paddingHorizontal: normalize(24),
+    paddingHorizontal: Utils.normalize(24),
   },
 });
 

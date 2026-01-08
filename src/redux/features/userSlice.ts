@@ -1,6 +1,6 @@
+import { Config } from '@config/index';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
-import { appImages } from '@config/images/imagePath';
 
 export type UserDetailProps = {
   id: string;
@@ -63,7 +63,7 @@ const initialState: UserState = {
     is_verified: null,
     profile_setup: false,
     experience_year: null,
-    profilePicture: appImages.img_defaultProfile,
+    profilePicture: Config.appImages.img_defaultProfile,
   },
 };
 
@@ -129,7 +129,7 @@ export const userSlice = createSlice({
         is_verified: null,
         profile_setup: false,
         experience_year: null,
-        profilePicture: appImages.img_defaultProfile,
+        profilePicture: Config.appImages.img_defaultProfile,
       };
     },
   },

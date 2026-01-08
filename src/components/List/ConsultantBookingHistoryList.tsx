@@ -13,10 +13,9 @@ import { useTheme } from '@shopify/restyle';
 import { useTranslation } from 'react-i18next';
 import FastImage from 'react-native-fast-image';
 import { Theme } from '@config/themes/themes';
-import { appIcons } from '@config/icons/iconPath';
-import { MediumTextComponent } from '@components/Text/MediumText';
-import { RegularTextComponent } from '@components/Text/RegularText';
+import { Components } from '@components/index';
 import { THomeBookingModel } from '@models/formattedAPI/tBookings';
+import { Config } from '@config/index';
 
 type ConsultantBookingHistoryListProps = {
   data: THomeBookingModel[];
@@ -34,7 +33,7 @@ export const ConsultantBookingHistoryList = (
     <View>
       {props.data.length !== 0 && (
         <View style={staticStyle.header}>
-          <MediumTextComponent
+          <Components.Text.MediumTextComponent
             text={t('bookingHistory')}
             textStyle={StyleSheet.flatten([
               staticStyle.headerText,
@@ -45,7 +44,7 @@ export const ConsultantBookingHistoryList = (
             activeOpacity={0.7}
             style={staticStyle.viewAllButton}
           >
-            <RegularTextComponent
+            <Components.Text.RegularTextComponent
               text={t('viewAll')}
               textStyle={StyleSheet.flatten([
                 staticStyle.viewAllText,
@@ -53,7 +52,7 @@ export const ConsultantBookingHistoryList = (
               ])}
             />
             <FastImage
-              source={appIcons.ic_rightArrow}
+              source={Config.appIcons.ic_rightArrow}
               style={staticStyle.viewAllIcon}
               tintColor={theme.colors.primary}
             />

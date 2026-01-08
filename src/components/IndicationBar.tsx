@@ -1,5 +1,5 @@
 import { StyleSheet, View } from 'react-native';
-import normalize from '@utils/normalize/normalize';
+import {Utils} from '@utils/index';
 import { Theme } from '@config/themes/themes';
 import { useTheme } from '@shopify/restyle';
 
@@ -32,25 +32,25 @@ export const IndicationBar = ({ currentIndex }: IndicationBarProps) => {
 const createStyles = (theme: Theme) =>
   StyleSheet.create({
     bar: {
-      height: normalize(6, 'height'),
-      gap: normalize(8),
+      height: Utils.normalize(6, 'height'),
+      gap: Utils.normalize(8),
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignSelf: 'center',
       alignItems: 'center',
-      marginBottom: normalize(32),
+      marginBottom: Utils.normalize(32),
       backgroundColor: theme.colors.bgPrimary,
     },
     focusIndex: {
-      width: normalize(16),
-      height: normalize(6, 'height'),
-      borderRadius: normalize(3, 'height'),
+      width: Utils.normalize(16),
+      height: Utils.normalize(6, 'height'),
+      borderRadius: Utils.normalize(3, 'height'),
       backgroundColor: theme.colors.primary,
     },
     unfocusIndex: {
-      width: normalize(8),
-      height: normalize(6, 'height'),
-      borderRadius: normalize(3, 'height'),
+      width: Utils.normalize(8),
+      height: Utils.normalize(6, 'height'),
+      borderRadius: Utils.normalize(3, 'height'),
       backgroundColor: theme.colors.unfocusIndex,
     },
   });

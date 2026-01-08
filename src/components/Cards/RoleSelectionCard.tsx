@@ -1,9 +1,8 @@
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import { MediumTextComponent } from '@components/Text/MediumText';
-import { RegularTextComponent } from '@components/Text/RegularText';
+import { Components } from '@components/index';
 import { Theme } from '@config/themes/themes';
 import { useTheme } from '@shopify/restyle';
-import normalize from '@utils/normalize/normalize';
+import {Utils} from '@utils/index';
 import { memo } from 'react';
 
 type RoleSelectionCardProps = {
@@ -23,7 +22,7 @@ export const RoleSelectionCard = memo((props: RoleSelectionCardProps) => {
       style={StyleSheet.flatten([staticStyle.card, styles.card])}
     >
       <View style={staticStyle.header}>
-        <MediumTextComponent
+        <Components.Text.MediumTextComponent
           text={props.title}
           textStyle={StyleSheet.flatten([
             staticStyle.titleText,
@@ -46,7 +45,7 @@ export const RoleSelectionCard = memo((props: RoleSelectionCardProps) => {
           )}
         </View>
       </View>
-      <RegularTextComponent
+      <Components.Text.RegularTextComponent
         text={props.subtitle}
         textStyle={StyleSheet.flatten([
           staticStyle.subTitleText,
@@ -59,9 +58,9 @@ export const RoleSelectionCard = memo((props: RoleSelectionCardProps) => {
 
 const staticStyle = StyleSheet.create({
   card: {
-    borderRadius: normalize(12),
-    padding: normalize(16),
-    gap: normalize(8, 'height'),
+    borderRadius: Utils.normalize(12),
+    padding: Utils.normalize(16),
+    gap: Utils.normalize(8, 'height'),
   },
   header: {
     flexDirection: 'row',
@@ -70,22 +69,22 @@ const staticStyle = StyleSheet.create({
   selector: {
     justifyContent: 'center',
     alignItems: 'center',
-    width: normalize(22),
-    height: normalize(22),
-    borderRadius: normalize(15),
+    width: Utils.normalize(22),
+    height: Utils.normalize(22),
+    borderRadius: Utils.normalize(15),
     borderWidth: 2,
   },
   selectedInner: {
-    width: normalize(12),
-    height: normalize(12),
-    borderRadius: normalize(10),
+    width: Utils.normalize(12),
+    height: Utils.normalize(12),
+    borderRadius: Utils.normalize(10),
   },
   titleText: {
-    fontSize: normalize(18),
+    fontSize: Utils.normalize(18),
     fontWeight: '500',
   },
   subTitleText: {
-    fontSize: normalize(14),
+    fontSize: Utils.normalize(14),
     fontWeight: '400',
   },
 });

@@ -13,13 +13,8 @@ import {
 } from '@screens/client/ConsultantList/styles';
 import { RootNavigationProps } from '@models/navigationModel';
 import { routeName } from '@config/constants/routes';
-import { ConsultantListCard } from '@components/Cards/ConsultantListCard';
-import { SearchBorderInputComponent } from '@components/Input/SearchInput';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { ScreenHeaderComponent } from '@components/Headers/ScreenHeader';
 import { useDebouncedValue } from '@hooks/debounce/useDebounce';
-import { ListEmptyCard } from '@components/Cards/ListEmptyCard';
-import { ListShimmer } from '@components/Skeleton/ListShimmer';
 import { useTranslation } from 'react-i18next';
 import { getConsultantList } from '@services/api/consultant/getConsultantList';
 import { ApiConsultantModel } from '@models/api/consultant';
@@ -29,6 +24,7 @@ import {
 } from '@models/formattedAPI/tConsultant';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ApiResponse, ListPayload } from '@models/apiModel';
+import { Components } from '@components/index';
 
 export const ConsultantListScreen = ({
   navigation,
@@ -96,14 +92,14 @@ export const ConsultantListScreen = ({
 
   const renderItem: ListRenderItem<TConsultantModel> = useCallback(
     ({ item }) => {
-      return <ConsultantListCard data={item} onPress={navigateToConsultant} />;
+      return <Components.Cards.ConsultantListCard data={item} onPress={navigateToConsultant} />;
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [],
   );
   const emptyCard = () => {
     return (
-      <ListEmptyCard text={`${t('noConsultantFound', { searchText })} `} />
+      <Components.Cards.ListEmptyCard text={`${t('noConsultantFound', { searchText })} `} />
     );
   };
 
@@ -120,17 +116,17 @@ export const ConsultantListScreen = ({
         style={StyleSheet.flatten([staticStyle.container, styles.container])}
       >
         <View style={staticStyle.topBar}>
-          <ScreenHeaderComponent onPress={goBack} headerText={name} />
+          <Components.Headers.ScreenHeader onPress={goBack} headerText={name} />
         </View>
         <View style={staticStyle.searchBar}>
-          <SearchBorderInputComponent
+          <Components.Inputs.SearchBorderInputComponent
             autoFocus={true}
             setValue={setSearchText}
             value={searchText}
             placeholder={t('searchConsultants')}
           />
         </View>
-        {loader && <ListShimmer containerStyle={staticStyle.shimmer} />}
+        {loader && <Components.Skeleton.ListShimmer containerStyle={staticStyle.shimmer} />}
         {!loader && (
           <View style={staticStyle.list}>
             <FlatList

@@ -5,12 +5,9 @@ import { useTheme } from '@shopify/restyle';
 import { routeName } from '@config/constants/routes';
 import { RootNavigationProps } from '@models/navigationModel';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { SemiBoldTextComponent } from '@components/Text/SemiBoldText';
-import { RegularTextComponent } from '@components/Text/RegularText';
-import { RoleSelectionCard } from '@components/Cards/RoleSelectionCard';
 import { useState } from 'react';
-import { PrimaryButtonComponent } from '@components/Buttons/PrimaryButton';
 import { useTranslation } from 'react-i18next';
+import { Components } from '@components/index';
 
 export const ProfileSetUpScreen = ({
   navigation,
@@ -50,14 +47,14 @@ export const ProfileSetUpScreen = ({
           <View style={StyleSheet.flatten([staticStyle.line, styles.line])} />
           <View style={staticStyle.content}>
             <View style={staticStyle.titleView}>
-              <SemiBoldTextComponent
+              <Components.Text.SemiBoldTextComponent
                 text={t('chooseYourRole')}
                 textStyle={StyleSheet.flatten([
                   staticStyle.title,
                   styles.title,
                 ])}
               />
-              <RegularTextComponent
+              <Components.Text.RegularTextComponent
                 text={t('chooseYourRoleSubTitle')}
                 textStyle={StyleSheet.flatten([
                   staticStyle.subTitle,
@@ -66,13 +63,13 @@ export const ProfileSetUpScreen = ({
               />
             </View>
             <View style={staticStyle.selectionCardContainer}>
-              <RoleSelectionCard
+              <Components.Cards.RoleSelectionCard
                 isSelected={isClient}
                 onPress={selectClient}
                 subtitle={t('clientLine')}
                 title={t('client')}
               />
-              <RoleSelectionCard
+              <Components.Cards.RoleSelectionCard
                 isSelected={isConsultant}
                 onPress={selectConsultant}
                 subtitle={t('consultantLine')}
@@ -82,7 +79,7 @@ export const ProfileSetUpScreen = ({
           </View>
         </View>
         <View style={staticStyle.bottomButton}>
-          <PrimaryButtonComponent
+          <Components.Buttons.PrimaryButton
             onPress={navigateToProfileSetUp}
             text={t('continue')}
           />

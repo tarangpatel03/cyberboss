@@ -1,5 +1,4 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { routeName } from '@config/constants/routes';
 import { OnboardingScreen } from '@screens/common/Onboarding';
 import { LogInScreen } from '@screens/common/auth/LogIn';
 import { SignUpScreen } from '@screens/common/auth/SignUp';
@@ -28,6 +27,7 @@ import { SearchServiceScreen } from '@screens/client/SearchService';
 import { RootState } from '@redux/store';
 import { useSelector } from 'react-redux';
 import { ClientProfileSetUpScreen } from '@screens/profileSetup/ClientSetup';
+import { Config } from '@config/index';
 
 const Root = createNativeStackNavigator<RootNavigationParams>();
 
@@ -43,19 +43,19 @@ export const RootNavigation = () => {
 
   const setInitialRoute = () => {
     if (isFirstTime) {
-      return routeName.Onboarding;
+      return Config.routeName.Onboarding;
     } else if (isLoggedIn) {
       if (profileSetup) {
-        return routeName.ProfileSetUp;
+        return Config.routeName.ProfileSetUp;
       }
       if (role === 'consultant') {
         if (!isVerified) {
-          return routeName.PendingVerification;
+          return Config.routeName.PendingVerification;
         }
-        return routeName.BottomTab;
+        return Config.routeName.BottomTab;
       }
     }
-    return routeName.BottomTab;
+    return Config.routeName.BottomTab;
   };
 
   return (
@@ -65,83 +65,83 @@ export const RootNavigation = () => {
       }}
       initialRouteName={setInitialRoute()}
     >
-      <Root.Screen name={routeName.Onboarding} component={OnboardingScreen} />
-      <Root.Screen name={routeName.LogIn} component={LogInScreen} />
-      <Root.Screen name={routeName.SignUp} component={SignUpScreen} />
+      <Root.Screen name={Config.routeName.Onboarding} component={OnboardingScreen} />
+      <Root.Screen name={Config.routeName.LogIn} component={LogInScreen} />
+      <Root.Screen name={Config.routeName.SignUp} component={SignUpScreen} />
       <Root.Screen
-        name={routeName.ForgotPassword}
+        name={Config.routeName.ForgotPassword}
         component={ForgotPasswordScreen}
       />
       <Root.Screen
-        name={routeName.ProfileSetUp}
+        name={Config.routeName.ProfileSetUp}
         component={ProfileSetUpScreen}
       />
       <Root.Screen
-        name={routeName.ClientProfileSetUp}
+        name={Config.routeName.ClientProfileSetUp}
         component={ClientProfileSetUpScreen}
       />
       <Root.Screen
-        name={routeName.SearchServices}
+        name={Config.routeName.SearchServices}
         component={SearchServiceScreen}
       />
       <Root.Screen
-        name={routeName.AreaOfExpertise}
+        name={Config.routeName.AreaOfExpertise}
         component={AreaOfExpertiseScreen}
       />
       <Root.Screen
-        name={routeName.ServicesYouOffer}
+        name={Config.routeName.ServicesYouOffer}
         component={ServicesYouOfferScreen}
       />
       <Root.Screen
-        name={routeName.PersonalDetails}
+        name={Config.routeName.PersonalDetails}
         component={PersonalDetailsScreen}
       />
       <Root.Screen
-        name={routeName.PendingVerification}
+        name={Config.routeName.PendingVerification}
         component={PendingVerificationScreen}
       />
-      <Root.Screen name={routeName.BottomTab} component={BottomNavigation} />
-      <Root.Screen name={routeName.Workshop} component={WorkshopScreen} />
+      <Root.Screen name={Config.routeName.BottomTab} component={BottomNavigation} />
+      <Root.Screen name={Config.routeName.Workshop} component={WorkshopScreen} />
       <Root.Screen
-        name={routeName.ConsultantList}
+        name={Config.routeName.ConsultantList}
         component={ConsultantListScreen}
       />
       <Root.Screen
-        name={routeName.OneOnOneChat}
+        name={Config.routeName.OneOnOneChat}
         component={OneToOneChatScreen}
       />
-      <Root.Screen name={routeName.EditProfile} component={EditProfileScreen} />
+      <Root.Screen name={Config.routeName.EditProfile} component={EditProfileScreen} />
       <Root.Screen
-        name={routeName.ChangePassword}
+        name={Config.routeName.ChangePassword}
         component={ChangePasswordScreen}
       />
       <Root.Screen
-        name={routeName.BookingSummary}
+        name={Config.routeName.BookingSummary}
         component={BookingSummaryScreen}
       />
-      <Root.Screen name={routeName.YourRating} component={YourRatingScreen} />
+      <Root.Screen name={Config.routeName.YourRating} component={YourRatingScreen} />
       <Root.Screen
-        name={routeName.ConsultantProfile}
+        name={Config.routeName.ConsultantProfile}
         component={ConsultantProfileScreen}
       />
       <Root.Screen
-        name={routeName.BookingDetails}
+        name={Config.routeName.BookingDetails}
         component={BookingDetailsScreen}
       />
       <Root.Screen
-        name={routeName.BookingConfirm}
+        name={Config.routeName.BookingConfirm}
         component={BookingConfirmScreen}
       />
       <Root.Screen
-        name={routeName.Notification}
+        name={Config.routeName.Notification}
         component={NotificationScreen}
       />
       <Root.Screen
-        name={routeName.ContactSupport}
+        name={Config.routeName.ContactSupport}
         component={ContactSupportScreen}
       />
       <Root.Screen
-        name={routeName.Subscription}
+        name={Config.routeName.Subscription}
         component={SubscriptionScreen}
       />
     </Root.Navigator>

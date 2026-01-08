@@ -1,13 +1,12 @@
 import { StyleSheet, View } from 'react-native';
 import { Theme } from '@config/themes/themes';
 import { useTheme } from '@shopify/restyle';
-import normalize from '@utils/normalize/normalize';
-import { RegularTextComponent } from '@components/Text/RegularText';
-import { appIcons } from '@config/icons/iconPath';
-import { getDate } from '@utils/format/formatDate';
+import {Utils} from '@utils/index';
+import { Components } from '@components/index';
 import FastImage from 'react-native-fast-image';
 import { memo } from 'react';
 import { TNotificationModel } from '@models/formattedAPI/tNotification';
+import { Config } from '@config/index';
 
 export const NotificationCard = memo(
   ({ data }: { data: TNotificationModel }) => {
@@ -26,13 +25,13 @@ export const NotificationCard = memo(
             ])}
           >
             <FastImage
-              source={appIcons.ic_bellFill}
+              source={Config.appIcons.ic_bellFill}
               style={staticStyle.bellIcon}
             />
           </View>
         )}
         <View style={staticStyle.text}>
-          <RegularTextComponent
+          <Components.Text.RegularTextComponent
             text={data.body}
             noOfLines={2}
             textStyle={StyleSheet.flatten([
@@ -40,8 +39,8 @@ export const NotificationCard = memo(
               styles.textPrimary,
             ])}
           />
-          <RegularTextComponent
-            text={getDate(data.createdAt)}
+          <Components.Text.RegularTextComponent
+            text={Utils.getDate(data.createdAt)}
             textStyle={StyleSheet.flatten([
               staticStyle.time,
               styles.textSecondary,
@@ -55,26 +54,26 @@ export const NotificationCard = memo(
 
 const staticStyle = StyleSheet.create({
   container: {
-    gap: normalize(10),
+    gap: Utils.normalize(10),
     alignItems: 'center',
     flexDirection: 'row',
-    marginRight: normalize(30),
-    marginVertical: normalize(10),
+    marginRight: Utils.normalize(30),
+    marginVertical: Utils.normalize(10),
   },
   text: {
     width: '90%',
   },
   image: {
-    borderRadius: normalize(30),
-    width: normalize(48),
-    height: normalize(48),
+    borderRadius: Utils.normalize(30),
+    width: Utils.normalize(48),
+    height: Utils.normalize(48),
   },
   notificationText: {
-    fontSize: normalize(16),
+    fontSize: Utils.normalize(16),
     fontWeight: '400',
   },
   time: {
-    fontSize: normalize(14),
+    fontSize: Utils.normalize(14),
     fontWeight: '400',
   },
   defaultNotificationBell: {
@@ -82,8 +81,8 @@ const staticStyle = StyleSheet.create({
     justifyContent: 'center',
   },
   bellIcon: {
-    width: normalize(24),
-    height: normalize(24),
+    width: Utils.normalize(24),
+    height: Utils.normalize(24),
   },
 });
 

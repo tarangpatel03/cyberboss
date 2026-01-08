@@ -1,5 +1,4 @@
 import { axiosClient } from '@services/axios/axiosClient';
-import { endPoints } from '@config/endPoint/apiEndPoint';
 import auth from '@react-native-firebase/auth';
 import appleAuth from '@invertase/react-native-apple-authentication';
 
@@ -21,8 +20,8 @@ import {
   iosClientID,
   PUSH_TOKEN,
 } from '@config/constants/axiosValues';
-import { appText } from '@config/text/constantsText';
-import { showErrorToast } from '@utils/toast/toast';
+import { Utils } from '@utils/index';
+import { Config } from '@config/index';
 
 export const getUserToken = async (data: {
   email: string | null;
@@ -32,7 +31,7 @@ export const getUserToken = async (data: {
   device_type: string;
 }) => {
   try {
-    const res = await axiosClient.post(endPoints.logIn, data);
+    const res = await axiosClient.post(Config.endPoints.logIn, data);
     return res.data.payload;
   } catch (error: any) {
     throw error;
@@ -87,9 +86,9 @@ export const signIn = async (email: string, password: string) => {
     return { userToken, uid };
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {
-    showErrorToast({
-      title: appText.somethingWentWrong,
-      subtitle: appText.pleaseTryAgain,
+    Utils.showErrorToast({
+      title: Config.appText.somethingWentWrong,
+      subtitle: Config.appText.pleaseTryAgain,
     });
   }
 };

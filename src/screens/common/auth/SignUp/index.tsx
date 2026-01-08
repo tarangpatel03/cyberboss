@@ -2,24 +2,18 @@ import { useTheme } from '@shopify/restyle';
 import { StyleSheet, View } from 'react-native';
 import { Theme } from '@config/themes/themes';
 import { createStyles, staticStyle } from '@screens/common/auth/SignUp/styles';
-import { appImages } from '@config/images/imagePath';
 import { routeName } from '@config/constants/routes';
 import { RootNavigationProps } from '@models/navigationModel';
 import { useState } from 'react';
-import { isDarkMode } from '@utils/theme/darkMode';
-import { validateEmail } from '@utils/validation/validation';
-import { showErrorToast } from '@utils/toast/toast';
 import FastImage from 'react-native-fast-image';
 import { useTranslation } from 'react-i18next';
-import { appColors } from '@config/colors/colors';
-import { AuthFooterAction } from '@components/Buttons/HorizontalTextButton';
-import { SignUpInputContainer } from '@components/Input/SignUpInputContainer';
 import { setUser, setUserData } from '@redux/features/userSlice';
 import { useDispatch } from 'react-redux';
 import { appleLogIn, googleLogIn, signUp } from '@services/firebase/auth/auth';
 import firestore from '@react-native-firebase/firestore';
-import { AuthTitle } from '@components/Auth/AuthTitle';
-import { SocialLogIn } from '@components/Auth/SocialLogin';
+import { Utils } from '@utils/index';
+import { Config } from '@config/index';
+import { Components } from '@components/index';
 
 export const SignUpScreen = ({
   navigation,
@@ -38,7 +32,7 @@ export const SignUpScreen = ({
     if (checkBox) {
       navigation.replace(routeName.ProfileSetUp);
     } else {
-      showErrorToast({
+      Utils.showErrorToast({
         title: t('somethingWentWrong'),
         subtitle: t('pleaseTryAgain'),
       });
@@ -50,8 +44,8 @@ export const SignUpScreen = ({
   };
 
   const getTintColor = () => {
-    if (isDarkMode(theme)) return appColors.app_FFFFFF;
-    else return appColors.app_212121;
+    if (Utils.isDarkMode(theme)) return Config.appColors.app_FFFFFF;
+    else return Config.appColors.app_212121;
   };
 
   const createFireBaseUser = (id: string) => {
@@ -80,7 +74,7 @@ export const SignUpScreen = ({
       }
     } catch (error) {
       console.log(error);
-      showErrorToast({ title: 'Apple login failed' });
+      Utils.showErrorToast({ title: 'Apple login failed' });
     }
   };
 
@@ -99,8 +93,8 @@ export const SignUpScreen = ({
   const handleSignUp = async () => {
     try {
       setButtonText(t('loading'));
-      // if (validateEmail(email) && validatePassword(password)) {
-      if (validateEmail(email)) {
+      // if (Utils.validateEmail(email) && Utils.validatePassword(password)) {
+      if (Utils.validateEmail(email)) {
         const res = await signUp(email, password);
         if (res) {
           dispatch(setUser(res.access_token));
@@ -113,7 +107,7 @@ export const SignUpScreen = ({
           navigateToProfileSetUp();
         }
       } else {
-        showErrorToast({
+        Utils.showErrorToast({
           title: t('invalidEmailOrPassword'),
         });
         setButtonText(t('signUp'));
@@ -131,15 +125,15 @@ export const SignUpScreen = ({
         style={StyleSheet.flatten([staticStyle.background, styles.background])}
       >
         <FastImage
-          source={appImages.img_authCard}
+          source={Config.appImages.img_authCard}
           style={staticStyle.topCard}
         />
         <View
           style={StyleSheet.flatten([staticStyle.container, styles.container])}
         >
           <View style={staticStyle.mainContainer}>
-            <AuthTitle title={'letsDiveIn'} subTitle={'signUpLine'} />
-            <SignUpInputContainer
+            <Components.Auth.AuthTitle title={'letsDiveIn'} subTitle={'signUpLine'} />
+            <Components.Inputs.SignUpInputContainer
               email={email}
               setEmail={setEmail}
               password={password}
@@ -151,14 +145,14 @@ export const SignUpScreen = ({
               setPassVisible={setPassVisible}
               handleSignUp={handleSignUp}
             />
-            <SocialLogIn
+            <Components.Auth.SocialLogIn
               handleAppleLogIn={handleAppleLogIn}
               getTintColor={getTintColor}
               handleGoogleLogIn={handleGoogleLogIn}
             />
           </View>
         </View>
-        <AuthFooterAction
+        <Components.Buttons.AuthFooterAction
           navigateTo={navigateToLogIn}
           subTitle={'logIn'}
           title={'alreadyHaveAccount'}

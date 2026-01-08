@@ -10,14 +10,9 @@ import { Theme } from '@config/themes/themes';
 import { routeName } from '@config/constants/routes';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { RootNavigationProps } from '@models/navigationModel';
-import { ScreenHeaderComponent } from '@components/Headers/ScreenHeader';
-import { PrimaryButtonComponent } from '@components/Buttons/PrimaryButton';
 import { getAPIData } from '@services/api/common/getCommonApi';
-import { endPoints } from '@config/endPoint/apiEndPoint';
 import { useTranslation } from 'react-i18next';
 import { updateClientProfile } from '@services/api/profile/updateProfile';
-import { EditProfileInputs } from '@components/Input/EditProfileInput';
-import { PickProfilePictureContainer } from '@components/PickProfilePictureContainer';
 import { ApiProfileModel } from '@models/api/profile';
 import {
   TProfileModel,
@@ -28,6 +23,8 @@ import { setUserData } from '@redux/features/userSlice';
 import firestore from '@react-native-firebase/firestore';
 import { ApiResponse } from '@models/apiModel';
 import { RootState } from '@redux/store';
+import { Config } from '@config/index';
+import { Components } from '@components/index';
 
 export const EditProfileScreen = ({
   navigation,
@@ -114,7 +111,7 @@ export const EditProfileScreen = ({
   const getData = async () => {
     try {
       const response = await getAPIData<ApiResponse<ApiProfileModel>>(
-        endPoints.consultantProfile,
+        Config.endPoints.consultantProfile,
       );
       if (!response) return;
       const transformedData = transformProfileModel(response.payload);
@@ -138,14 +135,14 @@ export const EditProfileScreen = ({
       <SafeAreaView
         style={StyleSheet.flatten([staticStyle.container, styles.container])}
       >
-        <ScreenHeaderComponent onPress={goBack} headerText={t('editProfile')} />
+        <Components.Headers.ScreenHeader onPress={goBack} headerText={t('editProfile')} />
         <View style={staticStyle.innerContainer}>
-          <PickProfilePictureContainer
+          <Components.PickProfilePictureContainer
             getPicture={getPicture}
             pickImage={pickImage}
             changePhotoText={styles.changePhotoText}
           />
-          <EditProfileInputs
+          <Components.Inputs.EditProfileInputs
             experience={experience}
             setExperience={setExperience}
             role={profileData.role}
@@ -157,7 +154,7 @@ export const EditProfileScreen = ({
           />
         </View>
         <View style={staticStyle.button}>
-          <PrimaryButtonComponent
+          <Components.Buttons.PrimaryButton
             onPress={updateProfile}
             text={t('updateProfile')}
           />

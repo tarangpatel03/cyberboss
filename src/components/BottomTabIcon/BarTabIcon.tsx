@@ -2,8 +2,8 @@ import { Platform, StyleSheet, View } from 'react-native';
 import { useTheme } from '@shopify/restyle';
 import { TourGuideZone } from 'rn-tourguide';
 import FastImage from 'react-native-fast-image';
-import normalize from '@utils/normalize/normalize';
-import { RegularTextComponent } from '@components/Text/RegularText';
+import {Utils} from '@utils/index';
+import { Components } from '@components/index';
 import { Theme } from '@config/themes/themes';
 import { useTranslation } from 'react-i18next';
 
@@ -14,7 +14,7 @@ type BarTabIconProps = {
   zone: number;
 };
 
-export const BarTabIconComponent = (props: BarTabIconProps) => {
+export const BarTabIcon = (props: BarTabIconProps) => {
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
@@ -29,12 +29,12 @@ export const BarTabIconComponent = (props: BarTabIconProps) => {
       />
       <TourGuideZone
         zone={props.zone}
-        borderRadius={normalize(4)}
+        borderRadius={Utils.normalize(4)}
         text={t(`tour${props.zone}`)}
         style={staticStyle.tour}
       >
         <FastImage source={props.icon} style={staticStyle.tabIcon} />
-        <RegularTextComponent
+        <Components.Text.RegularTextComponent
           text={props.title}
           textStyle={StyleSheet.flatten([staticStyle.text, styles.text])}
         />
@@ -47,28 +47,28 @@ const staticStyle = StyleSheet.create({
   container: {
     alignItems: 'center',
     justifyContent: 'center',
-    width: normalize(40),
+    width: Utils.normalize(40),
   },
   tabIcon: {
-    width: normalize(24),
-    height: normalize(24),
+    width: Utils.normalize(24),
+    height: Utils.normalize(24),
   },
   text: {
-    fontSize: normalize(10),
+    fontSize: Utils.normalize(10),
     fontWeight: '400',
   },
   tour: {
-    paddingTop: normalize(20),
+    paddingTop: Utils.normalize(20),
     alignItems: 'center',
     justifyContent: 'center',
   },
   topBar: {
     borderBottomRightRadius: 5,
     borderBottomLeftRadius: 5,
-    top: Platform.OS === 'ios' ? normalize(12) : normalize(14),
-    width: normalize(64),
-    height: normalize(4),
-    marginBottom: normalize(8),
+    top: Platform.OS === 'ios' ? Utils.normalize(12) : Utils.normalize(14),
+    width: Utils.normalize(64),
+    height: Utils.normalize(4),
+    marginBottom: Utils.normalize(8),
   },
 });
 

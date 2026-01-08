@@ -3,23 +3,18 @@ import { useTheme } from '@shopify/restyle';
 import { useTranslation } from 'react-i18next';
 import FastImage from 'react-native-fast-image';
 import { Theme } from '@config/themes/themes';
-import { appColors } from '@config/colors/colors';
-import { appIcons } from '@config/icons/iconPath';
 import LinearGradient from 'react-native-linear-gradient';
-import { BoldTextComponent } from '@components/Text/BoldText';
+import { Components } from '@components/index';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
-import { MediumTextComponent } from '@components/Text/MediumText';
-import { RegularTextComponent } from '@components/Text/RegularText';
-import { SemiBoldTextComponent } from '@components/Text/SemiBoldText';
 import { useState } from 'react';
-import { appImages } from '@config/images/imagePath';
 import RadialGradient from 'react-native-radial-gradient';
 import { width } from '@config/constants/variables';
 import { TConsultantHomeModel } from '@models/formattedAPI/tHome';
 import { TProfileModel } from '@models/formattedAPI/tProfile';
 import { useSelector } from 'react-redux';
 import { RootState } from '@redux/store';
-import { getProfilePicture } from '@utils/extractURI/extractImageURI';
+import { Utils } from '@utils/index';
+import { Config } from '@config/index';
 
 type ConsultantHeaderCardProps = {
   profileData: TProfileModel;
@@ -42,7 +37,7 @@ export const ConsultantHeaderCard = (props: ConsultantHeaderCardProps) => {
     <RadialGradient
       radius={200}
       style={staticStyle.gradientCard}
-      colors={[appColors.app_1E3D92, appColors.app_1D2742]}
+      colors={[Config.appColors.app_1E3D92, Config.appColors.app_1D2742]}
       center={[width / 2, 300]}
     >
       <View style={staticStyle.container}>
@@ -58,16 +53,16 @@ export const ConsultantHeaderCard = (props: ConsultantHeaderCardProps) => {
                 <FastImage
                   source={
                     profilePictureError
-                      ? appImages.img_defaultProfile
+                      ? Config.appImages.img_defaultProfile
                       : profilePicture
-                      ? getProfilePicture(profilePicture)
-                      : appImages.img_defaultProfile
+                      ? Utils.getProfilePicture(profilePicture)
+                      : Config.appImages.img_defaultProfile
                   }
                   style={staticStyle.image}
                   onError={() => setProfilePictureError(true)}
                 />
               </View>
-              <SemiBoldTextComponent
+              <Components.Text.SemiBoldTextComponent
                 text={name}
                 textStyle={StyleSheet.flatten([
                   staticStyle.name,
@@ -81,7 +76,7 @@ export const ConsultantHeaderCard = (props: ConsultantHeaderCardProps) => {
             onPress={props.navigateToNotification}
           >
             <FastImage
-              source={appIcons.ic_notificationBell}
+              source={Config.appIcons.ic_notificationBell}
               style={staticStyle.bellButton}
               tintColor={theme.colors.pureWhite}
             />
@@ -95,14 +90,14 @@ export const ConsultantHeaderCard = (props: ConsultantHeaderCardProps) => {
         >
           <View style={staticStyle.centerRow}>
             <View style={staticStyle.counter}>
-              <BoldTextComponent
+              <Components.Text.BoldTextComponent
                 text={`$${props.userData.totalEarnings}`}
                 textStyle={StyleSheet.flatten([
                   staticStyle.countText,
                   styles.whiteText,
                 ])}
               />
-              <RegularTextComponent
+              <Components.Text.RegularTextComponent
                 text="Total Earnings"
                 textStyle={StyleSheet.flatten([
                   staticStyle.subtitleText,
@@ -113,14 +108,14 @@ export const ConsultantHeaderCard = (props: ConsultantHeaderCardProps) => {
             <LinearGradient
               style={staticStyle.verticalSeparator}
               colors={[
-                appColors.app_FFFFFF40,
-                appColors.app_FFFFFF00,
-                appColors.app_FFFFFF40,
+                Config.appColors.app_FFFFFF40,
+                Config.appColors.app_FFFFFF00,
+                Config.appColors.app_FFFFFF40,
               ]}
             />
             <View style={staticStyle.counter}>
               <View style={staticStyle.directionRow}>
-                <BoldTextComponent
+                <Components.Text.BoldTextComponent
                   text={`${props.userData.averageRating}`}
                   textStyle={StyleSheet.flatten([
                     staticStyle.countText,
@@ -128,11 +123,11 @@ export const ConsultantHeaderCard = (props: ConsultantHeaderCardProps) => {
                   ])}
                 />
                 <FastImage
-                  source={appIcons.ic_ratingStarFill}
+                  source={Config.appIcons.ic_ratingStarFill}
                   style={staticStyle.star}
                 />
               </View>
-              <RegularTextComponent
+              <Components.Text.RegularTextComponent
                 text="Avg. Rating"
                 textStyle={StyleSheet.flatten([
                   staticStyle.subtitleText,
@@ -152,9 +147,9 @@ export const ConsultantHeaderCard = (props: ConsultantHeaderCardProps) => {
               y: 0.5,
             }}
             colors={[
-              appColors.app_FFFFFF40,
-              appColors.app_FFFFFF00,
-              appColors.app_FFFFFF40,
+              Config.appColors.app_FFFFFF40,
+              Config.appColors.app_FFFFFF00,
+              Config.appColors.app_FFFFFF40,
             ]}
           />
           <View
@@ -166,10 +161,10 @@ export const ConsultantHeaderCard = (props: ConsultantHeaderCardProps) => {
           >
             <View style={staticStyle.directionRow}>
               <FastImage
-                source={appIcons.ic_wallet}
+                source={Config.appIcons.ic_wallet}
                 style={staticStyle.walletIcon}
               />
-              <RegularTextComponent
+              <Components.Text.RegularTextComponent
                 text={t('walletBalance')}
                 textStyle={StyleSheet.flatten([
                   staticStyle.viewAllText,
@@ -177,7 +172,7 @@ export const ConsultantHeaderCard = (props: ConsultantHeaderCardProps) => {
                 ])}
               />
             </View>
-            <MediumTextComponent
+            <Components.Text.MediumTextComponent
               text={`$${props.userData.walletBalance}`}
               textStyle={StyleSheet.flatten([
                 staticStyle.viewAllText,

@@ -8,8 +8,7 @@ import { Rating } from 'react-native-ratings';
 import { StyleSheet, View } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { Theme } from '@config/themes/themes';
-import { MediumTextComponent } from '@components/Text/MediumText';
-import { RegularTextComponent } from '@components/Text/RegularText';
+import { Components } from '@components/index';
 
 type ReviewCardProps = {
   item: any;
@@ -29,14 +28,14 @@ export const RatingCard = memo((props: ReviewCardProps) => {
           style={staticStyle.reviewImage}
           source={props.item.profileImage}
         />
-        <MediumTextComponent
+        <Components.Text.MediumTextComponent
           text={props.item.name}
           textStyle={StyleSheet.flatten([
             staticStyle.subTitleText,
             styles.primaryText,
           ])}
         />
-        <RegularTextComponent
+        <Components.Text.RegularTextComponent
           textStyle={StyleSheet.flatten([
             staticStyle.tinyText,
             styles.secondaryText,
@@ -52,7 +51,7 @@ export const RatingCard = memo((props: ReviewCardProps) => {
         tintColor={theme.colors.bgPrimary}
         startingValue={props.item.rating}
       />
-      <RegularTextComponent
+      <Components.Text.RegularTextComponent
         text={props.item.review}
         noOfLines={20}
         textStyle={StyleSheet.flatten([

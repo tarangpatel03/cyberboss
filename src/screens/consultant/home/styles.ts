@@ -1,34 +1,34 @@
 import { StyleSheet } from 'react-native';
 import { Theme } from '@config/themes/themes';
-import normalize from '@utils/normalize/normalize';
+import {Utils} from '@utils/index';
 import { width } from '@config/constants/variables';
-import { appColors } from '@config/colors/colors';
+import { Config } from '@config/index';
 
 export const staticStyle = StyleSheet.create({
   card: {
-    width: normalize(width * 0.7),
-    marginLeft: normalize(12),
+    width: Utils.normalize(width * 0.7),
+    marginLeft: Utils.normalize(12),
   },
   background: {
     flex: 1,
   },
   name: {
-    paddingLeft: normalize(8),
-    fontSize: normalize(16),
+    paddingLeft: Utils.normalize(8),
+    fontSize: Utils.normalize(16),
     fontWeight: '600',
   },
   image: {
-    borderRadius: normalize(20),
-    width: normalize(36),
-    height: normalize(36),
+    borderRadius: Utils.normalize(20),
+    width: Utils.normalize(36),
+    height: Utils.normalize(36),
   },
   bellButton: {
-    width: normalize(20),
-    height: normalize(20),
+    width: Utils.normalize(20),
+    height: Utils.normalize(20),
   },
   listItems: {
     flexGrow: 1,
-    gap: normalize(12),
+    gap: Utils.normalize(12),
   },
   counter: {
     width: '45%',
@@ -36,45 +36,45 @@ export const staticStyle = StyleSheet.create({
     justifyContent: 'center',
   },
   centerRow: {
-    gap: normalize(12),
+    gap: Utils.normalize(12),
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
   },
   directionRow: {
     flexDirection: 'row',
-    gap: normalize(8),
+    gap: Utils.normalize(8),
     alignItems: 'center',
   },
   container: {
-    gap: normalize(10),
-    paddingVertical: normalize(12),
-    paddingHorizontal: normalize(12),
+    gap: Utils.normalize(10),
+    paddingVertical: Utils.normalize(12),
+    paddingHorizontal: Utils.normalize(12),
   },
   list: {
     flexGrow: 1,
   },
   walletIcon: {
-    width: normalize(12),
-    height: normalize(12),
+    width: Utils.normalize(12),
+    height: Utils.normalize(12),
     resizeMode: 'contain',
-    marginRight: normalize(8),
+    marginRight: Utils.normalize(8),
   },
   viewAllText: {
-    fontSize: normalize(14),
+    fontSize: Utils.normalize(14),
     fontWeight: '400',
   },
   viewAllButton: {
-    gap: normalize(5),
+    gap: Utils.normalize(5),
     flexDirection: 'row',
     alignItems: 'center',
   },
   viewAllIcon: {
-    width: normalize(5),
-    height: normalize(9),
+    width: Utils.normalize(5),
+    height: Utils.normalize(9),
   },
   paddingTop: {
-    paddingTop: normalize(12),
+    paddingTop: Utils.normalize(12),
   },
   row: {
     flexDirection: 'row',
@@ -82,51 +82,51 @@ export const staticStyle = StyleSheet.create({
     justifyContent: 'space-between',
   },
   star: {
-    width: normalize(16),
-    height: normalize(16),
+    width: Utils.normalize(16),
+    height: Utils.normalize(16),
   },
   separator: {
-    height: normalize(1),
+    height: Utils.normalize(1),
   },
   countText: {
-    fontSize: normalize(18),
+    fontSize: Utils.normalize(18),
     fontWeight: '700',
   },
   verticalSeparator: {
     height: '100%',
-    width: normalize(1),
+    width: Utils.normalize(1),
   },
   gradientCard: {
     width: '100%',
     overflow: 'hidden',
-    paddingTop: normalize(25),
+    paddingTop: Utils.normalize(25),
     borderBottomLeftRadius: 15,
     borderBottomRightRadius: 15,
   },
   subtitleText: {
-    fontSize: normalize(12),
+    fontSize: Utils.normalize(12),
     fontWeight: '400',
   },
   statusContainer: {
     borderWidth: 0.5,
-    borderRadius: normalize(12),
-    gap: normalize(12),
-    padding: normalize(12),
+    borderRadius: Utils.normalize(12),
+    gap: Utils.normalize(12),
+    padding: Utils.normalize(12),
   },
   transparentBG: {
-    borderRadius: normalize(7),
-    paddingVertical: normalize(8),
-    paddingHorizontal: normalize(12),
+    borderRadius: Utils.normalize(7),
+    paddingVertical: Utils.normalize(8),
+    paddingHorizontal: Utils.normalize(12),
   },
   header: {
-    paddingHorizontal: normalize(16),
-    marginBottom: normalize(12),
-    paddingTop: normalize(12),
+    paddingHorizontal: Utils.normalize(16),
+    marginBottom: Utils.normalize(12),
+    paddingTop: Utils.normalize(12),
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
   headerText: {
-    fontSize: normalize(16),
+    fontSize: Utils.normalize(16),
     fontWeight: '500',
   },
 });
@@ -146,12 +146,12 @@ export const createStyles = (theme: Theme) =>
       color: theme.colors.primary,
     },
     statusContainer: {
-      borderColor: appColors.app_FFFFFF4D,
+      borderColor: Config.appColors.app_FFFFFF4D,
     },
     whiteText: {
       color: theme.colors.pureWhite,
     },
     transparentBG: {
-      backgroundColor: appColors.app_FFFFFF1A,
+      backgroundColor: Config.appColors.app_FFFFFF1A,
     },
   });

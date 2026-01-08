@@ -1,20 +1,17 @@
 import { FlatList, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { PrimaryButtonComponent } from '@components/Buttons/PrimaryButton';
-import { OnboardingList } from '@components/List/OnboardingList';
 import { onboardingData } from '@screens/common/Onboarding/onboardingData';
 import { useRef, useState } from 'react';
-import { IndicationBar } from '@components/IndicationBar';
-import { appIcons } from '@config/icons/iconPath';
 import { useTheme } from '@shopify/restyle';
 import { Theme } from '@config/themes/themes';
 import { createStyles } from '@screens/common/Onboarding/styles';
-import { PrimaryButtonWithIconComponent } from '@components/Buttons/PrimaryButtonWithIcon';
 import { routeName } from '@config/constants/routes';
 import { RootNavigationProps } from '@models/navigationModel';
 import { useDispatch } from 'react-redux';
 import { setIsFirstTime } from '@redux/features/userSlice';
 import { useTranslation } from 'react-i18next';
+import { Config } from '@config/index';
+import { Components } from '@components/index';
 
 export const OnboardingScreen = ({
   navigation,
@@ -59,15 +56,15 @@ export const OnboardingScreen = ({
     <>
       <SafeAreaView style={styles.container}>
         <View style={styles.containerView}>
-          <OnboardingList
+          <Components.List.OnboardingList
             flatListRef={flatListRef}
             handleScroll={handleScroll}
           />
-          <IndicationBar currentIndex={currentIndex} />
+          <Components.IndicationBar currentIndex={currentIndex} />
         </View>
         {currentIndex < 3 ? (
           <View style={styles.bottomButtons}>
-            <PrimaryButtonComponent
+            <Components.Buttons.PrimaryButton
               text={t('skip')}
               buttonStyle={StyleSheet.flatten([
                 styles.button,
@@ -76,7 +73,7 @@ export const OnboardingScreen = ({
               textStyle={styles.skipText}
               onPress={handleSkip}
             />
-            <PrimaryButtonComponent
+            <Components.Buttons.PrimaryButton
               text={t('next')}
               buttonStyle={styles.button}
               textStyle={styles.nextText}
@@ -85,13 +82,13 @@ export const OnboardingScreen = ({
           </View>
         ) : (
           <View style={styles.bottomButtons}>
-            <PrimaryButtonWithIconComponent
+            <Components.Buttons.PrimaryButtonWithIcon
               buttonStyle={StyleSheet.flatten([
                 styles.button,
                 styles.nextButton,
                 styles.fullLength,
               ])}
-              icon={appIcons.ic_next}
+              icon={Config.appIcons.ic_next}
               text={t('getStarted')}
               textStyle={styles.nextText}
               onPress={navigateToLogIn}

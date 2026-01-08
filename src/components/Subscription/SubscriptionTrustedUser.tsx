@@ -1,15 +1,14 @@
 import { StyleSheet, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { appColors } from '@config/colors/colors';
 import LinearGradient from 'react-native-linear-gradient';
 import { MediumTextComponent } from '@components/Text/MediumText';
 import { staticStyle } from '@screens/client/Subscription/styles';
 import { SemiBoldTextComponent } from '@components/Text/SemiBoldText';
 import { linearGradientDirection } from '@screens/client/Subscription';
 import FastImage from 'react-native-fast-image';
-import { appIcons } from '@config/icons/iconPath';
 import { RegularTextComponent } from '@components/Text/RegularText';
-import { getProfilePicture } from '@utils/extractURI/extractImageURI';
+import { Utils } from '@utils/index';
+import { Config } from '@config/index';
 
 type SubscriptionTrustedUserProps = {
   direction: linearGradientDirection;
@@ -33,9 +32,9 @@ export const SubscriptionTrustedUser = (
           start={props.direction.start}
           style={staticStyle.proContainer}
           colors={[
-            appColors.app_FFD84D,
-            appColors.app_FFE893,
-            appColors.app_FFD84D,
+            Config.appColors.app_FFD84D,
+            Config.appColors.app_FFE893,
+            Config.appColors.app_FFD84D,
           ]}
         >
           <SemiBoldTextComponent
@@ -52,7 +51,7 @@ export const SubscriptionTrustedUser = (
           style={staticStyle.features}
         >
           <FastImage
-            source={appIcons.ic_proFeatures}
+            source={Config.appIcons.ic_proFeatures}
             style={staticStyle.featuresIcon}
           />
           <RegularTextComponent
@@ -64,32 +63,32 @@ export const SubscriptionTrustedUser = (
           <View style={staticStyle.horizontal12}>
             <View style={[staticStyle.horizontalUsers]}>
               <FastImage
-                source={getProfilePicture(props.userImages?.[0] ?? '')}
+                source={Utils.getProfilePicture(props.userImages?.[0] ?? '')}
                 style={staticStyle.trustedUserImage}
               />
               <FastImage
-                source={getProfilePicture(props.userImages?.[1] ?? '')}
+                source={Utils.getProfilePicture(props.userImages?.[1] ?? '')}
                 style={StyleSheet.flatten([
                   staticStyle.trustedUserImage,
                   staticStyle.trustedUserImage2,
                 ])}
               />
               <FastImage
-                source={getProfilePicture(props.userImages?.[2] ?? '')}
+                source={Utils.getProfilePicture(props.userImages?.[2] ?? '')}
                 style={StyleSheet.flatten([
                   staticStyle.trustedUserImage,
                   staticStyle.trustedUserImage3,
                 ])}
               />
               <FastImage
-                source={getProfilePicture(props.userImages?.[3] ?? '')}
+                source={Utils.getProfilePicture(props.userImages?.[3] ?? '')}
                 style={StyleSheet.flatten([
                   staticStyle.trustedUserImage,
                   staticStyle.trustedUserImage4,
                 ])}
               />
               <FastImage
-                source={getProfilePicture(props.userImages?.[4] ?? '')}
+                source={Utils.getProfilePicture(props.userImages?.[4] ?? '')}
                 style={StyleSheet.flatten([
                   staticStyle.trustedUserImage,
                   staticStyle.trustedUserImage5,

@@ -11,7 +11,7 @@ type CircularIconButtonProps = {
   ref?: RefObject<View | null>;
 };
 
-export const CircularIconButtonComponent = (props: CircularIconButtonProps) => {
+export const CircularIconButton = (props: CircularIconButtonProps) => {
   return (
     <TouchableOpacity
       ref={props.ref}

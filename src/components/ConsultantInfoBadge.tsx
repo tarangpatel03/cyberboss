@@ -1,9 +1,9 @@
 import { StyleSheet, View } from 'react-native';
 import { Theme } from '@config/themes/themes';
 import { useTheme } from '@shopify/restyle';
-import normalize from '@utils/normalize/normalize';
-import { RegularTextComponent } from '@components/Text/RegularText';
+import {Utils} from '@utils/index';
 import FastImage from 'react-native-fast-image';
+import { Components } from '@components/index';
 
 type ConsultantInfoBadgeProps = {
   text: string;
@@ -24,7 +24,7 @@ export const ConsultantInfoBadge = ({
         <FastImage source={{ uri: image }} style={staticStyle.uriImage} />
       )}
       {imagePath && <FastImage source={imagePath} style={staticStyle.image} />}
-      <RegularTextComponent
+      <Components.Text.RegularTextComponent
         text={text}
         textStyle={StyleSheet.flatten([staticStyle.text, styles.text])}
       />
@@ -34,24 +34,24 @@ export const ConsultantInfoBadge = ({
 
 const staticStyle = StyleSheet.create({
   container: {
-    borderRadius: normalize(20),
-    gap: normalize(8),
+    borderRadius: Utils.normalize(20),
+    gap: Utils.normalize(8),
     flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: normalize(8),
-    paddingHorizontal: normalize(12),
+    paddingVertical: Utils.normalize(8),
+    paddingHorizontal: Utils.normalize(12),
   },
   text: {
-    fontSize: normalize(14),
+    fontSize: Utils.normalize(14),
     fontWeight: '400',
   },
   image: {
-    width: normalize(14),
-    height: normalize(14),
+    width: Utils.normalize(14),
+    height: Utils.normalize(14),
   },
   uriImage: {
-    width: normalize(20),
-    height: normalize(20),
+    width: Utils.normalize(20),
+    height: Utils.normalize(20),
   },
 });
 

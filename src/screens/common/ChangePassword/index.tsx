@@ -2,7 +2,6 @@ import { useTheme } from '@shopify/restyle';
 import { StyleSheet, View } from 'react-native';
 import { Theme } from '@config/themes/themes';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { ScreenHeaderComponent } from '@components/Headers/ScreenHeader';
 import { RootNavigationProps } from '@models/navigationModel';
 import { routeName } from '@config/constants/routes';
 import {
@@ -10,11 +9,10 @@ import {
   staticStyle,
 } from '@screens/common/ChangePassword/styles';
 import { useState } from 'react';
-import { PasswordInputComponent } from '@components/Input/PasswordInput';
-import { PrimaryButtonComponent } from '@components/Buttons/PrimaryButton';
 import { useTranslation } from 'react-i18next';
 import auth from '@react-native-firebase/auth';
-import { showErrorToast } from '@utils/toast/toast';
+import { Utils } from '@utils/index';
+import { Components } from '@components/index';
 
 export const ChangePasswordScreen = ({
   navigation,
@@ -37,12 +35,12 @@ export const ChangePasswordScreen = ({
 
   const handleChangePassword = async () => {
     if (!oldPassword || !newPassword) {
-      showErrorToast({ title: 'Please enter both old and new password' });
+      Utils.showErrorToast({ title: 'Please enter both old and new password' });
       return;
     } else if (newPassword !== confirmNewPassword) {
-      showErrorToast({ title: "Password don't match" });
+      Utils.showErrorToast({ title: "Password don't match" });
     } else if (oldPassword === newPassword) {
-      showErrorToast({
+      Utils.showErrorToast({
         title: 'New password must be different from old password',
       });
     } else {
@@ -74,26 +72,26 @@ export const ChangePasswordScreen = ({
       <SafeAreaView
         style={StyleSheet.flatten([staticStyle.container, styles.container])}
       >
-        <ScreenHeaderComponent
+        <Components.Headers.ScreenHeader
           onPress={goBack}
           headerText={t('changePassword')}
         />
         <View style={staticStyle.inputField}>
-          <PasswordInputComponent
+          <Components.Inputs.PasswordInput
             placeholder={t('oldPassword')}
             setValue={setOldPassword}
             setVisible={setOldPassVisible}
             visible={oldPassVisible}
             value={oldPassword ?? ''}
           />
-          <PasswordInputComponent
+          <Components.Inputs.PasswordInput
             placeholder={t('newPassword')}
             setValue={setNewPassword}
             setVisible={setNewPassVisible}
             visible={newPassVisible}
             value={newPassword ?? ''}
           />
-          <PasswordInputComponent
+          <Components.Inputs.PasswordInput
             placeholder={t('confirmNewPassword')}
             setValue={setConfirmNewPassword}
             setVisible={setConfirmNewPassVisible}
@@ -102,7 +100,7 @@ export const ChangePasswordScreen = ({
           />
         </View>
         <View style={staticStyle.buttonContainer}>
-          <PrimaryButtonComponent
+          <Components.Buttons.PrimaryButton
             onPress={handleChangePassword}
             text={t('updatePassword')}
           />

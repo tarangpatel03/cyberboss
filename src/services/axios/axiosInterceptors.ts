@@ -3,9 +3,9 @@ import { axiosClient } from '@services/axios/axiosClient';
 import { RootNavigationParams } from '@models/navigationModel';
 import { store } from '@redux/store';
 import { routeName } from '@config/constants/routes';
-import { showErrorToast } from '@utils/toast/toast';
-import { appText } from '@config/text/constantsText';
 import { clearUser } from '@redux/features/userSlice';
+import { Utils } from '@utils/index';
+import { Config } from '@config/index';
 
 export const navigationRef =
   createNavigationContainerRef<RootNavigationParams>();
@@ -39,25 +39,25 @@ axiosClient.interceptors.response.use(
           navigationRef.current?.navigate(routeName.LogIn);
           break;
         case 404:
-          showErrorToast({
-            title: appText.pageNotFound,
-            subtitle: appText.pleaseTryAgain,
+          Utils.showErrorToast({
+            title: Config.appText.pageNotFound,
+            subtitle: Config.appText.pleaseTryAgain,
           });
           break;
         case 422:
-          showErrorToast({
-            subtitle: appText.enterValidValue,
+          Utils.showErrorToast({
+            subtitle: Config.appText.enterValidValue,
           });
           break;
         case 429:
-          showErrorToast({
-            title: appText.pleaseTryAgainLater,
+          Utils.showErrorToast({
+            title: Config.appText.pleaseTryAgainLater,
           });
           break;
         case 500:
-          showErrorToast({
-            title: appText.internalServerError,
-            subtitle: appText.pleaseTryAgain,
+          Utils.showErrorToast({
+            title: Config.appText.internalServerError,
+            subtitle: Config.appText.pleaseTryAgain,
           });
           break;
         default:

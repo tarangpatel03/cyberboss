@@ -5,9 +5,9 @@ import {
   TouchableOpacity,
   ViewStyle,
 } from 'react-native';
-import { MediumTextComponent } from '@components/Text/MediumText';
-import normalize from '@utils/normalize/normalize';
-import { appColors } from '@config/colors/colors';
+import { Components } from '@components/index';
+import {Utils} from '@utils/index';
+import { Config } from '@config/index';
 import FastImage from 'react-native-fast-image';
 
 type PrimaryButtonWithIconComponentProps = {
@@ -18,7 +18,7 @@ type PrimaryButtonWithIconComponentProps = {
   onPress: () => void;
 };
 
-export const PrimaryButtonWithIconComponent = (
+export const PrimaryButtonWithIcon = (
   props: PrimaryButtonWithIconComponentProps,
 ) => {
   return (
@@ -27,7 +27,7 @@ export const PrimaryButtonWithIconComponent = (
       style={props.buttonStyle}
       onPress={props.onPress}
     >
-      <MediumTextComponent text={props.text} textStyle={props.textStyle} />
+      <Components.Text.MediumTextComponent text={props.text} textStyle={props.textStyle} />
       <FastImage source={props.icon} style={styles.iconStyle} />
     </TouchableOpacity>
   );
@@ -35,10 +35,10 @@ export const PrimaryButtonWithIconComponent = (
 
 const styles = StyleSheet.create({
   iconStyle: {
-    width: normalize(16),
-    height: normalize(16),
+    width: Utils.normalize(16),
+    height: Utils.normalize(16),
     position: 'absolute',
-    right: normalize(16),
-    tintColor: appColors.app_FFFFFF,
+    right: Utils.normalize(16),
+    tintColor: Config.appColors.app_FFFFFF,
   },
 });

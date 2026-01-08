@@ -4,12 +4,11 @@ import { RootState } from '@redux/store';
 import { useTranslation } from 'react-i18next';
 import FastImage from 'react-native-fast-image';
 import { Theme } from '@config/themes/themes';
-import normalize from '@utils/normalize/normalize';
+import {Utils} from '@utils/index';
 import { width } from '@config/constants/variables';
 import { ThemeMode } from '@redux/features/themeSlice';
 import { StyleSheet, useColorScheme, View } from 'react-native';
-import { RegularTextComponent } from '@components/Text/RegularText';
-import { SemiBoldTextComponent } from '@components/Text/SemiBoldText';
+import { Components } from '@components/index';
 import { onboardingDataProps } from '@screens/common/Onboarding/onboardingData';
 
 type OnboardingListProps = {
@@ -34,8 +33,8 @@ export const OnboardingListComponent = ({ data }: OnboardingListProps) => {
         style={styles.image}
       />
       <View style={styles.textContainer}>
-        <SemiBoldTextComponent text={t(data.title)} textStyle={styles.title} />
-        <RegularTextComponent
+        <Components.Text.SemiBoldTextComponent text={t(data.title)} textStyle={styles.title} />
+        <Components.Text.RegularTextComponent
           noOfLines={2}
           text={t(data.subTitle)}
           textStyle={styles.subTitle}
@@ -49,28 +48,28 @@ const createStyles = (theme: Theme) =>
   StyleSheet.create({
     container: {
       backgroundColor: theme.colors.bgPrimary,
-      paddingTop: normalize(30),
+      paddingTop: Utils.normalize(30),
       paddingHorizontal: 16,
       width: width,
     },
     image: {
-      height: normalize(400, 'height'),
+      height: Utils.normalize(400, 'height'),
       resizeMode: 'contain',
     },
     title: {
-      fontSize: normalize(24),
+      fontSize: Utils.normalize(24),
       fontWeight: '600',
       color: theme.colors.textPrimary,
     },
     subTitle: {
-      fontSize: normalize(14),
+      fontSize: Utils.normalize(14),
       fontWeight: '400',
       textAlign: 'center',
       color: theme.colors.textSecondary,
     },
     textContainer: {
       alignItems: 'center',
-      gap: normalize(12),
-      marginBottom: normalize(32),
+      gap: Utils.normalize(12),
+      marginBottom: Utils.normalize(32),
     },
   });

@@ -2,16 +2,14 @@ import { staticStyle, createStyles } from '@screens/client/Home/styles';
 import { useTheme } from '@shopify/restyle';
 import FastImage from 'react-native-fast-image';
 import { Theme } from '@config/themes/themes';
-import { appColors } from '@config/colors/colors';
-import { appIcons } from '@config/icons/iconPath';
-import { appImages } from '@config/images/imagePath';
 import LinearGradient from 'react-native-linear-gradient';
-import { SemiBoldTextComponent } from '@components/Text/SemiBoldText';
+import { Components } from '@components/index';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '@redux/store';
-import { getProfilePicture } from '@utils/extractURI/extractImageURI';
+import { Utils } from '@utils/index';
+import { Config } from '@config/index';
 
 type TopBarComponentProps = {
   isSubscriber: boolean;
@@ -20,7 +18,7 @@ type TopBarComponentProps = {
   onPressNotification: () => void;
 };
 
-export const TopBarComponent = (props: TopBarComponentProps) => {
+export const TopBarHeader = (props: TopBarComponentProps) => {
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   const { name, profilePicture } = useSelector(
@@ -31,7 +29,7 @@ export const TopBarComponent = (props: TopBarComponentProps) => {
   return (
     <LinearGradient
       style={staticStyle.topBar}
-      colors={[appColors.app_3554FF26, appColors.app_3554FF00]}
+      colors={[Config.appColors.app_3554FF26, Config.appColors.app_3554FF00]}
     >
       <View style={staticStyle.profileInfo}>
         <TouchableOpacity activeOpacity={0.7} onPress={props.onPressProfile}>
@@ -39,15 +37,15 @@ export const TopBarComponent = (props: TopBarComponentProps) => {
             <FastImage
               source={
                 profileImageError
-                  ? appImages.img_defaultProfile
+                  ? Config.appImages.img_defaultProfile
                   : profilePicture
-                  ? getProfilePicture(profilePicture)
-                  : appImages.img_defaultProfile
+                  ? Utils.getProfilePicture(profilePicture)
+                  : Config.appImages.img_defaultProfile
               }
               style={staticStyle.image}
               onError={() => setProfileImageError(true)}
             />
-            <SemiBoldTextComponent
+            <Components.Text.SemiBoldTextComponent
               text={name}
               textStyle={StyleSheet.flatten([
                 staticStyle.profileText,
@@ -59,7 +57,7 @@ export const TopBarComponent = (props: TopBarComponentProps) => {
         <View style={staticStyle.profilePictureName}>
           {props.isSubscriber ? (
             <FastImage
-              source={appImages.img_proUser}
+              source={Config.appImages.img_proUser}
               style={staticStyle.proUser}
               resizeMode={FastImage.resizeMode.contain}
             />
@@ -69,7 +67,7 @@ export const TopBarComponent = (props: TopBarComponentProps) => {
               onPress={props.onPressSubscription}
             >
               <FastImage
-                source={appImages.img_freeUser}
+                source={Config.appImages.img_freeUser}
                 style={staticStyle.proUser}
                 resizeMode={FastImage.resizeMode.contain}
               />
@@ -81,7 +79,7 @@ export const TopBarComponent = (props: TopBarComponentProps) => {
           >
             <FastImage
               tintColor={theme.colors.textPrimary}
-              source={appIcons.ic_notificationBell}
+              source={Config.appIcons.ic_notificationBell}
               style={staticStyle.bellButton}
             />
             {/* <View

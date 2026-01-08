@@ -1,18 +1,14 @@
 import { useTheme } from '@shopify/restyle';
 import { Theme } from '@config/themes/themes';
-import { appColors } from '@config/colors/colors';
-import { appIcons } from '@config/icons/iconPath';
 import { createStyles, staticStyle } from '@components/Skeleton/clientHome/styles';
-import { isDarkMode } from '@utils/theme/darkMode';
 import LinearGradient from 'react-native-linear-gradient';
-import { ShimmerHolder } from '@components/Skeleton/ShimmerHolder';
 import { FlatList, ScrollView, StyleSheet, View } from 'react-native';
-import { MediumTextComponent } from '@components/Text/MediumText';
-import { RegularTextComponent } from '@components/Text/RegularText';
 import FastImage from 'react-native-fast-image';
-import { ListShimmer } from '@components/Skeleton/ListShimmer';
 import { useTranslation } from 'react-i18next';
 import { useCallback } from 'react';
+import { Utils } from '@utils/index';
+import { Config } from '@config/index';
+import { Components } from '@components/index';
 
 export const ClientHomeScreenShimmer = () => {
   const { t } = useTranslation();
@@ -20,7 +16,7 @@ export const ClientHomeScreenShimmer = () => {
   const styles = createStyles(theme);
 
   const renderItem = useCallback(() => {
-    return <ShimmerHolder style={staticStyle.workShopCard} />;
+    return <Components.Skeleton.ShimmerHolder style={staticStyle.workShopCard} />;
   }, []);
 
   return (
@@ -29,18 +25,18 @@ export const ClientHomeScreenShimmer = () => {
         style={StyleSheet.flatten([staticStyle.background, styles.background])}
       >
         <LinearGradient
-          colors={[appColors.app_3554FF26, appColors.app_3554FF00]}
+          colors={[Config.appColors.app_3554FF26, Config.appColors.app_3554FF00]}
           style={staticStyle.topBar}
         >
           <View style={staticStyle.profileInfo}>
             <View style={staticStyle.profilePictureName}>
-              <ShimmerHolder style={staticStyle.image} />
-              <ShimmerHolder style={staticStyle.profileText} />
+              <Components.Skeleton.ShimmerHolder style={staticStyle.image} />
+              <Components.Skeleton.ShimmerHolder style={staticStyle.profileText} />
             </View>
             <View style={staticStyle.profilePictureName}>
-              <ShimmerHolder style={staticStyle.proUser} />
+              <Components.Skeleton.ShimmerHolder style={staticStyle.proUser} />
               <FastImage
-                source={appIcons.ic_notificationBell}
+                source={Config.appIcons.ic_notificationBell}
                 style={staticStyle.bellButton}
                 tintColor={theme.colors.textPrimary}
               />
@@ -56,10 +52,10 @@ export const ClientHomeScreenShimmer = () => {
               ])}
             >
               <FastImage
-                source={appIcons.ic_search}
+                source={Config.appIcons.ic_search}
                 style={staticStyle.searchIcon}
               />
-              <RegularTextComponent
+              <Components.Text.RegularTextComponent
                 text={t('searchPlaceHolder')}
                 textStyle={StyleSheet.flatten([
                   staticStyle.headerText,
@@ -70,13 +66,13 @@ export const ClientHomeScreenShimmer = () => {
             <View style={staticStyle.helpButton}>
               <FastImage
                 source={
-                  isDarkMode(theme)
-                    ? appIcons.ic_helpDark
-                    : appIcons.ic_helpLight
+                  Utils.isDarkMode(theme)
+                    ? Config.appIcons.ic_helpDark
+                    : Config.appIcons.ic_helpLight
                 }
                 style={staticStyle.imageButton}
               />
-              <MediumTextComponent
+              <Components.Text.MediumTextComponent
                 text={t('help')}
                 textStyle={StyleSheet.flatten([
                   staticStyle.tinyText,
@@ -88,7 +84,7 @@ export const ClientHomeScreenShimmer = () => {
           <View style={staticStyle.container}>
             <View>
               <View style={staticStyle.header}>
-                <MediumTextComponent
+                <Components.Text.MediumTextComponent
                   text={t('workshop')}
                   textStyle={StyleSheet.flatten([
                     staticStyle.headerText,
@@ -96,7 +92,7 @@ export const ClientHomeScreenShimmer = () => {
                   ])}
                 />
                 <View style={staticStyle.viewAllButton}>
-                  <RegularTextComponent
+                  <Components.Text.RegularTextComponent
                     text={t('viewAll')}
                     textStyle={StyleSheet.flatten([
                       staticStyle.viewAllText,
@@ -104,7 +100,7 @@ export const ClientHomeScreenShimmer = () => {
                     ])}
                   />
                   <FastImage
-                    source={appIcons.ic_rightArrow}
+                    source={Config.appIcons.ic_rightArrow}
                     style={staticStyle.viewAllIcon}
                     tintColor={theme.colors.primary}
                   />
@@ -121,7 +117,7 @@ export const ClientHomeScreenShimmer = () => {
             </View>
             <View>
               <View style={staticStyle.header}>
-                <MediumTextComponent
+                <Components.Text.MediumTextComponent
                   text={t('bookingHistory')}
                   textStyle={StyleSheet.flatten([
                     staticStyle.headerText,
@@ -129,7 +125,7 @@ export const ClientHomeScreenShimmer = () => {
                   ])}
                 />
                 <View style={staticStyle.viewAllButton}>
-                  <RegularTextComponent
+                  <Components.Text.RegularTextComponent
                     text={t('viewAll')}
                     textStyle={StyleSheet.flatten([
                       staticStyle.viewAllText,
@@ -137,7 +133,7 @@ export const ClientHomeScreenShimmer = () => {
                     ])}
                   />
                   <FastImage
-                    source={appIcons.ic_rightArrow}
+                    source={Config.appIcons.ic_rightArrow}
                     style={staticStyle.viewAllIcon}
                     tintColor={theme.colors.primary}
                   />
@@ -153,7 +149,7 @@ export const ClientHomeScreenShimmer = () => {
               />
             </View>
             <View style={staticStyle.container}>
-              <MediumTextComponent
+              <Components.Text.MediumTextComponent
                 text={t('browseServices')}
                 textStyle={StyleSheet.flatten([
                   staticStyle.header,
@@ -161,7 +157,7 @@ export const ClientHomeScreenShimmer = () => {
                   styles.headerText,
                 ])}
               />
-              <ListShimmer
+              <Components.Skeleton.ListShimmer
                 scrollEnabled={false}
                 containerStyle={staticStyle.browseService}
               />

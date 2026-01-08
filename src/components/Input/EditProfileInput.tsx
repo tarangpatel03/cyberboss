@@ -7,9 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { View, StyleSheet } from 'react-native';
 import { Dispatch, SetStateAction } from 'react';
 import { Theme } from '@config/themes/themes';
-import { BorderInputComponent } from '@components/Input/BorderInput';
-import { BioInputComponent } from '@components/Input/MultiLineInput';
-import { RegularTextComponent } from '@components/Text/RegularText';
+import { Components } from '@components/index';
 
 type EditProfileInputsProps = {
   email: string;
@@ -28,7 +26,7 @@ export const EditProfileInputs = (props: EditProfileInputsProps) => {
   const styles = createStyles(theme);
   return (
     <View style={staticStyle.inputContainer}>
-      <BorderInputComponent
+      <Components.Inputs.BorderInput
         placeholder={t('name')}
         setValue={props.setUserName}
         value={props.name}
@@ -39,23 +37,23 @@ export const EditProfileInputs = (props: EditProfileInputsProps) => {
           styles.disableInputContainer,
         ])}
       >
-        <RegularTextComponent
+        <Components.Text.RegularTextComponent
           textStyle={StyleSheet.flatten([staticStyle.placeHolder, styles.text])}
           text={t('email')}
         />
-        <RegularTextComponent
+        <Components.Text.RegularTextComponent
           text={props.email}
           textStyle={StyleSheet.flatten([staticStyle.text, styles.text])}
         />
       </View>
       {props.role === 'consultant' && (
         <>
-          <BorderInputComponent
+          <Components.Inputs.BorderInput
             placeholder={t('yearsOfExperience')}
             setValue={props.setExperience ?? (() => {})}
             value={props.experience ?? ''}
           />
-          <BioInputComponent
+          <Components.Inputs.BioInputComponent
             placeholder={t('bio')}
             setValue={props.setBio}
             value={props.bio}

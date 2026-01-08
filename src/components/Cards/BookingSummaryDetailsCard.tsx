@@ -8,17 +8,12 @@ import FastImage from 'react-native-fast-image';
 import { Theme } from '@config/themes/themes';
 import LinearGradient from 'react-native-linear-gradient';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
-import { MediumTextComponent } from '@components/Text/MediumText';
-import { RegularTextComponent } from '@components/Text/RegularText';
-import {
-  getGradientColor,
-  getServiceImage,
-} from '@utils/gradientColor/gradientColor';
+import { Components } from '@components/index';
 import { TBookingDetailsModel } from '@models/formattedAPI/tBookings';
-import { getProfilePicture } from '@utils/extractURI/extractImageURI';
-import { appImages } from '@config/images/imagePath';
 import { useState } from 'react';
 import { Rating } from 'react-native-ratings';
+import { Utils } from '@utils/index';
+import { Config } from '@config/index';
 
 type BookingSummaryDetailsCardProps = {
   userRole: 'consultant' | 'client';
@@ -37,7 +32,7 @@ export const BookingSummaryDetailsCard = (
 
   return (
     <View style={StyleSheet.flatten([staticStyle.card, styles.container])}>
-      <MediumTextComponent
+      <Components.Text.MediumTextComponent
         textStyle={StyleSheet.flatten([
           staticStyle.titleText,
           styles.secondaryText,
@@ -60,22 +55,22 @@ export const BookingSummaryDetailsCard = (
           <FastImage
             source={
               imageError
-                ? appImages.img_defaultProfile
-                : getProfilePicture(props.data?.userProfilePicture)
+                ? Config.appImages.img_defaultProfile
+                : Utils.getProfilePicture(props.data?.userProfilePicture)
             }
             onError={() => setImageError(true)}
             style={staticStyle.profileImage}
           />
         </TouchableOpacity>
         <View style={staticStyle.fullLengthView}>
-          <MediumTextComponent
+          <Components.Text.MediumTextComponent
             text={props.data?.userName ?? ''}
             textStyle={StyleSheet.flatten([
               staticStyle.titleText,
               styles.primaryText,
             ])}
           />
-          <RegularTextComponent
+          <Components.Text.RegularTextComponent
             text={`${props.data?.hours}hr`}
             textStyle={StyleSheet.flatten([
               staticStyle.subtitleText,
@@ -83,7 +78,7 @@ export const BookingSummaryDetailsCard = (
             ])}
           />
         </View>
-        <MediumTextComponent
+        <Components.Text.MediumTextComponent
           text={`$${props.data?.total}`}
           textStyle={StyleSheet.flatten([
             staticStyle.titleText,
@@ -101,7 +96,7 @@ export const BookingSummaryDetailsCard = (
           x: 0,
           y: 0.5,
         }}
-        colors={getGradientColor(props.data?.expertise?.name)}
+        colors={Utils.getGradientColor(props.data?.expertise?.name)}
         style={staticStyle.gradient}
       >
         <View
@@ -112,10 +107,10 @@ export const BookingSummaryDetailsCard = (
         >
           <FastImage
             resizeMode={FastImage.resizeMode.contain}
-            source={getServiceImage(props.data?.expertise?.name)}
+            source={Utils.getServiceImage(props.data?.expertise?.name)}
             style={staticStyle.categoryIcon}
           />
-          <RegularTextComponent
+          <Components.Text.RegularTextComponent
             text={props.data?.expertise?.name ?? ''}
             textStyle={StyleSheet.flatten([
               styles.primaryText,
@@ -132,7 +127,7 @@ export const BookingSummaryDetailsCard = (
         activeOpacity={1}
       >
         <View style={staticStyle.horizontalCard}>
-          <MediumTextComponent
+          <Components.Text.MediumTextComponent
             text={
               props.review?.[0]?.reviews
                 ? t('yourRating')
@@ -153,7 +148,7 @@ export const BookingSummaryDetailsCard = (
         </View>
         {props.review?.[0]?.reviews && (
           <View>
-            <RegularTextComponent
+            <Components.Text.RegularTextComponent
               text={props.review?.[0].reviews}
               noOfLines={200}
               textStyle={StyleSheet.flatten([

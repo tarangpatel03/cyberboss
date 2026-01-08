@@ -2,11 +2,10 @@ import { useTheme } from '@shopify/restyle';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet, View } from 'react-native';
 import { createStyles, staticStyle } from '@screens/common/Profile/styles';
-import { appIcons } from '@config/icons/iconPath';
 import { UserDetailProps } from '@redux/features/userSlice';
-import { SettingOptionsButton } from '@components/Buttons/SettingsButton';
-import { MediumTextComponent } from '@components/Text/MediumText';
+import { Components } from '@components/index';
 import { Theme } from '@config/themes/themes';
+import { Config } from '@config/index';
 
 type GeneralSettingsProps = {
   userData: UserDetailProps;
@@ -26,7 +25,7 @@ export const GeneralSettings = (props: GeneralSettingsProps) => {
         styles.utilCard,
       ])}
     >
-      <MediumTextComponent
+      <Components.Text.MediumTextComponent
         text={t('general')}
         textStyle={StyleSheet.flatten([
           staticStyle.optionTitle,
@@ -39,10 +38,10 @@ export const GeneralSettings = (props: GeneralSettingsProps) => {
       <View style={staticStyle.options}>
         {props.userData.role === 'client' && (
           <>
-            <SettingOptionsButton
+            <Components.Buttons.SettingOptionsButton
               navigate={props.navigateToContactSupport}
               title={t('contactSupport')}
-              icon={appIcons.ic_contactSupport}
+              icon={Config.appIcons.ic_contactSupport}
             />
             <View
               style={StyleSheet.flatten([
@@ -52,18 +51,18 @@ export const GeneralSettings = (props: GeneralSettingsProps) => {
             />
           </>
         )}
-        <SettingOptionsButton
+        <Components.Buttons.SettingOptionsButton
           navigate={() => {}}
           title={t('aboutUs')}
-          icon={appIcons.ic_aboutUs}
+          icon={Config.appIcons.ic_aboutUs}
         />
         <View
           style={StyleSheet.flatten([staticStyle.separator, styles.separator])}
         />
-        <SettingOptionsButton
+        <Components.Buttons.SettingOptionsButton
           navigate={() => {}}
           title={t('termsPrivacy')}
-          icon={appIcons.ic_terms}
+          icon={Config.appIcons.ic_terms}
         />
       </View>
     </View>

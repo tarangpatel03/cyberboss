@@ -9,14 +9,8 @@ import { routeName } from '@config/constants/routes';
 import { useTheme } from '@shopify/restyle';
 import { Theme } from '@config/themes/themes';
 import { createStyles, staticStyle } from '@screens/client/Workshop/styles';
-import { WorkshopCard } from '@components/Cards/WorkshopCard';
-import { ScreenHeaderComponent } from '@components/Headers/ScreenHeader';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { getAPIData } from '@services/api/common/getCommonApi';
-import { ListEmptyCard } from '@components/Cards/ListEmptyCard';
-import { appImages } from '@config/images/imagePath';
-import { ListShimmer } from '@components/Skeleton/ListShimmer';
-import { endPoints } from '@config/endPoint/apiEndPoint';
 import { useTranslation } from 'react-i18next';
 import { ApiWorkshopModel } from '@models/api/consultant';
 import {
@@ -25,6 +19,8 @@ import {
 } from '@models/formattedAPI/tConsultant';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ApiResponse, ListPayload } from '@models/apiModel';
+import { Config } from '@config/index';
+import { Components } from '@components/index';
 
 export const WorkshopScreen = ({
   navigation,
@@ -51,7 +47,7 @@ export const WorkshopScreen = ({
       }
       const response = await getAPIData<
         ApiResponse<ListPayload<ApiWorkshopModel>>
-      >(endPoints.workshopList, pageToLoad);
+      >(Config.endPoints.workshopList, pageToLoad);
       if (!response) return;
       const res: ApiWorkshopModel[] = response.payload.data;
       const transformedData: TWorkshopModel[] = res
@@ -74,16 +70,16 @@ export const WorkshopScreen = ({
   };
   const emptyCard = () => {
     return (
-      <ListEmptyCard
+      <Components.Cards.ListEmptyCard
         text={t('noWorkshop')}
-        image={appImages.img_noWorkshop}
+        image={Config.appImages.img_noWorkshop}
         tintColor={theme.colors.textPrimary}
       />
     );
   };
 
   const renderItem: ListRenderItem<TWorkshopModel> = useCallback(({ item }) => {
-    return <WorkshopCard data={item} cardStyle={staticStyle.cardStyle} />;
+    return <Components.Cards.WorkshopCard data={item} cardStyle={staticStyle.cardStyle} />;
   }, []);
 
   useEffect(() => {
@@ -95,9 +91,9 @@ export const WorkshopScreen = ({
       <SafeAreaView
         style={StyleSheet.flatten([staticStyle.container, styles.container])}
       >
-        <ScreenHeaderComponent onPress={goBack} headerText={t('workshop')} />
+        <Components.Headers.ScreenHeader onPress={goBack} headerText={t('workshop')} />
         {loader && (
-          <ListShimmer containerStyle={staticStyle.shimmerContainer} />
+          <Components.Skeleton.ListShimmer containerStyle={staticStyle.shimmerContainer} />
         )}
         {!loader && (
           <FlatList

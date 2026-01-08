@@ -2,15 +2,12 @@ import { useTheme } from '@shopify/restyle';
 import { useTranslation } from 'react-i18next';
 import FastImage from 'react-native-fast-image';
 import { Theme } from '@config/themes/themes';
-import { appIcons } from '@config/icons/iconPath';
 import { UserDetailProps } from '@redux/features/userSlice';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import { MediumTextComponent } from '@components/Text/MediumText';
-import { RegularTextComponent } from '@components/Text/RegularText';
-import { SettingOptionsButton } from '@components/Buttons/SettingsButton';
+import { Components } from '@components/index';
 import { staticStyle, createStyles } from '@screens/common/Profile/styles';
 import { useState } from 'react';
-import { appImages } from '@config/images/imagePath';
+import { Config } from '@config/index';
 
 type ProfileCardProps = {
   userData: UserDetailProps;
@@ -36,24 +33,24 @@ export const ProfileCard = (props: ProfileCardProps) => {
         <FastImage
           source={
             profileImageError
-              ? appImages.img_defaultProfile
+              ? Config.appImages.img_defaultProfile
               : props.getPicture()
               ? props.getPicture()
-              : appImages.img_defaultProfile
+              : Config.appImages.img_defaultProfile
           }
           style={staticStyle.profileImage}
           onError={() => setProfileImageError(true)}
         />
         <View style={staticStyle.userNameCard}>
           <View>
-            <MediumTextComponent
+            <Components.Text.MediumTextComponent
               text={props.userData.name ?? 'user'}
               textStyle={StyleSheet.flatten([
                 staticStyle.userName,
                 styles.userName,
               ])}
             />
-            <RegularTextComponent
+            <Components.Text.RegularTextComponent
               text={props.userData.email ?? ''}
               textStyle={StyleSheet.flatten([
                 staticStyle.userEmail,
@@ -69,7 +66,7 @@ export const ProfileCard = (props: ProfileCardProps) => {
               styles.editProfile,
             ])}
           >
-            <FastImage source={appIcons.ic_pen} style={staticStyle.editIcon} />
+            <FastImage source={Config.appIcons.ic_pen} style={staticStyle.editIcon} />
           </TouchableOpacity>
         </View>
       </View>
@@ -88,10 +85,10 @@ export const ProfileCard = (props: ProfileCardProps) => {
               styles.separator,
             ])}
           />
-          <SettingOptionsButton
+          <Components.Buttons.SettingOptionsButton
             navigate={() => {}}
             title={t('expertise')}
-            icon={appIcons.ic_briefCase}
+            icon={Config.appIcons.ic_briefCase}
           />
         </View>
       )}

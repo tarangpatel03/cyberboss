@@ -2,7 +2,7 @@ import { useTheme } from '@shopify/restyle';
 import { useTranslation } from 'react-i18next';
 import { Theme } from '@config/themes/themes';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
-import { MediumTextComponent } from '@components/Text/MediumText';
+import { Components } from '@components/index';
 import { createStyles, staticStyle } from '@screens/common/auth/LogIn/styles';
 
 type AuthFooterAction = {
@@ -17,12 +17,12 @@ export const AuthFooterAction = (props: AuthFooterAction) => {
   const styles = createStyles(theme);
   return (
     <View style={staticStyle.forgotPassword}>
-      <MediumTextComponent
+      <Components.Text.MediumTextComponent
         text={t(props.title)}
         textStyle={StyleSheet.flatten([staticStyle.subTitle, styles.subTitle])}
       />
       <TouchableOpacity activeOpacity={0.7} onPress={props.navigateTo}>
-        <MediumTextComponent
+        <Components.Text.MediumTextComponent
           text={t(props.subTitle)}
           textStyle={styles.signUp}
         />

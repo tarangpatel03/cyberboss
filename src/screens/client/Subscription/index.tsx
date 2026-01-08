@@ -5,20 +5,15 @@ import { RootNavigationProps } from '@models/navigationModel';
 import { staticStyle } from '@screens/client/Subscription/styles';
 import { useCallback, useEffect, useState } from 'react';
 import { getAPIData } from '@services/api/common/getCommonApi';
-import { WorkshopFlatListCard } from '@components/Cards/WorkShopFlatlistCard';
-import { endPoints } from '@config/endPoint/apiEndPoint';
-import { SubscriptionHeader } from '@components/Headers/SubscriptionHeader';
-import { SubscriptionBenefitsCard } from '@components/Cards/SubscriptionBenefitsCard';
-import { UpcomingWorkShopsList } from '@components/List/UpcomingWorkShopsList';
 import { TWorkshopModel } from '@models/formattedAPI/tConsultant';
 import { ApiResponse } from '@models/apiModel';
-import { SubscriptionBottomBar } from '@components/Subscription/SubscriptionBottomBar';
-import { SubscriptionTrustedUser } from '@components/Subscription/SubscriptionTrustedUser';
 import { ApiSubscriptionModel } from '@models/api/client';
 import {
   transformSubscrptionModel,
   TSubscriptionModel,
 } from '@models/formattedAPI/tclient';
+import { Config } from '@config/index';
+import { Components } from '@components/index';
 
 export type linearGradientDirection = {
   start: { x: number; y: number };
@@ -35,7 +30,7 @@ export const SubscriptionScreen = ({
   const loadData = async () => {
     try {
       const response = await getAPIData<ApiResponse<ApiSubscriptionModel>>(
-        endPoints.plans,
+        Config.endPoints.plans,
       );
       if (!response) return;
       const data: ApiSubscriptionModel = response.payload;
@@ -50,7 +45,7 @@ export const SubscriptionScreen = ({
     navigation.goBack();
   };
   const renderItem: ListRenderItem<TWorkshopModel> = useCallback(({ item }) => {
-    return <WorkshopFlatListCard data={item} />;
+    return <Components.Cards.WorkshopFlatListCard data={item} />;
   }, []);
 
   useEffect(() => {
@@ -61,26 +56,26 @@ export const SubscriptionScreen = ({
     <>
       <StatusBar barStyle={'light-content'} />
       <SafeAreaView style={staticStyle.container}>
-        <SubscriptionHeader goBack={goBack} />
+        <Components.Headers.SubscriptionHeader goBack={goBack} />
         <ScrollView
           style={staticStyle.mainContainer}
           showsVerticalScrollIndicator={false}
         >
           <View style={staticStyle.mainContainer2}>
-            <SubscriptionTrustedUser
+            <Components.Subscription.SubscriptionTrustedUser
               direction={{ end: end, start: start }}
               noOfUser={subscriptionData?.currentUsers}
               userImages={subscriptionData?.currentUsersProfileImages}
             />
-            <SubscriptionBenefitsCard benefits={subscriptionData?.benefits} />
+            <Components.Cards.SubscriptionBenefitsCard benefits={subscriptionData?.benefits} />
             <View style={staticStyle.separator2} />
-            <UpcomingWorkShopsList
+            <Components.List.UpcomingWorkShopsList
               workShopData={subscriptionData?.workshops}
               renderItem={renderItem}
             />
           </View>
         </ScrollView>
-        <SubscriptionBottomBar
+        <Components.Subscription.SubscriptionBottomBar
           duration={subscriptionData?.duration}
           price={subscriptionData?.price}
         />

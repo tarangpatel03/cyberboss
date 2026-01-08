@@ -1,8 +1,8 @@
 import { useTheme } from '@shopify/restyle';
 import { Theme } from '@config/themes/themes';
 import { StyleSheet, TouchableOpacity } from 'react-native';
-import { MediumTextComponent } from '@components/Text/MediumText';
-import normalize from '@utils/normalize/normalize';
+import { Components } from '@components/index';
+import {Utils} from '@utils/index';
 import { memo, useState } from 'react';
 import FastImage from 'react-native-fast-image';
 import { TExpertiseModel } from '@models/formattedAPI/tConsultant';
@@ -41,7 +41,7 @@ export const CategoryCard = memo((props: CategoryCardProp) => {
         source={{ uri: props.expertise.image }}
         style={staticStyle.image}
       />
-      <MediumTextComponent
+      <Components.Text.MediumTextComponent
         text={props.expertise.name}
         textStyle={StyleSheet.flatten([staticStyle.text, styles.text])}
       />
@@ -51,20 +51,20 @@ export const CategoryCard = memo((props: CategoryCardProp) => {
 
 const staticStyle = StyleSheet.create({
   container: {
-    borderRadius: normalize(12),
-    padding: normalize(12),
+    borderRadius: Utils.normalize(12),
+    padding: Utils.normalize(12),
     flexDirection: 'row',
     alignItems: 'center',
-    gap: normalize(12),
+    gap: Utils.normalize(12),
     borderWidth: 1,
   },
   image: {
-    width: normalize(36),
-    height: normalize(36),
-    borderRadius: normalize(8),
+    width: Utils.normalize(36),
+    height: Utils.normalize(36),
+    borderRadius: Utils.normalize(8),
   },
   text: {
-    fontSize: normalize(16),
+    fontSize: Utils.normalize(16),
     fontWeight: '500',
   },
 });

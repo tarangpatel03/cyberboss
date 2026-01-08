@@ -1,32 +1,32 @@
 import { StyleSheet } from 'react-native';
 import { Theme } from '@config/themes/themes';
-import normalize from '@utils/normalize/normalize';
+import { Utils } from '@utils/index';
 import { height } from '@config/constants/variables';
 
 export const staticStyle = StyleSheet.create({
   topBar: {
-    paddingVertical: normalize(12, 'height'),
+    paddingVertical: Utils.normalize(12, 'height'),
   },
   container: {
-    height: normalize(height, 'height'),
+    height: Utils.normalize(height, 'height'),
   },
   title: {
-    fontSize: normalize(24),
+    fontSize: Utils.normalize(24),
     fontWeight: '600',
   },
   subTitle: {
-    fontSize: normalize(14),
+    fontSize: Utils.normalize(14),
     fontWeight: '400',
   },
   content: {
-    paddingHorizontal: normalize(16),
-    gap: normalize(32),
+    paddingHorizontal: Utils.normalize(16),
+    gap: Utils.normalize(32),
   },
   titleLine: {
-    gap: normalize(8, 'height'),
+    gap: Utils.normalize(8, 'height'),
   },
   bottomContainer: {
-    gap: normalize(20, 'height'),
+    gap: Utils.normalize(20, 'height'),
   },
 });
 

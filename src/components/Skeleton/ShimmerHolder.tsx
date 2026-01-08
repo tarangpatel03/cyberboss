@@ -1,27 +1,27 @@
 import { StyleProp, ViewStyle } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import ShimmerPlaceHolder from 'react-native-shimmer-placeholder';
-import { appColors } from '@config/colors/colors';
 import { Theme } from '@config/themes/themes';
 import { useTheme } from '@shopify/restyle';
-import { isDarkMode } from '@utils/theme/darkMode';
+import { Utils } from '@utils/index';
 import { memo } from 'react';
+import { Config } from '@config/index';
 
 export const ShimmerHolder = memo(
   ({ style }: { style: StyleProp<ViewStyle> }) => {
     const darkColors = [
-      appColors.app_353535,
-      appColors.app_5B5B5B,
-      appColors.app_353535,
+      Config.appColors.app_353535,
+      Config.appColors.app_5B5B5B,
+      Config.appColors.app_353535,
     ];
     const lightColors = [
-      appColors.app_EBEBEB,
-      appColors.app_C5C5C5,
-      appColors.app_EBEBEB,
+      Config.appColors.app_EBEBEB,
+      Config.appColors.app_C5C5C5,
+      Config.appColors.app_EBEBEB,
     ];
     const theme = useTheme<Theme>();
     const setColor = () => {
-      if (isDarkMode(theme)) {
+      if (Utils.isDarkMode(theme)) {
         return darkColors;
       } else {
         return lightColors;

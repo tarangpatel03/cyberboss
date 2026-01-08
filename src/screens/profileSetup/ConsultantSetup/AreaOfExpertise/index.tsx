@@ -2,19 +2,12 @@ import { FlatList, ListRenderItem, StyleSheet, View } from 'react-native';
 import { useTheme } from '@shopify/restyle';
 import { Theme } from '@config/themes/themes';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { PrimaryButtonComponent } from '@components/Buttons/PrimaryButton';
-import { CircularIconButtonComponent } from '@components/Buttons/CircularIconButton';
-import { appIcons } from '@config/icons/iconPath';
 import { RootNavigationProps } from '@models/navigationModel';
 import { routeName } from '@config/constants/routes';
-import { SemiBoldTextComponent } from '@components/Text/SemiBoldText';
-import { RegularTextComponent } from '@components/Text/RegularText';
-import { CategoryCard } from '@components/Cards/CategoryCard';
 import { useCallback, useEffect, useState } from 'react';
 import { createStyles, staticStyle } from '@screens/profileSetup/ConsultantSetup/AreaOfExpertise/styles';
 import { useTranslation } from 'react-i18next';
 import { getAPIData } from '@services/api/common/getCommonApi';
-import { endPoints } from '@config/endPoint/apiEndPoint';
 import { useDispatch } from 'react-redux';
 import { setUserData } from '@redux/features/userSlice';
 import { ApiExpertiseModel } from '@models/api/consultant';
@@ -23,6 +16,8 @@ import {
   transformExpertiseModel,
 } from '@models/formattedAPI/tConsultant';
 import { ApiResponse } from '@models/apiModel';
+import { Config } from '@config/index';
+import { Components } from '@components/index';
 
 export const AreaOfExpertiseScreen = ({
   navigation,
@@ -41,7 +36,7 @@ export const AreaOfExpertiseScreen = ({
   const getExpertise = async () => {
     try {
       const response = await getAPIData<ApiResponse<ApiExpertiseModel[]>>(
-        endPoints.expertise,
+        Config.endPoints.expertise,
       );
       if (!response) return;
       const data: ApiExpertiseModel[] = response.payload;
@@ -71,7 +66,7 @@ export const AreaOfExpertiseScreen = ({
   const renderItem: ListRenderItem<TExpertiseModel> = useCallback(
     ({ item }) => {
       return (
-        <CategoryCard
+        <Components.Cards.CategoryCard
           expertise={item}
           data={category}
           add={addCategory}
@@ -94,8 +89,8 @@ export const AreaOfExpertiseScreen = ({
       >
         <View style={staticStyle.container}>
           <View style={staticStyle.topBar}>
-            <CircularIconButtonComponent
-              iconPath={appIcons.ic_backIcon}
+            <Components.Buttons.CircularIconButton
+              iconPath={Config.appIcons.ic_backIcon}
               buttonStyle={staticStyle.backButton}
               iconStyle={staticStyle.backIcon}
               tintColor={theme.colors.textPrimary}
@@ -112,11 +107,11 @@ export const AreaOfExpertiseScreen = ({
             </View>
           </View>
           <View style={staticStyle.content}>
-            <SemiBoldTextComponent
+            <Components.Text.SemiBoldTextComponent
               text={t('yourExpertise')}
               textStyle={StyleSheet.flatten([staticStyle.title, styles.title])}
             />
-            <RegularTextComponent
+            <Components.Text.RegularTextComponent
               text={t('yourExpertiseLine')}
               textStyle={StyleSheet.flatten([
                 staticStyle.subTitle,
@@ -137,7 +132,7 @@ export const AreaOfExpertiseScreen = ({
           </View>
         </View>
         <View style={staticStyle.bottomButton}>
-          <PrimaryButtonComponent
+          <Components.Buttons.PrimaryButton
             text={t('continue')}
             onPress={navigateToNext}
           />

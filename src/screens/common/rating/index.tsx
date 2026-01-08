@@ -4,18 +4,14 @@ import { routeName } from '@config/constants/routes';
 import { useTheme } from '@shopify/restyle';
 import { createStyles, staticStyle } from '@screens/common/Rating/styles';
 import { Theme } from '@config/themes/themes';
-import { isDarkMode } from '@utils/theme/darkMode';
-import { ScreenHeaderComponent } from '@components/Headers/ScreenHeader';
 import { useState } from 'react';
-import { appColors } from '@config/colors/colors';
-import { appIcons } from '@config/icons/iconPath';
-import { PrimaryButtonComponent } from '@components/Buttons/PrimaryButton';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import normalize from '@utils/normalize/normalize';
 import { useTranslation } from 'react-i18next';
 import { refineFeedBack } from '@services/api/feedback/refineFeedBack';
-import { StarReviewCard } from '@components/Cards/StarReviewCard';
-import { ReviewInput } from '@components/Input/ReviewInput';
+import { Utils } from '@utils/index';
+import { Config } from '@config/index';
+import { Components } from '@components/index';
 
 export const YourRatingScreen = ({
   navigation,
@@ -45,18 +41,18 @@ export const YourRatingScreen = ({
   };
 
   const backLineGradient = () => {
-    if (isDarkMode(theme)) {
-      return [appColors.app_3554FF26, appColors.app_3554FF00];
+    if (Utils.isDarkMode(theme)) {
+      return [Config.appColors.app_3554FF26, Config.appColors.app_3554FF00];
     } else {
-      return [appColors.app_E8E8EA00, appColors.app_E8E8EA];
+      return [Config.appColors.app_E8E8EA00, Config.appColors.app_E8E8EA];
     }
   };
 
   const frontLineGradient = () => {
-    if (isDarkMode(theme)) {
-      return [appColors.app_3554FF26, appColors.app_3554FF00];
+    if (Utils.isDarkMode(theme)) {
+      return [Config.appColors.app_3554FF26, Config.appColors.app_3554FF00];
     } else {
-      return [appColors.app_E8E8EA, appColors.app_E8E8EA00];
+      return [Config.appColors.app_E8E8EA, Config.appColors.app_E8E8EA00];
     }
   };
 
@@ -66,9 +62,9 @@ export const YourRatingScreen = ({
 
   const showStar = (val: number) => {
     if (starRating >= val) {
-      return appIcons.ic_ratingStarFill;
+      return Config.appIcons.ic_ratingStarFill;
     } else {
-      return appIcons.ic_ratingStar;
+      return Config.appIcons.ic_ratingStar;
     }
   };
 
@@ -81,7 +77,7 @@ export const YourRatingScreen = ({
   return (
     <>
       <View style={StyleSheet.flatten([staticStyle.header, styles.primaryBg])}>
-        <ScreenHeaderComponent
+        <Components.Headers.ScreenHeader
           onPress={goBack}
           headerText={t('shareYourExperience')}
         />
@@ -90,8 +86,8 @@ export const YourRatingScreen = ({
         style={StyleSheet.flatten([staticStyle.container, styles.secondaryBg])}
       >
         <View style={StyleSheet.flatten([staticStyle.card, styles.primaryBg])}>
-          <StarReviewCard showStar={showStar} setStarRating={setStarRating} />
-          <ReviewInput
+          <Components.Cards.StarReviewCard showStar={showStar} setStarRating={setStarRating} />
+          <Components.Inputs.ReviewInput
             text={text}
             setText={setText}
             end={end}
@@ -110,7 +106,7 @@ export const YourRatingScreen = ({
           styles.primaryBg,
         ])}
       >
-        <PrimaryButtonComponent
+        <Components.Buttons.PrimaryButton
           onPress={onSubmit}
           isButtonActive={isButtonDisabled}
           text={t('submit')}

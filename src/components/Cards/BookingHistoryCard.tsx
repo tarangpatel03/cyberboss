@@ -1,16 +1,13 @@
 import { useTheme } from '@shopify/restyle';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { Theme } from '@config/themes/themes';
-import normalize from '@utils/normalize/normalize';
-import { MediumTextComponent } from '@components/Text/MediumText';
-import { RegularTextComponent } from '@components/Text/RegularText';
-import { appIcons } from '@config/icons/iconPath';
+import {Utils} from '@utils/index';
+import { Components } from '@components/index';
 import { width } from '@config/constants/variables';
 import FastImage from 'react-native-fast-image';
 import { memo } from 'react';
 import { THomeBookingModel } from '@models/formattedAPI/tBookings';
-import { getFullDate } from '@utils/format/formatDate';
-import { appImages } from '@config/images/imagePath';
+import { Config } from '@config/index';
 
 type BookingHistoryCardProps = {
   data: THomeBookingModel;
@@ -36,15 +33,15 @@ export const BookingHistoryCard = memo((props: BookingHistoryCardProps) => {
       <View style={StyleSheet.flatten([staticStyle.header, styles.header])}>
         <FastImage
           style={staticStyle.image}
-          source={appImages.img_defaultProfile}
+          source={Config.appImages.img_defaultProfile}
         />
         <View style={staticStyle.topText}>
-          <MediumTextComponent
+          <Components.Text.MediumTextComponent
             text={props.data.userName}
             textStyle={StyleSheet.flatten([staticStyle.title, styles.title])}
           />
-          <RegularTextComponent
-            text={getFullDate(props.data.bookingDate)}
+          <Components.Text.RegularTextComponent
+            text={Utils.getFullDate(props.data.bookingDate)}
             textStyle={StyleSheet.flatten([
               staticStyle.subTitle,
               styles.subTitle,
@@ -54,8 +51,8 @@ export const BookingHistoryCard = memo((props: BookingHistoryCardProps) => {
       </View>
       <View style={staticStyle.detail}>
         <View style={staticStyle.header}>
-          <FastImage style={staticStyle.icons} source={appIcons.ic_suitcase} />
-          <RegularTextComponent
+          <FastImage style={staticStyle.icons} source={Config.appIcons.ic_suitcase} />
+          <Components.Text.RegularTextComponent
             text={props.data.categoryName}
             textStyle={StyleSheet.flatten([
               staticStyle.subTitle,
@@ -64,8 +61,8 @@ export const BookingHistoryCard = memo((props: BookingHistoryCardProps) => {
           />
         </View>
         <View style={staticStyle.header}>
-          <FastImage style={staticStyle.icons} source={appIcons.ic_cash} />
-          <RegularTextComponent
+          <FastImage style={staticStyle.icons} source={Config.appIcons.ic_cash} />
+          <Components.Text.RegularTextComponent
             text={`$${props.data.grandTotal}`}
             textStyle={StyleSheet.flatten([
               staticStyle.subTitle,
@@ -89,7 +86,7 @@ export const BookingHistoryCard = memo((props: BookingHistoryCardProps) => {
         >
           <FastImage
             tintColor={theme.colors.primary}
-            source={appIcons.ic_fillChat}
+            source={Config.appIcons.ic_fillChat}
             style={staticStyle.chat}
           />
         </TouchableOpacity>
@@ -100,51 +97,51 @@ export const BookingHistoryCard = memo((props: BookingHistoryCardProps) => {
 
 const staticStyle = StyleSheet.create({
   container: {
-    gap: normalize(16),
-    width: normalize(width * 0.6),
-    borderRadius: normalize(12),
-    padding: normalize(12),
+    gap: Utils.normalize(16),
+    width: Utils.normalize(width * 0.6),
+    borderRadius: Utils.normalize(12),
+    padding: Utils.normalize(12),
     borderWidth: 1,
   },
   topText: {
-    gap: normalize(4),
+    gap: Utils.normalize(4),
   },
   header: {
-    gap: normalize(8, 'height'),
+    gap: Utils.normalize(8, 'height'),
     alignItems: 'center',
     flexDirection: 'row',
   },
   image: {
-    width: normalize(36),
-    height: normalize(36),
-    borderRadius: normalize(18),
+    width: Utils.normalize(36),
+    height: Utils.normalize(36),
+    borderRadius: Utils.normalize(18),
   },
   title: {
-    fontSize: normalize(16),
+    fontSize: Utils.normalize(16),
     fontWeight: '500',
   },
   icons: {
-    width: normalize(14),
-    height: normalize(14),
+    width: Utils.normalize(14),
+    height: Utils.normalize(14),
   },
   subTitle: {
-    fontSize: normalize(14),
+    fontSize: Utils.normalize(14),
     fontWeight: '400',
   },
   detail: {
-    gap: normalize(12),
+    gap: Utils.normalize(12),
   },
   button: {
     borderWidth: 1,
-    width: normalize(32),
-    height: normalize(32),
-    borderRadius: normalize(7),
+    width: Utils.normalize(32),
+    height: Utils.normalize(32),
+    borderRadius: Utils.normalize(7),
     justifyContent: 'center',
     alignItems: 'center',
   },
   chat: {
-    width: normalize(16),
-    height: normalize(16),
+    width: Utils.normalize(16),
+    height: Utils.normalize(16),
   },
 });
 

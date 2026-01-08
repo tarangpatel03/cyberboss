@@ -1,14 +1,13 @@
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { staticStyle, createStyles } from '@screens/client/Home/styles';
-import { RegularTextComponent } from '@components/Text/RegularText';
+import { Components } from '@components/index';
 import FastImage from 'react-native-fast-image';
-import { appIcons } from '@config/icons/iconPath';
-import { isDarkMode } from '@utils/theme/darkMode';
 import { useTheme } from '@shopify/restyle';
 import { Theme } from '@config/themes/themes';
-import { MediumTextComponent } from '@components/Text/MediumText';
 import { useTranslation } from 'react-i18next';
 import { TourGuideZone } from 'rn-tourguide';
+import { Utils } from '@utils/index';
+import { Config } from '@config/index';
 
 type SearchBarProps = {
   onSearchPress: () => void;
@@ -33,10 +32,10 @@ export const HomeScreenSearchButtons = (props: SearchBarProps) => {
             ])}
           >
             <FastImage
-              source={appIcons.ic_search}
+              source={Config.appIcons.ic_search}
               style={staticStyle.searchIcon}
             />
-            <RegularTextComponent
+            <Components.Text.RegularTextComponent
               text={t('searchPlaceHolder')}
               textStyle={StyleSheet.flatten([
                 staticStyle.headerText,
@@ -54,11 +53,11 @@ export const HomeScreenSearchButtons = (props: SearchBarProps) => {
         >
           <FastImage
             source={
-              isDarkMode(theme) ? appIcons.ic_helpDark : appIcons.ic_helpLight
+              Utils.isDarkMode(theme) ? Config.appIcons.ic_helpDark : Config.appIcons.ic_helpLight
             }
             style={staticStyle.imageButton}
           />
-          <MediumTextComponent
+          <Components.Text.MediumTextComponent
             text={t('help')}
             textStyle={StyleSheet.flatten([
               staticStyle.tinyText,

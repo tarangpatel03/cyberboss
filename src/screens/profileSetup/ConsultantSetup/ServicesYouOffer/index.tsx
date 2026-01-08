@@ -6,16 +6,11 @@ import { Theme } from '@config/themes/themes';
 import { createStyles, staticStyle } from '@screens/profileSetup/ConsultantSetup/ServicesYouOffer/styles';
 import { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { CircularIconButtonComponent } from '@components/Buttons/CircularIconButton';
-import { appIcons } from '@config/icons/iconPath';
-import { SemiBoldTextComponent } from '@components/Text/SemiBoldText';
-import { RegularTextComponent } from '@components/Text/RegularText';
-import { BorderInputComponent } from '@components/Input/BorderInput';
-import { ServiceListCard } from '@components/Cards/ServiceListCard';
-import { PrimaryButtonComponent } from '@components/Buttons/PrimaryButton';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { setUserData } from '@redux/features/userSlice';
+import { Config } from '@config/index';
+import { Components } from '@components/index';
 
 export const ServicesYouOfferScreen = ({
   navigation,
@@ -57,8 +52,8 @@ export const ServicesYouOfferScreen = ({
           style={StyleSheet.flatten([staticStyle.container, styles.container])}
         >
           <View style={staticStyle.topBar}>
-            <CircularIconButtonComponent
-              iconPath={appIcons.ic_backIcon}
+            <Components.Buttons.CircularIconButton
+              iconPath={Config.appIcons.ic_backIcon}
               buttonStyle={staticStyle.backButton}
               iconStyle={staticStyle.backIcon}
               tintColor={theme.colors.textPrimary}
@@ -75,11 +70,11 @@ export const ServicesYouOfferScreen = ({
             </View>
           </View>
           <View style={staticStyle.content}>
-            <SemiBoldTextComponent
+            <Components.Text.SemiBoldTextComponent
               text={t('addYourServices')}
               textStyle={StyleSheet.flatten([staticStyle.title, styles.title])}
             />
-            <RegularTextComponent
+            <Components.Text.RegularTextComponent
               text={t('addYourServicesLine')}
               textStyle={StyleSheet.flatten([
                 staticStyle.subTitle,
@@ -88,7 +83,7 @@ export const ServicesYouOfferScreen = ({
             />
           </View>
           <View style={staticStyle.contentSelection}>
-            <BorderInputComponent
+            <Components.Inputs.BorderInput
               placeholder={t('addService')}
               setValue={setText}
               value={text}
@@ -96,7 +91,7 @@ export const ServicesYouOfferScreen = ({
             />
             <View style={staticStyle.services}>
               {serviceList.map(x => (
-                <ServiceListCard text={x} key={x} onRemove={removeService} />
+                <Components.Cards.ServiceListCard text={x} key={x} onRemove={removeService} />
               ))}
             </View>
           </View>
@@ -107,7 +102,7 @@ export const ServicesYouOfferScreen = ({
             styles.bottomButtons,
           ])}
         >
-          <PrimaryButtonComponent
+          <Components.Buttons.PrimaryButton
             text={t('skip')}
             buttonStyle={StyleSheet.flatten([
               staticStyle.button,
@@ -119,7 +114,7 @@ export const ServicesYouOfferScreen = ({
             ])}
             onPress={navigateToNext}
           />
-          <PrimaryButtonComponent
+          <Components.Buttons.PrimaryButton
             text={t('continue')}
             buttonStyle={staticStyle.button}
             textStyle={StyleSheet.flatten([

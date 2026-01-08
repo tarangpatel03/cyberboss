@@ -6,13 +6,12 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import { MediumTextComponent } from '@components/Text/MediumText';
-import { RegularTextComponent } from '@components/Text/RegularText';
+import { Components } from '@components/index';
 import { Theme } from '@config/themes/themes';
-import normalize from '@utils/normalize/normalize';
+import {Utils} from '@utils/index';
 import { useTheme } from '@shopify/restyle';
-import { appColors } from '@config/colors/colors';
 import { useTranslation } from 'react-i18next';
+import { Config } from '@config/index';
 
 type LogOutModalProps = {
   isModal: boolean;
@@ -47,11 +46,11 @@ export const LogOutModal = (props: LogOutModalProps) => {
               styles.container,
             ])}
           >
-            <MediumTextComponent
+            <Components.Text.MediumTextComponent
               textStyle={StyleSheet.flatten([staticStyle.head, styles.head])}
               text={props.title}
             />
-            <RegularTextComponent
+            <Components.Text.RegularTextComponent
               noOfLines={2}
               textStyle={StyleSheet.flatten([
                 staticStyle.normalText,
@@ -67,7 +66,7 @@ export const LogOutModal = (props: LogOutModalProps) => {
                 ])}
                 onPress={() => props.setIsModal(false)}
               >
-                <MediumTextComponent
+                <Components.Text.MediumTextComponent
                   textStyle={StyleSheet.flatten([
                     styles.cancelText,
                     styles.normalText,
@@ -84,7 +83,7 @@ export const LogOutModal = (props: LogOutModalProps) => {
                 ])}
                 onPress={onLogOutPress}
               >
-                <MediumTextComponent
+                <Components.Text.MediumTextComponent
                   textStyle={StyleSheet.flatten([
                     staticStyle.deleteText,
                     styles.deleteText,
@@ -105,17 +104,17 @@ const staticStyle = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingHorizontal: normalize(12),
+    paddingHorizontal: Utils.normalize(12),
   },
   container: {
     width: '100%',
     alignItems: 'center',
-    padding: normalize(12),
-    borderRadius: normalize(12),
-    gap: normalize(20),
+    padding: Utils.normalize(12),
+    borderRadius: Utils.normalize(12),
+    gap: Utils.normalize(20),
   },
   head: {
-    fontSize: normalize(22),
+    fontSize: Utils.normalize(22),
   },
   normalText: {
     fontSize: 14,
@@ -130,7 +129,7 @@ const staticStyle = StyleSheet.create({
     flex: 1,
     padding: 7,
     alignItems: 'center',
-    borderRadius: normalize(5),
+    borderRadius: Utils.normalize(5),
   },
   deleteText: {
     fontSize: 19,
@@ -149,7 +148,7 @@ const createStyles = (theme: Theme) =>
       flex: 1,
       alignItems: 'center',
       justifyContent: 'center',
-      paddingHorizontal: normalize(12),
+      paddingHorizontal: Utils.normalize(12),
       backgroundColor: theme.colors.backgroundTransparent,
     },
     container: {
@@ -162,7 +161,7 @@ const createStyles = (theme: Theme) =>
       backgroundColor: theme.colors.primary,
     },
     deleteButton: {
-      backgroundColor: appColors.app_F20000,
+      backgroundColor: Config.appColors.app_F20000,
     },
     normalText: {
       color: theme.colors.textPrimary,

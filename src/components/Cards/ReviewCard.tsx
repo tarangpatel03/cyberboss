@@ -2,10 +2,7 @@ import { useTheme } from '@shopify/restyle';
 import { View, StyleSheet } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { Rating } from 'react-native-ratings';
-import { appImages } from '@config/images/imagePath';
-import { getFullDate } from '@utils/format/formatDate';
-import { MediumTextComponent } from '@components/Text/MediumText';
-import { RegularTextComponent } from '@components/Text/RegularText';
+import { Components } from '@components/index';
 import { Theme } from '@config/themes/themes';
 import {
   createStyles,
@@ -13,6 +10,8 @@ import {
 } from '@screens/client/ConsultantProfile/styles';
 import { TRatingReviewModel } from '@models/formattedAPI/tConsultant';
 import { memo } from 'react';
+import { Utils } from '@utils/index';
+import { Config } from '@config/index';
 
 export const ReviewCard = memo((props: TRatingReviewModel) => {
   const theme = useTheme<Theme>();
@@ -26,9 +25,9 @@ export const ReviewCard = memo((props: TRatingReviewModel) => {
       <View style={StyleSheet.flatten([staticStyle.rowLine, staticStyle.line])}>
         <FastImage
           style={staticStyle.reviewImage}
-          source={appImages.img_defaultProfile}
+          source={Config.appImages.img_defaultProfile}
         />
-        <MediumTextComponent
+        <Components.Text.MediumTextComponent
           text={props.clientName}
           textStyle={StyleSheet.flatten([
             staticStyle.subTitleText,
@@ -41,12 +40,12 @@ export const ReviewCard = memo((props: TRatingReviewModel) => {
             styles.bulletPoint,
           ])}
         />
-        <RegularTextComponent
+        <Components.Text.RegularTextComponent
           textStyle={StyleSheet.flatten([
             staticStyle.tinyText,
             styles.secondaryText,
           ])}
-          text={getFullDate(props.createdAt)}
+          text={Utils.getFullDate(props.createdAt)}
         />
       </View>
       <Rating
@@ -57,7 +56,7 @@ export const ReviewCard = memo((props: TRatingReviewModel) => {
         tintColor={theme.colors.bgPrimary}
         startingValue={Number(props.rating)}
       />
-      <RegularTextComponent
+      <Components.Text.RegularTextComponent
         textStyle={StyleSheet.flatten([
           staticStyle.tinyText,
           styles.secondaryText,

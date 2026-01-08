@@ -3,7 +3,6 @@ import { RootNavigation } from './src/navigation/RootNavigation';
 import { Provider, useSelector } from 'react-redux';
 import { persistor, RootState, store } from './src/redux/store';
 import { PersistGate } from 'redux-persist/integration/react';
-import { DarkTheme, LightTheme } from './src/config/themes/themes';
 import { StatusBar, StyleSheet, useColorScheme } from 'react-native';
 import { ThemeProvider } from '@shopify/restyle';
 import { NavigationContainer } from '@react-navigation/native';
@@ -14,6 +13,7 @@ import normalize from './src/utils/normalize/normalize';
 import { ThemeMode } from './src/redux/features/themeSlice';
 import { navigationRef } from './src/services/axios/axiosInterceptors';
 import { isDarkMode } from './src/utils/theme/darkMode';
+import { Config } from '@config/index';
 
 function App() {
   return (
@@ -39,9 +39,9 @@ const ThemedApp = () => {
 
   const currentTheme = useMemo(() => {
     if (currentThemeMode === ThemeMode.Device) {
-      return deviceTheme === ThemeMode.Dark ? DarkTheme : LightTheme;
+      return deviceTheme === ThemeMode.Dark ? Config.DarkTheme : Config.LightTheme;
     }
-    return currentThemeMode === ThemeMode.Dark ? DarkTheme : LightTheme;
+    return currentThemeMode === ThemeMode.Dark ? Config.DarkTheme : Config.LightTheme;
   }, [deviceTheme, currentThemeMode]);
 
   return (

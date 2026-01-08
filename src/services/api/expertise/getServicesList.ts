@@ -1,9 +1,9 @@
+import { Config } from '@config/index';
 import { axiosClient } from '@services/axios/axiosClient';
-import { endPoints } from '@config/endPoint/apiEndPoint';
 
 export const getServiceList = async <T>(search?: string): Promise<T | null> => {
   try {
-    const response = await axiosClient.get(endPoints.expertise, {
+    const response = await axiosClient.get(Config.endPoints.expertise, {
       params: {
         search,
       },

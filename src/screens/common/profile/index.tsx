@@ -8,20 +8,13 @@ import {
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
 import { RootNavigationProps } from '@models/navigationModel';
-import { BottomTabHeader } from '@components/Headers/BottomTabHeader';
-import { RegularTextComponent } from '@components/Text/RegularText';
-import { ThemeModal } from '@components/Modal/ThemeModal';
 import { useEffect, useState } from 'react';
-import { LogOutModal } from '@components/Modal/LogOutModal';
 import { clearUser } from '@redux/features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@redux/store';
 import { useTranslation } from 'react-i18next';
-import { ProfileCard } from '@components/Cards/ProfileCard';
-import { ProfileOptionsRow } from '@components/Cards/ProfileOptionsRow';
-import { AuthOptions } from '@components/Auth/AuthOptions';
 import { logOut } from '@services/firebase/auth/auth';
-import { GeneralSettings } from '@components/Settings/GeneralSettings';
+import { Components } from '@components/index';
 
 export const ProfileScreen = ({
   navigation,
@@ -86,7 +79,7 @@ export const ProfileScreen = ({
 
   return (
     <>
-      <LogOutModal
+      <Components.Modals.LogOutModal
         title={t('askDeleteAccount')}
         isModal={deleteVisible}
         message={t('deleteConfirm')}
@@ -94,7 +87,7 @@ export const ProfileScreen = ({
         setIsModal={setDeleteVisible}
         onConfirm={navigateToSignUp}
       />
-      <LogOutModal
+      <Components.Modals.LogOutModal
         title={t('askLogout')}
         message={t('logoutConfirm')}
         option={t('logout')}
@@ -102,7 +95,7 @@ export const ProfileScreen = ({
         setIsModal={setLogOutVisible}
         onConfirm={handleSignout}
       />
-      <ThemeModal
+      <Components.Modals.ThemeModal
         isVisible={isThemeModalVisible}
         onclose={() => setThemeModalVisible(false)}
       />
@@ -116,7 +109,7 @@ export const ProfileScreen = ({
         <View
           style={StyleSheet.flatten([staticStyle.header, styles.container])}
         >
-          <BottomTabHeader
+          <Components.Headers.BottomTabHeader
             name={t('profile')}
             onPress={navigateToNotification}
           />
@@ -134,26 +127,26 @@ export const ProfileScreen = ({
               styles.innerContainer,
             ])}
           >
-            <ProfileCard
+            <Components.Cards.ProfileCard
               userData={userData}
               navigateToEditProfile={navigateToEditProfile}
               getPicture={getPicture}
             />
-            <ProfileOptionsRow
+            <Components.Cards.ProfileOptionsRow
               role={userData.role ?? 'client'}
               setThemeModalVisible={setThemeModalVisible}
               navigateToChangePassword={navigateToChangePassword}
             />
-            <GeneralSettings
+            <Components.GeneralSettings
               userData={userData}
               navigateToContactSupport={navigateToContactSupport}
             />
-            <AuthOptions
+            <Components.Auth.AuthOptions
               role={userData.role ?? 'client'}
               setLogOutVisible={setLogOutVisible}
               setDeleteVisible={setDeleteVisible}
             />
-            <RegularTextComponent
+            <Components.Text.RegularTextComponent
               text={t('version')}
               textStyle={StyleSheet.flatten([
                 staticStyle.versionText,

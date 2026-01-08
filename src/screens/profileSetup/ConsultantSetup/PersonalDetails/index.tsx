@@ -3,28 +3,21 @@ import { useTheme } from '@shopify/restyle';
 import { Theme } from '@config/themes/themes';
 import { createStyles, staticStyle } from '@screens/profileSetup/ConsultantSetup/PersonalDetails/styles';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { PrimaryButtonComponent } from '@components/Buttons/PrimaryButton';
-import { CircularIconButtonComponent } from '@components/Buttons/CircularIconButton';
-import { appIcons } from '@config/icons/iconPath';
 import { routeName } from '@config/constants/routes';
 import { RootNavigationProps } from '@models/navigationModel';
-import { MediumTextComponent } from '@components/Text/MediumText';
 import { useState } from 'react';
-import { appImages } from '@config/images/imagePath';
 import {
   ImageLibraryOptions,
   launchImageLibrary,
 } from 'react-native-image-picker';
-import { SemiBoldTextComponent } from '@components/Text/SemiBoldText';
-import { RegularTextComponent } from '@components/Text/RegularText';
-import { BioInputComponent } from '@components/Input/MultiLineInput';
 import FastImage from 'react-native-fast-image';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { RootState } from '@redux/store';
 import firestore from '@react-native-firebase/firestore';
 import { updateConsultantProfileSetup } from '@services/api/profile/updateProfile';
-import { CustomInputComponent } from '@components/Input/EmailAndPasswordInput';
+import { Config } from '@config/index';
+import { Components } from '@components/index';
 
 export const PersonalDetailsScreen = ({
   navigation,
@@ -45,7 +38,7 @@ export const PersonalDetailsScreen = ({
 
   const [profileImage, setProfileImage] = useState<
     number | { uri: string } | undefined
-  >(appImages.img_defaultProfile);
+  >(Config.appImages.img_defaultProfile);
 
   const navigateToNext = () => {
     updateConsultantProfileSetup(
@@ -95,8 +88,8 @@ export const PersonalDetailsScreen = ({
           style={StyleSheet.flatten([staticStyle.container, styles.container])}
         >
           <View style={staticStyle.topBar}>
-            <CircularIconButtonComponent
-              iconPath={appIcons.ic_backIcon}
+            <Components.Buttons.CircularIconButton
+              iconPath={Config.appIcons.ic_backIcon}
               buttonStyle={staticStyle.backButton}
               iconStyle={staticStyle.backIcon}
               tintColor={theme.colors.textPrimary}
@@ -115,14 +108,14 @@ export const PersonalDetailsScreen = ({
           <ScrollView>
             <View style={staticStyle.contentContainer}>
               <View style={staticStyle.titleView}>
-                <SemiBoldTextComponent
+                <Components.Text.SemiBoldTextComponent
                   text={t('addPersonalDetails')}
                   textStyle={StyleSheet.flatten([
                     staticStyle.title,
                     styles.title,
                   ])}
                 />
-                <RegularTextComponent
+                <Components.Text.RegularTextComponent
                   text={t('addPersonalDetailsLine')}
                   textStyle={StyleSheet.flatten([
                     staticStyle.subTitle,
@@ -133,7 +126,7 @@ export const PersonalDetailsScreen = ({
               <View style={staticStyle.profileImage}>
                 <FastImage source={profileImage} style={staticStyle.image} />
                 <TouchableOpacity activeOpacity={0.7} onPress={pickImage}>
-                  <MediumTextComponent
+                  <Components.Text.MediumTextComponent
                     text={t('uploadPhoto')}
                     textStyle={StyleSheet.flatten([
                       staticStyle.uploadText,
@@ -143,17 +136,17 @@ export const PersonalDetailsScreen = ({
                 </TouchableOpacity>
               </View>
               <View style={staticStyle.inputs}>
-                <CustomInputComponent
+                <Components.Inputs.CustomInput
                   placeholder={t('name')}
                   setValue={setName}
                   value={name}
                 />
-                <CustomInputComponent
+                <Components.Inputs.CustomInput
                   placeholder={t('yearsOfExperience')}
                   setValue={setExperience}
                   value={experience}
                 />
-                <BioInputComponent
+                <Components.Inputs.BioInputComponent
                   isNotBio={false}
                   placeholder={t('bio')}
                   setValue={setBio}
@@ -164,7 +157,7 @@ export const PersonalDetailsScreen = ({
           </ScrollView>
         </View>
         <View style={staticStyle.bottomButton}>
-          <PrimaryButtonComponent
+          <Components.Buttons.PrimaryButton
             text={t('continue')}
             onPress={navigateToNext}
           />

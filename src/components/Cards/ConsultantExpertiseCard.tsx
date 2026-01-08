@@ -21,7 +21,8 @@ export const ConsultantExpertiseCard = (
   const styles = createStyles(theme);
   return (
     <View style={staticStyle.secondaryContainer}>
-      <Components.Text.MediumTextComponent
+      <Components.TextComponent
+        family={'medium'}
         text={t('expertiseAndServices')}
         textStyle={StyleSheet.flatten([
           staticStyle.semiTitleText,

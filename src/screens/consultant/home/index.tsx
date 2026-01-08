@@ -213,7 +213,8 @@ export const ConsultantHomeScreen = ({
           />
         )}
         <View style={staticStyle.header}>
-          <Components.Text.MediumTextComponent
+          <Components.TextComponent
+            family={'medium'}
             text={t('recentActivity')}
             textStyle={StyleSheet.flatten([
               staticStyle.headerText,
@@ -226,7 +227,8 @@ export const ConsultantHomeScreen = ({
               onPress={navigateToNotification}
               style={staticStyle.viewAllButton}
             >
-              <Components.Text.RegularTextComponent
+              <Components.TextComponent
+                family={'regular'}
                 text={t('viewAll')}
                 textStyle={StyleSheet.flatten([
                   staticStyle.viewAllText,

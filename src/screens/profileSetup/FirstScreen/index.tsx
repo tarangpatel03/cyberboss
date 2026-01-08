@@ -47,14 +47,16 @@ export const ProfileSetUpScreen = ({
           <View style={StyleSheet.flatten([staticStyle.line, styles.line])} />
           <View style={staticStyle.content}>
             <View style={staticStyle.titleView}>
-              <Components.Text.SemiBoldTextComponent
+              <Components.TextComponent
+                family={'semiBold'}
                 text={t('chooseYourRole')}
                 textStyle={StyleSheet.flatten([
                   staticStyle.title,
                   styles.title,
                 ])}
               />
-              <Components.Text.RegularTextComponent
+              <Components.TextComponent
+                family={'regular'}
                 text={t('chooseYourRoleSubTitle')}
                 textStyle={StyleSheet.flatten([
                   staticStyle.subTitle,

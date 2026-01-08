@@ -34,8 +34,9 @@ export const SettingOptionsButton = (props: SettingOptionsButtonProps) => {
             style={staticStyle.icon}
           />
         </View>
-        <Components.Text.RegularTextComponent
+        <Components.TextComponent
           text={props.title}
+          family={'regular'}
           textStyle={StyleSheet.flatten([staticStyle.text, styles.primaryText])}
         />
       </View>

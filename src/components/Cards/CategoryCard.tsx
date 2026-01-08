@@ -41,7 +41,8 @@ export const CategoryCard = memo((props: CategoryCardProp) => {
         source={{ uri: props.expertise.image }}
         style={staticStyle.image}
       />
-      <Components.Text.MediumTextComponent
+      <Components.TextComponent
+        family={'medium'}
         text={props.expertise.name}
         textStyle={StyleSheet.flatten([staticStyle.text, styles.text])}
       />

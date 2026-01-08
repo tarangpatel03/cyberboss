@@ -151,7 +151,8 @@ export const ContactSupportScreen = ({
                 source={Config.appImages.img_contactSupport}
                 style={staticStyle.profile}
               />
-              <Components.Text.MediumTextComponent
+              <Components.TextComponent
+                family={'medium'}
                 text={t('kyoraBot')}
                 textStyle={StyleSheet.flatten([
                   staticStyle.title,

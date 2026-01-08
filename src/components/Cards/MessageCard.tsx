@@ -26,7 +26,8 @@ export const MessageCard = memo(({ data }: { data: TChatBotChatModel }) => {
             styles.receiveContainer,
           ])}
         >
-          <Components.Text.RegularTextComponent
+          <Components.TextComponent
+            family={'regular'}
             text={data.response}
             noOfLines={Infinity}
             textStyle={StyleSheet.flatten([
@@ -34,7 +35,8 @@ export const MessageCard = memo(({ data }: { data: TChatBotChatModel }) => {
               styles.messageText,
             ])}
           />
-          <Components.Text.RegularTextComponent
+          <Components.TextComponent
+            family={'regular'}
             text={Utils.getTime(data.createdAt)}
             textStyle={StyleSheet.flatten([
               staticStyle.timeText,
@@ -51,7 +53,8 @@ export const MessageCard = memo(({ data }: { data: TChatBotChatModel }) => {
             styles.sendContainer,
           ])}
         >
-          <Components.Text.RegularTextComponent
+          <Components.TextComponent
+            family={'regular'}
             text={data.request}
             noOfLines={Infinity}
             textStyle={StyleSheet.flatten([
@@ -59,7 +62,8 @@ export const MessageCard = memo(({ data }: { data: TChatBotChatModel }) => {
               styles.sendMessageText,
             ])}
           />
-          <Components.Text.RegularTextComponent
+          <Components.TextComponent
+            family={'regular'}
             text={Utils.getTime(data.createdAt)}
             textStyle={StyleSheet.flatten([
               staticStyle.timeText,

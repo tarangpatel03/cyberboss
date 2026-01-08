@@ -17,12 +17,14 @@ export const AuthTitle = (props: AuthInTitleProps) => {
 
   return (
     <View style={staticStyle.titleContainer}>
-      <Components.Text.SemiBoldTextComponent
+      <Components.TextComponent
         text={t(props.title)}
+        family={'semiBold'}
         textStyle={StyleSheet.flatten([staticStyle.title, styles.title])}
       />
-      <Components.Text.RegularTextComponent
+      <Components.TextComponent
         text={t(props.subTitle)}
+        family={'regular'}
         textStyle={StyleSheet.flatten([staticStyle.subTitle, styles.subTitle])}
       />
     </View>

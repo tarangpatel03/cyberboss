@@ -16,14 +16,16 @@ export const BillDetailsComponent = (props: BillDetailsComponentProps) => {
   const styles = createStyles(theme);
   return (
     <View style={staticStyle.container}>
-      <Components.Text.RegularTextComponent
+      <Components.TextComponent
+        family={'regular'}
         text={props.title}
         textStyle={StyleSheet.flatten([
           props.isGrandTotal ? staticStyle.totalText : staticStyle.text,
           styles.text,
         ])}
       />
-      <Components.Text.RegularTextComponent
+      <Components.TextComponent
+        family={'regular'}
         text={props.isHour ? `${props.amount}h` : `$${props.amount}`}
         textStyle={StyleSheet.flatten([
           props.isGrandTotal ? staticStyle.totalText : staticStyle.text,

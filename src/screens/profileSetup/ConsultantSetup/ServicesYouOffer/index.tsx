@@ -70,11 +70,13 @@ export const ServicesYouOfferScreen = ({
             </View>
           </View>
           <View style={staticStyle.content}>
-            <Components.Text.SemiBoldTextComponent
+            <Components.TextComponent
+              family={'semiBold'}
               text={t('addYourServices')}
               textStyle={StyleSheet.flatten([staticStyle.title, styles.title])}
             />
-            <Components.Text.RegularTextComponent
+            <Components.TextComponent
+              family={'regular'}
               text={t('addYourServicesLine')}
               textStyle={StyleSheet.flatten([
                 staticStyle.subTitle,

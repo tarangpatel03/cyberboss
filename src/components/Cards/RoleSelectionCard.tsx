@@ -22,7 +22,8 @@ export const RoleSelectionCard = memo((props: RoleSelectionCardProps) => {
       style={StyleSheet.flatten([staticStyle.card, styles.card])}
     >
       <View style={staticStyle.header}>
-        <Components.Text.MediumTextComponent
+        <Components.TextComponent
+          family={'medium'}
           text={props.title}
           textStyle={StyleSheet.flatten([
             staticStyle.titleText,
@@ -45,7 +46,8 @@ export const RoleSelectionCard = memo((props: RoleSelectionCardProps) => {
           )}
         </View>
       </View>
-      <Components.Text.RegularTextComponent
+      <Components.TextComponent
+        family={'regular'}
         text={props.subtitle}
         textStyle={StyleSheet.flatten([
           staticStyle.subTitleText,

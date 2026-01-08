@@ -22,7 +22,8 @@ export const BookingPaymentDetailsCard = (
   const styles = createStyles(theme);
   return (
     <View style={StyleSheet.flatten([staticStyle.card, styles.bgPrimary])}>
-      <Components.Text.MediumTextComponent
+      <Components.TextComponent
+        family={'medium'}
         textStyle={StyleSheet.flatten([
           staticStyle.titleText,
           styles.textSecondary,

@@ -135,7 +135,8 @@ export const BookingSummaryScreen = ({
             ])}
           >
             <View style={staticStyle.downloadInvoice}>
-              <Components.Text.MediumTextComponent
+              <Components.TextComponent
+                family={'medium'}
                 text={t('downloadInvoice')}
                 textStyle={StyleSheet.flatten([
                   staticStyle.buttonText,

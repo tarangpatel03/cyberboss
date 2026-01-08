@@ -44,7 +44,8 @@ export const ProfileOptionsRow = (props: ProfileOptionsRowProps) => {
             style={staticStyle.icon}
           />
         </View>
-        <Components.Text.RegularTextComponent
+        <Components.TextComponent
+          family={'regular'}
           text={t('appearance')}
           textStyle={StyleSheet.flatten([
             staticStyle.infoText,
@@ -70,7 +71,8 @@ export const ProfileOptionsRow = (props: ProfileOptionsRowProps) => {
             style={staticStyle.icon}
           />
         </View>
-        <Components.Text.RegularTextComponent
+        <Components.TextComponent
+          family={'regular'}
           text={t('changePassword')}
           textStyle={StyleSheet.flatten([
             staticStyle.infoText,

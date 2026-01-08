@@ -62,14 +62,16 @@ export const PendingVerificationScreen = ({
                 source={Config.appIcons.ic_shield}
               />
               <View>
-                <Components.Text.SemiBoldTextComponent
+                <Components.TextComponent
+                  family={'semiBold'}
                   text={t('pendingVerification')}
                   textStyle={StyleSheet.flatten([
                     staticStyle.title,
                     styles.title,
                   ])}
                 />
-                <Components.Text.RegularTextComponent
+                <Components.TextComponent
+                  family={'regular'}
                   noOfLines={2}
                   text={t('pendingVerificationLine')}
                   textStyle={StyleSheet.flatten([

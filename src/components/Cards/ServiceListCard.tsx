@@ -23,7 +23,8 @@ export const ServiceListCard = memo(
         onPress={() => onRemove(text)}
         style={StyleSheet.flatten([staticStyle.container, styles.container])}
       >
-        <Components.Text.RegularTextComponent
+        <Components.TextComponent
+          family={'regular'}
           text={text}
           textStyle={StyleSheet.flatten([staticStyle.text, styles.text])}
         />

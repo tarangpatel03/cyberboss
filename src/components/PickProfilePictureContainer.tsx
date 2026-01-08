@@ -31,7 +31,8 @@ export const PickProfilePictureContainer = (
         style={staticStyle.profileImage}
       />
       <TouchableOpacity onPress={props.pickImage} activeOpacity={0.7}>
-        <Components.Text.MediumTextComponent
+        <Components.TextComponent
+          family={'medium'}
           text={t('changePhoto')}
           textStyle={StyleSheet.flatten([
             staticStyle.changePhotoText,

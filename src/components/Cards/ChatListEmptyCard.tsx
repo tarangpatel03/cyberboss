@@ -32,7 +32,8 @@ export const ChatListEmptyCard = memo((props: ListEmptyCardProps) => {
         tintColor={props.tintColor}
         style={StyleSheet.flatten([staticStyle.image, props.style])}
       />
-      <Components.Text.SemiBoldTextComponent
+      <Components.TextComponent
+        family={'semiBold'}
         text={props.text}
         textStyle={StyleSheet.flatten([staticStyle.text, styles.text])}
       />

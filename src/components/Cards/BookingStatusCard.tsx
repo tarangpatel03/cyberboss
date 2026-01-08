@@ -30,14 +30,16 @@ export const BookingStatusCard = ({ props }: BookingStatusCardProps) => {
       ])}
     >
       <View style={staticStyle.id}>
-        <Components.Text.MediumTextComponent
+        <Components.TextComponent
+          family={'medium'}
           textStyle={StyleSheet.flatten([
             staticStyle.titleText,
             styles.secondaryText,
           ])}
           text={`${t('bookingId')}: ${props?.bookingId}`}
         />
-        <Components.Text.RegularTextComponent
+        <Components.TextComponent
+          family={'regular'}
           textStyle={StyleSheet.flatten([
             staticStyle.subtitleText,
             styles.primaryText,
@@ -59,7 +61,8 @@ export const BookingStatusCard = ({ props }: BookingStatusCardProps) => {
           }
           style={staticStyle.icon}
         />
-        <Components.Text.MediumTextComponent
+        <Components.TextComponent
+          family={'medium'}
           text={props?.status ?? ''}
           textStyle={StyleSheet.flatten([
             staticStyle.tinyText,

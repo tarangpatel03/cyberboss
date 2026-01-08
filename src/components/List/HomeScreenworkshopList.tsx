@@ -28,7 +28,8 @@ export const HomeScreenWorkshopList = (props: HomeScreenWorkshopListProps) => {
   return (
     <View style={staticStyle.horizontalListContainer}>
       <View style={staticStyle.header}>
-        <Components.Text.MediumTextComponent
+        <Components.TextComponent
+          family={'medium'}
           text={
             props.type === t('workshop') ? t('workshop') : t('bookingHistory')
           }
@@ -42,7 +43,8 @@ export const HomeScreenWorkshopList = (props: HomeScreenWorkshopListProps) => {
           style={staticStyle.viewAllButton}
           onPress={props.navigateToWorkshop}
         >
-          <Components.Text.RegularTextComponent
+          <Components.TextComponent
+            family={'regular'}
             text={t('viewAll')}
             textStyle={StyleSheet.flatten([
               staticStyle.viewAllText,

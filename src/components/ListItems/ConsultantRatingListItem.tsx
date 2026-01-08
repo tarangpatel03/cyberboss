@@ -18,7 +18,8 @@ export const ConsultantRatingsList = (props: ConsultantRatingsListProps) => {
   const styles = createStyles(theme);
   return (
     <View style={staticStyle.secondaryContainer}>
-      <Components.Text.MediumTextComponent
+      <Components.TextComponent
+        family={'medium'}
         text={t('ratingsAndReviews')}
         textStyle={StyleSheet.flatten([
           staticStyle.semiTitleText,
@@ -29,7 +30,8 @@ export const ConsultantRatingsList = (props: ConsultantRatingsListProps) => {
         <View
           style={StyleSheet.flatten([staticStyle.rowLine, staticStyle.line])}
         >
-          <Components.Text.SemiBoldTextComponent
+          <Components.TextComponent
+            family={'semiBold'}
             text={`${props.data.averageRatings}`}
             textStyle={StyleSheet.flatten([
               staticStyle.ratingText,
@@ -45,7 +47,8 @@ export const ConsultantRatingsList = (props: ConsultantRatingsListProps) => {
             tintColor={theme.colors.bgPrimary}
           />
         </View>
-        <Components.Text.RegularTextComponent
+        <Components.TextComponent
+          family={'regular'}
           text={`${props.data.totalRatings} Ratings`}
           textStyle={StyleSheet.flatten([
             staticStyle.subTitleText,

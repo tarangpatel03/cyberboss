@@ -34,8 +34,9 @@ export const BarTabIcon = (props: BarTabIconProps) => {
         style={staticStyle.tour}
       >
         <FastImage source={props.icon} style={staticStyle.tabIcon} />
-        <Components.Text.RegularTextComponent
+        <Components.TextComponent
           text={props.title}
+          family={'regular'}
           textStyle={StyleSheet.flatten([staticStyle.text, styles.text])}
         />
       </TourGuideZone>

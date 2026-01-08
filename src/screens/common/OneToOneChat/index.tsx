@@ -214,7 +214,8 @@ export const OneToOneChatScreen = ({
                 style={staticStyle.profile}
               />
               <View>
-                <Components.Text.MediumTextComponent
+                <Components.TextComponent
+                  family={'medium'}
                   text={data.consultantName}
                   textStyle={StyleSheet.flatten([
                     staticStyle.title,
@@ -224,7 +225,8 @@ export const OneToOneChatScreen = ({
                 {fields?.onlineStatus?.[
                   fields.users.filter((v: string) => v !== data.userID)
                 ] && (
-                  <Components.Text.RegularTextComponent
+                  <Components.TextComponent
+                    family={'regular'}
                     text="online"
                     textStyle={StyleSheet.flatten([styles.title])}
                   />

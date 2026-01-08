@@ -34,7 +34,8 @@ export const ServiceCard = memo(({ data, onPress }: ServiceCardProps) => {
           tintColor={imageError ? theme.colors.textPrimary : ''}
           style={staticStyle.image}
         />
-        <Components.Text.MediumTextComponent
+        <Components.TextComponent
+          family={'medium'}
           text={data.name}
           textStyle={StyleSheet.flatten([staticStyle.title, styles.title])}
         />
@@ -42,7 +43,8 @@ export const ServiceCard = memo(({ data, onPress }: ServiceCardProps) => {
       <View style={staticStyle.details}>
         <View style={staticStyle.heading}>
           <FastImage source={Config.appIcons.ic_cash} style={staticStyle.icon} />
-          <Components.Text.RegularTextComponent
+          <Components.TextComponent
+            family={'regular'}
             text={`$${Number(data.rate)}/hr`}
             textStyle={StyleSheet.flatten([
               staticStyle.subTitle,
@@ -53,7 +55,8 @@ export const ServiceCard = memo(({ data, onPress }: ServiceCardProps) => {
         {data.bookingCount !== 0 && (
           <View style={staticStyle.heading}>
             <FastImage source={Config.appIcons.ic_check} style={staticStyle.icon} />
-            <Components.Text.RegularTextComponent
+            <Components.TextComponent
+              family={'regular'}
               text={Utils.formatBooking(data.bookingCount ?? 0)}
               textStyle={StyleSheet.flatten([
                 staticStyle.subTitle,

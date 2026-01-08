@@ -33,8 +33,9 @@ export const OnboardingListComponent = ({ data }: OnboardingListProps) => {
         style={styles.image}
       />
       <View style={styles.textContainer}>
-        <Components.Text.SemiBoldTextComponent text={t(data.title)} textStyle={styles.title} />
-        <Components.Text.RegularTextComponent
+        <Components.TextComponent family={'semiBold'} text={t(data.title)} textStyle={styles.title} />
+        <Components.TextComponent
+          family={'regular'}
           noOfLines={2}
           text={t(data.subTitle)}
           textStyle={styles.subTitle}

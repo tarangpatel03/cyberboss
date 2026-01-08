@@ -108,14 +108,16 @@ export const PersonalDetailsScreen = ({
           <ScrollView>
             <View style={staticStyle.contentContainer}>
               <View style={staticStyle.titleView}>
-                <Components.Text.SemiBoldTextComponent
+                <Components.TextComponent
+                  family={'semiBold'}
                   text={t('addPersonalDetails')}
                   textStyle={StyleSheet.flatten([
                     staticStyle.title,
                     styles.title,
                   ])}
                 />
-                <Components.Text.RegularTextComponent
+                <Components.TextComponent
+                  family={'regular'}
                   text={t('addPersonalDetailsLine')}
                   textStyle={StyleSheet.flatten([
                     staticStyle.subTitle,
@@ -126,7 +128,8 @@ export const PersonalDetailsScreen = ({
               <View style={staticStyle.profileImage}>
                 <FastImage source={profileImage} style={staticStyle.image} />
                 <TouchableOpacity activeOpacity={0.7} onPress={pickImage}>
-                  <Components.Text.MediumTextComponent
+                  <Components.TextComponent
+                    family={'medium'}
                     text={t('uploadPhoto')}
                     textStyle={StyleSheet.flatten([
                       staticStyle.uploadText,

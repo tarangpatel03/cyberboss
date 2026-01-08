@@ -43,7 +43,8 @@ export const BorderInput = ({
       ])}
     >
       {showPlaceholderOnFocus && isFocus && (
-        <Components.Text.RegularTextComponent
+        <Components.TextComponent
+          family={'regular'}
           textStyle={StyleSheet.flatten([
             staticStyle.placeHolder,
             styles.placeHolder,

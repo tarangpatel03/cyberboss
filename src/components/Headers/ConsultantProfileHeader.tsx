@@ -38,7 +38,8 @@ export const ConsultantProfileHeader = (
           style={staticStyle.image}
         />
         <View>
-          <Components.Text.MediumTextComponent
+          <Components.TextComponent
+            family={'medium'}
             text={props.data.name}
             textStyle={StyleSheet.flatten([
               staticStyle.titleText,
@@ -46,7 +47,8 @@ export const ConsultantProfileHeader = (
             ])}
           />
           <View style={staticStyle.rowLine}>
-            <Components.Text.RegularTextComponent
+            <Components.TextComponent
+              family={'regular'}
               text={props.data.expertises.at(0)?.name || ''}
               textStyle={StyleSheet.flatten([
                 staticStyle.subTitleText,

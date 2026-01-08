@@ -30,7 +30,8 @@ export const SubscriptionBenefits = ({ props }: { props: string }) => {
           style={staticStyle.energyIcon}
         />
       </LinearGradient>
-      <Components.Text.RegularTextComponent
+      <Components.TextComponent
+        family={'regular'}
         text={props ?? ''}
         textStyle={staticStyle.text14400}
       />

@@ -26,8 +26,9 @@ export const AuthOptions = (props: AuthOptionsProps) => {
         styles.utilCard,
       ])}
     >
-      <Components.Text.MediumTextComponent
+      <Components.TextComponent
         text={t('account')}
+        family={'medium'}
         textStyle={StyleSheet.flatten([
           staticStyle.optionTitle,
           styles.userEmail,

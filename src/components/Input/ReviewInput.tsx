@@ -41,7 +41,8 @@ export const ReviewInput = (props: ReviewInputProps) => {
           end={props.end}
           start={props.start}
         />
-        <Components.Text.MediumTextComponent
+        <Components.TextComponent
+          family={'medium'}
           text={t('tellUsMore')}
           textStyle={StyleSheet.flatten([
             staticStyle.text,

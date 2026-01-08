@@ -30,7 +30,8 @@ export const ScreenHeader = ({
           onPress={onPress}
         />
         {headerText && (
-          <Components.Text.MediumTextComponent
+          <Components.TextComponent
+            family={'medium'}
             text={headerText}
             textStyle={StyleSheet.flatten([staticStyle.title, styles.title])}
           />

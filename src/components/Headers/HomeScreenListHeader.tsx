@@ -44,7 +44,8 @@ export const HomeScreenListHeader = (
           renderItem={props.renderBookingItem}
         />
       )}
-      <Components.Text.MediumTextComponent
+      <Components.TextComponent
+        family={'medium'}
         text={t('browseServices')}
         textStyle={StyleSheet.flatten([
           staticStyle.header,

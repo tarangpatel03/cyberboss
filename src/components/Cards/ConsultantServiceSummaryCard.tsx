@@ -31,7 +31,8 @@ export const ConsultantServiceSummaryCard = (
   const styles = createStyles(theme);
   return (
     <View style={StyleSheet.flatten([staticStyle.card, styles.bgPrimary])}>
-      <Components.Text.MediumTextComponent
+      <Components.TextComponent
+        family={'medium'}
         text={t('serviceConsultant')}
         textStyle={StyleSheet.flatten([
           staticStyle.titleText,
@@ -53,14 +54,16 @@ export const ConsultantServiceSummaryCard = (
           style={staticStyle.image}
         />
         <View style={staticStyle.profileName}>
-          <Components.Text.MediumTextComponent
+          <Components.TextComponent
+            family={'medium'}
             text={props.consultantData.name}
             textStyle={StyleSheet.flatten([
               staticStyle.titleText,
               styles.textPrimary,
             ])}
           />
-          <Components.Text.RegularTextComponent
+          <Components.TextComponent
+            family={'regular'}
             text={`$${props.total}`}
             textStyle={StyleSheet.flatten([
               staticStyle.subtitleText,
@@ -78,7 +81,8 @@ export const ConsultantServiceSummaryCard = (
             iconStyle={staticStyle.minusIcon}
             onPress={props.reduceHr}
           />
-          <Components.Text.SemiBoldTextComponent
+          <Components.TextComponent
+            family={'semiBold'}
             text={`${props.hrBook}h`}
             textStyle={StyleSheet.flatten([
               staticStyle.counterText,
@@ -109,7 +113,8 @@ export const ConsultantServiceSummaryCard = (
           source={Utils.getServiceImage(props.type)}
           style={staticStyle.typeIcon}
         />
-        <Components.Text.RegularTextComponent
+        <Components.TextComponent
+          family={'regular'}
           text={props.type}
           textStyle={StyleSheet.flatten([
             staticStyle.subtitleText,

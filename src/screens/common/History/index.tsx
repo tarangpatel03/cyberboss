@@ -214,7 +214,8 @@ export const HistoryScreen = ({
                     tintColor={theme.colors.textPrimary}
                     style={staticStyle.icon}
                   />
-                  <Components.Text.RegularTextComponent
+                  <Components.TextComponent
+                    family={'regular'}
                     text={t('report')}
                     textStyle={StyleSheet.flatten([
                       staticStyle.optionText,
@@ -229,7 +230,8 @@ export const HistoryScreen = ({
                     source={Config.appIcons.ic_done}
                     style={staticStyle.icon}
                   />
-                  <Components.Text.RegularTextComponent
+                  <Components.TextComponent
+                    family={'regular'}
                     text={t('markAsDone')}
                     textStyle={StyleSheet.flatten([
                       staticStyle.optionText,

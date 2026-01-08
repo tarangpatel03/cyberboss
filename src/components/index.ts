@@ -72,10 +72,7 @@ import { ListShimmer } from "./Skeleton/ListShimmer";
 import { ShimmerHolder } from "./Skeleton/ShimmerHolder";
 import { SubscriptionBottomBar } from "./Subscription/SubscriptionBottomBar";
 import { SubscriptionTrustedUser } from "./Subscription/SubscriptionTrustedUser";
-import { BoldTextComponent } from "./Text/BoldText";
-import { MediumTextComponent } from "./Text/MediumText";
-import { RegularTextComponent } from "./Text/RegularText";
-import { SemiBoldTextComponent } from "./Text/SemiBoldText";
+import { TextComponent } from "./Text/TextComponent";
 
 export const Components = {
     Auth: {
@@ -168,12 +165,7 @@ export const Components = {
         SubscriptionBottomBar,
         SubscriptionTrustedUser,
     },
-    Text: {
-        BoldTextComponent,
-        MediumTextComponent,
-        RegularTextComponent,
-        SemiBoldTextComponent,
-    },
+    TextComponent,
     BillDetailsComponent,
     ConsultantInfoBadge,
     IndicationBar,

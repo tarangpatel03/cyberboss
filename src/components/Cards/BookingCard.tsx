@@ -49,8 +49,9 @@ export const BookingCard = memo((props: BookingCardProps) => {
       style={StyleSheet.flatten([staticStyle.container, styles.container])}
     >
       <View style={staticStyle.row}>
-        <Components.Text.MediumTextComponent
+        <Components.TextComponent
           text={`${t('bookingId')}: ${props.data.bookingId}`}
+          family={'medium'}
           textStyle={StyleSheet.flatten([
             staticStyle.titleText,
             styles.secondaryText,
@@ -70,8 +71,9 @@ export const BookingCard = memo((props: BookingCardProps) => {
             }
             style={staticStyle.icon}
           />
-          <Components.Text.MediumTextComponent
+          <Components.TextComponent
             text={props.data.status}
+            family={'medium'}
             textStyle={StyleSheet.flatten([
               staticStyle.tinyText,
               props.data.status === 'Completed'
@@ -95,23 +97,26 @@ export const BookingCard = memo((props: BookingCardProps) => {
           style={staticStyle.profileImage}
         />
         <View style={staticStyle.fullLengthView}>
-          <Components.Text.MediumTextComponent
+          <Components.TextComponent
             text={props.data.userName}
+            family={'medium'}
             textStyle={StyleSheet.flatten([
               staticStyle.titleText,
               styles.primaryText,
             ])}
           />
-          <Components.Text.RegularTextComponent
+          <Components.TextComponent
             text={`${props.data.hours}hr`}
+            family={'regular'}
             textStyle={StyleSheet.flatten([
               staticStyle.subtitleText,
               styles.secondaryText,
             ])}
           />
         </View>
-        <Components.Text.MediumTextComponent
+        <Components.TextComponent
           text={`$${props.data.grandTotal}`}
+          family={'medium'}
           textStyle={StyleSheet.flatten([
             staticStyle.titleText,
             staticStyle.text,
@@ -136,8 +141,9 @@ export const BookingCard = memo((props: BookingCardProps) => {
             resizeMode={FastImage.resizeMode.contain}
             source={Utils.getServiceImage(props.data.categoryName)}
           />
-          <Components.Text.RegularTextComponent
+          <Components.TextComponent
             text={props.data.categoryName}
+            family={'regular'}
             textStyle={StyleSheet.flatten([
               staticStyle.subtitleText,
               styles.primaryText,

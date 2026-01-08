@@ -27,7 +27,11 @@ export const PrimaryButtonWithIcon = (
       style={props.buttonStyle}
       onPress={props.onPress}
     >
-      <Components.Text.MediumTextComponent text={props.text} textStyle={props.textStyle} />
+      <Components.TextComponent 
+        family={'medium'} 
+        text={props.text} 
+        textStyle={props.textStyle} 
+      />
       <FastImage source={props.icon} style={styles.iconStyle} />
     </TouchableOpacity>
   );

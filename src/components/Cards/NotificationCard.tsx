@@ -31,7 +31,8 @@ export const NotificationCard = memo(
           </View>
         )}
         <View style={staticStyle.text}>
-          <Components.Text.RegularTextComponent
+          <Components.TextComponent
+            family={'regular'}
             text={data.body}
             noOfLines={2}
             textStyle={StyleSheet.flatten([
@@ -39,7 +40,8 @@ export const NotificationCard = memo(
               styles.textPrimary,
             ])}
           />
-          <Components.Text.RegularTextComponent
+          <Components.TextComponent
+            family={'regular'}
             text={Utils.getDate(data.createdAt)}
             textStyle={StyleSheet.flatten([
               staticStyle.time,

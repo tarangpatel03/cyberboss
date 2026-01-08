@@ -35,8 +35,9 @@ export const HomeScreenSearchButtons = (props: SearchBarProps) => {
               source={Config.appIcons.ic_search}
               style={staticStyle.searchIcon}
             />
-            <Components.Text.RegularTextComponent
+            <Components.TextComponent
               text={t('searchPlaceHolder')}
+              family={'regular'}
               textStyle={StyleSheet.flatten([
                 staticStyle.headerText,
                 styles.helpText,
@@ -57,8 +58,9 @@ export const HomeScreenSearchButtons = (props: SearchBarProps) => {
             }
             style={staticStyle.imageButton}
           />
-          <Components.Text.MediumTextComponent
+          <Components.TextComponent
             text={t('help')}
+            family={'medium'}
             textStyle={StyleSheet.flatten([
               staticStyle.tinyText,
               styles.helpText,

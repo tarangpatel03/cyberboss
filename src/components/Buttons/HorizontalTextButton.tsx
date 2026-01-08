@@ -17,13 +17,15 @@ export const AuthFooterAction = (props: AuthFooterAction) => {
   const styles = createStyles(theme);
   return (
     <View style={staticStyle.forgotPassword}>
-      <Components.Text.MediumTextComponent
+      <Components.TextComponent
         text={t(props.title)}
+        family={'medium'}
         textStyle={StyleSheet.flatten([staticStyle.subTitle, styles.subTitle])}
       />
       <TouchableOpacity activeOpacity={0.7} onPress={props.navigateTo}>
-        <Components.Text.MediumTextComponent
+        <Components.TextComponent
           text={t(props.subTitle)}
+          family={'medium'}
           textStyle={styles.signUp}
         />
       </TouchableOpacity>

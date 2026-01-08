@@ -1,14 +1,12 @@
 import { StyleSheet, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import LinearGradient from 'react-native-linear-gradient';
-import { MediumTextComponent } from '@components/Text/MediumText';
 import { staticStyle } from '@screens/client/Subscription/styles';
-import { SemiBoldTextComponent } from '@components/Text/SemiBoldText';
 import { linearGradientDirection } from '@screens/client/Subscription';
 import FastImage from 'react-native-fast-image';
-import { RegularTextComponent } from '@components/Text/RegularText';
 import { Utils } from '@utils/index';
 import { Config } from '@config/index';
+import { Components } from '@components/index';
 
 type SubscriptionTrustedUserProps = {
   direction: linearGradientDirection;
@@ -23,7 +21,8 @@ export const SubscriptionTrustedUser = (
   return (
     <>
       <View style={staticStyle.horizontal8}>
-        <MediumTextComponent
+        <Components.TextComponent
+          family={'medium'}
           text={t('kyoraIQ')}
           textStyle={staticStyle.text24500}
         />
@@ -37,7 +36,8 @@ export const SubscriptionTrustedUser = (
             Config.appColors.app_FFD84D,
           ]}
         >
-          <SemiBoldTextComponent
+          <Components.TextComponent
+            family={'semiBold'}
             text={t('pro')}
             textStyle={staticStyle.text14600}
           />
@@ -54,7 +54,8 @@ export const SubscriptionTrustedUser = (
             source={Config.appIcons.ic_proFeatures}
             style={staticStyle.featuresIcon}
           />
-          <RegularTextComponent
+          <Components.TextComponent
+            family={'regular'}
             text={t('unlockExpertLedWorkshops')}
             textStyle={staticStyle.text14400}
           />
@@ -95,7 +96,8 @@ export const SubscriptionTrustedUser = (
                 ])}
               />
             </View>
-            <RegularTextComponent
+            <Components.TextComponent
+              family={'regular'}
               text={`Trusted By ${props.noOfUser ?? 0} Users`}
               textStyle={staticStyle.text14400}
             />

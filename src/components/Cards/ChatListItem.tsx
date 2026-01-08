@@ -90,14 +90,16 @@ export const ChatListItem = memo((props: ChatListItemProps) => {
       </View>
       <View style={staticStyle.info}>
         <View style={staticStyle.line}>
-          <Components.Text.MediumTextComponent
+          <Components.TextComponent
+            family={'medium'}
             text={userData.name}
             textStyle={StyleSheet.flatten([
               staticStyle.titleText,
               styles.titleText,
             ])}
           />
-          <Components.Text.MediumTextComponent
+          <Components.TextComponent
+            family={'medium'}
             text={`${userData.date}`}
             textStyle={StyleSheet.flatten([
               staticStyle.timeText,
@@ -108,7 +110,8 @@ export const ChatListItem = memo((props: ChatListItemProps) => {
           />
         </View>
         <View style={staticStyle.line}>
-          <Components.Text.RegularTextComponent
+          <Components.TextComponent
+            family={'regular'}
             text={`${
               props.data.lastMessageSender === props.uid ? 'you:' : ''
             } ${props.data.lastMessage ?? ''}`}
@@ -125,7 +128,8 @@ export const ChatListItem = memo((props: ChatListItemProps) => {
                 styles.unReadContainer,
               ])}
             >
-              <Components.Text.RegularTextComponent
+              <Components.TextComponent
+                family={'regular'}
                 text={`${props.data.unreadCount[props.uid]}`}
                 textStyle={StyleSheet.flatten([
                   staticStyle.unReadText,

@@ -24,7 +24,8 @@ export const StarReviewCard = (props: StarReviewCardProps) => {
         activeOpacity={0.9}
       >
         <FastImage source={props.showStar(1)} style={staticStyle.star} />
-        <Components.Text.RegularTextComponent
+        <Components.TextComponent
+          family={'regular'}
           text={t('terrible')}
           textStyle={StyleSheet.flatten([
             staticStyle.tinyText,
@@ -38,7 +39,8 @@ export const StarReviewCard = (props: StarReviewCardProps) => {
         style={staticStyle.ratingContainer}
       >
         <FastImage source={props.showStar(2)} style={staticStyle.star} />
-        <Components.Text.RegularTextComponent
+        <Components.TextComponent
+          family={'regular'}
           text={t('bad')}
           textStyle={StyleSheet.flatten([
             staticStyle.tinyText,
@@ -52,7 +54,8 @@ export const StarReviewCard = (props: StarReviewCardProps) => {
         style={staticStyle.ratingContainer}
       >
         <FastImage source={props.showStar(3)} style={staticStyle.star} />
-        <Components.Text.RegularTextComponent
+        <Components.TextComponent
+          family={'regular'}
           text={t('okay')}
           textStyle={StyleSheet.flatten([
             staticStyle.tinyText,
@@ -66,7 +69,8 @@ export const StarReviewCard = (props: StarReviewCardProps) => {
         style={staticStyle.ratingContainer}
       >
         <FastImage source={props.showStar(4)} style={staticStyle.star} />
-        <Components.Text.RegularTextComponent
+        <Components.TextComponent
+          family={'regular'}
           text={t('good')}
           textStyle={StyleSheet.flatten([
             staticStyle.tinyText,
@@ -80,7 +84,8 @@ export const StarReviewCard = (props: StarReviewCardProps) => {
         style={staticStyle.ratingContainer}
       >
         <FastImage source={props.showStar(5)} style={staticStyle.star} />
-        <Components.Text.RegularTextComponent
+        <Components.TextComponent
+          family={'regular'}
           text={t('excellent')}
           textStyle={StyleSheet.flatten([
             staticStyle.tinyText,

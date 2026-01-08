@@ -24,7 +24,8 @@ export const ConsultantInfoBadge = ({
         <FastImage source={{ uri: image }} style={staticStyle.uriImage} />
       )}
       {imagePath && <FastImage source={imagePath} style={staticStyle.image} />}
-      <Components.Text.RegularTextComponent
+      <Components.TextComponent
+        family={'regular'}
         text={text}
         textStyle={StyleSheet.flatten([staticStyle.text, styles.text])}
       />

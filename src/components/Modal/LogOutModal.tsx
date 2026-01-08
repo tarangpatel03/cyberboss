@@ -46,11 +46,13 @@ export const LogOutModal = (props: LogOutModalProps) => {
               styles.container,
             ])}
           >
-            <Components.Text.MediumTextComponent
+            <Components.TextComponent
+              family={'medium'}
               textStyle={StyleSheet.flatten([staticStyle.head, styles.head])}
               text={props.title}
             />
-            <Components.Text.RegularTextComponent
+            <Components.TextComponent
+              family={'regular'}
               noOfLines={2}
               textStyle={StyleSheet.flatten([
                 staticStyle.normalText,
@@ -66,7 +68,8 @@ export const LogOutModal = (props: LogOutModalProps) => {
                 ])}
                 onPress={() => props.setIsModal(false)}
               >
-                <Components.Text.MediumTextComponent
+                <Components.TextComponent
+                  family={'medium'}
                   textStyle={StyleSheet.flatten([
                     styles.cancelText,
                     styles.normalText,
@@ -83,7 +86,8 @@ export const LogOutModal = (props: LogOutModalProps) => {
                 ])}
                 onPress={onLogOutPress}
               >
-                <Components.Text.MediumTextComponent
+                <Components.TextComponent
+                  family={'medium'}
                   textStyle={StyleSheet.flatten([
                     staticStyle.deleteText,
                     styles.deleteText,

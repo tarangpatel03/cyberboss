@@ -43,14 +43,16 @@ export const ProfileCard = (props: ProfileCardProps) => {
         />
         <View style={staticStyle.userNameCard}>
           <View>
-            <Components.Text.MediumTextComponent
+            <Components.TextComponent
+              family={'medium'}
               text={props.userData.name ?? 'user'}
               textStyle={StyleSheet.flatten([
                 staticStyle.userName,
                 styles.userName,
               ])}
             />
-            <Components.Text.RegularTextComponent
+            <Components.TextComponent
+              family={'regular'}
               text={props.userData.email ?? ''}
               textStyle={StyleSheet.flatten([
                 staticStyle.userEmail,

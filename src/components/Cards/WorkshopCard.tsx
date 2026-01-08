@@ -40,7 +40,8 @@ export const WorkshopCard = memo(({ data, cardStyle }: WorkshopCardProps) => {
         styles.container,
       ])}
     >
-      <Components.Text.MediumTextComponent
+      <Components.TextComponent
+        family={'medium'}
         text={data.name}
         textStyle={StyleSheet.flatten([staticStyle.title, styles.title])}
       />
@@ -51,7 +52,8 @@ export const WorkshopCard = memo(({ data, cardStyle }: WorkshopCardProps) => {
             tintColor={theme.colors.textSecondary}
             style={staticStyle.icon}
           />
-          <Components.Text.RegularTextComponent
+          <Components.TextComponent
+            family={'regular'}
             text={Utils.getFullDate(data.date)}
             textStyle={StyleSheet.flatten([
               staticStyle.subTitle,
@@ -65,7 +67,8 @@ export const WorkshopCard = memo(({ data, cardStyle }: WorkshopCardProps) => {
             tintColor={theme.colors.textSecondary}
             style={staticStyle.icon}
           />
-          <Components.Text.RegularTextComponent
+          <Components.TextComponent
+            family={'regular'}
             text={`${data.startTime} - ${data.endTime}`}
             textStyle={StyleSheet.flatten([
               staticStyle.subTitle,

@@ -32,7 +32,8 @@ export const BookingSummaryDetailsCard = (
 
   return (
     <View style={StyleSheet.flatten([staticStyle.card, styles.container])}>
-      <Components.Text.MediumTextComponent
+      <Components.TextComponent
+        family={'medium'}
         textStyle={StyleSheet.flatten([
           staticStyle.titleText,
           styles.secondaryText,
@@ -63,14 +64,16 @@ export const BookingSummaryDetailsCard = (
           />
         </TouchableOpacity>
         <View style={staticStyle.fullLengthView}>
-          <Components.Text.MediumTextComponent
+          <Components.TextComponent
+            family={'medium'}
             text={props.data?.userName ?? ''}
             textStyle={StyleSheet.flatten([
               staticStyle.titleText,
               styles.primaryText,
             ])}
           />
-          <Components.Text.RegularTextComponent
+          <Components.TextComponent
+            family={'regular'}
             text={`${props.data?.hours}hr`}
             textStyle={StyleSheet.flatten([
               staticStyle.subtitleText,
@@ -78,7 +81,8 @@ export const BookingSummaryDetailsCard = (
             ])}
           />
         </View>
-        <Components.Text.MediumTextComponent
+        <Components.TextComponent
+          family={'medium'}
           text={`$${props.data?.total}`}
           textStyle={StyleSheet.flatten([
             staticStyle.titleText,
@@ -110,7 +114,8 @@ export const BookingSummaryDetailsCard = (
             source={Utils.getServiceImage(props.data?.expertise?.name)}
             style={staticStyle.categoryIcon}
           />
-          <Components.Text.RegularTextComponent
+          <Components.TextComponent
+            family={'regular'}
             text={props.data?.expertise?.name ?? ''}
             textStyle={StyleSheet.flatten([
               styles.primaryText,
@@ -127,7 +132,8 @@ export const BookingSummaryDetailsCard = (
         activeOpacity={1}
       >
         <View style={staticStyle.horizontalCard}>
-          <Components.Text.MediumTextComponent
+          <Components.TextComponent
+            family={'medium'}
             text={
               props.review?.[0]?.reviews
                 ? t('yourRating')
@@ -148,7 +154,8 @@ export const BookingSummaryDetailsCard = (
         </View>
         {props.review?.[0]?.reviews && (
           <View>
-            <Components.Text.RegularTextComponent
+            <Components.TextComponent
+              family={'regular'}
               text={props.review?.[0].reviews}
               noOfLines={200}
               textStyle={StyleSheet.flatten([

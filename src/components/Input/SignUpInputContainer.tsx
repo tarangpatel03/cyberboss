@@ -82,7 +82,8 @@ export const SignUpInputContainer = (props: SignUpInputContainerProps) => {
             )}
           </TouchableOpacity>
         </View>
-        <Components.Text.RegularTextComponent
+        <Components.TextComponent
+          family={'regular'}
           text={t('agreeTo')}
           textStyle={StyleSheet.flatten([
             staticStyle.termsLine,
@@ -90,7 +91,8 @@ export const SignUpInputContainer = (props: SignUpInputContainerProps) => {
           ])}
         />
         <TouchableOpacity activeOpacity={0.7}>
-          <Components.Text.RegularTextComponent
+          <Components.TextComponent
+            family={'regular'}
             text={t('privacyPolicy')}
             textStyle={StyleSheet.flatten([
               staticStyle.termsLine,
@@ -98,7 +100,8 @@ export const SignUpInputContainer = (props: SignUpInputContainerProps) => {
             ])}
           />
         </TouchableOpacity>
-        <Components.Text.RegularTextComponent
+        <Components.TextComponent
+          family={'regular'}
           text={t('and')}
           textStyle={StyleSheet.flatten([
             staticStyle.termsLine,
@@ -106,7 +109,8 @@ export const SignUpInputContainer = (props: SignUpInputContainerProps) => {
           ])}
         />
         <TouchableOpacity activeOpacity={0.7}>
-          <Components.Text.RegularTextComponent
+          <Components.TextComponent
+            family={'regular'}
             text={t('terms')}
             textStyle={StyleSheet.flatten([
               staticStyle.termsLine,

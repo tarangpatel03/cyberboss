@@ -44,7 +44,8 @@ export const CustomInput = ({
       ])}
     >
       {showPlaceholderOnFocus && (isFocus || value.length !== 0) && (
-        <Components.Text.RegularTextComponent
+        <Components.TextComponent
+          family={'regular'}
           textStyle={StyleSheet.flatten([
             staticStyle.placeHolder,
             styles.placeHolder,

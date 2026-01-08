@@ -26,8 +26,9 @@ export const SocialLogIn = (props: SocialLogInProps) => {
         ])}
       >
         <View style={StyleSheet.flatten([staticStyle.line, styles.line])} />
-        <Components.Text.RegularTextComponent
+        <Components.TextComponent
           text={t('continueWith')}
+          family={'regular'}
           textStyle={StyleSheet.flatten([
             staticStyle.subTitle,
             staticStyle.centerText,

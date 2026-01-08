@@ -62,7 +62,8 @@ export const ConsultantHeaderCard = (props: ConsultantHeaderCardProps) => {
                   onError={() => setProfilePictureError(true)}
                 />
               </View>
-              <Components.Text.SemiBoldTextComponent
+              <Components.TextComponent
+                family={'semiBold'}
                 text={name}
                 textStyle={StyleSheet.flatten([
                   staticStyle.name,
@@ -90,14 +91,16 @@ export const ConsultantHeaderCard = (props: ConsultantHeaderCardProps) => {
         >
           <View style={staticStyle.centerRow}>
             <View style={staticStyle.counter}>
-              <Components.Text.BoldTextComponent
+              <Components.TextComponent
+                family={'bold'}
                 text={`$${props.userData.totalEarnings}`}
                 textStyle={StyleSheet.flatten([
                   staticStyle.countText,
                   styles.whiteText,
                 ])}
               />
-              <Components.Text.RegularTextComponent
+              <Components.TextComponent
+                family={'regular'}
                 text="Total Earnings"
                 textStyle={StyleSheet.flatten([
                   staticStyle.subtitleText,
@@ -115,7 +118,8 @@ export const ConsultantHeaderCard = (props: ConsultantHeaderCardProps) => {
             />
             <View style={staticStyle.counter}>
               <View style={staticStyle.directionRow}>
-                <Components.Text.BoldTextComponent
+                <Components.TextComponent
+                  family={'bold'}
                   text={`${props.userData.averageRating}`}
                   textStyle={StyleSheet.flatten([
                     staticStyle.countText,
@@ -127,7 +131,8 @@ export const ConsultantHeaderCard = (props: ConsultantHeaderCardProps) => {
                   style={staticStyle.star}
                 />
               </View>
-              <Components.Text.RegularTextComponent
+              <Components.TextComponent
+                family={'regular'}
                 text="Avg. Rating"
                 textStyle={StyleSheet.flatten([
                   staticStyle.subtitleText,
@@ -164,7 +169,8 @@ export const ConsultantHeaderCard = (props: ConsultantHeaderCardProps) => {
                 source={Config.appIcons.ic_wallet}
                 style={staticStyle.walletIcon}
               />
-              <Components.Text.RegularTextComponent
+              <Components.TextComponent
+                family={'regular'}
                 text={t('walletBalance')}
                 textStyle={StyleSheet.flatten([
                   staticStyle.viewAllText,
@@ -172,7 +178,8 @@ export const ConsultantHeaderCard = (props: ConsultantHeaderCardProps) => {
                 ])}
               />
             </View>
-            <Components.Text.MediumTextComponent
+            <Components.TextComponent
+              family={'medium'}
               text={`$${props.userData.walletBalance}`}
               textStyle={StyleSheet.flatten([
                 staticStyle.viewAllText,

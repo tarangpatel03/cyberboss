@@ -32,8 +32,9 @@ export const PrimaryButton = (props: PrimaryButtonComponentProps) => {
       ])}
       onPress={props.onPress}
     >
-      <Components.Text.MediumTextComponent
+      <Components.TextComponent
         text={props.text}
+        family={'medium'}
         textStyle={StyleSheet.flatten([
           staticStyle.text,
           styles.text,

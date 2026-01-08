@@ -22,7 +22,8 @@ export const ThemeSelectionCard = memo(
         style={staticStyle.card}
       >
         <View style={staticStyle.header}>
-          <Components.Text.RegularTextComponent
+          <Components.TextComponent
+            family={'regular'}
             text={title}
             textStyle={StyleSheet.flatten([
               staticStyle.titleText,

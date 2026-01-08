@@ -41,7 +41,8 @@ export const ConsultantProfileScreenShimmer = () => {
           style={StyleSheet.flatten([staticStyle.separator, styles.separator])}
         />
         <View style={staticStyle.secondaryContainer}>
-          <Components.Text.MediumTextComponent
+          <Components.TextComponent
+            family={'medium'}
             text={t('about')}
             textStyle={StyleSheet.flatten([
               staticStyle.semiTitleText,
@@ -71,7 +72,8 @@ export const ConsultantProfileScreenShimmer = () => {
           style={StyleSheet.flatten([staticStyle.separator, styles.separator])}
         />
         <View style={staticStyle.secondaryContainer}>
-          <Components.Text.MediumTextComponent
+          <Components.TextComponent
+            family={'medium'}
             text={t('expertiseAndServices')}
             textStyle={StyleSheet.flatten([
               staticStyle.semiTitleText,
@@ -99,7 +101,8 @@ export const ConsultantProfileScreenShimmer = () => {
           style={StyleSheet.flatten([staticStyle.separator, styles.separator])}
         />
         <View style={staticStyle.secondaryContainer}>
-          <Components.Text.MediumTextComponent
+          <Components.TextComponent
+            family={'medium'}
             text={t('ratingsAndReviews')}
             textStyle={StyleSheet.flatten([
               staticStyle.semiTitleText,

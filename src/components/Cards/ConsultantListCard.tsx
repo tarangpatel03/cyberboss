@@ -46,7 +46,8 @@ export const ConsultantListCard = memo(
             ])}
           >
             <FastImage source={Config.appIcons.ic_star} style={staticStyle.starIcon} />
-            <Components.Text.MediumTextComponent
+            <Components.TextComponent
+              family={'medium'}
               text={`${data.rating}`}
               textStyle={StyleSheet.flatten([
                 staticStyle.ratingText,
@@ -56,7 +57,8 @@ export const ConsultantListCard = memo(
           </View>
         </View>
         <View style={staticStyle.detailContainer}>
-          <Components.Text.MediumTextComponent
+          <Components.TextComponent
+            family={'medium'}
             text={data.name}
             textStyle={StyleSheet.flatten([staticStyle.name, styles.name])}
           />
@@ -67,7 +69,8 @@ export const ConsultantListCard = memo(
                   source={Config.appIcons.ic_check}
                   style={staticStyle.icons}
                 />
-                <Components.Text.RegularTextComponent
+                <Components.TextComponent
+                  family={'regular'}
                   text={Utils.formatBooking(data.bookings)}
                   textStyle={StyleSheet.flatten([
                     staticStyle.detailText,
@@ -81,7 +84,8 @@ export const ConsultantListCard = memo(
                 source={Config.appIcons.ic_experience}
                 style={staticStyle.icons}
               />
-              <Components.Text.RegularTextComponent
+              <Components.TextComponent
+                family={'regular'}
                 text={`Exp: ${data.experienceYear} Years`}
                 textStyle={StyleSheet.flatten([
                   staticStyle.detailText,

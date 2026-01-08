@@ -45,7 +45,8 @@ export const TopBarHeader = (props: TopBarComponentProps) => {
               style={staticStyle.image}
               onError={() => setProfileImageError(true)}
             />
-            <Components.Text.SemiBoldTextComponent
+            <Components.TextComponent
+              family={'semiBold'}
               text={name}
               textStyle={StyleSheet.flatten([
                 staticStyle.profileText,

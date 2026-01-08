@@ -37,7 +37,8 @@ export const BioInputComponent = (props: MultiLineInputComponentProps) => {
       ])}
     >
       {isFocus && (
-        <Components.Text.RegularTextComponent
+        <Components.TextComponent
+          family={'regular'}
           textStyle={StyleSheet.flatten([
             staticStyle.placeHolder,
             styles.placeHolder,

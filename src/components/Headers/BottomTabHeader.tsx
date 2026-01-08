@@ -16,7 +16,8 @@ export const BottomTabHeader = ({ name, onPress }: BottomTabHeaderProp) => {
   const styles = createStyles(theme);
   return (
     <View style={StyleSheet.flatten([staticStyle.container, styles.container])}>
-      <Components.Text.MediumTextComponent
+      <Components.TextComponent
+        family={'medium'}
         text={name}
         textStyle={StyleSheet.flatten([staticStyle.title, styles.title])}
       />

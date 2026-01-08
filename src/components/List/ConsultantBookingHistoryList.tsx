@@ -33,7 +33,8 @@ export const ConsultantBookingHistoryList = (
     <View>
       {props.data.length !== 0 && (
         <View style={staticStyle.header}>
-          <Components.Text.MediumTextComponent
+          <Components.TextComponent
+            family={'medium'}
             text={t('bookingHistory')}
             textStyle={StyleSheet.flatten([
               staticStyle.headerText,
@@ -44,7 +45,8 @@ export const ConsultantBookingHistoryList = (
             activeOpacity={0.7}
             style={staticStyle.viewAllButton}
           >
-            <Components.Text.RegularTextComponent
+            <Components.TextComponent
+              family={'regular'}
               text={t('viewAll')}
               textStyle={StyleSheet.flatten([
                 staticStyle.viewAllText,

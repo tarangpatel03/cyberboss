@@ -29,7 +29,8 @@ export const SubscriptionBenefitsCard = ({
     >
       <View style={staticStyle.benefitLine}>
         <FastImage source={Config.appIcons.ic_energy} style={staticStyle.energyIcon} />
-        <Components.Text.MediumTextComponent
+        <Components.TextComponent
+          family={'medium'}
           text={t('benefits')}
           textStyle={StyleSheet.flatten([
             staticStyle.text16500,

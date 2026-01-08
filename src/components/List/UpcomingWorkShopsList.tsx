@@ -17,7 +17,8 @@ export const UpcomingWorkShopsList = (props: UpcomingWorkshopsListProps) => {
     <View style={staticStyle.benefits}>
       <View style={staticStyle.benefitLine}>
         <FastImage source={Config.appIcons.ic_energy} style={staticStyle.energyIcon} />
-        <Components.Text.MediumTextComponent
+        <Components.TextComponent
+          family={'medium'}
           text={t('upcomingWorkshops')}
           textStyle={StyleSheet.flatten([
             staticStyle.text16500,

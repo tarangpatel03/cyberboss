@@ -105,14 +105,16 @@ export const ClientProfileSetUpScreen = ({
             </View>
             <View style={staticStyle.contentContainer}>
               <View style={staticStyle.titleView}>
-                <Components.Text.SemiBoldTextComponent
+                <Components.TextComponent
+                  family={'semiBold'}
                   text={t('completeProfile')}
                   textStyle={StyleSheet.flatten([
                     staticStyle.title,
                     styles.title,
                   ])}
                 />
-                <Components.Text.RegularTextComponent
+                <Components.TextComponent
+                  family={'regular'}
                   text={t('completeProfileLine')}
                   textStyle={StyleSheet.flatten([
                     staticStyle.subTitle,
@@ -123,7 +125,8 @@ export const ClientProfileSetUpScreen = ({
               <View style={staticStyle.profileImage}>
                 <FastImage source={profileImage} style={staticStyle.image} />
                 <TouchableOpacity activeOpacity={0.7} onPress={pickImage}>
-                  <Components.Text.MediumTextComponent
+                  <Components.TextComponent
+                    family={'medium'}
                     text={t('uploadPhoto')}
                     textStyle={StyleSheet.flatten([
                       staticStyle.uploadText,

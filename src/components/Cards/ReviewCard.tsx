@@ -27,7 +27,8 @@ export const ReviewCard = memo((props: TRatingReviewModel) => {
           style={staticStyle.reviewImage}
           source={Config.appImages.img_defaultProfile}
         />
-        <Components.Text.MediumTextComponent
+        <Components.TextComponent
+          family={'medium'}
           text={props.clientName}
           textStyle={StyleSheet.flatten([
             staticStyle.subTitleText,
@@ -40,7 +41,8 @@ export const ReviewCard = memo((props: TRatingReviewModel) => {
             styles.bulletPoint,
           ])}
         />
-        <Components.Text.RegularTextComponent
+        <Components.TextComponent
+          family={'regular'}
           textStyle={StyleSheet.flatten([
             staticStyle.tinyText,
             styles.secondaryText,
@@ -56,7 +58,8 @@ export const ReviewCard = memo((props: TRatingReviewModel) => {
         tintColor={theme.colors.bgPrimary}
         startingValue={Number(props.rating)}
       />
-      <Components.Text.RegularTextComponent
+      <Components.TextComponent
+        family={'regular'}
         textStyle={StyleSheet.flatten([
           staticStyle.tinyText,
           styles.secondaryText,

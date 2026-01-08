@@ -14,7 +14,8 @@ type WorkshopCardProps = {
 export const WorkshopFlatListCard = memo(({ data }: WorkshopCardProps) => {
   return (
     <View style={StyleSheet.flatten([staticStyle.container])}>
-      <Components.Text.MediumTextComponent
+      <Components.TextComponent
+        family={'medium'}
         text={data.name}
         textStyle={StyleSheet.flatten([staticStyle.title])}
       />
@@ -24,7 +25,8 @@ export const WorkshopFlatListCard = memo(({ data }: WorkshopCardProps) => {
             source={Config.appIcons.ic_calender}
             style={StyleSheet.flatten([staticStyle.icon])}
           />
-          <Components.Text.RegularTextComponent
+          <Components.TextComponent
+            family={'regular'}
             text={Utils.getFullDate(data.date)}
             textStyle={StyleSheet.flatten([staticStyle.subTitle])}
           />
@@ -34,7 +36,8 @@ export const WorkshopFlatListCard = memo(({ data }: WorkshopCardProps) => {
             source={Config.appIcons.ic_fillHistory}
             style={StyleSheet.flatten([staticStyle.icon])}
           />
-          <Components.Text.RegularTextComponent
+          <Components.TextComponent
+            family={'regular'}
             text={`${data.startTime} - ${data.endTime}`}
             textStyle={StyleSheet.flatten([staticStyle.subTitle])}
           />

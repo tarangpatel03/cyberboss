@@ -16,17 +16,20 @@ export const SubscriptionBottomBar = (props: SubscriptionBottomBarPorps) => {
     <View style={staticStyle.bottomButton}>
       <View style={staticStyle.bottomLine}>
         <View style={staticStyle.horizontal}>
-          <Components.Text.MediumTextComponent
+          <Components.TextComponent
+            family={'medium'}
             text={props.price ?? ''}
             textStyle={staticStyle.text20500}
           />
-          <Components.Text.RegularTextComponent
+          <Components.TextComponent
+            family={'regular'}
             text={`/${props.duration?.slice(0, 2) ?? ''}`}
             textStyle={staticStyle.text16400}
           />
         </View>
         <View style={staticStyle.monthlyContainer}>
-          <Components.Text.MediumTextComponent
+          <Components.TextComponent
+            family={'medium'}
             text={props.duration?.toUpperCase() ?? ''}
             textStyle={staticStyle.text12500}
           />
@@ -40,12 +43,14 @@ export const SubscriptionBottomBar = (props: SubscriptionBottomBarPorps) => {
         textStyle={staticStyle.text16500}
       />
       <View style={staticStyle.lastLine}>
-        <Components.Text.RegularTextComponent
+        <Components.TextComponent
+          family={'regular'}
           text={t('termsOfUse')}
           textStyle={staticStyle.text12500}
         />
         <FastImage source={Config.appIcons.ic_dot} />
-        <Components.Text.RegularTextComponent
+        <Components.TextComponent
+          family={'regular'}
           text={t('privacyPolicy')}
           textStyle={staticStyle.text12500}
         />

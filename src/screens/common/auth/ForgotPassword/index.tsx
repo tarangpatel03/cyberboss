@@ -50,14 +50,16 @@ export const ForgotPasswordScreen = ({
           </View>
           <View style={staticStyle.content}>
             <View style={staticStyle.titleLine}>
-              <Components.Text.SemiBoldTextComponent
+              <Components.TextComponent
+                family={'semiBold'}
                 text={t('forgotPassword')}
                 textStyle={StyleSheet.flatten([
                   staticStyle.title,
                   styles.title,
                 ])}
               />
-              <Components.Text.SemiBoldTextComponent
+              <Components.TextComponent
+                family={'semiBold'}
                 text={t('forgotPasswordLine')}
                 noOfLines={2}
                 textStyle={StyleSheet.flatten([

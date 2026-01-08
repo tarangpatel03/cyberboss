@@ -36,11 +36,13 @@ export const BookingHistoryCard = memo((props: BookingHistoryCardProps) => {
           source={Config.appImages.img_defaultProfile}
         />
         <View style={staticStyle.topText}>
-          <Components.Text.MediumTextComponent
+          <Components.TextComponent
+            family={'medium'}
             text={props.data.userName}
             textStyle={StyleSheet.flatten([staticStyle.title, styles.title])}
           />
-          <Components.Text.RegularTextComponent
+          <Components.TextComponent
+            family={'regular'}
             text={Utils.getFullDate(props.data.bookingDate)}
             textStyle={StyleSheet.flatten([
               staticStyle.subTitle,
@@ -52,7 +54,8 @@ export const BookingHistoryCard = memo((props: BookingHistoryCardProps) => {
       <View style={staticStyle.detail}>
         <View style={staticStyle.header}>
           <FastImage style={staticStyle.icons} source={Config.appIcons.ic_suitcase} />
-          <Components.Text.RegularTextComponent
+          <Components.TextComponent
+            family={'regular'}
             text={props.data.categoryName}
             textStyle={StyleSheet.flatten([
               staticStyle.subTitle,
@@ -62,7 +65,8 @@ export const BookingHistoryCard = memo((props: BookingHistoryCardProps) => {
         </View>
         <View style={staticStyle.header}>
           <FastImage style={staticStyle.icons} source={Config.appIcons.ic_cash} />
-          <Components.Text.RegularTextComponent
+          <Components.TextComponent
+            family={'regular'}
             text={`$${props.data.grandTotal}`}
             textStyle={StyleSheet.flatten([
               staticStyle.subTitle,

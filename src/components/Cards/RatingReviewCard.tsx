@@ -28,14 +28,16 @@ export const RatingCard = memo((props: ReviewCardProps) => {
           style={staticStyle.reviewImage}
           source={props.item.profileImage}
         />
-        <Components.Text.MediumTextComponent
+        <Components.TextComponent
+          family={'medium'}
           text={props.item.name}
           textStyle={StyleSheet.flatten([
             staticStyle.subTitleText,
             styles.primaryText,
           ])}
         />
-        <Components.Text.RegularTextComponent
+        <Components.TextComponent
+          family={'regular'}
           textStyle={StyleSheet.flatten([
             staticStyle.tinyText,
             styles.secondaryText,
@@ -51,7 +53,8 @@ export const RatingCard = memo((props: ReviewCardProps) => {
         tintColor={theme.colors.bgPrimary}
         startingValue={props.item.rating}
       />
-      <Components.Text.RegularTextComponent
+      <Components.TextComponent
+        family={'regular'}
         text={props.item.review}
         noOfLines={20}
         textStyle={StyleSheet.flatten([

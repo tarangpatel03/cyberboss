@@ -146,7 +146,8 @@ export const ProfileScreen = ({
               setLogOutVisible={setLogOutVisible}
               setDeleteVisible={setDeleteVisible}
             />
-            <Components.Text.RegularTextComponent
+            <Components.TextComponent
+              family={'regular'}
               text={t('version')}
               textStyle={StyleSheet.flatten([
                 staticStyle.versionText,

@@ -38,14 +38,16 @@ export const BookingConfirmScreen = ({
               style={staticStyle.confirmIcon}
             />
             <View style={staticStyle.confirmLine}>
-              <Components.Text.SemiBoldTextComponent
+              <Components.TextComponent
+                family={'semiBold'}
                 text={t('bookingConfirmed')}
                 textStyle={StyleSheet.flatten([
                   staticStyle.confirmText,
                   styles.textPrimary,
                 ])}
               />
-              <Components.Text.RegularTextComponent
+              <Components.TextComponent
+                family={'regular'}
                 text={t('consultantWillReachOutToYouViaInAppChat')}
                 textStyle={StyleSheet.flatten([
                   staticStyle.subtitleText,
@@ -65,7 +67,8 @@ export const BookingConfirmScreen = ({
                   styles.bottomBorder,
                 ])}
               >
-                <Components.Text.MediumTextComponent
+                <Components.TextComponent
+                  family={'medium'}
                   text={`${t('bookingId')}: #RTX5090`}
                   textStyle={StyleSheet.flatten([
                     staticStyle.titleText,
@@ -83,14 +86,16 @@ export const BookingConfirmScreen = ({
                   style={staticStyle.profileImage}
                 />
                 <View style={staticStyle.fullLengthView}>
-                  <Components.Text.MediumTextComponent
+                  <Components.TextComponent
+                    family={'medium'}
                     text={bookingData.name}
                     textStyle={StyleSheet.flatten([
                       staticStyle.titleText,
                       styles.textPrimary,
                     ])}
                   />
-                  <Components.Text.RegularTextComponent
+                  <Components.TextComponent
+                    family={'regular'}
                     text={`${bookingData.hours}hr`}
                     textStyle={StyleSheet.flatten([
                       staticStyle.subtitleText,
@@ -98,7 +103,8 @@ export const BookingConfirmScreen = ({
                     ])}
                   />
                 </View>
-                <Components.Text.MediumTextComponent
+                <Components.TextComponent
+                  family={'medium'}
                   text={`$${bookingData.total}`}
                   textStyle={StyleSheet.flatten([
                     staticStyle.titleText,
@@ -118,7 +124,8 @@ export const BookingConfirmScreen = ({
                     style={staticStyle.categoryIcon}
                     source={Utils.getServiceImage(bookingData.type)}
                   />
-                  <Components.Text.RegularTextComponent
+                  <Components.TextComponent
+                    family={'regular'}
                     text={bookingData.type}
                     textStyle={StyleSheet.flatten([
                       staticStyle.subtitleText,

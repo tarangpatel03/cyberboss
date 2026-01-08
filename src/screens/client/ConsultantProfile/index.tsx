@@ -117,14 +117,16 @@ export const ConsultantProfileScreen = ({
                 ])}
               />
               <View style={staticStyle.secondaryContainer}>
-                <Components.Text.MediumTextComponent
+                <Components.TextComponent
+                  family={'medium'}
                   text={t('about')}
                   textStyle={StyleSheet.flatten([
                     staticStyle.semiTitleText,
                     styles.primaryText,
                   ])}
                 />
-                <Components.Text.RegularTextComponent
+                <Components.TextComponent
+                  family={'regular'}
                   text={data.bio}
                   noOfLines={20}
                   textStyle={StyleSheet.flatten([
@@ -163,7 +165,8 @@ export const ConsultantProfileScreen = ({
                 styles.separator,
               ])}
             >
-              <Components.Text.MediumTextComponent
+              <Components.TextComponent
+                family={'medium'}
                 text={`$${Number(data.rate)}/hr`}
                 textStyle={StyleSheet.flatten([
                   staticStyle.ratingText,

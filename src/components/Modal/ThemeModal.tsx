@@ -56,7 +56,8 @@ export const ThemeModal = ({ isVisible, onclose }: ThemeModalProps) => {
           ])}
         >
           <View style={StyleSheet.flatten([staticStyle.title, styles.title])}>
-            <Components.Text.MediumTextComponent
+            <Components.TextComponent
+              family={'medium'}
               text={t('appearance')}
               textStyle={StyleSheet.flatten([
                 staticStyle.titleText,

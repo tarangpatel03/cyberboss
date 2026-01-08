@@ -21,7 +21,8 @@ export const RecentActivity = memo(
           style={staticStyle.image}
         />
         <View style={staticStyle.row}>
-          <Components.Text.RegularTextComponent
+          <Components.TextComponent
+            family={'regular'}
             text={props.title}
             noOfLines={2}
             textStyle={StyleSheet.flatten([
@@ -29,7 +30,8 @@ export const RecentActivity = memo(
               styles.primaryText,
             ])}
           />
-          <Components.Text.RegularTextComponent
+          <Components.TextComponent
+            family={'regular'}
             text={props.createdAt}
             textStyle={StyleSheet.flatten([
               staticStyle.subtitle,

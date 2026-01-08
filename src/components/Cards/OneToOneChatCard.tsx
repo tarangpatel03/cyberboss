@@ -43,7 +43,8 @@ export const OneToOneChatCard = memo((props: OneOnOneCardProps) => {
             : styles.receiveContainer,
         ])}
       >
-        <Components.Text.RegularTextComponent
+        <Components.TextComponent
+          family={'regular'}
           text={props.message}
           noOfLines={Infinity}
           textStyle={StyleSheet.flatten([
@@ -53,7 +54,8 @@ export const OneToOneChatCard = memo((props: OneOnOneCardProps) => {
               : styles.messageText,
           ])}
         />
-        <Components.Text.RegularTextComponent
+        <Components.TextComponent
+          family={'regular'}
           text={Utils.formatFirebaseTimestamp(props.timestamp)}
           textStyle={StyleSheet.flatten([
             staticStyle.timeText,

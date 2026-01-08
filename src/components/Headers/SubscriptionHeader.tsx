@@ -26,7 +26,8 @@ export const SubscriptionHeader = (props: SubscriptionHeaderProps) => {
           style={staticStyle.headerIcon}
           resizeMode={FastImage.resizeMode.contain}
         />
-        <Components.Text.MediumTextComponent
+        <Components.TextComponent
+          family={'medium'}
           text={t('restore')}
           textStyle={staticStyle.text14500}
         />

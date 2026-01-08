@@ -37,11 +37,13 @@ export const EditProfileInputs = (props: EditProfileInputsProps) => {
           styles.disableInputContainer,
         ])}
       >
-        <Components.Text.RegularTextComponent
+        <Components.TextComponent
+          family={'regular'}
           textStyle={StyleSheet.flatten([staticStyle.placeHolder, styles.text])}
           text={t('email')}
         />
-        <Components.Text.RegularTextComponent
+        <Components.TextComponent
+          family={'regular'}
           text={props.email}
           textStyle={StyleSheet.flatten([staticStyle.text, styles.text])}
         />

@@ -25,7 +25,8 @@ export const GeneralSettings = (props: GeneralSettingsProps) => {
         styles.utilCard,
       ])}
     >
-      <Components.Text.MediumTextComponent
+      <Components.TextComponent
+        family={'medium'}
         text={t('general')}
         textStyle={StyleSheet.flatten([
           staticStyle.optionTitle,

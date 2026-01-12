@@ -34,20 +34,20 @@ export const BookingPaymentDetailsCard = (
         style={StyleSheet.flatten([staticStyle.separator, styles.separator])}
       />
       <Components.BillDetailsComponent
-        amount={props.billData.hourlyRate}
+        amount={props.billData?.hourlyRate ?? 0}
         title={t('hourlyRate')}
       />
       <Components.BillDetailsComponent
         isHour={true}
-        amount={props.billData.hours}
+        amount={props.billData?.hours ?? 0}
         title={t('hoursBooked')}
       />
-      <Components.BillDetailsComponent amount={props.billData.total} title={t('total')} />
+      <Components.BillDetailsComponent amount={props.billData?.total ?? 0} title={t('total')} />
       <Components.BillDetailsComponent
-        amount={props.billData.platformFee}
+        amount={props.billData?.platformFee ?? 0}
         title={`${t('platformFee')} (${props.billData.platformPercentage}%)`}
       />
-      <Components.BillDetailsComponent amount={props.billData.tax} title={t('tax')} />
+      <Components.BillDetailsComponent amount={props.billData?.tax ?? 0} title={t('tax')} />
       <View
         style={StyleSheet.flatten([
           staticStyle.totalContainer,
@@ -56,7 +56,7 @@ export const BookingPaymentDetailsCard = (
       >
         <Components.BillDetailsComponent
           isGrandTotal={true}
-          amount={props.billData.grandTotal}
+          amount={props.billData?.grandTotal ?? 0}
           title={t('grandTotal')}
         />
       </View>

@@ -27,6 +27,5 @@ export enum routeName {
   BookingConfirm = 'BookingConfirm',
   Notification = 'Notification',
   ContactSupport = 'ContactSupport',
-  ConsultantBottomTab = 'ConsultantBottomTab',
   Subscription = 'Subscription',
 }

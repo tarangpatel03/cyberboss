@@ -78,6 +78,7 @@ const staticStyle = StyleSheet.create({
     borderRadius: Utils.normalize(12),
     padding: Utils.normalize(12),
     borderWidth: 1,
+    marginBottom: Utils.normalize(12),
   },
   heading: {
     flexDirection: 'row',

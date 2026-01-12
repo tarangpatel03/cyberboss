@@ -164,7 +164,6 @@ export const createStyles = (theme: Theme) =>
     subTitle: {
       color: theme.colors.textSecondary,
     },
-    continueWith: {},
     line: {
       borderColor: theme.colors.borderPrimary,
     },

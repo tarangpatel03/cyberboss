@@ -19,7 +19,7 @@ export const staticStyle = StyleSheet.create({
     display: 'none',
   },
   searchBarContainer: {
-    width: '86%',
+    width: Utils.normalize(307),
   },
   horizontalListContainer: { marginLeft: Utils.normalize(12) },
   horizontalListItem: { gap: Utils.normalize(12) },
@@ -28,6 +28,7 @@ export const staticStyle = StyleSheet.create({
     borderWidth: 1,
     alignItems: 'center',
     flexDirection: 'row',
+    gap: Utils.normalize(12),
     borderRadius: Utils.normalize(12),
     height: Utils.normalize(40, 'height'),
     paddingHorizontal: Utils.normalize(12),
@@ -101,7 +102,7 @@ export const staticStyle = StyleSheet.create({
     flexDirection: 'row',
     paddingHorizontal: Utils.normalize(12),
     gap: Utils.normalize(12),
-    paddingVertical: Utils.normalize(10),
+    paddingTop: Utils.normalize(8),
     marginBottom: Utils.normalize(12),
   },
   imageButton: {
@@ -111,14 +112,16 @@ export const staticStyle = StyleSheet.create({
   container: {
     flex: 1,
   },
+  headerContainer: {
+    flex: 1,
+    marginBottom: Utils.normalize(24),
+  },
   list: {
     flexGrow: 1,
-    gap: Utils.normalize(12),
   },
   header: {
     paddingHorizontal: Utils.normalize(16),
-    marginBottom: Utils.normalize(12),
-    paddingTop: Utils.normalize(12),
+    marginBottom: Utils.normalize(16),
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
@@ -127,8 +130,13 @@ export const staticStyle = StyleSheet.create({
     fontWeight: '500',
   },
   headerText: {
-    fontSize: Utils.normalize(16),
     fontWeight: '500',
+    fontSize: Utils.normalize(16),
+  },
+  listHeaderText: {
+    fontWeight: '500',
+    fontSize: Utils.normalize(16),
+    // paddingTop: Utils.normalize(24),
   },
   viewAllText: {
     fontSize: Utils.normalize(14),

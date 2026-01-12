@@ -136,8 +136,7 @@ export const staticStyle = StyleSheet.create({
     fontSize: Utils.normalize(12),
     fontWeight: '400',
     alignSelf: 'center',
-    top: Utils.normalize(-24),
-    paddingVertical: Utils.normalize(14),
+    bottom: Utils.normalize(16),
   },
 });
 

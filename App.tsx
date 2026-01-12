@@ -1,7 +1,7 @@
 import './src/locale/i18n';
-import { RootNavigation } from './src/navigation/RootNavigation';
+import { RootNavigation } from '@navigation/RootNavigation.tsx';
 import { Provider, useSelector } from 'react-redux';
-import { persistor, RootState, store } from './src/redux/store';
+import { persistor, RootState, store } from '@redux/store.ts';
 import { PersistGate } from 'redux-persist/integration/react';
 import { StatusBar, StyleSheet, useColorScheme } from 'react-native';
 import { ThemeProvider } from '@shopify/restyle';
@@ -10,9 +10,9 @@ import { useMemo } from 'react';
 import Toast from 'react-native-toast-message';
 import { TourGuideProvider } from 'rn-tourguide';
 import normalize from './src/utils/normalize/normalize';
-import { ThemeMode } from './src/redux/features/themeSlice';
-import { navigationRef } from './src/services/axios/axiosInterceptors';
-import { isDarkMode } from './src/utils/theme/darkMode';
+import { ThemeMode } from '@redux/features/themeSlice.ts';
+import { navigationRef } from '@services/axios/axiosInterceptors.ts';
+import { isDarkMode } from '@utils/theme/darkMode.ts';
 import { Config } from '@config/index';
 
 function App() {

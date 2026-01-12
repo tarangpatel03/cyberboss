@@ -125,6 +125,13 @@ export const staticStyle = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
+  recentActivityHeader: {
+    paddingHorizontal: Utils.normalize(16),
+    marginBottom: Utils.normalize(12),
+    paddingTop: Utils.normalize(24),
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
   headerText: {
     fontSize: Utils.normalize(16),
     fontWeight: '500',

@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
 import { Utils } from '@utils/index';
 import { Config } from '@config/index';
+import {appColors} from "@config/colors/colors.ts";
 
 export const staticStyle = StyleSheet.create({
   container: {
@@ -158,10 +159,20 @@ export const staticStyle = StyleSheet.create({
     fontWeight: '400',
     color: Config.appColors.app_FFFFFF,
   },
+  proText: {
+    color: Config.appColors.app_18171C,
+  },
   text16500: {
     fontSize: Utils.normalize(16),
     fontWeight: '500',
     color: Config.appColors.app_FFFFFF,
+  },
+  text16500Secondary: {
+    fontWeight: '500',
+    alignSelf: 'flex-end',
+    color: Config.appColors.app_8C8694,
+    fontSize: Utils.normalize(16),
+    paddingBottom: Utils.normalize(3),
   },
   latterSpace: {
     letterSpacing: 4,
@@ -229,5 +240,11 @@ export const staticStyle = StyleSheet.create({
     padding: Utils.normalize(12),
     paddingTop: Utils.normalize(20),
     borderColor: Config.appColors.app_FFD84D,
+  },
+  dot: {
+    width: Utils.normalize(3),
+    height: Utils.normalize(3),
+    borderRadius: Utils.normalize(5),
+    backgroundColor: Config.appColors.app_FFFFFF,
   },
 });

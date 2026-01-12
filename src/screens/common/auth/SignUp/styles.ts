@@ -49,6 +49,12 @@ export const staticStyle = StyleSheet.create({
     gap: Utils.normalize(16),
     alignItems: 'center',
   },
+  footerLine: {
+    paddingBottom: Utils.normalize(16, 'height'),
+    marginTop: Utils.normalize(5),
+    flexDirection: 'row',
+    alignSelf: 'center',
+  },
   continueWith: {
     width: '100%',
   },
@@ -186,6 +192,10 @@ export const createStyles = (theme: Theme) =>
     },
     checkBox: {
       borderColor: theme.colors.borderPrimary,
+    },
+    primaryText: {
+      textDecorationLine: 'underline',
+      color: theme.colors.primary,
     },
     checkedBox: {
       backgroundColor: theme.colors.primary,

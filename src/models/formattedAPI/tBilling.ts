@@ -1,13 +1,13 @@
 import { ApiBillDetailsModel } from '@models/api/billing';
 
 export type TBillDetailsModel = {
-  hourlyRate: number;
-  hours: number;
-  total: number;
-  platformFee: number;
-  platformPercentage: number;
-  tax: number;
-  grandTotal: number;
+  hourlyRate?: number;
+  hours?: number;
+  total?: number;
+  platformFee?: number;
+  platformPercentage?: number;
+  tax?: number;
+  grandTotal?: number;
 };
 
 export const transformBillDetailsModel: (

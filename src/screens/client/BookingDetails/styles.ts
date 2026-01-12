@@ -47,6 +47,7 @@ export const staticStyle = StyleSheet.create({
     gap: Utils.normalize(16),
     padding: Utils.normalize(12),
     paddingTop: Utils.normalize(16),
+    marginBottom: Utils.normalize(24),
   },
   separator: {
     width: '107.5%',
@@ -109,6 +110,19 @@ export const staticStyle = StyleSheet.create({
   totalContainer: {
     borderRadius: Utils.normalize(8),
     padding: Utils.normalize(12),
+  },
+  paymentDetailsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  text: {
+    fontSize: Utils.normalize(14),
+    fontWeight: '400',
+  },
+  totalText: {
+    fontSize: Utils.normalize(16),
+    fontWeight: '500',
   },
 });
 

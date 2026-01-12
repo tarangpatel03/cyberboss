@@ -36,9 +36,9 @@ export type TConsultantHomeNotificationModel = {
 };
 
 export type TConsultantHomeModel = {
-  totalEarnings: string;
-  walletBalance: number;
-  averageRating: number;
+  totalEarnings?: string;
+  walletBalance?: number;
+  averageRating?: number;
   bookings: THomeBookingModel[];
   notification: TConsultantHomeNotificationModel[];
 };
@@ -88,12 +88,12 @@ export const transformConsultantHomeModel: (
   data: ApiConsultantHomeModel,
 ) => TConsultantHomeModel = (data: ApiConsultantHomeModel) => {
   return {
-    walletBalance: data.wallet_balance,
-    totalEarnings: data.total_earnings,
-    averageRating: data.average_rating,
-    bookings: data.bookings.map(r => transformHomeBookingModel(r)),
-    notification: data.notification.map(r =>
+    walletBalance: data?.wallet_balance ?? 0,
+    totalEarnings: data?.total_earnings ?? 0,
+    averageRating: data?.average_rating ?? 0,
+    bookings: data?.bookings.map(r => transformHomeBookingModel(r)) ?? [],
+    notification: data?.notification.map(r =>
       transformConsultantHomeNotification(r),
-    ),
+    ) ?? 0,
   };
 };

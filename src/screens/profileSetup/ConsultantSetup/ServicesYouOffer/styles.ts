@@ -89,6 +89,26 @@ export const staticStyle = StyleSheet.create({
     fontSize: Utils.normalize(16),
     fontWeight: '500',
   },
+  serviceCardContainer: {
+    paddingVertical: Utils.normalize(8),
+    paddingHorizontal: Utils.normalize(8),
+    marginBottom: Utils.normalize(8),
+    marginLeft: Utils.normalize(8),
+    flexDirection: 'row',
+    gap: Utils.normalize(8),
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 0.5,
+    borderRadius: Utils.normalize(8),
+  },
+  serviceText: {
+    fontSize: Utils.normalize(14),
+    fontWeight: '400',
+  },
+  serviceImage: {
+    width: Utils.normalize(16),
+    height: Utils.normalize(16),
+  },
 });
 
 export const createStyles = (theme: Theme) =>
@@ -122,5 +142,12 @@ export const createStyles = (theme: Theme) =>
     },
     skipText: {
       color: theme.colors.textSecondary,
+    },
+    serviceContainer: {
+      backgroundColor: theme.colors.bgSecondary,
+      borderColor: theme.colors.primary,
+    },
+    serviceText: {
+      color: theme.colors.textPrimary,
     },
   });

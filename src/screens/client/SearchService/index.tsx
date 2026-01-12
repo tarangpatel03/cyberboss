@@ -67,7 +67,6 @@ export const SearchServiceScreen = ({
   };
 
   useEffect(() => {
-    console.log('API Called');
     loadData().then(() => setLoader(false));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedSearchText]);

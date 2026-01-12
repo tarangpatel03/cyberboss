@@ -7,6 +7,7 @@ export const staticStyle = StyleSheet.create({
     flex: 1,
   },
   header: {
+    paddingHorizontal: Utils.normalize(12),
     gap: Utils.normalize(12, 'height'),
     marginVertical: Utils.normalize(12, 'height'),
   },

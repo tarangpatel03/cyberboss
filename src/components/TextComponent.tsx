@@ -1,4 +1,4 @@
-import { Utils } from '@utils/index';
+import {Utils} from '@utils/index.ts';
 import { StyleProp, StyleSheet, Text, TextStyle } from 'react-native';
 
 type TextComponentProps = {

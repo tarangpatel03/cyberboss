@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import {Platform, StyleSheet} from 'react-native';
 import { Theme } from '@config/themes/themes';
 import {Utils} from '@utils/index';
 
@@ -34,10 +34,14 @@ export const staticStyle = StyleSheet.create({
   },
   userNameCard: {
     width: '75%',
-    paddingLeft: Utils.normalize(8),
     justifyContent: 'space-between',
     flexDirection: 'row',
     alignItems: 'center',
+  },
+  userTexts: {
+    width: '65%',
+    gap: Utils.normalize(8),
+    paddingLeft: Platform.OS === 'ios' ? Utils.normalize(12) : 0,
   },
   utilCardContainer: {
     flexDirection: 'row',
@@ -48,9 +52,18 @@ export const staticStyle = StyleSheet.create({
     top: Utils.normalize(-12),
     gap: Utils.normalize(12),
   },
-  editProfile: {
+  optionsIcon: {
     width: Utils.normalize(28),
     height: Utils.normalize(28),
+    borderRadius: Utils.normalize(15),
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  editProfile: {
+    position: 'absolute',
+    width: Utils.normalize(28),
+    height: Utils.normalize(28),
+    right: Utils.normalize(12),
     borderRadius: Utils.normalize(15),
     justifyContent: 'center',
     alignItems: 'center',
@@ -60,11 +73,11 @@ export const staticStyle = StyleSheet.create({
     height: Utils.normalize(16),
   },
   userName: {
-    fontSize: Utils.normalize(16),
+    fontSize: Utils.normalize(18),
     fontWeight: '500',
   },
   userEmail: {
-    fontSize: Utils.normalize(12),
+    fontSize: Utils.normalize(14),
     fontWeight: '400',
   },
   innerContainer: {

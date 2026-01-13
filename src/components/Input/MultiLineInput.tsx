@@ -95,7 +95,7 @@ const staticStyle = StyleSheet.create({
         top: Utils.normalize(-20),
     },
     placeHolder: {
-        top: Utils.normalize(0),
+        top: Utils.normalize(6),
         fontSize: Utils.normalize(12),
         fontWeight: '400',
         left: Utils.normalize(8),

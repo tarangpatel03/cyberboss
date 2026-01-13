@@ -150,36 +150,34 @@ export const ProfileScreen = ({
                                     style={staticStyle.profileImage}
                                     onError={() => setImageError(true)}
                                 />
-                                <View style={staticStyle.userNameCard}>
-                                    <View>
-                                        <Components.TextComponent
-                                            family={'medium'}
-                                            text={userData.name ?? 'user'}
-                                            textStyle={StyleSheet.flatten([
-                                                staticStyle.userName,
-                                                styles.userName,
-                                            ])}
-                                        />
-                                        <Components.TextComponent
-                                            family={'regular'}
-                                            text={userData.email ?? ''}
-                                            textStyle={StyleSheet.flatten([
-                                                staticStyle.userEmail,
-                                                styles.userEmail,
-                                            ])}
-                                        />
-                                    </View>
-                                    <TouchableOpacity
-                                        activeOpacity={0.7}
-                                        onPress={navigateToEditProfile}
-                                        style={StyleSheet.flatten([
-                                            staticStyle.editProfile,
-                                            styles.editProfile,
+                                <View style={staticStyle.userTexts}>
+                                    <Components.TextComponent
+                                        family={'medium'}
+                                        text={userData.name ?? 'user'}
+                                        textStyle={StyleSheet.flatten([
+                                            staticStyle.userName,
+                                            styles.userName,
                                         ])}
-                                    >
-                                        <FastImage source={Config.appIcons.ic_pen} style={staticStyle.editIcon}/>
-                                    </TouchableOpacity>
+                                    />
+                                    <Components.TextComponent
+                                        family={'regular'}
+                                        text={userData.email ?? ''}
+                                        textStyle={StyleSheet.flatten([
+                                            staticStyle.userEmail,
+                                            styles.userEmail,
+                                        ])}
+                                    />
                                 </View>
+                                <TouchableOpacity
+                                    activeOpacity={0.7}
+                                    onPress={navigateToEditProfile}
+                                    style={StyleSheet.flatten([
+                                        staticStyle.editProfile,
+                                        styles.editProfile,
+                                    ])}
+                                >
+                                    <FastImage source={Config.appIcons.ic_pen} style={staticStyle.editIcon}/>
+                                </TouchableOpacity>
                             </View>
                             {userData.role === 'consultant' && (
                                 <View
@@ -219,7 +217,7 @@ export const ProfileScreen = ({
                             >
                                 <View
                                     style={StyleSheet.flatten([
-                                        staticStyle.editProfile,
+                                        staticStyle.optionsIcon,
                                         styles.iconContainer,
                                     ])}
                                 >
@@ -246,7 +244,7 @@ export const ProfileScreen = ({
                             >
                                 <View
                                     style={StyleSheet.flatten([
-                                        staticStyle.editProfile,
+                                        staticStyle.optionsIcon,
                                         styles.iconContainer,
                                     ])}
                                 >

@@ -23,7 +23,7 @@ export const WorkshopCard = memo(({data, cardStyle}: WorkshopCardProps) => {
         const startISO = Utils.convertToEventDate(data.date, data.startTime);
         const endISO = Utils.convertToEventDate(data.date, data.endTime);
 
-        Utils.addToCalendar({
+        await Utils.addToCalendar({
             notes: data.name,
             startDate: startISO,
             endDate: endISO,

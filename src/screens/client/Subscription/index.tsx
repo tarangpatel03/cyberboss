@@ -9,20 +9,15 @@ import {TWorkshopModel} from '@models/formattedAPI/tConsultant';
 import {ApiResponse} from '@models/apiModel';
 import {ApiSubscriptionModel} from '@models/api/client';
 import {
-    transformSubscrptionModel,
+    transformSubscriptionModel,
     TSubscriptionModel,
-} from '@models/formattedAPI/tclient';
+} from '@models/formattedAPI/tClient.ts';
 import {Config} from '@config/index';
 import {Components} from '@components/index';
 import {useTranslation} from "react-i18next";
 import LinearGradient from "react-native-linear-gradient";
 import FastImage from "react-native-fast-image";
 import {Utils} from "@utils/index.ts";
-
-export type linearGradientDirection = {
-    start: { x: number; y: number };
-    end: { x: number; y: number };
-};
 
 export const SubscriptionScreen = ({
                                        navigation,
@@ -40,7 +35,7 @@ export const SubscriptionScreen = ({
             );
             if (!response) return;
             const data: ApiSubscriptionModel = response.payload;
-            const transformedData = transformSubscrptionModel(data);
+            const transformedData = transformSubscriptionModel(data);
             setSubscriptionData(transformedData);
         } catch (error) {
             console.log(error);

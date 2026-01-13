@@ -1,20 +1,18 @@
 export const getDate = (date: string) => {
   const dateVal = new Date(date);
-  const formattedDate = dateVal.toLocaleDateString('en-GB', {
+  return dateVal.toLocaleDateString('en-GB', {
     day: 'numeric',
     month: 'short',
   });
-  return formattedDate;
 };
 
 export const getFullDate = (date: string) => {
   const dateVal = new Date(date);
-  const formattedDate = dateVal.toLocaleDateString('en-GB', {
+  return dateVal.toLocaleDateString('en-GB', {
     day: 'numeric',
     month: 'short',
     year: 'numeric',
   });
-  return formattedDate;
 };
 
 export const getTime = (date: string) => {

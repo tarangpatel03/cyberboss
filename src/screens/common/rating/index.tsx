@@ -1,9 +1,7 @@
 import {
     ActivityIndicator,
-    ImageSourcePropType,
     StyleSheet,
     TextInput,
-    TextStyle,
     TouchableOpacity,
     View
 } from 'react-native';
@@ -12,7 +10,7 @@ import {routeName} from '@config/constants/routes';
 import {useTheme} from '@shopify/restyle';
 import {createStyles, staticStyle} from '@screens/common/Rating/styles';
 import {Theme} from '@config/themes/themes';
-import {Dispatch, SetStateAction, useState} from 'react';
+import {useState} from 'react';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import normalize from '@utils/normalize/normalize';
 import {useTranslation} from 'react-i18next';

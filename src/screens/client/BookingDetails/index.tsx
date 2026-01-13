@@ -70,7 +70,7 @@ export const BookingDetailsScreen = ({
         navigation.goBack();
     };
 
-    const loadConultantData = async () => {
+    const loadConsultantData = async () => {
         const response1 = await getAPIData<ApiResponse<ApiConsultantDetailsModel>>(
             `${Config.endPoints.consultant}/${consultantId}`,
         );
@@ -109,12 +109,12 @@ export const BookingDetailsScreen = ({
     };
 
     useEffect(() => {
-        loadConultantData();
+        loadConsultantData().then();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [consultantId]);
 
     useEffect(() => {
-        loadData();
+        loadData().then();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [hrBook, consultantId]);
 

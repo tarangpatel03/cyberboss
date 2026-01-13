@@ -74,7 +74,7 @@ export const OneToOneChatCard = memo((props: OneOnOneCardProps) => {
     );
 });
 
-const staticStyle = StyleSheet.create({
+export const staticStyle = StyleSheet.create({
     sendContainer: {
         paddingLeft: Utils.normalize(24),
         paddingBottom: Utils.normalize(12, 'height'),
@@ -128,7 +128,7 @@ const staticStyle = StyleSheet.create({
     },
 });
 
-const createStyles = (theme: Theme) =>
+export const createStyles = (theme: Theme) =>
     StyleSheet.create({
         sendContainer: {
             backgroundColor: theme.colors.primary,

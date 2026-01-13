@@ -19,7 +19,7 @@ export const getGradientColor = (type: string | undefined) => {
     case 'Growth':
       return [Config.appColors.app_00BCD412, Config.appColors.app_00BCD400];
     default:
-      return [Config.appColors.app_FFFFFF, Config.appColors.app_FFFFFF];
+      return [Config.appColors.app_2A71ED12, Config.appColors.app_2A71ED00];
   }
 };
 export const getServiceImage = (type: string | undefined) => {

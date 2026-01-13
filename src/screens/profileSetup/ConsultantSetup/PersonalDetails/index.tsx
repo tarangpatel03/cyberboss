@@ -27,7 +27,7 @@ export const PersonalDetailsScreen = ({
   const styles = createStyles(theme);
   const [name, setName] = useState<string>('');
   const [experience, setExperience] = useState<string>('');
-  const [bio, setBio] = useState<string | null>(null);
+  const [bio, setBio] = useState<string>('');
   const { expertises, services, id } = useSelector(
     (state: RootState) => state.user.userData,
   );

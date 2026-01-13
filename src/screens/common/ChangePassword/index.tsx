@@ -23,9 +23,6 @@ export const ChangePasswordScreen = ({
     const [oldPassword, setOldPassword] = useState<string>('');
     const [newPassword, setNewPassword] = useState<string>('');
     const [confirmNewPassword, setConfirmNewPassword] = useState<string>('');
-    const [oldPassVisible, setOldPassVisible] = useState(false);
-    const [newPassVisible, setNewPassVisible] = useState(false);
-    const [confirmNewPassVisible, setConfirmNewPassVisible] = useState(false);
 
     const goBack = () => {
         navigation.goBack();

@@ -2,7 +2,7 @@ import { validatePassword } from "@react-native-firebase/auth";
 import { addToCalendar, convertToEventDate } from "./calendar/addCalendarEvent";
 import { extractImageUri, getProfilePicture } from "./extractURI/extractImageURI";
 import { getFontFamily } from "./fonts/getFontFamily";
-import { formatBooking, formatFirebaseTimestamp, getDate, getFullDate, getTime } from "./format/formatDate";
+import {formatBooking, formatFirebaseTimestamp, getDate, getFullDate, getTime} from "./format/formatDate.ts";
 import { getGradientColor, getServiceImage } from "./gradientColor/gradientColor";
 import normalize from "./normalize/normalize";
 import { isDarkMode } from "./theme/darkMode";

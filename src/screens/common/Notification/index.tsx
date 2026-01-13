@@ -56,6 +56,8 @@ export const NotificationScreen = ({
       setNotifications(transformedData);
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoader(false);
     }
   };
   const emptyCard = () => {
@@ -87,7 +89,7 @@ export const NotificationScreen = ({
   };
 
   useEffect(() => {
-    loadNotifications().then(() => setLoader(false));
+    loadNotifications();
   }, []);
 
   return (

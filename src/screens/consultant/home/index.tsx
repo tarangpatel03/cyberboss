@@ -15,7 +15,7 @@ import {
     TConsultantHomeNotificationModel,
     transformConsultantHomeModel,
 } from '@models/formattedAPI/tHome';
-import {TProfileModel, transformProfileModel,} from '@models/formattedAPI/tProfile';
+import {transformProfileModel,} from '@models/formattedAPI/tProfile';
 import {THomeBookingModel} from '@models/formattedAPI/tBookings';
 import {RootState} from '@redux/store';
 import firestore from '@react-native-firebase/firestore';
@@ -41,22 +41,6 @@ export const ConsultantHomeScreen = ({
     );
     const [profilePictureError, setProfilePictureError] =
         useState<boolean>(false);
-    const [profileData, setProfileData] = useState<TProfileModel>({
-        id: '',
-        name: 'User',
-        email: '',
-        phoneNumber: null,
-        profilePicture: undefined,
-        role: 'consultant',
-        bio: null,
-        experienceYear: null,
-        rate: null,
-        expertises: [],
-        services: [],
-        isVerified: true,
-        loginType: 'social',
-        profileSetup: false,
-    });
 
     const [homeData, setHomeData] = useState<TConsultantHomeModel>({
         averageRating: 0,
@@ -93,7 +77,6 @@ export const ConsultantHomeScreen = ({
             if (!response2) return;
             const data2: ApiProfileModel = response2.payload;
             const transformedData2 = transformProfileModel(data2);
-            setProfileData(transformedData2);
             dispatch(
                 setUserData({
                     id: transformedData2.id,

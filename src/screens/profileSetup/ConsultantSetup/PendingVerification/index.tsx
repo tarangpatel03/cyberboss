@@ -12,7 +12,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { setUserData } from '@redux/features/userSlice';
 import { ApiResponse } from '@models/apiModel';
-import { ApiConsultantVerifed } from '@models/api/consultant';
+import {ApiConsultantVerified} from '@models/api/consultant';
 import { Config } from '@config/index';
 import { Components } from '@components/index';
 
@@ -26,7 +26,7 @@ export const PendingVerificationScreen = ({
 
   const verify = async () => {
     try {
-      const response = await getAPIData<ApiResponse<ApiConsultantVerifed>>(
+      const response = await getAPIData<ApiResponse<ApiConsultantVerified>>(
         Config.endPoints.consultantVerified,
       );
       if (response) {

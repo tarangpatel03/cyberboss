@@ -1,27 +1,18 @@
-import { axiosClient } from '@services/axios/axiosClient';
-import auth from '@react-native-firebase/auth';
-import appleAuth from '@invertase/react-native-apple-authentication';
-
-import {
+import {axiosClient} from '@services/axios/axiosClient';
+import auth, {
+  createUserWithEmailAndPassword,
+  getAuth,
   GoogleAuthProvider,
   signInWithCredential,
-  getAuth,
-  createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  signOut,
+  signOut
 } from '@react-native-firebase/auth';
-import {
-  GoogleSignin,
-  isSuccessResponse,
-} from '@react-native-google-signin/google-signin';
-import { Platform } from 'react-native';
-import {
-  WEBCLIENTID,
-  iosClientID,
-  PUSH_TOKEN,
-} from '@config/constants/axiosValues';
-import { Utils } from '@utils/index';
-import { Config } from '@config/index';
+import appleAuth from '@invertase/react-native-apple-authentication';
+import {GoogleSignin, isSuccessResponse,} from '@react-native-google-signin/google-signin';
+import {Platform} from 'react-native';
+import {iosClientID, PUSH_TOKEN, WEBCLIENTID,} from '@config/constants/axiosValues';
+import {Utils} from '@utils/index';
+import {Config} from '@config/index';
 
 export const getUserToken = async (data: {
   email: string | null;
@@ -55,14 +46,13 @@ export const googleLogIn = async () => {
       );
       const idToken = await firebaseUser.user.getIdToken();
       const email = firebaseUser.user.email;
-      const apiResponse = await getUserToken({
+      return await getUserToken({
         email,
         firebase_token: idToken,
         push_token: PUSH_TOKEN,
         device_type: Platform.OS === 'android' ? 'android' : 'ios',
         login_type: 'social',
       });
-      return apiResponse;
     } else {
       return;
     }
@@ -101,14 +91,13 @@ export const signUp = async (email: string, password: string) => {
       password,
     );
     const idToken = await firebaseUser.user.getIdToken();
-    const apiResponse = await getUserToken({
+    return await getUserToken({
       email,
       firebase_token: idToken,
       push_token: PUSH_TOKEN,
       device_type: Platform.OS === 'ios' ? 'ios' : 'android',
       login_type: 'social',
     });
-    return apiResponse;
   } catch (error) {
     console.log(error);
   }

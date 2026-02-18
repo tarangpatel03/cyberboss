@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { Theme } from '@config/themes/themes';
-import {Utils} from '@utils/index';
+import { Utils } from '@utils/index';
 
 export const staticStyle = StyleSheet.create({
   container: {
@@ -8,8 +8,10 @@ export const staticStyle = StyleSheet.create({
     paddingTop: Utils.normalize(12),
     paddingHorizontal: Utils.normalize(12),
   },
+  mainContainer: {
+    flex: 1,
+  },
   header: {
-    paddingTop: Utils.normalize(20),
     paddingBottom: Utils.normalize(12),
   },
   card: {
@@ -56,7 +58,8 @@ export const staticStyle = StyleSheet.create({
     gap: Utils.normalize(16),
   },
   button: {
-    padding: Utils.normalize(12),
+    paddingHorizontal: Utils.normalize(12),
+    paddingTop: Utils.normalize(12),
   },
   inputContainer: {
     width: '100%',
@@ -69,6 +72,7 @@ export const staticStyle = StyleSheet.create({
     top: 0,
     fontWeight: '400',
     fontSize: Utils.normalize(14),
+    paddingBottom: Utils.normalize(40),
   },
   askAi: {
     right: Utils.normalize(4),

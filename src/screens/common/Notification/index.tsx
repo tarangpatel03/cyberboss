@@ -22,6 +22,7 @@ import {
 import { ApiResponse, ListPayload } from '@models/apiModel';
 import { Config } from '@config/index';
 import { Components } from '@components/index';
+import { Utils } from '@utils/index';
 
 export const NotificationScreen = ({
   navigation,
@@ -55,7 +56,7 @@ export const NotificationScreen = ({
       pageRef.current = response.payload.meta.current_page;
       setNotifications(transformedData);
     } catch (error) {
-      console.log(error);
+      Utils.showErrorToast({ title: error as string });
     } finally {
       setLoader(false);
     }
@@ -102,7 +103,9 @@ export const NotificationScreen = ({
           headerText={t('notifications')}
         />
         {loader && (
-          <Components.Skeleton.ListShimmer containerStyle={staticStyle.shimmerContainer} />
+          <Components.Skeleton.ListShimmer
+            containerStyle={staticStyle.shimmerContainer}
+          />
         )}
         {!loader && (
           <View style={staticStyle.subContainer}>

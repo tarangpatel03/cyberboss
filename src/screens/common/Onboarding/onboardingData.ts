@@ -1,4 +1,4 @@
-import { Config } from "@config/index";
+import { Config } from '@config/index';
 
 export type onboardingDataProps = {
   id: string;

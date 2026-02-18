@@ -7,20 +7,16 @@ export const staticStyle = StyleSheet.create({
     flex: 1,
   },
   bottomButton: {
-    paddingHorizontal: Utils.normalize(16),
-    paddingBottom: Utils.normalize(10, 'height'),
+    padding: Utils.normalize(12),
   },
   topBar: {
+    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     paddingTop: Utils.normalize(15, 'height'),
     paddingHorizontal: Utils.normalize(16),
-    flexDirection: 'row',
   },
   backButton: {
-    position: 'absolute',
-    left: Utils.normalize(16),
-    top: Utils.normalize(12),
     width: Utils.normalize(16),
     height: Utils.normalize(12, 'height'),
     justifyContent: 'center',
@@ -29,8 +25,6 @@ export const staticStyle = StyleSheet.create({
   backIcon: {
     width: Utils.normalize(20),
     height: Utils.normalize(20),
-    alignItems: 'center',
-    justifyContent: 'center',
     resizeMode: 'contain',
   },
   content: {
@@ -66,8 +60,8 @@ export const staticStyle = StyleSheet.create({
     gap: Utils.normalize(12),
   },
   title: {
-    fontSize: Utils.normalize(24),
-    fontWeight: '600',
+    fontSize: Utils.normalize(18),
+    fontWeight: '500',
   },
   subTitle: {
     fontSize: Utils.normalize(14),
@@ -85,6 +79,9 @@ export const createStyles = (theme: Theme) =>
     },
     line: {
       backgroundColor: theme.colors.cardBackground,
+    },
+    secondaryBg: {
+      backgroundColor: theme.colors.bgSecondary,
     },
     title: {
       color: theme.colors.textPrimary,

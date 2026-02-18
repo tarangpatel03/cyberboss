@@ -18,6 +18,26 @@ export const updateClientProfile = async (
   }
 };
 
+export const updateConsultantProfile = async (
+  bio: string,
+  name: string,
+  experience_year: number,
+) => {
+  try {
+    const response = await axiosClient.post(
+      Config.endPoints.consultantProfile,
+      {
+        name,
+        bio,
+        experience_year,
+      },
+    );
+    return response.data.payload;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const updateConsultantProfileSetup = async (
   name: string,
   experience_year: string,
@@ -31,12 +51,39 @@ export const updateConsultantProfileSetup = async (
   const services = servicesArray.join(',');
 
   try {
-    const res = await axiosClient.post(Config.endPoints.consultantProfileSetup, {
-      name,
-      experience_year,
-      bio,
-      profile_picture,
+    const res = await axiosClient.post(
+      Config.endPoints.consultantProfileSetup,
+      {
+        name,
+        experience_year,
+        bio,
+        profile_picture,
+        expertises,
+        services,
+      },
+    );
+    return res.data.payload;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const updateExpertises = async (expertiseArray: string[]) => {
+  const expertises = expertiseArray.join(',');
+  try {
+    const res = await axiosClient.put(Config.endPoints.consultantExpertises, {
       expertises,
+    });
+    return res.data.payload;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const updateServices = async (servicesArray: string[]) => {
+  const services = servicesArray.join(',');
+  try {
+    const res = await axiosClient.put(Config.endPoints.consultantServices, {
       services,
     });
     return res.data.payload;

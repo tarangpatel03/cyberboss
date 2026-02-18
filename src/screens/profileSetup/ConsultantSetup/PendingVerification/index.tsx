@@ -1,7 +1,10 @@
 import { StyleSheet, View } from 'react-native';
 import { useTheme } from '@shopify/restyle';
 import { Theme } from '@config/themes/themes';
-import { createStyles, staticStyle } from '@screens/profileSetup/ConsultantSetup/PendingVerification/styles';
+import {
+  createStyles,
+  staticStyle,
+} from '@screens/profileSetup/ConsultantSetup/PendingVerification/styles';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { routeName } from '@config/constants/routes';
 import { RootNavigationProps } from '@models/navigationModel';
@@ -12,9 +15,10 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { setUserData } from '@redux/features/userSlice';
 import { ApiResponse } from '@models/apiModel';
-import {ApiConsultantVerified} from '@models/api/consultant';
+import { ApiConsultantVerified } from '@models/api/consultant';
 import { Config } from '@config/index';
 import { Components } from '@components/index';
+import { Utils } from '@utils/index';
 
 export const PendingVerificationScreen = ({
   navigation,
@@ -40,7 +44,7 @@ export const PendingVerificationScreen = ({
         }
       }
     } catch (error) {
-      console.log(error);
+      Utils.showErrorToast({ title: error as string });
     }
   };
 

@@ -13,6 +13,7 @@ import { useTranslation } from 'react-i18next';
 import { getAuth, sendPasswordResetEmail } from '@react-native-firebase/auth';
 import { Utils } from '@utils/index';
 import { Components } from '@components/index';
+import { ErrorToast } from 'react-native-toast-message';
 
 export const ForgotPasswordScreen = ({
   navigation,
@@ -33,7 +34,7 @@ export const ForgotPasswordScreen = ({
         goBack();
       } else Utils.showErrorToast({ title: t('enterValidEmail') });
     } catch (error) {
-      console.log(error);
+      ErrorToast({ text1: error as string });
     }
   };
 
@@ -41,7 +42,7 @@ export const ForgotPasswordScreen = ({
     <>
       <SafeAreaView
         style={StyleSheet.flatten([staticStyle.container, styles.container])}
-      > 
+      >
         <View
           style={StyleSheet.flatten([staticStyle.container, styles.container])}
         >

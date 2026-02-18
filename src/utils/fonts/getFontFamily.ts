@@ -1,5 +1,4 @@
-import { Config } from "@config/index";
-
+import { Config } from '@config/index';
 
 export const getFontFamily = (
   weight: 'regular' | 'medium' | 'bold' | 'light' | 'semiBold',

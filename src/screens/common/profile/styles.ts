@@ -1,6 +1,6 @@
-import {Platform, StyleSheet} from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 import { Theme } from '@config/themes/themes';
-import {Utils} from '@utils/index';
+import { Utils } from '@utils/index';
 
 export const staticStyle = StyleSheet.create({
   container: {
@@ -26,6 +26,7 @@ export const staticStyle = StyleSheet.create({
   consultantUserCard: {
     borderWidth: 1,
     borderBottomWidth: 0,
+    gap: Utils.normalize(12),
     padding: Utils.normalize(10),
     borderTopLeftRadius: 12,
     borderTopRightRadius: 12,
@@ -83,7 +84,8 @@ export const staticStyle = StyleSheet.create({
   innerContainer: {
     gap: Utils.normalize(12),
     paddingHorizontal: Utils.normalize(12),
-    flex: 1,
+    paddingBottom:
+      Platform.OS === 'ios' ? Utils.normalize(50) : Utils.normalize(75),
   },
   editIcon: {
     width: Utils.normalize(13),
@@ -149,7 +151,7 @@ export const staticStyle = StyleSheet.create({
     fontSize: Utils.normalize(12),
     fontWeight: '400',
     alignSelf: 'center',
-    bottom: Utils.normalize(16),
+    bottom: Utils.normalize(32),
   },
 });
 
@@ -162,7 +164,7 @@ export const createStyles = (theme: Theme) =>
       backgroundColor: theme.colors.primary,
     },
     userDetailCard: {
-      backgroundColor: theme.colors.cardBackground,
+      backgroundColor: theme.colors.bgPrimary,
       borderColor: theme.colors.borderPrimary,
     },
     userName: {
@@ -175,7 +177,7 @@ export const createStyles = (theme: Theme) =>
       backgroundColor: theme.colors.bgSecondary,
     },
     utilCard: {
-      backgroundColor: theme.colors.cardBackground,
+      backgroundColor: theme.colors.bgPrimary,
     },
     iconContainer: {
       backgroundColor: theme.colors.borderPrimary,

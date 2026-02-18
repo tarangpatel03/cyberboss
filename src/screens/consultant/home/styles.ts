@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { Theme } from '@config/themes/themes';
-import {Utils} from '@utils/index';
+import { Utils } from '@utils/index';
 import { width } from '@config/constants/variables';
 import { Config } from '@config/index';
 

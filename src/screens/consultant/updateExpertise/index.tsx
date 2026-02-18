@@ -5,13 +5,10 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { RootNavigationProps } from '@models/navigationModel';
 import { routeName } from '@config/constants/routes';
 import { useCallback, useEffect, useState } from 'react';
-import {
-  createStyles,
-  staticStyle,
-} from '@screens/profileSetup/ConsultantSetup/AreaOfExpertise/styles';
+import { createStyles, staticStyle } from './styles';
 import { useTranslation } from 'react-i18next';
 import { getAPIData } from '@services/api/common/getCommonApi';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setUserData } from '@redux/features/userSlice';
 import { ApiExpertiseModel } from '@models/api/consultant';
 import {
@@ -21,17 +18,21 @@ import {
 import { ApiResponse } from '@models/apiModel';
 import { Config } from '@config/index';
 import { Components } from '@components/index';
+import { RootState } from '@redux/store';
+import { updateExpertises } from '@services/api/profile/updateProfile';
 import { Utils } from '@utils/index';
 
-export const AreaOfExpertiseScreen = ({
+export const UpdateExpertiseScreen = ({
   navigation,
-}: RootNavigationProps<routeName.AreaOfExpertise>) => {
+}: RootNavigationProps<routeName.UpdateExpertise>) => {
   const { t } = useTranslation();
   const theme = useTheme<Theme>();
   const styles = createStyles(theme);
   const dispatch = useDispatch();
+  const { expertises } = useSelector((state: RootState) => state.user.userData);
   const [expertise, setExpertise] = useState<TExpertiseModel[]>([]);
-  const [category, setCategory] = useState<string[]>([]);
+  const [category, setCategory] = useState<string[]>(expertises ?? []);
+  const isButtonDisabled = category === expertises || category.length === 0;
 
   const goBack = () => {
     navigation.goBack();
@@ -58,13 +59,18 @@ export const AreaOfExpertiseScreen = ({
     setCategory(category.filter(x => x !== id));
   };
 
-  const navigateToNext = () => {
-    dispatch(
-      setUserData({
-        expertises: category,
-      }),
-    );
-    navigation.navigate(routeName.ServicesYouOffer);
+  const updateExpertise = async () => {
+    try {
+      await updateExpertises(category);
+      dispatch(
+        setUserData({
+          expertises: category,
+        }),
+      );
+      goBack();
+    } catch (error) {
+      Utils.showErrorToast({ title: error as string });
+    }
   };
 
   const renderItem: ListRenderItem<TExpertiseModel> = useCallback(
@@ -95,35 +101,17 @@ export const AreaOfExpertiseScreen = ({
           <View style={staticStyle.topBar}>
             <Components.Buttons.CircularIconButton
               iconPath={Config.appIcons.ic_backIcon}
-              buttonStyle={staticStyle.backButton}
+              buttonStyle={[staticStyle.backButton]}
               iconStyle={staticStyle.backIcon}
               tintColor={theme.colors.textPrimary}
               onPress={goBack}
             />
-            <View style={StyleSheet.flatten([staticStyle.line, styles.line])}>
-              <View
-                style={StyleSheet.flatten([
-                  staticStyle.fillLineDetail,
-                  styles.filledLine,
-                ])}
-              />
-              <View style={staticStyle.lineDetail} />
-            </View>
-          </View>
-          <View style={staticStyle.content}>
             <Components.TextComponent
-              family={'semiBold'}
-              text={t('yourExpertise')}
+              family={'medium'}
+              text={t('editExpertise')}
               textStyle={StyleSheet.flatten([staticStyle.title, styles.title])}
             />
-            <Components.TextComponent
-              family={'regular'}
-              text={t('yourExpertiseLine')}
-              textStyle={StyleSheet.flatten([
-                staticStyle.subTitle,
-                styles.subTitle,
-              ])}
-            />
+            <View style={staticStyle.backButton} />
           </View>
           <View style={staticStyle.list}>
             <FlatList
@@ -139,8 +127,11 @@ export const AreaOfExpertiseScreen = ({
         </View>
         <View style={staticStyle.bottomButton}>
           <Components.Buttons.PrimaryButton
-            text={t('continue')}
-            onPress={navigateToNext}
+            isButtonActive={isButtonDisabled}
+            text={t('updateExpertise')}
+            onPress={updateExpertise}
+            buttonStyle={isButtonDisabled ? styles.secondaryBg : undefined}
+            textStyle={isButtonDisabled ? styles.subTitle : undefined}
           />
         </View>
       </SafeAreaView>

@@ -1,18 +1,25 @@
-import {axiosClient} from '@services/axios/axiosClient';
+import { axiosClient } from '@services/axios/axiosClient';
 import auth, {
   createUserWithEmailAndPassword,
   getAuth,
   GoogleAuthProvider,
   signInWithCredential,
   signInWithEmailAndPassword,
-  signOut
+  signOut,
 } from '@react-native-firebase/auth';
 import appleAuth from '@invertase/react-native-apple-authentication';
-import {GoogleSignin, isSuccessResponse,} from '@react-native-google-signin/google-signin';
-import {Platform} from 'react-native';
-import {iosClientID, PUSH_TOKEN, WEBCLIENTID,} from '@config/constants/axiosValues';
-import {Utils} from '@utils/index';
-import {Config} from '@config/index';
+import {
+  GoogleSignin,
+  isSuccessResponse,
+} from '@react-native-google-signin/google-signin';
+import { Platform } from 'react-native';
+import {
+  iosClientID,
+  PUSH_TOKEN,
+  WEBCLIENTID,
+} from '@config/constants/axiosValues';
+import { Utils } from '@utils/index';
+import { Config } from '@config/index';
 
 export const getUserToken = async (data: {
   email: string | null;
@@ -57,7 +64,7 @@ export const googleLogIn = async () => {
       return;
     }
   } catch (error) {
-    console.log(error);
+    Utils.showErrorToast({ title: error as string });
   }
 };
 
@@ -73,6 +80,7 @@ export const signIn = async (email: string, password: string) => {
       push_token: PUSH_TOKEN,
       firebase_token: idToken,
     });
+    // console.log('UserToken: ', userToken);
     return { userToken, uid };
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {
@@ -99,7 +107,7 @@ export const signUp = async (email: string, password: string) => {
       login_type: 'social',
     });
   } catch (error) {
-    console.log(error);
+    Utils.showErrorToast({ title: error as string });
   }
 };
 
@@ -107,7 +115,7 @@ export const logOut = async () => {
   try {
     await signOut(getAuth());
   } catch (error) {
-    console.log(error);
+    Utils.showErrorToast({ title: error as string });
   }
 };
 

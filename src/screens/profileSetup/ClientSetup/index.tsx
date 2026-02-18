@@ -6,7 +6,10 @@ import { useState } from 'react';
 import { useTheme } from '@shopify/restyle';
 import { useTranslation } from 'react-i18next';
 import FastImage from 'react-native-fast-image';
-import { createStyles, staticStyle } from '@screens/profileSetup/ClientSetup/styles';
+import {
+  createStyles,
+  staticStyle,
+} from '@screens/profileSetup/ClientSetup/styles';
 import { Theme } from '@config/themes/themes';
 import { routeName } from '@config/constants/routes';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -19,6 +22,7 @@ import firestore from '@react-native-firebase/firestore';
 import { RootState } from '@redux/store';
 import { Config } from '@config/index';
 import { Components } from '@components/index';
+import { Utils } from '@utils/index';
 
 export const ClientProfileSetUpScreen = ({
   navigation,
@@ -48,7 +52,7 @@ export const ClientProfileSetUpScreen = ({
         }
       }
     } catch (error) {
-      console.log(error);
+      Utils.showErrorToast({ title: error as string });
     }
   };
 
@@ -70,7 +74,7 @@ export const ClientProfileSetUpScreen = ({
       updateUserName();
       navigation.replace(routeName.BottomTab);
     } catch (error) {
-      console.log(error);
+      Utils.showErrorToast({ title: error as string });
     }
   };
 

@@ -1,7 +1,10 @@
 import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { useTheme } from '@shopify/restyle';
 import { Theme } from '@config/themes/themes';
-import { createStyles, staticStyle } from '@screens/profileSetup/ConsultantSetup/PersonalDetails/styles';
+import {
+  createStyles,
+  staticStyle,
+} from '@screens/profileSetup/ConsultantSetup/PersonalDetails/styles';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { routeName } from '@config/constants/routes';
 import { RootNavigationProps } from '@models/navigationModel';
@@ -18,6 +21,7 @@ import firestore from '@react-native-firebase/firestore';
 import { updateConsultantProfileSetup } from '@services/api/profile/updateProfile';
 import { Config } from '@config/index';
 import { Components } from '@components/index';
+import { Utils } from '@utils/index';
 
 export const PersonalDetailsScreen = ({
   navigation,
@@ -75,7 +79,7 @@ export const PersonalDetailsScreen = ({
         }
       }
     } catch (error) {
-      console.log(error);
+      Utils.showErrorToast({ title: error as string });
     }
   };
 

@@ -1,5 +1,8 @@
 import { StyleSheet, View } from 'react-native';
-import { createStyles, staticStyle } from '@screens/profileSetup/FirstScreen/styles';
+import {
+  createStyles,
+  staticStyle,
+} from '@screens/profileSetup/FirstScreen/styles';
 import { Theme } from '@config/themes/themes';
 import { useTheme } from '@shopify/restyle';
 import { routeName } from '@config/constants/routes';

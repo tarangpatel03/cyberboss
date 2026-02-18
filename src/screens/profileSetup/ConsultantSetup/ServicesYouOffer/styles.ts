@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import {Utils} from '@utils/index';
+import { Utils } from '@utils/index';
 import { Theme } from '@config/themes/themes';
 
 export const staticStyle = StyleSheet.create({

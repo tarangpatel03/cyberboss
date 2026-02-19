@@ -8,7 +8,6 @@ import { memo, useEffect, useState } from 'react';
 import firestore from '@react-native-firebase/firestore';
 import { width } from '@config/constants/variables';
 import { Config } from '@config/index';
-import { ErrorToast } from 'react-native-toast-message';
 
 type ChatListItemProps = {
   data: any;
@@ -54,8 +53,8 @@ export const ChatListItem = memo((props: ChatListItemProps) => {
           profile_image: data.profile_image,
           date: date,
         });
-    } catch (error: any) {
-      ErrorToast({ text1: error as string });
+    } catch (error) {
+      Utils.showErrorToast({ title: error as string });
     }
   };
 

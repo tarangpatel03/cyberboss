@@ -20,7 +20,7 @@ import {
 import { ApiResponse } from '@models/apiModel';
 import { Config } from '@config/index';
 import { Components } from '@components/index';
-import { ErrorToast } from 'react-native-toast-message';
+import { Utils } from '@utils/index';
 
 export const SearchServiceScreen = ({
   navigation,
@@ -44,7 +44,7 @@ export const SearchServiceScreen = ({
       const transformedData = data.map(r => transformExpertiseModel(r));
       setServices(transformedData);
     } catch (error) {
-      ErrorToast({ text1: error as string });
+      Utils.showErrorToast({ title: error as string });
     }
   };
 

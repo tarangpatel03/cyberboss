@@ -16,7 +16,7 @@ import {
 import { transformProfileModel } from '@models/formattedAPI/tProfile';
 import { ApiResponse } from '@models/apiModel';
 import { Config } from '@config/index';
-import { ErrorToast } from 'react-native-toast-message';
+import { Utils } from '@utils/index';
 
 export function useClientHome() {
   const dispatch = useDispatch();
@@ -85,7 +85,7 @@ export function useClientHome() {
       setRefreshing(true);
       await getData();
     } catch (error) {
-      ErrorToast({ text1: error as string });
+      Utils.showErrorToast({ title: error as string });
     } finally {
       setRefreshing(false);
       setLoader(false);

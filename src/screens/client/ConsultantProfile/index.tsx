@@ -29,7 +29,6 @@ import { Components } from '@components/index';
 import FastImage from 'react-native-fast-image';
 import { Rating } from 'react-native-ratings';
 import { Utils } from '@utils/index.ts';
-import { ErrorToast } from 'react-native-toast-message';
 
 export const ConsultantProfileScreen = ({
   navigation,
@@ -95,7 +94,7 @@ export const ConsultantProfileScreen = ({
       const transformedData = transformConsultantDetailsModel(resData);
       setData(transformedData);
     } catch (error) {
-      ErrorToast({ text1: error as string });
+      Utils.showErrorToast({ title: error as string });
     }
   };
 

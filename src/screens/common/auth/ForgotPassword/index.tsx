@@ -13,7 +13,6 @@ import { useTranslation } from 'react-i18next';
 import { getAuth, sendPasswordResetEmail } from '@react-native-firebase/auth';
 import { Utils } from '@utils/index';
 import { Components } from '@components/index';
-import { ErrorToast } from 'react-native-toast-message';
 
 export const ForgotPasswordScreen = ({
   navigation,
@@ -34,7 +33,7 @@ export const ForgotPasswordScreen = ({
         goBack();
       } else Utils.showErrorToast({ title: t('enterValidEmail') });
     } catch (error) {
-      ErrorToast({ text1: error as string });
+      Utils.showErrorToast({ title: error as string });
     }
   };
 

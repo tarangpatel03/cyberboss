@@ -26,7 +26,6 @@ import { useTranslation } from 'react-i18next';
 import LinearGradient from 'react-native-linear-gradient';
 import FastImage from 'react-native-fast-image';
 import { Utils } from '@utils/index.ts';
-import { ErrorToast } from 'react-native-toast-message';
 
 export const SubscriptionScreen = ({
   navigation,
@@ -47,7 +46,7 @@ export const SubscriptionScreen = ({
       const transformedData = transformSubscriptionModel(data);
       setSubscriptionData(transformedData);
     } catch (error) {
-      ErrorToast({ text1: error as string });
+      Utils.showErrorToast({ title: error as string });
     }
   };
 

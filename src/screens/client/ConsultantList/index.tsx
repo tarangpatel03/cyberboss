@@ -25,7 +25,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ApiResponse, ListPayload } from '@models/apiModel';
 import { Components } from '@components/index';
-import { ErrorToast } from 'react-native-toast-message';
+import { Utils } from '@utils/index';
 
 export const ConsultantListScreen = ({
   navigation,
@@ -84,7 +84,7 @@ export const ConsultantListScreen = ({
       pageRef.current = response.payload.meta.current_page;
       setConsultantsList(formattedData);
     } catch (error) {
-      ErrorToast({ text1: error as string });
+      Utils.showErrorToast({ title: error as string });
     } finally {
       setPaginationLoading(false);
       setLoader(false);

@@ -26,7 +26,6 @@ import { Components } from '@components/index';
 import FastImage from 'react-native-fast-image';
 import LinearGradient from 'react-native-linear-gradient';
 import { Utils } from '@utils/index.ts';
-import { ErrorToast } from 'react-native-toast-message';
 
 export const BookingDetailsScreen = ({
   navigation,
@@ -95,8 +94,8 @@ export const BookingDetailsScreen = ({
       if (!response2) return;
       const data2: ApiBillDetailsModel = response2.payload;
       setBillData(data2);
-    } catch (error: any) {
-      ErrorToast({ text1: error as string });
+    } catch (error) {
+      Utils.showErrorToast({ title: error as string });
     } finally {
       setLoader(false);
     }

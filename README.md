@@ -1,49 +1,148 @@
 # CyberBoss
 
-CyberBoss is an **online IT-service booking** platform for booking IT services, **scheduling workshops**, and communicating directly with vetted consultants—all from a single mobile app.
+> IT-service booking and consultant communication platform built with React Native.
 
-## Key Features
+CyberBoss is a mobile application that connects clients with IT security consultants through service booking, workshop scheduling, and direct communication.
 
-- **Service Booking:** browse categories (e.g., security audits, incident response, cloud hardening) and reserve a slot with the right consultant.
-- **Workshop Scheduling:** organize team sessions on security best practices, compliance, and emerging threats with time/date preferences.
-- **Client–Consultant Communication:** chat in-app to align on scope, share context, and receive updates before and after bookings.
+## ✨ Features
 
-## Installation
+### 🔐 Service Booking
 
-1. Download the latest `CyberBoss.apk`.
-2. Open the app and sign in or create an account.
+* Browse available IT services
+* Explore services such as:
 
-## Usage Overview
+  * Security Audits
+  * Incident Response
+  * Cloud Hardening
+* Select a consultant
+* Choose a preferred date and time
+* Review and confirm bookings
+* Track booking status
 
-- **Book services:** browse services, pick a consultant, select a date/time, review details, and confirm the booking. Track status in your bookings list.
-- **Schedule workshops:** choose a topic, propose preferred dates, and submit. Confirm once the consultant accepts or suggests alternatives.
-- **Communicate with consultants:** open any booking or workshop to message the consultant, share requirements, and receive updates or files.
+### 🎓 Workshop Scheduling
 
-## Screenshots
+* Schedule security-focused workshops for teams
+* Select workshop topics
+* Propose preferred dates and times
+* Submit workshop requests
+* Handle consultant confirmations or alternative schedules
 
-<table>
-  <tr>
-    <td width="50%" align="center">
-      <strong>Home & browsing</strong><br/>
-      <img src="./src/assets/readme/img_intro1.png" alt="Home & browsing" width="90%"/>
-    </td>
-    <td width="50%" align="center">
-      <strong>Service details & booking</strong><br/>
-      <img src="./src/assets/readme/img_intro2.png" alt="Service details & booking" width="90%"/>
-    </td>
-  </tr>
-  <tr>
-    <td width="50%" align="center">
-      <strong>Workshops</strong><br/>
-      <img src="./src/assets/readme/img_intro3.png" alt="Workshops" width="90%"/>
-    </td>
-    <td width="50%" align="center">
-      <strong>Messaging & updates</strong><br/>
-      <img src="./src/assets/readme/img_intro4.png" alt="Messaging & updates" width="90%"/>
-    </td>
-  </tr>
-</table>
+### 💬 Client–Consultant Communication
 
-## Tech Stack
+* In-app communication between clients and consultants
+* Discuss requirements and project scope
+* Share additional context and updates
+* Receive booking and workshop-related information
 
-- React Native
+## 📱 Application Flow
+
+```text
+Discover Service
+       │
+       ▼
+Select Consultant
+       │
+       ▼
+Choose Date & Time
+       │
+       ▼
+Review Booking
+       │
+       ▼
+Confirm
+       │
+       ▼
+Track Status
+       │
+       ▼
+Communicate with Consultant
+```
+
+## 🛠️ Tech Stack
+
+* **React Native**
+* Mobile-first UI architecture
+* Component-based application structure
+* Android application build
+
+## 📸 Screenshots
+
+<p align="center">
+  <img src="./src/assets/readme/img_intro1.png" width="220" />
+  <img src="./src/assets/readme/img_intro2.png" width="220" />
+  <img src="./src/assets/readme/img_intro3.png" width="220" />
+  <img src="./src/assets/readme/img_intro4.png" width="220" />
+</p>
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+Make sure you have the React Native development environment configured on your machine.
+
+### Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/tarangpatel03/cyberboss.git
+cd cyberboss
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the Metro bundler:
+
+```bash
+npm start
+```
+
+Run the Android application:
+
+```bash
+npm run android
+```
+
+## 📦 Android Build
+
+A release APK is available through the project's releases/download section.
+
+Install the APK on a compatible Android device and sign in or create an account to explore the application.
+
+## 🧩 Core Application Areas
+
+```text
+Services
+   ├── Service Discovery
+   ├── Consultant Selection
+   └── Booking
+
+Workshops
+   ├── Topic Selection
+   ├── Schedule Proposal
+   └── Confirmation
+
+Communication
+   ├── Client ↔ Consultant
+   ├── Requirements
+   └── Updates
+```
+
+## 🎯 Project Focus
+
+CyberBoss focuses on building a practical mobile workflow around:
+
+* Service discovery
+* Appointment scheduling
+* Booking lifecycle management
+* Workshop coordination
+* Client–consultant communication
+* Mobile-first user experience
+
+## 📄 License
+
+This project is available for educational and portfolio purposes.
